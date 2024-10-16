@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Roguelike Game Project TEST.sln"
+    "dotnet.defaultSolution": "CSCI-150-Game-Project.sln"
 }
