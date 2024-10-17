@@ -28,7 +28,7 @@ namespace Game.CoreSystem
 
         public override void LogicUpdate()
         {
-            CurrentVelocity = RB.velocity;
+            CurrentVelocity = RB.linearVelocity;
         }
 
         public void SetVelocityX(float velocity)
@@ -47,7 +47,7 @@ namespace Game.CoreSystem
         {
             if (CanSetVelocity)
             {
-                RB.velocity = workspace;
+                RB.linearVelocity = workspace;
                 CurrentVelocity = workspace;
             }        
         }
