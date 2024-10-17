@@ -282,7 +282,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &476201233997115708
 BoxCollider2D:
@@ -480,7 +480,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6546985251925866098}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -567,7 +567,7 @@ MonoBehaviour:
   groundCheck: {fileID: 3929421278808247600}
   wallCheck: {fileID: 4265444841563331321}
   groundCheckSize: {x: 0.3866667, y: 0.08333334}
-  wallCheckDistance: 0.25
+  wallCheckDistance: 0.27083334
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
