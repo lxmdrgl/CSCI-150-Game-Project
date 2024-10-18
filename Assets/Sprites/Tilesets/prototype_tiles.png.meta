@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 969ce47285c12ac439f1b604e96bafd3
+guid: a943dd5336185fa43ab0ad9fdeb628fe
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -100,7 +100,73 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: prototype tiles_0
+      name: prototype_tiles_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d76e94cd7fe5aef4fb17b8aa855eb49c
+      internalID: 1368751885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_tiles_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ba74a59a867cf4429fcd1c1a0206620
+      internalID: -727170336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_tiles_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 24
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 137106f626c21fa41b63518d1990f04c
+      internalID: -515419349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_tiles_3
       rect:
         serializedVersion: 2
         x: 0
@@ -115,14 +181,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c4a04d73d7c92d4da8557ee3013e0a4
-      internalID: 590132260
+      spriteID: fd2a7cf6338a3a341928230e56f54a9f
+      internalID: 666350296
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prototype tiles_1
+      name: prototype_tiles_4
       rect:
         serializedVersion: 2
         x: 24
@@ -137,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8841a053dfeca84bb16f675a78c4b22
-      internalID: 509643028
+      spriteID: 19585dba5b498e047a2f07d3b5298bb7
+      internalID: 726532344
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: prototype tiles_2
+      name: prototype_tiles_5
       rect:
         serializedVersion: 2
         x: 48
@@ -159,8 +225,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f688ecdcc7de9d048a9cefde9ef3f428
-      internalID: 1921940950
+      spriteID: 10131a44f8635c647bb7b3ede7ed93b7
+      internalID: 1910030903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_tiles_6
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9242ddab179f7f4f9cb4a0275af85ad
+      internalID: 460556344
       vertices: []
       indices: 
       edges: []
@@ -179,9 +267,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      prototype tiles_0: 590132260
-      prototype tiles_1: 509643028
-      prototype tiles_2: 1921940950
+      prototype_tiles_0: 1368751885
+      prototype_tiles_1: -727170336
+      prototype_tiles_2: -515419349
+      prototype_tiles_3: 666350296
+      prototype_tiles_4: 726532344
+      prototype_tiles_5: 1910030903
+      prototype_tiles_6: 460556344
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
