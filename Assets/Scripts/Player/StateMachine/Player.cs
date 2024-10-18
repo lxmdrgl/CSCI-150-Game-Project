@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     public PlayerData playerData;
+    [SerializeField]
+    public PlayerStats playerStats = new PlayerStats();
 
     public Core Core { get; private set; }
     public Animator Anim { get; private set; }
@@ -66,4 +68,11 @@ public class Player : MonoBehaviour
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
 
     private void AnimtionFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
+
+    // For saving & loading
+    public Vector3 Position
+    {
+        get => transform.position;
+        set => transform.position = value;
+    }
 }

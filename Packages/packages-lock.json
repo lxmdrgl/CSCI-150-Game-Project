@@ -282,6 +282,16 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.services.leaderboards": {
+      "version": "2.1.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.services.core": "1.13.0",
+        "com.unity.services.authentication": "3.3.3"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.settings-manager": {
       "version": "2.0.1",
       "depth": 2,
