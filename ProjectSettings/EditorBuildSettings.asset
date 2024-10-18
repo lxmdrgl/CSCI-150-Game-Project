@@ -5,8 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameplayScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Alex Gameplay Scene.unity
+    guid: 2682f1e8388bfad43a76820b5dccc791
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 409ec3e0fc238f148a86da541f5407a2, type: 2}
+  m_UseUCBPForAssetBundles: 0
