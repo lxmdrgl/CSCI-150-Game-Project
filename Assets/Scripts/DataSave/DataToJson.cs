@@ -1,10 +1,10 @@
 using System.IO;
 using UnityEngine;
 
-public class PlayerDataSave : MonoBehaviour
+public class DataToJson : MonoBehaviour
 {
     private string filePath;
-    public TestData td;
+    public TestData td = new TestData();
 
     void Awake()
     {

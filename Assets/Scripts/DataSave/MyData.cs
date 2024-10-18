@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class PlayerDataForSave : MonoBehaviour
+public class MyData : MonoBehaviour
 {
     public TestData testData = new TestData();
 }
@@ -13,4 +13,6 @@ public class TestData
     public int level;
     public int coins;
 
+    public TestData get(){ return this; } 
+    private TestData set(){ return this; } 
 }
