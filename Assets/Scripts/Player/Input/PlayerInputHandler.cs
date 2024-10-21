@@ -14,10 +14,13 @@ public class PlayerInputHandler : MonoBehaviour
     public int NormInputY { get; private set; }
     public bool JumpInput { get; private set; }
 
+    public bool[] AttackInputs { get; private set; }
 
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>(); 
+        int count = Enum.GetValues(typeof(CombatInputs)).Length;
+        AttackInputs = new bool[count];
     }
 
     private void Update()
@@ -46,5 +49,27 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnPrimaryAttackInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            AttackInputs[(int)CombatInputs.primaryAttack] = true;
+        }
+
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.primaryAttack] = false;
+        }
+    }
+
     public void UseJumpInput() => JumpInput = false;
+
+    public void UseAttackInput(int i) => AttackInputs[i] = false;
+}
+
+public enum CombatInputs{
+    primaryAttack,
+    secondaryAttack,
+    primarySkill,
+    secondarySkill
 }
