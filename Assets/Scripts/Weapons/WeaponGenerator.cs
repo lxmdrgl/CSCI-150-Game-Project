@@ -15,9 +15,9 @@ namespace Game.Weapons
         [SerializeField] private Weapon weapon;
         [SerializeField] private CombatInputs combatInput;
 
-        // private List<WeaponComponent> componentAlreadyOnWeapon = new List<WeaponComponent>();
+        private List<WeaponComponent> componentAlreadyOnWeapon = new List<WeaponComponent>();
 
-        // private List<WeaponComponent> componentsAddedToWeapon = new List<WeaponComponent>();
+        private List<WeaponComponent> componentsAddedToWeapon = new List<WeaponComponent>();
 
         private List<Type> componentDependencies = new List<Type>();
 
@@ -37,38 +37,38 @@ namespace Game.Weapons
                 return;
             }
             
-            // componentAlreadyOnWeapon.Clear();
-            // componentsAddedToWeapon.Clear();
+            componentAlreadyOnWeapon.Clear();
+            componentsAddedToWeapon.Clear();
             componentDependencies.Clear();
 
-            // componentAlreadyOnWeapon = GetComponents<WeaponComponent>().ToList();
+            componentAlreadyOnWeapon = GetComponents<WeaponComponent>().ToList();
 
-            // componentDependencies = data.GetAllDependencies();
+            componentDependencies = data.GetAllDependencies();
 
             foreach (var dependency in componentDependencies)
             {
-                // if(componentsAddedToWeapon.FirstOrDefault(component => component.GetType() == dependency))
-                //     continue;
+                if(componentsAddedToWeapon.FirstOrDefault(component => component.GetType() == dependency))
+                    continue;
 
-                // var weaponComponent =
-                //     componentAlreadyOnWeapon.FirstOrDefault(component => component.GetType() == dependency);
+                var weaponComponent =
+                    componentAlreadyOnWeapon.FirstOrDefault(component => component.GetType() == dependency);
 
-                // if (weaponComponent == null)
-                // {
-                //     weaponComponent = gameObject.AddComponent(dependency) as WeaponComponent;
-                // }
+                if (weaponComponent == null)
+                {
+                    weaponComponent = gameObject.AddComponent(dependency) as WeaponComponent;
+                }
                 
-                // weaponComponent.Init();
+                weaponComponent.Init();
                 
-                // componentsAddedToWeapon.Add(weaponComponent);
+                componentsAddedToWeapon.Add(weaponComponent);
             }
 
-            // var componentsToRemove = componentAlreadyOnWeapon.Except(componentsAddedToWeapon);
+            var componentsToRemove = componentAlreadyOnWeapon.Except(componentsAddedToWeapon);
             
-            // foreach (var weaponComponent in componentsToRemove)
-            // {
-            //     Destroy(weaponComponent);
-            // }
+            foreach (var weaponComponent in componentsToRemove)
+            {
+                Destroy(weaponComponent);
+            }
 
             anim.runtimeAnimatorController = data.AnimatorController;
             

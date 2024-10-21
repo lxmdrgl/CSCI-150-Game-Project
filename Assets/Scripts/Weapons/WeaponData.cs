@@ -16,7 +16,7 @@ namespace Game.Weapons
         [field: SerializeField] public RuntimeAnimatorController AnimatorController { get; private set; }
         [field: SerializeField] public int NumberOfAttacks { get; private set; }
 
-        /* [field: SerializeReference] public List<ComponentData> ComponentData { get; private set; }
+        [field: SerializeReference] public List<ComponentData> ComponentData { get; private set; }
 
         public T GetData<T>()
         {
@@ -34,6 +34,6 @@ namespace Game.Weapons
                 return;
             
             ComponentData.Add(data);
-        } */
+        }
     }
 }
