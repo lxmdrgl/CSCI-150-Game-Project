@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    public event Action<bool> OnInteractInputChanged; 
+
     private PlayerInput playerInput;
     
     public Vector2 RawMovementInput { get; private set; }
@@ -49,6 +51,20 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnInteractInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnInteractInputChanged?.Invoke(true);
+            return;
+        }
+
+        if (context.canceled)
+        {
+            OnInteractInputChanged?.Invoke(false);
+        }
+    }
+
     public void OnPrimaryAttackInput(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -61,6 +77,8 @@ public class PlayerInputHandler : MonoBehaviour
             AttackInputs[(int)CombatInputs.primaryAttack] = false;
         }
     }
+
+
 
     public void UseJumpInput() => JumpInput = false;
 

@@ -31,6 +31,13 @@ namespace Game.CoreSystem
             CurrentVelocity = RB.linearVelocity;
         }
 
+        public void SetVelocity(float velocity, Vector2 angle, int direction)
+        {
+            angle.Normalize();
+            workspace.Set(angle.x * velocity * direction, angle.y * velocity);
+            SetFinalVelocity();
+        }
+        
         public void SetVelocityX(float velocity)
         {
             workspace.Set(velocity, CurrentVelocity.y);
