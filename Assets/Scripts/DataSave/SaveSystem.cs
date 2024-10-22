@@ -1,9 +1,30 @@
 using UnityEngine;
 using System.IO;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 public static class SaveSystem
 {
     private static readonly string playerPosFile = Application.persistentDataPath + "/playerPosition.json";
     private static readonly string playerStatsFile = Application.persistentDataPath + "/playerStats.json";
+
+    private static readonly string savePath = Application.persistentDataPath + "/saveSlot{0}.json";
+
+    [System.Serializable]
+    public class SaveData
+    {
+        public SaveSystem.PositionData position;
+        public PlayerStats stats;
+        public float playTime;
+        public List<string> unlockedCharacters;
+
+        public SaveData(Vector3 position, PlayerStats stats, float playTime, List<string> unlockedCharacters)
+        {
+            this.position = new SaveSystem.PositionData(position);
+            this.stats = stats;
+            this.playTime = playTime;
+            this.unlockedCharacters = unlockedCharacters;
+        }
+    }
 
     // Struct to represent the position data
     [System.Serializable]
@@ -20,52 +41,36 @@ public static class SaveSystem
 
         public Vector3 ToVector3() => new Vector3(x, y, z);
     }
-    public static void SaveStats(PlayerStats stats)
+
+    public static void SaveGame(int slot, Vector3 position, PlayerStats stats, float playTime, List<string> unlockedCharacters)
     {
-        string json = JsonUtility.ToJson(stats);
-        File.WriteAllText(playerStatsFile, json);
-        Debug.Log($"Position saved to {playerStatsFile}");
-    }
-    // Load the stats from JSON
-    public static PlayerStats LoadStats()
-    {
-        if (File.Exists(playerStatsFile))
-        {
-            string json = File.ReadAllText(playerStatsFile);
-            PlayerStats stats = JsonUtility.FromJson<PlayerStats>(json);
-            Debug.Log("Stats loaded: " + stats.StatString());
-            return stats;
-        }
-        else
-        {
-            Debug.LogWarning("Save file not found. Returning default stats.");
-            return new PlayerStats();
-        }
-    }
-    // Save the position to JSON
-    public static void SavePosition(Vector3 position)
-    {
-        PositionData data = new PositionData(position);
+        SaveData data = new SaveData(position, stats, playTime, unlockedCharacters);
         string json = JsonUtility.ToJson(data);
-        File.WriteAllText(playerPosFile, json);
-        Debug.Log($"Position saved to {playerPosFile}");
+        File.WriteAllText(string.Format(savePath, slot), json);
+        Debug.Log($"Game saved to slot {slot}");
+        Debug.Log($"Game saved at" + savePath);
     }
 
-    // Load the position from JSON
-    public static Vector3 LoadPosition()
+    public static SaveData LoadGame(int slot)
     {
-        if (File.Exists(playerPosFile))
+        string path = string.Format(savePath, slot);
+        if (File.Exists(path))
         {
-            string json = File.ReadAllText(playerPosFile);
-            PositionData data = JsonUtility.FromJson<PositionData>(json);
-            Debug.Log("Position loaded: " + data.ToVector3());
-            return data.ToVector3();
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+            Debug.Log($"Save loaded from slot {slot}");
+            return data;
         }
         else
         {
-            Debug.LogWarning("Save file not found. Returning default position (0,0,0).");
-            return Vector3.zero;
+            Debug.LogWarning($"Save slot {slot} not found.");
+            return null;
         }
-
     }
+
+    public static bool SaveExists(int slot)
+    {
+        return File.Exists(string.Format(savePath, slot));
+    }
+
 }
