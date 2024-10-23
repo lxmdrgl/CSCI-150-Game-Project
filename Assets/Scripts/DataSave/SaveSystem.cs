@@ -83,4 +83,19 @@ public static class SaveSystem
 
         return defaultData;
     }
+
+    public static void DeleteSave(int slot)
+    {
+        string path = string.Format(savePath, slot);
+
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            Debug.Log($"Save slot {slot} has been deleted.");
+        }
+        else
+        {
+            Debug.LogWarning($"Save slot {slot} does not exist and cannot be deleted.");
+        }
+    }
 }

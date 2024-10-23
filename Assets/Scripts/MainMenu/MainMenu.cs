@@ -16,10 +16,15 @@ public class MainMenu : MonoBehaviour
     public void Awake()
     {
         slot = PlayerPrefs.GetInt("SaveSlot", 1);
-        data = SaveSystem.LoadGame(slot);
-        if(data == null )
+        if (SaveSystem.SaveExists(slot))
+        {
+            Debug.Log("Loading Last Save");
+            data = SaveSystem.LoadGame(slot);
+        }
+        else
         {
             data = SaveSystem.InitializeDefaultSave(slot);
+            Debug.Log("Creating Initial Save");
         }
         DisplaySaveSlots();
     }
@@ -45,7 +50,7 @@ public class MainMenu : MonoBehaviour
     }
     public void Play()
     {
-        if(slot > 0)
+        if(slot > 0 && data!=null)
         {
             SceneManager.LoadScene(GameSceneName);
         }
@@ -60,17 +65,31 @@ public class MainMenu : MonoBehaviour
     }
     public void LoadSaveSlot(int slot)
     {
-        data = SaveSystem.LoadGame(slot);
-
-        if (data != null)
+        if (SaveSystem.SaveExists(slot))
         {
             // Save the slot number to be accessed after scene load
+            data = SaveSystem.LoadGame(slot);
             PlayerPrefs.SetInt("SaveSlot", slot);
             Debug.Log("Save Slot Set To: " + slot);
         }
         else
         {
             data = SaveSystem.InitializeDefaultSave(slot);
+            DisplaySaveSlots();
+            Debug.Log("Creating Default Save");
+        }
+    }
+
+    public void DeleteSaveSlot(int slot)
+    {
+        if(SaveSystem.SaveExists(slot))
+        {
+            SaveSystem.DeleteSave(slot);
+            DisplaySaveSlots();
+        }
+        else
+        {
+            Debug.Log("Save Does Not Exist");
         }
     }
 }
