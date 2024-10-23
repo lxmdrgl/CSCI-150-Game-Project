@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 [CreateAssetMenu(fileName ="newPlayerData", menuName ="Data/Player Data/Base Data")]
 public class PlayerData : ScriptableObject
@@ -20,4 +21,5 @@ public class PlayerData : ScriptableObject
     public float wallJumpVelocityXMax = 15f;
     public float wallJumpVelocityY = 10f;
     public float wallJumpTime = 0.4f;
+
 }
