@@ -1,16 +1,37 @@
 using UnityEngine;
 
-public class E1_MoveState : MonoBehaviour
+public class E1_MoveState : MoveState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Enemy1 enemy;
+
+    public E1_MoveState(Entity entity, EnemyStateMachine stateMachine, string animBoolName, D_MoveState stateData, Enemy1 enemy) : base(entity, stateMachine, animBoolName, stateData)
     {
-        
+        this.enemy = enemy;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
     {
-        
+        base.Enter();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+
+        if (isDetectingWall || !isDetectingLedge)
+        {
+            enemy.idleState.SetFlipAfterIdle(true);
+            stateMachine.ChangeState(enemy.idleState);
+        }
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
     }
 }

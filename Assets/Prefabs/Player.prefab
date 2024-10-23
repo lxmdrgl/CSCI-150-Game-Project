@@ -231,6 +231,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 99ef4d2ae2a6b254db5a866bbe22dbc8, type: 2}
+  playerStats:
+    currentHp: 10
+    maxHp: 10
 --- !u!114 &6277464168702995301
 MonoBehaviour:
   m_ObjectHideFlags: 0
