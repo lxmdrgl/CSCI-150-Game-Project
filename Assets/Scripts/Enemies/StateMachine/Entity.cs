@@ -6,6 +6,8 @@ public class Entity : MonoBehaviour
 {
     public EnemyStateMachine stateMachine;
 
+    public D_Entity entityData;
+
     public int facingDirection {  get; private set; }
     public Rigidbody2D rb {  get; private set; }
     public Animator anim { get; private set; }
@@ -43,13 +45,13 @@ public class Entity : MonoBehaviour
         rb.linearVelocity = velocityWorkspace;
     }
 
-    public virtual void CheckWall()
+    public virtual bool CheckWall()
     {
-
+        return Physics2D.Raycast(wallCheck.position, aliveGO.transform.right, entityData.wallCheckDistance, entityData.whatIsGround);
     }
 
-    public virtual void CheckLedge()
+    public virtual bool CheckLedge()
     {
-
+        return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
     }
 }
