@@ -11,6 +11,11 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public GameObject aliveGO {  get; private set; }
 
+    [SerializeField]
+    private Transform wallCheck;
+    [SerializeField]
+    private Transform ledgeCheck;
+
     private Vector2 velocityWorkspace;
 
     public virtual void Start()
@@ -38,4 +43,13 @@ public class Entity : MonoBehaviour
         rb.linearVelocity = velocityWorkspace;
     }
 
+    public virtual void CheckWall()
+    {
+
+    }
+
+    public virtual void CheckLedge()
+    {
+
+    }
 }
