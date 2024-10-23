@@ -54,4 +54,11 @@ public class Entity : MonoBehaviour
     {
         return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
     }
+
+    public virtual void Flip()
+    {
+        facingDirection *= -1;
+        aliveGO.transform.Rotate(0f, 180f, 0f);
+    }
+
 }
