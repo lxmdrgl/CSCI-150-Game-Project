@@ -57,7 +57,15 @@ public class PlayerAirState : PlayerState
         xInput = player.InputHandler.NormInputX;
         jumpInput = player.InputHandler.JumpInput;
 
-        if (isGrounded && Movement?.CurrentVelocity.y < 0.01f && xInput == 0)
+        if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanTransitionToAttackState())
+        {
+            stateMachine.ChangeState(player.PrimaryAttackState);
+        }
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttack] && player.SecondaryAttackState.CanTransitionToAttackState())
+        {
+            stateMachine.ChangeState(player.SecondaryAttackState);
+        }
+        else if (isGrounded && Movement?.CurrentVelocity.y < 0.01f && xInput == 0)
         {
             stateMachine.ChangeState(player.IdleState);
         } 

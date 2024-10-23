@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    public event Action<bool> OnInteractInputChanged; 
+
     public static PlayerInput playerInput;
     
     public Vector2 RawMovementInput { get; private set; }
@@ -16,10 +18,13 @@ public class PlayerInputHandler : MonoBehaviour
     public bool MenuOpenInput { get; private set; }
     public bool UIMenuCloseInput { get; private set; }
 
+    public bool[] AttackInputs { get; private set; }
 
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>(); 
+        int count = Enum.GetValues(typeof(CombatInputs)).Length;
+        AttackInputs = new bool[count];
     }
 
     private void Update()
@@ -48,7 +53,38 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnInteractInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            OnInteractInputChanged?.Invoke(true);
+            return;
+        }
+
+        if (context.canceled)
+        {
+            OnInteractInputChanged?.Invoke(false);
+        }
+    }
+
+    public void OnPrimaryAttackInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            AttackInputs[(int)CombatInputs.primaryAttack] = true;
+        }
+
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.primaryAttack] = false;
+        }
+    }
+
+
+
     public void UseJumpInput() => JumpInput = false;
+
+    public void UseAttackInput(int i) => AttackInputs[i] = false;
 
     public void OnMenuOpenInput(InputAction.CallbackContext context)
     {
@@ -82,3 +118,11 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void UseUIMenuCloseInput() => UIMenuCloseInput = false;
 }
+
+public enum CombatInputs{
+    primaryAttack,
+    secondaryAttack,
+    primarySkill,
+    secondarySkill
+}
+

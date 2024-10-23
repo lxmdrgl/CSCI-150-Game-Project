@@ -128,8 +128,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 83234365}
-  - component: {fileID: 83234367}
   - component: {fileID: 83234366}
+  - component: {fileID: 83234368}
+  - component: {fileID: 83234367}
   m_Layer: 0
   m_Name: Single Player Camera
   m_TagString: Untagged
@@ -149,8 +150,7 @@ Transform:
   m_LocalPosition: {x: 2, y: -0.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 231942481}
+  m_Children: []
   m_Father: {fileID: 790545073}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &83234366
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 83234364}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
@@ -679,8 +679,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1417771571}
-  - component: {fileID: 1417771573}
   - component: {fileID: 1417771572}
+  - component: {fileID: 1417771574}
+  - component: {fileID: 1417771573}
   m_Layer: 0
   m_Name: Two Player Camera
   m_TagString: Untagged
@@ -700,8 +701,7 @@ Transform:
   m_LocalPosition: {x: 0.78, y: 0, z: -23.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 471138044}
+  m_Children: []
   m_Father: {fileID: 790545073}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1417771572
@@ -723,9 +723,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417771570}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
