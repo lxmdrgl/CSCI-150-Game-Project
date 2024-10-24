@@ -16,14 +16,14 @@ public class Entity : MonoBehaviour
     // public GameObject aliveGO { get; private set; }
     public Core Core { get; private set; }
 
-    [SerializeField]
-    private Transform wallCheck;
-    [SerializeField]
-    private Transform ledgeCheck;
+    // [SerializeField]
+    // private Transform wallCheck;
+    // [SerializeField]
+    // private Transform ledgeCheck;
+    // [SerializeField]
+	// private Transform groundCheck;
     [SerializeField]
 	private Transform playerCheck;
-    [SerializeField]
-	private Transform groundCheck;
 
     private Vector2 velocityWorkspace;
 
@@ -87,16 +87,16 @@ public class Entity : MonoBehaviour
         aliveGO.transform.Rotate(0f, 180f, 0f);
     } */
 
-    public virtual void OnDrawGizmos()
-    {
-        if (Core != null && wallCheck != null && ledgeCheck != null)
-        {
-            Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * Movement.FacingDirection * entityData.wallCheckDistance));
-            Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
+    // public virtual void OnDrawGizmos()
+    // {
+    //     if (Core != null && wallCheck != null && ledgeCheck != null)
+    //     {
+    //         Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * Movement.FacingDirection * entityData.wallCheckDistance));
+    //         Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
 
-            // Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);
-			Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);
-			Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.maxAgroDistance), 0.2f);
-        }
-    }
+    //         // Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);
+	// 		Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);
+	// 		Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.maxAgroDistance), 0.2f);
+    //     }
+    // }
 }
