@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class E1_PlayerDetectedState : PlayerDetectedState
 {
-    private Enemy1 enemy;
+    private Enemy1 enemy1;
 
     public E1_PlayerDetectedState(Enemy1 enemy, EnemyStateMachine stateMachine, string animBoolName, D_PlayerDetected stateData) : base(enemy, stateMachine, animBoolName, stateData)
     {
-        this.enemy = enemy;
+        this.enemy1 = enemy;
     }
 
     public override void Enter()
@@ -27,12 +27,12 @@ public class E1_PlayerDetectedState : PlayerDetectedState
 
         if (!isPlayerInMaxAgroRange)
         {
-            stateMachine.ChangeState(enemy.idleState);
+            stateMachine.ChangeState(enemy1.idleState);
         }
         else if (!isDetectingLedge)
         {
-            enemy.Flip();
-            stateMachine.ChangeState(enemy.moveState);
+            enemy1.Flip();
+            stateMachine.ChangeState(enemy1.moveState);
         }
     }
 
