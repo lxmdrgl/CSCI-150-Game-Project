@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
 
 public class IdleState : EnemyState
 {
@@ -9,12 +8,19 @@ public class IdleState : EnemyState
 
     protected bool flipAfterIdle;
     protected bool isIdleTimeOver;
+    protected bool isPlayerInMinAgroRange;
 
     protected float idleTime;
 
-    public IdleState(Entity etity, EnemyStateMachine stateMachine, string animBoolName, D_IdleState stateData) : base(etity, stateMachine, animBoolName)
+    public IdleState(Entity entity, EnemyStateMachine stateMachine, string animBoolName, D_IdleState stateData) : base(entity, stateMachine, animBoolName)
     {
         this.stateData = stateData;
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
+        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
     }
 
     public override void Enter()
@@ -40,6 +46,8 @@ public class IdleState : EnemyState
     {
         base.LogicUpdate();
 
+        entity.SetVelocity(0f);
+
         if (Time.time >= startTime + idleTime)
         {
             isIdleTimeOver = true;
@@ -60,5 +68,4 @@ public class IdleState : EnemyState
     {
         idleTime = Random.Range(stateData.minIdleTime, stateData.maxIdleTime);
     }
-
 }

@@ -5,13 +5,12 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     public EnemyStateMachine stateMachine;
-
     public D_Entity entityData;
 
-    public int facingDirection {  get; private set; }
-    public Rigidbody2D rb {  get; private set; }
+    public int facingDirection { get; private set; }
+    public Rigidbody2D rb { get; private set; }
     public Animator anim { get; private set; }
-    public GameObject aliveGO {  get; private set; }
+    public GameObject aliveGO { get; private set; }
 
     [SerializeField]
     private Transform wallCheck;
@@ -20,18 +19,24 @@ public class Entity : MonoBehaviour
 
     private Vector2 velocityWorkspace;
 
-    public virtual void Start()
+    public virtual void Awake()
     {
         aliveGO = transform.Find("Alive").gameObject;
         rb = aliveGO.GetComponent<Rigidbody2D>();
-        anim = aliveGO.GetComponent <Animator>(); 
+        anim = aliveGO.GetComponent<Animator>();
 
         stateMachine = new EnemyStateMachine();
+    }
+
+    public virtual void Start()
+    {
+        facingDirection = 1;
     }
 
     public virtual void Update()
     {
         stateMachine.currentState.LogicUpdate();
+        anim.SetFloat("yVelocity", rb.linearVelocity.y);
     }
 
     public virtual void FixedUpdate()
@@ -55,10 +60,28 @@ public class Entity : MonoBehaviour
         return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
     }
 
+    public virtual bool CheckPlayerInMinAgroRange()
+    {
+        return Physics2D.Raycast(transform.position, aliveGO.transform.right, entityData.minAgroDistance, entityData.whatIsPlayer);
+    }
+
+    public virtual bool CheckPlayerInMaxAgroRange()
+    {
+        return Physics2D.Raycast(transform.position, aliveGO.transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
+    }
+
     public virtual void Flip()
     {
         facingDirection *= -1;
         aliveGO.transform.Rotate(0f, 180f, 0f);
     }
 
+    public virtual void OnDrawGizmos()
+    {
+        if (wallCheck != null && ledgeCheck != null)
+        {
+            Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * entityData.wallCheckDistance));
+            Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
+        }
+    }
 }

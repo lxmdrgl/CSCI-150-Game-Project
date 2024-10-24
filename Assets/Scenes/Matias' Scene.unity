@@ -240,7 +240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 409379058}
   - component: {fileID: 409379059}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CollisionSenses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,15 +328,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1706609112721736443, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280942900579701105, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4846833722265371268, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.55
+      value: -8.74
       objectReference: {fileID: 0}
     - target: {fileID: 4846833722265371268, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.4
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: 4846833722265371268, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -370,9 +374,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4911506911359556633, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 5621589212061784847, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
       propertyPath: m_Material
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871023589811874261, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6360035130462158432, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
       propertyPath: m_Name
@@ -380,7 +392,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6360035130462158432, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412354468940492574, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834705499909733655, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1000,7 +1020,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1884018694}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3634,7 +3654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2013183481}
   - component: {fileID: 2013183482}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
