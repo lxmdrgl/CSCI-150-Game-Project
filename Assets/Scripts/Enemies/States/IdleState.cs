@@ -2,8 +2,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+using Game.CoreSystem;
 public class IdleState : EnemyState
 {
+    private Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+	private CollisionSenses CollisionSenses { get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses); }
+    
+    private Movement movement;
+	private CollisionSenses collisionSenses;
     protected D_IdleState stateData;
 
     protected bool flipAfterIdle;
@@ -12,7 +18,7 @@ public class IdleState : EnemyState
 
     protected float idleTime;
 
-    public IdleState(Entity entity, EnemyStateMachine stateMachine, string animBoolName, D_IdleState stateData) : base(entity, stateMachine, animBoolName)
+    public IdleState(Entity entity, string animBoolName, D_IdleState stateData) : base(entity, animBoolName)
     {
         this.stateData = stateData;
     }
@@ -27,7 +33,7 @@ public class IdleState : EnemyState
     {
         base.Enter();
 
-        entity.SetVelocity(0f);
+        Movement?.SetVelocityX(0f);
         isIdleTimeOver = false;
         SetRandomIdleTime();
     }
@@ -38,7 +44,7 @@ public class IdleState : EnemyState
 
         if (flipAfterIdle)
         {
-            entity.Flip();
+            Movement?.Flip();
         }
     }
 
@@ -46,7 +52,7 @@ public class IdleState : EnemyState
     {
         base.LogicUpdate();
 
-        entity.SetVelocity(0f);
+        Movement?.SetVelocityX(0f);
 
         if (Time.time >= startTime + idleTime)
         {

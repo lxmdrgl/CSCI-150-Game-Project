@@ -6,7 +6,7 @@ public class E1_IdleState : IdleState
 {
     private Enemy1 enemy;
 
-    public E1_IdleState(Entity entity, EnemyStateMachine stateMachine, string animBoolName, D_IdleState stateData, Enemy1 enemy) : base(entity, stateMachine, animBoolName, stateData)
+    public E1_IdleState(Entity entity, string animBoolName, D_IdleState stateData, Enemy1 enemy) : base(entity, animBoolName, stateData)
     {
         this.enemy = enemy;
     }
@@ -27,7 +27,7 @@ public class E1_IdleState : IdleState
 
         if (isPlayerInMinAgroRange)
         {
-            stateMachine.ChangeState(enemy.moveState); // Assuming `moveState` is the correct transition here
+            stateMachine.ChangeState(enemy.playerDetectedState); // Assuming `moveState` is the correct transition here
         }
         else if (isIdleTimeOver)
         {

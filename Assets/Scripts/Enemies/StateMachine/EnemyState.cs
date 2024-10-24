@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Game.CoreSystem;
 public class EnemyState
 {
     protected EnemyStateMachine stateMachine;
     protected Entity entity;
+    protected Core core;    
 
-    protected float startTime;
+    public float startTime { get; protected set; }
 
     protected string animBoolName;
 
-    public EnemyState(Entity etity, EnemyStateMachine stateMachine, string animBoolName)
+    public EnemyState(Entity etity,  string animBoolName)
     {
         this.entity = etity;
-        this.stateMachine = stateMachine;
         this.animBoolName = animBoolName;
+        stateMachine = entity.stateMachine;
+        core = entity.Core;
     }
 
     public virtual void Enter()

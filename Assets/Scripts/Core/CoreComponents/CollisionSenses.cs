@@ -20,12 +20,17 @@ namespace Game.CoreSystem
 			get => GenericNotImplementedError<Transform>.TryGet(wallCheck, core.transform.parent.name);
 			private set => wallCheck = value;
 		}
+        public Transform LedgeCheckVertical {
+			get => GenericNotImplementedError<Transform>.TryGet(ledgeCheckVertical, core.transform.parent.name);
+			private set => ledgeCheckVertical = value;
+		}
 
         [SerializeField] private Transform groundCheck;
         [SerializeField] private Transform wallCheck;
         [SerializeField] private Vector2 groundCheckSize;
         [SerializeField] private float wallCheckDistance;
         [SerializeField] private LayerMask whatIsGround;
+        [SerializeField] private Transform ledgeCheckVertical;
 
         public bool Ground 
         {
@@ -40,6 +45,9 @@ namespace Game.CoreSystem
         public bool WallBack 
         {
 			get => Physics2D.Raycast(WallCheck.position, Vector2.right * -Movement.FacingDirection, wallCheckDistance, whatIsGround);
+		}
+        public bool LedgeVertical {
+			get => Physics2D.Raycast(LedgeCheckVertical.position, Vector2.down, wallCheckDistance, whatIsGround);
 		}
     }
 }
