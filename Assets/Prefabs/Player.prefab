@@ -383,6 +383,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3eabaa84-19a4-4a49-9756-b98adc5c28cd
     m_ActionName: 'Player/SecondarySkill[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 072f5cb5-cfe2-4a5b-a699-d5accf81bb59
+    m_ActionName: 'UI/MenuClose[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
