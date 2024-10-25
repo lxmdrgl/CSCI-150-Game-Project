@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                data = SaveSystem.InitializeDefaultSave(slot);
                 Debug.LogWarning($"No save data found for slot {slot}. Loading defaults.");
             }
         }

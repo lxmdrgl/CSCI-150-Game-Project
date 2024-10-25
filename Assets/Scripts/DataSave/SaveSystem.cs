@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 public static class SaveSystem
 {
-    private static readonly string playerPosFile = Application.persistentDataPath + "/playerPosition.json";
-    private static readonly string playerStatsFile = Application.persistentDataPath + "/playerStats.json";
-
     private static readonly string savePath = Application.persistentDataPath + "/saveSlot{0}.json";
 
     [System.Serializable]
@@ -72,5 +69,33 @@ public static class SaveSystem
     {
         return File.Exists(string.Format(savePath, slot));
     }
+    
+    public static SaveData InitializeDefaultSave(int slot)
+    {
+        Vector3 defaultPosition = Vector3.zero;  // Default starting position
+        PlayerStats defaultStats = new PlayerStats();  // Default player stats
+        float defaultPlayTime = 0f;  // Default playtime
+        List<string> defaultUnlockedCharacters = new List<string>();  // No characters unlocked by default
+        defaultUnlockedCharacters.Add("Knight");
 
+        SaveData defaultData = new SaveData(defaultPosition, defaultStats, defaultPlayTime, defaultUnlockedCharacters);
+        SaveGame(slot, defaultPosition, defaultStats, defaultPlayTime, defaultUnlockedCharacters);  // Save the default data
+
+        return defaultData;
+    }
+
+    public static void DeleteSave(int slot)
+    {
+        string path = string.Format(savePath, slot);
+
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            Debug.Log($"Save slot {slot} has been deleted.");
+        }
+        else
+        {
+            Debug.LogWarning($"Save slot {slot} does not exist and cannot be deleted.");
+        }
+    }
 }
