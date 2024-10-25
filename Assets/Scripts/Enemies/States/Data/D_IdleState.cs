@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class D_IdleState : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+[CreateAssetMenu(fileName = "newIdleStateData", menuName = "Data/State Data/Idle State")]
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public class D_IdleState : ScriptableObject
+{
+    public float minIdleTime = 1f;
+    public float maxIdleTime = 2f;
 }
