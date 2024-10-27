@@ -21,7 +21,7 @@ namespace Game.Interaction.Interactables
         {
             weaponData = context;
 
-            spriteIcon.sprite = weaponData.Icon;
+            // spriteIcon.sprite = weaponData.Icon;
         }
 
         public void Interact()
@@ -52,7 +52,7 @@ namespace Game.Interaction.Interactables
             if(weaponData is null)
                 return;
 
-            spriteIcon.sprite = weaponData.Icon;
+            // spriteIcon.sprite = weaponData.Icon;
         }
     }
 }

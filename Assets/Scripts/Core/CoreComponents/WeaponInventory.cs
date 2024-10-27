@@ -54,18 +54,18 @@ namespace Game.CoreSystem
             return false;
         }
 
-        // public WeaponSwapChoice[] GetWeaponSwapChoices()
-        // {
-        //     var choices = new WeaponSwapChoice[weaponData.Length];
+        public WeaponSwapChoice[] GetWeaponSwapChoices()
+        {
+            var choices = new WeaponSwapChoice[weaponData.Length];
 
-        //     for (var i = 0; i < weaponData.Length; i++)
-        //     {
-        //         var data = weaponData[i];
+            for (var i = 0; i < weaponData.Length; i++)
+            {
+                var data = weaponData[i];
 
-        //         choices[i] = new WeaponSwapChoice(data, i);
-        //     }
+                choices[i] = new WeaponSwapChoice(data, i);
+            }
 
-        //     return choices;
-        // }
+            return choices;
+        }
     }
 }
