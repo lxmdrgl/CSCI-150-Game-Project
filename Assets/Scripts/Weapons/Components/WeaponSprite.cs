@@ -23,7 +23,7 @@ namespace Game.Weapons.Components
         }
 
         private void HandleEnterAttackPhase(AttackPhases phase)
-        {
+        {    
             currentWeaponSpriteIndex = 0;
 
             currentPhaseSprites = currentAttackData.PhaseSprites.FirstOrDefault(data => data.Phase == phase).Sprites;
@@ -38,9 +38,6 @@ namespace Game.Weapons.Components
                 weaponSpriteRenderer.sprite = null;
                 return;
             }
-
-            Debug.Log($"currentWeaponSpriteIndex: {currentWeaponSpriteIndex} ");
-            Debug.Log($"currentPhaseSprites.Length: {currentPhaseSprites.Length} ");
             if (currentWeaponSpriteIndex >= currentPhaseSprites.Length)
             {
                 Debug.LogWarning($"{weapon.name} weapon sprites length mismatch");

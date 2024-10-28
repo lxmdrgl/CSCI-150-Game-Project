@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.CoreSystem
 {
-    public class CoreComponent : MonoBehaviour //, ILogicUpdate
+    public class CoreComponent : MonoBehaviour, ILogicUpdate
     {
 
         protected Core core;
