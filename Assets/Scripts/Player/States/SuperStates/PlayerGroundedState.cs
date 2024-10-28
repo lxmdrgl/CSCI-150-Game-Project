@@ -64,7 +64,6 @@ public class PlayerGroundedState : PlayerState
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanTransitionToAttackState())
         {
             stateMachine.ChangeState(player.PrimaryAttackState);
-            Debug.Log("Attack from ground");
         }
         else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttack] && player.SecondaryAttackState.CanTransitionToAttackState())
         {

@@ -205,7 +205,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -127623575
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1523657880, guid: 54e0af6d28ae375498b2e8cd0d92059a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -770,6 +770,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
+  ledgeCheckVertical: {fileID: 0}
 --- !u!1001 &4781143106868106677
 PrefabInstance:
   m_ObjectHideFlags: 0

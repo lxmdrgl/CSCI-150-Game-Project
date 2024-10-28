@@ -15,7 +15,7 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 0}
   <Name>k__BackingField: Knight One
   <Description>k__BackingField: Basic Sword Swing
-  <AnimatorController>k__BackingField: {fileID: 0}
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: f5c695431eb63e0438565fc316ffa064, type: 2}
   <NumberOfAttacks>k__BackingField: 3
   <ComponentData>k__BackingField:
   - rid: 5949095188800471134
@@ -29,8 +29,32 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <PhaseSprites>k__BackingField: []
+          <PhaseSprites>k__BackingField:
+          - <Phase>k__BackingField: 2
+            <Sprites>k__BackingField:
+            - {fileID: -976979401, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 581828395, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: -720425029, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1312388425, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1331580839, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
         - name: Attack 2
-          <PhaseSprites>k__BackingField: []
+          <PhaseSprites>k__BackingField:
+          - <Phase>k__BackingField: 2
+            <Sprites>k__BackingField:
+            - {fileID: -976979401, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 581828395, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: -720425029, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1312388425, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1331580839, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
         - name: Attack 3
-          <PhaseSprites>k__BackingField: []
+          <PhaseSprites>k__BackingField:
+          - <Phase>k__BackingField: 2
+            <Sprites>k__BackingField:
+            - {fileID: -976979401, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 581828395, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: -720425029, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1312388425, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1331580839, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}

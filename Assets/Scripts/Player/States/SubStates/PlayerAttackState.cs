@@ -81,8 +81,6 @@ public class PlayerAttackState : PlayerActionState
         canInterrupt = false;
 
         weapon.Enter();
-
-        Debug.Log("Enter attack state");
     }
 
 
