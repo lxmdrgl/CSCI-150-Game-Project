@@ -18,40 +18,19 @@ MonoBehaviour:
   <AnimatorController>k__BackingField: {fileID: 0}
   <NumberOfAttacks>k__BackingField: 3
   <ComponentData>k__BackingField:
-  - rid: 5949095188800471127
+  - rid: 5949095188800471134
   references:
     version: 2
     RefIds:
-    - rid: 5949095188800471127
-      type: {class: ActionHitBoxData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+    - rid: 5949095188800471134
+      type: {class: WeaponSpriteData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:
-        name: ActionHitBoxData
+        name: WeaponSpriteData
         repeatData: 0
         attackData:
         - name: Attack 1
-          Debug: 0
-          <HitBox>k__BackingField:
-            serializedVersion: 2
-            x: 0
-            y: 0
-            width: 0
-            height: 0
+          <PhaseSprites>k__BackingField: []
         - name: Attack 2
-          Debug: 0
-          <HitBox>k__BackingField:
-            serializedVersion: 2
-            x: 0
-            y: 0
-            width: 0
-            height: 0
+          <PhaseSprites>k__BackingField: []
         - name: Attack 3
-          Debug: 0
-          <HitBox>k__BackingField:
-            serializedVersion: 2
-            x: 0
-            y: 0
-            width: 0
-            height: 0
-        <DetectableLayers>k__BackingField:
-          serializedVersion: 2
-          m_Bits: 0
+          <PhaseSprites>k__BackingField: []

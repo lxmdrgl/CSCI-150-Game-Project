@@ -131,6 +131,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2888745997117200415, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
+      propertyPath: <weaponData>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2888745997117200415, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
+      propertyPath: '<weaponData>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f97b7e60a4f61eb4b8fd9fbee64a0b61, type: 2}
     - target: {fileID: 5678146143041608732, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
       propertyPath: m_Controller
       value: 
