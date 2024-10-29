@@ -9,10 +9,54 @@ using TMPro;
 
 public class Authentication : MonoBehaviour
 {
-
+    public TMP_Text profileTxt;  
+    public TMP_Text playerNameTxt; 
+    public Button loginBtn;
+    public Button signupBtn;
+    public Button logOutBtn;
     public TMP_InputField usernameInput;  // Reference for username input field
     public TMP_InputField passwordInput;  // Reference for password input field
     public Text logTxt;  // Log text UI for feedback
+
+    private async void Awake()
+    {
+        if (!AuthenticationService.Instance.IsSignedIn)
+        {
+            AuthMenuSignedOut();
+        }
+        else
+        {
+            await LoadPlayerName();  // Fetch player name from Unity services
+            AuthMenuSignedIn();
+        }
+    }
+
+    private void AuthMenuSignedOut()
+    {
+        logOutBtn.gameObject.SetActive(false);      // dont show logout btn until logged in
+        playerNameTxt.gameObject.SetActive(false);
+        profileTxt.gameObject.SetActive(false);
+        usernameInput.text = string.Empty;      // clear input fields and show login buttons/inputs
+        passwordInput.text = string.Empty;
+        usernameInput.gameObject.SetActive(true);
+        passwordInput.gameObject.SetActive(true);
+        loginBtn.gameObject.SetActive(true);
+        signupBtn.gameObject.SetActive(true);
+        logTxt.gameObject.SetActive(true);
+    }
+    private void AuthMenuSignedIn()
+    {
+
+        // Empty for now but add player name stats friends or something
+        profileTxt.gameObject.SetActive(true);
+        playerNameTxt.gameObject.SetActive(true);
+        logOutBtn.gameObject.SetActive(true);
+        usernameInput.gameObject.SetActive(false);
+        passwordInput.gameObject.SetActive(false);
+        loginBtn.gameObject.SetActive(false);
+        signupBtn.gameObject.SetActive(false);
+        logTxt.gameObject.SetActive(false);
+    }
 
     // -------------- SIGN UP ---------------------
     public void SignUp() // FOR ONCLICKS, handles input and calls helper function to call sign in API
@@ -43,18 +87,23 @@ public class Authentication : MonoBehaviour
             await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(username, password);
             await AuthenticationService.Instance.UpdatePlayerNameAsync(username);
             logTxt.text = "Account Created And Signed In Successfully!";
+            playerNameTxt.text = "Name: " + username;
+            PlayerPrefs.SetString("PlayerName", username);  // Save locally
             Debug.Log("SignUp is successful.");
+            AuthMenuSignedIn();
         }
         catch (AuthenticationException ex)
         {
             // Compare error code to AuthenticationErrorCodes
             // Notify the player with the proper error message
+            logTxt.text = ex.Message;
             Debug.LogException(ex);
         }
         catch (RequestFailedException ex)
         {
             // Compare error code to CommonErrorCodes
             // Notify the player with the proper error message
+            logTxt.text = ex.Message;
             Debug.LogException(ex);
         }
     }
@@ -86,19 +135,28 @@ public class Authentication : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
-            logTxt.text = "Account Signed In Successfully!";
             Debug.Log("SignIn is successful.");
+            string playerName = AuthenticationService.Instance.PlayerName;
+            if (string.IsNullOrEmpty(playerName))
+            {
+                playerName = username;
+                PlayerPrefs.SetString("PlayerName", playerName);  // Save locally as a fallback
+            }
+            playerNameTxt.text = "Name: " + username;
+            AuthMenuSignedIn();
         }
         catch (AuthenticationException ex)
         {
             // Compare error code to AuthenticationErrorCodes
             // Notify the player with the proper error message
+            logTxt.text = ex.Message;
             Debug.LogException(ex);
         }
         catch (RequestFailedException ex)
         {
             // Compare error code to CommonErrorCodes
             // Notify the player with the proper error message
+            logTxt.text = ex.Message;
             Debug.LogException(ex);
         }
     }
@@ -106,14 +164,12 @@ public class Authentication : MonoBehaviour
     // Sign Out
     public void SignOut()
     {
-        logTxt.text = "Signing out...";
-
         try
         {
             AuthenticationService.Instance.SignOut();
-            logTxt.text = "Signed out successfully!";
+            PlayerPrefs.DeleteKey("PlayerName");  // Clear saved player name
             Debug.Log("Player signed out successfully.");
-            // Optionally, clear input fields or reset the UI here
+            AuthMenuSignedOut();
         }
         catch (System.Exception ex)
         {
@@ -121,4 +177,27 @@ public class Authentication : MonoBehaviour
             logTxt.text = "Sign out failed!";
         }
     }
+
+    private async Task LoadPlayerName()
+    {
+        try
+        {
+            // Get the player's name from Unity Authentication
+            string username = AuthenticationService.Instance.PlayerName;
+
+            if (string.IsNullOrEmpty(username))
+            {
+                username = PlayerPrefs.GetString("PlayerName", "Player");  // Fallback to local storage
+            }
+
+            playerNameTxt.text = "Name: " + username;
+            PlayerPrefs.SetString("PlayerName", username);  // Ensure it's saved locally too
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("Failed to load player name: " + ex.Message);
+            playerNameTxt.text = "Name: Unknown";
+        }
+    }
+
 }

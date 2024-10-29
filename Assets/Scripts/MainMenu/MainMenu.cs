@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
+using System.Threading.Tasks;
 
 public class MainMenu : MonoBehaviour
 {
@@ -13,8 +14,22 @@ public class MainMenu : MonoBehaviour
     public TMP_Text[] saveSlotTexts;
     private SaveSystem.SaveData data;
 
-    public void Awake()
+    private async void Awake()
     {
+        // Initialize unity services
+        try
+        {
+            await UnityServices.InitializeAsync();
+            Debug.Log("Unity Services Initialized.");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Failed to initialize Unity Services: {e.Message}");
+        }
+
+        string playerName = PlayerPrefs.GetString("PlayerName", "Player");
+        Debug.Log("Loaded Player Name: " + playerName);  // Verify the name is loaded correctly
+
         slot = PlayerPrefs.GetInt("SaveSlot", 1);
         if (SaveSystem.SaveExists(slot))
         {
@@ -28,6 +43,7 @@ public class MainMenu : MonoBehaviour
         }
         DisplaySaveSlots();
     }
+
     private void DisplaySaveSlots()
     {
         for (int i = 1; i <= 3; i++)
