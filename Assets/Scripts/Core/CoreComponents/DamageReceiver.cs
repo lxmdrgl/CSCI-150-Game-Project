@@ -7,7 +7,7 @@ namespace Game.CoreSystem
 {
     public class DamageReceiver : CoreComponent, IDamageable
     {
-        [SerializeField] private GameObject damageParticles;
+        // [SerializeField] private GameObject damageParticles;
 
         /*
          * Modifiers allows us to perform some custom logic on our DamageData before we apply it here. An example where this is being used is by the Block weapon component.
@@ -37,6 +37,8 @@ namespace Game.CoreSystem
             }
 
             stats.Health.Decrease(data.Amount);
+            Debug.Log($"Deal {data.Amount} damage");
+
             // particleManager.StartWithRandomRotation(damageParticles);
         }
 

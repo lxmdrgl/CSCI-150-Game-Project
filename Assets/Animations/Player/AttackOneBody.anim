@@ -31,7 +31,7 @@ AnimationClip:
     - time: 0.33333334
       value: {fileID: 1605264295, guid: f538f848143c9e042b7e038c802fa315, type: 3}
     - time: 0.41666666
-      value: {fileID: 1605264295, guid: f538f848143c9e042b7e038c802fa315, type: 3}
+      value: {fileID: 1151391731, guid: f538f848143c9e042b7e038c802fa315, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -59,7 +59,7 @@ AnimationClip:
     - {fileID: -2116287694, guid: f538f848143c9e042b7e038c802fa315, type: 3}
     - {fileID: -2131503151, guid: f538f848143c9e042b7e038c802fa315, type: 3}
     - {fileID: 1605264295, guid: f538f848143c9e042b7e038c802fa315, type: 3}
-    - {fileID: 1605264295, guid: f538f848143c9e042b7e038c802fa315, type: 3}
+    - {fileID: 1151391731, guid: f538f848143c9e042b7e038c802fa315, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -100,14 +100,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.25
-    functionName: UseInputTrigger
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.25
-    functionName: AttackActionTrigger
+    functionName: SetFlipInactive
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -121,7 +114,21 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.25
-    functionName: SetFlipInactive
+    functionName: UseInputTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.25
+    functionName: AttackActionTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.41666666
+    functionName: StopMovementTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -134,15 +141,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.41666666
+  - time: 0.5
     functionName: AnimationFinishedTrigger
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.41666666
-    functionName: StopMovementTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

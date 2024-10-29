@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 using Game.CoreSystem;
@@ -13,21 +15,29 @@ namespace Game.Weapons.Components
 
         private Vector2 offset;
 
-        private Collider2D[] detected;
+        ContactFilter2D filter;        
+        private List<Collider2D> detected = new List<Collider2D>();
 
         private void HandleAttackAction()
         {
-            offset.Set(
+            /* offset.Set(
                 transform.position.x + (currentAttackData.HitBox.center.x * movement.Comp.FacingDirection),
                 transform.position.y + currentAttackData.HitBox.center.y
-            );
+            ); */
+            // detected = Physics2D.OverlapBoxAll(offset, currentAttackData.HitBox.size, 0f, data.DetectableLayers);
+            // filter.SetLayerMask(data.DetectableLayers);
+            // filter.useLayerMask = true;
 
-            detected = Physics2D.OverlapBoxAll(offset, currentAttackData.HitBox.size, 0f, data.DetectableLayers);
+            // currentAttackData.HitBox.Overlap(filter, detected);
 
-            if (detected.Length == 0)
+            Physics2D.OverlapCollider(currentAttackData.HitBox, detected);
+
+            Debug.Log($"Detected: {detected}, count: {detected.Count}");
+
+            if (detected.Count == 0)
                 return;
 
-            OnDetectedCollider2D?.Invoke(detected);
+            OnDetectedCollider2D?.Invoke(detected.ToArray());
         }
 
         protected override void Start()
@@ -45,7 +55,7 @@ namespace Game.Weapons.Components
             AnimationEventHandler.OnAttackAction -= HandleAttackAction;
         }
 
-        private void OnDrawGizmosSelected()
+        /* private void OnDrawGizmosSelected()
         {
             if (data == null)
                 return;
@@ -57,6 +67,6 @@ namespace Game.Weapons.Components
                 
                 Gizmos.DrawWireCube(transform.position + (Vector3)item.HitBox.center, item.HitBox.size);
             }
-        }
+        } */
     }
 }

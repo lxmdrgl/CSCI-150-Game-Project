@@ -21,6 +21,7 @@ MonoBehaviour:
   - rid: 5949095188800471134
   - rid: 5949095222658203648
   - rid: 5949095222658203649
+  - rid: 5949095255883382997
   references:
     version: 2
     RefIds:
@@ -34,6 +35,9 @@ MonoBehaviour:
           <PhaseSprites>k__BackingField:
           - <Phase>k__BackingField: 2
             <Sprites>k__BackingField:
+            - {fileID: -976979401, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 581828395, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: -720425029, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 1312388425, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 1331580839, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
@@ -41,6 +45,9 @@ MonoBehaviour:
           <PhaseSprites>k__BackingField:
           - <Phase>k__BackingField: 2
             <Sprites>k__BackingField:
+            - {fileID: -976979401, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 581828395, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: -720425029, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 1312388425, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 1331580839, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
@@ -48,6 +55,9 @@ MonoBehaviour:
           <PhaseSprites>k__BackingField:
           - <Phase>k__BackingField: 2
             <Sprites>k__BackingField:
+            - {fileID: -976979401, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 581828395, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: -720425029, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 1312388425, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 1331580839, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
@@ -58,29 +68,14 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          Debug: 0
-          <HitBox>k__BackingField:
-            serializedVersion: 2
-            x: 0
-            y: 0
-            width: 2
-            height: 2
+          Debug: 1
+          <HitBox>k__BackingField: {fileID: 2049185860700366576, guid: d354854779bb3674aabc999f622958c8, type: 3}
         - name: Attack 2
-          Debug: 0
-          <HitBox>k__BackingField:
-            serializedVersion: 2
-            x: 0
-            y: 0
-            width: 2
-            height: 2
+          Debug: 1
+          <HitBox>k__BackingField: {fileID: 2049185860700366576, guid: d354854779bb3674aabc999f622958c8, type: 3}
         - name: Attack 3
-          Debug: 0
-          <HitBox>k__BackingField:
-            serializedVersion: 2
-            x: 0
-            y: 0
-            width: 2
-            height: 2
+          Debug: 1
+          <HitBox>k__BackingField: {fileID: 2049185860700366576, guid: d354854779bb3674aabc999f622958c8, type: 3}
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 2048
@@ -91,11 +86,20 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <Direction>k__BackingField: {x: 1, y: 0}
-          <Velocity>k__BackingField: 2
+          <VelocityX>k__BackingField: 5
         - name: Attack 2
-          <Direction>k__BackingField: {x: 1, y: 0}
-          <Velocity>k__BackingField: 3
+          <VelocityX>k__BackingField: 5
         - name: Attack 3
-          <Direction>k__BackingField: {x: 1, y: 0}
-          <Velocity>k__BackingField: 5
+          <VelocityX>k__BackingField: 5
+    - rid: 5949095255883382997
+      type: {class: DamageOnHitBoxActionData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: DamageOnHitBoxActionData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <Amount>k__BackingField: 10
+        - name: Attack 2
+          <Amount>k__BackingField: 10
+        - name: Attack 3
+          <Amount>k__BackingField: 10
