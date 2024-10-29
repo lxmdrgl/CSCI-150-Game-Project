@@ -27,8 +27,10 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                slot = 1;
+                PlayerPrefs.SetInt("SaveSlot", slot);  // Save the default slot
                 data = SaveSystem.InitializeDefaultSave(slot);
-                Debug.LogWarning($"No save data found for slot {slot}. Loading defaults.");
+                Debug.Log("No Saves Found Creating A Default Save In Slot One");
             }
         }
         else
@@ -46,6 +48,8 @@ public class GameManager : MonoBehaviour
 
         SaveSystem.SaveGame(slot, position, stats, playTime+=data.playTime, unlockedCharacters);
         Debug.Log($"Game saved to slot {slot}");
+
+        Time.timeScale = 1f;
 
         SceneManager.LoadScene(MainMenuSceneName);
     }

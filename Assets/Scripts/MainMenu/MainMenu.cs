@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 public class MainMenu : MonoBehaviour
 {
     public string GameSceneName;
-    private int slot;
     public TMP_Text[] saveSlotTexts;
     private SaveSystem.SaveData data;
 
@@ -30,16 +29,17 @@ public class MainMenu : MonoBehaviour
         string playerName = PlayerPrefs.GetString("PlayerName", "Player");
         Debug.Log("Loaded Player Name: " + playerName);  // Verify the name is loaded correctly
 
-        slot = PlayerPrefs.GetInt("SaveSlot", 1);
+        int slot = PlayerPrefs.GetInt("SaveSlot", -1);  // Use -1 for invalid/default case
         if (SaveSystem.SaveExists(slot))
         {
-            Debug.Log("Loading Last Save");
             data = SaveSystem.LoadGame(slot);
         }
         else
         {
+            slot = 1;  // Force it to slot 1 if nothing valid is found
             data = SaveSystem.InitializeDefaultSave(slot);
-            Debug.Log("Creating Initial Save");
+            Debug.Log("Creating Initial Save in Slot 1");
+            PlayerPrefs.SetInt("SaveSlot", slot);  // Save the default slot
         }
         DisplaySaveSlots();
     }
@@ -60,13 +60,16 @@ public class MainMenu : MonoBehaviour
             }
             else
             {
-                saveSlotTexts[i - 1].text = $"Slot {i}: Empty";
+                saveSlotTexts[i - 1].text = $"Create Save";
             }
         }
     }
     public void Play()
     {
-        if(slot > 0 && data!=null)
+        int slot = PlayerPrefs.GetInt("SaveSlot", -1);  // Default to slot 1 if not found
+        Debug.Log($"Selected Slot: {slot}");
+
+        if (slot > 0 && data != null)
         {
             SceneManager.LoadScene(GameSceneName);
         }
@@ -83,16 +86,16 @@ public class MainMenu : MonoBehaviour
     {
         if (SaveSystem.SaveExists(slot))
         {
-            // Save the slot number to be accessed after scene load
             data = SaveSystem.LoadGame(slot);
-            PlayerPrefs.SetInt("SaveSlot", slot);
-            Debug.Log("Save Slot Set To: " + slot);
+            PlayerPrefs.SetInt("SaveSlot", slot);  // Save the correct slot
+            Debug.Log($"Save Slot Set To: {slot}");
         }
         else
         {
+            PlayerPrefs.SetInt("SaveSlot", slot);  // Save the correct slot
             data = SaveSystem.InitializeDefaultSave(slot);
             DisplaySaveSlots();
-            Debug.Log("Creating Default Save");
+            Debug.Log("Creating Default Save For Slot: "+slot);
         }
     }
 
