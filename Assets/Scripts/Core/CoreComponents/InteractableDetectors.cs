@@ -25,6 +25,7 @@ namespace Game.CoreSystem
                 return;
             
             OnTryInteract?.Invoke(closestInteractable);
+            Debug.Log("try interact with closest interactable");
         }
         
         private void Update()
@@ -83,16 +84,6 @@ namespace Game.CoreSystem
                     interactable.DisableInteraction();
                     closestInteractable = null;
                 }
-            }
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            foreach (IInteractable interactable in interactables)
-            {
-                Gizmos.color = interactable == closestInteractable ? Color.red : Color.white;
-
-                Gizmos.DrawLine(transform.position, interactable.GetPosition());
             }
         }
     }

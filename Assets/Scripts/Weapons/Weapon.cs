@@ -83,6 +83,11 @@ namespace Game.Weapons
             Anim.SetInteger("counter", currentAttackCounter);
 
             OnEnter?.Invoke();
+
+        }
+
+        public void Start() {
+            // PolygonCollider2D hitbox = gameObject.AddComponent(typeof(PolygonCollider2D)) as PolygonCollider2D;
         }
 
         public void SetCore(Core core)
@@ -110,6 +115,7 @@ namespace Game.Weapons
             attackCounterResetTimeNotifier.Init(attackCounterResetCooldown);
 
             OnExit?.Invoke();
+            Debug.Log($"Exit weapon, count: {CurrentAttackCounter}");
         }
 
         private void Awake()

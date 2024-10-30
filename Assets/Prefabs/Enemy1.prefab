@@ -334,7 +334,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1729951543
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -1523657880, guid: 54e0af6d28ae375498b2e8cd0d92059a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -360,10 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: 6589930ae26576a45bdd200d10162427, type: 2}
-  wallCheck: {fileID: 2518377186256848546}
-  ledgeCheck: {fileID: 2181997544596436395}
   playerCheck: {fileID: 3755304697358755252}
-  groundCheck: {fileID: 6831698775643766895}
   idleStateData: {fileID: 11400000, guid: 96d8d84a229f88840b9ad232a7f1feb7, type: 2}
   moveStateData: {fileID: 11400000, guid: bbfdff6b149800a46a12eaa2ab18817d, type: 2}
   playerDetectedData: {fileID: 11400000, guid: 451fc03b18889f04d9281d598c0389c0, type: 2}
@@ -386,7 +383,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 234aa8d7c249bbc498a2bbd7634335ee, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

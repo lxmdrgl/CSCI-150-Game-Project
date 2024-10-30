@@ -61,10 +61,9 @@ public class PlayerGroundedState : PlayerState
         yInput = player.InputHandler.NormInputY;
         jumpInput = player.InputHandler.JumpInput;
 
-        if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] /* && player.PrimaryAttackState.CanTransitionToAttackState() */)
+        if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanTransitionToAttackState())
         {
             stateMachine.ChangeState(player.PrimaryAttackState);
-            Debug.Log("Attack from ground");
         }
         else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttack] && player.SecondaryAttackState.CanTransitionToAttackState())
         {
