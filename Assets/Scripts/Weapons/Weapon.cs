@@ -83,6 +83,11 @@ namespace Game.Weapons
             Anim.SetInteger("counter", currentAttackCounter);
 
             OnEnter?.Invoke();
+
+        }
+
+        public void Start() {
+            // PolygonCollider2D hitbox = gameObject.AddComponent(typeof(PolygonCollider2D)) as PolygonCollider2D;
         }
 
         public void SetCore(Core core)
