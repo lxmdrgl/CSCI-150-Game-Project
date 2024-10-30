@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9e78ee024c3b64a86c554de3eee74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameSceneName: SaveDataScene
+  GameSceneName: PauseMenu
   saveSlotTexts:
   - {fileID: 1549097702}
   - {fileID: 418536394}

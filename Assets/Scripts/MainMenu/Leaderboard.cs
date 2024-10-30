@@ -22,11 +22,8 @@ public class Leaderboard : MonoBehaviour
     int RangeLimit { get; set; }
     List<string> FriendIds { get; set; }
 
-    private async void Start()
-    {
-        // Initialize Unity Services
-        await InitializeServices();
-
+    private async void Awake()
+    { 
         // Subscribe to authentication events
         SubscribeToAuthenticationEvents();
 
@@ -41,19 +38,6 @@ public class Leaderboard : MonoBehaviour
         {
             Debug.LogWarning("User is not signed in. Hiding leaderboard UI.");
             leaderboardUI.SetActive(false); // Hide leaderboard UI
-        }
-    }
-
-    private async Task InitializeServices()
-    {
-        try
-        {
-            await UnityServices.InitializeAsync();
-            Debug.Log("Unity Services Initialized.");
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError($"Failed to initialize Unity Services: {e.Message}");
         }
     }
 

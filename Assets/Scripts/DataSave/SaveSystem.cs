@@ -60,7 +60,7 @@ public static class SaveSystem
         }
         else
         {
-            Debug.LogWarning($"Save slot {slot} not found.");
+            Debug.Log($"Save slot {slot} not found.");
             return null;
         }
     }

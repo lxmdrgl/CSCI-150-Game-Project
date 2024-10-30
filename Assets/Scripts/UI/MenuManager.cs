@@ -26,6 +26,7 @@ public class MenuManager : MonoBehaviour
         
         mainMenuCanvasGO.SetActive(false);
         optionsMenuCanvasGO.SetActive(false);
+
     }
 
     void Update()
