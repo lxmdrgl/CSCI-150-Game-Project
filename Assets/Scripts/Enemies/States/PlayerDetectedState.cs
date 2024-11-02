@@ -17,6 +17,7 @@ public class PlayerDetectedState : EnemyState
     protected bool isPlayerInMinAgroRange;
     protected bool isPlayerInMaxAgroRange;
     protected bool isDetectingLedge;
+    protected bool performCloseRangeAction;
 
     public PlayerDetectedState(Entity entity, string animBoolName, D_PlayerDetected stateData) : base(entity, animBoolName)
     {
@@ -31,6 +32,7 @@ public class PlayerDetectedState : EnemyState
         isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
         isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
         isDetectingLedge = CollisionSenses.LedgeVertical;
+        performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
     }
 
     public override void Enter()
