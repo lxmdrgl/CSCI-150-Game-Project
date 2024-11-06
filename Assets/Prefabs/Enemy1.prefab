@@ -212,7 +212,7 @@ Transform:
   m_GameObject: {fileID: 4674950396764594853}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 9113077644204671259}
   - component: {fileID: 556503304328713079}
   - component: {fileID: 5719427680606851951}
+  - component: {fileID: 857530055602809233}
   m_Layer: 11
   m_Name: Enemy1
   m_TagString: Player
@@ -494,7 +495,7 @@ MonoBehaviour:
   playerDetectedData: {fileID: 11400000, guid: 451fc03b18889f04d9281d598c0389c0, type: 2}
   chargeStateData: {fileID: 11400000, guid: 60b5d8749548b8748b3b11512e7c3588, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: 1c286e471b6dbc2429274191b472ec10, type: 2}
-  meleeAttackStateData: {fileID: 0}
+  meleeAttackStateData: {fileID: 11400000, guid: 06bbec7a37b427b4ab304775860b3677, type: 2}
   meleeAttackPosition: {fileID: 5242852835854976505}
 --- !u!50 &9113077644204671259
 Rigidbody2D:
@@ -591,6 +592,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.47, y: 2.3600001}
   m_EdgeRadius: 0
+--- !u!114 &857530055602809233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6360035130462158432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fbf1e6b56cc9249bea51661b1c0923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6412354468940492574
 GameObject:
   m_ObjectHideFlags: 0
