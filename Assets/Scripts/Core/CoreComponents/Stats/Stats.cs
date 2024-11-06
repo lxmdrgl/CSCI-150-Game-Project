@@ -10,7 +10,7 @@ namespace Game.CoreSystem
        [field: SerializeField] public Stat Health { get; private set; }
        [field: SerializeField] public Stat Stun { get; private set; }
 
-       [SerializeField] private float poiseRecoveryRate;
+       [SerializeField] private float stunRecoveryRate;
         
         protected override void Awake()
         {
@@ -25,7 +25,7 @@ namespace Game.CoreSystem
             if (Stun.CurrentValue.Equals(Stun.MaxValue))
                 return;
             
-            Stun.Increase(poiseRecoveryRate * Time.deltaTime);
+            Stun.Increase(stunRecoveryRate * Time.deltaTime);
         }
     }
 }
