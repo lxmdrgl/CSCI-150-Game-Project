@@ -22,9 +22,22 @@ MonoBehaviour:
   - rid: 5949095222658203648
   - rid: 5949095222658203649
   - rid: 5949095255883382997
+  - rid: 5199004585061515379
   references:
     version: 2
     RefIds:
+    - rid: 5199004585061515379
+      type: {class: StunDamageData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: StunDamageData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <Amount>k__BackingField: 20
+        - name: Attack 2
+          <Amount>k__BackingField: 20
+        - name: Attack 3
+          <Amount>k__BackingField: 20
     - rid: 5949095188800471134
       type: {class: WeaponSpriteData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:
