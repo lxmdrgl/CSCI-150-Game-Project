@@ -44,7 +44,7 @@ public class ChargeState : EnemyState
 		base.Enter();
 
 		isChargeTimeOver = false;
-		Movement?.SetVelocityX(stateData.chargeSpeed * Movement.FacingDirection);
+		//Movement?.SetVelocityX(stateData.chargeSpeed * Movement.FacingDirection); FOR CHARGING ENEMIES
 	}
 
 	public override void Exit() {

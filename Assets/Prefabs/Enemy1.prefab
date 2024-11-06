@@ -187,6 +187,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbd56cb1f8d85f4799517d3a4fbc482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4674950396764594853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5242852835854976505}
+  m_Layer: 0
+  m_Name: MeleeAttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5242852835854976505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4674950396764594853}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4846833722265371268}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4911506911359556633
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,6 +417,7 @@ Transform:
   m_Children:
   - {fileID: 274265649255061878}
   - {fileID: 3755304697358755252}
+  - {fileID: 5242852835854976505}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &-1460232046812936009
@@ -462,6 +494,8 @@ MonoBehaviour:
   playerDetectedData: {fileID: 11400000, guid: 451fc03b18889f04d9281d598c0389c0, type: 2}
   chargeStateData: {fileID: 11400000, guid: 60b5d8749548b8748b3b11512e7c3588, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: 1c286e471b6dbc2429274191b472ec10, type: 2}
+  meleeAttackStateData: {fileID: 0}
+  meleeAttackPosition: {fileID: 5242852835854976505}
 --- !u!50 &9113077644204671259
 Rigidbody2D:
   serializedVersion: 5

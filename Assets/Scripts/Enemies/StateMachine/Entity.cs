@@ -13,6 +13,7 @@ public class Entity : MonoBehaviour
     // public int facingDirection { get; private set; }
     // public Rigidbody2D rb { get; private set; }
     public Animator anim { get; private set; }
+    public AnimationToStatemachine atsm { get; private set; }
     // public GameObject aliveGO { get; private set; }
     public Core Core { get; private set; }
 
@@ -34,7 +35,7 @@ public class Entity : MonoBehaviour
         Core = GetComponentInChildren<Core>();
         // anim = aliveGO.GetComponent<Animator>();
         anim = GetComponent<Animator>();
-
+		atsm = GetComponent<AnimationToStatemachine>();
         stateMachine = new EnemyStateMachine();
     }
 
