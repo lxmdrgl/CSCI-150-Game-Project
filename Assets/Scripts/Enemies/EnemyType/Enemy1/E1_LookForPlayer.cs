@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E1_PlayerDetectedState : PlayerDetectedState
+public class E1_LookForPlayerState : LookForPlayerState
 {
     private Enemy1 enemy;
 
-    public E1_PlayerDetectedState(Entity entity, string animBoolName, D_PlayerDetected stateData, Enemy1 enemy) : base(entity, animBoolName, stateData)
+    public E1_LookForPlayerState(Entity etity, string animBoolName, D_LookForPlayer stateData, Enemy1 enemy) : base(etity, animBoolName, stateData)
     {
         this.enemy = enemy;
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
     }
 
     public override void Enter()
@@ -25,17 +30,12 @@ public class E1_PlayerDetectedState : PlayerDetectedState
     {
         base.LogicUpdate();
 
-        if (!isPlayerInMaxAgroRange)
+        if (isPlayerInMinAgroRange)
         {
-            stateMachine.ChangeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.playerDetectedState);
         }
-        else if(isPlayerInMinAgroRange)
+        else if (isAllTurnsTimeDone)
         {
-            stateMachine.ChangeState(enemy.chargeState);
-        }
-        else if (!isDetectingLedge)
-        {
-            Movement?.Flip();
             stateMachine.ChangeState(enemy.moveState);
         }
     }

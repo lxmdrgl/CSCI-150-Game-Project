@@ -13,6 +13,7 @@ public class Entity : MonoBehaviour
     // public int facingDirection { get; private set; }
     // public Rigidbody2D rb { get; private set; }
     public Animator anim { get; private set; }
+    public AnimationToStatemachine atsm { get; private set; }
     // public GameObject aliveGO { get; private set; }
     public Core Core { get; private set; }
 
@@ -34,7 +35,7 @@ public class Entity : MonoBehaviour
         Core = GetComponentInChildren<Core>();
         // anim = aliveGO.GetComponent<Animator>();
         anim = GetComponent<Animator>();
-
+		atsm = GetComponent<AnimationToStatemachine>();
         stateMachine = new EnemyStateMachine();
     }
 
@@ -73,13 +74,33 @@ public class Entity : MonoBehaviour
 
     public virtual bool CheckPlayerInMinAgroRange()
     {
-        return Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer);
+        //return Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer);
+        Debug.DrawRay(playerCheck.position, transform.right * entityData.minAgroDistance, Color.red);
+
+        // Cast the ray to check for both the player and obstacles
+        RaycastHit2D hit = Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer | entityData.whatIsGround);
+
+        // Check if the ray hit something
+        if (hit.collider != null)
+        {
+            // If it hit a player, return true
+            if (hit.collider.CompareTag("Player"))
+            {
+                return true;
+            }
+        }
+        // If it hit nothing or hit an obstacle first, return false
+        return false;
     }
 
     public virtual bool CheckPlayerInMaxAgroRange()
     {
         return Physics2D.Raycast(playerCheck.position, transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
     }
+
+    public virtual bool CheckPlayerInCloseRangeAction() {
+		return Physics2D.Raycast(playerCheck.position, transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
+	}
 
     /* public virtual void Flip()
     {
