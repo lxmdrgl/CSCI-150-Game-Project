@@ -8,24 +8,24 @@ namespace Game.CoreSystem
     public class Stats : CoreComponent
     {
        [field: SerializeField] public Stat Health { get; private set; }
-       [field: SerializeField] public Stat Poise { get; private set; }
+       [field: SerializeField] public Stat Stun { get; private set; }
 
-       [SerializeField] private float poiseRecoveryRate;
+       [SerializeField] private float stunRecoveryRate;
         
         protected override void Awake()
         {
             base.Awake();
             
             Health.Init();
-            Poise.Init();
+            Stun.Init();
         }
 
         private void Update()
         {
-            if (Poise.CurrentValue.Equals(Poise.MaxValue))
+            if (Stun.CurrentValue.Equals(Stun.MaxValue))
                 return;
             
-            Poise.Increase(poiseRecoveryRate * Time.deltaTime);
+            Stun.Increase(stunRecoveryRate * Time.deltaTime);
         }
     }
 }

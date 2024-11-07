@@ -15,7 +15,9 @@ namespace Game.Weapons.Components
 
         private Vector2 offset;
 
-        ContactFilter2D filter;        
+        ContactFilter2D filter;
+
+        PolygonCollider2D hitbox;        
         private List<Collider2D> detected = new List<Collider2D>();
 
         private void HandleAttackAction()
@@ -29,8 +31,12 @@ namespace Game.Weapons.Components
             // filter.useLayerMask = true;
 
             // currentAttackData.HitBox.Overlap(filter, detected);
+            hitbox.enabled = true;
+            hitbox.points = currentAttackData.HitBox.points;
 
-            Physics2D.OverlapCollider(currentAttackData.HitBox, detected);
+            Debug.Log($"Weapon points: {currentAttackData.HitBox}");
+
+            Physics2D.OverlapCollider(hitbox, detected);
 
             Debug.Log($"Detected: {detected}, count: {detected.Count}");
 
@@ -40,6 +46,11 @@ namespace Game.Weapons.Components
             OnDetectedCollider2D?.Invoke(detected.ToArray());
         }
 
+        protected override void HandleExit()
+        {
+            hitbox.enabled = false;
+        }
+
         protected override void Start()
         {
             base.Start();
@@ -47,6 +58,8 @@ namespace Game.Weapons.Components
             movement = new CoreComp<CoreSystem.Movement>(Core);
             
             AnimationEventHandler.OnAttackAction += HandleAttackAction;
+
+            hitbox = weapon.WeaponColliderGameObject.gameObject.GetComponent<PolygonCollider2D>();
         }
 
         protected override void OnDestroy()
