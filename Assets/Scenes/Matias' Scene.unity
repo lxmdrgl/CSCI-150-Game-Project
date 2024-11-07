@@ -756,7 +756,7 @@ Transform:
   m_GameObject: {fileID: 1751671495}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2, y: -0.4, z: -10}
+  m_LocalPosition: {x: -1.5, y: -0.39999998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -909,6 +909,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1081561631352008448, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1475619523
+      objectReference: {fileID: 0}
     - target: {fileID: 1336391331439146869, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
       propertyPath: m_Name
       value: Player
@@ -966,6 +970,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
+--- !u!4 &1886488723 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8673564491474926216, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
+  m_PrefabInstance: {fileID: 1805710886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1907592010
 GameObject:
   m_ObjectHideFlags: 0
@@ -3471,7 +3480,7 @@ Transform:
   m_GameObject: {fileID: 2101473807}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2, y: -0.39999998, z: -10}
+  m_LocalPosition: {x: -1.5, y: -0.39999998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3510,7 +3519,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1886488723}
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 7.5
