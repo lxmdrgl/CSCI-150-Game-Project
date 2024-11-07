@@ -8,6 +8,7 @@ public class Enemy1 : Entity
     public E1_ChargeState chargeState { get; private set; }
     public E1_LookForPlayerState lookForPlayerState { get; private set; }
     public E1_MeleeAttackState meleeAttackState{get;private set;}
+    public E1_DeadState deadState { get; private set; }
 
     [SerializeField]
     private D_IdleState idleStateData;
@@ -21,7 +22,8 @@ public class Enemy1 : Entity
     private D_LookForPlayer lookForPlayerStateData;
     [SerializeField]
     private D_MeleeAttack meleeAttackStateData;
-
+    [SerializeField]
+    private D_DeadState deadStateData;
     [SerializeField]
     private Transform meleeAttackPosition;
 
@@ -35,6 +37,7 @@ public class Enemy1 : Entity
         chargeState = new E1_ChargeState(this, "charge", chargeStateData, this);
         lookForPlayerState = new E1_LookForPlayerState(this, "lookForPlayer", lookForPlayerStateData, this);
         meleeAttackState = new E1_MeleeAttackState(this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+        deadState = new E1_DeadState(this, "dead", deadStateData, this);
     }
 
     private void Start()
