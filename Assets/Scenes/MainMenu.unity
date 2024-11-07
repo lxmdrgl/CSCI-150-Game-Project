@@ -1232,7 +1232,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 272762218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ffb38a8f669a36438f1eee970137f86, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &279023110
@@ -5317,7 +5317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9e78ee024c3b64a86c554de3eee74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameSceneName: PauseMenu
+  GameSceneName: Alex Gameplay Scene
   saveSlotTexts:
   - {fileID: 1226862146}
   - {fileID: 1894194433}

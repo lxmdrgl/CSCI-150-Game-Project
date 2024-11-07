@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Game.Combat.Damage;
 //using Game.Combat.KnockBack;
 //using Game.Combat.PoiseDamage;
 using Game.CoreSystem;
 using UnityEngine;
+using Game.Utilities;
 
 public class MeleeAttackState : AttackState 
 {
@@ -25,6 +27,24 @@ public class MeleeAttackState : AttackState
 	{
 		base.TriggerAttack();
 
+    	Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, stateData.attackRadius, stateData.whatIsPlayer);
+
+    	// Use the TryDamage utility to apply damage to detected objects
+    	if (CombatDamageUtilities.TryDamage(detectedObjects, new DamageData(stateData.attackDamage, core.Root), out var damageables))
+    	{
+        	foreach (var damageable in damageables)
+        	{
+            	Debug.Log("Enemy Dealing " + stateData.attackDamage + " Damage To Player");
+        	}
+    	}
+    	else
+    	{
+        	Debug.Log("No damageable objects detected");
+    	}
+
+		/*
+		base.TriggerAttack();
+
 		Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, stateData.attackRadius, stateData.whatIsPlayer);
 
 		foreach (Collider2D collider in detectedObjects) 
@@ -33,6 +53,7 @@ public class MeleeAttackState : AttackState
 
 			if (damageable != null) 
 			{
+				Debug.Log("Dealing Damage");
 				damageable.Damage(new DamageData(stateData.attackDamage, core.Root));
 			}
 
@@ -49,7 +70,7 @@ public class MeleeAttackState : AttackState
 			{
 				poiseDamageable.DamagePoise(new PoiseDamageData(stateData.PoiseDamage, core.Root));
 			}
-			*/
 		}
+		*/
 	}
 }

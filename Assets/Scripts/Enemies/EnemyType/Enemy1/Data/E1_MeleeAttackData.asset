@@ -15,7 +15,7 @@ MonoBehaviour:
   attackRadius: 0.5
   attackDamage: 10
   knockbackAngle: {x: 1, y: 1}
-  knockbackStrength: 10
+  knockbackStrength: 0
   PoiseDamage: 0
   whatIsPlayer:
     serializedVersion: 2
