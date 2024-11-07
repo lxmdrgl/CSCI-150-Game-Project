@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 using Game.CoreSystem.StatsSystem;
 
@@ -11,12 +12,17 @@ namespace Game.CoreSystem
        [field: SerializeField] public Stat Poise { get; private set; }
 
        [SerializeField] private float poiseRecoveryRate;
+
+       public Image filledBar;
+       public Gradient gradient;
         
         protected override void Awake()
         {
             base.Awake();
             
             Health.Init();
+
+
             Poise.Init();
         }
 
@@ -26,6 +32,8 @@ namespace Game.CoreSystem
                 return;
             
             Poise.Increase(poiseRecoveryRate * Time.deltaTime);
+
+            filledBar.color = gradient.Evaluate(filledBar.fillAmount);
         }
     }
 }
