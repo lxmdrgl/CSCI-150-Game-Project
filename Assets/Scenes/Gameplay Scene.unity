@@ -13162,17 +13162,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &543657698 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4412433621948068976, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
-  m_PrefabInstance: {fileID: 1302437469}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &551431873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14103,7 +14092,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -14750,10 +14739,14 @@ PrefabInstance:
       propertyPath: stats
       value: 
       objectReference: {fileID: 1141757581}
-    - target: {fileID: 289043213564485787, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
-      propertyPath: healthSlider
-      value: 
-      objectReference: {fileID: 543657698}
+    - target: {fileID: 1019094243345212857, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
+      propertyPath: m_text
+      value: Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 2164780997687744815, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2738078670945885726, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -14849,6 +14842,30 @@ PrefabInstance:
     - target: {fileID: 6265091360826833538, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843903761366536210, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7843903761366536210, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8429560136006929737, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
+      propertyPath: m_Value
+      value: 0.471
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717766552308816836, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717766552308816836, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717766552308816836, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
