@@ -38,17 +38,9 @@ public class GameManager : MonoBehaviour
 
                 // Load weapon inventory
                 WeaponInventory weaponInventory = player.GetComponentInChildren<WeaponInventory>();
-                Debug.Log("Loading Weapons...");
-                int j = 0;
-                if(data.weaponInventory[j])
+                for (int i = 0; i < data.weaponInventory.Count && i < weaponInventory.weaponData.Length; i++)
                 {
-                    while(data.weaponInventory[j])
-                    {
-                        Debug.Log("Weapon " + j + " :");
-                        Debug.Log(data.weaponInventory[j]);
-                        weaponInventory.TrySetWeapon(data.weaponInventory[j], j, out _);
-                        j++;
-                    }                       
+                    weaponInventory.TrySetWeapon(data.weaponInventory[i], i, out _);
                 }
 
                 // Load enemy data
