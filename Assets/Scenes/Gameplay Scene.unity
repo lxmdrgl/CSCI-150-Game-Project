@@ -13147,6 +13147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 714691110}
   MainMenuSceneName: MainMenu
+  stats: {fileID: 1141757581}
 --- !u!4 &525352251
 Transform:
   m_ObjectHideFlags: 0
@@ -15875,9 +15876,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1515808336}
   - {fileID: 458124028}
-  - {fileID: 1672935439}
   - {fileID: 525352251}
   - {fileID: 107161731}
+  - {fileID: 1672935439}
   - {fileID: 714691107}
   - {fileID: 1873635065}
   - {fileID: 1054142410}

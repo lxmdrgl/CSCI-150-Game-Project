@@ -16,16 +16,18 @@ public static class SaveSystem
     public class SaveData
     {
         public SaveSystem.PositionData position;
-        public Stats stats;
+        public float Currenthealth;
+        public float MaxHealth;
         public float playTime;
         public List<string> unlockedCharacters;
         public List<EnemyData> enemies;  // New list to save enemy data
         public List<WeaponData> weaponInventory;  // New list to save weapon inventory data
 
-    public SaveData(Vector3 position, Stats stats, float playTime, List<string> unlockedCharacters, List<EnemyData> enemies,List<WeaponData> weaponInventory)
+    public SaveData(Vector3 position, float Currenthealth, float MaxHealth, float playTime, List<string> unlockedCharacters, List<EnemyData> enemies,List<WeaponData> weaponInventory)
     {
         this.position = new SaveSystem.PositionData(position);
-        this.stats = stats;
+        this.Currenthealth = Currenthealth;
+        this.MaxHealth = MaxHealth;
         this.playTime = playTime;
         this.unlockedCharacters = unlockedCharacters;
         this.enemies = enemies;
@@ -60,9 +62,9 @@ public static class SaveSystem
         public Vector3 ToVector3() => new Vector3(x, y, z);
     }
 
-    public static void SaveGame(int slot, Vector3 position, Stats stats, float playTime, List<string> unlockedCharacters,List<EnemyData> enemies, List<WeaponData> weaponInventory)
+    public static void SaveGame(int slot, Vector3 position, float Currenthealth, float MaxHealth, float playTime, List<string> unlockedCharacters,List<EnemyData> enemies, List<WeaponData> weaponInventory)
     {
-        SaveData data = new SaveData(position, stats, playTime, unlockedCharacters,enemies, weaponInventory);
+        SaveData data = new SaveData(position, Currenthealth, MaxHealth, playTime, unlockedCharacters,enemies, weaponInventory);
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(string.Format(savePath, slot), json);
         Debug.Log($"Game saved to slot {slot}");
@@ -93,11 +95,11 @@ public static class SaveSystem
     public static SaveData InitializeDefaultSave(int slot)
     {
         Vector3 defaultPosition = Vector3.zero;  // Default player starting position
-        Stats defaultStats = new Stats();  // Default player stats
         float defaultPlayTime = 0f;  // Default playtime
         List<string> defaultUnlockedCharacters = new List<string> { "Knight" };
         List<WeaponData> defaultWeaponInventory = new List<WeaponData>();
-
+        float defaultHealth = 100f;
+        
         // Automatically capture the default positions and statuses of enemies
         List<EnemyData> defaultEnemies = new List<EnemyData>();
         foreach (Entity enemy in Object.FindObjectsByType<Entity>(FindObjectsSortMode.None))
@@ -108,8 +110,8 @@ public static class SaveSystem
             }
         }
 
-        SaveData defaultData = new SaveData(defaultPosition, defaultStats, defaultPlayTime, defaultUnlockedCharacters, defaultEnemies, defaultWeaponInventory);
-        SaveGame(slot, defaultPosition, defaultStats, defaultPlayTime, defaultUnlockedCharacters,defaultEnemies, defaultWeaponInventory);  // Save the default data
+        SaveData defaultData = new SaveData(defaultPosition, defaultHealth,defaultHealth, defaultPlayTime, defaultUnlockedCharacters, defaultEnemies, defaultWeaponInventory);
+        SaveGame(slot, defaultPosition, defaultHealth,defaultHealth, defaultPlayTime, defaultUnlockedCharacters,defaultEnemies, defaultWeaponInventory);  // Save the default data
 
         return defaultData;
     }
