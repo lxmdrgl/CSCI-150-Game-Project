@@ -2,6 +2,12 @@ using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Game.CoreSystem.StatsSystem;
+using Game.Weapons.Components;
+using Game.Weapons; 
+
+namespace Game.CoreSystem
+{
 public static class SaveSystem
 {
     private static readonly string savePath = Application.persistentDataPath + "/saveSlot{0}.json";
@@ -10,19 +16,34 @@ public static class SaveSystem
     public class SaveData
     {
         public SaveSystem.PositionData position;
-        public PlayerStats stats;
+        public Stats stats;
         public float playTime;
         public List<string> unlockedCharacters;
+        public List<EnemyData> enemies;  // New list to save enemy data
+        public List<WeaponData> weaponInventory;  // New list to save weapon inventory data
 
-        public SaveData(Vector3 position, PlayerStats stats, float playTime, List<string> unlockedCharacters)
+    public SaveData(Vector3 position, Stats stats, float playTime, List<string> unlockedCharacters, List<EnemyData> enemies,List<WeaponData> weaponInventory)
+    {
+        this.position = new SaveSystem.PositionData(position);
+        this.stats = stats;
+        this.playTime = playTime;
+        this.unlockedCharacters = unlockedCharacters;
+        this.enemies = enemies;
+        this.weaponInventory = weaponInventory;
+    }
+    }
+    [System.Serializable]
+    public struct EnemyData
+    {
+        public PositionData position;
+        public bool isAlive;
+
+        public EnemyData(Vector3 position, bool isAlive)
         {
-            this.position = new SaveSystem.PositionData(position);
-            this.stats = stats;
-            this.playTime = playTime;
-            this.unlockedCharacters = unlockedCharacters;
+            this.position = new PositionData(position);
+            this.isAlive = isAlive;
         }
     }
-
     // Struct to represent the position data
     [System.Serializable]
     public struct PositionData
@@ -39,9 +60,9 @@ public static class SaveSystem
         public Vector3 ToVector3() => new Vector3(x, y, z);
     }
 
-    public static void SaveGame(int slot, Vector3 position, PlayerStats stats, float playTime, List<string> unlockedCharacters)
+    public static void SaveGame(int slot, Vector3 position, Stats stats, float playTime, List<string> unlockedCharacters,List<EnemyData> enemies, List<WeaponData> weaponInventory)
     {
-        SaveData data = new SaveData(position, stats, playTime, unlockedCharacters);
+        SaveData data = new SaveData(position, stats, playTime, unlockedCharacters,enemies, weaponInventory);
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(string.Format(savePath, slot), json);
         Debug.Log($"Game saved to slot {slot}");
@@ -69,17 +90,26 @@ public static class SaveSystem
     {
         return File.Exists(string.Format(savePath, slot));
     }
-    
     public static SaveData InitializeDefaultSave(int slot)
     {
-        Vector3 defaultPosition = Vector3.zero;  // Default starting position
-        PlayerStats defaultStats = new PlayerStats();  // Default player stats
+        Vector3 defaultPosition = Vector3.zero;  // Default player starting position
+        Stats defaultStats = new Stats();  // Default player stats
         float defaultPlayTime = 0f;  // Default playtime
-        List<string> defaultUnlockedCharacters = new List<string>();  // No characters unlocked by default
-        defaultUnlockedCharacters.Add("Knight");
+        List<string> defaultUnlockedCharacters = new List<string> { "Knight" };
+        List<WeaponData> defaultWeaponInventory = new List<WeaponData>();
 
-        SaveData defaultData = new SaveData(defaultPosition, defaultStats, defaultPlayTime, defaultUnlockedCharacters);
-        SaveGame(slot, defaultPosition, defaultStats, defaultPlayTime, defaultUnlockedCharacters);  // Save the default data
+        // Automatically capture the default positions and statuses of enemies
+        List<EnemyData> defaultEnemies = new List<EnemyData>();
+        foreach (Entity enemy in Object.FindObjectsByType<Entity>(FindObjectsSortMode.None))
+        {
+            if (enemy != null)
+            {
+                defaultEnemies.Add(new EnemyData(enemy.transform.position, true));
+            }
+        }
+
+        SaveData defaultData = new SaveData(defaultPosition, defaultStats, defaultPlayTime, defaultUnlockedCharacters, defaultEnemies, defaultWeaponInventory);
+        SaveGame(slot, defaultPosition, defaultStats, defaultPlayTime, defaultUnlockedCharacters,defaultEnemies, defaultWeaponInventory);  // Save the default data
 
         return defaultData;
     }
@@ -98,4 +128,5 @@ public static class SaveSystem
             Debug.LogWarning($"Save slot {slot} does not exist and cannot be deleted.");
         }
     }
+}
 }
