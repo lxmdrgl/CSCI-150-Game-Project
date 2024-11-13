@@ -8,6 +8,7 @@ public class Enemy1 : Entity
     public E1_ChargeState chargeState { get; private set; }
     public E1_LookForPlayerState lookForPlayerState { get; private set; }
     public E1_MeleeAttackState meleeAttackState{get;private set;}
+    public E1_StunState stunState { get; private set; }
     public E1_DeadState deadState { get; private set; }
 
     [SerializeField]
@@ -38,6 +39,13 @@ public class Enemy1 : Entity
         lookForPlayerState = new E1_LookForPlayerState(this, "lookForPlayer", lookForPlayerStateData, this);
         meleeAttackState = new E1_MeleeAttackState(this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
         deadState = new E1_DeadState(this, "dead", deadStateData, this);
+
+        // stats.Stun.OnCurrentValueZero += HandleStunZero;
+    }
+
+    private void HandlePoiseZero()
+    {
+        stateMachine.ChangeState(stunState);
     }
 
     private void Start()
