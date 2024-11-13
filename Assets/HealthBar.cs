@@ -24,7 +24,7 @@ public class HealthBar : MonoBehaviour
         // Hello World
     }
 
-    void Update() {
+    void FixedUpdate() {
         if (healthSlider.value != easeSlider.value) {
             easeSlider.value = Mathf.Lerp(easeSlider.value, healthSlider.value, lerpSpeed);
         }
