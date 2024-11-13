@@ -31,6 +31,8 @@ public class HealthBar : MonoBehaviour
         healthSlider.maxValue = stats.Health.MaxValue;
         healthSlider.value = stats.Health.CurrentValue;
         healthText.text = healthSlider.value + "/" + healthSlider.maxValue;
+
+        //Chester was here.
     }
 
     private void OnEnable()
