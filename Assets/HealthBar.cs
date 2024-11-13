@@ -20,7 +20,7 @@ public class HealthBar : MonoBehaviour
         easeSlider.maxValue = stats.Health.MaxValue;
         easeSlider.value = stats.Health.CurrentValue;
 
-        // Alex was here
+        // Hello World
     }
 
     void Update() {
