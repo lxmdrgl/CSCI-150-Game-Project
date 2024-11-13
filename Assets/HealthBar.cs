@@ -19,9 +19,6 @@ public class HealthBar : MonoBehaviour
 
         easeSlider.maxValue = stats.Health.MaxValue;
         easeSlider.value = stats.Health.CurrentValue;
-
-        // Chester was here editing.
-        // Hello World
     }
 
     void FixedUpdate() {
@@ -34,8 +31,6 @@ public class HealthBar : MonoBehaviour
         healthSlider.maxValue = stats.Health.MaxValue;
         healthSlider.value = stats.Health.CurrentValue;
         healthText.text = healthSlider.value + "/" + healthSlider.maxValue;
-
-        //Chester was here.
     }
 
     private void OnEnable()
