@@ -77,7 +77,7 @@ public class PlayerAirState : PlayerState
         {
             stateMachine.ChangeState(player.JumpState);
         } 
-        else if (isTouchingWall && xInput == Movement?.FacingDirection && Movement?.CurrentVelocity.y <= 0) {
+        else if (isTouchingWall && xInput == Movement?.FacingDirection) { // note: removed && Movement?.CurrentVelocity.y <= 0
             stateMachine.ChangeState(player.WallGrabState);
         }
         else

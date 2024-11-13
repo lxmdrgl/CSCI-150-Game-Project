@@ -7,6 +7,8 @@ using Unity.Services.Core;
 using Unity.Services.Authentication;
 using System.Threading.Tasks;
 
+namespace Game.CoreSystem
+{
 public class MainMenu : MonoBehaviour
 {
     public string GameSceneName;
@@ -111,4 +113,5 @@ public class MainMenu : MonoBehaviour
             Debug.Log("Save Does Not Exist");
         }
     }
+}
 }

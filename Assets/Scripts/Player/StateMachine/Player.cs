@@ -55,10 +55,10 @@ public class Player : MonoBehaviour
 
         IdleState = new PlayerIdleState(this, "idle");
         MoveState = new PlayerMoveState(this, "move");
-        JumpState = new PlayerJumpState(this, "jump");
+        JumpState = new PlayerJumpState(this, "air"); // was jump
         AirState = new PlayerAirState(this, "air");
         WallGrabState = new PlayerWallGrabState(this, "wallGrab");
-        WallJumpState = new PlayerWallJumpState(this, "jump");
+        WallJumpState = new PlayerWallJumpState(this, "air"); // was jump
         PrimaryAttackState = new PlayerAttackState(this, "attack", primaryAttack, CombatInputs.primaryAttack);
         SecondaryAttackState = new PlayerAttackState(this, "attack", secondaryAttack, CombatInputs.secondaryAttack);
     }

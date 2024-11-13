@@ -52,7 +52,6 @@ MonoBehaviour:
             - {fileID: 581828395, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: -720425029, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
-            - {fileID: 1312388425, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 1331580839, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
         - name: Attack 2
           <PhaseSprites>k__BackingField:
@@ -62,7 +61,6 @@ MonoBehaviour:
             - {fileID: 581828395, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: -720425029, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
-            - {fileID: 1312388425, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 1331580839, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
         - name: Attack 3
           <PhaseSprites>k__BackingField:
@@ -72,7 +70,6 @@ MonoBehaviour:
             - {fileID: 581828395, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: -720425029, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
-            - {fileID: 1312388425, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 1331580839, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
     - rid: 5949095222658203648
       type: {class: ActionHitBoxData, ns: Game.Weapons.Components, asm: Assembly-CSharp}

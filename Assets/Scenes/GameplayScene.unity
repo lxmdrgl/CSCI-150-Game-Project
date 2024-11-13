@@ -251,7 +251,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 1.5, z: -10}
+  m_LocalPosition: {x: 2.35, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -379,12 +379,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 0
-    m_Value: 0
+    Enabled: 1
+    m_Value: 10
   OutputChannel: 1
   StandbyUpdate: 2
-  m_StreamingVersion: 20170927
-  m_LegacyPriority: 10
+  m_StreamingVersion: 20241001
+  m_LegacyPriority: 0
   Target:
     TrackingTarget: {fileID: 946216872}
     LookAtTarget: {fileID: 0}
@@ -3156,6 +3156,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1081561631352008448, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 1368919758
+      objectReference: {fileID: 0}
     - target: {fileID: 1336391331439146869, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3246,7 +3250,7 @@ Transform:
   m_GameObject: {fileID: 1437851115}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.78, y: 0, z: -23.33}
+  m_LocalPosition: {x: 2.35, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3308,12 +3312,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 0
-    m_Value: 0
+    Enabled: 1
+    m_Value: 10
   OutputChannel: 1
   StandbyUpdate: 2
-  m_StreamingVersion: 20170927
-  m_LegacyPriority: 10
+  m_StreamingVersion: 20241001
+  m_LegacyPriority: 0
   Target:
     TrackingTarget: {fileID: 1868750424}
     LookAtTarget: {fileID: 0}
