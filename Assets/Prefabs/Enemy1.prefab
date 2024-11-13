@@ -168,8 +168,39 @@ MonoBehaviour:
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 30
   <Stun>k__BackingField:
-    <MaxValue>k__BackingField: 0
+    <MaxValue>k__BackingField: 30
   stunRecoveryRate: 0
+  filledBar: {fileID: 0}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!1 &4280942900579701105
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +523,7 @@ SpriteRenderer:
   m_SortingLayerID: -1729951543
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1523657880, guid: 54e0af6d28ae375498b2e8cd0d92059a, type: 3}
+  m_Sprite: {fileID: 701522798, guid: af496233a97c18f4d8b0bb99b6312dd1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -611,8 +642,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.3050001}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 3}
+    pivot: {x: 0.5, y: 0.375}
+    oldSize: {x: 5, y: 4}
     newSize: {x: 3, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
