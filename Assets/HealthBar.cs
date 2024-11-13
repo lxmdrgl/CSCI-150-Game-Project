@@ -21,6 +21,7 @@ public class HealthBar : MonoBehaviour
         easeSlider.value = stats.Health.CurrentValue;
 
         // Chester was here editing.
+        // Hello World
     }
 
     void Update() {
