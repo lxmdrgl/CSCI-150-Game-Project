@@ -23,15 +23,5 @@ namespace Game.CoreSystem
             Health.Init();
             Stun.Init();
         }
-
-        private void Update()
-        {
-            if (Stun.CurrentValue.Equals(Stun.MaxValue))
-                return;
-            
-            Stun.Increase(stunRecoveryRate * Time.deltaTime);
-            
-            filledBar.color = gradient.Evaluate(filledBar.fillAmount);
-        }
     }
 }
