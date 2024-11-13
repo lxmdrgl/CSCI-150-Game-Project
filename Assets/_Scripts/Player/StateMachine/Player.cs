@@ -22,8 +22,6 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     public PlayerData playerData;
-    [SerializeField]
-    public PlayerStats playerStats = new PlayerStats();
 
     public Core Core { get; private set; }
     public Animator Anim { get; private set; }
