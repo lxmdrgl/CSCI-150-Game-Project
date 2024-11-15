@@ -760,7 +760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2697570814187950225}
   - component: {fileID: 8238347356904471690}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: MeleeAttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -812,7 +812,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

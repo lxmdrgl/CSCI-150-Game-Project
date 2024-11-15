@@ -38,7 +38,7 @@ namespace Game.Weapons.Components
 
             Physics2D.OverlapCollider(hitbox, detected);
 
-            // Debug.Log($"Detected: {detected}, count: {detected.Count}");
+            Debug.Log($"Detected: {detected}, count: {detected.Count}");
 
             if (detected.Count == 0)
                 return;

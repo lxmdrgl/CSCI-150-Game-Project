@@ -26,11 +26,6 @@ public class MeleeAttackState : AttackState
 	{
 		this.stateData = stateData;
 	}
-
-	public void Start() {
-		hitbox = meleeAttackCollider.gameObject.GetComponent<PolygonCollider2D>();
-		Debug.Log("hitbox: " + hitbox);
-	}
 	
 	public override void TriggerAttack() 
 	{
@@ -38,9 +33,13 @@ public class MeleeAttackState : AttackState
 
     	// Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, stateData.attackRadius, stateData.whatIsPlayer);
 
+		hitbox = meleeAttackCollider.gameObject.GetComponent<PolygonCollider2D>();
+
 		hitbox.enabled = true;
 
 		Physics2D.OverlapCollider(hitbox, detected);
+
+		Debug.Log("Detected: " + detected.ToArray() + "count: " +  detected.Count);
 
     	// Use the TryDamage utility to apply damage to detected objects
     	if (CombatDamageUtilities.TryDamage(detected.ToArray(), new DamageData(stateData.attackDamage, core.Root), out var damageables))
@@ -56,36 +55,12 @@ public class MeleeAttackState : AttackState
     	}
 
 		bool didKnock = CombatKnockBackUtilities.TryKnockBack(detected.ToArray(), new KnockBackData(stateData.knockbackAngle, stateData.knockbackStrength, Movement.FacingDirection, core.Root), out _);
-
-		/*
-		base.TriggerAttack();
-
-		Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, stateData.attackRadius, stateData.whatIsPlayer);
-
-		foreach (Collider2D collider in detectedObjects) 
-		{
-			IDamageable damageable = collider.GetComponent<IDamageable>();
-
-			if (damageable != null) 
-			{
-				Debug.Log("Dealing Damage");
-				damageable.Damage(new DamageData(stateData.attackDamage, core.Root));
-			}
-
-
-			/*
-			IKnockBackable knockBackable = collider.GetComponent<IKnockBackable>();
-
-			if (knockBackable != null) 
-			{
-				knockBackable.KnockBack(new KnockBackData(stateData.knockbackAngle, stateData.knockbackStrength, Movement.FacingDirection, core.Root));
-			}
-
-			if (collider.TryGetComponent(out IPoiseDamageable poiseDamageable))
-			{
-				poiseDamageable.DamagePoise(new PoiseDamageData(stateData.PoiseDamage, core.Root));
-			}
-		}
-		*/
 	}
+
+    public override void FinishAttack()
+    {
+        base.FinishAttack();
+
+		hitbox.enabled = false;
+    }
 }

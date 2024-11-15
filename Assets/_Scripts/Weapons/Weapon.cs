@@ -116,7 +116,7 @@ namespace Game.Weapons
             attackCounterResetTimeNotifier.Init(attackCounterResetCooldown);
 
             OnExit?.Invoke();
-            Debug.Log($"Exit weapon, count: {CurrentAttackCounter}");
+            // Debug.Log($"Exit weapon, count: {CurrentAttackCounter}");
         }
 
         private void Awake()
@@ -149,7 +149,7 @@ namespace Game.Weapons
 
         private void ResetAttackCounter()
         {
-            print("Reset Attack Counter");
+            // print("Reset Attack Counter");
             CurrentAttackCounter = 0;
         }
 

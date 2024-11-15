@@ -22,7 +22,7 @@ public class LookForPlayerState : EnemyState {
 
 	protected int amountOfTurnsDone;
 
-	public LookForPlayerState(Entity etity, string animBoolName, D_LookForPlayer stateData) : base(etity, animBoolName) {
+	public LookForPlayerState(Entity entity, string animBoolName, D_LookForPlayer stateData) : base(entity, animBoolName) {
 		this.stateData = stateData;
 	}
 

@@ -24,7 +24,7 @@ public class ChargeState : EnemyState
 
 
 
-    public ChargeState(Entity etity, string animBoolName, D_ChargeState stateData) : base(etity, animBoolName)
+    public ChargeState(Entity entity, string animBoolName, D_ChargeState stateData) : base(entity, animBoolName)
     {
         this.stateData = stateData;
     }

@@ -6,7 +6,7 @@ public class E1_ChargeState : ChargeState
 {
     private Enemy1 enemy;
 
-    public E1_ChargeState(Entity etity, string animBoolName, D_ChargeState stateData, Enemy1 enemy) : base(etity, animBoolName, stateData)
+    public E1_ChargeState(Entity entity, string animBoolName, D_ChargeState stateData, Enemy1 enemy) : base(entity, animBoolName, stateData)
     {
         this.enemy = enemy;
     }
