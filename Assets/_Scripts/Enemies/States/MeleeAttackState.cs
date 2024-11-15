@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Game.Combat.Damage;
-//using Game.Combat.KnockBack;
-//using Game.Combat.PoiseDamage;
+using Game.Combat.KnockBack;
+using Game.Combat.StunDamage;
 using Game.CoreSystem;
 using UnityEngine;
 using Game.Utilities;
@@ -41,6 +41,8 @@ public class MeleeAttackState : AttackState
     	{
         	Debug.Log("No damageable objects detected");
     	}
+
+		bool didKnock = CombatKnockBackUtilities.TryKnockBack(detectedObjects, new KnockBackData(stateData.knockbackAngle, stateData.knockbackStrength, Movement.FacingDirection, core.Root), out _);
 
 		/*
 		base.TriggerAttack();

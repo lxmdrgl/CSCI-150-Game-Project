@@ -37,7 +37,7 @@ public class Enemy1 : Entity
         moveState = new E1_MoveState(this, "move", moveStateData, this);
         idleState = new E1_IdleState(this, "idle", idleStateData, this);
         playerDetectedState = new E1_PlayerDetectedState(this, "playerDetected", playerDetectedData, this);
-        chargeState = new E1_ChargeState(this, "move", chargeStateData, this); // was charge
+        chargeState = new E1_ChargeState(this, "charge", chargeStateData, this); // was charge
         lookForPlayerState = new E1_LookForPlayerState(this, "idle", lookForPlayerStateData, this); // was lookForPlayer
         meleeAttackState = new E1_MeleeAttackState(this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
         stunState = new E1_StunState(this, "idle", stunStateData, this);
@@ -48,7 +48,7 @@ public class Enemy1 : Entity
 
     private void HandleStunZero()
     {
-        Debug.Log("HandleStunZero");
+        // Debug.Log("HandleStunZero");
         stateMachine.ChangeState(stunState);
     }
 

@@ -27,7 +27,7 @@ namespace Game.Weapons
 
         private void GenerateWeapon(WeaponData data)
         {
-            Debug.Log($"Generate Weapon, Data: {data}");
+            // Debug.Log($"Generate Weapon, Data: {data}");
 
             OnWeaponGenerating?.Invoke();
             
@@ -75,7 +75,7 @@ namespace Game.Weapons
             anim.runtimeAnimatorController = data.AnimatorController;
             
             weapon.SetCanEnterAttack(true);
-            Debug.Log("can enter attack");
+            // Debug.Log("can enter attack");
         }
         
         private void HandleWeaponDataChanged(int inputIndex, WeaponData data)

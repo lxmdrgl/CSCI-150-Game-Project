@@ -28,7 +28,7 @@ namespace Game.Weapons.Components
 
             currentPhaseSprites = currentAttackData.PhaseSprites.FirstOrDefault(data => data.Phase == phase).Sprites;
 
-            Debug.Log($"HandleEnterAttackPhase, phrase: {currentPhaseSprites}");
+            // Debug.Log($"HandleEnterAttackPhase, phrase: {currentPhaseSprites}");
         }
 
         private void HandleBaseSpriteChange(SpriteRenderer sr)
