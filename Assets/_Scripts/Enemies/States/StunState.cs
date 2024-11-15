@@ -13,8 +13,8 @@ public class StunState : EnemyState {
 	protected D_StunState stateData;
 
 	protected bool isStunTimeOver;
-	protected bool isGrounded;
-	protected bool isMovementStopped;
+	// protected bool isGrounded;
+	// protected bool isMovementStopped;
 	protected bool performCloseRangeAction;
 	protected bool isPlayerInMinAgroRange;
 
@@ -25,7 +25,7 @@ public class StunState : EnemyState {
 	public override void DoChecks() {
 		base.DoChecks();
 
-		isGrounded = CollisionSenses.Ground;
+		// isGrounded = CollisionSenses.Ground;
 		performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
 		isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
 	}
@@ -34,12 +34,13 @@ public class StunState : EnemyState {
 		base.Enter();
 
 		isStunTimeOver = false;
-		isMovementStopped = false;
+		// isMovementStopped = false;
+		Movement?.SetVelocityX(0f);
 	}
 
 	public override void Exit() {
 		base.Exit();
-		entity.ResetStunResistance();
+		entity.ResetStun();
 	}
 
 	public override void LogicUpdate() {
@@ -49,10 +50,10 @@ public class StunState : EnemyState {
 			isStunTimeOver = true;
 		}
 
-		if (isGrounded && Time.time >= startTime + stateData.stunKnockbackTime && !isMovementStopped) {
+		/* if (isGrounded && Time.time >= startTime + stateData.stunKnockbackTime && !isMovementStopped) {
 			isMovementStopped = true;
 			Movement?.SetVelocityX(0f);
-		}
+		} */
 	}
 
 	public override void PhysicsUpdate() {

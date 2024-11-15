@@ -171,10 +171,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy1_1
       objectReference: {fileID: 0}
-    - target: {fileID: 7966933337800604805, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
-      propertyPath: <Stun>k__BackingField.<MaxValue>k__BackingField
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15350,7 +15346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6360035130462158432, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
       propertyPath: m_Name
-      value: Enemy1
+      value: Enemy1_0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15877,12 +15873,12 @@ SceneRoots:
   - {fileID: 1672935439}
   - {fileID: 714691107}
   - {fileID: 1873635065}
-  - {fileID: 1054142410}
   - {fileID: 1667163769}
-  - {fileID: 478951630}
+  - {fileID: 28295254}
+  - {fileID: 1054142410}
   - {fileID: 551431873}
   - {fileID: 1640464906}
-  - {fileID: 28295254}
   - {fileID: 1435319400}
   - {fileID: 72917003}
+  - {fileID: 478951630}
   - {fileID: 1026789587}
