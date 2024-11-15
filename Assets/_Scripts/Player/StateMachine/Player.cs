@@ -6,7 +6,7 @@ using UnityEngine.Scripting;
 using Game.CoreSystem;
 using Game.Weapons;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDataPersistence
 {
     public PlayerStateMachine StateMachine { get; private set; }
 
@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
 
     public InteractableDetector InteractableDetector { get; private set; }
 
+    protected Stats stats;
 
     private Vector2 workspace; 
 
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Core = GetComponentInChildren<Core>();
+        stats = Core.GetCoreComponent<Stats>();
 
         primaryAttack = transform.Find("PrimaryAttack").GetComponent<Weapon>();
         secondaryAttack = transform.Find("SecondaryAttack").GetComponent<Weapon>();
@@ -90,9 +92,24 @@ public class Player : MonoBehaviour
     private void AnimtionFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
 
     // For saving & loading
-    public Vector3 Position
+    public Vector2 Position
     {
         get => transform.position;
         set => transform.position = value;
+    }
+
+    public void LoadData(GameData data)
+    {
+        stats.Health.CurrentValue = data.playerCurrentHp;
+        stats.Health.MaxValue = data.playerMaxHp;
+        Position = data.playerPosition.ToVector2();
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.playerCurrentHp = stats.Health.CurrentValue;
+        data.playerMaxHp = stats.Health.MaxValue;
+        data.playerPosition = new GameData.Vector2Data(Position);
+        data.playTime += Time.timeSinceLevelLoad;
     }
 }

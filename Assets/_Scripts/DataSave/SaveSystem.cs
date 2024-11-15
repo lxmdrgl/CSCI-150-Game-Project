@@ -71,6 +71,7 @@ public static class SaveSystem
         Debug.Log($"Game saved at" + savePath);
     }
 
+
     public static SaveData LoadGame(int slot)
     {
         string path = string.Format(savePath, slot);
@@ -87,7 +88,7 @@ public static class SaveSystem
             return null;
         }
     }
-
+    
     public static bool SaveExists(int slot)
     {
         return File.Exists(string.Format(savePath, slot));
