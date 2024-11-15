@@ -28,18 +28,24 @@ public class Enemy1 : Entity
     [SerializeField]
     private D_DeadState deadStateData;
     [SerializeField]
-    private Transform meleeAttackPosition;
+    // private Transform meleeAttackPosition;
+
+    private GameObject meleeAttackCollider;
+
 
     public override void Awake()
     {
         base.Awake();
+        meleeAttackCollider = transform.Find("MeleeAttackCollider").gameObject;
+        Debug.Log("meleeAttackCollider: " + meleeAttackCollider);
+
 
         moveState = new E1_MoveState(this, "move", moveStateData, this);
         idleState = new E1_IdleState(this, "idle", idleStateData, this);
         playerDetectedState = new E1_PlayerDetectedState(this, "playerDetected", playerDetectedData, this);
         chargeState = new E1_ChargeState(this, "charge", chargeStateData, this); // was charge
         lookForPlayerState = new E1_LookForPlayerState(this, "idle", lookForPlayerStateData, this); // was lookForPlayer
-        meleeAttackState = new E1_MeleeAttackState(this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+        meleeAttackState = new E1_MeleeAttackState(this, "meleeAttack", meleeAttackCollider, meleeAttackStateData, this);
         stunState = new E1_StunState(this, "idle", stunStateData, this);
         deadState = new E1_DeadState(this, "dead", deadStateData, this);
 

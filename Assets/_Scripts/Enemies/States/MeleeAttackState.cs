@@ -7,6 +7,7 @@ using Game.Combat.StunDamage;
 using Game.CoreSystem;
 using UnityEngine;
 using Game.Utilities;
+using Unity.VisualScripting;
 
 public class MeleeAttackState : AttackState 
 {
@@ -18,19 +19,31 @@ public class MeleeAttackState : AttackState
 
 	protected D_MeleeAttack stateData;
 
-	public MeleeAttackState(Entity entity, string animBoolName, Transform attackPosition, D_MeleeAttack stateData) : base(entity, animBoolName, attackPosition) 
+	PolygonCollider2D hitbox;  
+	private List<Collider2D> detected = new List<Collider2D>();
+
+	public MeleeAttackState(Entity entity, string animBoolName, GameObject meleeAttackCollider, D_MeleeAttack stateData) : base(entity, animBoolName, meleeAttackCollider) 
 	{
 		this.stateData = stateData;
+	}
+
+	public void Start() {
+		hitbox = meleeAttackCollider.gameObject.GetComponent<PolygonCollider2D>();
+		Debug.Log("hitbox: " + hitbox);
 	}
 	
 	public override void TriggerAttack() 
 	{
 		base.TriggerAttack();
 
-    	Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, stateData.attackRadius, stateData.whatIsPlayer);
+    	// Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, stateData.attackRadius, stateData.whatIsPlayer);
+
+		hitbox.enabled = true;
+
+		Physics2D.OverlapCollider(hitbox, detected);
 
     	// Use the TryDamage utility to apply damage to detected objects
-    	if (CombatDamageUtilities.TryDamage(detectedObjects, new DamageData(stateData.attackDamage, core.Root), out var damageables))
+    	if (CombatDamageUtilities.TryDamage(detected.ToArray(), new DamageData(stateData.attackDamage, core.Root), out var damageables))
     	{
         	foreach (var damageable in damageables)
         	{
@@ -42,7 +55,7 @@ public class MeleeAttackState : AttackState
         	Debug.Log("No damageable objects detected");
     	}
 
-		bool didKnock = CombatKnockBackUtilities.TryKnockBack(detectedObjects, new KnockBackData(stateData.knockbackAngle, stateData.knockbackStrength, Movement.FacingDirection, core.Root), out _);
+		bool didKnock = CombatKnockBackUtilities.TryKnockBack(detected.ToArray(), new KnockBackData(stateData.knockbackAngle, stateData.knockbackStrength, Movement.FacingDirection, core.Root), out _);
 
 		/*
 		base.TriggerAttack();

@@ -6,7 +6,7 @@ public class E1_MeleeAttackState : MeleeAttackState
 {
     private Enemy1 enemy;
 
-    public E1_MeleeAttackState(Entity entity, string animBoolName, Transform attackPosition, D_MeleeAttack stateData, Enemy1 enemy) : base(entity, animBoolName, attackPosition, stateData)
+    public E1_MeleeAttackState(Entity entity, string animBoolName, GameObject meleeAttackCollider, D_MeleeAttack stateData, Enemy1 enemy) : base(entity, animBoolName, meleeAttackCollider, stateData)
     {
         this.enemy = enemy;
     }
