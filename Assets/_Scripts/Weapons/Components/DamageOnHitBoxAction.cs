@@ -15,7 +15,7 @@ namespace Game.Weapons.Components
             // Bardent.Utilities.CombatUtilities.Damage(...);
             TryDamage(colliders, new DamageData(currentAttackData.Amount, Core.Root), out _); 
             
-            //(1)
+            // (1)
             // foreach (var item in colliders)
             // {
             //     if (item.TryGetComponent(out IDamageable damageable))

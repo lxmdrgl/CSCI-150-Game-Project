@@ -28,6 +28,9 @@ public class Entity : MonoBehaviour
     public virtual void Awake()
     {
         Core = GetComponentInChildren<Core>();
+
+        stats = Core.GetCoreComponent<Stats>();
+
         anim = GetComponent<Animator>();
 		atsm = GetComponent<AnimationToStatemachine>();
         stateMachine = new EnemyStateMachine();
@@ -74,8 +77,8 @@ public class Entity : MonoBehaviour
 		return Physics2D.Raycast(playerCheck.position, transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
 	}
 
-    public virtual void ResetStunResistance() {
+    public virtual void ResetStun() {
 		isStunned = false;
-		currentStunResistance = entityData.stunResistance;
+		// currentStunResistance = entityData.stunResistance;
 	}
 }

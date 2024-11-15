@@ -24,6 +24,8 @@ public class Enemy1 : Entity
     [SerializeField]
     private D_MeleeAttack meleeAttackStateData;
     [SerializeField]
+    private D_StunState stunStateData;
+    [SerializeField]
     private D_DeadState deadStateData;
     [SerializeField]
     private Transform meleeAttackPosition;
@@ -35,16 +37,18 @@ public class Enemy1 : Entity
         moveState = new E1_MoveState(this, "move", moveStateData, this);
         idleState = new E1_IdleState(this, "idle", idleStateData, this);
         playerDetectedState = new E1_PlayerDetectedState(this, "playerDetected", playerDetectedData, this);
-        chargeState = new E1_ChargeState(this, "charge", chargeStateData, this);
-        lookForPlayerState = new E1_LookForPlayerState(this, "lookForPlayer", lookForPlayerStateData, this);
+        chargeState = new E1_ChargeState(this, "move", chargeStateData, this); // was charge
+        lookForPlayerState = new E1_LookForPlayerState(this, "idle", lookForPlayerStateData, this); // was lookForPlayer
         meleeAttackState = new E1_MeleeAttackState(this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+        stunState = new E1_StunState(this, "idle", stunStateData, this);
         deadState = new E1_DeadState(this, "dead", deadStateData, this);
 
-        // stats.Stun.OnCurrentValueZero += HandleStunZero;
+        stats.Stun.OnCurrentValueZero += HandleStunZero;
     }
 
-    private void HandlePoiseZero()
+    private void HandleStunZero()
     {
+        Debug.Log("HandleStunZero");
         stateMachine.ChangeState(stunState);
     }
 
