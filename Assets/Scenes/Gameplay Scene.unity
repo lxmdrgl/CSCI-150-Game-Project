@@ -636,7 +636,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 525352250}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SaveQuit
+        m_MethodName: DeathQuit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13636,6 +13636,7 @@ MonoBehaviour:
   player: {fileID: 714691110}
   MainMenuSceneName: MainMenu
   stats: {fileID: 1141757581}
+  deathScreenCanvasGO: {fileID: 1864673265}
 --- !u!4 &525352251
 Transform:
   m_ObjectHideFlags: 0
@@ -15994,9 +15995,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: a51d1400fe0419448b4087aa12701237, type: 3}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: Play
+      - m_Target: {fileID: 525352250}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: DeathRestart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
