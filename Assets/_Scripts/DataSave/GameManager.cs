@@ -100,8 +100,6 @@ public class GameManager : MonoBehaviour
         SaveSystem.SaveGame(slot, position, currentHealth,maxHealth, playTime+=data.playTime, unlockedCharacters, enemiesData, weaponDataList);
         Debug.Log($"Game saved to slot {slot}");
 
-        Time.timeScale = 1f;
-
         SceneManager.LoadScene(MainMenuSceneName);
     }
 }

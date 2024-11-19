@@ -11,6 +11,8 @@ namespace Game.CoreSystem
     
         private ParticleManager particleManager; */
 
+        private GameObject deathScreen;
+
         private Stats Stats => stats ? stats : core.GetCoreComponent(ref stats);
         private Stats stats;
     
@@ -22,6 +24,13 @@ namespace Game.CoreSystem
             } */
         
             core.transform.parent.gameObject.SetActive(false);
+
+            if (core.transform.parent.gameObject.name == "Player") {
+                Debug.Log("Player died");
+
+                deathScreen = GameObject.Find("/DeathScreen");
+                deathScreen.transform.GetChild(0).gameObject.SetActive(true);
+            }
         }
 
         private void OnEnable()

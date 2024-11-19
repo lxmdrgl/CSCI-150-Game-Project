@@ -113,6 +113,8 @@ public class MenuManager : MonoBehaviour
     public void OnQuitPress()
     {
         // Placeholder, need to implement when merged with title screen UI. //
+        Unpause();
+        
     }
     #endregion
 
