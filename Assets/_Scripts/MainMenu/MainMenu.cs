@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
 {
     public string GameSceneName;
     public TMP_Text[] saveSlotTexts;
-    private SaveSystem.SaveData data;
+    //private SaveSystem.SaveData data;
 
     private async void Awake()
     {
@@ -31,6 +31,7 @@ public class MainMenu : MonoBehaviour
         string playerName = PlayerPrefs.GetString("PlayerName", "Player");
         Debug.Log("Loaded Player Name: " + playerName);  // Verify the name is loaded correctly
 
+        /*
         int slot = PlayerPrefs.GetInt("SaveSlot", -1);  // Use -1 for invalid/default case
         if (SaveSystem.SaveExists(slot))
         {
@@ -44,10 +45,12 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.SetInt("SaveSlot", slot);  // Save the default slot
         }
         DisplaySaveSlots();
+        */
     }
 
     private void DisplaySaveSlots()
     {
+        /*
         for (int i = 1; i <= 3; i++)
         {
             SaveSystem.SaveData tempData = SaveSystem.LoadGame(i);
@@ -65,9 +68,15 @@ public class MainMenu : MonoBehaviour
                 saveSlotTexts[i - 1].text = $"Create Save";
             }
         }
+        */
     }
     public void Play()
     {
+        DataPersistenceManager.instance.NewGame();
+        DataPersistenceManager.instance.SaveGame();
+        SceneManager.LoadSceneAsync(GameSceneName);
+
+        /*
         int slot = PlayerPrefs.GetInt("SaveSlot", -1);  // Default to slot 1 if not found
         Debug.Log($"Selected Slot: {slot}");
 
@@ -79,6 +88,7 @@ public class MainMenu : MonoBehaviour
         {
             Debug.Log("Cannot Find Valid Save File");
         }
+        */
     }
     public void Quit()
     {
@@ -86,6 +96,7 @@ public class MainMenu : MonoBehaviour
     }
     public void LoadSaveSlot(int slot)
     {
+        /*
         if (SaveSystem.SaveExists(slot))
         {
             data = SaveSystem.LoadGame(slot);
@@ -94,15 +105,18 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
+            // DataPersistenceManager.instance.NewGame();
             PlayerPrefs.SetInt("SaveSlot", slot);  // Save the correct slot
             data = SaveSystem.InitializeDefaultSave(slot);
             DisplaySaveSlots();
             Debug.Log("Creating Default Save For Slot: "+slot);
         }
+        */
     }
 
     public void DeleteSaveSlot(int slot)
     {
+        /*
         if(SaveSystem.SaveExists(slot))
         {
             SaveSystem.DeleteSave(slot);
@@ -112,6 +126,7 @@ public class MainMenu : MonoBehaviour
         {
             Debug.Log("Save Does Not Exist");
         }
+        */
     }
 }
 }

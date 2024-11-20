@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -21,12 +22,14 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
+
         InputHandler = player.GetComponent<PlayerInputHandler>();
         playerInput = player.GetComponent<PlayerInput>();
         
         mainMenuCanvasGO.SetActive(false);
         optionsMenuCanvasGO.SetActive(false);
 
+        Unpause();
     }
 
     void Update()
@@ -112,7 +115,8 @@ public class MenuManager : MonoBehaviour
 
     public void OnQuitPress()
     {
-        // Placeholder, need to implement when merged with title screen UI. //
+        DataPersistenceManager.instance.SaveGame();
+        SceneManager.LoadSceneAsync("MainMenu");
     }
     #endregion
 

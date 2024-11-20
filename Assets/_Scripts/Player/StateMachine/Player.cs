@@ -105,7 +105,7 @@ public class Player : MonoBehaviour, IDataPersistence
         Position = data.playerPosition.ToVector2();
     }
 
-    public void SaveData(ref GameData data)
+    public void SaveData(GameData data)
     {
         data.playerCurrentHp = stats.Health.CurrentValue;
         data.playerMaxHp = stats.Health.MaxValue;

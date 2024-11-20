@@ -38,10 +38,6 @@ public class Entity : MonoBehaviour, IDataPersistence
 		atsm = GetComponent<AnimationToStatemachine>();
         stateMachine = new EnemyStateMachine();
 
-        if (string.IsNullOrEmpty(id))
-        {
-            GenerateGuid();
-        }
     }
 
     public virtual void Update()
@@ -104,6 +100,13 @@ public class Entity : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
+
+        if (data == null)
+        {
+            Debug.LogError("GameData is null. Cannot load data.");
+            return;
+        }
+        
         // Find the enemy data in the list using this entity's unique id
         GameData.EnemyData? enemyData = data.enemyData.Find(e => e.Guid == id);
 
@@ -117,7 +120,7 @@ public class Entity : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void SaveData(ref GameData data)
+    public void SaveData(GameData data)
     {
         // Create a new EnemyData instance with updated values
         GameData.EnemyData enemySaveData = new GameData.EnemyData(
@@ -139,4 +142,5 @@ public class Entity : MonoBehaviour, IDataPersistence
             data.enemyData.Add(enemySaveData);
         }
     }
+    
 }
