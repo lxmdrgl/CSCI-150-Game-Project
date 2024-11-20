@@ -8,6 +8,7 @@ using Game.CoreSystem;
 [System.Serializable]
 public class GameData
 {
+    public long lastUpdated;
     public float playTime;
     public float playerCurrentHp;
     public float playerMaxHp;
@@ -24,19 +25,19 @@ public class GameData
 
     public struct EnemyData
     {
-        public string Guid;
-        public bool isAlive;
-        public float enemyCurrentHp;
-        public float enemyMaxHp;
-        public Vector2Data enemyPosition;
+        public string UniqueId; 
+        public Vector2Data Position;
+        public float CurrentHp;
+        public float MaxHp;
+        public bool IsAlive;
 
-        public EnemyData(float enemyCurrentHp,float enemyMaxHp, Vector2Data enemyPosition,bool isAlive, string Guid)
+        public EnemyData(string uniqueId, Vector2Data position, float currentHp, float maxHp, bool isAlive)
         {
-            this.enemyCurrentHp = enemyCurrentHp;
-            this.enemyMaxHp = enemyMaxHp;
-            this.enemyPosition = enemyPosition;
-            this.isAlive = isAlive;
-            this.Guid = Guid;
+            UniqueId = uniqueId;
+            Position = position;
+            CurrentHp = currentHp;
+            MaxHp = maxHp;
+            IsAlive = isAlive;
         }
     }
 

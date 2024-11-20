@@ -10,7 +10,7 @@ public class DataPersistenceManager : MonoBehaviour
     private GameData gameData;
     private List<IDataPersistence> dataPersistenceObjects;
     public static DataPersistenceManager instance {get; private set;}
-    private string selectedProfileId = "test";
+    private string selectedProfileId = "";
     private void Awake()
     {
         if (instance != null)
@@ -23,6 +23,8 @@ public class DataPersistenceManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+
+        this.selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
     }
     private void OnEnable()
     {
@@ -76,9 +78,16 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.SaveData(gameData);
         }
 
+        gameData.lastUpdated = System.DateTime.Now.ToBinary();
+
         dataHandler.Save(gameData, selectedProfileId);
     }
+    public void ChangeSelectedProfileId(string newProfileId)
+    {
+        this.selectedProfileId = newProfileId;
 
+        LoadGame();
+    }
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IDataPersistence>();       
@@ -88,5 +97,15 @@ public class DataPersistenceManager : MonoBehaviour
     public bool HasGameData()
     {
         return gameData != null;
+    }
+
+    public Dictionary<string,GameData> GetAllProfilesGameData()
+    {
+        return dataHandler.LoadAllProfiles();
+    }
+
+    public string GetSelectedProfileId()
+    {
+        return selectedProfileId;
     }
 }

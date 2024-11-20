@@ -25,7 +25,12 @@ public class Entity : MonoBehaviour, IDataPersistence
 
     protected Stats stats;
 
-    [SerializeField] private string id;
+    [SerializeField] private string UniqueId;
+    [ContextMenu("Generate guid for id")]
+    private void GenerateGuid()
+    {
+        UniqueId = System.Guid.NewGuid().ToString();
+    }
 
 
     public virtual void Awake()
@@ -87,11 +92,6 @@ public class Entity : MonoBehaviour, IDataPersistence
 	}
 
         // For saving & loading
-    [ContextMenu("Generate Guid For Id")]
-    private void GenerateGuid()
-    {
-        id=System.Guid.NewGuid().ToString();
-    }
     public Vector2 Position
     {
         get => transform.position;
@@ -106,33 +106,43 @@ public class Entity : MonoBehaviour, IDataPersistence
             Debug.LogError("GameData is null. Cannot load data.");
             return;
         }
-        
-        // Find the enemy data in the list using this entity's unique id
-        GameData.EnemyData? enemyData = data.enemyData.Find(e => e.Guid == id);
 
-        if (enemyData.HasValue)
+        if (string.IsNullOrEmpty(UniqueId))
         {
-            // Convert Vector2Data to Vector2
-            Position = enemyData.Value.enemyPosition.ToVector2();
-            stats.Health.CurrentValue = enemyData.Value.enemyCurrentHp;
-            stats.Health.MaxValue = enemyData.Value.enemyMaxHp;
-            gameObject.SetActive(enemyData.Value.isAlive); // Toggle based on saved isAlive status
+            Debug.LogError($"{name} has no UniqueID assigned. Cannot load data.");
+            return;
         }
+
+        // Find the enemy data in the list using this entity's unique id
+        GameData.EnemyData? enemyData = data.enemyData.Find(e => e.UniqueId == UniqueId);
+
+        if (enemyData != null)
+        {
+            Position = enemyData.Value.Position.ToVector2();
+            stats.Health.CurrentValue = enemyData.Value.CurrentHp;
+            stats.Health.MaxValue = enemyData.Value.MaxHp;
+            gameObject.SetActive(enemyData.Value.IsAlive);
+        }
+
     }
 
     public void SaveData(GameData data)
     {
-        // Create a new EnemyData instance with updated values
+        if (string.IsNullOrEmpty(UniqueId))
+        {
+            Debug.LogError($"{name} has no UniqueID assigned. Cannot save data.");
+            return;
+        }
+
         GameData.EnemyData enemySaveData = new GameData.EnemyData(
+            UniqueId,
+            new GameData.Vector2Data(Position), // Convert Vector2 to Vector2Data,
             stats.Health.CurrentValue,
             stats.Health.MaxValue,
-            new GameData.Vector2Data(Position), // Convert Vector2 to Vector2Data
-            stats.Health.CurrentValue > 0, // Determine if the enemy is alive
-            id
+            stats.Health.CurrentValue > 0
         );
 
-        // Check if this enemy's data already exists in the list and update it if so
-        int index = data.enemyData.FindIndex(e => e.Guid == id);
+        int index = data.enemyData.FindIndex(e => e.UniqueId == UniqueId);
         if (index >= 0)
         {
             data.enemyData[index] = enemySaveData;
