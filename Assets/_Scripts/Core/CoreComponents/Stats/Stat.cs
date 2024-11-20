@@ -11,10 +11,6 @@ namespace Game.CoreSystem.StatsSystem
         
         [field: SerializeField] public float MaxValue { get; set; }
 
-        private int slot;
-        private SaveSystem.SaveData data;
-
-
         public float CurrentValue
         {
             get => currentValue;
@@ -31,21 +27,8 @@ namespace Game.CoreSystem.StatsSystem
         
         private float currentValue;
 
-        public void Init()
-        {
-            slot = PlayerPrefs.GetInt("SaveSlot", -1);
-
-            if (slot >= 0)
-            {
-                // Load player data for the given slot
-                data = SaveSystem.LoadGame(slot);
-                if (data != null)
-                {
-                    CurrentValue = data.Currenthealth;
-                    MaxValue = data.MaxHealth;
-                }
-            }
-        } 
+        public void Init()=>currentValue = MaxValue;
+    
 
         public void Increase(float amount) {
             CurrentValue += amount;

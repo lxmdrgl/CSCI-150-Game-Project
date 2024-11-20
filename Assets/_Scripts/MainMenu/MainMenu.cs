@@ -6,14 +6,15 @@ using TMPro;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 
-namespace Game.CoreSystem
-{
+
 public class MainMenu : MonoBehaviour
 {
+    [Header("Menu Navigation")]
+    [SerializeField] private SaveSlotsMenu saveSlotsMenu;
+    [SerializeField] private TextMeshProUGUI savesBtnText;
     public string GameSceneName;
-    public TMP_Text[] saveSlotTexts;
-    private SaveSystem.SaveData data;
 
     private async void Awake()
     {
@@ -31,87 +32,41 @@ public class MainMenu : MonoBehaviour
         string playerName = PlayerPrefs.GetString("PlayerName", "Player");
         Debug.Log("Loaded Player Name: " + playerName);  // Verify the name is loaded correctly
 
-        int slot = PlayerPrefs.GetInt("SaveSlot", -1);  // Use -1 for invalid/default case
-        if (SaveSystem.SaveExists(slot))
-        {
-            data = SaveSystem.LoadGame(slot);
-        }
-        else
-        {
-            slot = 1;  // Force it to slot 1 if nothing valid is found
-            data = SaveSystem.InitializeDefaultSave(slot);
-            Debug.Log("Creating Initial Save in Slot 1");
-            PlayerPrefs.SetInt("SaveSlot", slot);  // Save the default slot
-        }
-        DisplaySaveSlots();
-    }
-
-    private void DisplaySaveSlots()
-    {
-        for (int i = 1; i <= 3; i++)
-        {
-            SaveSystem.SaveData tempData = SaveSystem.LoadGame(i);
-            if (tempData != null)
-            {
-                int roundedTimePlayed = Mathf.FloorToInt(tempData.playTime); 
-
-                // Assuming saveSlotTexts[i-1] corresponds to the TextMeshPro element for save slot i
-                saveSlotTexts[i - 1].text = $"Slot {i}:\n" +
-                                             $"Time Played: {roundedTimePlayed} seconds\n" +
-                                             $"Characters Unlocked: {string.Join(", ", tempData.unlockedCharacters)}";
-            }
-            else
-            {
-                saveSlotTexts[i - 1].text = $"Create Save";
-            }
-        }
+        savesBtnText.text = "Save Slot: " + DataPersistenceManager.instance.GetSelectedProfileId();
     }
     public void Play()
     {
-        int slot = PlayerPrefs.GetInt("SaveSlot", -1);  // Default to slot 1 if not found
-        Debug.Log($"Selected Slot: {slot}");
-
-        if (slot > 0 && data != null)
+        if (DataPersistenceManager.instance.HasGameData())
         {
-            SceneManager.LoadScene(GameSceneName);
+            // Save current data and load the game
+            DataPersistenceManager.instance.SaveGame();
+            SceneManager.LoadSceneAsync(GameSceneName);
         }
         else
         {
-            Debug.Log("Cannot Find Valid Save File");
+            // Create new data for the selected profile
+            DataPersistenceManager.instance.NewGame();
+            DataPersistenceManager.instance.SaveGame();
+            SceneManager.LoadSceneAsync(GameSceneName);
         }
+    }
+    public void OnSavesClicked()
+    {
+        saveSlotsMenu.ActivateMenu();
+        this.DeactivateMenu();
     }
     public void Quit()
     {
         Application.Quit();
     }
-    public void LoadSaveSlot(int slot)
+    public void ActivateMenu()
     {
-        if (SaveSystem.SaveExists(slot))
-        {
-            data = SaveSystem.LoadGame(slot);
-            PlayerPrefs.SetInt("SaveSlot", slot);  // Save the correct slot
-            Debug.Log($"Save Slot Set To: {slot}");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("SaveSlot", slot);  // Save the correct slot
-            data = SaveSystem.InitializeDefaultSave(slot);
-            DisplaySaveSlots();
-            Debug.Log("Creating Default Save For Slot: "+slot);
-        }
+        this.gameObject.SetActive(true);
+    }
+    public void DeactivateMenu()
+    {
+        this.gameObject.SetActive(false);
     }
 
-    public void DeleteSaveSlot(int slot)
-    {
-        if(SaveSystem.SaveExists(slot))
-        {
-            SaveSystem.DeleteSave(slot);
-            DisplaySaveSlots();
-        }
-        else
-        {
-            Debug.Log("Save Does Not Exist");
-        }
-    }
-}
+
 }

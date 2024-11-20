@@ -23,5 +23,6 @@ namespace Game.CoreSystem
             Health.Init();
             Stun.Init();
         }
+
     }
 }
