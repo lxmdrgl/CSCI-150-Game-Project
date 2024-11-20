@@ -117,6 +117,7 @@ public class MenuManager : MonoBehaviour
     {
         DataPersistenceManager.instance.SaveGame();
         SceneManager.LoadSceneAsync("MainMenu");
+        Unpause();
     }
     #endregion
 

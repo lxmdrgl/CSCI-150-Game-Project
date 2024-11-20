@@ -12,9 +12,13 @@ public class GameManager : MonoBehaviour
 {
     public Player player;
     public string MainMenuSceneName;
+
+    public string GameplaySceneName;
     private int slot;
     public Stats stats;
     private SaveSystem.SaveData data;
+
+    [SerializeField] private GameObject deathScreenCanvasGO;
     private void Awake()
     {
         slot = PlayerPrefs.GetInt("SaveSlot", -1);
@@ -100,9 +104,33 @@ public class GameManager : MonoBehaviour
         SaveSystem.SaveGame(slot, position, currentHealth,maxHealth, playTime+=data.playTime, unlockedCharacters, enemiesData, weaponDataList);
         Debug.Log($"Game saved to slot {slot}");
 
-        Time.timeScale = 1f;
+        SceneManager.LoadScene(MainMenuSceneName);
+    }
+
+    public void DeathQuit()
+    {
+        if(SaveSystem.SaveExists(slot))
+        {
+            SaveSystem.DeleteSave(slot);
+        }
+        else
+        {
+            Debug.Log("Save Does Not Exist");
+        }
+
+        deathScreenCanvasGO.SetActive(false);
 
         SceneManager.LoadScene(MainMenuSceneName);
+    }
+
+    public void DeathRestart()
+    {
+        data = SaveSystem.InitializeDefaultSave(slot);
+        Debug.Log("Creating Default Save For Slot: "+slot);
+
+        deathScreenCanvasGO.SetActive(false);
+        
+        SceneManager.LoadScene(GameplaySceneName);
     }
 }
 }
