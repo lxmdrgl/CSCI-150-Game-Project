@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 {
     public Player player;
     public string MainMenuSceneName;
+
+    public string GameplaySceneName;
     private int slot;
     public Stats stats;
     private SaveSystem.SaveData data;
@@ -121,22 +123,14 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(MainMenuSceneName);
     }
 
-    //not working 
     public void DeathRestart()
     {
-        if(SaveSystem.SaveExists(slot))
-        {
-            SaveSystem.DeleteSave(slot);
-        }
-        else
-        {
-            Debug.Log("Save Does Not Exist");
-        }
+        data = SaveSystem.InitializeDefaultSave(slot);
+        Debug.Log("Creating Default Save For Slot: "+slot);
 
         deathScreenCanvasGO.SetActive(false);
-
-        Awake();
-        Awake();
+        
+        SceneManager.LoadScene(GameplaySceneName);
     }
 }
 }
