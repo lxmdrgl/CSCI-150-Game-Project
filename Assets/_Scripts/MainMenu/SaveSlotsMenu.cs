@@ -45,4 +45,10 @@ public class SaveSlotsMenu : MonoBehaviour
         mainMenu.ActivateMenu();
         savesBtnText.text = "Save Slot: " + saveSlot.GetProfileId();
     }
+
+    public void OnDeleteClicked(SaveSlot saveSlot)
+    {
+        DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
+        ActivateMenu();
+    }
 }

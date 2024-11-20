@@ -60,7 +60,24 @@ public class FileDataHandler
             Debug.LogError("Error occurred when trying to save data to file: " + fullPath + "\n" + e);
         }
     }
+    public void Delete(string profileId)
+    {
+        if(profileId == null)
+        {
+            return;
+        }
 
+        string fullPath = Path.Combine(dataDirPath,profileId,dataFileName);
+
+        if(File.Exists(fullPath))
+        {
+            Directory.Delete(Path.GetDirectoryName(fullPath), true);
+        }
+        else
+        {
+            Debug.LogWarning("No data to delete");
+        }
+    }
     public Dictionary<string, GameData> LoadAllProfiles()
     {
         Dictionary<string, GameData> profileDictionary = new Dictionary<string, GameData>();

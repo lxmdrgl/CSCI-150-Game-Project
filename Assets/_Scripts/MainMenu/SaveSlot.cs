@@ -11,6 +11,7 @@ public class SaveSlot : MonoBehaviour
     [SerializeField] private GameObject noDataContent;
     [SerializeField] private GameObject hasDataContent;
     [SerializeField] private TextMeshProUGUI timePlayedText;
+    [SerializeField] private Button deleteBtn;
 
     public void SetData(GameData data)
     {
@@ -18,11 +19,13 @@ public class SaveSlot : MonoBehaviour
         {
             noDataContent.SetActive(true);
             hasDataContent.SetActive(false);
+            deleteBtn.gameObject.SetActive(false);
         }
         else
         {
             noDataContent.SetActive(false);
             hasDataContent.SetActive(true);
+            deleteBtn.gameObject.SetActive(true);
 
             timePlayedText.text = "Time Played: " + data.playTime;
         }

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.PlayerLoop;
 public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
@@ -24,7 +25,7 @@ public class DataPersistenceManager : MonoBehaviour
         
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
 
-        this.selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
+        InitializeSelectedProfileId();
     }
     private void OnEnable()
     {
@@ -87,6 +88,17 @@ public class DataPersistenceManager : MonoBehaviour
         this.selectedProfileId = newProfileId;
 
         LoadGame();
+    }
+    public void DeleteProfileData(string profileId)
+    {
+        dataHandler.Delete(profileId);
+
+        InitializeSelectedProfileId();
+        LoadGame();
+    }
+    private void InitializeSelectedProfileId()
+    {
+        this.selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
     }
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
