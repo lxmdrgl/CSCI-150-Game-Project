@@ -13635,6 +13635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 714691110}
   MainMenuSceneName: MainMenu
+  GameplaySceneName: Gameplay Scene
   stats: {fileID: 1141757581}
   deathScreenCanvasGO: {fileID: 1864673265}
 --- !u!4 &525352251
