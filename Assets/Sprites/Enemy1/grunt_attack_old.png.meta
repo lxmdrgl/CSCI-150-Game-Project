@@ -1,31 +1,55 @@
 fileFormatVersion: 2
-guid: af882a937419e2946b4c2340dc6f6445
+guid: a2b7b37846cf5534995b4fc1ef2d8857
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2957636537607132530
-    second: grunt_walk_0
+      213: -7584302928912940569
+    second: grunt_attack_1_0
   - first:
-      213: -4124635647994375652
-    second: grunt_walk_1
+      213: 740419016901613549
+    second: grunt_attack_1_1
   - first:
-      213: -5145199395037115533
-    second: grunt_walk_2
+      213: 4573156818682110682
+    second: grunt_attack_1_2
   - first:
-      213: 498691000828911523
-    second: grunt_walk_3
+      213: -6406805947632332004
+    second: grunt_attack_1_3
   - first:
-      213: 816080433429405587
-    second: grunt_walk_4
+      213: 8821421490157735908
+    second: grunt_attack_1_4
   - first:
-      213: 7331914885190286001
-    second: grunt_walk_5
+      213: -7995705062753816556
+    second: grunt_attack_1_5
   - first:
-      213: -5974200446528537123
-    second: grunt_walk_6
+      213: -447335341884145105
+    second: grunt_attack_1_6
   - first:
-      213: 2574821403832082014
-    second: grunt_walk_7
+      213: -654358328581649549
+    second: grunt_attack_1_7
+  - first:
+      213: -1789856484119940420
+    second: grunt_attack_1_8
+  - first:
+      213: 3244865457022174250
+    second: grunt_attack_1_9
+  - first:
+      213: 9049755652241596373
+    second: grunt_attack_1_10
+  - first:
+      213: -1628116797143145286
+    second: grunt_attack_1_11
+  - first:
+      213: 6354716292633511170
+    second: grunt_attack_1_12
+  - first:
+      213: -1436072450414879519
+    second: grunt_attack_1_13
+  - first:
+      213: -1172442919546070528
+    second: grunt_attack_1_14
+  - first:
+      213: -4262166529874088744
+    second: grunt_attack_1_15
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -121,7 +145,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grunt_walk_0
+      name: grunt_attack_1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -136,14 +160,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a34ad88d40963d4a82f7a8f2d6226a8
-      internalID: -324167841
+      spriteID: d535805f4aa29d240bcfbadc5c706aac
+      internalID: 1638740080
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grunt_walk_1
+      name: grunt_attack_1_1
       rect:
         serializedVersion: 2
         x: 120
@@ -158,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d2ca7805e9186d468903c44fe1e17f2
-      internalID: 1843789343
+      spriteID: a845a0752c5ec45408c2e21d164b4bf3
+      internalID: 385935137
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grunt_walk_2
+      name: grunt_attack_1_2
       rect:
         serializedVersion: 2
         x: 240
@@ -180,14 +204,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 623da5d78a5a61a4bbf89009779fcde3
-      internalID: 603290694
+      spriteID: 0349219d590b6fe4896f1e0b26fed332
+      internalID: 834092679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grunt_walk_3
+      name: grunt_attack_1_3
       rect:
         serializedVersion: 2
         x: 360
@@ -202,14 +226,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd9b4c75f7af19149a6a18f383193bcd
-      internalID: 1703174595
+      spriteID: 4a77f4033a3c2c243855bfcb124cfc36
+      internalID: 587403977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grunt_walk_4
+      name: grunt_attack_1_4
       rect:
         serializedVersion: 2
         x: 480
@@ -224,14 +248,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c47c87ba06335942a906b4c037cafcc
-      internalID: -73353404
+      spriteID: 7e7db761aa4558e46ab2e335b52ca322
+      internalID: -1497398556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grunt_walk_5
+      name: grunt_attack_1_5
       rect:
         serializedVersion: 2
         x: 600
@@ -246,14 +270,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 314e26f03cdf77d47beceae4b6ad78c5
-      internalID: 307013276
+      spriteID: 380e90ea40a576946993f6308dbd3967
+      internalID: 203283909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grunt_walk_6
+      name: grunt_attack_1_6
       rect:
         serializedVersion: 2
         x: 720
@@ -268,14 +292,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01de100343d2a77449f8db5bd4921317
-      internalID: 926507853
+      spriteID: ead047707fb001e43958c4bfbecc2c23
+      internalID: 120035149
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grunt_walk_7
+      name: grunt_attack_1_7
       rect:
         serializedVersion: 2
         x: 840
@@ -290,8 +314,140 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ed421dbf496d074ebd1307145d20419
-      internalID: -1215216672
+      spriteID: 2f5f1dc47897d52478d51fb10a37135c
+      internalID: 1247884854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_attack_1_8
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 120
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caea0cb60e0fc284a80490ed5e0350e8
+      internalID: -570036213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_attack_1_9
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 0
+        width: 120
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48ce80ce5661cbd40a26acd51763b02a
+      internalID: -2035360920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_attack_1_10
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 120
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f59b0a8b73656b144812c83fec4797a9
+      internalID: -1396040802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_attack_1_11
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 0
+        width: 120
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aba8433e21c6cf498e7963c10534ec2
+      internalID: -833582594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_attack_1_12
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 120
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 897a9174335af83499b99f89b14eee7b
+      internalID: -209361147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_attack_1_13
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 0
+        width: 120
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.375}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c68628b85e400b418811098eeba32ff
+      internalID: 907756606
       vertices: []
       indices: 
       edges: []
@@ -310,14 +466,20 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      grunt_walk_0: -324167841
-      grunt_walk_1: 1843789343
-      grunt_walk_2: 603290694
-      grunt_walk_3: 1703174595
-      grunt_walk_4: -73353404
-      grunt_walk_5: 307013276
-      grunt_walk_6: 926507853
-      grunt_walk_7: -1215216672
+      grunt_attack_1_0: 1638740080
+      grunt_attack_1_1: 385935137
+      grunt_attack_1_10: -1396040802
+      grunt_attack_1_11: -833582594
+      grunt_attack_1_12: -209361147
+      grunt_attack_1_13: 907756606
+      grunt_attack_1_2: 834092679
+      grunt_attack_1_3: 587403977
+      grunt_attack_1_4: -1497398556
+      grunt_attack_1_5: 203283909
+      grunt_attack_1_6: 120035149
+      grunt_attack_1_7: 1247884854
+      grunt_attack_1_8: -570036213
+      grunt_attack_1_9: -2035360920
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

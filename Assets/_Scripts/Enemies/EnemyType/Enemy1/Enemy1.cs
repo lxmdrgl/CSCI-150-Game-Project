@@ -47,7 +47,7 @@ public class Enemy1 : Entity
         chargeState = new E1_ChargeState(this, "charge", chargeStateData, this); // was charge
         lookForPlayerState = new E1_LookForPlayerState(this, "lookForPlayer", lookForPlayerStateData, this); // was lookForPlayer
         meleeAttackState = new E1_MeleeAttackState(this, "meleeAttack", meleeAttackCollider, meleeAttackStateData, this);
-        stunState = new E1_StunState(this, "idle", stunStateData, this);
+        stunState = new E1_StunState(this, "stun", stunStateData, this);
         deadState = new E1_DeadState(this, "dead", deadStateData, this);
 
         stats.Stun.OnCurrentValueZero += HandleStunZero;
