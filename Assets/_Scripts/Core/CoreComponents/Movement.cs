@@ -16,6 +16,9 @@ namespace Game.CoreSystem
 
         private Vector2 workspace;
 
+        [SerializeField]
+        public RectTransform canvas;
+
         protected override void Awake()
         {
             base.Awake();
@@ -71,6 +74,9 @@ namespace Game.CoreSystem
         {
             FacingDirection *= -1;
             RB.transform.Rotate(0.0f, 180.0f, 0.0f);
+            if (canvas != null) {
+                canvas?.Rotate(0.0f, 180.0f, 0.0f);
+            }
         }
 
     }

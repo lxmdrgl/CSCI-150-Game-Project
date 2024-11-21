@@ -16204,10 +16204,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 581854908924781414, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
-      propertyPath: m_Value
-      value: 0.802
-      objectReference: {fileID: 0}
     - target: {fileID: 4846833722265371268, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 36.25
@@ -16252,22 +16248,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy1_0
       objectReference: {fileID: 0}
-    - target: {fileID: 6853224340015207099, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
-      propertyPath: m_Color.b
-      value: 0.6830188
-      objectReference: {fileID: 0}
-    - target: {fileID: 6853224340015207099, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
-      propertyPath: m_Color.g
-      value: 0.6830188
-      objectReference: {fileID: 0}
-    - target: {fileID: 6853224340015207099, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
-      propertyPath: m_Color.r
-      value: 0.6830188
-      objectReference: {fileID: 0}
-    - target: {fileID: 8321656139718377577, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
-      propertyPath: UniqueId
-      value: ccbec9b1-3a62-45bb-9cf1-2c821638dccd
-      objectReference: {fileID: 0}
     - target: {fileID: 8769394835601313704, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -16277,7 +16257,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9077377046218581399, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
