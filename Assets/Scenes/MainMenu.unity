@@ -5167,7 +5167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveSlotsMenu: {fileID: 77172456}
   savesBtnText: {fileID: 1926392986}
-  GameSceneName: Gameplay Scene
+  GameSceneName: Gameplay Scene 2
 --- !u!1 &1224302557
 GameObject:
   m_ObjectHideFlags: 0
