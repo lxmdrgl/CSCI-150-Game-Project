@@ -346,7 +346,7 @@ MonoBehaviour:
     <MaxValue>k__BackingField: 30
   <Stun>k__BackingField:
     <MaxValue>k__BackingField: 30
-  stunRecoveryRate: 0
+  stunRecoveryRate: 5
   filledBar: {fileID: 0}
   gradient:
     serializedVersion: 2
