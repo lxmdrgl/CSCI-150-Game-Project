@@ -1,8 +1,5 @@
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using TMPro;
 
 public class SaveSlotsMenu : MonoBehaviour
@@ -12,12 +9,12 @@ public class SaveSlotsMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI savesBtnText;
     private void Awake()
     {
-        saveSlots = this.GetComponentsInChildren<SaveSlot>();
+        saveSlots = GetComponentsInChildren<SaveSlot>();
     }
 
     public void ActivateMenu()
     {
-        this.gameObject.SetActive(true);
+        gameObject.SetActive(true);
 
         Dictionary<string, GameData> profilesGameData = DataPersistenceManager.instance.GetAllProfilesGameData();
 
