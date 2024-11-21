@@ -7,24 +7,34 @@ using Game.CoreSystem.StatsSystem;
 
 public class FloatingHealthBar : MonoBehaviour
 {
-    [SerializeField] private Slider slider;
-
+    [SerializeField] public Slider slider;
     [SerializeField] public Stats stats;
+    public float lerpSpeed = 0.05f;
     
-    public void UpdateHealthBar(float currentValue, float maxValue)
-    {
-        slider.value = currentValue / maxValue;
-    }
+  //  public void UpdateHealthBar(float currentValue, float maxValue)
+ //   {
+  //      slider.value = currentValue / maxValue;
+  //  }
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+   void Start() {
+        slider.maxValue = stats.Health.MaxValue;
+        slider.value = stats.Health.CurrentValue;
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateSlider() {
+        slider.maxValue = stats.Health.MaxValue;
+        slider.value = stats.Health.CurrentValue;
+       
+    }
+
+    private void OnEnable()
     {
-        
+        stats.Health.OnValueChange += UpdateSlider;
+    }
+
+    private void OnDisable()
+    {
+        stats.Health.OnValueChange -= UpdateSlider;
     }
 }
