@@ -505,7 +505,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.02083333, y: 3, z: 1}
+  m_Size: {x: 0.02083333, y: 3.2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5351031076077802823
 GameObject:
@@ -727,7 +727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: 6589930ae26576a45bdd200d10162427, type: 2}
   playerCheck: {fileID: 3755304697358755252}
-  uniqueId: {fileID: 11400000, guid: dad9df613ea25974a99fda7cf1a59c69, type: 2}
+  UniqueId: 
   idleStateData: {fileID: 11400000, guid: 96d8d84a229f88840b9ad232a7f1feb7, type: 2}
   moveStateData: {fileID: 11400000, guid: bbfdff6b149800a46a12eaa2ab18817d, type: 2}
   playerDetectedData: {fileID: 11400000, guid: 451fc03b18889f04d9281d598c0389c0, type: 2}
@@ -893,7 +893,7 @@ MonoBehaviour:
   groundCheck: {fileID: 6831698775643766895}
   wallCheck: {fileID: 2518377186256848546}
   groundCheckSize: {x: 0.3866667, y: 0.08333334}
-  wallCheckDistance: 0.02083333
+  wallCheckDistance: 0.5
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
