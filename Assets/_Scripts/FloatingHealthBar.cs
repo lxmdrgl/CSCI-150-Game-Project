@@ -9,9 +9,11 @@ public class FloatingHealthBar : MonoBehaviour
 {
     [SerializeField] public Slider slider;
     [SerializeField] public Stats stats;
+    [SerializeField] public Movement movement;
     public float lerpSpeed = 0.05f;
 
-    public Transform healthBarTransform;
+    public RectTransform healthBarTransform;
+
     
   //  public void UpdateHealthBar(float currentValue, float maxValue)
  //   {
@@ -19,6 +21,7 @@ public class FloatingHealthBar : MonoBehaviour
   //  }
 
     void Awake() {
+        healthBarTransform = GetComponent<RectTransform>();
     }
     
    void Start() {
@@ -35,10 +38,17 @@ public class FloatingHealthBar : MonoBehaviour
     private void OnEnable()
     {
         stats.Health.OnValueChange += UpdateSlider;
+        movement.OnFlip += UpdateFlip;
+        
+    }
+
+    private void UpdateFlip() {
+        healthBarTransform?.Rotate(0.0f, 180.0f, 0.0f);
     }
 
     private void OnDisable()
     {
         stats.Health.OnValueChange -= UpdateSlider;
+        movement.OnFlip -= UpdateFlip;
     }
 }

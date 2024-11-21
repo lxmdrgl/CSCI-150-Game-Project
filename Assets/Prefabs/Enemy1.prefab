@@ -422,7 +422,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbd56cb1f8d85f4799517d3a4fbc482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 507281897922863390}
 --- !u!1 &4674950396764594853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,6 +1070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 581854908924781414}
   stats: {fileID: 7966933337800604805}
+  movement: {fileID: 831866209240220201}
   lerpSpeed: 0.05
   healthBarTransform: {fileID: 0}
 --- !u!1 &7713608560364900413
