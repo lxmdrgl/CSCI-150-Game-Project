@@ -1,31 +1,46 @@
 fileFormatVersion: 2
-guid: af882a937419e2946b4c2340dc6f6445
+guid: 2161c4efc0da0ed4c885fa00affcb6f4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2957636537607132530
-    second: grunt_walk_0
+      213: -5601771500719755022
+    second: grunt_stun_0
   - first:
-      213: -4124635647994375652
-    second: grunt_walk_1
+      213: -752211541241681558
+    second: grunt_stun_1
   - first:
-      213: -5145199395037115533
-    second: grunt_walk_2
+      213: 475062093888866891
+    second: grunt_stun_2
   - first:
-      213: 498691000828911523
-    second: grunt_walk_3
+      213: 7981117407539311996
+    second: grunt_stun_3
   - first:
-      213: 816080433429405587
-    second: grunt_walk_4
+      213: 5530469156148602585
+    second: grunt_stun_4
   - first:
-      213: 7331914885190286001
-    second: grunt_walk_5
+      213: -3738771993500650458
+    second: grunt_stun_5
   - first:
-      213: -5974200446528537123
-    second: grunt_walk_6
+      213: 5252053731459340972
+    second: grunt_stun_6
   - first:
-      213: 2574821403832082014
-    second: grunt_walk_7
+      213: -6262805024589269824
+    second: grunt_stun_7
+  - first:
+      213: -2351044619931571344
+    second: grunt_stun_8
+  - first:
+      213: 1489418180250315472
+    second: grunt_stun_9
+  - first:
+      213: 2415544712466575794
+    second: grunt_stun_10
+  - first:
+      213: -6695025962683453014
+    second: grunt_stun_11
+  - first:
+      213: -5822993949405700870
+    second: grunt_stun_12
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -121,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grunt_walk_0
+      name: grunt_stun_0
       rect:
         serializedVersion: 2
         x: 0
@@ -136,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a34ad88d40963d4a82f7a8f2d6226a8
-      internalID: -324167841
+      spriteID: 7418e2e4ac01de643b0630377c9559d0
+      internalID: 835689745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grunt_walk_1
+      name: grunt_stun_1
       rect:
         serializedVersion: 2
         x: 120
@@ -158,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d2ca7805e9186d468903c44fe1e17f2
-      internalID: 1843789343
+      spriteID: 3bebc393ea61275458df17d47f4ea000
+      internalID: 1796400023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grunt_walk_2
+      name: grunt_stun_2
       rect:
         serializedVersion: 2
         x: 240
@@ -180,118 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 623da5d78a5a61a4bbf89009779fcde3
-      internalID: 603290694
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: grunt_walk_3
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 0
-        width: 120
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dd9b4c75f7af19149a6a18f383193bcd
-      internalID: 1703174595
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: grunt_walk_4
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 120
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c47c87ba06335942a906b4c037cafcc
-      internalID: -73353404
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: grunt_walk_5
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 0
-        width: 120
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 314e26f03cdf77d47beceae4b6ad78c5
-      internalID: 307013276
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: grunt_walk_6
-      rect:
-        serializedVersion: 2
-        x: 720
-        y: 0
-        width: 120
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 01de100343d2a77449f8db5bd4921317
-      internalID: 926507853
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: grunt_walk_7
-      rect:
-        serializedVersion: 2
-        x: 840
-        y: 0
-        width: 120
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.375}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1ed421dbf496d074ebd1307145d20419
-      internalID: -1215216672
+      spriteID: e79a688d299280843b86d94c872123f3
+      internalID: 1971892755
       vertices: []
       indices: 
       edges: []
@@ -310,14 +215,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      grunt_walk_0: -324167841
-      grunt_walk_1: 1843789343
-      grunt_walk_2: 603290694
-      grunt_walk_3: 1703174595
-      grunt_walk_4: -73353404
-      grunt_walk_5: 307013276
-      grunt_walk_6: 926507853
-      grunt_walk_7: -1215216672
+      grunt_stun_0: 835689745
+      grunt_stun_1: 1796400023
+      grunt_stun_2: 1971892755
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

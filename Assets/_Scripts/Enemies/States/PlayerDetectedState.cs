@@ -20,6 +20,10 @@ public class PlayerDetectedState : EnemyState
     protected bool isDetectingWall;
     protected bool performCloseRangeAction;
 
+    protected bool isDetectedTimeOver;
+
+    protected float detectedTime;
+
     public PlayerDetectedState(Entity entity, string animBoolName, D_PlayerDetected stateData) : base(entity, animBoolName)
     {
         this.stateData = stateData;
@@ -41,6 +45,8 @@ public class PlayerDetectedState : EnemyState
 
         base.Enter();
         Movement?.SetVelocityX(0f);
+        isDetectedTimeOver = false;
+        detectedTime = stateData.detectedTime;
     }
 
     public override void LogicUpdate()
@@ -49,29 +55,10 @@ public class PlayerDetectedState : EnemyState
 
         Movement?.SetVelocityX(0f);
 
-        /* if (!isPlayerInMaxAgroRange)
+        if (Time.time >= startTime + detectedTime)
         {
-            // Transition to idle state
-            stateMachine.ChangeState(enemy.idleState);
+            isDetectedTimeOver = true;
         }
-        else if (isPlayerInMinAgroRange)
-        {
-            // Change to move state to pursue the player
-            stateMachine.ChangeState(enemy.moveState);
-        }
-        else
-        {
-            // Keep pursuing if ledge is not detected
-            if (!isDetectingLedge)
-            {
-                enemy.Flip();
-                stateMachine.ChangeState(enemy.moveState);
-            }
-            else
-            {
-                enemy.SetVelocity(stateData.movementSpeed);
-            }
-        } */
     }
 
     public override void PhysicsUpdate()
