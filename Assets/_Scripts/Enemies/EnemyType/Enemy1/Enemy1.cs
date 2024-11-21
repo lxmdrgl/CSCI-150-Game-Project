@@ -58,6 +58,7 @@ public class Enemy1 : Entity
     {
         // Debug.Log("HandleStunZero");
         stateMachine.ChangeState(stunState);
+        stats.Stun.CurrentValue = stats.Stun.MaxValue;
     }
 
     private void HandleDamageTaken()
