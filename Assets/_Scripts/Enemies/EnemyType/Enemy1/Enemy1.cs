@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy1 : Entity
@@ -44,12 +45,13 @@ public class Enemy1 : Entity
         idleState = new E1_IdleState(this, "idle", idleStateData, this);
         playerDetectedState = new E1_PlayerDetectedState(this, "playerDetected", playerDetectedData, this);
         chargeState = new E1_ChargeState(this, "charge", chargeStateData, this); // was charge
-        lookForPlayerState = new E1_LookForPlayerState(this, "idle", lookForPlayerStateData, this); // was lookForPlayer
+        lookForPlayerState = new E1_LookForPlayerState(this, "lookForPlayer", lookForPlayerStateData, this); // was lookForPlayer
         meleeAttackState = new E1_MeleeAttackState(this, "meleeAttack", meleeAttackCollider, meleeAttackStateData, this);
         stunState = new E1_StunState(this, "idle", stunStateData, this);
         deadState = new E1_DeadState(this, "dead", deadStateData, this);
 
         stats.Stun.OnCurrentValueZero += HandleStunZero;
+        stats.Health.OnValueChange += HandleDamageTaken;
     }
 
     private void HandleStunZero()
@@ -58,8 +60,19 @@ public class Enemy1 : Entity
         stateMachine.ChangeState(stunState);
     }
 
+    private void HandleDamageTaken()
+    {
+        // Debug.Log("HandleStunZero");
+        stateMachine.ChangeState(lookForPlayerState);
+    }
+
     private void Start()
     {
         stateMachine.Initialize(moveState);
+    }
+
+    private void OnDisable() {
+        stats.Stun.OnCurrentValueZero -= HandleStunZero;
+        stats.Health.OnValueChange -= HandleDamageTaken;
     }
 }
