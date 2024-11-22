@@ -61,7 +61,9 @@ public class Entity : MonoBehaviour, IDataPersistence
     {
         // Cast the ray to check for both the player and obstacles
         RaycastHit2D hit = Physics2D.CircleCast(playerCheck.position, 10f, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer | entityData.whatIsGround);
+        //RaycastHit2D wallCheck = Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer | entityData.whatIsGround);
         DebugCircleCast(playerCheck.position, 10f, transform.right, entityData.minAgroDistance);
+    
         // Check if the ray hit something
         if (hit.collider != null)
         {

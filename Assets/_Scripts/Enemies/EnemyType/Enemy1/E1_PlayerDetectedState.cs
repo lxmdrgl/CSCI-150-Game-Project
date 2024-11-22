@@ -25,7 +25,8 @@ public class E1_PlayerDetectedState : PlayerDetectedState
     {
         base.LogicUpdate();
 
-        if (isDetectedTimeOver) {
+        if (isDetectedTimeOver) 
+        {
             if (!isPlayerInMaxAgroRange)
             {
                 stateMachine.ChangeState(enemy.idleState);
