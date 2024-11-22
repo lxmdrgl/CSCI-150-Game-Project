@@ -35,7 +35,7 @@ public class MeleeAttackState : AttackState
 
 		hitbox = meleeAttackCollider.gameObject.GetComponent<PolygonCollider2D>();
 
-		hitbox.enabled = true;
+		// hitbox.enabled = true;
 
 		Physics2D.OverlapCollider(hitbox, detected);
 
@@ -61,6 +61,6 @@ public class MeleeAttackState : AttackState
     {
         base.FinishAttack();
 
-		hitbox.enabled = false;
+		// hitbox.enabled = false;
     }
 }

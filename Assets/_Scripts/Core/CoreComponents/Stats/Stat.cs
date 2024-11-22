@@ -8,6 +8,8 @@ namespace Game.CoreSystem.StatsSystem
     {
         public event Action OnCurrentValueZero;
         public event Action OnValueChange;
+
+        public event Action<float> OnValueChangeFloat;
         
         [field: SerializeField] public float MaxValue { get; set; }
 
@@ -38,6 +40,7 @@ namespace Game.CoreSystem.StatsSystem
         public void Decrease(float amount) {
             CurrentValue -= amount;    
             OnValueChange?.Invoke();
+            OnValueChangeFloat?.Invoke(amount);
         }
 
         public void setHP(float maxVal, float currVal)
