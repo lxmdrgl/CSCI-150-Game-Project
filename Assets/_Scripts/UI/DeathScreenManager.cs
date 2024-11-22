@@ -27,13 +27,13 @@ public class DeathScreenManager : MonoBehaviour
     public void DeathQuit()
     {
         
-        DataPersistenceManager.instance.DeleteProfileData(selectedProfileId);
+        //DataPersistenceManager.instance.DeleteProfileData(selectedProfileId);
         
         //DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
 
         
-        DataPersistenceManager.instance.NewGame();
-        DataPersistenceManager.instance.SaveGame();
+        //DataPersistenceManager.instance.NewGame();
+        //DataPersistenceManager.instance.SaveGame();
         
 
         deathScreenCanvasGO.SetActive(false);
@@ -43,15 +43,13 @@ public class DeathScreenManager : MonoBehaviour
 
     public void DeathRestart()
     {
-        DataPersistenceManager.instance.DeleteProfileData(selectedProfileId);
+        //DataPersistenceManager.instance.DeleteProfileData(selectedProfileId);
         
         //DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
-
         
-        DataPersistenceManager.instance.NewGame();
-        DataPersistenceManager.instance.SaveGame();
+       // DataPersistenceManager.instance.NewGame();
+        //DataPersistenceManager.instance.SaveGame();
         
-
         deathScreenCanvasGO.SetActive(false);
 
         SceneManager.LoadSceneAsync(GameplaySceneName);
