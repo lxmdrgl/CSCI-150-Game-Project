@@ -181,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3638506135714484575, guid: eb4e2fdf20034ef4b8d215feaef6087a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.3
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 3638506135714484575, guid: eb4e2fdf20034ef4b8d215feaef6087a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6159921083976789660, guid: eb4e2fdf20034ef4b8d215feaef6087a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.3
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 6159921083976789660, guid: eb4e2fdf20034ef4b8d215feaef6087a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -197,7 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7352634374866047292, guid: eb4e2fdf20034ef4b8d215feaef6087a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.3
+      value: -9.5
       objectReference: {fileID: 0}
     - target: {fileID: 7352634374866047292, guid: eb4e2fdf20034ef4b8d215feaef6087a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -67826,10 +67826,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a51d1400fe0419448b4087aa12701237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathScreenCanvasGO: {fileID: 0}
-  fileName: 
-  MainMenuSceneName: 
-  GameplaySceneName: 
+  deathScreenCanvasGO: {fileID: 1864673265}
+  fileName: data.json
+  MainMenuSceneName: MainMenu
+  GameplaySceneName: Gameplay Scene 2
 --- !u!1 &709262563
 GameObject:
   m_ObjectHideFlags: 0
@@ -67992,7 +67992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8673564491474926216, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.3
+      value: -9.5
       objectReference: {fileID: 0}
     - target: {fileID: 8673564491474926216, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
       propertyPath: m_LocalPosition.y
@@ -70255,18 +70255,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SaveQuit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1515808335}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: OnQuitPress
