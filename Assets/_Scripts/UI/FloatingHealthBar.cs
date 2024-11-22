@@ -14,12 +14,6 @@ public class FloatingHealthBar : MonoBehaviour
 
     public RectTransform healthBarTransform;
 
-    
-  //  public void UpdateHealthBar(float currentValue, float maxValue)
- //   {
-  //      slider.value = currentValue / maxValue;
-  //  }
-
     void Awake() {
         healthBarTransform = GetComponent<RectTransform>();
     }
@@ -35,16 +29,10 @@ public class FloatingHealthBar : MonoBehaviour
         slider.value = stats.Health.CurrentValue;
     }
 
-    private void UpdateSlider(float hp) {
-
-    }
-
     private void OnEnable()
     {
         stats.Health.OnValueChange += UpdateSlider;
-        movement.OnFlip += UpdateFlip;
-        stats.Health.OnValueChangeFloat += UpdateSlider;
-        
+        movement.OnFlip += UpdateFlip; 
     }
 
     private void UpdateFlip() {
