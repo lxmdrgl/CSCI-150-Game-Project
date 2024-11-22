@@ -1,3 +1,5 @@
+// I believe this is not used anymore after the new save system.
+/*
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
@@ -5,6 +7,9 @@ using Unity.VisualScripting;
 using Game.CoreSystem.StatsSystem;
 using Game.Weapons.Components;
 using Game.Weapons; 
+
+
+
 
 namespace Game.CoreSystem
 {
@@ -132,4 +137,4 @@ public static class SaveSystem
         }
     }
 }
-}
+}*/

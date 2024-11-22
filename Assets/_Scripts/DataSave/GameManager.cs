@@ -1,5 +1,8 @@
+//Will be obsolete after the new save system
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using Game.CoreSystem.StatsSystem;
@@ -16,12 +19,14 @@ public class GameManager : MonoBehaviour
     public string GameplaySceneName;
     private int slot;
     public Stats stats;
-    private SaveSystem.SaveData data;
+    //private SaveSystem.SaveData data;
+
+    private static readonly string savePath = Application.persistentDataPath + "/saveSlot{0}.json";
 
     [SerializeField] private GameObject deathScreenCanvasGO;
     private void Awake()
     {
-        slot = PlayerPrefs.GetInt("SaveSlot", -1);
+        /*slot = PlayerPrefs.GetInt("SaveSlot", -1);
 
         if (slot >= 0)
         {
@@ -73,11 +78,12 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.LogWarning("No valid save slot selected.");
-        }
+        }*/
     }
 
     public void SaveQuit()
     {
+        /*
         Vector3 position = player.Position;
         Stats stats = player.GetComponentInChildren<Stats>();
         float playTime = Time.timeSinceLevelLoad;  // Example: Time spent in the scene
@@ -104,18 +110,23 @@ public class GameManager : MonoBehaviour
         SaveSystem.SaveGame(slot, position, currentHealth,maxHealth, playTime+=data.playTime, unlockedCharacters, enemiesData, weaponDataList);
         Debug.Log($"Game saved to slot {slot}");
 
+        */
         SceneManager.LoadScene(MainMenuSceneName);
     }
 
     public void DeathQuit()
     {
-        if(SaveSystem.SaveExists(slot))
+        
+        string path = string.Format(savePath, slot);
+
+        if (File.Exists(path))
         {
-            SaveSystem.DeleteSave(slot);
+            File.Delete(path);
+            Debug.Log($"Save slot {slot} has been deleted.");
         }
         else
         {
-            Debug.Log("Save Does Not Exist");
+            Debug.LogWarning($"Save slot {slot} does not exist and cannot be deleted.");
         }
 
         deathScreenCanvasGO.SetActive(false);
@@ -125,12 +136,12 @@ public class GameManager : MonoBehaviour
 
     public void DeathRestart()
     {
-        data = SaveSystem.InitializeDefaultSave(slot);
+        /*data = SaveSystem.InitializeDefaultSave(slot);
         Debug.Log("Creating Default Save For Slot: "+slot);
 
         deathScreenCanvasGO.SetActive(false);
-        
-        SceneManager.LoadScene(GameplaySceneName);
+
+        SceneManager.LoadScene(GameplaySceneName);*/
     }
 }
 }
