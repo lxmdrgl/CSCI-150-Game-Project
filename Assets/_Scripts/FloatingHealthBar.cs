@@ -35,10 +35,15 @@ public class FloatingHealthBar : MonoBehaviour
         slider.value = stats.Health.CurrentValue;
     }
 
+    private void UpdateSlider(float hp) {
+
+    }
+
     private void OnEnable()
     {
         stats.Health.OnValueChange += UpdateSlider;
         movement.OnFlip += UpdateFlip;
+        stats.Health.OnValueChangeFloat += UpdateSlider;
         
     }
 
