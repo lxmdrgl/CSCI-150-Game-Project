@@ -12,7 +12,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
-    public PlayerJumpState JumpState { get; private set; }
+    public PlayerDashState JumpState { get; private set; }
     public PlayerAirState AirState { get; private set; }
     public PlayerWallGrabState WallGrabState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
