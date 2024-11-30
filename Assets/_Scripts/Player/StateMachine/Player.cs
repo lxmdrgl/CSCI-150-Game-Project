@@ -5,6 +5,7 @@ using UnityEngine.Scripting;
 
 using Game.CoreSystem;
 using Game.Weapons;
+using Game.Utilities;
 
 public class Player : MonoBehaviour, IDataPersistence
 {
@@ -12,7 +13,8 @@ public class Player : MonoBehaviour, IDataPersistence
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
-    public PlayerDashState JumpState { get; private set; }
+    public PlayerJumpState JumpState { get; private set; }
+    public PlayerDashState DashState { get; private set; }
     public PlayerAirState AirState { get; private set; }
     public PlayerWallGrabState WallGrabState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
@@ -37,6 +39,8 @@ public class Player : MonoBehaviour, IDataPersistence
     private Weapon primaryAttack;
     private Weapon secondaryAttack;
 
+    public TimeNotifier dashTimeNotifier;
+
     private void Awake()
     {
         Core = GetComponentInChildren<Core>();
@@ -53,9 +57,13 @@ public class Player : MonoBehaviour, IDataPersistence
 
         StateMachine = new PlayerStateMachine();
 
+        dashTimeNotifier = new TimeNotifier();
+        // Debug.Log("make dash timer");
+
         IdleState = new PlayerIdleState(this, "idle");
         MoveState = new PlayerMoveState(this, "move");
         JumpState = new PlayerJumpState(this, "air"); // was jump
+        DashState = new PlayerDashState(this, "idle"); // needs to be dash 
         AirState = new PlayerAirState(this, "air");
         WallGrabState = new PlayerWallGrabState(this, "wallGrab");
         WallJumpState = new PlayerWallJumpState(this, "air"); // was jump
@@ -85,6 +93,18 @@ public class Player : MonoBehaviour, IDataPersistence
     private void FixedUpdate()
     {
         StateMachine.CurrentState.PhysicsUpdate();
+    }
+
+    public virtual void OnEnable()
+    {
+        dashTimeNotifier.OnNotify += DashState.ResetDashCooldown;
+        // Debug.Log("Subscribe to dash reset");
+    }
+
+    public virtual void OnDisable()
+    {
+        dashTimeNotifier.OnNotify -= DashState.ResetDashCooldown;
+        // Debug.Log("Unsubscribe to dash reset");
     }
 
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();

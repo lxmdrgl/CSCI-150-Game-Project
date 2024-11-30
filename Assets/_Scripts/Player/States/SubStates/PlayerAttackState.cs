@@ -15,6 +15,7 @@ public class PlayerAttackState : PlayerActionState
     private bool canInterrupt;
 
     private bool checkFlip;
+    private bool checkInterruptable;
 
     public PlayerAttackState(
         Player player,
@@ -34,11 +35,17 @@ public class PlayerAttackState : PlayerActionState
         weapon.EventHandler.OnEnableInterrupt += HandleEnableInterrupt;
         weapon.EventHandler.OnFinish += HandleFinish;
         weapon.EventHandler.OnFlipSetActive += HandleFlipSetActive;
+        weapon.EventHandler.OnInterruptableSetActive += HandleInterruptableSetActive;
     }
 
     private void HandleFlipSetActive(bool value)
     {
         checkFlip = value;
+    }
+
+    private void HandleInterruptableSetActive(bool value)
+    {
+        checkInterruptable = value;
     }
 
     public override void LogicUpdate()
@@ -55,6 +62,12 @@ public class PlayerAttackState : PlayerActionState
         if (checkFlip)
         {
             Movement.CheckIfShouldFlip(xInput);
+        }
+
+        if (checkInterruptable) {
+            if (jumpInput || dashInput) {
+                isActionDone = true;
+            }
         }
 
         if (!canInterrupt)

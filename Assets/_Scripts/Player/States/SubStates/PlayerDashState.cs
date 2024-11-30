@@ -1,36 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerDashState : PlayerActionState
 {
-    private int amountOfJumpsLeft;
-
+	protected int xInput;
+	protected bool dashEnabled = true;
     public PlayerDashState(Player player, string animBoolName) : base(player, animBoolName)
     {
-        amountOfJumpsLeft = playerData.amountOfJumps;
     }
 
     public override void Enter() {
 		base.Enter();
-		player.InputHandler.UseJumpInput();
-		Movement?.SetVelocityY(playerData.jumpVelocity);
-		isActionDone = true;
-		amountOfJumpsLeft--;
+		player.InputHandler.UseDashInput();
+		
+        xInput = player.InputHandler.NormInputX;
+		Movement?.SetVelocityX(xInput * playerData.dashVelocity);
+		// Debug.Log("Enter dash");
+
+		player.dashTimeNotifier.Disable();
+		dashEnabled = false;
 	}
 
-    public bool CanJump() {
-		if (amountOfJumpsLeft > 0) 
-		{
-			return true;
-		} else 
-		{
-			return false;
+    public override void Exit()
+    {
+        base.Exit();
+
+		player.dashTimeNotifier.Init(playerData.dashCooldown);
+		// Debug.Log("Init dash timer");
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+		// Debug.Log($"jump: {jumpInput} attack: {attackInputs.Any(x => x)}");
+        if (Time.time >= startTime + playerData.dashTime || jumpInput || attackInputs.Any(x => x)) {
+			// Debug.Log("End dash");
+			isActionDone = true;
+		} 
+		else if (xInput != 0) {
+            Movement?.SetVelocityX(xInput * playerData.dashVelocity);
+			// Debug.Log("Loop input dash: " + xInput * playerData.dashVelocity);
+        } else {
+			Movement?.SetVelocityX(Movement.FacingDirection * playerData.dashVelocity);
+			// Debug.Log("Loop facing dash: " + Movement.FacingDirection * playerData.dashVelocity);
 		}
+    }
+
+	public void ResetDashCooldown() {
+		dashEnabled = true;
+		// Debug.Log("Dash cooldown reset");
 	}
 
-	public void ResetAmountOfJumpsLeft() => amountOfJumpsLeft = playerData.amountOfJumps;
+	public bool CanDash() => dashEnabled;
 
-	public void DecreaseAmountOfJumpsLeft() => amountOfJumpsLeft--;
-    
+	/* public bool CanDash()  {
+		// Debug.Log("try can dash: " + dashEnabled);
+
+		return dashEnabled;
+	} */
 }

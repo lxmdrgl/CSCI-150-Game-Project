@@ -20,6 +20,7 @@ public class PlayerAirState : PlayerState
 
     private int xInput;
     private bool jumpInput;
+    private bool dashInput;
 
     private bool isGrounded;
     private bool isTouchingWall;
@@ -56,6 +57,7 @@ public class PlayerAirState : PlayerState
 
         xInput = player.InputHandler.NormInputX;
         jumpInput = player.InputHandler.JumpInput;
+        dashInput = player.InputHandler.DashInput;
 
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanTransitionToAttackState())
         {
@@ -65,6 +67,14 @@ public class PlayerAirState : PlayerState
         {
             stateMachine.ChangeState(player.SecondaryAttackState);
         }
+        else if (dashInput && player.DashState.CanDash())
+        {
+            stateMachine.ChangeState(player.DashState);
+        }
+        else if (jumpInput && player.JumpState.CanJump())
+        {
+            stateMachine.ChangeState(player.JumpState);
+        } 
         else if (isGrounded && Movement?.CurrentVelocity.y < 0.01f && xInput == 0)
         {
             stateMachine.ChangeState(player.IdleState);
@@ -72,10 +82,6 @@ public class PlayerAirState : PlayerState
         else if (isGrounded && Movement?.CurrentVelocity.y < 0.01f && xInput != 0)
         {
             stateMachine.ChangeState(player.MoveState);
-        } 
-        else if (jumpInput && player.JumpState.CanJump())
-        {
-            stateMachine.ChangeState(player.JumpState);
         } 
         else if (isTouchingWall && xInput == Movement?.FacingDirection) { // note: removed && Movement?.CurrentVelocity.y <= 0
             stateMachine.ChangeState(player.WallGrabState);

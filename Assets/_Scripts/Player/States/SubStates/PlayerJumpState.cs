@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDashState : PlayerActionState
+public class PlayerJumpState : PlayerActionState
 {
     private int amountOfJumpsLeft;
 
-    public PlayerDashState(Player player, string animBoolName) : base(player, animBoolName)
+    public PlayerJumpState(Player player, string animBoolName) : base(player, animBoolName)
     {
         amountOfJumpsLeft = playerData.amountOfJumps;
     }

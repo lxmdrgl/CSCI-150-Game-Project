@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 using Game.CoreSystem;
+using Game.Utilities;
 
 public class PlayerState
 {
@@ -46,7 +47,7 @@ public class PlayerState
 
     public virtual void LogicUpdate()
     {
-
+        player.dashTimeNotifier.Tick();
     }
 
     public virtual void PhysicsUpdate()

@@ -55,9 +55,12 @@ namespace Game.Utilities
         {
             if (!enabled)
                 return;
+            
+            // Debug.Log("Timer tick");
 
             if (Time.time >= targetTime)
             {
+                // Debug.Log("Timer over");
                 OnNotify?.Invoke();
             }
         }

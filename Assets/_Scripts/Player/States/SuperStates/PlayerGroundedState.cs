@@ -23,6 +23,7 @@ public class PlayerGroundedState : PlayerState
     private CollisionSenses collisionSenses;
 
     private bool jumpInput;
+    private bool dashInput;
     private bool isGrounded;
     private bool isTouchingWall;
 
@@ -60,6 +61,7 @@ public class PlayerGroundedState : PlayerState
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
         jumpInput = player.InputHandler.JumpInput;
+        dashInput = player.InputHandler.DashInput;
 
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanTransitionToAttackState())
         {
@@ -69,10 +71,15 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.SecondaryAttackState);
         }
+        else if (dashInput && player.DashState.CanDash())
+        {
+            stateMachine.ChangeState(player.DashState);
+        }
         else if (jumpInput && player.JumpState.CanJump())
         {
             stateMachine.ChangeState(player.JumpState);
-        } else if (!isGrounded)
+        } 
+        else if (!isGrounded)
         {
             player.AirState.StartCoyoteTime();
             stateMachine.ChangeState(player.AirState);

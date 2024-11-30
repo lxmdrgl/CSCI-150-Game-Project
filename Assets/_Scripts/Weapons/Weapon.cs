@@ -88,7 +88,7 @@ namespace Game.Weapons
         }
 
         public void Start() {
-            // PolygonCollider2D hitbox = gameObject.AddComponent(typeof(PolygonCollider2D)) as PolygonCollider2D;
+            
         }
 
         public void SetCore(Core core)
