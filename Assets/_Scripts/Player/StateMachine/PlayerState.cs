@@ -48,6 +48,8 @@ public class PlayerState
     public virtual void LogicUpdate()
     {
         player.dashTimeNotifier.Tick();
+        player.primarySkillTimeNotifier.Tick();
+        player.secondarySkillTimeNotifier.Tick();
     }
 
     public virtual void PhysicsUpdate()

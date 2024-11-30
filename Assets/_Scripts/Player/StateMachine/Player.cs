@@ -20,6 +20,8 @@ public class Player : MonoBehaviour, IDataPersistence
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerAttackState PrimaryAttackState { get; private set; }
     public PlayerAttackState SecondaryAttackState { get; private set; }
+    public PlayerAttackState PrimarySkillState { get; private set; }
+    public PlayerAttackState SecondarySkillState { get; private set; }
 
 
     [SerializeField]
@@ -38,8 +40,12 @@ public class Player : MonoBehaviour, IDataPersistence
 
     private Weapon primaryAttack;
     private Weapon secondaryAttack;
+    private Weapon primarySkill;
+    private Weapon secondarySkill;
 
     public TimeNotifier dashTimeNotifier;
+    public TimeNotifier primarySkillTimeNotifier;
+    public TimeNotifier secondarySkillTimeNotifier;
 
     private void Awake()
     {
@@ -48,9 +54,13 @@ public class Player : MonoBehaviour, IDataPersistence
 
         primaryAttack = transform.Find("PrimaryAttack").GetComponent<Weapon>();
         secondaryAttack = transform.Find("SecondaryAttack").GetComponent<Weapon>();
+        primarySkill = transform.Find("PrimarySkill").GetComponent<Weapon>();
+        secondarySkill = transform.Find("SecondarySkill").GetComponent<Weapon>();
 
         primaryAttack.SetCore(Core);
         secondaryAttack.SetCore(Core);
+        primarySkill.SetCore(Core);
+        secondarySkill.SetCore(Core);
 
         InteractableDetector = Core.GetCoreComponent<InteractableDetector>();
 
@@ -58,7 +68,8 @@ public class Player : MonoBehaviour, IDataPersistence
         StateMachine = new PlayerStateMachine();
 
         dashTimeNotifier = new TimeNotifier();
-        // Debug.Log("make dash timer");
+        primarySkillTimeNotifier = new TimeNotifier();
+        secondarySkillTimeNotifier = new TimeNotifier();
 
         IdleState = new PlayerIdleState(this, "idle");
         MoveState = new PlayerMoveState(this, "move");
@@ -69,6 +80,8 @@ public class Player : MonoBehaviour, IDataPersistence
         WallJumpState = new PlayerWallJumpState(this, "air"); // was jump
         PrimaryAttackState = new PlayerAttackState(this, "attack", primaryAttack, CombatInputs.primaryAttack);
         SecondaryAttackState = new PlayerAttackState(this, "attack", secondaryAttack, CombatInputs.secondaryAttack);
+        PrimarySkillState = new PlayerAttackState(this, "attack", primarySkill, CombatInputs.primarySkill);
+        SecondarySkillState = new PlayerAttackState(this, "attack", secondarySkill, CombatInputs.secondarySkill);
     }
 
     private void Start()
@@ -98,13 +111,17 @@ public class Player : MonoBehaviour, IDataPersistence
     public virtual void OnEnable()
     {
         dashTimeNotifier.OnNotify += DashState.ResetDashCooldown;
-        // Debug.Log("Subscribe to dash reset");
+        primarySkillTimeNotifier.OnNotify += PrimarySkillState.ResetAttackCooldown;
+        secondarySkillTimeNotifier.OnNotify += SecondarySkillState.ResetAttackCooldown;
+        
     }
 
     public virtual void OnDisable()
     {
         dashTimeNotifier.OnNotify -= DashState.ResetDashCooldown;
-        // Debug.Log("Unsubscribe to dash reset");
+        primarySkillTimeNotifier.OnNotify -= PrimarySkillState.ResetAttackCooldown;
+        secondarySkillTimeNotifier.OnNotify -= SecondarySkillState.ResetAttackCooldown;
+        
     }
 
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();

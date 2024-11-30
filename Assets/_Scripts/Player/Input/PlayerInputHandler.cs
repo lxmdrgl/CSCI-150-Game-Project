@@ -95,6 +95,45 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnSecondaryAttackInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            AttackInputs[(int)CombatInputs.secondaryAttack] = true;
+        }
+
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.secondaryAttack] = false;
+        }
+    }
+
+    public void OnPrimarySkillInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            AttackInputs[(int)CombatInputs.primarySkill] = true;
+        }
+
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.primarySkill] = false;
+        }
+    }
+
+    public void OnSecondarySkillInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            AttackInputs[(int)CombatInputs.secondarySkill] = true;
+        }
+
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.secondarySkill] = false;
+        }
+    }
+
 
 
     public void UseJumpInput() => JumpInput = false;

@@ -67982,6 +67982,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8286302708511705830, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8673564491474926216, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.5
@@ -69412,6 +69416,83 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1001 &1372564545
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1759440874020926413, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602557118698842527, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: m_Name
+      value: Upgrade_KnightPrimaryAttack1_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602557118698842527, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332291080764618, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332291080764618, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332291080764618, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332291080764618, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332291080764618, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332291080764618, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332291080764618, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332291080764618, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332291080764618, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907332291080764618, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7480054966287975503, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: weaponData
+      value: 
+      objectReference: {fileID: 11400000, guid: c8ea6a7895ed42d4ebb0c4f799e39523, type: 2}
+    - target: {fileID: 7480054966287975503, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: weaponIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8851325382855593670, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a726e237f0453dd44b6b73105347022f, type: 3}
 --- !u!1001 &1435319400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69426,7 +69507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5602557118698842527, guid: a726e237f0453dd44b6b73105347022f, type: 3}
       propertyPath: m_Name
-      value: MajorUpgrade_1
+      value: Upgrade_KnightPrimaryAttack1
       objectReference: {fileID: 0}
     - target: {fileID: 5602557118698842527, guid: a726e237f0453dd44b6b73105347022f, type: 3}
       propertyPath: m_Layer
@@ -69434,7 +69515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6907332291080764618, guid: a726e237f0453dd44b6b73105347022f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.44
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6907332291080764618, guid: a726e237f0453dd44b6b73105347022f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -69476,6 +69557,10 @@ PrefabInstance:
       propertyPath: weaponData
       value: 
       objectReference: {fileID: 11400000, guid: f97b7e60a4f61eb4b8fd9fbee64a0b61, type: 2}
+    - target: {fileID: 7480054966287975503, guid: a726e237f0453dd44b6b73105347022f, type: 3}
+      propertyPath: weaponIndex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8851325382855593670, guid: a726e237f0453dd44b6b73105347022f, type: 3}
       propertyPath: m_BodyType
       value: 2
@@ -70900,5 +70985,6 @@ SceneRoots:
   - {fileID: 1326831507}
   - {fileID: 169283587}
   - {fileID: 1435319400}
+  - {fileID: 1372564545}
   - {fileID: 72917003}
   - {fileID: 478951630}

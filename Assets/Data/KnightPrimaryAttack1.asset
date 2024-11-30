@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b320fd8433894df4e8f5abc27bf3fea1, type: 3}
-  m_Name: KnightOne
+  m_Name: KnightPrimaryAttack1
   m_EditorClassIdentifier: 
   <Icon>k__BackingField: {fileID: 0}
-  <Name>k__BackingField: Knight One
+  <Name>k__BackingField: Knight Primary Attack 1
   <Description>k__BackingField: Basic Sword Swing
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: f5c695431eb63e0438565fc316ffa064, type: 2}
   <NumberOfAttacks>k__BackingField: 3
+  <AttackCounterCooldown>k__BackingField: 2
+  <AttackCooldown>k__BackingField: 0
   <ComponentData>k__BackingField:
   - rid: 5949095188800471134
   - rid: 5949095222658203648

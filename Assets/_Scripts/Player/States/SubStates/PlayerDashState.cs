@@ -48,10 +48,7 @@ public class PlayerDashState : PlayerActionState
 		}
     }
 
-	public void ResetDashCooldown() {
-		dashEnabled = true;
-		// Debug.Log("Dash cooldown reset");
-	}
+	public void ResetDashCooldown() => dashEnabled = true;
 
 	public bool CanDash() => dashEnabled;
 

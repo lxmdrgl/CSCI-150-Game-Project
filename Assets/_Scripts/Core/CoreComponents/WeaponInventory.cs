@@ -39,7 +39,7 @@ namespace Game.CoreSystem
             return true;
         }
 
-        public bool TryGetEmptyIndex(out int index)
+        /* public bool TryGetEmptyIndex(out int index)
         {
             for (var i = 0; i < weaponData.Length; i++)
             {
@@ -66,7 +66,7 @@ namespace Game.CoreSystem
             }
 
             return choices;
-        }
+        } */
     }
 
 }

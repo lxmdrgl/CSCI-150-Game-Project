@@ -14,7 +14,7 @@ namespace Game.Weapons
         public event Action OnExit;
         public event Action OnUseInput;
 
-        [SerializeField] private float attackCounterResetCooldown;
+        // [SerializeField] private float attackCounterResetCooldown;
 
         public bool CanEnterAttack { get; private set; }
         
@@ -113,7 +113,7 @@ namespace Game.Weapons
             Anim.SetBool("active", false);
 
             CurrentAttackCounter++;
-            attackCounterResetTimeNotifier.Init(attackCounterResetCooldown);
+            attackCounterResetTimeNotifier.Init(Data.AttackCounterCooldown);
 
             OnExit?.Invoke();
             // Debug.Log($"Exit weapon, count: {CurrentAttackCounter}");

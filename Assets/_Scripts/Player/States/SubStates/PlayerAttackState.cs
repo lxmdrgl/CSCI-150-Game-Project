@@ -16,6 +16,7 @@ public class PlayerAttackState : PlayerActionState
 
     private bool checkFlip;
     private bool checkInterruptable;
+    protected bool attackEnabled = true;
 
     public PlayerAttackState(
         Player player,
@@ -92,8 +93,15 @@ public class PlayerAttackState : PlayerActionState
         
         checkFlip = true;
         canInterrupt = false;
+        attackEnabled = false;
 
         weapon.Enter();
+        if (inputIndex == (int)CombatInputs.primarySkill) {
+            player.primarySkillTimeNotifier.Disable();
+        } 
+        else if (inputIndex == (int)CombatInputs.secondarySkill) {
+            player.secondarySkillTimeNotifier.Disable();
+        }
     }
 
 
@@ -102,11 +110,24 @@ public class PlayerAttackState : PlayerActionState
         base.Exit();
 
         weaponGenerator.OnWeaponGenerating -= HandleWeaponGenerating;
+        if (inputIndex == (int)CombatInputs.primarySkill) {
+            player.primarySkillTimeNotifier.Init(weapon.Data.AttackCooldown);
+            // Debug.Log("Start primary skill cooldown: " + weapon.Data.AttackCooldown);
+        } 
+        else if (inputIndex == (int)CombatInputs.secondarySkill) {
+            player.secondarySkillTimeNotifier.Init(weapon.Data.AttackCooldown);
+        }
         
         weapon.Exit();
     }
 
-    public bool CanTransitionToAttackState() => weapon.CanEnterAttack;
+    public bool CanAttack() => weapon.CanEnterAttack/*  && attackEnabled */;
+    // public bool CanAttackCooldown() => weapon.CanEnterAttack && attackEnabled;
+
+    public bool CanAttackCooldown() => weapon.CanEnterAttack && attackEnabled;
+    
+
+    public void ResetAttackCooldown() => attackEnabled = true;
 
     private void HandleEnableInterrupt() => canInterrupt = true;
 
