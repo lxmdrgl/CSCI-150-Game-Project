@@ -22,6 +22,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public PlayerAttackState SecondaryAttackState { get; private set; }
     public PlayerAttackState PrimarySkillState { get; private set; }
     public PlayerAttackState SecondarySkillState { get; private set; }
+    public PlayerKnockBackState KnockBackState { get; private set; }
 
 
     [SerializeField]
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public InteractableDetector InteractableDetector { get; private set; }
 
     protected Stats stats;
+    protected KnockBackReceiver knockBackReceiver;
 
     private Vector2 workspace; 
 
@@ -51,6 +53,7 @@ public class Player : MonoBehaviour, IDataPersistence
     {
         Core = GetComponentInChildren<Core>();
         stats = Core.GetCoreComponent<Stats>();
+        knockBackReceiver = Core.GetCoreComponent<KnockBackReceiver>();
 
         primaryAttack = transform.Find("PrimaryAttack").GetComponent<Weapon>();
         secondaryAttack = transform.Find("SecondaryAttack").GetComponent<Weapon>();
@@ -82,6 +85,14 @@ public class Player : MonoBehaviour, IDataPersistence
         SecondaryAttackState = new PlayerAttackState(this, "attack", secondaryAttack, CombatInputs.secondaryAttack);
         PrimarySkillState = new PlayerAttackState(this, "attack", primarySkill, CombatInputs.primarySkill);
         SecondarySkillState = new PlayerAttackState(this, "attack", secondarySkill, CombatInputs.secondarySkill);
+        KnockBackState = new PlayerKnockBackState(this, "knockBack");
+
+        knockBackReceiver.OnKnockBackActive += HandleKnockBackActive;
+    }
+
+    private void HandleKnockBackActive()
+    {
+        StateMachine.ChangeState(KnockBackState);
     }
 
     private void Start()

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -11,6 +12,9 @@ namespace Game.CoreSystem
         // public Modifiers<Modifier<KnockBackData>, KnockBackData> Modifiers { get; } = new();
 
         [SerializeField] private float maxKnockBackTime = 0.2f;
+
+        public event Action OnKnockBackActive;
+        public event Action OnKnockBackInactive;
 
         private bool isKnockBackActive;
         private float knockBackStartTime;
@@ -31,6 +35,8 @@ namespace Game.CoreSystem
             movement.CanSetVelocity = false;
             isKnockBackActive = true;
             knockBackStartTime = Time.time;
+            // Debug.Log("Knock active");
+            OnKnockBackActive?.Invoke();
         }
 
         private void CheckKnockBack()
@@ -42,6 +48,8 @@ namespace Game.CoreSystem
             {
                 isKnockBackActive = false;
                 movement.CanSetVelocity = true;
+                // Debug.Log("Knock inactive: " + (Time.time - knockBackStartTime));
+                OnKnockBackInactive?.Invoke();
             }
         }
 
