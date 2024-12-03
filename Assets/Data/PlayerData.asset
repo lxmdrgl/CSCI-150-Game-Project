@@ -16,7 +16,7 @@ MonoBehaviour:
   jumpVelocity: 15
   amountOfJumps: 2
   dashVelocity: 18
-  dashTime: 0.3
+  dashTime: 0.25
   dashCooldown: 0.1
   coyoteTime: 0.2
   wallJumpVelocityX: 15
