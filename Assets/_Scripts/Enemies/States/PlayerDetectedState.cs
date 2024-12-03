@@ -14,7 +14,8 @@ public class PlayerDetectedState : EnemyState
     protected D_PlayerDetected stateData;
     // protected Enemy1 enemy;  // Reference to the specific enemy type
 
-    protected bool isPlayerInMinAgroRange;
+    protected bool isPlayerInAgroRange;
+    protected bool isPlayerInPursuitRange;
     protected bool isPlayerInMaxAgroRange;
     protected bool isDetectingLedge;
     protected bool isDetectingWall;
@@ -34,7 +35,8 @@ public class PlayerDetectedState : EnemyState
     {
         base.DoChecks();
 
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
+        isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
         isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
         isDetectingLedge = CollisionSenses.LedgeVertical;
         performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();

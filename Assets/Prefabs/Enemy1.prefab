@@ -737,7 +737,7 @@ MonoBehaviour:
   meleeAttackStateData: {fileID: 11400000, guid: 06bbec7a37b427b4ab304775860b3677, type: 2}
   stunStateData: {fileID: 11400000, guid: 41a897605514532498df15931769dd09, type: 2}
   deadStateData: {fileID: 11400000, guid: f2ebf86028f7ef8428fc2b876c4bce0f, type: 2}
-  meleeAttackCollider: {fileID: 0}
+  cooldownStateData: {fileID: 11400000, guid: 5be2f09381462d4478ca9e825548f2ba, type: 2}
 --- !u!50 &9113077644204671259
 Rigidbody2D:
   serializedVersion: 5

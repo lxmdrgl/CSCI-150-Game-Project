@@ -14,7 +14,7 @@ public class IdleState : EnemyState
 
     protected bool flipAfterIdle;
     protected bool isIdleTimeOver;
-    protected bool isPlayerInMinAgroRange;
+    protected bool isPlayerInAgroRange;
 
     protected float idleTime;
 
@@ -26,7 +26,7 @@ public class IdleState : EnemyState
     public override void DoChecks()
     {
         base.DoChecks();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
     }
 
     public override void Enter()

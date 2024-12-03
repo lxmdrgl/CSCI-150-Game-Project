@@ -57,10 +57,31 @@ public class Entity : MonoBehaviour, IDataPersistence
         stateMachine.currentState.PhysicsUpdate();
     }
 
-    public virtual bool CheckPlayerInMinAgroRange()
+    public virtual bool CheckPlayerInAgroRange()
+    {
+        // Perform a raycast to check for the player or obstacles
+        RaycastHit2D hit = Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer | entityData.whatIsGround);
+        
+        // Debug the raycast (you can visualize it in the Scene view)
+        Debug.DrawRay(playerCheck.position, transform.right * entityData.minAgroDistance, Color.red);
+        
+        // Check if the ray hit something
+        if (hit.collider != null)
+        {
+            // If it hit a player, return true
+            if (hit.collider.CompareTag("Player"))
+            {
+                return true;
+            }
+        }
+        // If it hit nothing or hit an obstacle first, return false
+        return false;
+    }
+
+    public virtual bool CheckPlayerInPursuitRange()
     {
         // Cast the ray to check for both the player and obstacles
-        RaycastHit2D hit = Physics2D.CircleCast(playerCheck.position, 10f, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer | entityData.whatIsGround);
+        RaycastHit2D hit = Physics2D.CircleCast(playerCheck.position, 8f, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer | entityData.whatIsGround);
         //RaycastHit2D wallCheck = Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer | entityData.whatIsGround);
         DebugCircleCast(playerCheck.position, 10f, transform.right, entityData.minAgroDistance);
     
@@ -77,36 +98,38 @@ public class Entity : MonoBehaviour, IDataPersistence
         return false;
     }
 
-void DebugCircleCast(Vector2 origin, float radius, Vector2 direction, float distance)
-{
-    // Number of points to approximate the circle
-    int segments = 36;
-    float angleStep = 360f / segments;
-
-    // Draw the initial circle at the origin
-    for (int i = 0; i < segments; i++)
+    void DebugCircleCast(Vector2 origin, float radius, Vector2 direction, float distance)
     {
-        float angle1 = Mathf.Deg2Rad * (i * angleStep);
-        float angle2 = Mathf.Deg2Rad * ((i + 1) * angleStep);
+        // Number of points to approximate the circle
+        int segments = 36;
+        float angleStep = 360f / segments;
 
-        Vector2 point1 = origin + new Vector2(Mathf.Cos(angle1), Mathf.Sin(angle1)) * radius;
-        Vector2 point2 = origin + new Vector2(Mathf.Cos(angle2), Mathf.Sin(angle2)) * radius;
+        // Draw the initial circle at the origin
+        for (int i = 0; i < segments; i++)
+        {
+            float angle1 = Mathf.Deg2Rad * (i * angleStep);
+            float angle2 = Mathf.Deg2Rad * ((i + 1) * angleStep);
 
-        Debug.DrawLine(point1, point2, Color.green);
+            Vector2 point1 = origin + new Vector2(Mathf.Cos(angle1), Mathf.Sin(angle1)) * radius;
+            Vector2 point2 = origin + new Vector2(Mathf.Cos(angle2), Mathf.Sin(angle2)) * radius;
+
+            Debug.DrawLine(point1, point2, Color.green);
+        }
+
     }
-
-}
 
     public virtual bool CheckPlayerInMaxAgroRange()
     {
         return Physics2D.Raycast(playerCheck.position, transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
     }
 
-    public virtual bool CheckPlayerInCloseRangeAction() {
+    public virtual bool CheckPlayerInCloseRangeAction() 
+    {
 		return Physics2D.Raycast(playerCheck.position, transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
 	}
 
-    public virtual void ResetStun() {
+    public virtual void ResetStun() 
+    {
 		isStunned = false;
 		// currentStunResistance = entityData.stunResistance;
 	}

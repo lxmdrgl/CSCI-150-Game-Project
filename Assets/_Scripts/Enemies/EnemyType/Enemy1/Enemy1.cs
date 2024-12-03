@@ -11,6 +11,7 @@ public class Enemy1 : Entity
     public E1_MeleeAttackState meleeAttackState{get;private set;}
     public E1_StunState stunState { get; private set; }
     public E1_DeadState deadState { get; private set; }
+    public E1_CooldownState cooldownState { get; private set; }
 
     [SerializeField]
     private D_IdleState idleStateData;
@@ -29,7 +30,8 @@ public class Enemy1 : Entity
     [SerializeField]
     private D_DeadState deadStateData;
     [SerializeField]
-    // private Transform meleeAttackPosition;
+    private D_CooldownState cooldownStateData;
+
 
     private GameObject meleeAttackCollider;
 
@@ -49,6 +51,7 @@ public class Enemy1 : Entity
         meleeAttackState = new E1_MeleeAttackState(this, "meleeAttack", meleeAttackCollider, meleeAttackStateData, this);
         stunState = new E1_StunState(this, "stun", stunStateData, this);
         deadState = new E1_DeadState(this, "dead", deadStateData, this);
+        cooldownState = new E1_CooldownState(this, "cooldown", cooldownStateData, this);
 
         stats.Stun.OnCurrentValueZero += HandleStunZero;
         stats.Health.OnValueChange += HandleDamageTaken;

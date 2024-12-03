@@ -12,8 +12,8 @@ public class AttackState : EnemyState
 	protected GameObject meleeAttackCollider;
 
 	protected bool isAnimationFinished;
-	protected bool isPlayerInMinAgroRange;
-
+	protected bool isPlayerInAgroRange;
+	protected bool isPlayerInPursuitRange;
 	public AttackState(Entity entity, string animBoolName, GameObject meleeAttackCollider) : base(entity, animBoolName) 
 	{
 		this.meleeAttackCollider = meleeAttackCollider;
@@ -26,7 +26,8 @@ public class AttackState : EnemyState
 	{
 		base.DoChecks();
 
-		isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+		isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
+		isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
 	}
 
 	public override void Enter() 

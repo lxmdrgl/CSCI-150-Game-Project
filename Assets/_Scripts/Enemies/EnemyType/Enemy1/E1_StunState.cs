@@ -36,7 +36,7 @@ public class E1_StunState : StunState
             {
                 stateMachine.ChangeState(enemy.meleeAttackState);
             }
-            else if (isPlayerInMinAgroRange)
+            else if (isPlayerInPursuitRange)
             {
                 stateMachine.ChangeState(enemy.chargeState);
             }

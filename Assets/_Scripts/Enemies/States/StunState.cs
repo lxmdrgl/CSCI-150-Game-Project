@@ -16,7 +16,8 @@ public class StunState : EnemyState {
 	// protected bool isGrounded;
 	// protected bool isMovementStopped;
 	protected bool performCloseRangeAction;
-	protected bool isPlayerInMinAgroRange;
+	protected bool isPlayerInAgroRange;
+	protected bool isPlayerInPursuitRange;
 
 	public StunState(Entity entity, string animBoolName, D_StunState stateData) : base(entity, animBoolName) {
 		this.stateData = stateData;
@@ -27,7 +28,8 @@ public class StunState : EnemyState {
 
 		// isGrounded = CollisionSenses.Ground;
 		performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
-		isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+		isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
+		isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
 	}
 
 	public override void Enter() {

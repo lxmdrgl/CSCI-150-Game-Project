@@ -14,7 +14,8 @@ public class LookForPlayerState : EnemyState {
 	protected D_LookForPlayer stateData;
 
 	protected bool turnImmediately;
-	protected bool isPlayerInMinAgroRange;
+	protected bool isPlayerInAgroRange;
+	protected bool isPlayerInPursuitRange;
 	protected bool isAllTurnsDone;
 	protected bool isAllTurnsTimeDone;
 
@@ -26,10 +27,12 @@ public class LookForPlayerState : EnemyState {
 		this.stateData = stateData;
 	}
 
-	public override void DoChecks() {
+	public override void DoChecks() 
+	{
 		base.DoChecks();
 
-		isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+		isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
+		isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
 	}
 
 	public override void Enter() {

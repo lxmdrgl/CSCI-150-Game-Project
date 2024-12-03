@@ -5,6 +5,7 @@ using UnityEngine;
 public class E1_MeleeAttackState : MeleeAttackState
 {
     private Enemy1 enemy;
+	protected bool isAttackOffCooldown;
 
     public E1_MeleeAttackState(Entity entity, string animBoolName, GameObject meleeAttackCollider, D_MeleeAttack stateData, Enemy1 enemy) : base(entity, animBoolName, meleeAttackCollider, stateData)
     {
@@ -37,14 +38,7 @@ public class E1_MeleeAttackState : MeleeAttackState
 
         if (isAnimationFinished)
         {
-            if (isPlayerInMinAgroRange)
-            {
-                stateMachine.ChangeState(enemy.playerDetectedState);
-            }
-            else
-            {
-                stateMachine.ChangeState(enemy.lookForPlayerState);
-            }
+            stateMachine.ChangeState(enemy.cooldownState);
         }
     }
 

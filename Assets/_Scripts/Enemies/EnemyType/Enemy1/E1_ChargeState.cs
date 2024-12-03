@@ -34,20 +34,13 @@ public class E1_ChargeState : ChargeState
         {
             stateMachine.ChangeState(enemy.meleeAttackState);
         }
-        else if (!isDetectingLedge || isDetectingWall)
+        else if (!isPlayerInAgroRange && isPlayerInPursuitRange)
         {
             stateMachine.ChangeState(enemy.lookForPlayerState);
         }
-        else if (isChargeTimeOver)
+        else if (!isDetectingLedge || isDetectingWall)
         {
-            if (isPlayerInMinAgroRange)
-            {
-                stateMachine.ChangeState(enemy.playerDetectedState);
-            }
-            else
-            {
-                stateMachine.ChangeState(enemy.lookForPlayerState);
-            }
+            stateMachine.ChangeState(enemy.lookForPlayerState);
         }
     }
 
