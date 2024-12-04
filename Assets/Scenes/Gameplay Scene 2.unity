@@ -70227,14 +70227,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy1
       objectReference: {fileID: 0}
-    - target: {fileID: 7966933337800604805, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
-      propertyPath: stunRecoveryRate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7966933337800604805, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
-      propertyPath: <Health>k__BackingField.<MaxValue>k__BackingField
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 8769394835601313704, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
