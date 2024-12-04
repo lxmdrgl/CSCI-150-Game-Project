@@ -67,7 +67,10 @@ public class Enemy1 : Entity
     private void HandleDamageTaken()
     {
         // Debug.Log("HandleStunZero");
-        stateMachine.ChangeState(lookForPlayerState);
+        if(stateMachine.currentState == moveState || stateMachine.currentState == idleState)
+        {
+            stateMachine.ChangeState(lookForPlayerState);
+        }
     }
 
     private void Start()

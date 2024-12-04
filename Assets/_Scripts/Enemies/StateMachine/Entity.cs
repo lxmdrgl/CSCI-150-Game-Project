@@ -80,22 +80,20 @@ public class Entity : MonoBehaviour, IDataPersistence
 
     public virtual bool CheckPlayerInPursuitRange()
     {
-        // Cast the ray to check for both the player and obstacles
-        RaycastHit2D hit = Physics2D.CircleCast(playerCheck.position, entityData.pursuitRange, transform.right, entityData.pursuitRange, entityData.whatIsPlayer | entityData.whatIsGround);
-        //RaycastHit2D wallCheck = Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer | entityData.whatIsGround);
+        // Perform the CircleCast to check for the player only
+        RaycastHit2D hit = Physics2D.CircleCast(
+            playerCheck.position, 
+            entityData.pursuitRange, 
+            transform.right, 
+            entityData.pursuitRange, 
+            entityData.whatIsPlayer
+        );
+
+        // Debug the CircleCast for visualization
         DebugCircleCast(playerCheck.position, entityData.pursuitRange, transform.right, entityData.pursuitRange);
-    
-        // Check if the ray hit something
-        if (hit.collider != null)
-        {
-            // If it hit a player, return true
-            if (hit.collider.CompareTag("Player"))
-            {
-                return true;
-            }
-        }
-        // If it hit nothing or hit an obstacle first, return false
-        return false;
+
+        // Return true if a player was hit, otherwise false
+        return hit.collider != null;
     }
 
     void DebugCircleCast(Vector2 origin, float radius, Vector2 direction, float distance)

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9681041169dffab4f975b055976010cb
+timeCreated: 1514705767
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 104130
+  packageName: Bandits - Pixel Art
+  packageVersion: 2.2
+  assetPath: Assets/Bandits - Pixel Art/Animations/Heavy Bandit/HeavyBandit_CombatIdle.anim
+  uploadId: 384983

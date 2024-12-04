@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d0b1ecf02cfc8d74eb616310a86c7be6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 104130
+  packageName: Bandits - Pixel Art
+  packageVersion: 2.2
+  assetPath: Assets/Bandits - Pixel Art/Environment/EnvironmentPalette_Bandits.prefab
+  uploadId: 384983

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f4d08aca8d9c8b24f969b71bcb299c54
+timeCreated: 1514705664
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 104130
+  packageName: Bandits - Pixel Art
+  packageVersion: 2.2
+  assetPath: Assets/Bandits - Pixel Art/Animations/Light Bandit/LightBandit_Hurt.anim
+  uploadId: 384983
