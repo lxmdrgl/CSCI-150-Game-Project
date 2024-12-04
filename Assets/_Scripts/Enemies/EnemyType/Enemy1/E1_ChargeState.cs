@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.CoreSystem;
 using UnityEngine;
 
 public class E1_ChargeState : ChargeState

@@ -15,7 +15,7 @@ public class MoveState : EnemyState
     protected bool isDetectingWall;
     protected bool isDetectingLedge;
     protected bool isPlayerInAgroRange;
-
+    protected bool isPlayerInPursuitRange;
     public MoveState(Entity entity, string animBoolName, D_MoveState stateData) : base(entity, animBoolName)
     {
         this.stateData = stateData;
@@ -27,6 +27,7 @@ public class MoveState : EnemyState
         isDetectingLedge = CollisionSenses.LedgeVertical;
         isDetectingWall = CollisionSenses.WallFront;
         isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
+        isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
     }
 
     public override void Enter()

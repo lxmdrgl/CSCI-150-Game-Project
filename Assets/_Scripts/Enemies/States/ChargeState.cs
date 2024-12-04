@@ -7,7 +7,7 @@ using Game.CoreSystem;
 public class ChargeState : EnemyState
 {
 
-    private Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+    public Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
 	private CollisionSenses CollisionSenses { get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses); }
 
 	private Movement movement;

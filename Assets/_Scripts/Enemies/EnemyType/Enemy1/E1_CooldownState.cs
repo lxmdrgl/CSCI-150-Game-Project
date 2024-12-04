@@ -27,13 +27,17 @@ public class E1_CooldownState : CooldownState
 
         if(isCooldownTimeOver)
         {
-            if (isPlayerInPursuitRange)
+            if (isPlayerInPursuitRange && isPlayerInAgroRange)
             {
                 stateMachine.ChangeState(enemy.chargeState);
             }
-            else
+            else if (isPlayerInPursuitRange && !isPlayerInAgroRange)
             {
                 stateMachine.ChangeState(enemy.lookForPlayerState);
+            }
+            else
+            {
+                stateMachine.ChangeState(enemy.idleState);
             }
         }
     }
