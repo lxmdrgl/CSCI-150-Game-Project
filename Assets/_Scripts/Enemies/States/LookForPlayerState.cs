@@ -56,12 +56,15 @@ public class LookForPlayerState : EnemyState {
 
 		Movement?.SetVelocityX(0f);
 
-		if (turnImmediately) {
+		if (turnImmediately) 
+		{
 			Movement?.Flip();
 			lastTurnTime = Time.time;
 			amountOfTurnsDone++;
 			turnImmediately = false;
-		} else if (Time.time >= lastTurnTime + stateData.timeBetweenTurns && !isAllTurnsDone) {
+		} 
+		else if (Time.time >= lastTurnTime + stateData.timeBetweenTurns && !isAllTurnsDone) 
+		{
 			Movement?.Flip();
 			lastTurnTime = Time.time;
 			amountOfTurnsDone++;

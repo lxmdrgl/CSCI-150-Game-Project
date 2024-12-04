@@ -21,7 +21,6 @@ public class CooldownState : EnemyState
     public CooldownState(Entity entity, string animBoolName, D_CooldownState stateData) : base(entity, animBoolName)
     {
         this.stateData = stateData;
-        cooldownTime = stateData.attackCooldown;
     }
 
     public override void DoChecks()
@@ -36,6 +35,7 @@ public class CooldownState : EnemyState
         base.Enter();
 
         isCooldownTimeOver = false;
+        SetRandomCooldownTime();
     }
 
     public override void Exit()
@@ -58,4 +58,8 @@ public class CooldownState : EnemyState
         base.PhysicsUpdate();
     }
 
+    private void SetRandomCooldownTime()
+    {
+        cooldownTime = Random.Range(stateData.minAttackCooldown, stateData.maxAttackCooldown);
+    }
 }

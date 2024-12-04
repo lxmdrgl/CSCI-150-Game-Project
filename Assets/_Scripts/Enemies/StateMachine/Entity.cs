@@ -60,10 +60,10 @@ public class Entity : MonoBehaviour, IDataPersistence
     public virtual bool CheckPlayerInAgroRange()
     {
         // Perform a raycast to check for the player or obstacles
-        RaycastHit2D hit = Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer | entityData.whatIsGround);
+        RaycastHit2D hit = Physics2D.Raycast(playerCheck.position, transform.right, entityData.agroRange, entityData.whatIsPlayer | entityData.whatIsGround);
         
         // Debug the raycast (you can visualize it in the Scene view)
-        Debug.DrawRay(playerCheck.position, transform.right * entityData.minAgroDistance, Color.red);
+        Debug.DrawRay(playerCheck.position, transform.right * entityData.agroRange, Color.red);
         
         // Check if the ray hit something
         if (hit.collider != null)
@@ -81,9 +81,9 @@ public class Entity : MonoBehaviour, IDataPersistence
     public virtual bool CheckPlayerInPursuitRange()
     {
         // Cast the ray to check for both the player and obstacles
-        RaycastHit2D hit = Physics2D.CircleCast(playerCheck.position, 8f, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer | entityData.whatIsGround);
+        RaycastHit2D hit = Physics2D.CircleCast(playerCheck.position, entityData.pursuitRange, transform.right, entityData.pursuitRange, entityData.whatIsPlayer | entityData.whatIsGround);
         //RaycastHit2D wallCheck = Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer | entityData.whatIsGround);
-        DebugCircleCast(playerCheck.position, 10f, transform.right, entityData.minAgroDistance);
+        DebugCircleCast(playerCheck.position, entityData.pursuitRange, transform.right, entityData.pursuitRange);
     
         // Check if the ray hit something
         if (hit.collider != null)
