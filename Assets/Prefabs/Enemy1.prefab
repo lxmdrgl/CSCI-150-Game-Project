@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 6023186084007274103}
   - component: {fileID: 6018641023207751906}
   - component: {fileID: 8152913140020985367}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Combat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7569720146596509910}
   - component: {fileID: 7966933337800604805}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Stats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1247,7 +1247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1503648570430416930}
   - component: {fileID: 7035826546607438230}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Death
   m_TagString: Untagged
   m_Icon: {fileID: 0}
