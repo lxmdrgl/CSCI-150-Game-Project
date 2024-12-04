@@ -25,7 +25,7 @@ public class E1_MoveState : MoveState
     {
         base.LogicUpdate();
     
-        if (isPlayerInAgroRange)
+        if (isPlayerInAgroRange && isPlayerInPursuitRange)
         {
             stateMachine.ChangeState(enemy.playerDetectedState);
         }

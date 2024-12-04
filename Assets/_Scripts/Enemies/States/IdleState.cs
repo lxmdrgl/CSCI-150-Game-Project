@@ -15,7 +15,7 @@ public class IdleState : EnemyState
     protected bool flipAfterIdle;
     protected bool isIdleTimeOver;
     protected bool isPlayerInAgroRange;
-
+    protected bool isPlayerInPursuitRange;
     protected float idleTime;
 
     public IdleState(Entity entity, string animBoolName, D_IdleState stateData) : base(entity, animBoolName)
@@ -27,6 +27,7 @@ public class IdleState : EnemyState
     {
         base.DoChecks();
         isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
+        isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
     }
 
     public override void Enter()
