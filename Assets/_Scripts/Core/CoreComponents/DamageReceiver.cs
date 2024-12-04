@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 using Game.Combat.Damage;
@@ -19,7 +20,13 @@ namespace Game.CoreSystem
 
         private Stats stats;
         // private ParticleManager particleManager;
+        public bool CanTakeDamage { get; set; }
+        public Action OnIgnoreDamage;
 
+        public void SetCanTakeDamage(bool value) 
+        {
+            CanTakeDamage = value;
+        }
 
         public void Damage(DamageData data)
         {
@@ -36,8 +43,15 @@ namespace Game.CoreSystem
                 return;
             }
 
-            stats.Health.Decrease(data.Amount);
-            Debug.Log($"Deal {data.Amount} damage");
+            if (CanTakeDamage) {
+                stats.Health.Decrease(data.Amount);
+                Debug.Log($"Deal {data.Amount} damage, {CanTakeDamage}");
+            } else {
+                Debug.Log($"Ignore damage, {CanTakeDamage}");
+            }
+
+            // if (data.Source)
+
 
             // particleManager.StartWithRandomRotation(damageParticles);
         }
@@ -47,6 +61,7 @@ namespace Game.CoreSystem
             base.Awake();
 
             stats = core.GetCoreComponent<Stats>();
+            CanTakeDamage = true;
             // particleManager = core.GetCoreComponent<ParticleManager>();
         }
     }

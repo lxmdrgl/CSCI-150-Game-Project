@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Game.CoreSystem;
 using UnityEngine;
 
 public class PlayerDashState : PlayerActionState
 {
+	protected DamageReceiver DamageReceiver { get => damageReceiver ?? core.GetCoreComponent(ref damageReceiver); }
+	private DamageReceiver damageReceiver;
 	protected int xInput;
 	protected bool dashEnabled = true;
     public PlayerDashState(Player player, string animBoolName) : base(player, animBoolName)
@@ -17,7 +20,8 @@ public class PlayerDashState : PlayerActionState
 		
         xInput = player.InputHandler.NormInputX;
 		Movement?.SetVelocityX(xInput * playerData.dashVelocity);
-		// Debug.Log("Enter dash");
+		Debug.Log("Enter dash");
+		DamageReceiver?.SetCanTakeDamage(false);
 
 		player.dashTimeNotifier.Disable();
 		dashEnabled = false;
@@ -27,6 +31,8 @@ public class PlayerDashState : PlayerActionState
     {
         base.Exit();
 
+		Debug.Log("Exit dash");
+		DamageReceiver?.SetCanTakeDamage(true);
 		player.dashTimeNotifier.Init(playerData.dashCooldown);
 		// Debug.Log("Init dash timer");
     }
