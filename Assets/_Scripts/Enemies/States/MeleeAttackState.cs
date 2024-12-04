@@ -63,4 +63,11 @@ public class MeleeAttackState : AttackState
 
 		hitbox.enabled = false;
     }
+
+	public virtual void DisableHitbox() 
+	{
+		if (hitbox) {
+			hitbox.enabled = false;
+		}
+	} 
 }
