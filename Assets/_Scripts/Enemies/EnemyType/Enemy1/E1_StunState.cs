@@ -32,18 +32,17 @@ public class E1_StunState : StunState
 
         if (isStunTimeOver)
         {
-            if (performCloseRangeAction)
-            {
-                stateMachine.ChangeState(enemy.meleeAttackState);
-            }
-            else if (isPlayerInPursuitRange)
+            if (isPlayerInPursuitRange && isPlayerInAgroRange)
             {
                 stateMachine.ChangeState(enemy.chargeState);
             }
+            else if(isPlayerInPursuitRange && !isPlayerInAgroRange)
+            {
+                stateMachine.ChangeState(enemy.lookForPlayerState);
+            }
             else
             {
-                enemy.lookForPlayerState.SetTurnImmediately(true);
-                stateMachine.ChangeState(enemy.lookForPlayerState);
+                stateMachine.ChangeState(enemy.moveState);
             }
         }
     }

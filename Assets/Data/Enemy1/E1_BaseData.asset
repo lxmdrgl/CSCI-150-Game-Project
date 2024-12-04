@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02b076e243c4b344a7f5d0339b942e2, type: 3}
   m_Name: E1_BaseData
   m_EditorClassIdentifier: 
-  minAgroDistance: 15
+  agroRange: 10
+  pursuitRange: 10
   maxAgroDistance: 20
   closeRangeActionDistance: 1
   whatIsGround:
