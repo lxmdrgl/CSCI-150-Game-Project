@@ -50,6 +50,7 @@ MonoBehaviour:
   <Rigidbody2D>k__BackingField: {fileID: 8851325382855593670}
   spriteIcon: {fileID: 5085274027199746271}
   weaponData: {fileID: 0}
+  weaponIndex: 0
 --- !u!50 &8851325382855593670
 Rigidbody2D:
   serializedVersion: 5
