@@ -8,6 +8,8 @@ public class PlayerDashState : PlayerActionState
 {
 	protected DamageReceiver DamageReceiver { get => damageReceiver ?? core.GetCoreComponent(ref damageReceiver); }
 	private DamageReceiver damageReceiver;
+	protected KnockBackReceiver KnockBackReceiver { get => knockBackReceiver ?? core.GetCoreComponent(ref knockBackReceiver); }
+	private KnockBackReceiver knockBackReceiver;
 	protected int xInput;
 	protected bool dashEnabled = true;
     public PlayerDashState(Player player, string animBoolName) : base(player, animBoolName)
@@ -22,6 +24,7 @@ public class PlayerDashState : PlayerActionState
 		Movement?.SetVelocityX(xInput * playerData.dashVelocity);
 		Debug.Log("Enter dash");
 		DamageReceiver?.SetCanTakeDamage(false);
+		KnockBackReceiver?.SetCanTakeKnockBack(false);
 
 		player.dashTimeNotifier.Disable();
 		dashEnabled = false;
@@ -33,6 +36,7 @@ public class PlayerDashState : PlayerActionState
 
 		Debug.Log("Exit dash");
 		DamageReceiver?.SetCanTakeDamage(true);
+		KnockBackReceiver?.SetCanTakeKnockBack(true);
 		player.dashTimeNotifier.Init(playerData.dashCooldown);
 		// Debug.Log("Init dash timer");
     }
