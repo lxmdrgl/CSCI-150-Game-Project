@@ -15,7 +15,7 @@ public class FileDataHandler
         this.dataFileName = dataFileName;
     }
 
-    public GameData Load(string profileId)
+    public T Load<T>(string profileId) where T : class
     {
         if(profileId == null)
         {
@@ -23,13 +23,13 @@ public class FileDataHandler
         }
 
         string fullPath = Path.Combine(dataDirPath,profileId, dataFileName);
-        GameData loadedData = null;
+        T loadedData = null;
         if (File.Exists(fullPath))
         {
             try
             {
                 string dataToLoad = File.ReadAllText(fullPath);
-                loadedData = JsonConvert.DeserializeObject<GameData>(dataToLoad);
+                loadedData = JsonConvert.DeserializeObject<T>(dataToLoad);
             }
             catch (Exception e)
             {
@@ -39,7 +39,7 @@ public class FileDataHandler
         return loadedData;
     }
 
-    public void Save(GameData data,string profileId)
+    public void Save<T>(T data,string profileId)
     {
         if(profileId == null)
         {
@@ -62,22 +62,32 @@ public class FileDataHandler
     }
     public void Delete(string profileId)
     {
-        if(profileId == null)
+        if (profileId == null)
         {
+            Debug.LogWarning("Profile ID is null. Cannot delete data.");
             return;
         }
 
-        string fullPath = Path.Combine(dataDirPath,profileId,dataFileName);
+        string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
 
-        if(File.Exists(fullPath))
+        if (File.Exists(fullPath))
         {
-            Directory.Delete(Path.GetDirectoryName(fullPath), true);
+            try
+            {
+                File.Delete(fullPath); // Only delete the GameData file
+                Debug.Log($"Successfully deleted GameData file: {fullPath}");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Error occurred when trying to delete file: {fullPath}\n{e}");
+            }
         }
         else
         {
-            Debug.LogWarning("No data to delete");
+            Debug.LogWarning($"No GameData file found to delete at: {fullPath}");
         }
     }
+
     public Dictionary<string, GameData> LoadAllProfiles()
     {
         Dictionary<string, GameData> profileDictionary = new Dictionary<string, GameData>();
@@ -94,7 +104,38 @@ public class FileDataHandler
                 continue;
             }
 
-            GameData profileData = Load(profileId);
+            GameData profileData = Load<GameData>(profileId);
+
+            if(profileData != null)
+            {
+                profileDictionary.Add(profileId, profileData);
+            }
+            else
+            {
+                Debug.LogError("Tried to load profile but something went wrong. ProfileId: " + profileId);
+            }
+        }
+
+        return profileDictionary;
+    }
+
+    public Dictionary<string, SaveData> LoadAllProfilesSaveData()
+    {
+        Dictionary<string, SaveData> profileDictionary = new Dictionary<string, SaveData>();
+        
+        IEnumerable<DirectoryInfo> dirInfos = new DirectoryInfo(dataDirPath).EnumerateDirectories();
+        foreach(DirectoryInfo dirInfo in dirInfos)
+        {
+            string profileId = dirInfo.Name;
+            string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
+
+            if(!File.Exists(fullPath))
+            {
+                Debug.LogWarning("Skipping directory when loading all profiles because it does not contain data: " + profileId);
+                continue;
+            }
+
+            SaveData profileData = Load<SaveData>(profileId);
 
             if(profileData != null)
             {

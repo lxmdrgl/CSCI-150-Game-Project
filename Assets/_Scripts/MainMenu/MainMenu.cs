@@ -30,7 +30,22 @@ public class MainMenu : MonoBehaviour
         string playerName = PlayerPrefs.GetString("PlayerName", "Player");
         Debug.Log("Loaded Player Name: " + playerName);  // Verify the name is loaded correctly
 
-        savesBtnText.text = "Save Slot: " + DataPersistenceManager.instance.GetSelectedProfileId();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        string currentSave = DataPersistenceManager.instance.GetSelectedProfileId();
+
+        if(currentSave != "1" && currentSave != "2" && currentSave != "3")
+        {
+            currentSave = "1";
+            DataPersistenceManager.instance.ChangeSelectedProfileId(currentSave);
+            if (!DataPersistenceManager.instance.HasGameData())
+            {
+                DataPersistenceManager.instance.NewGame();
+                DataPersistenceManager.instance.SaveGame();
+            }
+        }   
+
+        savesBtnText.text = "Save Slot: " + currentSave;
     }
     public void Play()
     {
@@ -42,9 +57,18 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            // Create new data for the selected profile
-            DataPersistenceManager.instance.NewGame();
-            DataPersistenceManager.instance.SaveGame();
+            string currentSave = DataPersistenceManager.instance.GetSelectedProfileId();
+            if(currentSave != "1" || currentSave != "2" || currentSave != "3")
+            {
+                currentSave = "1";
+                DataPersistenceManager.instance.ChangeSelectedProfileId(currentSave);
+                if (!DataPersistenceManager.instance.HasGameData())
+                {
+                    DataPersistenceManager.instance.NewGame();
+                    DataPersistenceManager.instance.SaveGame();
+                }
+            }   
+
             SceneManager.LoadSceneAsync(GameSceneName);
         }
     }
@@ -66,5 +90,35 @@ public class MainMenu : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    private void OnDestroy()
+    {
+        // Unsubscribe from sceneLoaded event to avoid memory leaks
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Check if the current scene is the Main Menu
+        if (scene.name == "MainMenu") // Replace "MainMenu" with your actual scene name
+        {
+            string currentSave = DataPersistenceManager.instance.GetSelectedProfileId();
+
+            // Ensure a valid save slot is set
+            if (currentSave != "1" && currentSave != "2" && currentSave != "3")
+            {
+                currentSave = "1";
+                DataPersistenceManager.instance.ChangeSelectedProfileId(currentSave);
+
+                if (!DataPersistenceManager.instance.HasGameData())
+                {
+                    DataPersistenceManager.instance.NewGame();
+                    DataPersistenceManager.instance.SaveGame();
+                }
+            }
+
+            // Set the save slots button text
+            savesBtnText.text = "Save Slot: " + currentSave;
+
+        }
+    }
 }

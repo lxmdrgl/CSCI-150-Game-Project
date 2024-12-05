@@ -116,7 +116,7 @@ public class MenuManager : MonoBehaviour
     public void OnQuitPress()
     {
         DataPersistenceManager.instance.SaveGame();
-        SceneManager.LoadSceneAsync("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
     #endregion
 

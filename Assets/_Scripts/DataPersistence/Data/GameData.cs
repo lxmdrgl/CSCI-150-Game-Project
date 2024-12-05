@@ -9,14 +9,16 @@ using Game.CoreSystem;
 public class GameData
 {
     public long lastUpdated;
-    public float playTime;
+    public float runTime;
     public float playerCurrentHp;
     public float playerMaxHp;
+    public float currentLevelTime;
     public List<EnemyData> enemyData;
     public Vector2Data playerPosition; 
     public GameData()
     {
-        this.playTime = 0;
+        this.runTime = 0;
+        this.currentLevelTime = 0;
         this.playerCurrentHp = 100;
         this.playerMaxHp = 100;
         this.playerPosition = new Vector2Data(Vector2.zero);

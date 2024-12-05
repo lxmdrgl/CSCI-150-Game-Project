@@ -727,7 +727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: 7b373a2ff27202f4c80c86f31bf0df72, type: 2}
   playerCheck: {fileID: 3755304697358755252}
-  UniqueId: ccbec9b1-3a62-45bb-9cf1-2c821638dccd
+  UniqueId: 
   idleStateData: {fileID: 11400000, guid: b140049285c473f4d8161e13f36c116a, type: 2}
   moveStateData: {fileID: 11400000, guid: 02bcb3d79594ad34bbf31aeb02c63e86, type: 2}
   playerDetectedData: {fileID: 11400000, guid: d27da2be1aaad134fbcbba7c0cd33a70, type: 2}

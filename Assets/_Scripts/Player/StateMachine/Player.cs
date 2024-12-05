@@ -6,6 +6,7 @@ using UnityEngine.Scripting;
 using Game.CoreSystem;
 using Game.Weapons;
 using Game.Utilities;
+using System;
 
 public class Player : MonoBehaviour, IDataPersistence
 {
@@ -145,19 +146,26 @@ public class Player : MonoBehaviour, IDataPersistence
         get => transform.position;
         set => transform.position = value;
     }
-
     public void LoadData(GameData data)
     {
         stats.Health.CurrentValue = data.playerCurrentHp;
         stats.Health.MaxValue = data.playerMaxHp;
         Position = data.playerPosition.ToVector2();
     }
-
     public void SaveData(GameData data)
     {
         data.playerCurrentHp = stats.Health.CurrentValue;
         data.playerMaxHp = stats.Health.MaxValue;
         data.playerPosition = new GameData.Vector2Data(Position);
-        data.playTime += Time.timeSinceLevelLoad;
+        data.runTime += Time.timeSinceLevelLoad;
+        data.currentLevelTime = Time.timeSinceLevelLoad;
+    }
+    public void SaveSaveData(SaveData data)
+    {
+        
+    }
+    public void LoadSaveData(SaveData data)
+    {
+    
     }
 }

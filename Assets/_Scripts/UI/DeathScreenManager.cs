@@ -17,41 +17,28 @@ public class DeathScreenManager : MonoBehaviour
     
     private void Awake()
     {
-        
-        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-
-        this.selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
+        selectedProfileId = DataPersistenceManager.instance.GetSelectedProfileId();
     }
 
 
     public void DeathQuit()
-    {
-        
-        //DataPersistenceManager.instance.DeleteProfileData(selectedProfileId);
-        
-        //DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
-
-        
-        //DataPersistenceManager.instance.NewGame();
-        //DataPersistenceManager.instance.SaveGame();
-        
-
+    {   
+        DataPersistenceManager.instance.RestartGame( selectedProfileId, GameplaySceneName);
         deathScreenCanvasGO.SetActive(false);
+        SceneManager.LoadScene(MainMenuSceneName);
 
-        SceneManager.LoadSceneAsync(MainMenuSceneName);
+        DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
+        DataPersistenceManager.instance.SaveGame();
     }
 
     public void DeathRestart()
-    {
-        //DataPersistenceManager.instance.DeleteProfileData(selectedProfileId);
-        
-        //DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
-        
-       // DataPersistenceManager.instance.NewGame();
-        //DataPersistenceManager.instance.SaveGame();
-        
+    {   
+        DataPersistenceManager.instance.RestartGame( selectedProfileId, GameplaySceneName);
         deathScreenCanvasGO.SetActive(false);
 
-        SceneManager.LoadSceneAsync(GameplaySceneName);
+        SceneManager.LoadScene(GameplaySceneName);
+
+        DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
+        DataPersistenceManager.instance.SaveGame();
     }
 }

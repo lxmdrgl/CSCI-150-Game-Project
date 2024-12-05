@@ -7,8 +7,11 @@ public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
+    [SerializeField] private string saveDataFileName;
     private FileDataHandler dataHandler;
+    private FileDataHandler saveDataHandler;
     private GameData gameData;
+    private SaveData saveData;
     private List<IDataPersistence> dataPersistenceObjects;
     public static DataPersistenceManager instance {get; private set;}
     private string selectedProfileId = "";
@@ -24,6 +27,7 @@ public class DataPersistenceManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+        this.saveDataHandler = new FileDataHandler(Application.persistentDataPath, saveDataFileName);
 
         InitializeSelectedProfileId();
     }
@@ -47,11 +51,18 @@ public class DataPersistenceManager : MonoBehaviour
     public void NewGame()
     {
         this.gameData = new GameData();
+        dataHandler.Save( gameData, selectedProfileId);
+    }
+    public void NewSaveSlot()
+    {
+        this.saveData = new SaveData();
+        saveDataHandler.Save( saveData, selectedProfileId);
     }
     public void LoadGame()
     {
-        this.gameData = dataHandler.Load(selectedProfileId);
-
+        this.gameData = dataHandler.Load<GameData>(selectedProfileId);
+        this.saveData = saveDataHandler.Load<SaveData>(selectedProfileId);
+        
         // Load data from file
         if(this.gameData == null)
         {
@@ -82,6 +93,8 @@ public class DataPersistenceManager : MonoBehaviour
         gameData.lastUpdated = System.DateTime.Now.ToBinary();
 
         dataHandler.Save(gameData, selectedProfileId);
+        saveData.playTime+=gameData.currentLevelTime;
+        saveDataHandler.Save(saveData, selectedProfileId);
     }
     public void ChangeSelectedProfileId(string newProfileId)
     {
@@ -96,6 +109,20 @@ public class DataPersistenceManager : MonoBehaviour
         InitializeSelectedProfileId();
         LoadGame();
     }
+    public void DeleteSaveSlotData(string profileId)
+    {
+        dataHandler.Delete(profileId);
+        saveDataHandler.Delete(profileId);
+
+        InitializeSelectedProfileId();
+        LoadGame();
+    }
+    public void RestartGame(string profileId, string GameplaySceneName)
+    {
+        dataHandler.Delete(profileId);
+        selectedProfileId = profileId;
+        NewGame();
+    }
     private void InitializeSelectedProfileId()
     {
         this.selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
@@ -105,17 +132,26 @@ public class DataPersistenceManager : MonoBehaviour
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IDataPersistence>();       
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
-
+    public float getPlayTime()
+    {
+        return saveData.playTime;
+    }
     public bool HasGameData()
     {
         return gameData != null;
     }
-
+    public bool HasSaveData()
+    {
+        return saveData != null;
+    }
     public Dictionary<string,GameData> GetAllProfilesGameData()
     {
         return dataHandler.LoadAllProfiles();
     }
-
+    public Dictionary<string,SaveData> GetAllProfilesSaveData()
+    {
+        return saveDataHandler.LoadAllProfilesSaveData();
+    }
     public string GetSelectedProfileId()
     {
         return selectedProfileId;

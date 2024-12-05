@@ -196,4 +196,12 @@ public class Entity : MonoBehaviour, IDataPersistence
         }
     }
     
+    public void SaveSaveData(SaveData data)
+    {
+ 
+    }
+    public void LoadSaveData(SaveData data)
+    {
+ 
+    }
 }

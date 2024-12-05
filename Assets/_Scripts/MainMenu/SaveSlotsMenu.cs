@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class SaveSlotsMenu : MonoBehaviour
 {
@@ -16,12 +17,12 @@ public class SaveSlotsMenu : MonoBehaviour
     {
         gameObject.SetActive(true);
 
-        Dictionary<string, GameData> profilesGameData = DataPersistenceManager.instance.GetAllProfilesGameData();
+        Dictionary<string, SaveData> profilesSaveData = DataPersistenceManager.instance.GetAllProfilesSaveData();
 
         foreach(SaveSlot saveSlot in saveSlots)
         {
-            GameData profileData = null;
-            profilesGameData.TryGetValue(saveSlot.GetProfileId(), out profileData);
+            SaveData profileData = null;
+            profilesSaveData.TryGetValue(saveSlot.GetProfileId(), out profileData);
             saveSlot.SetData(profileData);
         }
     }
@@ -31,9 +32,10 @@ public class SaveSlotsMenu : MonoBehaviour
         DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
 
         // Check if the profile has data, if not, create new data
-        if (!DataPersistenceManager.instance.HasGameData())
+        if (!DataPersistenceManager.instance.HasSaveData())
         {
             DataPersistenceManager.instance.NewGame();
+            DataPersistenceManager.instance.NewSaveSlot();
             DataPersistenceManager.instance.SaveGame();
         }
     
@@ -45,7 +47,33 @@ public class SaveSlotsMenu : MonoBehaviour
 
     public void OnDeleteClicked(SaveSlot saveSlot)
     {
-        DataPersistenceManager.instance.DeleteProfileData(saveSlot.GetProfileId());
+        string currentSave = DataPersistenceManager.instance.GetSelectedProfileId();
+
+        DataPersistenceManager.instance.DeleteSaveSlotData(saveSlot.GetProfileId());
         ActivateMenu();
+
+        if (saveSlot.GetProfileId() == currentSave)
+        {
+            DataPersistenceManager.instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
+
+            int i = 0;
+            while(!DataPersistenceManager.instance.HasGameData() && i<3)
+            {
+                Debug.Log("Checking Save: " + (i+1));
+                DataPersistenceManager.instance.ChangeSelectedProfileId((i+1)+"");
+
+                if(DataPersistenceManager.instance.HasGameData())
+                {
+                    savesBtnText.text = "Save Slot: " + (i+1)+"";
+                    break;
+                }
+                else
+                {
+                    savesBtnText.text = "Save Slot:";
+                }
+
+                i++;
+            }
+        }
     }
 }
