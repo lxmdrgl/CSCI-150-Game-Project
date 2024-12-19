@@ -56,5 +56,8 @@ TagManager:
   - name: Player
     uniqueID: 4167343721
     locked: 0
+  - name: Damage Numbers
+    uniqueID: 478558505
+    locked: 0
   m_RenderingLayers:
   - Default

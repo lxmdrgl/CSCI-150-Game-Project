@@ -13,6 +13,8 @@ namespace Game.CoreSystem.StatsSystem
         
         [field: SerializeField] public float MaxValue { get; set; }
 
+        public float damageTaken;
+
         public float CurrentValue
         {
             get => currentValue;
@@ -38,24 +40,11 @@ namespace Game.CoreSystem.StatsSystem
         }
 
         public void Decrease(float amount) {
+            damageTaken = amount;
             CurrentValue -= amount;    
             OnValueChange?.Invoke();
             OnValueChangeFloat?.Invoke(amount);
         }
 
-        public void setHP(float maxVal, float currVal)
-        {
-            MaxValue = maxVal;
-            currentValue = currVal;
-        }
-
-        public float getCurrentVal()
-        {
-            return currentValue;
-        }
-        public float getMaxVal()
-        {
-            return MaxValue;
-        }
     }
 }

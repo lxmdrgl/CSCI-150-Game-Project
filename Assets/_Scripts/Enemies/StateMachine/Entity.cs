@@ -126,6 +126,24 @@ public class Entity : MonoBehaviour, IDataPersistence
 		return Physics2D.Raycast(playerCheck.position, transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
 	}
 
+    private void CreateDamageNumberPopup() 
+    {
+        int damageAmount = Mathf.RoundToInt(stats.Health.damageTaken);
+        Vector3 damageNumPos = gameObject.GetComponentInChildren<Canvas>().transform.position;
+        damageNumPos.y -= 0.5f;
+        DamagePopup.Create(damageNumPos,damageAmount,false);
+    }
+
+    private void OnEnable()
+    {
+        stats.Health.OnValueChange += CreateDamageNumberPopup;
+    }
+
+    private void OnDisable()
+    {
+        stats.Health.OnValueChange -= CreateDamageNumberPopup;
+    }
+
     public virtual void ResetStun() 
     {
 		isStunned = false;
