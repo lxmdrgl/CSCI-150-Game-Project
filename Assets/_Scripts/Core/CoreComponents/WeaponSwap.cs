@@ -7,8 +7,8 @@ namespace Game.CoreSystem
 {
     public class WeaponSwap : CoreComponent
     {
-        public event Action<WeaponSwapChoiceRequest> OnChoiceRequested;
-        public event Action<WeaponData> OnWeaponDiscarded;
+        // public event Action<WeaponSwapChoiceRequest> OnChoiceRequested;
+        // public event Action<WeaponData> OnWeaponDiscarded;
 
         private InteractableDetector interactableDetector;
         private WeaponInventory weaponInventory;
