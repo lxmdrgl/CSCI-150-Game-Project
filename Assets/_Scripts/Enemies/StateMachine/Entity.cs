@@ -9,7 +9,7 @@ public class Entity : MonoBehaviour, IDataPersistence
 	private Movement movement;
     public EnemyStateMachine stateMachine;
     public D_Entity entityData;
-
+    private DamageFlash damageFlash;
     public Animator anim { get; private set; }
     public AnimationToStatemachine atsm { get; private set; }
     public Core Core { get; private set; }
@@ -43,6 +43,7 @@ public class Entity : MonoBehaviour, IDataPersistence
 		atsm = GetComponent<AnimationToStatemachine>();
         stateMachine = new EnemyStateMachine();
 
+        damageFlash = GetComponent<DamageFlash>();
     }
 
     public virtual void Update()
@@ -126,22 +127,28 @@ public class Entity : MonoBehaviour, IDataPersistence
 		return Physics2D.Raycast(playerCheck.position, transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
 	}
 
-    private void CreateDamageNumberPopup() 
+    private void OnDamageTaken() 
     {
+        // Damage Numbers
         int damageAmount = Mathf.RoundToInt(stats.Health.damageTaken);
         Vector3 damageNumPos = gameObject.GetComponentInChildren<Canvas>().transform.position;
         damageNumPos.y -= 0.5f;
         DamagePopup.Create(damageNumPos,damageAmount,false);
+        // Damage Flash Effect
+        if(damageFlash)
+        {
+            damageFlash.CallDamageFlash();
+        }
     }
 
     private void OnEnable()
     {
-        stats.Health.OnValueChange += CreateDamageNumberPopup;
+        stats.Health.OnValueChange += OnDamageTaken;
     }
 
     private void OnDisable()
     {
-        stats.Health.OnValueChange -= CreateDamageNumberPopup;
+        stats.Health.OnValueChange -= OnDamageTaken;
     }
 
     public virtual void ResetStun() 

@@ -344,8 +344,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 30
+    damageTaken: 0
   <Stun>k__BackingField:
     <MaxValue>k__BackingField: 30
+    damageTaken: 0
   stunRecoveryRate: 5
   filledBar: {fileID: 0}
   gradient:
@@ -631,6 +633,7 @@ GameObject:
   - component: {fileID: 556503304328713079}
   - component: {fileID: 5719427680606851951}
   - component: {fileID: 857530055602809233}
+  - component: {fileID: 3363648325032824417}
   m_Layer: 11
   m_Name: Enemy1
   m_TagString: Untagged
@@ -681,7 +684,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 375a05d3a3649144b994ecf7d5100b22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -844,6 +847,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67fbf1e6b56cc9249bea51661b1c0923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3363648325032824417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6360035130462158432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 622bff8c829a1ce4280b819c52fd5341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1.4208422, g: 0.6943752, b: 3.1320755, a: 1}
+  flashTime: 0.25
 --- !u!1 &6412354468940492574
 GameObject:
   m_ObjectHideFlags: 0
