@@ -14,7 +14,7 @@ namespace Game.Weapons
         public event Action OnExit;
         public event Action OnUseInput;
 
-        [SerializeField] private float attackCounterResetCooldown;
+        // [SerializeField] private float attackCounterResetCooldown;
 
         public bool CanEnterAttack { get; private set; }
         
@@ -88,7 +88,7 @@ namespace Game.Weapons
         }
 
         public void Start() {
-            // PolygonCollider2D hitbox = gameObject.AddComponent(typeof(PolygonCollider2D)) as PolygonCollider2D;
+            
         }
 
         public void SetCore(Core core)
@@ -113,10 +113,10 @@ namespace Game.Weapons
             Anim.SetBool("active", false);
 
             CurrentAttackCounter++;
-            attackCounterResetTimeNotifier.Init(attackCounterResetCooldown);
+            attackCounterResetTimeNotifier.Init(Data.AttackCounterCooldown);
 
             OnExit?.Invoke();
-            Debug.Log($"Exit weapon, count: {CurrentAttackCounter}");
+            // Debug.Log($"Exit weapon, count: {CurrentAttackCounter}");
         }
 
         private void Awake()
@@ -149,7 +149,7 @@ namespace Game.Weapons
 
         private void ResetAttackCounter()
         {
-            print("Reset Attack Counter");
+            // print("Reset Attack Counter");
             CurrentAttackCounter = 0;
         }
 

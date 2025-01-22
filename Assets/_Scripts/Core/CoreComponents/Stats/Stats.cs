@@ -11,7 +11,7 @@ namespace Game.CoreSystem
        [field: SerializeField] public Stat Health { get; private set; }
        [field: SerializeField] public Stat Stun { get; private set; }
 
-       [SerializeField] private float stunRecoveryRate;
+       [SerializeField] private float stunRecoveryRate = 5;
 
        public Image filledBar;
        public Gradient gradient;
@@ -30,8 +30,7 @@ namespace Game.CoreSystem
                 return;
             
             Stun.Increase(stunRecoveryRate * Time.deltaTime);
-            
-            filledBar.color = gradient.Evaluate(filledBar.fillAmount);
         }
+
     }
 }

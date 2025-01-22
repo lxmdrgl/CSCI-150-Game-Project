@@ -23,7 +23,7 @@ public class DeadState : EnemyState
         //GameObject.Instantiate(stateData.deathBloodParticle, entity.transform.position, stateData.deathBloodParticle.transform.rotation);
         //GameObject.Instantiate(stateData.deathChunkParticle, entity.transform.position, stateData.deathChunkParticle.transform.rotation);
 
-        entity.gameObject.SetActive(false);
+        //entity.gameObject.SetActive(false);       //already set in CoreComponents->Death.cs
     }
 
     public override void Exit()

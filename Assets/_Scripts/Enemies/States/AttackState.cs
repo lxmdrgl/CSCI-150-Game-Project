@@ -9,14 +9,14 @@ public class AttackState : EnemyState
 	private Movement movement;
 	// private ParryReceiver parryReceiver;
 
-	protected Transform attackPosition;
+	protected GameObject meleeAttackCollider;
 
 	protected bool isAnimationFinished;
-	protected bool isPlayerInMinAgroRange;
-
-	public AttackState(Entity entity, string animBoolName, Transform attackPosition) : base(entity, animBoolName) 
+	protected bool isPlayerInAgroRange;
+	protected bool isPlayerInPursuitRange;
+	public AttackState(Entity entity, string animBoolName, GameObject meleeAttackCollider) : base(entity, animBoolName) 
 	{
-		this.attackPosition = attackPosition;
+		this.meleeAttackCollider = meleeAttackCollider;
 
 		movement = core.GetCoreComponent<Movement>();
 		// parryReceiver = core.GetCoreComponent<ParryReceiver>();
@@ -26,7 +26,8 @@ public class AttackState : EnemyState
 	{
 		base.DoChecks();
 
-		isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+		isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
+		isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
 	}
 
 	public override void Enter() 

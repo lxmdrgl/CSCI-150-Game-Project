@@ -17,7 +17,7 @@ TagManager:
   - Background
   - Interactable
   - Damageable
-  - 
+  - Weapon
   - 
   - 
   - 
@@ -38,20 +38,26 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Background
     uniqueID: 4100485567
     locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Ground
     uniqueID: 1399571599
+    locked: 0
+  - name: Upgrades
+    uniqueID: 2733242325
     locked: 0
   - name: Enemy
     uniqueID: 2565015753
     locked: 0
   - name: Player
     uniqueID: 4167343721
+    locked: 0
+  - name: Damage Numbers
+    uniqueID: 478558505
     locked: 0
   m_RenderingLayers:
   - Default

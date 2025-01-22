@@ -15,6 +15,7 @@ public class PlayerInputHandler : MonoBehaviour
     public int NormInputX { get; private set; }
     public int NormInputY { get; private set; }
     public bool JumpInput { get; private set; }
+    public bool DashInput { get; private set; }
     public bool MenuOpenInput { get; private set; }
     public bool UIMenuCloseInput { get; private set; }
 
@@ -53,6 +54,20 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnDashInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            DashInput = true;
+            // Debug.Log("Start dash");
+        }
+        
+        if (context.canceled)
+        {
+            DashInput = false;
+        }
+    }
+
     public void OnInteractInput(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -80,9 +95,49 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnSecondaryAttackInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            AttackInputs[(int)CombatInputs.secondaryAttack] = true;
+        }
+
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.secondaryAttack] = false;
+        }
+    }
+
+    public void OnPrimarySkillInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            AttackInputs[(int)CombatInputs.primarySkill] = true;
+        }
+
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.primarySkill] = false;
+        }
+    }
+
+    public void OnSecondarySkillInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            AttackInputs[(int)CombatInputs.secondarySkill] = true;
+        }
+
+        if (context.canceled)
+        {
+            AttackInputs[(int)CombatInputs.secondarySkill] = false;
+        }
+    }
+
 
 
     public void UseJumpInput() => JumpInput = false;
+    public void UseDashInput() => DashInput = false;
 
     public void UseAttackInput(int i) => AttackInputs[i] = false;
 

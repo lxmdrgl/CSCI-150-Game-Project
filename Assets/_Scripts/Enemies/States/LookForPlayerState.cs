@@ -14,7 +14,8 @@ public class LookForPlayerState : EnemyState {
 	protected D_LookForPlayer stateData;
 
 	protected bool turnImmediately;
-	protected bool isPlayerInMinAgroRange;
+	protected bool isPlayerInAgroRange;
+	protected bool isPlayerInPursuitRange;
 	protected bool isAllTurnsDone;
 	protected bool isAllTurnsTimeDone;
 
@@ -22,14 +23,16 @@ public class LookForPlayerState : EnemyState {
 
 	protected int amountOfTurnsDone;
 
-	public LookForPlayerState(Entity etity, string animBoolName, D_LookForPlayer stateData) : base(etity, animBoolName) {
+	public LookForPlayerState(Entity entity, string animBoolName, D_LookForPlayer stateData) : base(entity, animBoolName) {
 		this.stateData = stateData;
 	}
 
-	public override void DoChecks() {
+	public override void DoChecks() 
+	{
 		base.DoChecks();
 
-		isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+		isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
+		isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
 	}
 
 	public override void Enter() {
@@ -53,12 +56,15 @@ public class LookForPlayerState : EnemyState {
 
 		Movement?.SetVelocityX(0f);
 
-		if (turnImmediately) {
+		if (turnImmediately) 
+		{
 			Movement?.Flip();
 			lastTurnTime = Time.time;
 			amountOfTurnsDone++;
 			turnImmediately = false;
-		} else if (Time.time >= lastTurnTime + stateData.timeBetweenTurns && !isAllTurnsDone) {
+		} 
+		else if (Time.time >= lastTurnTime + stateData.timeBetweenTurns && !isAllTurnsDone) 
+		{
 			Movement?.Flip();
 			lastTurnTime = Time.time;
 			amountOfTurnsDone++;

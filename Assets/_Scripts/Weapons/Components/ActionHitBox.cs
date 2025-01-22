@@ -34,7 +34,7 @@ namespace Game.Weapons.Components
             hitbox.enabled = true;
             hitbox.points = currentAttackData.HitBox.points;
 
-            Debug.Log($"Weapon points: {currentAttackData.HitBox}");
+            // Debug.Log($"Weapon points: {currentAttackData.HitBox}");
 
             Physics2D.OverlapCollider(hitbox, detected);
 

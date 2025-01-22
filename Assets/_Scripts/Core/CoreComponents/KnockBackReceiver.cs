@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -12,15 +13,25 @@ namespace Game.CoreSystem
 
         [SerializeField] private float maxKnockBackTime = 0.2f;
 
+        public event Action OnKnockBackActive;
+        public event Action OnKnockBackInactive;
+
         private bool isKnockBackActive;
         private float knockBackStartTime;
 
         private Movement movement;
         private CollisionSenses collisionSenses;
 
+        public bool CanTakeKnockBack { get; set; }
+
         public override void LogicUpdate()
         {
             CheckKnockBack();
+        }
+
+        public void SetCanTakeKnockBack(bool value) 
+        {
+            CanTakeKnockBack = value;
         }
 
         public void KnockBack(KnockBackData data)
@@ -31,6 +42,19 @@ namespace Game.CoreSystem
             movement.CanSetVelocity = false;
             isKnockBackActive = true;
             knockBackStartTime = Time.time;
+            // Debug.Log("Knock active");
+            OnKnockBackActive?.Invoke();
+            if (CanTakeKnockBack) {
+                movement.SetVelocity(data.Strength, data.Angle, data.Direction);
+                movement.CanSetVelocity = false;
+                isKnockBackActive = true;
+                knockBackStartTime = Time.time;
+                // Debug.Log("Knock active");
+                OnKnockBackActive?.Invoke();
+                Debug.Log($"take knockback, {CanTakeKnockBack}");
+            } else {
+                Debug.Log($"Ignore knockback, {CanTakeKnockBack}");
+            }
         }
 
         private void CheckKnockBack()
@@ -42,6 +66,8 @@ namespace Game.CoreSystem
             {
                 isKnockBackActive = false;
                 movement.CanSetVelocity = true;
+                // Debug.Log("Knock inactive: " + (Time.time - knockBackStartTime));
+                OnKnockBackInactive?.Invoke();
             }
         }
 

@@ -25,18 +25,25 @@ public class E1_PlayerDetectedState : PlayerDetectedState
     {
         base.LogicUpdate();
 
-        if (!isPlayerInMaxAgroRange)
+        if (isDetectedTimeOver) 
         {
-            stateMachine.ChangeState(enemy.idleState);
-        }
-        else if(isPlayerInMinAgroRange)
-        {
-            stateMachine.ChangeState(enemy.chargeState);
-        }
-        else if (!isDetectingLedge)
-        {
-            Movement?.Flip();
-            stateMachine.ChangeState(enemy.moveState);
+            if (isPlayerInPursuitRange && isPlayerInAgroRange)
+            {
+                stateMachine.ChangeState(enemy.chargeState);
+            }
+            else if(!isPlayerInAgroRange && isPlayerInPursuitRange)
+            {
+                stateMachine.ChangeState(enemy.lookForPlayerState);
+            }
+            else if (!isDetectingLedge)
+            {
+                Movement?.Flip();
+                stateMachine.ChangeState(enemy.moveState);
+            }
+            else
+            {
+                stateMachine.ChangeState(enemy.moveState);
+            }
         }
     }
 

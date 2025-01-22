@@ -7,7 +7,7 @@ using Game.CoreSystem;
 public class ChargeState : EnemyState
 {
 
-    private Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+    public Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
 	private CollisionSenses CollisionSenses { get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses); }
 
 	private Movement movement;
@@ -16,15 +16,14 @@ public class ChargeState : EnemyState
 
 	protected D_ChargeState stateData;
 
-	protected bool isPlayerInMinAgroRange;
+	protected bool isPlayerInAgroRange;
+	protected bool isPlayerInPursuitRange;
 	protected bool isDetectingLedge;
 	protected bool isDetectingWall;
 	protected bool isChargeTimeOver;
 	protected bool performCloseRangeAction;
 
-
-
-    public ChargeState(Entity etity, string animBoolName, D_ChargeState stateData) : base(etity, animBoolName)
+    public ChargeState(Entity entity, string animBoolName, D_ChargeState stateData) : base(entity, animBoolName)
     {
         this.stateData = stateData;
     }
@@ -32,22 +31,21 @@ public class ChargeState : EnemyState
     public override void DoChecks() {
 		base.DoChecks();
 
-		isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+		isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
+		isPlayerInPursuitRange = entity.CheckPlayerInAgroRange();
 		isDetectingLedge = CollisionSenses.LedgeVertical;
 		isDetectingWall = CollisionSenses.WallFront;
-
 		performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
 	}
 
 
-    public override void Enter() {
+    public override void Enter() 
+	{
 		base.Enter();
-
-		isChargeTimeOver = false;
-		//Movement?.SetVelocityX(stateData.chargeSpeed * Movement.FacingDirection); FOR CHARGING ENEMIES
 	}
 
-	public override void Exit() {
+	public override void Exit() 
+	{
 		base.Exit();
 	}
 
@@ -55,10 +53,6 @@ public class ChargeState : EnemyState
 		base.LogicUpdate();
 
 		Movement?.SetVelocityX(stateData.chargeSpeed * Movement.FacingDirection);
-
-		if (Time.time >= startTime + stateData.chargeTime) {
-			isChargeTimeOver = true;
-		}
 	}
 
 	public override void PhysicsUpdate() {

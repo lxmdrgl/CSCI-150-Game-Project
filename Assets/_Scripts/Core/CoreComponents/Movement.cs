@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace Game.CoreSystem
         public Vector2 CurrentVelocity { get; private set; }
 
         private Vector2 workspace;
+
+        public Action OnFlip;
 
         protected override void Awake()
         {
@@ -71,6 +74,8 @@ namespace Game.CoreSystem
         {
             FacingDirection *= -1;
             RB.transform.Rotate(0.0f, 180.0f, 0.0f);
+            OnFlip?.Invoke();
         }
+
     }
 }

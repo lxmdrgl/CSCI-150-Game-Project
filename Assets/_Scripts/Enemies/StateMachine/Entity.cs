@@ -3,46 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Game.CoreSystem;
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, IDataPersistence
 {
     private Movement Movement { get => movement ?? Core.GetCoreComponent(ref movement); }
 	private Movement movement;
     public EnemyStateMachine stateMachine;
     public D_Entity entityData;
-
-    // public int facingDirection { get; private set; }
-    // public Rigidbody2D rb { get; private set; }
+    private DamageFlash damageFlash;
     public Animator anim { get; private set; }
     public AnimationToStatemachine atsm { get; private set; }
-    // public GameObject aliveGO { get; private set; }
     public Core Core { get; private set; }
 
-    // [SerializeField]
-    // private Transform wallCheck;
-    // [SerializeField]
-    // private Transform ledgeCheck;
-    // [SerializeField]
-	// private Transform groundCheck;
     [SerializeField]
 	private Transform playerCheck;
 
+    private float currentStunResistance;
+
     private Vector2 velocityWorkspace;
+
+    protected bool isStunned;
+
+    protected Stats stats;
+
+    [SerializeField] private string UniqueId;
+    [ContextMenu("Generate guid for id")]
+    private void GenerateGuid()
+    {
+        UniqueId = System.Guid.NewGuid().ToString();
+    }
+
 
     public virtual void Awake()
     {
-        // aliveGO = transform.Find("Alive").gameObject;
-        // rb = aliveGO.GetComponent<Rigidbody2D>();
         Core = GetComponentInChildren<Core>();
-        // anim = aliveGO.GetComponent<Animator>();
+
+        stats = Core.GetCoreComponent<Stats>();
+
         anim = GetComponent<Animator>();
 		atsm = GetComponent<AnimationToStatemachine>();
         stateMachine = new EnemyStateMachine();
-    }
 
-    /* public virtual void Start()
-    {
-        facingDirection = 1;
-    } */
+        damageFlash = GetComponent<DamageFlash>();
+    }
 
     public virtual void Update()
     {
@@ -56,30 +58,14 @@ public class Entity : MonoBehaviour
         stateMachine.currentState.PhysicsUpdate();
     }
 
-    /* public virtual void SetVelocity(float velocity)
+    public virtual bool CheckPlayerInAgroRange()
     {
-        velocityWorkspace.Set(facingDirection * velocity, rb.linearVelocity.y);
-        rb.linearVelocity = velocityWorkspace;
-    }
-
-    public virtual bool CheckWall()
-    {
-        return Physics2D.Raycast(wallCheck.position, aliveGO.transform.right, entityData.wallCheckDistance, entityData.whatIsGround);
-    }
-
-    public virtual bool CheckLedge()
-    {
-        return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
-    } */
-
-    public virtual bool CheckPlayerInMinAgroRange()
-    {
-        //return Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer);
-        Debug.DrawRay(playerCheck.position, transform.right * entityData.minAgroDistance, Color.red);
-
-        // Cast the ray to check for both the player and obstacles
-        RaycastHit2D hit = Physics2D.Raycast(playerCheck.position, transform.right, entityData.minAgroDistance, entityData.whatIsPlayer | entityData.whatIsGround);
-
+        // Perform a raycast to check for the player or obstacles
+        RaycastHit2D hit = Physics2D.Raycast(playerCheck.position, transform.right, entityData.agroRange, entityData.whatIsPlayer | entityData.whatIsGround);
+        
+        // Debug the raycast (you can visualize it in the Scene view)
+        Debug.DrawRay(playerCheck.position, transform.right * entityData.agroRange, Color.red);
+        
         // Check if the ray hit something
         if (hit.collider != null)
         {
@@ -93,31 +79,154 @@ public class Entity : MonoBehaviour
         return false;
     }
 
+    public virtual bool CheckPlayerInPursuitRange()
+    {
+        // Perform the CircleCast to check for the player only
+        RaycastHit2D hit = Physics2D.CircleCast(
+            playerCheck.position, 
+            entityData.pursuitRange, 
+            transform.right, 
+            entityData.pursuitRange, 
+            entityData.whatIsPlayer
+        );
+
+        // Debug the CircleCast for visualization
+        DebugCircleCast(playerCheck.position, entityData.pursuitRange, transform.right, entityData.pursuitRange);
+
+        // Return true if a player was hit, otherwise false
+        return hit.collider != null;
+    }
+
+    void DebugCircleCast(Vector2 origin, float radius, Vector2 direction, float distance)
+    {
+        // Number of points to approximate the circle
+        int segments = 36;
+        float angleStep = 360f / segments;
+
+        // Draw the initial circle at the origin
+        for (int i = 0; i < segments; i++)
+        {
+            float angle1 = Mathf.Deg2Rad * (i * angleStep);
+            float angle2 = Mathf.Deg2Rad * ((i + 1) * angleStep);
+
+            Vector2 point1 = origin + new Vector2(Mathf.Cos(angle1), Mathf.Sin(angle1)) * radius;
+            Vector2 point2 = origin + new Vector2(Mathf.Cos(angle2), Mathf.Sin(angle2)) * radius;
+
+            Debug.DrawLine(point1, point2, Color.green);
+        }
+
+    }
+
     public virtual bool CheckPlayerInMaxAgroRange()
     {
         return Physics2D.Raycast(playerCheck.position, transform.right, entityData.maxAgroDistance, entityData.whatIsPlayer);
     }
 
-    public virtual bool CheckPlayerInCloseRangeAction() {
+    public virtual bool CheckPlayerInCloseRangeAction() 
+    {
 		return Physics2D.Raycast(playerCheck.position, transform.right, entityData.closeRangeActionDistance, entityData.whatIsPlayer);
 	}
 
-    /* public virtual void Flip()
+    private void OnDamageTaken() 
     {
-        facingDirection *= -1;
-        aliveGO.transform.Rotate(0f, 180f, 0f);
-    } */
+        // Damage Numbers
+        int damageAmount = Mathf.RoundToInt(stats.Health.damageTaken);
+        Vector3 damageNumPos = gameObject.GetComponentInChildren<Canvas>().transform.position;
+        damageNumPos.y -= 0.5f;
+        DamagePopup.Create(damageNumPos,damageAmount,false);
+        // Damage Flash Effect
+        if(damageFlash)
+        {
+            damageFlash.CallDamageFlash();
+        }
+    }
 
-    // public virtual void OnDrawGizmos()
-    // {
-    //     if (Core != null && wallCheck != null && ledgeCheck != null)
-    //     {
-    //         Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * Movement.FacingDirection * entityData.wallCheckDistance));
-    //         Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * entityData.ledgeCheckDistance));
+    private void OnEnable()
+    {
+        stats.Health.OnValueChange += OnDamageTaken;
+    }
 
-    //         // Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.closeRangeActionDistance), 0.2f);
-	// 		Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.minAgroDistance), 0.2f);
-	// 		Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * entityData.maxAgroDistance), 0.2f);
-    //     }
-    // }
+    private void OnDisable()
+    {
+        stats.Health.OnValueChange -= OnDamageTaken;
+    }
+
+    public virtual void ResetStun() 
+    {
+		isStunned = false;
+		// currentStunResistance = entityData.stunResistance;
+	}
+
+        // For saving & loading
+    public Vector2 Position
+    {
+        get => transform.position;
+        set => transform.position = value;
+    }
+
+    public void LoadData(GameData data)
+    {
+        if (string.IsNullOrEmpty(UniqueId))
+        {
+            Debug.LogError($"{name} has no UniqueID assigned. Cannot load data.");
+            return;
+        }
+        if (data.enemyData.Count==0)
+        {
+            return;
+        }
+        // Find the enemy data in the list using this entity's unique id
+        GameData.EnemyData? enemyData = data.enemyData?.Find(e => e.UniqueId == UniqueId);
+
+        if (enemyData.HasValue)
+        {
+            // Safely use enemyData
+            Position = enemyData.Value.Position.ToVector2();
+            stats.Health.CurrentValue = enemyData.Value.CurrentHp;
+            stats.Health.MaxValue = enemyData.Value.MaxHp;
+            gameObject.SetActive(enemyData.Value.IsAlive);
+        }
+        else
+        {
+            // Handle the case where enemyData is null or not found
+            Debug.LogWarning($"EnemyData not found for UniqueId: {UniqueId}");
+        }
+
+    }
+
+    public void SaveData(GameData data)
+    {
+        if (string.IsNullOrEmpty(UniqueId))
+        {
+            Debug.LogError($"{name} has no UniqueID assigned. Cannot save data.");
+            return;
+        }
+
+        GameData.EnemyData enemySaveData = new GameData.EnemyData(
+            UniqueId,
+            new GameData.Vector2Data(Position), // Convert Vector2 to Vector2Data,
+            stats.Health.CurrentValue,
+            stats.Health.MaxValue,
+            stats.Health.CurrentValue > 0
+        );
+
+        int index = data.enemyData.FindIndex(e => e.UniqueId == UniqueId);
+        if (index >= 0)
+        {
+            data.enemyData[index] = enemySaveData;
+        }
+        else
+        {
+            data.enemyData.Add(enemySaveData);
+        }
+    }
+    
+    public void SaveSaveData(SaveData data)
+    {
+ 
+    }
+    public void LoadSaveData(SaveData data)
+    {
+ 
+    }
 }

@@ -22,6 +22,7 @@ namespace Game.Weapons
         public event Action<bool> OnSetOptionalSpriteActive;
 
         public event Action<bool> OnFlipSetActive; 
+        public event Action<bool> OnInterruptableSetActive;
 
         public event Action<AttackPhases> OnEnterAttackPhase;
 
@@ -45,6 +46,8 @@ namespace Game.Weapons
 
         private void SetFlipActive() => OnFlipSetActive?.Invoke(true);
         private void SetFlipInactive() => OnFlipSetActive?.Invoke(false);
+        private void SetInterruptableSetActive() => OnInterruptableSetActive?.Invoke(true);
+        private void SetInterruptableSetInActive() => OnInterruptableSetActive?.Invoke(false);
 
         private void EnterAttackPhase(AttackPhases phase) => OnEnterAttackPhase?.Invoke(phase);
 

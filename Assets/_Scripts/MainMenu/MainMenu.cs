@@ -1,19 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 
-namespace Game.CoreSystem
-{
+
 public class MainMenu : MonoBehaviour
 {
+    [Header("Menu Navigation")]
+    [SerializeField] private SaveSlotsMenu saveSlotsMenu;
+    [SerializeField] private TextMeshProUGUI savesBtnText;
     public string GameSceneName;
-    public TMP_Text[] saveSlotTexts;
-    private SaveSystem.SaveData data;
 
     private async void Awake()
     {
@@ -31,87 +30,95 @@ public class MainMenu : MonoBehaviour
         string playerName = PlayerPrefs.GetString("PlayerName", "Player");
         Debug.Log("Loaded Player Name: " + playerName);  // Verify the name is loaded correctly
 
-        int slot = PlayerPrefs.GetInt("SaveSlot", -1);  // Use -1 for invalid/default case
-        if (SaveSystem.SaveExists(slot))
-        {
-            data = SaveSystem.LoadGame(slot);
-        }
-        else
-        {
-            slot = 1;  // Force it to slot 1 if nothing valid is found
-            data = SaveSystem.InitializeDefaultSave(slot);
-            Debug.Log("Creating Initial Save in Slot 1");
-            PlayerPrefs.SetInt("SaveSlot", slot);  // Save the default slot
-        }
-        DisplaySaveSlots();
-    }
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
-    private void DisplaySaveSlots()
-    {
-        for (int i = 1; i <= 3; i++)
-        {
-            SaveSystem.SaveData tempData = SaveSystem.LoadGame(i);
-            if (tempData != null)
-            {
-                int roundedTimePlayed = Mathf.FloorToInt(tempData.playTime); 
+        string currentSave = DataPersistenceManager.instance.GetSelectedProfileId();
 
-                // Assuming saveSlotTexts[i-1] corresponds to the TextMeshPro element for save slot i
-                saveSlotTexts[i - 1].text = $"Slot {i}:\n" +
-                                             $"Time Played: {roundedTimePlayed} seconds\n" +
-                                             $"Characters Unlocked: {string.Join(", ", tempData.unlockedCharacters)}";
-            }
-            else
+        if(currentSave != "1" && currentSave != "2" && currentSave != "3")
+        {
+            currentSave = "1";
+            DataPersistenceManager.instance.ChangeSelectedProfileId(currentSave);
+            if (!DataPersistenceManager.instance.HasGameData())
             {
-                saveSlotTexts[i - 1].text = $"Create Save";
+                DataPersistenceManager.instance.NewGame();
+                DataPersistenceManager.instance.SaveGame();
             }
-        }
+        }   
+
+        savesBtnText.text = "Save Slot: " + currentSave;
     }
     public void Play()
     {
-        int slot = PlayerPrefs.GetInt("SaveSlot", -1);  // Default to slot 1 if not found
-        Debug.Log($"Selected Slot: {slot}");
-
-        if (slot > 0 && data != null)
+        if (DataPersistenceManager.instance.HasGameData())
         {
-            SceneManager.LoadScene(GameSceneName);
+            // Save current data and load the game
+            DataPersistenceManager.instance.SaveGame();
+            SceneManager.LoadSceneAsync(GameSceneName);
         }
         else
         {
-            Debug.Log("Cannot Find Valid Save File");
+            string currentSave = DataPersistenceManager.instance.GetSelectedProfileId();
+            if(currentSave != "1" || currentSave != "2" || currentSave != "3")
+            {
+                currentSave = "1";
+                DataPersistenceManager.instance.ChangeSelectedProfileId(currentSave);
+                if (!DataPersistenceManager.instance.HasGameData())
+                {
+                    DataPersistenceManager.instance.NewGame();
+                    DataPersistenceManager.instance.SaveGame();
+                }
+            }   
+
+            SceneManager.LoadSceneAsync(GameSceneName);
         }
+    }
+    public void OnSavesClicked()
+    {
+        saveSlotsMenu.ActivateMenu();
+        this.DeactivateMenu();
     }
     public void Quit()
     {
         Application.Quit();
     }
-    public void LoadSaveSlot(int slot)
+    public void ActivateMenu()
     {
-        if (SaveSystem.SaveExists(slot))
-        {
-            data = SaveSystem.LoadGame(slot);
-            PlayerPrefs.SetInt("SaveSlot", slot);  // Save the correct slot
-            Debug.Log($"Save Slot Set To: {slot}");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("SaveSlot", slot);  // Save the correct slot
-            data = SaveSystem.InitializeDefaultSave(slot);
-            DisplaySaveSlots();
-            Debug.Log("Creating Default Save For Slot: "+slot);
-        }
+        this.gameObject.SetActive(true);
+    }
+    public void DeactivateMenu()
+    {
+        this.gameObject.SetActive(false);
     }
 
-    public void DeleteSaveSlot(int slot)
+    private void OnDestroy()
     {
-        if(SaveSystem.SaveExists(slot))
+        // Unsubscribe from sceneLoaded event to avoid memory leaks
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Check if the current scene is the Main Menu
+        if (scene.name == "MainMenu") // Replace "MainMenu" with your actual scene name
         {
-            SaveSystem.DeleteSave(slot);
-            DisplaySaveSlots();
-        }
-        else
-        {
-            Debug.Log("Save Does Not Exist");
+            string currentSave = DataPersistenceManager.instance.GetSelectedProfileId();
+
+            // Ensure a valid save slot is set
+            if (currentSave != "1" && currentSave != "2" && currentSave != "3")
+            {
+                currentSave = "1";
+                DataPersistenceManager.instance.ChangeSelectedProfileId(currentSave);
+
+                if (!DataPersistenceManager.instance.HasGameData())
+                {
+                    DataPersistenceManager.instance.NewGame();
+                    DataPersistenceManager.instance.SaveGame();
+                }
+            }
+
+            // Set the save slots button text
+            savesBtnText.text = "Save Slot: " + currentSave;
+
         }
     }
-}
 }

@@ -13,9 +13,9 @@ public class EnemyState
 
     protected string animBoolName;
 
-    public EnemyState(Entity etity,  string animBoolName)
+    public EnemyState(Entity entity,  string animBoolName)
     {
-        this.entity = etity;
+        this.entity = entity;
         this.animBoolName = animBoolName;
         stateMachine = entity.stateMachine;
         core = entity.Core;

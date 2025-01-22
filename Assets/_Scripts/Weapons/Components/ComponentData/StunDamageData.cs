@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 namespace Game.Weapons.Components
 {
     public class StunDamageData : ComponentData<AttackStunDamage>

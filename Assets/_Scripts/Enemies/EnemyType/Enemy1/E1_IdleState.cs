@@ -25,9 +25,9 @@ public class E1_IdleState : IdleState
     {
         base.LogicUpdate();
 
-        if (isPlayerInMinAgroRange)
+        if (isPlayerInAgroRange && isPlayerInPursuitRange)
         {
-            stateMachine.ChangeState(enemy.playerDetectedState); // Assuming `moveState` is the correct transition here
+            stateMachine.ChangeState(enemy.playerDetectedState);
         }
         else if (isIdleTimeOver)
         {

@@ -16,6 +16,9 @@ public class PlayerActionState : PlayerState
 
 	private bool isGrounded;
 	protected bool isTouchingWall;
+	protected bool jumpInput;
+	protected bool dashInput;
+	protected bool[] attackInputs;
 
     public PlayerActionState(Player player, string animBoolName) : base(player, animBoolName)
     {
@@ -39,6 +42,10 @@ public class PlayerActionState : PlayerState
 
     public override void LogicUpdate() {
 		base.LogicUpdate();
+
+		jumpInput = player.InputHandler.JumpInput;
+        dashInput = player.InputHandler.DashInput;
+		attackInputs = player.InputHandler.AttackInputs;
 
 		if (isActionDone) 
 		{

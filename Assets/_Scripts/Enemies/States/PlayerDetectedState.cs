@@ -14,11 +14,16 @@ public class PlayerDetectedState : EnemyState
     protected D_PlayerDetected stateData;
     // protected Enemy1 enemy;  // Reference to the specific enemy type
 
-    protected bool isPlayerInMinAgroRange;
+    protected bool isPlayerInAgroRange;
+    protected bool isPlayerInPursuitRange;
     protected bool isPlayerInMaxAgroRange;
     protected bool isDetectingLedge;
     protected bool isDetectingWall;
     protected bool performCloseRangeAction;
+
+    protected bool isDetectedTimeOver;
+
+    protected float detectedTime;
 
     public PlayerDetectedState(Entity entity, string animBoolName, D_PlayerDetected stateData) : base(entity, animBoolName)
     {
@@ -30,7 +35,8 @@ public class PlayerDetectedState : EnemyState
     {
         base.DoChecks();
 
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
+        isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
         isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
         isDetectingLedge = CollisionSenses.LedgeVertical;
         performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
@@ -41,6 +47,8 @@ public class PlayerDetectedState : EnemyState
 
         base.Enter();
         Movement?.SetVelocityX(0f);
+        isDetectedTimeOver = false;
+        detectedTime = stateData.detectedTime;
     }
 
     public override void LogicUpdate()
@@ -49,29 +57,10 @@ public class PlayerDetectedState : EnemyState
 
         Movement?.SetVelocityX(0f);
 
-        /* if (!isPlayerInMaxAgroRange)
+        if (Time.time >= startTime + detectedTime)
         {
-            // Transition to idle state
-            stateMachine.ChangeState(enemy.idleState);
+            isDetectedTimeOver = true;
         }
-        else if (isPlayerInMinAgroRange)
-        {
-            // Change to move state to pursue the player
-            stateMachine.ChangeState(enemy.moveState);
-        }
-        else
-        {
-            // Keep pursuing if ledge is not detected
-            if (!isDetectingLedge)
-            {
-                enemy.Flip();
-                stateMachine.ChangeState(enemy.moveState);
-            }
-            else
-            {
-                enemy.SetVelocity(stateData.movementSpeed);
-            }
-        } */
     }
 
     public override void PhysicsUpdate()

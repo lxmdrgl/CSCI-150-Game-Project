@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21946a6fe44e3d74aa0f95674507ad42, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  movementVelocity: 10
+  movementVelocity: 15
   jumpVelocity: 15
   amountOfJumps: 2
+  dashVelocity: 18
+  dashTime: 0.25
+  dashCooldown: 0.1
   coyoteTime: 0.2
   wallJumpVelocityX: 15
   wallJumpVelocityXMax: 15

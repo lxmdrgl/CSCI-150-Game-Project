@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using Game.Combat.Damage;
-//using Game.Combat.KnockBack;
-//using Game.Combat.PoiseDamage;
+using Game.Combat.KnockBack;
+using Game.Combat.StunDamage;
 using Game.CoreSystem;
 using UnityEngine;
 using Game.Utilities;
+using Unity.VisualScripting;
 
 public class MeleeAttackState : AttackState 
 {
@@ -18,7 +19,10 @@ public class MeleeAttackState : AttackState
 
 	protected D_MeleeAttack stateData;
 
-	public MeleeAttackState(Entity entity, string animBoolName, Transform attackPosition, D_MeleeAttack stateData) : base(entity, animBoolName, attackPosition) 
+	PolygonCollider2D hitbox;  
+	private List<Collider2D> detected = new List<Collider2D>();
+
+	public MeleeAttackState(Entity entity, string animBoolName, GameObject meleeAttackCollider, D_MeleeAttack stateData) : base(entity, animBoolName, meleeAttackCollider) 
 	{
 		this.stateData = stateData;
 	}
@@ -27,10 +31,18 @@ public class MeleeAttackState : AttackState
 	{
 		base.TriggerAttack();
 
-    	Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, stateData.attackRadius, stateData.whatIsPlayer);
+    	// Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, stateData.attackRadius, stateData.whatIsPlayer);
+
+		hitbox = meleeAttackCollider.gameObject.GetComponent<PolygonCollider2D>();
+
+		hitbox.enabled = true;
+
+		Physics2D.OverlapCollider(hitbox, detected);
+
+		Debug.Log("Detected: " + detected.ToArray() + "count: " +  detected.Count);
 
     	// Use the TryDamage utility to apply damage to detected objects
-    	if (CombatDamageUtilities.TryDamage(detectedObjects, new DamageData(stateData.attackDamage, core.Root), out var damageables))
+    	if (CombatDamageUtilities.TryDamage(detected.ToArray(), new DamageData(stateData.attackDamage, core.Root), out var damageables))
     	{
         	foreach (var damageable in damageables)
         	{
@@ -42,35 +54,20 @@ public class MeleeAttackState : AttackState
         	Debug.Log("No damageable objects detected");
     	}
 
-		/*
-		base.TriggerAttack();
-
-		Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, stateData.attackRadius, stateData.whatIsPlayer);
-
-		foreach (Collider2D collider in detectedObjects) 
-		{
-			IDamageable damageable = collider.GetComponent<IDamageable>();
-
-			if (damageable != null) 
-			{
-				Debug.Log("Dealing Damage");
-				damageable.Damage(new DamageData(stateData.attackDamage, core.Root));
-			}
-
-
-			/*
-			IKnockBackable knockBackable = collider.GetComponent<IKnockBackable>();
-
-			if (knockBackable != null) 
-			{
-				knockBackable.KnockBack(new KnockBackData(stateData.knockbackAngle, stateData.knockbackStrength, Movement.FacingDirection, core.Root));
-			}
-
-			if (collider.TryGetComponent(out IPoiseDamageable poiseDamageable))
-			{
-				poiseDamageable.DamagePoise(new PoiseDamageData(stateData.PoiseDamage, core.Root));
-			}
-		}
-		*/
+		bool didKnock = CombatKnockBackUtilities.TryKnockBack(detected.ToArray(), new KnockBackData(stateData.knockbackAngle, stateData.knockbackStrength, Movement.FacingDirection, core.Root), out _);
 	}
+
+    public override void FinishAttack()
+    {
+        base.FinishAttack();
+
+		hitbox.enabled = false;
+    }
+
+	public virtual void DisableHitbox() 
+	{
+		if (hitbox) {
+			hitbox.enabled = false;
+		}
+	} 
 }

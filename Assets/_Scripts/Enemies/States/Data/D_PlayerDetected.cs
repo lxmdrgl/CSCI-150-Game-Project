@@ -6,4 +6,6 @@ using UnityEngine;
 public class D_PlayerDetected : ScriptableObject
 {
     public float movementSpeed = 3f; // Added movement speed to fix the error
+
+    public float detectedTime = .25f;
 }

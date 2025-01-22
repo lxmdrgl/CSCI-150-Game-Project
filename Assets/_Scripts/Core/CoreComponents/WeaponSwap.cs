@@ -7,13 +7,14 @@ namespace Game.CoreSystem
 {
     public class WeaponSwap : CoreComponent
     {
-        public event Action<WeaponSwapChoiceRequest> OnChoiceRequested;
-        public event Action<WeaponData> OnWeaponDiscarded;
+        // public event Action<WeaponSwapChoiceRequest> OnChoiceRequested;
+        // public event Action<WeaponData> OnWeaponDiscarded;
 
         private InteractableDetector interactableDetector;
         private WeaponInventory weaponInventory;
 
         private WeaponData newWeaponData;
+        private int weaponIndex;
 
         private MajorUpgrade majorUpgrade;
 
@@ -25,8 +26,13 @@ namespace Game.CoreSystem
             majorUpgrade = pickup;
 
             newWeaponData = majorUpgrade.GetContext();
+            weaponIndex = (int)majorUpgrade.weaponIndex;
 
-            if (weaponInventory.TryGetEmptyIndex(out var index))
+            weaponInventory.TrySetWeapon(newWeaponData, weaponIndex, out _);
+            majorUpgrade.Interact();
+            newWeaponData = null;
+
+            /* if (weaponInventory.TryGetEmptyIndex(out var index))
             {
                 weaponInventory.TrySetWeapon(newWeaponData, index, out _);
                 interactable.Interact();
@@ -38,10 +44,10 @@ namespace Game.CoreSystem
                 HandleWeaponSwapChoice,
                 weaponInventory.GetWeaponSwapChoices(),
                 newWeaponData
-            ));
+            )); */
         }
 
-        private void HandleWeaponSwapChoice(WeaponSwapChoice choice)
+        /* private void HandleWeaponSwapChoice(WeaponSwapChoice choice)
         {
             if (!weaponInventory.TrySetWeapon(newWeaponData, choice.Index, out var oldData)) 
                 return;
@@ -55,7 +61,7 @@ namespace Game.CoreSystem
 
             majorUpgrade.Interact();
             
-        }
+        } */
 
         protected override void Awake()
         {
