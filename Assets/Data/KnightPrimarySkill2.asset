@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b320fd8433894df4e8f5abc27bf3fea1, type: 3}
-  m_Name: KnightPrimarySkill1
+  m_Name: KnightPrimarySkill2
   m_EditorClassIdentifier: 
   <Icon>k__BackingField: {fileID: 0}
-  <Name>k__BackingField: Knight Primary Skill 1
+  <Name>k__BackingField: Knight Primary Skill 2
   <Description>k__BackingField: Basic Sword Swing
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: f5c695431eb63e0438565fc316ffa064, type: 2}
   weaponIndex: 2

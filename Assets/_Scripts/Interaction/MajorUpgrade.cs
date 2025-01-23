@@ -15,7 +15,6 @@ namespace Game.Interaction.Interactables
         // [SerializeField] private Bobber bobber;
         
         [SerializeField] private WeaponData weaponData;
-        [SerializeField] public CombatInputs weaponIndex;
         
         public WeaponData GetContext() => weaponData;
         public void SetContext(WeaponData context)

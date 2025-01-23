@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 
 using Game.Weapons;
+using UnityEngine.Rendering;
+using System.Collections.Generic;
 
 namespace Game.CoreSystem
 {
@@ -9,18 +11,22 @@ namespace Game.CoreSystem
     {
         public event Action<int, WeaponData> OnWeaponDataChanged;
 
-        [field: SerializeField] public WeaponData[] weaponData { get; private set; }
+        [field: SerializeField] public WeaponDataSet weaponDataSet { get; private set; }
+        [field: SerializeField] public WeaponData[] currentWeaponData { get; private set; }
+        [field: SerializeField] public List<WeaponData> oldWeaponData { get; private set; }
+
 
         public bool TrySetWeapon(WeaponData newData, int index, out WeaponData oldData)
         {
-            if (index >= weaponData.Length)
+            if (index >= currentWeaponData.Length)
             {
                 oldData = null;
                 return false;
             }
 
-            oldData = weaponData[index];
-            weaponData[index] = newData;
+            oldData = currentWeaponData[index];
+            currentWeaponData[index] = newData;
+            oldWeaponData.Add(oldData);
 
             OnWeaponDataChanged?.Invoke(index, newData);
 
@@ -29,13 +35,13 @@ namespace Game.CoreSystem
 
         public bool TryGetWeapon(int index, out WeaponData data)
         {
-            if (index >= weaponData.Length)
+            if (index >= currentWeaponData.Length)
             {
                 data = null;
                 return false;
             }
 
-            data = weaponData[index];
+            data = currentWeaponData[index];
             return true;
         }
 

@@ -27,4 +27,12 @@ public class PlayerData : ScriptableObject
     public float wallJumpVelocityY = 10f;
     public float wallJumpTime = 0.4f;
 
+    [Header("Player Type")]
+    public PlayerType playerType = PlayerType.knight;
+
+}
+
+public enum PlayerType {
+    knight,
+    beast
 }
