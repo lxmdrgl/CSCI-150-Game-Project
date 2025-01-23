@@ -18,6 +18,8 @@ namespace Game.CoreSystem
 
         public bool TrySetWeapon(WeaponData newData, int index, out WeaponData oldData)
         {
+            Debug.Log($" {newData}, {index}");
+
             if (index >= currentWeaponData.Length)
             {
                 oldData = null;
@@ -26,7 +28,9 @@ namespace Game.CoreSystem
 
             oldData = currentWeaponData[index];
             currentWeaponData[index] = newData;
-            oldWeaponData.Add(oldData);
+            // oldWeaponData.Add(oldData);
+
+            Debug.Log($" my current data: {currentWeaponData[index]}");
 
             OnWeaponDataChanged?.Invoke(index, newData);
 
