@@ -16,10 +16,11 @@ MonoBehaviour:
   <Name>k__BackingField: Knight Primary Skill 2
   <Description>k__BackingField: Basic Sword Swing
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: f5c695431eb63e0438565fc316ffa064, type: 2}
-  weaponIndex: 2
+  <weaponIndex>k__BackingField: 0
   <NumberOfAttacks>k__BackingField: 1
   <AttackCounterCooldown>k__BackingField: 0
   <AttackCooldown>k__BackingField: 2
+  prereqWeapon: {fileID: 11400000, guid: c8ea6a7895ed42d4ebb0c4f799e39523, type: 2}
   <ComponentData>k__BackingField:
   - rid: 5949095188800471134
   - rid: 5949095222658203648
@@ -79,4 +80,4 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <Amount>k__BackingField: 20
+          <Amount>k__BackingField: 30

@@ -16,9 +16,11 @@ MonoBehaviour:
   <Name>k__BackingField: Knight Primary Attack 1
   <Description>k__BackingField: Basic Sword Swing
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: f5c695431eb63e0438565fc316ffa064, type: 2}
+  <weaponIndex>k__BackingField: 0
   <NumberOfAttacks>k__BackingField: 3
   <AttackCounterCooldown>k__BackingField: 2
   <AttackCooldown>k__BackingField: 0
+  prereqWeapon: {fileID: 0}
   <ComponentData>k__BackingField:
   - rid: 5949095188800471134
   - rid: 5949095222658203648
