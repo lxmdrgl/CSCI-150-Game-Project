@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b95265f99b6d90e438df1308a89c8bab
+timeCreated: 1514705461
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 104130
+  packageName: Bandits - Pixel Art
+  packageVersion: 2.2
+  assetPath: Assets/Bandits - Pixel Art/Animations/Light Bandit/LightBandit_AnimController.controller
+  uploadId: 384983

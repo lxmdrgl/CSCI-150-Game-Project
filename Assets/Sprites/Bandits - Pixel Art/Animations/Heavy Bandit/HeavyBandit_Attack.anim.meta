@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 55855508312d92143a67a54f910896a0
+timeCreated: 1514705794
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 104130
+  packageName: Bandits - Pixel Art
+  packageVersion: 2.2
+  assetPath: Assets/Bandits - Pixel Art/Animations/Heavy Bandit/HeavyBandit_Attack.anim
+  uploadId: 384983

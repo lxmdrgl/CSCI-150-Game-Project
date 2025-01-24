@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6862262ae453990458ce4d7bffa67e7d
+timeCreated: 1514705854
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 104130
+  packageName: Bandits - Pixel Art
+  packageVersion: 2.2
+  assetPath: Assets/Bandits - Pixel Art/Animations/Heavy Bandit/HeavyBandit_Jump.anim
+  uploadId: 384983
