@@ -28,7 +28,7 @@ namespace Game.CoreSystem
             newWeaponData = majorUpgrade.GetContext();
             weaponIndex = (int)newWeaponData.weaponIndex;
 
-            weaponInventory.TrySetWeapon(newWeaponData, weaponIndex, out _);
+            weaponInventory.TrySetWeapon(newWeaponData, weaponIndex);
             majorUpgrade.Interact();
             newWeaponData = null;
 

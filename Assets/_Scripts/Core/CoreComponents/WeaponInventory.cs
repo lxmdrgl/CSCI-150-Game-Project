@@ -16,9 +16,9 @@ namespace Game.CoreSystem
         [field: SerializeField] public List<WeaponData> oldWeaponData { get; private set; }
 
 
-        public bool TrySetWeapon(WeaponData newData, int index, out WeaponData oldData)
+        public bool TrySetWeapon(WeaponData newData, int index)
         {
-            Debug.Log($" {newData}, {index}");
+            WeaponData oldData;
 
             if (index >= currentWeaponData.Length)
             {
@@ -28,9 +28,10 @@ namespace Game.CoreSystem
 
             oldData = currentWeaponData[index];
             currentWeaponData[index] = newData;
-            // oldWeaponData.Add(oldData);
 
-            Debug.Log($" my current data: {currentWeaponData[index]}");
+            if (oldData != null) {
+                oldWeaponData.Add(oldData);
+            }
 
             OnWeaponDataChanged?.Invoke(index, newData);
 
