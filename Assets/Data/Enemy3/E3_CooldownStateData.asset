@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4da74f5e8a2c724da789d24e3df4110, type: 3}
   m_Name: E3_CooldownStateData
   m_EditorClassIdentifier: 
-  minAttackCooldown: 1
-  maxAttackCooldown: 2
+  minAttackCooldown: 0.5
+  maxAttackCooldown: 1

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: E3_MeleeAttackData
   m_EditorClassIdentifier: 
   attackRadius: 0.5
-  attackDamage: 50
+  attackDamage: 15
   knockbackAngle: {x: 2, y: 3}
-  knockbackStrength: 50
+  knockbackStrength: 0
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256
