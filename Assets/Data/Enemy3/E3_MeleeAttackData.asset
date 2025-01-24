@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36204a31c4b56942a0d414a57fe15c5, type: 3}
   m_Name: E3_MeleeAttackData
   m_EditorClassIdentifier: 
-  attackRadius: 0.5
+  attackRadius: 1
   attackDamage: 15
   knockbackAngle: {x: 2, y: 3}
   knockbackStrength: 0

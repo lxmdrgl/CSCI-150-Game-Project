@@ -31,6 +31,8 @@ public class E1_ChargeState : ChargeState
     {
         base.LogicUpdate();
 
+        Movement?.SetVelocityX(stateData.chargeSpeed * Movement.FacingDirection);
+
         if (performCloseRangeAction)
         {
             stateMachine.ChangeState(enemy.meleeAttackState);

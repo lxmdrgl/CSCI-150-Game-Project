@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02b076e243c4b344a7f5d0339b942e2, type: 3}
   m_Name: E3_BaseData
   m_EditorClassIdentifier: 
-  agroRange: 10
-  pursuitRange: 10
+  agroRange: 20
+  pursuitRange: 20
   maxAgroDistance: 20
-  closeRangeActionDistance: 1
+  closeRangeActionDistance: 1.25
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
