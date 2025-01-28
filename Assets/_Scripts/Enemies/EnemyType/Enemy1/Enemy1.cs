@@ -40,7 +40,7 @@ public class Enemy1 : Entity
     {
         base.Awake();
         meleeAttackCollider = transform.Find("MeleeAttackCollider").gameObject;
-        Debug.Log("meleeAttackCollider: " + meleeAttackCollider);
+        // Debug.Log("meleeAttackCollider: " + meleeAttackCollider);
 
 
         moveState = new E1_MoveState(this, "move", moveStateData, this);
