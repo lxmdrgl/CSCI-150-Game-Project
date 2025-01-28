@@ -348,6 +348,7 @@ MonoBehaviour:
   <Stun>k__BackingField:
     <MaxValue>k__BackingField: 30
     damageTaken: 0
+  <Attack>k__BackingField: 100
   stunRecoveryRate: 5
   filledBar: {fileID: 0}
   gradient:

@@ -599,7 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1504280147
+  GlobalObjectIdHash: 4084317809
   InScenePlacedSourceGlobalObjectIdHash: 1266653283
   DeferredDespawnTick: 0
   Ownership: 1
@@ -744,11 +744,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fa9f07ce4cf9404589d09152d29f0ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <weaponData>k__BackingField:
+  <weaponDataSet>k__BackingField: {fileID: 11400000, guid: b7fff6ca91113b147941d5f19a832c4d, type: 2}
+  <currentWeaponData>k__BackingField:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  <oldWeaponData>k__BackingField: []
 --- !u!1 &4752368789924137004
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,8 +832,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3479082524440296537}
   - component: {fileID: 3192253203105924372}
+  - component: {fileID: 2395360329323393821}
   m_Layer: 8
-  m_Name: WeaponSwap
+  m_Name: Upgrades
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -862,6 +865,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f52c586a4af90a64bb4dddc88eccfe3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2395360329323393821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5558434771351811997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edbd2db88da23646b490e0fde96fbf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6414426686700396502
@@ -1095,8 +1110,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 100
+    damageTaken: 0
   <Stun>k__BackingField:
     <MaxValue>k__BackingField: 0
+    damageTaken: 0
+  <Attack>k__BackingField: 100
   stunRecoveryRate: 0
   filledBar: {fileID: 0}
   gradient:

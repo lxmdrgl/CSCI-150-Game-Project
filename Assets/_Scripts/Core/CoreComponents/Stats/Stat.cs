@@ -9,7 +9,7 @@ namespace Game.CoreSystem.StatsSystem
         public event Action OnCurrentValueZero;
         public event Action OnValueChange;
 
-        public event Action<float> OnValueChangeFloat;
+        // public event Action<float> OnValueChangeFloat;
         
         [field: SerializeField] public float MaxValue { get; set; }
 
@@ -43,7 +43,14 @@ namespace Game.CoreSystem.StatsSystem
             damageTaken = amount;
             CurrentValue -= amount;    
             OnValueChange?.Invoke();
-            OnValueChangeFloat?.Invoke(amount);
+            // OnValueChangeFloat?.Invoke(amount);
+        }
+
+        public void IncreaseMaxValue(float amount) {
+            float ratio = currentValue / MaxValue;
+            MaxValue += amount;
+            currentValue = ratio * MaxValue;
+            OnValueChange?.Invoke();
         }
 
     }
