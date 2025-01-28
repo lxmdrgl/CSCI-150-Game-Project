@@ -22,7 +22,10 @@ public class DamageFlash : MonoBehaviour
 
     public void CallDamageFlash()
     {
-        damageFlashCoroutine = StartCoroutine(DamageFlasher());
+        if(gameObject.activeInHierarchy)
+        {
+            damageFlashCoroutine = StartCoroutine(DamageFlasher());
+        }
     }
 
     private IEnumerator DamageFlasher()
