@@ -32,7 +32,7 @@ public class ChargeState : EnemyState
 		base.DoChecks();
 
 		isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
-		isPlayerInPursuitRange = entity.CheckPlayerInAgroRange();
+		isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
 		isDetectingLedge = CollisionSenses.LedgeVertical;
 		isDetectingWall = CollisionSenses.WallFront;
 		performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
@@ -49,10 +49,9 @@ public class ChargeState : EnemyState
 		base.Exit();
 	}
 
-	public override void LogicUpdate() {
+	public override void LogicUpdate() 
+	{
 		base.LogicUpdate();
-
-		Movement?.SetVelocityX(stateData.chargeSpeed * Movement.FacingDirection);
 	}
 
 	public override void PhysicsUpdate() {
