@@ -1,16 +1,24 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
     public GameObject player;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float y_offset = 1;
+
+    [SerializeField] private CinemachineCamera cinemachineCamera;
+
+    void Awake()
+    {
+        player = Instantiate(player, new Vector3(transform.position.x, y_offset, 0), transform.rotation);
+        cinemachineCamera.Target.TrackingTarget = player.transform;
+    }
+    
     void Start()
     {
-        Instantiate(player, new Vector3(transform.position.x, -0.5f, 0), transform.rotation);
+        
     }
-
-    // Update is called once per frame
     void Update()
     {
         

@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 3084334527185242176}
   - component: {fileID: 6426281713410507453}
   m_Layer: 0
-  m_Name: RoomExit
+  m_Name: RoomEntrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,7 +133,7 @@ Tilemap:
   m_GameObject: {fileID: 4487379232191985272}
   m_Enabled: 1
   m_Tiles:
-  - first: {x: -2, y: -2, z: 0}
+  - first: {x: -1, y: -2, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -143,7 +143,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -2, y: -1, z: 0}
+  - first: {x: -1, y: -1, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -153,7 +153,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -2, y: 0, z: 0}
+  - first: {x: -1, y: 0, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -163,7 +163,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -2, y: 1, z: 0}
+  - first: {x: -1, y: 1, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -176,12 +176,12 @@ Tilemap:
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 4
-    m_Data: {fileID: 11400000, guid: ff722b3b8bad33a4ba42b2beed504f00, type: 2}
+    m_Data: {fileID: 11400000, guid: 1850b6d42f7e41045a4796330ee0663e, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 4
-    m_Data: {fileID: 1023125315, guid: 74a7f031d41ae564696776d0343380c0, type: 3}
+    m_Data: {fileID: -1360117173, guid: 74a7f031d41ae564696776d0343380c0, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileMatrixArray:

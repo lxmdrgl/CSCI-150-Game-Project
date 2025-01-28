@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1336391331439146869, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
+  y_offset: 1
+  cinemachineCamera: {fileID: 0}

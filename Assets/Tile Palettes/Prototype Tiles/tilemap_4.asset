@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: prototype_tiles_2
+  m_Name: tilemap_4
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -515419349, guid: a943dd5336185fa43ab0ad9fdeb628fe, type: 3}
+  m_Sprite: {fileID: -335815384, guid: 74a7f031d41ae564696776d0343380c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -31,6 +31,6 @@ MonoBehaviour:
     e31: 0
     e32: 0
     e33: 1
-  m_InstancedGameObject: {fileID: 354756271630089021, guid: b4b3742025df3384f878390283752279, type: 3}
+  m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
