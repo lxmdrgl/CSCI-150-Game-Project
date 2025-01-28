@@ -18,7 +18,7 @@ TagManager:
   - Interactable
   - Damageable
   - Weapon
-  - 
+  - PlayerDamageable
   - 
   - 
   - 
