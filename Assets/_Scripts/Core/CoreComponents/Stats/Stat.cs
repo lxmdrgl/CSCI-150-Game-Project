@@ -49,7 +49,7 @@ namespace Game.CoreSystem.StatsSystem
         public void IncreaseMaxValue(float amount) {
             float ratio = currentValue / MaxValue;
             MaxValue += amount;
-            currentValue = ratio * MaxValue;
+            currentValue = Mathf.Round(ratio * MaxValue);
             OnValueChange?.Invoke();
         }
 

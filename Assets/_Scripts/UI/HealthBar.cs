@@ -15,7 +15,7 @@ public class HealthBar : MonoBehaviour
     void Start() {
         healthSlider.maxValue = stats.Health.MaxValue;
         healthSlider.value = stats.Health.CurrentValue;
-        healthText.text = (int)healthSlider.value + "/" + (int)healthSlider.maxValue;
+        healthText.text = healthSlider.value + "/" + healthSlider.maxValue;
 
         easeSlider.maxValue = stats.Health.MaxValue;
         easeSlider.value = stats.Health.CurrentValue;
@@ -31,7 +31,7 @@ public class HealthBar : MonoBehaviour
         healthSlider.maxValue = stats.Health.MaxValue;
         healthSlider.value = stats.Health.CurrentValue;
         easeSlider.maxValue = stats.Health.MaxValue;
-        healthText.text = (int)healthSlider.value + "/" + (int)healthSlider.maxValue;
+        healthText.text = healthSlider.value + "/" + healthSlider.maxValue;
     }
 
     private void OnEnable()

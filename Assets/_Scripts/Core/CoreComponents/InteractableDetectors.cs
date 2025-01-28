@@ -24,7 +24,7 @@ namespace Game.CoreSystem
             if(!inputValue || closestInteractable is null)
                 return;
 
-            Debug.Log("TryInteract called with closest interactable: " + closestInteractable);
+            // Debug.Log("TryInteract called with closest interactable: " + closestInteractable);
             OnTryInteract?.Invoke(closestInteractable);
         }
         

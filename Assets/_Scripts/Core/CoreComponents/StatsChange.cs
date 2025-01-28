@@ -20,15 +20,15 @@ namespace Game.CoreSystem
 
         private void HandleTryInteract(IInteractable interactable)
         {
-            UnityEngine.Debug.Log("HandleTryInteract called in StatsChange");
+            // UnityEngine.Debug.Log("HandleTryInteract called in StatsChange");
 
             if (interactable is not MinorUpgrade pickup)
             {
-                UnityEngine.Debug.Log("Interactable is not a MinorUpgrade");
+                // UnityEngine.Debug.Log("Interactable is not a MinorUpgrade");
                 return;
             }
 
-            UnityEngine.Debug.Log("MinorUpgrade detected");
+            // UnityEngine.Debug.Log("MinorUpgrade detected");
 
             minorUpgrade = pickup;
 
@@ -50,7 +50,7 @@ namespace Game.CoreSystem
 
         private void OnEnable()
         {
-            UnityEngine.Debug.Log("StatsChange OnEnable");
+            // UnityEngine.Debug.Log("StatsChange OnEnable");
             interactableDetector.OnTryInteract += HandleTryInteract;
         }
 
