@@ -127,13 +127,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2101077910993159776, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101077910993159776, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4899015308605980428, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 36
+      value: 84
       objectReference: {fileID: 0}
     - target: {fileID: 4899015308605980428, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.5
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 4899015308605980428, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: m_LocalPosition.z
@@ -171,6 +179,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: endRoom
+      value: 
+      objectReference: {fileID: 779542766035120233, guid: d1c59adb834e4a743af750cac7316a5d, type: 3}
+    - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: startRoom
+      value: 
+      objectReference: {fileID: 1343452053090071531, guid: a3a952f23387a75409724bb9a48b2bcf, type: 3}
+    - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: hallways.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: 'hallways.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8268197781274967063, guid: fd793c959f17c3446a520431f7aaa62d, type: 3}
+    - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: 'hallways.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8268197781274967063, guid: 05f34538b3996cf4088c376878690713, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
