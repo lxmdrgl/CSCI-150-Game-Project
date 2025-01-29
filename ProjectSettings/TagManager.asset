@@ -18,8 +18,10 @@ TagManager:
   - Interactable
   - Damageable
   - Weapon
-  - 
+  - PlayerDamageable
   - Room
+  - 
+  - 
   - 
   - 
   - 

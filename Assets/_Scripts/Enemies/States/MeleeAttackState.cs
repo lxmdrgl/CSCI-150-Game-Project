@@ -55,6 +55,12 @@ public class MeleeAttackState : AttackState
     	}
 
 		bool didKnock = CombatKnockBackUtilities.TryKnockBack(detected.ToArray(), new KnockBackData(stateData.knockbackAngle, stateData.knockbackStrength, Movement.FacingDirection, core.Root), out _);
+		/* if (didKnock) {
+			Debug.Log("Enemy Knocking Player Back");
+		}
+		else {
+			Debug.Log("No knockbackable objects detected");
+		} */
 	}
 
     public override void FinishAttack()

@@ -348,6 +348,7 @@ MonoBehaviour:
   <Stun>k__BackingField:
     <MaxValue>k__BackingField: 30
     damageTaken: 0
+  <Attack>k__BackingField: 0
   stunRecoveryRate: 5
   filledBar: {fileID: 0}
   gradient:
@@ -1098,7 +1099,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2697570814187950225}
   - component: {fileID: 8238347356904471690}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: MeleeAttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
