@@ -4,14 +4,9 @@ using UnityEngine;
 [ExecuteAlways]
 public class RoomExit : MonoBehaviour
 {
-    public enum Direction {
-        Right,
-        Up,
-        Left,
-        Down
-    }
-
+    public enum Direction { Right, Up, Left, Down }
     public Direction exitDirection;
+    public bool isDone = false;
 
     void Start()
     {

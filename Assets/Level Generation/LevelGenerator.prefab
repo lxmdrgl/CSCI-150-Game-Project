@@ -47,10 +47,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9c98e2ba1a4b24993d0213d29aed03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingRoom: {fileID: 8268197781274967063, guid: a3a952f23387a75409724bb9a48b2bcf, type: 3}
   player: {fileID: 1336391331439146869, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
   playerOffset: 2
   cinemachineCamera: {fileID: 9036539549934334048}
+  startRoom: {fileID: 0}
+  hallways:
+  - {fileID: 0}
+  rooms:
+  - {fileID: 0}
+  endRoom: {fileID: 0}
 --- !u!1001 &7726647097500563541
 PrefabInstance:
   m_ObjectHideFlags: 0
