@@ -1063,6 +1063,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
+  platformTag: Platform
   ledgeCheckVertical: {fileID: 0}
 --- !u!1 &8721837643625310239
 GameObject:

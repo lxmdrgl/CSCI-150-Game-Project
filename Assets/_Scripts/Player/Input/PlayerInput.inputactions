@@ -364,7 +364,7 @@
                 {
                     "name": "One Modifier",
                     "id": "7aac5ff2-7ff6-44a4-b6ac-bd61436d3f80",
-                    "path": "OneModifier",
+                    "path": "OneModifier(overrideModifiersNeedToBePressedFirst=true)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -397,7 +397,7 @@
                 {
                     "name": "One Modifier",
                     "id": "68837bce-ae5f-43c3-84b9-e268d6bd03a8",
-                    "path": "OneModifier",
+                    "path": "OneModifier(overrideModifiersNeedToBePressedFirst=true)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -430,7 +430,7 @@
                 {
                     "name": "One Modifier",
                     "id": "4457310f-a0b9-4d37-849c-9d25fa0242ed",
-                    "path": "OneModifier",
+                    "path": "OneModifier(overrideModifiersNeedToBePressedFirst=true)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

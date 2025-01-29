@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework.Interfaces;
 using UnityEngine;
 
 namespace Game.CoreSystem
@@ -30,12 +31,27 @@ namespace Game.CoreSystem
         [SerializeField] private Vector2 groundCheckSize;
         [SerializeField] private float wallCheckDistance;
         [SerializeField] private LayerMask whatIsGround;
+        [SerializeField] private string platformTag;
         [SerializeField] private Transform ledgeCheckVertical;
 
         public bool Ground 
         {
             get => Physics2D.OverlapBox(GroundCheck.position, groundCheckSize, 0f, whatIsGround);
 		}
+
+        public bool Platform 
+        {
+            get
+            {
+                Collider2D collider = Physics2D.OverlapBox(GroundCheck.position, groundCheckSize, 0f, whatIsGround);
+                return collider != null && collider.CompareTag(platformTag);
+            }
+        }
+
+        public Collider2D PlatformCollider 
+        {
+            get => Physics2D.OverlapBox(GroundCheck.position, groundCheckSize, 0f, whatIsGround);
+        }
 
         public bool WallFront 
         {
