@@ -23,9 +23,13 @@ public class PlayerGroundedState : PlayerState
     private CollisionSenses collisionSenses;
 
     private bool jumpInput;
+    private bool downJumpInput;
     private bool dashInput;
     private bool isGrounded;
     private bool isTouchingWall;
+
+    private bool isOnPlatform;
+    private Collider2D platformDropped = null;
 
     public PlayerGroundedState(Player player, string animBoolName) : base(player, animBoolName)
     {
@@ -39,6 +43,7 @@ public class PlayerGroundedState : PlayerState
         {
             isGrounded = CollisionSenses.Ground;
             isTouchingWall = CollisionSenses.WallFront;
+            isOnPlatform = CollisionSenses.Platform;
         }
     }
 
@@ -61,7 +66,13 @@ public class PlayerGroundedState : PlayerState
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
         jumpInput = player.InputHandler.JumpInput;
+        downJumpInput = player.InputHandler.DownJumpInput;
         dashInput = player.InputHandler.DashInput;
+        
+        if (platformDropped != null) {
+            Physics2D.IgnoreCollision(platformDropped, player.boxCollider, false);
+            platformDropped = null;
+        }
 
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanAttack())
         {
@@ -83,6 +94,11 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.DashState);
         }
+        else if (downJumpInput && isOnPlatform)
+        {
+            Physics2D.IgnoreCollision(CollisionSenses.PlatformCollider, player.boxCollider, true);
+            platformDropped = CollisionSenses.PlatformCollider;
+        } 
         else if (jumpInput && player.JumpState.CanJump())
         {
             stateMachine.ChangeState(player.JumpState);
