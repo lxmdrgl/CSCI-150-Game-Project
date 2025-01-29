@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4665717594518068809}
   - component: {fileID: 3925955692947378238}
   m_Layer: 0
-  m_Name: Proto_ShortHallway
+  m_Name: Proto_Hallway2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
