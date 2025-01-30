@@ -33,6 +33,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D RB { get; private set; }
+    public Collider2D boxCollider { get; private set; }
 
     public InteractableDetector InteractableDetector { get; private set; }
 
@@ -105,6 +106,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
 
         RB = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<Collider2D>();
 
         StateMachine.Initialize(IdleState);
     }

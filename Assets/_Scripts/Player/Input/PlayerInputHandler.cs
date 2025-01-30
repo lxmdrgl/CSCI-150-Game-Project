@@ -15,6 +15,7 @@ public class PlayerInputHandler : MonoBehaviour
     public int NormInputX { get; private set; }
     public int NormInputY { get; private set; }
     public bool JumpInput { get; private set; }
+    public bool DownJumpInput { get; private set; }
     public bool DashInput { get; private set; }
     public bool MenuOpenInput { get; private set; }
     public bool UIMenuCloseInput { get; private set; }
@@ -41,10 +42,27 @@ public class PlayerInputHandler : MonoBehaviour
         NormInputY = Mathf.RoundToInt(RawMovementInput.y);
     }
 
-    public void OnJumpInput(InputAction.CallbackContext context)
+    public void OnDownJumpInput(InputAction.CallbackContext context)
     {
         if (context.started)
         {
+            Debug.Log("Down jump start");
+            DownJumpInput = true;
+            JumpInput = false;
+        }
+        
+        if (context.canceled)
+        {
+            Debug.Log("Down jump end");
+            DownJumpInput = false;
+        }
+    }
+
+    public void OnJumpInput(InputAction.CallbackContext context)
+    {
+        if (context.started && !DownJumpInput)
+        {
+            Debug.Log("Jump start");
             JumpInput = true;
         }
         

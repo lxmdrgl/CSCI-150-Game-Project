@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -18,9 +19,11 @@ TagManager:
   - Interactable
   - Damageable
   - Weapon
+  - PlayerDamageable
+  - Room
   - 
   - 
-  - 
+  - Platform
   - 
   - 
   - 
@@ -55,6 +58,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 4167343721
+    locked: 0
+  - name: Flying Enemy
+    uniqueID: 3038748239
     locked: 0
   - name: Damage Numbers
     uniqueID: 478558505

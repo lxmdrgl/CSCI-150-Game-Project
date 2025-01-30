@@ -30,6 +30,7 @@ public class HealthBar : MonoBehaviour
     private void UpdateSlider() {
         healthSlider.maxValue = stats.Health.MaxValue;
         healthSlider.value = stats.Health.CurrentValue;
+        easeSlider.maxValue = stats.Health.MaxValue;
         healthText.text = healthSlider.value + "/" + healthSlider.maxValue;
     }
 
