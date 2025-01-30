@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 namespace Game.Projectiles
 {
@@ -72,18 +72,18 @@ public class Projectile : MonoBehaviour
                 }
 
 
-                /*if (Mathf.Abs(xStartPos - transform.position.x) >= travelDistance && !isGravityOn)
+                if (Mathf.Abs(xStartPos - transform.position.x) >= travelDistance && !isGravityOn)
                 {
                     isGravityOn = true;
                     rb.gravityScale = gravity;
-                }*/
+                }
             }        
         }
 
         public void FireProjectile(float speed, float travelDistance, float damage)
         {
             this.speed = speed;
-            //this.travelDistance = travelDistance;
+            this.travelDistance = travelDistance;
             //attackDetails.damageAmount = damage;
         }
 
@@ -93,3 +93,4 @@ public class Projectile : MonoBehaviour
         }
     }
 }
+*/
