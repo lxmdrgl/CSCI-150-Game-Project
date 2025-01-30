@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Game.Projectiles;
 using UnityEngine;
@@ -54,4 +54,3 @@ public class RangedAttackState : AttackState
          projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, stateData.projectileDamage);
      }
  }
-*/
