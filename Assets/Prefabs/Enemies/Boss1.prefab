@@ -993,6 +993,7 @@ GameObject:
   - component: {fileID: 450821411952149343}
   - component: {fileID: 581854908924781414}
   - component: {fileID: 9084036125586147484}
+  - component: {fileID: 233324633438525128}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -1089,6 +1090,23 @@ MonoBehaviour:
   movement: {fileID: 831866209240220201}
   lerpSpeed: 0.05
   healthBarTransform: {fileID: 0}
+--- !u!114 &233324633438525128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7430220113669677794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fa3c9589e5a99f47a750fae17264622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSliderBoss: {fileID: 0}
+  easeSliderBoss: {fileID: 0}
+  healthTextBoss: {fileID: 0}
+  stats: {fileID: 0}
+  lerpSpeed: 0.05
 --- !u!1 &7713608560364900413
 GameObject:
   m_ObjectHideFlags: 0
