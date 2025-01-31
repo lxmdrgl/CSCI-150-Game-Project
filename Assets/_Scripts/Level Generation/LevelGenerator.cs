@@ -38,7 +38,7 @@ public class LevelGenerator : MonoBehaviour
         RoomManager currRoomMan;
         GameObject newRoom;
         RoomManager newRoomMan;
-        int numHallways = Random.Range(2, 5);
+        int numHallways = Random.Range(3, 5);
         int i = 0;
 
         // Instantiate multiple hallways

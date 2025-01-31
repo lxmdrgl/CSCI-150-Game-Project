@@ -15,12 +15,11 @@ public class UpgradeMenuManager : MonoBehaviour
     private PlayerInput playerInput;
 
     private FileDataHandler dataHandler;
-    private string selectedProfileId = "";
     
     
     private void Awake()
     {
-        selectedProfileId = DataPersistenceManager.instance.GetSelectedProfileId();
+        
     }
 
     void Start()
