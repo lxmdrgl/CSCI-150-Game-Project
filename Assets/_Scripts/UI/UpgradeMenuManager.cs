@@ -8,7 +8,6 @@ public class UpgradeMenuManager : MonoBehaviour
     [SerializeField] private GameObject player;
     
     [SerializeField] private GameObject UpgradeCanvasGO;
-    [SerializeField] private string fileName;
 
     private bool isPaused;
 
@@ -16,12 +15,11 @@ public class UpgradeMenuManager : MonoBehaviour
     private PlayerInput playerInput;
 
     private FileDataHandler dataHandler;
-    private string selectedProfileId = "";
     
     
     private void Awake()
     {
-        selectedProfileId = DataPersistenceManager.instance.GetSelectedProfileId();
+        
     }
 
     void Start()
