@@ -19,6 +19,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool DashInput { get; private set; }
     public bool MenuOpenInput { get; private set; }
     public bool UIMenuCloseInput { get; private set; }
+    public bool UpgradeOpenInput { get; private set; }
 
     public bool[] AttackInputs { get; private set; }
 
@@ -190,6 +191,22 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     public void UseUIMenuCloseInput() => UIMenuCloseInput = false;
+
+    public void OnUpgradeOpenInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            UpgradeOpenInput = true;
+            
+        }
+        
+        if (context.canceled)
+        {
+            UpgradeOpenInput = false;
+        }
+    }
+
+    public void UseUpgradeOpenInput() => UpgradeOpenInput = false;
 }
 
 public enum CombatInputs{

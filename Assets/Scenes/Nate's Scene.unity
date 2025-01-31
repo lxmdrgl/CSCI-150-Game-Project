@@ -194,11 +194,11 @@ PrefabInstance:
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: 'hallways.Array.data[0]'
       value: 
-      objectReference: {fileID: 8268197781274967063, guid: fd793c959f17c3446a520431f7aaa62d, type: 3}
+      objectReference: {fileID: 3925955692947378238, guid: 05f34538b3996cf4088c376878690713, type: 3}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: 'hallways.Array.data[1]'
       value: 
-      objectReference: {fileID: 8268197781274967063, guid: 05f34538b3996cf4088c376878690713, type: 3}
+      objectReference: {fileID: 3925955692947378238, guid: fd793c959f17c3446a520431f7aaa62d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
