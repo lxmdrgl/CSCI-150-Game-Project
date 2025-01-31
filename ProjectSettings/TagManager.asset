@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Platform
+  - Deathscreen
   layers:
   - Default
   - TransparentFX
@@ -24,8 +25,6 @@ TagManager:
   - 
   - 
   - Platform
-  - 
-  - 
   - 
   - 
   - 

@@ -31,7 +31,7 @@ namespace Game.CoreSystem
             if (core.transform.parent.gameObject.name == "Player") {
                 Debug.Log("Player died");
 
-                deathScreen = GameObject.Find("/DeathScreen");
+                deathScreen = GameObject.FindGameObjectWithTag("Deathscreen");
                 deathScreen.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
