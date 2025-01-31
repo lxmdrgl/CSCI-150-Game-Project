@@ -47,7 +47,7 @@ public class PlayerGroundedState : PlayerState
             isTouchingWall = CollisionSenses.WallFront;
             isOnPlatform = CollisionSenses.Platform;
             platformCollider = CollisionSenses.PlatformCollider;
-            platformOverlap = CollisionSenses.PlatformOverlap;
+            // platformOverlap = CollisionSenses.PlatformOverlap;
             
         }
     }

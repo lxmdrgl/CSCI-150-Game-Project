@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class DeathScreenManager : MonoBehaviour
 {
     [SerializeField] private GameObject deathScreenCanvasGO;
-    [SerializeField] private string fileName;
 
     private FileDataHandler dataHandler;
     private string selectedProfileId = "";
