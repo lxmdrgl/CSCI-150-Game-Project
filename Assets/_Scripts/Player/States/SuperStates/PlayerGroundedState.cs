@@ -30,6 +30,8 @@ public class PlayerGroundedState : PlayerState
 
     private bool isOnPlatform;
     private Collider2D platformDropped = null;
+    private Collider2D platformCollider = null;
+    private bool platformOverlap;
 
     public PlayerGroundedState(Player player, string animBoolName) : base(player, animBoolName)
     {
@@ -44,6 +46,9 @@ public class PlayerGroundedState : PlayerState
             isGrounded = CollisionSenses.Ground;
             isTouchingWall = CollisionSenses.WallFront;
             isOnPlatform = CollisionSenses.Platform;
+            platformCollider = CollisionSenses.PlatformCollider;
+            platformOverlap = CollisionSenses.PlatformOverlap;
+            
         }
     }
 
@@ -69,7 +74,8 @@ public class PlayerGroundedState : PlayerState
         downJumpInput = player.InputHandler.DownJumpInput;
         dashInput = player.InputHandler.DashInput;
         
-        if (platformDropped != null) {
+        if (platformDropped != null && !platformOverlap) {
+            Debug.Log("Reset platform collision");
             Physics2D.IgnoreCollision(platformDropped, player.boxCollider, false);
             platformDropped = null;
         }
@@ -96,8 +102,9 @@ public class PlayerGroundedState : PlayerState
         }
         else if (downJumpInput && isOnPlatform)
         {
-            Physics2D.IgnoreCollision(CollisionSenses.PlatformCollider, player.boxCollider, true);
-            platformDropped = CollisionSenses.PlatformCollider;
+            Debug.Log($"{CollisionSenses.PlatformCollider}, {player.boxCollider}");
+            Physics2D.IgnoreCollision(platformCollider, player.boxCollider, true);
+            platformDropped = platformCollider;
         } 
         else if (jumpInput && player.JumpState.CanJump())
         {

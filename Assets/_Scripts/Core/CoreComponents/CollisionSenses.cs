@@ -30,9 +30,13 @@ namespace Game.CoreSystem
         [SerializeField] private Transform wallCheck;
         [SerializeField] private Vector2 groundCheckSize;
         [SerializeField] private float wallCheckDistance;
+
+        [SerializeField] private Vector2 hitBoxPosition;
+        [SerializeField] private Vector2 hitBoxSize;
         [SerializeField] private LayerMask whatIsGround;
         [SerializeField] private string platformTag;
         [SerializeField] private Transform ledgeCheckVertical;
+
 
         public bool Ground 
         {
@@ -50,7 +54,24 @@ namespace Game.CoreSystem
 
         public Collider2D PlatformCollider 
         {
-            get => Physics2D.OverlapBox(GroundCheck.position, groundCheckSize, 0f, whatIsGround);
+            get {
+                Collider2D collider = Physics2D.OverlapBox(GroundCheck.position, groundCheckSize, 0f, whatIsGround);
+
+                if (collider != null && collider.CompareTag(platformTag))
+                {
+                    return collider;
+                } else {
+                    return null;
+                }
+            }
+        }
+
+        public bool PlatformOverlap {
+            get
+            {
+                Collider2D collider = Physics2D.OverlapBox(hitBoxPosition, hitBoxSize, 0f, whatIsGround);
+                return collider != null && collider.CompareTag(platformTag);
+            }
         }
 
         public bool WallFront 
