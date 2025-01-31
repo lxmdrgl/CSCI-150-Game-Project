@@ -8,7 +8,6 @@ public class UpgradeMenuManager : MonoBehaviour
     [SerializeField] private GameObject player;
     
     [SerializeField] private GameObject UpgradeCanvasGO;
-    [SerializeField] private string fileName;
 
     private bool isPaused;
 
