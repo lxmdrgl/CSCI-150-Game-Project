@@ -5,6 +5,7 @@ public class BossRoomTrigger : MonoBehaviour
     // Event or action that gets triggered when the player enters the boss room
     public delegate void OnPlayerEnterRoom();
     public static event OnPlayerEnterRoom PlayerEnteredBossRoom;
+    public GameObject healthBar;
 
     // Trigger when the player enters the boss room area
     private void OnTriggerEnter2D(Collider2D other)
@@ -21,6 +22,10 @@ public class BossRoomTrigger : MonoBehaviour
                 PlayerEnteredBossRoom.Invoke();
             }
         }
+
+        healthBar.SetActive(true);
+        Destroy(gameObject);
+
     }
 
     // Optional: Trigger when the player exits the boss room
@@ -30,6 +35,10 @@ public class BossRoomTrigger : MonoBehaviour
         {
             Debug.Log("Player has exited the boss room.");
         }
+    }
+
+    public void Awake() {
+        healthBar.SetActive(false);
     }
 }
 

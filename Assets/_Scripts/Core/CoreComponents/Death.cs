@@ -15,6 +15,7 @@ namespace Game.CoreSystem
 
         private Stats Stats => stats ? stats : core.GetCoreComponent(ref stats);
         private Stats stats;
+        public GameObject healthBar;
     
         public void Die()
         {
@@ -24,6 +25,8 @@ namespace Game.CoreSystem
             } */
         
             core.transform.parent.gameObject.SetActive(false);
+
+            healthBar.SetActive(false);
 
             if (core.transform.parent.gameObject.name == "Player") {
                 Debug.Log("Player died");
