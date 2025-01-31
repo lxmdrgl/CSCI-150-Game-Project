@@ -6,7 +6,7 @@ public class RE_RangedAttackState : RangedAttackState
 {
     private RangedEnemy enemy;
 
-    public RE_RangedAttackState(Entity etity, FiniteStateMachine stateMachine, string animBoolName, Transform attackPosition, D_RangedAttackState stateData, RangedEnemy enemy) : base(etity, stateMachine, animBoolName, attackPosition, stateData)
+    public RE_RangedAttackState(Entity entity, string animBoolName, Transform attackPosition, D_RangedAttackState stateData, RangedEnemy enemy) : base(entity, animBoolName, attackPosition, stateData)
     {
         this.enemy = enemy;
     }
@@ -58,4 +58,5 @@ public class RE_RangedAttackState : RangedAttackState
         base.TriggerAttack();
     }
 }
-    */
+    
+*/
