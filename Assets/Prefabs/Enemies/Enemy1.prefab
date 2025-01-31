@@ -915,6 +915,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
+  platformTag: 
   ledgeCheckVertical: {fileID: 2181997544596436395}
 --- !u!1 &6834705499909733655
 GameObject:
@@ -1298,3 +1299,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f827444f74f6545b66ca62d2192dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 7430220113669677794}
