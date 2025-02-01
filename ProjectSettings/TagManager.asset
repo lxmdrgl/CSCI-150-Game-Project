@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - Deathscreen
+  - GameplayCanvas
   layers:
   - Default
   - TransparentFX
