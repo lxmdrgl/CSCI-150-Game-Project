@@ -11,9 +11,7 @@ public class HealthBar : MonoBehaviour
     public Slider easeSlider;
     public TMP_Text healthText;
     public Stats stats;
-    public BossRoomTrigger bossRoomTrigger; 
     public Death death;
-    public bool disableOnAwake = false;
     public float lerpSpeed = 0.05f;
 
     public float xpos = 0;
@@ -30,10 +28,6 @@ public class HealthBar : MonoBehaviour
         transform.SetParent(gameplayCanvas.transform);
         rectTransform.anchoredPosition = new Vector2(xpos, ypos);
         rectTransform.localScale = new Vector3(1, 1, 1);
-
-        if (disableOnAwake) {
-            gameObject.SetActive(false);
-        }
     }
 
     void Start() {
@@ -61,11 +55,6 @@ public class HealthBar : MonoBehaviour
         }
     }
 
-    private void EnableHealthBar() {
-        Debug.Log("EnableHealthBar called");
-        gameObject.SetActive(true);
-    }
-
     private void DisableHealthBar() {
         Debug.Log("DisableHealthBar called");
         gameObject.SetActive(false);
@@ -73,14 +62,10 @@ public class HealthBar : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("HealthBar OnEnable called");
         stats.Health.OnValueChange += UpdateSlider;
         if(death != null) {
             death.OnDeath += DisableHealthBar;
-        }
-        if(bossRoomTrigger != null) {
-            bossRoomTrigger.OnBossRoomEntered += EnableHealthBar;
-        } else {
-            Debug.Log("bossRoomTrigger is null");
         }
     }
 
@@ -89,9 +74,6 @@ public class HealthBar : MonoBehaviour
         stats.Health.OnValueChange -= UpdateSlider;
         if(death != null) {
             death.OnDeath -= DisableHealthBar;
-        }
-        if(bossRoomTrigger != null) {
-            bossRoomTrigger.OnBossRoomEntered -= EnableHealthBar;
         }
     }
 }

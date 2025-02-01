@@ -275,7 +275,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &289043213564485787
 MonoBehaviour:
@@ -293,9 +293,10 @@ MonoBehaviour:
   easeSlider: {fileID: 6666127169416933940}
   healthText: {fileID: 1019094243345212857}
   stats: {fileID: 0}
+  death: {fileID: 0}
   lerpSpeed: 0.05
   xpos: -480
-  ypos: -400
+  ypos: -440
   showNumbers: 1
 --- !u!1 &6782967248378524529
 GameObject:
