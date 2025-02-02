@@ -30,28 +30,66 @@ namespace Game.CoreSystem
         [SerializeField] private Transform wallCheck;
         [SerializeField] private Vector2 groundCheckSize;
         [SerializeField] private float wallCheckDistance;
+        // [SerializeField] private BoxCollider2D boxCollider;
         [SerializeField] private LayerMask whatIsGround;
         [SerializeField] private string platformTag;
         [SerializeField] private Transform ledgeCheckVertical;
+
+        [SerializeField] private Transform platformTopRight;
+        [SerializeField] private Transform platformMidLeft;
+        [SerializeField] private Transform platformBottomLeft;
+
+        // [SerializeField] private Collider2D collidedPlatform;
 
         public bool Ground 
         {
             get => Physics2D.OverlapBox(GroundCheck.position, groundCheckSize, 0f, whatIsGround);
 		}
 
-        public bool Platform 
+        public Collider2D PlatformDown
+        {
+            get 
+            {
+                Collider2D collider = Physics2D.OverlapBox(GroundCheck.position, groundCheckSize, 0f, whatIsGround);
+                if (collider != null && collider.CompareTag(platformTag)) {
+                    return collider;
+                } else {
+                    return null;
+                }
+            }
+            
+            
+        }
+
+        public Collider2D PlatformOverlapBottom
         {
             get
             {
-                Collider2D collider = Physics2D.OverlapBox(GroundCheck.position, groundCheckSize, 0f, whatIsGround);
-                return collider != null && collider.CompareTag(platformTag);
-            }
+                Collider2D collider = Physics2D.OverlapArea(platformBottomLeft.position, platformTopRight.position, whatIsGround);
+                if (collider != null && collider.CompareTag(platformTag)) {
+                    // collidedPlatform = collider;
+                    return collider;
+                } else {
+                    return null;
+                }
+            } 
         }
 
-        public Collider2D PlatformCollider 
+        public Collider2D PlatformOverlapTop
         {
-            get => Physics2D.OverlapBox(GroundCheck.position, groundCheckSize, 0f, whatIsGround);
+            get
+            {
+                Collider2D collider = Physics2D.OverlapArea(platformMidLeft.position, platformTopRight.position, whatIsGround);
+                if (collider != null && collider.CompareTag(platformTag)) {
+                    // collidedPlatform = collider;
+                    return collider;
+                } else {
+                    return null;
+                }
+            } 
         }
+
+
 
         public bool WallFront 
         {
@@ -65,6 +103,19 @@ namespace Game.CoreSystem
         public bool LedgeVertical {
 			get => Physics2D.Raycast(LedgeCheckVertical.position, Vector2.down, wallCheckDistance, whatIsGround);
 		}
+
+        private void OnDrawGizmos()
+        {
+            /* Gizmos.color = Color.red;
+            if (platformTopRight == null || platformBottomLeft == null) return;
+            Gizmos.DrawWireCube(platformTopRight.position, new Vector3(0.05f, 0.05f, 0f));
+            Gizmos.DrawWireCube(platformBottomLeft.position, new Vector3(0.05f, 0.05f, 0f)); */
+
+            /* if (collidedPlatform != null) {
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireCube(collidedPlatform.bounds.center, collidedPlatform.bounds.size);
+            } */
+        }
     }
 }
 

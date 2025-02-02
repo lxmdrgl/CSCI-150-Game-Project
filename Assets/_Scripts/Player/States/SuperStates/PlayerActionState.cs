@@ -16,6 +16,7 @@ public class PlayerActionState : PlayerState
 
 	private bool isGrounded;
 	protected bool isTouchingWall;
+	protected Collider2D isPlatformOverlap;
 	protected bool jumpInput;
 	protected bool dashInput;
 	protected bool[] attackInputs;
@@ -31,6 +32,7 @@ public class PlayerActionState : PlayerState
 		{
 			isGrounded = CollisionSenses.Ground;
 			isTouchingWall = CollisionSenses.WallFront;
+			isPlatformOverlap = CollisionSenses.PlatformOverlapBottom;
 		}
 	}
 
@@ -49,7 +51,7 @@ public class PlayerActionState : PlayerState
 
 		if (isActionDone) 
 		{
-			if (isGrounded && Movement?.CurrentVelocity.y < 0.01f) 
+			if (isGrounded && Movement?.CurrentVelocity.y < 0.01f && isPlatformOverlap == null) 
 			{
 				stateMachine.ChangeState(player.IdleState);
 			} else 

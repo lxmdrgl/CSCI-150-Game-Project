@@ -16,7 +16,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public PlayerMoveState MoveState { get; private set; }
     public PlayerJumpState JumpState { get; private set; }
     public PlayerDashState DashState { get; private set; }
-    public PlayerAirState AirState { get; private set; }
+    public PlayerNormalAirState AirState { get; private set; }
     public PlayerWallGrabState WallGrabState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerAttackState PrimaryAttackState { get; private set; }
@@ -24,6 +24,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public PlayerAttackState PrimarySkillState { get; private set; }
     public PlayerAttackState SecondarySkillState { get; private set; }
     public PlayerKnockBackState KnockBackState { get; private set; }
+    public PlayerPlatformAirState PlatformAirState { get; private set; }
 
 
     [SerializeField]
@@ -80,7 +81,7 @@ public class Player : MonoBehaviour, IDataPersistence
         MoveState = new PlayerMoveState(this, "move");
         JumpState = new PlayerJumpState(this, "air"); // was jump
         DashState = new PlayerDashState(this, "idle"); // needs to be dash 
-        AirState = new PlayerAirState(this, "air");
+        AirState = new PlayerNormalAirState(this, "air");
         WallGrabState = new PlayerWallGrabState(this, "wallGrab");
         WallJumpState = new PlayerWallJumpState(this, "air"); // was jump
         PrimaryAttackState = new PlayerAttackState(this, "attack", primaryAttack, CombatInputs.primaryAttack);
@@ -88,6 +89,7 @@ public class Player : MonoBehaviour, IDataPersistence
         PrimarySkillState = new PlayerAttackState(this, "attack", primarySkill, CombatInputs.primarySkill);
         SecondarySkillState = new PlayerAttackState(this, "attack", secondarySkill, CombatInputs.secondarySkill);
         KnockBackState = new PlayerKnockBackState(this, "knockBack");
+        PlatformAirState = new PlayerPlatformAirState(this, "air");
 
         knockBackReceiver.OnKnockBackActive += HandleKnockBackActive;
     }

@@ -18,14 +18,19 @@ public class PlayerAirState : PlayerState
     private Movement movement;
     private CollisionSenses collisionSenses;
 
-    private int xInput;
-    private bool jumpInput;
-    private bool dashInput;
+    protected int xInput;
+    protected bool jumpInput;
+    protected bool dashInput;
 
     private bool isGrounded;
     private bool isTouchingWall;
 
+    protected Collider2D isPlatformOverlapBottom;
+    protected Collider2D isPlatformOverlapTop;
+
     private bool coyoteTime;
+
+    private Collider2D platformDropped;
 
     public PlayerAirState(Player player, string animBoolName) : base(player, animBoolName)
     {
@@ -39,7 +44,15 @@ public class PlayerAirState : PlayerState
         {
             isGrounded = CollisionSenses.Ground;
             isTouchingWall = CollisionSenses.WallFront;
+            isPlatformOverlapBottom = CollisionSenses.PlatformOverlapBottom;
+            isPlatformOverlapTop = CollisionSenses.PlatformOverlapTop;
         }
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
     }
 
     public override void Exit()
@@ -58,6 +71,10 @@ public class PlayerAirState : PlayerState
         xInput = player.InputHandler.NormInputX;
         jumpInput = player.InputHandler.JumpInput;
         dashInput = player.InputHandler.DashInput;
+
+        ResetPlatformCollision();
+
+        // Debug.Log($"Actual y: {player.RB.linearVelocity.y}");
 
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanAttack())
         {
@@ -103,7 +120,7 @@ public class PlayerAirState : PlayerState
         }
     }
 
-    private void CheckCoyoteTime()
+    protected void CheckCoyoteTime()
     {
         if (coyoteTime && Time.time > startTime + playerData.coyoteTime)
         {
@@ -114,4 +131,17 @@ public class PlayerAirState : PlayerState
 
     public void StartCoyoteTime() => coyoteTime = true;
 
+    public void SetPlatformDropped(Collider2D platform)
+    {
+        platformDropped = platform;
+    }   
+
+    public void ResetPlatformCollision()
+    {
+        if (platformDropped != null && isPlatformOverlapBottom == null) {
+            Debug.Log("Reset platform collision");
+            Physics2D.IgnoreCollision(platformDropped, player.boxCollider, false);
+            platformDropped = null;
+        }
+    }
 }

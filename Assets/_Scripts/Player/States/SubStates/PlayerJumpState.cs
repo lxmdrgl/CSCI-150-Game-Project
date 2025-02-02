@@ -20,6 +20,7 @@ public class PlayerJumpState : PlayerActionState
 	}
 
     public bool CanJump() {
+		Debug.Log("jumps left: " + amountOfJumpsLeft);
 		if (amountOfJumpsLeft > 0) 
 		{
 			return true;
@@ -29,7 +30,10 @@ public class PlayerJumpState : PlayerActionState
 		}
 	}
 
-	public void ResetAmountOfJumpsLeft() => amountOfJumpsLeft = playerData.amountOfJumps;
+	public void ResetAmountOfJumpsLeft() {
+		Debug.Log("ResetAmountOfJumpsLeft");
+		amountOfJumpsLeft = playerData.amountOfJumps;
+	}
 
 	public void DecreaseAmountOfJumpsLeft() => amountOfJumpsLeft--;
     

@@ -21,6 +21,7 @@ public class PlayerWallJumpState : PlayerActionState
         base.Enter();
         player.InputHandler.UseJumpInput();
         player.JumpState.ResetAmountOfJumpsLeft();
+        player.AirState.SetJumpingInPlatform(false);
         player.JumpState.DecreaseAmountOfJumpsLeft();
 
         wallJumpDirection = -Movement.FacingDirection;
