@@ -23,7 +23,7 @@ TagManager:
   - Weapon
   - PlayerDamageable
   - Room
-  - 
+  - BossRoomTrigger
   - 
   - Platform
   - 
