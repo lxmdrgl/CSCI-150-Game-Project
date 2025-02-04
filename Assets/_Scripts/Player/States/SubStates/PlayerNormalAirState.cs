@@ -39,7 +39,7 @@ public class PlayerNormalAirState : PlayerAirState
             {   
                 Debug.Log("Air to Platform");
                 isExitingState = true;
-                // stateMachine.ChangeState(player.PlatformAirState);
+                stateMachine.ChangeState(player.PlatformAirState);
             } else {
 
             }
