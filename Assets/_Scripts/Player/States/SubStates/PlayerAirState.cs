@@ -10,23 +10,27 @@ public class PlayerAirState : PlayerState
         get => movement ?? core.GetCoreComponent(ref movement);
     }
 
-    private CollisionSenses CollisionSenses
+    protected CollisionSenses CollisionSenses
     {
         get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
     }
 
     private Movement movement;
-    private CollisionSenses collisionSenses;
+    protected CollisionSenses collisionSenses;
 
     protected int xInput;
     protected bool jumpInput;
     protected bool dashInput;
 
     private bool isGrounded;
+    private bool isCloseToGrounded;
     private bool isTouchingWall;
 
-    protected Collider2D isPlatformOverlapBottom;
+    protected Collider2D isPlatformOverlap;
     protected Collider2D isPlatformOverlapTop;
+    protected RaycastHit2D isPlatformTop;
+    protected RaycastHit2D isPlatformBottom;
+    protected RaycastHit2D isPlatformBottomExtend;
 
     private bool coyoteTime;
 
@@ -44,8 +48,13 @@ public class PlayerAirState : PlayerState
         {
             isGrounded = CollisionSenses.Ground;
             isTouchingWall = CollisionSenses.WallFront;
-            isPlatformOverlapBottom = CollisionSenses.PlatformOverlapBottom;
+            isCloseToGrounded = CollisionSenses.LongGround;
+
+            isPlatformOverlap = CollisionSenses.PlatformOverlap;
             isPlatformOverlapTop = CollisionSenses.PlatformOverlapTop;
+            isPlatformTop = CollisionSenses.PlatformTop;
+            isPlatformBottom = CollisionSenses.PlatformBottom;
+            isPlatformBottomExtend = CollisionSenses.PlatformBottomExtend;
         }
     }
 
@@ -108,7 +117,7 @@ public class PlayerAirState : PlayerState
         {
             stateMachine.ChangeState(player.MoveState);
         } 
-        else if (isTouchingWall && xInput == Movement?.FacingDirection) { // note: removed && Movement?.CurrentVelocity.y <= 0
+        else if (isTouchingWall && xInput == Movement?.FacingDirection && !isCloseToGrounded) { // note: removed && Movement?.CurrentVelocity.y <= 0
             stateMachine.ChangeState(player.WallGrabState);
         }
         else
@@ -138,7 +147,7 @@ public class PlayerAirState : PlayerState
 
     public void ResetPlatformCollision()
     {
-        if (platformDropped != null && isPlatformOverlapBottom == null) {
+        if (platformDropped != null && isPlatformTop) {
             Debug.Log("Reset platform collision");
             Physics2D.IgnoreCollision(platformDropped, player.boxCollider, false);
             platformDropped = null;

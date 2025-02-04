@@ -31,7 +31,7 @@ public class PlayerJumpState : PlayerActionState
 	}
 
 	public void ResetAmountOfJumpsLeft() {
-		Debug.Log("ResetAmountOfJumpsLeft");
+		// Debug.Log("ResetAmountOfJumpsLeft");
 		amountOfJumpsLeft = playerData.amountOfJumps;
 	}
 

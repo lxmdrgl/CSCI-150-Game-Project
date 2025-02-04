@@ -27,7 +27,7 @@ public class PlayerGroundedState : PlayerState
     private bool dashInput;
     private bool isGrounded;
     private bool isTouchingWall;
-    private Collider2D isPlatformDown = null;
+    private RaycastHit2D isPlatformDown;
     private Collider2D platformDropped = null;
 
     public PlayerGroundedState(Player player, string animBoolName) : base(player, animBoolName)
@@ -42,7 +42,9 @@ public class PlayerGroundedState : PlayerState
         {
             isGrounded = CollisionSenses.Ground;
             isTouchingWall = CollisionSenses.WallFront;
-            isPlatformDown = CollisionSenses.PlatformDown;
+            // isPlatformDown = CollisionSenses.PlatformDown;
+            isPlatformDown = CollisionSenses.PlatformBottom;
+            // Debug.Log($"isPlatformDown: {isPlatformDown.collider}");
         }
     }
 
@@ -89,11 +91,16 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.DashState);
         }
-        else if (downJumpInput && isPlatformDown != null)
+        else if (downJumpInput && (bool)isPlatformDown)
         {
-            platformDropped = isPlatformDown;
+            // platformDropped = isPlatformDown;
+            platformDropped = isPlatformDown.collider;
             Debug.Log($"Drop platform: {platformDropped}, {player.boxCollider}");
             Physics2D.IgnoreCollision(platformDropped, player.boxCollider, true);
+
+            player.AirState.SetPlatformDropped(platformDropped);
+            player.AirState.StartCoyoteTime();
+            stateMachine.ChangeState(player.AirState);
         } 
         else if (jumpInput && player.JumpState.CanJump())
         {
@@ -101,9 +108,10 @@ public class PlayerGroundedState : PlayerState
         } 
         else if (!isGrounded)
         {
-            player.AirState.SetPlatformDropped(platformDropped);
+            Debug.Log("Ground to Air state");
             player.AirState.StartCoyoteTime();
             stateMachine.ChangeState(player.AirState);
+        } else {
         }
     }
 

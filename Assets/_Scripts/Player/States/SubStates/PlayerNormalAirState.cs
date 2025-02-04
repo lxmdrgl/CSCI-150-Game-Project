@@ -13,12 +13,12 @@ public class PlayerNormalAirState : PlayerAirState
     {
     }
 
-    /* public override void DoChecks()
+    public override void DoChecks()
     {
         base.DoChecks();
     }
 
-    public override void Enter()
+    /* public override void Enter()
     {
         base.Enter();
     }
@@ -34,9 +34,14 @@ public class PlayerNormalAirState : PlayerAirState
 
         if (!isExitingState) 
         {
+            // Debug.Log($"Air State: Platform State: isPlatformOverlap: {isPlatformOverlap != null}, isPlatformOverlapTop: {isPlatformOverlapTop != null}");
             if (isPlatformOverlapTop != null && Movement.CurrentVelocity.y > 0.01f && !isJumpingInPlatform) 
-            {
-                stateMachine.ChangeState(player.PlatformAirState);
+            {   
+                Debug.Log("Air to Platform");
+                isExitingState = true;
+                // stateMachine.ChangeState(player.PlatformAirState);
+            } else {
+
             }
         }
     }

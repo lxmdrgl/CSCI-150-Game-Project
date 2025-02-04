@@ -26,42 +26,104 @@ namespace Game.CoreSystem
 			private set => ledgeCheckVertical = value;
 		}
 
+        public Transform PlatformCheckBottom 
+        {
+			get => GenericNotImplementedError<Transform>.TryGet(platformCheckBottom, core.transform.parent.name);
+			private set => platformCheckBottom = value;
+		}
+
+
+
+        [Header("Ground & Wall Check")]
         [SerializeField] private Transform groundCheck;
         [SerializeField] private Transform wallCheck;
-        [SerializeField] private Vector2 groundCheckSize;
+        [SerializeField] private Vector2 groundCheckSize;  // 10/24 - 0.03
         [SerializeField] private float wallCheckDistance;
-        // [SerializeField] private BoxCollider2D boxCollider;
+        [SerializeField] private float longGroundDistance;
         [SerializeField] private LayerMask whatIsGround;
-        [SerializeField] private string platformTag;
         [SerializeField] private Transform ledgeCheckVertical;
 
+        [Header("Platform Check")]
+        [SerializeField] private string platformTag;
+        [SerializeField] private Transform platformCheck;
+        [SerializeField] private Transform platformCheckBottom;
+        [SerializeField] private float platformCheckBottomDistance; 
+        [SerializeField] private float platformCheckTopDistance; 
+        [SerializeField] private float platformCheckBottomExtendDistance; 
         [SerializeField] private Transform platformTopRight;
         [SerializeField] private Transform platformMidLeft;
         [SerializeField] private Transform platformBottomLeft;
 
-        // [SerializeField] private Collider2D collidedPlatform;
 
         public bool Ground 
         {
             get => Physics2D.OverlapBox(GroundCheck.position, groundCheckSize, 0f, whatIsGround);
 		}
 
-        public Collider2D PlatformDown
+        public bool WallFront 
+        {
+			get => Physics2D.Raycast(WallCheck.position, Vector2.right * Movement.FacingDirection, wallCheckDistance, whatIsGround);
+		}
+
+        public bool WallBack 
+        {
+			get => Physics2D.Raycast(WallCheck.position, Vector2.right * -Movement.FacingDirection, wallCheckDistance, whatIsGround);
+		}
+        public bool LedgeVertical {
+			get => Physics2D.Raycast(LedgeCheckVertical.position, Vector2.down, wallCheckDistance, whatIsGround);
+		}
+
+        public bool LongGround 
+        {
+            get => Physics2D.Raycast(GroundCheck.position, Vector2.down, longGroundDistance, whatIsGround);
+		}
+
+        public RaycastHit2D PlatformBottom
         {
             get 
-            {
-                Collider2D collider = Physics2D.OverlapBox(GroundCheck.position, groundCheckSize, 0f, whatIsGround);
-                if (collider != null && collider.CompareTag(platformTag)) {
-                    return collider;
+            {   
+                RaycastHit2D hit = Physics2D.Raycast(platformCheck.position, Vector2.down, platformCheckBottomDistance, whatIsGround);
+                if (hit.collider != null && hit.collider.CompareTag(platformTag)) {
+                    // Debug.Log($"PlatformBottom true");
+                    return hit;
                 } else {
-                    return null;
+                    // Debug.Log($"PlatformBottom false");
+                    return new RaycastHit2D();
                 }
             }
-            
-            
         }
 
-        public Collider2D PlatformOverlapBottom
+        public RaycastHit2D PlatformBottomExtend
+        {
+            get 
+            {   
+                RaycastHit2D hit = Physics2D.Raycast(PlatformCheckBottom.position, Vector2.down, platformCheckBottomExtendDistance, whatIsGround);
+                if (hit.collider != null && hit.collider.CompareTag(platformTag)) {
+                    // Debug.Log($"PlatformBottom true");
+                    return hit;
+                } else {
+                    // Debug.Log($"PlatformBottom false");
+                    return new RaycastHit2D();
+                }
+            }
+        }
+
+        public RaycastHit2D PlatformTop
+        {
+            get 
+            {   
+                RaycastHit2D hit = Physics2D.Raycast(platformCheck.position, Vector2.down, platformCheckTopDistance, whatIsGround);
+                if (hit.collider != null && hit.collider.CompareTag(platformTag)) {
+                    // Debug.Log($"PlatformBottom true");
+                    return hit;
+                } else {
+                    // Debug.Log($"PlatformBottom false");
+                    return new RaycastHit2D();
+                }
+            }
+        }
+
+        public Collider2D PlatformOverlap
         {
             get
             {
@@ -88,21 +150,6 @@ namespace Game.CoreSystem
                 }
             } 
         }
-
-
-
-        public bool WallFront 
-        {
-			get => Physics2D.Raycast(WallCheck.position, Vector2.right * Movement.FacingDirection, wallCheckDistance, whatIsGround);
-		}
-
-        public bool WallBack 
-        {
-			get => Physics2D.Raycast(WallCheck.position, Vector2.right * -Movement.FacingDirection, wallCheckDistance, whatIsGround);
-		}
-        public bool LedgeVertical {
-			get => Physics2D.Raycast(LedgeCheckVertical.position, Vector2.down, wallCheckDistance, whatIsGround);
-		}
 
         private void OnDrawGizmos()
         {

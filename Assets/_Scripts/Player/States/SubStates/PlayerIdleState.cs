@@ -11,6 +11,7 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Enter();
         Movement?.SetVelocityX(0f);
+        Debug.Log("Entered Idle State");
     }
 
     public override void LogicUpdate()

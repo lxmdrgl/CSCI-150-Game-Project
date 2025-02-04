@@ -119,6 +119,7 @@ public class PlayerAttackState : PlayerActionState
         }
         
         weapon.Exit();
+        
     }
 
     public bool CanAttack() => weapon.CanEnterAttack/*  && attackEnabled */;

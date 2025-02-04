@@ -47,14 +47,14 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("Down jump start");
+            // Debug.Log("Down jump start");
             DownJumpInput = true;
             JumpInput = false;
         }
         
         if (context.canceled)
         {
-            Debug.Log("Down jump end");
+            // Debug.Log("Down jump end");
             DownJumpInput = false;
         }
     }
@@ -63,7 +63,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started && !DownJumpInput)
         {
-            Debug.Log("Jump start");
+            // Debug.Log("Jump start");
             JumpInput = true;
         }
         

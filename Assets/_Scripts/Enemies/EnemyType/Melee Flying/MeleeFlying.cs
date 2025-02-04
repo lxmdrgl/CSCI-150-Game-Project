@@ -33,7 +33,7 @@ public class MeleeFlying : Entity
     {
         base.Awake();
         meleeAttackCollider = transform.Find("MeleeAttackCollider").gameObject;
-        Debug.Log("meleeAttackCollider: " + meleeAttackCollider);
+        // Debug.Log("meleeAttackCollider: " + meleeAttackCollider);
 
 
         idleState = new MeleeFlying_Idle(this, "idle", idleStateData, this);

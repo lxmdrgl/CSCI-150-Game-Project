@@ -32,7 +32,7 @@ public class PlayerActionState : PlayerState
 		{
 			isGrounded = CollisionSenses.Ground;
 			isTouchingWall = CollisionSenses.WallFront;
-			isPlatformOverlap = CollisionSenses.PlatformOverlapBottom;
+			isPlatformOverlap = CollisionSenses.PlatformOverlap;
 		}
 	}
 
