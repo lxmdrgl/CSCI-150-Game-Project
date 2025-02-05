@@ -7,6 +7,7 @@ public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
+    [SerializeField] public bool disableDataPersistence = false;
     [SerializeField] private string saveDataFileName;
     private FileDataHandler dataHandler;
     private FileDataHandler saveDataHandler;
@@ -60,6 +61,11 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void LoadGame()
     {
+        if(disableDataPersistence)
+        {
+            return;
+        }
+
         this.gameData = dataHandler.Load<GameData>(selectedProfileId);
         this.saveData = saveDataHandler.Load<SaveData>(selectedProfileId);
         
@@ -77,6 +83,11 @@ public class DataPersistenceManager : MonoBehaviour
     }
     public void SaveGame()
     {
+        if(disableDataPersistence)
+        {
+            return;
+        }
+
         Debug.Log("Saving Game");
         if(this.gameData == null)
         {

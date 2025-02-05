@@ -5,9 +5,7 @@ using UnityEngine.SceneManagement;
 public class DeathScreenManager : MonoBehaviour
 {
     [SerializeField] private GameObject deathScreenCanvasGO;
-    [SerializeField] private string fileName;
 
-    private FileDataHandler dataHandler;
     private string selectedProfileId = "";
 
     public string MainMenuSceneName;
@@ -23,22 +21,40 @@ public class DeathScreenManager : MonoBehaviour
 
     public void DeathQuit()
     {   
-        DataPersistenceManager.instance.RestartGame( selectedProfileId, GameplaySceneName);
-        deathScreenCanvasGO.SetActive(false);
-        SceneManager.LoadScene(MainMenuSceneName);
+        if(DataPersistenceManager.instance.disableDataPersistence)
+        {
+            deathScreenCanvasGO.SetActive(false);
+            SceneManager.LoadScene(MainMenuSceneName);
+            return;
+        }
+        else
+        {
+            DataPersistenceManager.instance.RestartGame( selectedProfileId, GameplaySceneName);
+            deathScreenCanvasGO.SetActive(false);
+            SceneManager.LoadScene(MainMenuSceneName);
 
-        DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
-        DataPersistenceManager.instance.SaveGame();
+            DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
+            DataPersistenceManager.instance.SaveGame();
+        }
     }
 
     public void DeathRestart()
     {   
-        DataPersistenceManager.instance.RestartGame( selectedProfileId, GameplaySceneName);
-        deathScreenCanvasGO.SetActive(false);
+        if(DataPersistenceManager.instance.disableDataPersistence)
+        {
+            deathScreenCanvasGO.SetActive(false);
+            SceneManager.LoadScene(GameplaySceneName);
+            return;
+        }
+        else
+        {
+            DataPersistenceManager.instance.RestartGame( selectedProfileId, GameplaySceneName);
+            deathScreenCanvasGO.SetActive(false);
 
-        SceneManager.LoadScene(GameplaySceneName);
+            SceneManager.LoadScene(GameplaySceneName);
 
-        DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
-        DataPersistenceManager.instance.SaveGame();
+            DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
+            DataPersistenceManager.instance.SaveGame();   
+        }
     }
 }

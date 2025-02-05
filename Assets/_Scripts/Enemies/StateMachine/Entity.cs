@@ -15,7 +15,7 @@ public class Entity : MonoBehaviour, IDataPersistence
     public Core Core { get; private set; }
 
     [SerializeField]
-	private Transform playerCheck;
+	public Transform playerCheck;
 
     private float currentStunResistance;
 

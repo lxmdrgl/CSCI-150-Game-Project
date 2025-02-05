@@ -14,9 +14,12 @@ namespace Game.Weapons
         [field: SerializeField] public string Name { get; private set; }
         [field: SerializeField] public string Description { get; private set; }
         [field: SerializeField] public RuntimeAnimatorController AnimatorController { get; private set; }
+        [field: SerializeField] public CombatInputs weaponIndex { get; private set; }
         [field: SerializeField] public int NumberOfAttacks { get; private set; }
         [field: SerializeField] public float AttackCounterCooldown { get; private set; }
         [field: SerializeField] public float AttackCooldown { get; private set; }
+
+        [field: SerializeField] public WeaponData prereqWeapon;
 
         [field: SerializeReference] public List<ComponentData> ComponentData { get; private set; }
 

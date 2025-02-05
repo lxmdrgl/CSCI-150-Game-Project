@@ -32,7 +32,9 @@ public class FloatingHealthBar : MonoBehaviour
     private void OnEnable()
     {
         stats.Health.OnValueChange += UpdateSlider;
-        movement.OnFlip += UpdateFlip; 
+        if(movement != null) {
+            movement.OnFlip += UpdateFlip; 
+        }
     }
 
     private void UpdateFlip() {
@@ -42,6 +44,8 @@ public class FloatingHealthBar : MonoBehaviour
     private void OnDisable()
     {
         stats.Health.OnValueChange -= UpdateSlider;
-        movement.OnFlip -= UpdateFlip;
+        if(movement != null) {
+            movement.OnFlip -= UpdateFlip;
+        }
     }
 }

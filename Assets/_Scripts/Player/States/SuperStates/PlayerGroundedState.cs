@@ -23,9 +23,12 @@ public class PlayerGroundedState : PlayerState
     private CollisionSenses collisionSenses;
 
     private bool jumpInput;
+    private bool downJumpInput;
     private bool dashInput;
     private bool isGrounded;
     private bool isTouchingWall;
+    private RaycastHit2D isPlatformDown;
+    private Collider2D platformDropped = null;
 
     public PlayerGroundedState(Player player, string animBoolName) : base(player, animBoolName)
     {
@@ -39,6 +42,9 @@ public class PlayerGroundedState : PlayerState
         {
             isGrounded = CollisionSenses.Ground;
             isTouchingWall = CollisionSenses.WallFront;
+            // isPlatformDown = CollisionSenses.PlatformDown;
+            isPlatformDown = CollisionSenses.PlatformBottom;
+            // Debug.Log($"isPlatformDown: {isPlatformDown.collider}");
         }
     }
 
@@ -47,6 +53,7 @@ public class PlayerGroundedState : PlayerState
         base.Enter();
 
         player.JumpState.ResetAmountOfJumpsLeft();
+        player.AirState.SetJumpingInPlatform(false);
     }
 
     public override void Exit()
@@ -61,6 +68,7 @@ public class PlayerGroundedState : PlayerState
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
         jumpInput = player.InputHandler.JumpInput;
+        downJumpInput = player.InputHandler.DownJumpInput;
         dashInput = player.InputHandler.DashInput;
 
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanAttack())
@@ -83,14 +91,27 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.DashState);
         }
+        else if (downJumpInput && (bool)isPlatformDown)
+        {
+            // platformDropped = isPlatformDown;
+            platformDropped = isPlatformDown.collider;
+            Debug.Log($"Drop platform: {platformDropped}, {player.boxCollider}");
+            Physics2D.IgnoreCollision(platformDropped, player.boxCollider, true);
+
+            player.AirState.SetPlatformDropped(platformDropped);
+            player.AirState.StartCoyoteTime();
+            stateMachine.ChangeState(player.AirState);
+        } 
         else if (jumpInput && player.JumpState.CanJump())
         {
             stateMachine.ChangeState(player.JumpState);
         } 
         else if (!isGrounded)
         {
+            Debug.Log("Ground to Air state");
             player.AirState.StartCoyoteTime();
             stateMachine.ChangeState(player.AirState);
+        } else {
         }
     }
 

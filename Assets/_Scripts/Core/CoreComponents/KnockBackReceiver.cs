@@ -32,18 +32,17 @@ namespace Game.CoreSystem
         public void SetCanTakeKnockBack(bool value) 
         {
             CanTakeKnockBack = value;
+            Debug.Log($"knockback set to, {CanTakeKnockBack}");
         }
 
         public void KnockBack(KnockBackData data)
         {
             // data = Modifiers.ApplyAllModifiers(data);
-            
-            movement.SetVelocity(data.Strength, data.Angle, data.Direction);
+            /* movement.SetVelocity(data.Strength, data.Angle, data.Direction);
             movement.CanSetVelocity = false;
             isKnockBackActive = true;
-            knockBackStartTime = Time.time;
-            // Debug.Log("Knock active");
-            OnKnockBackActive?.Invoke();
+            knockBackStartTime = Time.time; */
+            Debug.Log("Knock active");
             if (CanTakeKnockBack) {
                 movement.SetVelocity(data.Strength, data.Angle, data.Direction);
                 movement.CanSetVelocity = false;
@@ -53,7 +52,7 @@ namespace Game.CoreSystem
                 OnKnockBackActive?.Invoke();
                 Debug.Log($"take knockback, {CanTakeKnockBack}");
             } else {
-                Debug.Log($"Ignore knockback, {CanTakeKnockBack}");
+                Debug.Log($"Ignore knockback false, {CanTakeKnockBack}");
             }
         }
 
@@ -77,6 +76,7 @@ namespace Game.CoreSystem
 
             movement = core.GetCoreComponent<Movement>();
             collisionSenses = core.GetCoreComponent<CollisionSenses>();
+            CanTakeKnockBack = true;
         }
     }
 }

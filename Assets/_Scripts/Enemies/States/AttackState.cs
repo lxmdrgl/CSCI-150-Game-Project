@@ -48,6 +48,7 @@ public class AttackState : EnemyState
 	{
 		base.LogicUpdate();
 		movement?.SetVelocityX(0f);
+		movement?.SetVelocityY(0f);
 	}
 
 	public override void PhysicsUpdate() 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 namespace Game.CoreSystem
 {
@@ -15,6 +16,9 @@ namespace Game.CoreSystem
 
         private Stats Stats => stats ? stats : core.GetCoreComponent(ref stats);
         private Stats stats;
+        // public GameObject healthBar;
+
+        public event Action OnDeath;
     
         public void Die()
         {
@@ -22,13 +26,17 @@ namespace Game.CoreSystem
             {
                 ParticleManager.StartParticles(particle);
             } */
+
+            OnDeath?.Invoke();
         
             core.transform.parent.gameObject.SetActive(false);
+
+            // healthBar.SetActive(false);
 
             if (core.transform.parent.gameObject.name == "Player") {
                 Debug.Log("Player died");
 
-                deathScreen = GameObject.Find("/DeathScreen");
+                deathScreen = GameObject.FindGameObjectWithTag("Deathscreen");
                 deathScreen.transform.GetChild(0).gameObject.SetActive(true);
             }
         }

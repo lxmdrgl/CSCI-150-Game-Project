@@ -10,22 +10,31 @@ public class PlayerAirState : PlayerState
         get => movement ?? core.GetCoreComponent(ref movement);
     }
 
-    private CollisionSenses CollisionSenses
+    protected CollisionSenses CollisionSenses
     {
         get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses);
     }
 
     private Movement movement;
-    private CollisionSenses collisionSenses;
+    protected CollisionSenses collisionSenses;
 
-    private int xInput;
-    private bool jumpInput;
-    private bool dashInput;
+    protected int xInput;
+    protected bool jumpInput;
+    protected bool dashInput;
 
     private bool isGrounded;
+    private bool isCloseToGrounded;
     private bool isTouchingWall;
 
+    protected Collider2D isPlatformOverlap;
+    protected Collider2D isPlatformOverlapTop;
+    protected RaycastHit2D isPlatformTop;
+    protected RaycastHit2D isPlatformBottom;
+    protected RaycastHit2D isPlatformBottomExtend;
+
     private bool coyoteTime;
+
+    private Collider2D platformDropped;
 
     public PlayerAirState(Player player, string animBoolName) : base(player, animBoolName)
     {
@@ -39,7 +48,20 @@ public class PlayerAirState : PlayerState
         {
             isGrounded = CollisionSenses.Ground;
             isTouchingWall = CollisionSenses.WallFront;
+            isCloseToGrounded = CollisionSenses.LongGround;
+
+            isPlatformOverlap = CollisionSenses.PlatformOverlap;
+            isPlatformOverlapTop = CollisionSenses.PlatformOverlapTop;
+            isPlatformTop = CollisionSenses.PlatformTop;
+            isPlatformBottom = CollisionSenses.PlatformBottom;
+            isPlatformBottomExtend = CollisionSenses.PlatformBottomExtend;
         }
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
     }
 
     public override void Exit()
@@ -58,6 +80,10 @@ public class PlayerAirState : PlayerState
         xInput = player.InputHandler.NormInputX;
         jumpInput = player.InputHandler.JumpInput;
         dashInput = player.InputHandler.DashInput;
+
+        ResetPlatformCollision();
+
+        // Debug.Log($"Actual y: {player.RB.linearVelocity.y}");
 
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanAttack())
         {
@@ -91,7 +117,7 @@ public class PlayerAirState : PlayerState
         {
             stateMachine.ChangeState(player.MoveState);
         } 
-        else if (isTouchingWall && xInput == Movement?.FacingDirection) { // note: removed && Movement?.CurrentVelocity.y <= 0
+        else if (isTouchingWall && xInput == Movement?.FacingDirection && !isCloseToGrounded) { // note: removed && Movement?.CurrentVelocity.y <= 0
             stateMachine.ChangeState(player.WallGrabState);
         }
         else
@@ -103,7 +129,7 @@ public class PlayerAirState : PlayerState
         }
     }
 
-    private void CheckCoyoteTime()
+    protected void CheckCoyoteTime()
     {
         if (coyoteTime && Time.time > startTime + playerData.coyoteTime)
         {
@@ -114,4 +140,17 @@ public class PlayerAirState : PlayerState
 
     public void StartCoyoteTime() => coyoteTime = true;
 
+    public void SetPlatformDropped(Collider2D platform)
+    {
+        platformDropped = platform;
+    }   
+
+    public void ResetPlatformCollision()
+    {
+        if (platformDropped != null && isPlatformTop) {
+            Debug.Log("Reset platform collision");
+            Physics2D.IgnoreCollision(platformDropped, player.boxCollider, false);
+            platformDropped = null;
+        }
+    }
 }

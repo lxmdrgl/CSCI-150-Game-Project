@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "UpgradeOpen",
+                    "type": "Button",
+                    "id": "f9703c72-2687-4fd8-b429-9a5657b56dfe",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -364,7 +373,7 @@
                 {
                     "name": "One Modifier",
                     "id": "7aac5ff2-7ff6-44a4-b6ac-bd61436d3f80",
-                    "path": "OneModifier",
+                    "path": "OneModifier(overrideModifiersNeedToBePressedFirst=true)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -397,7 +406,7 @@
                 {
                     "name": "One Modifier",
                     "id": "68837bce-ae5f-43c3-84b9-e268d6bd03a8",
-                    "path": "OneModifier",
+                    "path": "OneModifier(overrideModifiersNeedToBePressedFirst=true)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -430,7 +439,7 @@
                 {
                     "name": "One Modifier",
                     "id": "4457310f-a0b9-4d37-849c-9d25fa0242ed",
-                    "path": "OneModifier",
+                    "path": "OneModifier(overrideModifiersNeedToBePressedFirst=true)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -523,6 +532,17 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "MenuOpen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d7f57926-0f2e-48a4-9ee6-96d5c4af477f",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "UpgradeOpen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
