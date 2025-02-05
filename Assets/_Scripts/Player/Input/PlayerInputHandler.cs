@@ -197,7 +197,7 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             UpgradeOpenInput = true;
-            
+            Debug.Log("Upgrade Open Input");
         }
         
         if (context.canceled)

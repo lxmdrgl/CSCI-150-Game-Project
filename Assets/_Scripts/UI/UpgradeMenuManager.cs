@@ -27,7 +27,7 @@ public class UpgradeMenuManager : MonoBehaviour
         InputHandler = player.GetComponent<PlayerInputHandler>();
         playerInput = player.GetComponent<PlayerInput>();
 
-        UpgradeCanvasGO.SetActive(false);
+        UpgradeCanvasGO.SetActive(true);
 
         Unpause();
     }
