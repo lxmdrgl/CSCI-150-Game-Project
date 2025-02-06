@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Game.Projectiles;
 using UnityEngine;
@@ -10,7 +10,7 @@ public class RangedAttackState : AttackState
      protected GameObject projectile;
      protected Projectile projectileScript;
 
-     public RangedAttackState(Entity etity, EnemyStateMachine stateMachine, string animBoolName, Transform attackPosition, D_RangedAttackState stateData) : base(etity, stateMachine, animBoolName, attackPosition)
+     public RangedAttackState(Entity etity, string animBoolName, Transform attackPosition, D_RangedAttackState stateData) : base(etity, animBoolName, attackPosition)
      {
          this.stateData = stateData;
      }
@@ -54,4 +54,3 @@ public class RangedAttackState : AttackState
          projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, stateData.projectileDamage);
      }
  }
-*/

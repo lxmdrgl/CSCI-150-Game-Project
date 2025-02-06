@@ -1,4 +1,4 @@
-/*using UnityEngine;
+using UnityEngine;
 
 namespace Game.Projectiles
 {
@@ -93,4 +93,3 @@ public class Projectile : MonoBehaviour
         }
     }
 }
-*/

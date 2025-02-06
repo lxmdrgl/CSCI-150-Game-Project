@@ -1,12 +1,13 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RE_RangedAttackState : RangedAttackState
+public class RE_MeleeAttackState : MeleeAttackState
 {
     private RangedEnemy enemy;
+	protected bool isAttackOffCooldown;
 
-    public RE_RangedAttackState(Entity entity, string animBoolName, Transform attackPosition, D_RangedAttackState stateData, RangedEnemy enemy) : base(entity, animBoolName,attackPosition, stateData)
+    public RE_MeleeAttackState(Entity entity, string animBoolName, GameObject meleeAttackCollider, D_MeleeAttack stateData, RangedEnemy enemy) : base(entity, animBoolName, meleeAttackCollider, stateData)
     {
         this.enemy = enemy;
     }
@@ -37,14 +38,7 @@ public class RE_RangedAttackState : RangedAttackState
 
         if (isAnimationFinished)
         {
-            if (isPlayerInMinAgroRange)
-            {
-                stateMachine.ChangeState(enemy.playerDetectedState);
-            }
-            else
-            {
-                stateMachine.ChangeState(enemy.lookForPlayerState);
-            }
+            stateMachine.ChangeState(enemy.cooldownState);
         }
     }
 
@@ -58,4 +52,3 @@ public class RE_RangedAttackState : RangedAttackState
         base.TriggerAttack();
     }
 }
-    

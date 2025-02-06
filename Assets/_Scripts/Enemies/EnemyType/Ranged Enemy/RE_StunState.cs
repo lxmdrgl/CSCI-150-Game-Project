@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RE_RangedAttackState : RangedAttackState
+public class RE_StunState : StunState
 {
     private RangedEnemy enemy;
 
-    public RE_RangedAttackState(Entity entity, string animBoolName, Transform attackPosition, D_RangedAttackState stateData, RangedEnemy enemy) : base(entity, animBoolName,attackPosition, stateData)
+    public RE_StunState(Entity entity, string animBoolName, D_StunState stateData, RangedEnemy enemy) : base(entity, animBoolName, stateData)
     {
         this.enemy = enemy;
     }
@@ -19,31 +19,32 @@ public class RE_RangedAttackState : RangedAttackState
     public override void Enter()
     {
         base.Enter();
+        enemy.meleeAttackState.DisableHitbox();
     }
 
     public override void Exit()
     {
         base.Exit();
-    }
-
-    public override void FinishAttack()
-    {
-        base.FinishAttack();
+        enemy.meleeAttackState.DisableHitbox();
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if (isAnimationFinished)
+        if (isStunTimeOver)
         {
-            if (isPlayerInMinAgroRange)
+            if (isPlayerInPursuitRange && isPlayerInAgroRange)
             {
-                stateMachine.ChangeState(enemy.playerDetectedState);
+                stateMachine.ChangeState(enemy.chargeState);
+            }
+            else if(isPlayerInPursuitRange && !isPlayerInAgroRange)
+            {
+                stateMachine.ChangeState(enemy.lookForPlayerState);
             }
             else
             {
-                stateMachine.ChangeState(enemy.lookForPlayerState);
+                stateMachine.ChangeState(enemy.moveState);
             }
         }
     }
@@ -52,10 +53,4 @@ public class RE_RangedAttackState : RangedAttackState
     {
         base.PhysicsUpdate();
     }
-
-    public override void TriggerAttack()
-    {
-        base.TriggerAttack();
-    }
 }
-    

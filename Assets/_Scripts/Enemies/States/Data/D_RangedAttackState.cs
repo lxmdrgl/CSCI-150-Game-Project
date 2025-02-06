@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,4 +10,3 @@ public class D_RangedAttackState : ScriptableObject
     public float projectileSpeed = 12f;
     public float projectileTravelDistance;
 }
-*/
