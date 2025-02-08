@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agroRange: 8
   pursuitRange: 8
-  maxAgroDistance: 12
-  closeRangeActionDistance: 1
+  maxAgroDistance: 20
+  closeRangeActionDistance: 0
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
