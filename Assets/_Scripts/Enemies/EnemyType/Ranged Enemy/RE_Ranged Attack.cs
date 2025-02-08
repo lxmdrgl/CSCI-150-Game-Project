@@ -6,7 +6,8 @@ public class RE_RangedAttackState : RangedAttackState
 {
     private RangedEnemy enemy;
 
-    public RE_RangedAttackState(Entity entity, string animBoolName, Transform attackPosition, D_RangedAttackState stateData, RangedEnemy enemy) : base(entity, animBoolName,attackPosition, stateData)
+    public RE_RangedAttackState(Entity entity, string animBoolName, Transform attackPosition, D_RangedAttackState stateData, RangedEnemy enemy) 
+        : base(entity, animBoolName, attackPosition, stateData)
     {
         this.enemy = enemy;
     }
@@ -14,21 +15,19 @@ public class RE_RangedAttackState : RangedAttackState
     public override void DoChecks()
     {
         base.DoChecks();
+        
     }
 
     public override void Enter()
     {
         base.Enter();
+        
     }
 
     public override void Exit()
     {
         base.Exit();
-    }
-
-    public override void FinishAttack()
-    {
-        base.FinishAttack();
+        // Cleanup or reset anything when exiting this state
     }
 
     public override void LogicUpdate()
@@ -37,13 +36,14 @@ public class RE_RangedAttackState : RangedAttackState
 
         if (isAnimationFinished)
         {
-            if (isPlayerInMinAgroRange)
+            // Use Entity methods for range checks
+            if (entity.CheckPlayerInAgroRange()) // Player is in agro range
             {
-                stateMachine.ChangeState(enemy.playerDetectedState);
+                stateMachine.ChangeState(enemy.playerDetectedState); // Transition to PlayerDetectedState
             }
             else
             {
-                stateMachine.ChangeState(enemy.lookForPlayerState);
+                stateMachine.ChangeState(enemy.lookForPlayerState); // Transition to LookForPlayerState
             }
         }
     }
@@ -51,11 +51,12 @@ public class RE_RangedAttackState : RangedAttackState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        
     }
 
     public override void TriggerAttack()
     {
         base.TriggerAttack();
+       
     }
 }
-    

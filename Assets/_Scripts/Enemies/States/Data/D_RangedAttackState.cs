@@ -8,5 +8,5 @@ public class D_RangedAttackState : ScriptableObject
     public GameObject projectile;
     public float projectileDamage = 10f;
     public float projectileSpeed = 12f;
-    public float projectileTravelDistance;
+    public float projectileTravelDistance = 10f;
 }
