@@ -38,10 +38,6 @@ public class RangedAttackState : AttackState
             {
                 TriggerAttack(); // Continue attacking
             }
-            else // Player is out of range
-            {
-                stateMachine.ChangeState(entity.lookForPlayerState); // Transition to another state
-            }
         }
     }
 
