@@ -21,7 +21,7 @@ public class LevelGenerator : MonoBehaviour
 
     void Awake()
     {
-         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
 
         spawnStartingRoom();
 
