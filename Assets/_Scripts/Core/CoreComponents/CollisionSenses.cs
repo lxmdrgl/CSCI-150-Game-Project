@@ -65,7 +65,7 @@ namespace Game.CoreSystem
 			get 
             {
                 RaycastHit2D hit = Physics2D.Raycast(WallCheck.position, Vector2.right * Movement.FacingDirection, wallCheckDistance, whatIsGround);
-                if (hit.collider != null && !hit.collider.CompareTag(platformTag)) {
+                if (hit.collider != null && hit.collider.tag == "Untagged") {
                     return true;
                 } else {
                     // Debug.Log($"PlatformBottom false");

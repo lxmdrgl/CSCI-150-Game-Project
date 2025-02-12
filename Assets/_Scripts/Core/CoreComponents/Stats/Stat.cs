@@ -48,8 +48,9 @@ namespace Game.CoreSystem.StatsSystem
 
         public void IncreaseMaxValue(float amount) {
             float ratio = currentValue / MaxValue;
-            MaxValue += amount;
+            MaxValue = Mathf.Round(MaxValue * (1 + (amount/100)));
             currentValue = Mathf.Round(ratio * MaxValue);
+            Debug.Log("Health: " + MaxValue + " " + currentValue);
             OnValueChange?.Invoke();
         }
 

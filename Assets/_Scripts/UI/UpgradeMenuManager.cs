@@ -2,12 +2,16 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using Game.Weapons;
 
 public class UpgradeMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     
     [SerializeField] private GameObject UpgradeCanvasGO;
+    [SerializeField] private List<UpgradeSlot> upgradeSlots;
+    [SerializeField] private StatUpgradeDataSet upgradeDataSet;
 
     private bool isPaused;
 
@@ -19,7 +23,6 @@ public class UpgradeMenuManager : MonoBehaviour
     
     private void Awake()
     {
-        
     }
 
     void Start()
@@ -39,6 +42,11 @@ public class UpgradeMenuManager : MonoBehaviour
             if (!isPaused)
             {
                 Pause();
+            }
+
+            foreach(UpgradeSlot slot in upgradeSlots)
+            {
+                // slot.SetData();
             }
         }/*
         else if (InputHandler.UIMenuCloseInput)
