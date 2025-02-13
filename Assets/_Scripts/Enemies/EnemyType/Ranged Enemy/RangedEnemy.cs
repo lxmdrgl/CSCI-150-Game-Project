@@ -32,10 +32,13 @@ public class RangedEnemy : Entity
     private D_DeadState deadStateData;
     [SerializeField]
     private D_CooldownState cooldownStateData;
-
+    [SerializeField]
+    private D_RangedAttackState rangedAttackStateData;
 
     private GameObject meleeAttackCollider;
 
+    [SerializeField]
+    private Transform rangedAttackPosition;
 
     public override void Awake()
     {
@@ -53,7 +56,7 @@ public class RangedEnemy : Entity
         stunState = new RE_StunState(this, "stun", stunStateData, this);
         deadState = new RE_DeadState(this, "dead", deadStateData, this);
         cooldownState = new RE_CooldownState(this, "cooldown", cooldownStateData, this);
-
+        rangedAttackState = new RE_RangedAttackState(this, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this );
         stats.Stun.OnCurrentValueZero += HandleStunZero;
         stats.Health.OnValueChange += HandleDamageTaken;
     }

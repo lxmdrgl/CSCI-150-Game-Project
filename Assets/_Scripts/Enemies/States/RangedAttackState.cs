@@ -6,11 +6,11 @@ using UnityEngine;
 public class RangedAttackState : AttackState
 {
     protected D_RangedAttackState stateData;
-
-    public RangedAttackState(Entity entity, string animBoolName, Transform attackPosition, D_RangedAttackState stateData) 
-        : base(entity, animBoolName, attackPosition.gameObject)
+    protected Transform attackPosition;
+    public RangedAttackState(Entity entity, string animBoolName, Transform attackPosition, D_RangedAttackState stateData) : base(entity, animBoolName, attackPosition.gameObject)
     {
         this.stateData = stateData;
+        this.attackPosition = attackPosition; // Store the attack position
     }
 
     public override void DoChecks()
@@ -18,7 +18,7 @@ public class RangedAttackState : AttackState
         base.DoChecks();
 
         // Check if the player is still within the maximum agro distance
-        isPlayerInAgroRange = entity.CheckPlayerInMaxAgroRange();
+        isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
     }
 
     public override void Enter()

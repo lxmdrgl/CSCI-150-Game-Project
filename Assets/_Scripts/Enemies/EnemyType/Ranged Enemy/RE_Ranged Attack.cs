@@ -36,10 +36,9 @@ public class RE_RangedAttackState : RangedAttackState
 
         if (isAnimationFinished)
         {
-            // Use Entity methods for range checks
-            if (entity.CheckPlayerInAgroRange()) // Player is in agro range
+            if (isPlayerInAgroRange) // Player is in agro range
             {
-                stateMachine.ChangeState(enemy.playerDetectedState); // Transition to PlayerDetectedState
+                stateMachine.ChangeState(enemy.rangedAttackState); // Transition to PlayerDetectedState
             }
             else
             {

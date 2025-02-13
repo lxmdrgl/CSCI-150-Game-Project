@@ -32,12 +32,9 @@ public class RE_ChargeState : ChargeState
         base.LogicUpdate();
 
         Movement?.SetVelocityX(stateData.chargeSpeed * Movement.FacingDirection);
-        if (isPlayerInMaxAgroRange){
-            stateMachine.ChangeState(enemy.rangedAttackState);
-        }
-        else if (performCloseRangeAction)
+        if (isPlayerInAgroRange)
         {
-            stateMachine.ChangeState(enemy.meleeAttackState);
+            stateMachine.ChangeState(enemy.rangedAttackState);
         }
         else if (!isPlayerInAgroRange && isPlayerInPursuitRange)
         {
