@@ -8,6 +8,8 @@ public class Entity : MonoBehaviour, IDataPersistence
     private Movement Movement { get => movement ?? Core.GetCoreComponent(ref movement); }
 	private Movement movement;
     public EnemyStateMachine stateMachine;
+    //[SerializeField] private bool isRangedEnemy;
+    //public bool IsRangedEnemy => isRangedEnemy;
     public D_Entity entityData;
     private DamageFlash damageFlash;
     public Animator anim { get; private set; }
