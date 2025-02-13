@@ -20,6 +20,7 @@ public class PlayerAirState : PlayerState
 
     protected int xInput;
     protected bool jumpInput;
+    private bool downInput;
     protected bool dashInput;
 
     private bool isGrounded;
@@ -79,6 +80,7 @@ public class PlayerAirState : PlayerState
 
         xInput = player.InputHandler.NormInputX;
         jumpInput = player.InputHandler.JumpInput;
+        downInput = player.InputHandler.DownInput;
         dashInput = player.InputHandler.DashInput;
 
         ResetPlatformCollision();
@@ -105,8 +107,9 @@ public class PlayerAirState : PlayerState
         {
             stateMachine.ChangeState(player.DashState);
         }
-        else if (jumpInput && player.JumpState.CanJump())
+        else if ((jumpInput) && player.JumpState.CanJump())
         {
+            Debug.Log("Input: Air to Jump");
             stateMachine.ChangeState(player.JumpState);
         } 
         else if (isGrounded && Movement?.CurrentVelocity.y < 0.01f && xInput == 0)

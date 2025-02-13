@@ -15,6 +15,24 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Down",
+                    "type": "Button",
+                    "id": "abd7a4e3-27bd-4232-8c55-05cd87863565",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DownJump",
+                    "type": "Button",
+                    "id": "1a4e579c-f7c8-4268-a671-4f13cb404521",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "0242cdb5-eb6c-4f56-99f9-2843b05c28c6",
@@ -36,15 +54,6 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "55cc4cf3-d14a-4f21-b7b4-bf871e7819ba",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "DownJump",
-                    "type": "Button",
-                    "id": "1a4e579c-f7c8-4268-a671-4f13cb404521",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -110,6 +119,17 @@
                     "name": "",
                     "id": "978bfe49-cc26-4a3d-ab7b-7d7a29327403",
                     "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c3649702-e8d7-48bf-a1a9-947b683bb357",
+                    "path": "<Gamepad>/dpad",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
@@ -543,6 +563,50 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "UpgradeOpen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "676234aa-a124-479e-8e50-605e6a57c024",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3880d3c-9e37-4a90-8b2e-a77f8420ce08",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "37176101-69a9-4022-9f2e-6b4917438492",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "24c09bbb-c9d4-418c-b4a0-65e58aef1290",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

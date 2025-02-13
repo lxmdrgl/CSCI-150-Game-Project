@@ -62,13 +62,22 @@ namespace Game.CoreSystem
 
         public bool WallFront 
         {
-			get => Physics2D.Raycast(WallCheck.position, Vector2.right * Movement.FacingDirection, wallCheckDistance, whatIsGround);
-		}
+			get 
+            {
+                RaycastHit2D hit = Physics2D.Raycast(WallCheck.position, Vector2.right * Movement.FacingDirection, wallCheckDistance, whatIsGround);
+                if (hit.collider != null && hit.collider.tag == "Untagged") {
+                    return true;
+                } else {
+                    // Debug.Log($"PlatformBottom false");
+                    return false;
+                }
+            }
+        }
 
-        public bool WallBack 
+        /* public bool WallBack 
         {
 			get => Physics2D.Raycast(WallCheck.position, Vector2.right * -Movement.FacingDirection, wallCheckDistance, whatIsGround);
-		}
+		} */
         public bool LedgeVertical {
 			get => Physics2D.Raycast(LedgeCheckVertical.position, Vector2.down, wallCheckDistance, whatIsGround);
 		}
