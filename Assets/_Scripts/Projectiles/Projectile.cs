@@ -1,18 +1,21 @@
-/*using UnityEngine;
+using UnityEngine;
 
 namespace Game.Projectiles
 {
-public class Projectile : MonoBehaviour
-{
-    private float speed;
-    private float projectileTravelDistance;
-    private float xStartPos;
+    public class Projectile : MonoBehaviour
+    {
+        
+        private float speed;
+        private float travelDistance;
+        private float xStartPos;
 
-    [SerializeField]
+        [SerializeField]
         private float gravity;
         [SerializeField]
         private float damageRadius;
 
+        [SerializeField]
+        private Damage damageScript;
         private Rigidbody2D rb;
 
         private bool isGravityOn;
@@ -58,9 +61,10 @@ public class Projectile : MonoBehaviour
                 Collider2D damageHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsPlayer);
                 Collider2D groundHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsGround);
 
+
                 if (damageHit)
                 {
-                    //damageHit.transform.SendMessage("Damage", attackDetails);
+                    damageScript.HandleCollision(damageHit);
                     Destroy(gameObject);
                 }
 
@@ -80,17 +84,56 @@ public class Projectile : MonoBehaviour
             }        
         }
 
-        public void FireProjectile(float speed, float travelDistance, float damage)
+        public void FireProjectile(float speed, float travelDistance)
         {
             this.speed = speed;
             this.travelDistance = travelDistance;
             //attackDetails.damageAmount = damage;
         }
 
-        private void OnDrawGizmos()
+        /*
+        private float speed;
+        private float travelDistance;
+        private Vector2 startPosition;
+
+        private void Start()
         {
-            Gizmos.DrawWireSphere(damagePosition.position, damageRadius);
+            // Store the starting position
+            startPosition = transform.position;
         }
+
+        private void Update()
+        {
+            // Move the projectile in a straight line
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
+
+            // Destroy the projectile if it exceeds its travel distance
+            if (Vector2.Distance(startPosition, transform.position) >= travelDistance)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        // Initialize the projectile's movement and travel properties
+        public void FireProjectile(float speed, float travelDistance)
+        {
+            this.speed = speed;
+            this.travelDistance = travelDistance;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            // Delegate collision and damage handling to the damage.cs component
+            Damage damageComponent = GetComponent<Damage>();
+            if (damageComponent != null)
+            {
+                damageComponent.HandleCollision(collision);
+            }
+
+            // Destroy the projectile after dealing damage
+            Destroy(gameObject);
+        }
+        */
     }
+
 }
-*/
