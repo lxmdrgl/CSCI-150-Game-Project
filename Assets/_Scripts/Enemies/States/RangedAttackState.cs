@@ -34,10 +34,7 @@ public class RangedAttackState : AttackState
 
         if (isAnimationFinished) // Attack animation is complete
         {
-            if (isPlayerInAgroRange) // Player is still in range
-            {
-                TriggerAttack(); // Continue attacking
-            }
+            stateMachine.ChangeState(this);
         }
     }
 

@@ -21,7 +21,7 @@ public class RE_RangedAttackState : RangedAttackState
     public override void Enter()
     {
         base.Enter();
-        
+        isAnimationFinished = false;
     }
 
     public override void Exit()
@@ -56,6 +56,11 @@ public class RE_RangedAttackState : RangedAttackState
     public override void TriggerAttack()
     {
         base.TriggerAttack();
-       
+    }
+
+    public override void FinishAttack()
+    {
+        base.FinishAttack();
+        isAnimationFinished = true; // Mark the animation as finished
     }
 }
