@@ -15,7 +15,10 @@ public class DeathScreenManager : MonoBehaviour
     
     private void Awake()
     {
-        selectedProfileId = DataPersistenceManager.instance.GetSelectedProfileId();
+        if(DataPersistenceManager.instance.disableDataPersistence == false)
+        {
+            selectedProfileId = DataPersistenceManager.instance.GetSelectedProfileId();
+        }
     }
 
 

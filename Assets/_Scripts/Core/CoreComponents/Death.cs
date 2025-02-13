@@ -33,7 +33,7 @@ namespace Game.CoreSystem
 
             // healthBar.SetActive(false);
 
-            if (core.transform.parent.gameObject.name == "Player") {
+            if (core.transform.parent.gameObject.tag == "Player") {
                 Debug.Log("Player died");
 
                 deathScreen = GameObject.FindGameObjectWithTag("Deathscreen");
