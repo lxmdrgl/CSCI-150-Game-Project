@@ -17,7 +17,6 @@ public class ChargeState : EnemyState
 	protected D_ChargeState stateData;
 
 	protected bool isPlayerInAgroRange;
-	protected bool isPlayerInMaxAgroRange;
 	protected bool isPlayerInPursuitRange;
 	protected bool isDetectingLedge;
 	protected bool isDetectingWall;
@@ -33,7 +32,6 @@ public class ChargeState : EnemyState
 		base.DoChecks();
 
 		isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
-		isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
 		isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
 		isDetectingLedge = CollisionSenses.LedgeVertical;
 		isDetectingWall = CollisionSenses.WallFront;

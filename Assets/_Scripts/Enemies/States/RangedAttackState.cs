@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using Game.Projectiles;
 using UnityEngine;
@@ -6,56 +6,52 @@ using UnityEngine;
 public class RangedAttackState : AttackState
 {
     protected D_RangedAttackState stateData;
-    protected Transform attackPosition;
-    public RangedAttackState(Entity entity, string animBoolName, Transform attackPosition, D_RangedAttackState stateData) : base(entity, animBoolName, attackPosition.gameObject)
-    {
-        this.stateData = stateData;
-        this.attackPosition = attackPosition; // Store the attack position
-    }
 
-    public override void DoChecks()
-    {
-        base.DoChecks();
+     protected GameObject projectile;
+     protected Projectile projectileScript;
 
-        // Check if the player is still within the maximum agro distance
-        isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
-    }
+     public RangedAttackState(Entity etity, EnemyStateMachine stateMachine, string animBoolName, Transform attackPosition, D_RangedAttackState stateData) : base(etity, stateMachine, animBoolName, attackPosition)
+     {
+         this.stateData = stateData;
+     }
 
-    public override void Enter()
-    {
-        base.Enter();
-        // Reset attack animation flag
-        isAnimationFinished = false;
-    }
+     public override void DoChecks()
+     {
+         base.DoChecks();
+     }
 
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
+     public override void Enter()
+     {
+         base.Enter();
+     }
 
-    }
+     public override void Exit()
+     {
+         base.Exit();
+     }
 
-    public override void TriggerAttack()
-    {
-        base.TriggerAttack();
+     public override void FinishAttack()
+     {
+         base.FinishAttack();
+     }
 
-        // Instantiate the projectile and set its properties
-        GameObject projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
-        Projectile projectileScript = projectile.GetComponent<Projectile>();
-        if (projectileScript != null)
-        {
-            projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance);
-        }
+     public override void LogicUpdate()
+     {
+         base.LogicUpdate();
+     }
 
-        Damage damageComponent = projectile.GetComponent<Damage>();
-        if (damageComponent != null)
-        {
-            damageComponent.SetDamage(stateData.projectileDamage);
-        }
-    }
+     public override void PhysicsUpdate()
+     {
+         base.PhysicsUpdate();
+     }
 
-    public override void FinishAttack()
-    {
-        base.FinishAttack();
-        isAnimationFinished = true; // Mark the animation as finished
-    }
-}
+     public override void TriggerAttack()
+     {
+         base.TriggerAttack();
+
+         projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
+         projectileScript = projectile.GetComponent<Projectile>();
+         projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, stateData.projectileDamage);
+     }
+ }
+*/
