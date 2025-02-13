@@ -32,10 +32,6 @@ public class RangedAttackState : AttackState
     {
         base.LogicUpdate();
 
-        if (isAnimationFinished) // Attack animation is complete
-        {
-            stateMachine.ChangeState(this);
-        }
     }
 
     public override void TriggerAttack()
