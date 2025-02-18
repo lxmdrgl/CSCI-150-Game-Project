@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using Game.Weapons;
 using System;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Game.CoreSystem
 {
@@ -126,6 +128,8 @@ namespace Game.CoreSystem
             UpgradeCanvasGO.SetActive(false);
 
             InputHandler.UseUpgradeOpenInput();
+
+            EventSystem.current.SetSelectedGameObject(null); // CLEAR SELECTED BUTTON FOR COLOR TRANSITIONS
         }
         #endregion
 
