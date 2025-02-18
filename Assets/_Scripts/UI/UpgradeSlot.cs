@@ -10,19 +10,30 @@ public class UpgradeSlot : MonoBehaviour
     [SerializeField] private string upgradeId = "";
 
     [Header("Content")]
-    [SerializeField] private GameObject noDataContent;
-    [SerializeField] private GameObject hasDataContent;
+    private GameObject noDataContent;
+    private GameObject hasDataContent;
+
+    private StatUpgradeData currentData;
     // [SerializeField] private TextMeshProUGUI timePlayedText;
 
-    public void SetData(WeaponData data)
+    public void Awake()
+    {
+        noDataContent = transform.Find("NoDataContent").gameObject;   
+        hasDataContent = transform.Find("HasDataContent").gameObject;   
+    }
+
+    public void SetData(StatUpgradeData data)
     {
         if(data == null)
         {
+            currentData = null;
             noDataContent.SetActive(true);
             hasDataContent.SetActive(false);
         }
         else
         {
+            currentData = data;
+            SetDataContent();
             noDataContent.SetActive(false);
             hasDataContent.SetActive(true);
         }
@@ -30,5 +41,12 @@ public class UpgradeSlot : MonoBehaviour
     public string GetProfileId()
     {
         return this.upgradeId;
+    }
+
+    public void SetDataContent()
+    {
+        // hasDataContent.transform.Find("UpgradeName").GetComponentInChildren<TextMeshProUGUI>().text = data.name;
+        String text = "Attack: " + currentData.Attack.ToString() + ", Health: " + currentData.Health.ToString();
+        transform.Find("Text (TMP)").GetComponentInChildren<TextMeshProUGUI>().text = currentData.name + "\n" + text;
     }
 }

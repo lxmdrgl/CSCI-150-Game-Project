@@ -37,7 +37,7 @@ namespace Game.CoreSystem
         public void UpdateStats(float newHealth, float newAttack) {
             Health.IncreaseMaxValue(newHealth);
             
-            Attack *= Mathf.Round(1 + (newAttack/100));
+            Attack = Mathf.Floor(Attack * (1 + (newAttack/100)));
         }
     }
 }

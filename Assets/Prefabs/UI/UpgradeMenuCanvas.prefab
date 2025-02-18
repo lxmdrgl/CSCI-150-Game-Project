@@ -430,6 +430,7 @@ MonoBehaviour:
   - {fileID: 2438862670406432779}
   - {fileID: 1287499243153251886}
   - {fileID: 7718030206466930543}
+  upgradeDataSet: {fileID: 0}
 --- !u!1 &9217729955972256128
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,16 +678,37 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6723686613299453890}
+    - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6723686613299453890}
+    - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnUpgradeClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Game.CoreSystem.UpgradeMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UpgradeSlot, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 484530981149147832, guid: 496446059630ff041af4327ee76b476a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2290317422260646578}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 496446059630ff041af4327ee76b476a, type: 3}
 --- !u!224 &773209597968987545 stripped
 RectTransform:
@@ -698,32 +720,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1077169711071750014, guid: 496446059630ff041af4327ee76b476a, type: 3}
   m_PrefabInstance: {fileID: 2246449144963414352}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1843550890432609256}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 176bd665edffe4247925d3dde4d0c307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1843550890432609256 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 484530981149147832, guid: 496446059630ff041af4327ee76b476a, type: 3}
-  m_PrefabInstance: {fileID: 2246449144963414352}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2290317422260646578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1843550890432609256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 176bd665edffe4247925d3dde4d0c307, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upgradeId: 2
-  noDataContent: {fileID: 0}
-  hasDataContent: {fileID: 0}
 --- !u!1001 &3398656998193291125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -822,6 +824,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6723686613299453890}
+    - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 6723686613299453890}
     m_RemovedComponents: []
@@ -954,43 +960,44 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6723686613299453890}
+    - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6723686613299453890}
+    - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnUpgradeClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Game.CoreSystem.UpgradeMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UpgradeSlot, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 484530981149147832, guid: 496446059630ff041af4327ee76b476a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1597746705380908470}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 496446059630ff041af4327ee76b476a, type: 3}
---- !u!1 &7156349471463232169 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 484530981149147832, guid: 496446059630ff041af4327ee76b476a, type: 3}
-  m_PrefabInstance: {fileID: 7343422320768176145}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1597746705380908470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7156349471463232169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 176bd665edffe4247925d3dde4d0c307, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  upgradeId: 3
-  noDataContent: {fileID: 0}
-  hasDataContent: {fileID: 0}
 --- !u!114 &7718030206466930543 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1077169711071750014, guid: 496446059630ff041af4327ee76b476a, type: 3}
   m_PrefabInstance: {fileID: 7343422320768176145}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7156349471463232169}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 176bd665edffe4247925d3dde4d0c307, type: 3}

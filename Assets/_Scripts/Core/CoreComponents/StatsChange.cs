@@ -17,6 +17,7 @@ namespace Game.CoreSystem
         private StatUpgradeData newStatsData;
 
         private MinorUpgrade minorUpgrade;
+        public event Action<StatUpgradeDataSet> OnMinorUpgradeInteract;
 
         private void HandleTryInteract(IInteractable interactable)
         {
@@ -32,8 +33,10 @@ namespace Game.CoreSystem
 
             minorUpgrade = pickup;
 
-            newStatsData = minorUpgrade.GetContext();
-            stats.UpdateStats(newStatsData.Health, newStatsData.Attack);
+            OnMinorUpgradeInteract?.Invoke(minorUpgrade.GetContext());
+
+            // newStatsData = minorUpgrade.GetContext();
+            // stats.UpdateStats(newStatsData.Health, newStatsData.Attack);
 
             minorUpgrade.Interact();
 
