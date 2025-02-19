@@ -31,8 +31,6 @@ namespace Game.CoreSystem
         
             core.transform.parent.gameObject.SetActive(false);
 
-            // healthBar.SetActive(false);
-
             if (core.transform.parent.gameObject.tag == "Player") {
                 Debug.Log("Player died");
 
