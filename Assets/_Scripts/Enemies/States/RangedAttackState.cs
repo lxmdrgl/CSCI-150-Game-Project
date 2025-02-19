@@ -49,7 +49,7 @@ public class RangedAttackState : AttackState
         Damage damageComponent = projectile.GetComponent<Damage>();
         if (damageComponent != null)
         {
-            damageComponent.SetDamage(stateData.projectileDamage);
+            damageComponent.SetDamage(stateData.projectileDamage, stateData.knockbackAngle, stateData.knockbackStrength);
         }
     }
 

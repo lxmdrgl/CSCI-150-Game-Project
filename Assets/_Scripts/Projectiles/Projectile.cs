@@ -65,7 +65,7 @@ namespace Game.Projectiles
                 if (damageHit)
                 {
                     damageScript.HandleCollision(damageHit);
-                    Destroy(gameObject);
+                    Destroy(gameObject, 0.2f);
                 }
 
                 if (groundHit)
