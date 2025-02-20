@@ -16,10 +16,13 @@ namespace Game.CoreSystem
         [SerializeField] private Core core;
         [SerializeField] private Stats stats;
         [SerializeField] private StatsChange statsChange;
+        [SerializeField] private WeaponSwap weaponSwap;
+        [SerializeField] private WeaponInventory weaponInventory;
         
         [SerializeField] private GameObject UpgradeCanvasGO;
         [SerializeField] private List<UpgradeSlot> upgradeSlots;
-        [SerializeField] private StatUpgradeDataSet upgradeDataSet;
+        [SerializeField] private StatUpgradeDataSet statUpgradeDataSet;
+        [SerializeField] private WeaponDataSet weaponDataSet;
 
         private bool isPaused;
 
@@ -62,32 +65,81 @@ namespace Game.CoreSystem
 
         private void OnEnable()
         {
-            statsChange.OnMinorUpgradeInteract += HandleUpgradeMenuInteract;
+            statsChange.OnMinorUpgradeInteract += HandleStatUpgradeMenuInteract;
+            weaponSwap.OnMajorUpgradeInteract += HandleWeaponMenuInteract;
         }
 
         private void OnDisable()
         {
-            statsChange.OnMinorUpgradeInteract -= HandleUpgradeMenuInteract;
+            statsChange.OnMinorUpgradeInteract -= HandleStatUpgradeMenuInteract;
+            weaponSwap.OnMajorUpgradeInteract -= HandleWeaponMenuInteract;
         }
 
-        private void HandleUpgradeMenuInteract(StatUpgradeDataSet dataSet)
+        private void HandleStatUpgradeMenuInteract(StatUpgradeDataSet dataSet)
         {
-            // upgradeMenuInteract = true;
-            upgradeDataSet = dataSet;
+            statUpgradeDataSet = dataSet;
 
             List<int> usedIndices = new List<int>();
             System.Random random = new System.Random();
 
-            foreach (UpgradeSlot slot in upgradeSlots)
+            for (int i = 0; i < upgradeSlots.Count; i++)
             {
-                int index;
-                do
+                if (i < statUpgradeDataSet.statUpgradeData.Count)
                 {
-                    index = random.Next(upgradeDataSet.statUpgradeData.Count);
-                } while (usedIndices.Contains(index));
+                    int index;
+                    do
+                    {
+                        index = random.Next(statUpgradeDataSet.statUpgradeData.Count);
+                    } while (usedIndices.Contains(index));
 
-                usedIndices.Add(index);
-                slot.SetData(upgradeDataSet.statUpgradeData[index]);
+                    usedIndices.Add(index);
+                    upgradeSlots[i].SetData(statUpgradeDataSet.statUpgradeData[index]);
+                }
+                else
+                {
+                    upgradeSlots[i].SetData(null);
+                }
+            }
+
+            Pause();
+        }
+
+        private void HandleWeaponMenuInteract(WeaponDataSet dataSet)
+        {
+            weaponDataSet = dataSet;
+
+            // Create a local copy of the weaponData list
+            List<WeaponData> localWeaponData = new List<WeaponData>(weaponDataSet.weaponData);
+
+            // Remove weapons that are already in the inventory or do not meet prerequisites
+            localWeaponData.RemoveAll(weaponData => 
+                weaponInventory.currentWeaponData.Contains(weaponData) ||
+                weaponInventory.oldWeaponData.Contains(weaponData) ||
+                (weaponData.prereqWeapon != null &&
+                !weaponInventory.currentWeaponData.Contains(weaponData.prereqWeapon) &&
+                !weaponInventory.oldWeaponData.Contains(weaponData.prereqWeapon))
+            );
+
+            List<int> usedIndices = new List<int>();
+            System.Random random = new System.Random();
+
+            for (int i = 0; i < upgradeSlots.Count; i++)
+            {
+                if (i < localWeaponData.Count)
+                {
+                    int index;
+                    do
+                    {
+                        index = random.Next(localWeaponData.Count);
+                    } while (usedIndices.Contains(index));
+
+                    usedIndices.Add(index);
+                    upgradeSlots[i].SetData(localWeaponData[index]);
+                }
+                else
+                {
+                    upgradeSlots[i].SetData(null);
+                }
             }
 
             Pause();
@@ -135,9 +187,21 @@ namespace Game.CoreSystem
 
         public void OnUpgradeClicked(UpgradeSlot slot)
         {
-            int index = upgradeSlots.IndexOf(slot);
-            StatUpgradeData currentData = upgradeDataSet.statUpgradeData[index];
-            stats.UpdateStats(currentData.Health, currentData.Attack);
+            // int index = upgradeSlots.IndexOf(slot);
+            if (statUpgradeDataSet != null) {
+                // StatUpgradeData currentData = statUpgradeDataSet.statUpgradeData[index];
+                StatUpgradeData currentData = slot.currentStatData;
+                stats.UpdateStats(currentData.Health, currentData.Attack);
+
+            } else if (weaponDataSet != null) {
+                // WeaponData currentData = weaponDataSet.weaponData[index];
+                WeaponData currentData = slot.currentWeaponData;
+                int weaponIndex = (int)currentData.weaponIndex;
+                weaponInventory.TrySetWeapon(currentData, weaponIndex);
+            }
+
+            statUpgradeDataSet = null;
+            weaponDataSet = null;
         }
     }
 }

@@ -7,19 +7,19 @@ using Game.Weapons;
 namespace Game.Interaction.Interactables
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class MajorUpgrade : MonoBehaviour, IInteractable<WeaponData>
+    public class MajorUpgrade : MonoBehaviour, IInteractable<WeaponDataSet>
     {
         [field: SerializeField] public Rigidbody2D Rigidbody2D { get; private set; }
 
         [SerializeField] private SpriteRenderer spriteIcon;
         // [SerializeField] private Bobber bobber;
         
-        [SerializeField] private WeaponData weaponData;
+        [SerializeField] private WeaponDataSet weaponDataSet;
         
-        public WeaponData GetContext() => weaponData;
-        public void SetContext(WeaponData context)
+        public WeaponDataSet GetContext() => weaponDataSet;
+        public void SetContext(WeaponDataSet context)
         {
-            weaponData = context;
+            weaponDataSet = context;
 
             // spriteIcon.sprite = weaponData.Icon;
         }
@@ -49,7 +49,7 @@ namespace Game.Interaction.Interactables
             Rigidbody2D ??= GetComponent<Rigidbody2D>();
             spriteIcon ??= GetComponentInChildren<SpriteRenderer>();
             
-            if(weaponData is null)
+            if(weaponDataSet is null)
                 return;
 
             // spriteIcon.sprite = weaponData.Icon;

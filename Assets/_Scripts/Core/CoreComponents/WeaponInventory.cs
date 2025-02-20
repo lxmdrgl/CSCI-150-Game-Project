@@ -12,7 +12,7 @@ namespace Game.CoreSystem
         public event Action<int, WeaponData> OnWeaponDataChanged;
 
         [field: SerializeField] public WeaponDataSet weaponDataSet { get; private set; }
-        [field: SerializeField] public WeaponData[] currentWeaponData { get; private set; }
+        [field: SerializeField] public List<WeaponData> currentWeaponData { get; private set; }
         [field: SerializeField] public List<WeaponData> oldWeaponData { get; private set; }
 
 
@@ -20,7 +20,7 @@ namespace Game.CoreSystem
         {
             WeaponData oldData;
 
-            if (index >= currentWeaponData.Length)
+            if (index >= currentWeaponData.Count)
             {
                 oldData = null;
                 return false;
@@ -40,7 +40,7 @@ namespace Game.CoreSystem
 
         public bool TryGetWeapon(int index, out WeaponData data)
         {
-            if (index >= currentWeaponData.Length)
+            if (index >= currentWeaponData.Count)
             {
                 data = null;
                 return false;

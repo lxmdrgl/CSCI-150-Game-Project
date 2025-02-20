@@ -6,15 +6,12 @@ using Game.Weapons;
 
 public class UpgradeSlot : MonoBehaviour
 {
-    [Header("Id")]
-    [SerializeField] private string upgradeId = "";
-
     [Header("Content")]
     private GameObject noDataContent;
     private GameObject hasDataContent;
 
-    private StatUpgradeData currentData;
-    // [SerializeField] private TextMeshProUGUI timePlayedText;
+    public StatUpgradeData currentStatData;
+    public WeaponData currentWeaponData;
 
     public void Awake()
     {
@@ -22,31 +19,41 @@ public class UpgradeSlot : MonoBehaviour
         hasDataContent = transform.Find("HasDataContent").gameObject;   
     }
 
-    public void SetData(StatUpgradeData data)
+    public void SetData(object data)
     {
-        if(data == null)
+        if (data == null)
         {
-            currentData = null;
+            currentStatData = null;
+            currentWeaponData = null;
             noDataContent.SetActive(true);
             hasDataContent.SetActive(false);
         }
         else
         {
-            currentData = data;
-            SetDataContent();
+            if (data is StatUpgradeData statData)
+            {
+                currentStatData = statData;
+                SetStatDataContent();
+            }
+            else if (data is WeaponData weaponData)
+            {
+                currentWeaponData = weaponData;
+                SetWeaponDataContent();
+            }
             noDataContent.SetActive(false);
             hasDataContent.SetActive(true);
         }
     }
-    public string GetProfileId()
-    {
-        return this.upgradeId;
-    }
 
-    public void SetDataContent()
+    public void SetStatDataContent()
     {
         // hasDataContent.transform.Find("UpgradeName").GetComponentInChildren<TextMeshProUGUI>().text = data.name;
-        String text = "Attack: " + currentData.Attack.ToString() + ", Health: " + currentData.Health.ToString();
-        hasDataContent.GetComponent<TextMeshProUGUI>().text = currentData.name + "\n" + text;
+        String text = "Attack: " + currentStatData.Attack.ToString() + ", Health: " + currentStatData.Health.ToString();
+        hasDataContent.GetComponent<TextMeshProUGUI>().text = currentStatData.name + "\n" + text;
+    }
+
+    public void SetWeaponDataContent()
+    {
+        hasDataContent.GetComponent<TextMeshProUGUI>().text = currentWeaponData.Name + "\n" + currentWeaponData.Description;
     }
 }
