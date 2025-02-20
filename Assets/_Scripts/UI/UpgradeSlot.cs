@@ -27,9 +27,12 @@ public class UpgradeSlot : MonoBehaviour
             currentWeaponData = null;
             noDataContent.SetActive(true);
             hasDataContent.SetActive(false);
+            gameObject.SetActive(false);
         }
         else
         {
+            gameObject.SetActive(true);
+
             if (data is StatUpgradeData statData)
             {
                 currentStatData = statData;

@@ -26,8 +26,8 @@ public class DeathScreenManager : MonoBehaviour
     {   
         if(DataPersistenceManager.instance.disableDataPersistence)
         {
-            deathScreenCanvasGO.SetActive(false);
             SceneManager.LoadScene(MainMenuSceneName);
+            deathScreenCanvasGO.SetActive(false);
             return;
         }
         else
@@ -45,8 +45,8 @@ public class DeathScreenManager : MonoBehaviour
     {   
         if(DataPersistenceManager.instance.disableDataPersistence)
         {
-            deathScreenCanvasGO.SetActive(false);
             SceneManager.LoadScene(GameplaySceneName);
+            deathScreenCanvasGO.SetActive(false);
             return;
         }
         else
