@@ -7,18 +7,18 @@ using Game.Weapons;
 namespace Game.Interaction.Interactables
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class MinorUpgrade : MonoBehaviour, IInteractable<StatUpgradeData>
+    public class MinorUpgrade : MonoBehaviour, IInteractable<StatUpgradeDataSet>
     {
         [field: SerializeField] public Rigidbody2D Rigidbody2D { get; private set; }
 
         [SerializeField] private SpriteRenderer spriteIcon;
 
-        [SerializeField] private StatUpgradeData statUpgradeData;
+        [SerializeField] private StatUpgradeDataSet statUpgradeDataSet;
 
-        public StatUpgradeData GetContext() => statUpgradeData;
-        public void SetContext(StatUpgradeData context)
+        public StatUpgradeDataSet GetContext() => statUpgradeDataSet;
+        public void SetContext(StatUpgradeDataSet context)
         {
-            statUpgradeData = context;
+            statUpgradeDataSet = context;
         }        
 
         public void Interact()

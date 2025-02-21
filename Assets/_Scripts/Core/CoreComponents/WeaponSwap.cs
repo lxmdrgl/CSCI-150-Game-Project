@@ -18,6 +18,8 @@ namespace Game.CoreSystem
 
         private MajorUpgrade majorUpgrade;
 
+        public event Action<WeaponDataSet> OnMajorUpgradeInteract;
+
         private void HandleTryInteract(IInteractable interactable)
         {
             if (interactable is not MajorUpgrade pickup)
@@ -25,12 +27,14 @@ namespace Game.CoreSystem
 
             majorUpgrade = pickup;
 
-            newWeaponData = majorUpgrade.GetContext();
-            weaponIndex = (int)newWeaponData.weaponIndex;
+            OnMajorUpgradeInteract.Invoke(majorUpgrade.GetContext());
 
-            weaponInventory.TrySetWeapon(newWeaponData, weaponIndex);
+            // newWeaponData = majorUpgrade.GetContext();
+            // weaponIndex = (int)newWeaponData.weaponIndex;
+
+            // weaponInventory.TrySetWeapon(newWeaponData, weaponIndex);
             majorUpgrade.Interact();
-            newWeaponData = null;
+            // newWeaponData = null;
 
             /* if (weaponInventory.TryGetEmptyIndex(out var index))
             {

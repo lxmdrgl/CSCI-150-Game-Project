@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 1343452053090071531, guid: a3a952f23387a75409724bb9a48b2bcf, type: 3}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: hallways.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: 'hallways.Array.data[0]'
@@ -199,13 +199,64 @@ PrefabInstance:
       propertyPath: 'hallways.Array.data[1]'
       value: 
       objectReference: {fileID: 3925955692947378238, guid: fd793c959f17c3446a520431f7aaa62d, type: 3}
+    - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: 'hallways.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3925955692947378238, guid: 217014ac99052f143b0f2776c90ac6f2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+--- !u!1 &1662928603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1662928605}
+  - component: {fileID: 1662928604}
+  m_Layer: 0
+  m_Name: lv00_Hallway
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1662928604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662928603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c32f2b113b23c24cbe8eb70af974819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: lv00_Hallway
+  list: []
+--- !u!4 &1662928605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662928603}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1455375179}
+  - {fileID: 1662928605}

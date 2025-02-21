@@ -23,7 +23,7 @@ public class PlayerGroundedState : PlayerState
     private CollisionSenses collisionSenses;
 
     private bool jumpInput;
-    private bool downJumpInput;
+    private bool downInput;
     private bool dashInput;
     private bool isGrounded;
     private bool isTouchingWall;
@@ -68,7 +68,7 @@ public class PlayerGroundedState : PlayerState
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
         jumpInput = player.InputHandler.JumpInput;
-        downJumpInput = player.InputHandler.DownJumpInput;
+        downInput = player.InputHandler.DownInput;
         dashInput = player.InputHandler.DashInput;
 
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanAttack())
@@ -91,8 +91,10 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.DashState);
         }
-        else if (downJumpInput && (bool)isPlatformDown)
+        else if (jumpInput && downInput && (bool)isPlatformDown)
         {
+            Debug.Log($"Jump Input: {jumpInput}, Down Input: {downInput}");
+            player.InputHandler.UseJumpInput();
             // platformDropped = isPlatformDown;
             platformDropped = isPlatformDown.collider;
             Debug.Log($"Drop platform: {platformDropped}, {player.boxCollider}");
@@ -102,8 +104,13 @@ public class PlayerGroundedState : PlayerState
             player.AirState.StartCoyoteTime();
             stateMachine.ChangeState(player.AirState);
         } 
-        else if (jumpInput && player.JumpState.CanJump())
+        else if (jumpInput && downInput && !(bool)isPlatformDown && player.JumpState.CanJump())
         {
+            stateMachine.ChangeState(player.JumpState);
+        }
+        else if (jumpInput && !downInput && player.JumpState.CanJump())
+        {
+            Debug.Log($"Jump Input: {jumpInput}, Down Input: {downInput}");
             stateMachine.ChangeState(player.JumpState);
         } 
         else if (!isGrounded)

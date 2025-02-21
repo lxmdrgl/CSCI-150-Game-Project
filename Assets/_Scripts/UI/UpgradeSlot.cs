@@ -2,44 +2,61 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using Game.Weapons;
 
 public class UpgradeSlot : MonoBehaviour
 {
-    [Header("Id")]
-    [SerializeField] private string upgradeId = "";
-
     [Header("Content")]
-    [SerializeField] private GameObject noDataContent;
-    [SerializeField] private GameObject hasDataContent;
-    [SerializeField] private TextMeshProUGUI timePlayedText;
-    [SerializeField] private Button deleteBtn;
+    private GameObject noDataContent;
+    private GameObject hasDataContent;
 
-    public void SetData(SaveData data)
+    public StatUpgradeData currentStatData;
+    public WeaponData currentWeaponData;
+
+    public void Awake()
     {
-        if(data == null)
+        noDataContent = transform.Find("NoDataContent").gameObject;   
+        hasDataContent = transform.Find("HasDataContent").gameObject;   
+    }
+
+    public void SetData(object data)
+    {
+        if (data == null)
         {
+            currentStatData = null;
+            currentWeaponData = null;
             noDataContent.SetActive(true);
             hasDataContent.SetActive(false);
-            deleteBtn.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
         else
         {
+            gameObject.SetActive(true);
+
+            if (data is StatUpgradeData statData)
+            {
+                currentStatData = statData;
+                SetStatDataContent();
+            }
+            else if (data is WeaponData weaponData)
+            {
+                currentWeaponData = weaponData;
+                SetWeaponDataContent();
+            }
             noDataContent.SetActive(false);
             hasDataContent.SetActive(true);
-            deleteBtn.gameObject.SetActive(true);
-
-            // Format playTime in hh:mm:ss
-            TimeSpan timeSpan = TimeSpan.FromSeconds(data.playTime);
-            string formattedTime = string.Format("{0:D2}:{1:D2}:{2:D2}",
-                                                 timeSpan.Hours,
-                                                 timeSpan.Minutes,
-                                                 timeSpan.Seconds);
-
-            timePlayedText.text = "Time Played: " + formattedTime;
         }
     }
-    public string GetProfileId()
+
+    public void SetStatDataContent()
     {
-        return this.upgradeId;
+        // hasDataContent.transform.Find("UpgradeName").GetComponentInChildren<TextMeshProUGUI>().text = data.name;
+        String text = "Attack: " + currentStatData.Attack.ToString() + ", Health: " + currentStatData.Health.ToString();
+        hasDataContent.GetComponent<TextMeshProUGUI>().text = currentStatData.name + "\n" + text;
+    }
+
+    public void SetWeaponDataContent()
+    {
+        hasDataContent.GetComponent<TextMeshProUGUI>().text = currentWeaponData.Name + "\n" + currentWeaponData.Description;
     }
 }

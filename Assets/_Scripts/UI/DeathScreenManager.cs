@@ -15,7 +15,10 @@ public class DeathScreenManager : MonoBehaviour
     
     private void Awake()
     {
-        selectedProfileId = DataPersistenceManager.instance.GetSelectedProfileId();
+        if(DataPersistenceManager.instance.disableDataPersistence == false)
+        {
+            selectedProfileId = DataPersistenceManager.instance.GetSelectedProfileId();
+        }
     }
 
 
@@ -23,15 +26,16 @@ public class DeathScreenManager : MonoBehaviour
     {   
         if(DataPersistenceManager.instance.disableDataPersistence)
         {
-            deathScreenCanvasGO.SetActive(false);
             SceneManager.LoadScene(MainMenuSceneName);
+            deathScreenCanvasGO.SetActive(false);
             return;
         }
         else
         {
             DataPersistenceManager.instance.RestartGame( selectedProfileId, GameplaySceneName);
-            deathScreenCanvasGO.SetActive(false);
+            
             SceneManager.LoadScene(MainMenuSceneName);
+            deathScreenCanvasGO.SetActive(false);
 
             DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
             DataPersistenceManager.instance.SaveGame();
@@ -42,16 +46,17 @@ public class DeathScreenManager : MonoBehaviour
     {   
         if(DataPersistenceManager.instance.disableDataPersistence)
         {
-            deathScreenCanvasGO.SetActive(false);
             SceneManager.LoadScene(GameplaySceneName);
+            deathScreenCanvasGO.SetActive(false);
             return;
         }
         else
         {
             DataPersistenceManager.instance.RestartGame( selectedProfileId, GameplaySceneName);
-            deathScreenCanvasGO.SetActive(false);
+            
 
             SceneManager.LoadScene(GameplaySceneName);
+            deathScreenCanvasGO.SetActive(false);
 
             DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
             DataPersistenceManager.instance.SaveGame();   

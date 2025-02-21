@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class PlayerDashState : PlayerActionState
 {
-	protected DamageReceiver DamageReceiver { get => damageReceiver ?? core.GetCoreComponent(ref damageReceiver); }
-	private DamageReceiver damageReceiver;
-	protected KnockBackReceiver KnockBackReceiver { get => knockBackReceiver ?? core.GetCoreComponent(ref knockBackReceiver); }
-	private KnockBackReceiver knockBackReceiver;
+	// protected DamageReceiver DamageReceiver { get => damageReceiver ?? core.GetCoreComponent(ref damageReceiver); }
+	// private DamageReceiver damageReceiver;
+	// protected KnockBackReceiver KnockBackReceiver { get => knockBackReceiver ?? core.GetCoreComponent(ref knockBackReceiver); }
+	// private KnockBackReceiver knockBackReceiver;
 	protected int xInput;
 	protected bool dashEnabled = true;
     public PlayerDashState(Player player, string animBoolName) : base(player, animBoolName)

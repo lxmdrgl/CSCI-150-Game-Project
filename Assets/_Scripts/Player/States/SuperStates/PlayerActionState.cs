@@ -14,6 +14,11 @@ public class PlayerActionState : PlayerState
 	private Movement movement;
 	private CollisionSenses collisionSenses;
 
+	protected DamageReceiver DamageReceiver { get => damageReceiver ?? core.GetCoreComponent(ref damageReceiver); }
+	private DamageReceiver damageReceiver;
+	protected KnockBackReceiver KnockBackReceiver { get => knockBackReceiver ?? core.GetCoreComponent(ref knockBackReceiver); }
+	private KnockBackReceiver knockBackReceiver;
+
 	private bool isGrounded;
 	protected bool isTouchingWall;
 	protected Collider2D isPlatformOverlap;

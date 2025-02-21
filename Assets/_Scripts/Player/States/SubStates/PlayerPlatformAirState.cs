@@ -78,7 +78,7 @@ public class PlayerPlatformAirState : PlayerAirState
 			}
 			else if (isPlatformOverlap == null && isPlatformOverlapTop == null) 
 			{
-				// MovePlatformPosition();
+				MovePlatformPosition();
 				StopPlatformMove();
 				isExitingState = true;
 
