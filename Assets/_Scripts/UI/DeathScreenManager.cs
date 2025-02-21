@@ -33,8 +33,9 @@ public class DeathScreenManager : MonoBehaviour
         else
         {
             DataPersistenceManager.instance.RestartGame( selectedProfileId, GameplaySceneName);
-            deathScreenCanvasGO.SetActive(false);
+            
             SceneManager.LoadScene(MainMenuSceneName);
+            deathScreenCanvasGO.SetActive(false);
 
             DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
             DataPersistenceManager.instance.SaveGame();
@@ -52,9 +53,10 @@ public class DeathScreenManager : MonoBehaviour
         else
         {
             DataPersistenceManager.instance.RestartGame( selectedProfileId, GameplaySceneName);
-            deathScreenCanvasGO.SetActive(false);
+            
 
             SceneManager.LoadScene(GameplaySceneName);
+            deathScreenCanvasGO.SetActive(false);
 
             DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
             DataPersistenceManager.instance.SaveGame();   

@@ -15,7 +15,6 @@ namespace Game.Interaction.Interactables
 
         [SerializeField] private string location;
 
-        //[SerializeField] private Location location;
         
         public string GetContext() => location;
         public void SetContext(string context)

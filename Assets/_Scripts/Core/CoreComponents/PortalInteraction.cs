@@ -2,20 +2,15 @@ using System;
 using Game.Interaction;
 using Game.Interaction.Interactables;
 using UnityEngine.SceneManagement;
-//using Game.Weapons;
 
 namespace Game.CoreSystem
 {
     public class PortalInteraction : CoreComponent
     {
-        // public event Action<WeaponSwapChoiceRequest> OnChoiceRequested;
-        // public event Action<WeaponData> OnWeaponDiscarded;
 
         private InteractableDetector interactableDetector;
-        //private WeaponInventory weaponInventory;
 
         private string locationData;
-        //private int weaponIndex;
 
         private Portal portal;
 
