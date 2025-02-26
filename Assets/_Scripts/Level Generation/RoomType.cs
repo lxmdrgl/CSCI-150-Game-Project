@@ -7,8 +7,11 @@ public class RoomType : MonoBehaviour
     public string name;
     public List<RoomManager> list = new List<RoomManager>();
 
-    void Start() // Use Start instead of Update
+    void Start()
     {
-        list = Resources.LoadAll<RoomManager>("Rooms").ToList();
+        list = Resources.LoadAll<RoomManager>("Rooms/" + name).ToList();
+        if (list.Count == 0) {
+            Debug.LogError("Failed to load files from Resources/Rooms/" + name);
+        }
     }
 }
