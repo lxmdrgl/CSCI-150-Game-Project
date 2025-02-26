@@ -46,7 +46,7 @@ public class RangedAttackState : AttackState
             projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance);
         }
 
-        Damage damageComponent = projectile.GetComponent<Damage>();
+        Damage damageComponent = projectile.GetComponentInChildren<Damage>();
         if (damageComponent != null)
         {
             damageComponent.SetDamage(stateData.projectileDamage, stateData.knockbackAngle, stateData.knockbackStrength);

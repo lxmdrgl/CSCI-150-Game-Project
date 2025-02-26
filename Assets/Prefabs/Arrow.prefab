@@ -137,7 +137,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 8
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bfb0a7454616134ba6097bb7e164297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 3
+  gravity: 1
   damageRadius: 0.15
   damageScript: {fileID: 7346761872037831879}
   whatIsGround:
