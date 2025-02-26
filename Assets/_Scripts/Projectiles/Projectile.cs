@@ -65,7 +65,8 @@ namespace Game.Projectiles
                 if (damageHit)
                 {
                     damageScript.HandleCollision(damageHit);
-                    Destroy(gameObject, 0.2f);
+                    Debug.Log("damageHit");
+                    Destroy(gameObject);
                 }
 
                 if (groundHit)
@@ -73,6 +74,7 @@ namespace Game.Projectiles
                     hasHitGround = true;
                     rb.gravityScale = 0f;
                     rb.linearVelocity = Vector2.zero;
+                    Destroy(gameObject, 1.0f);
                 }
 
 
