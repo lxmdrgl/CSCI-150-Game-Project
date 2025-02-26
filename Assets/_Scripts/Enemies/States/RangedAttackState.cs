@@ -34,7 +34,7 @@ public class RangedAttackState : AttackState
 
     }
 
-    public override void TriggerAttack()
+    public override bool TriggerAttack()
     {
         base.TriggerAttack();
 
@@ -51,6 +51,7 @@ public class RangedAttackState : AttackState
         {
             damageComponent.SetDamage(stateData.projectileDamage, stateData.knockbackAngle, stateData.knockbackStrength);
         }
+        return false;
     }
 
     public override void FinishAttack()

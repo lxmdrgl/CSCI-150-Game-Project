@@ -27,7 +27,7 @@ public class MeleeAttackState : AttackState
 		this.stateData = stateData;
 	}
 	
-	public override void TriggerAttack() 
+	public override bool TriggerAttack() 
 	{
 		base.TriggerAttack();
 
@@ -47,6 +47,7 @@ public class MeleeAttackState : AttackState
         	foreach (var damageable in damageables)
         	{
             	Debug.Log("Enemy Dealing " + stateData.attackDamage + " Damage To Player");
+				return true;
         	}
     	}
     	else
@@ -61,6 +62,7 @@ public class MeleeAttackState : AttackState
 		else {
 			Debug.Log("No knockbackable objects detected");
 		} */
+		return false;
 	}
 
     public override void FinishAttack()

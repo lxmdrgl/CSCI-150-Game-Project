@@ -56,9 +56,9 @@ public class AttackState : EnemyState
 		base.PhysicsUpdate();
 	}
 
-	public virtual void TriggerAttack() 
+	public virtual bool TriggerAttack() 
 	{
-		
+		return false;
 	}
 
 	public virtual void FinishAttack() 

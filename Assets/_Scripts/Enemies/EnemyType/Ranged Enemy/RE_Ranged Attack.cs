@@ -53,9 +53,10 @@ public class RE_RangedAttackState : RangedAttackState
         
     }
 
-    public override void TriggerAttack()
+    public override bool TriggerAttack()
     {
         base.TriggerAttack();
+        return false;
     }
 
     public override void FinishAttack()
