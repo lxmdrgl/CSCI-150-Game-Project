@@ -4,7 +4,6 @@ namespace Game.Projectiles
 {
     public class Projectile : MonoBehaviour
     {
-        
         private float speed;
         private float travelDistance;
         private float xStartPos;
@@ -28,30 +27,37 @@ namespace Game.Projectiles
         [SerializeField]
         private Transform damagePosition;
         private Vector2 target;
+        bool hasGravity;
+        string projectileType;
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             rb.gravityScale = 0.0f;
-
-            Vector2 direction = (target - (Vector2)transform.position).normalized;
-            rb.linearVelocity = direction * speed;
-
-
             isGravityOn = false;
             xStartPos = transform.position.x;
+
+            if(projectileType == "radialWithGravity")
+            {
+                Vector2 direction = (target - (Vector2)transform.position).normalized;
+                rb.linearVelocity = direction * speed;
+            }
+            else if (projectileType == "radialNoGravity")
+            {
+                Vector2 direction = (target - (Vector2)transform.position).normalized;
+                rb.linearVelocity = direction * speed;
+            }
+            else if(projectileType == "linearWithGravity")
+            {
+                rb.linearVelocity = transform.right * speed;
+            }
         }
 
         private void Update()
         {
             if (!hasHitGround)
             {
-                //attackDetails.position = transform.position;
-
-                if (isGravityOn)
-                {
-                    float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
-                    transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                }
+                float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             }
         }
 
@@ -78,66 +84,41 @@ namespace Game.Projectiles
                     Destroy(gameObject, 1.0f);
                 }
 
-
-                if (Mathf.Abs(xStartPos - transform.position.x) >= travelDistance && !isGravityOn)
+                if(hasGravity)
                 {
-                    isGravityOn = true;
-                    rb.gravityScale = gravity;
+                    if (Mathf.Abs(xStartPos - transform.position.x) >= travelDistance && !isGravityOn)
+                    {
+                        isGravityOn = true;
+                        rb.gravityScale = gravity;
+                    }
                 }
             }        
         }
 
-        public void FireProjectile(float speed, float travelDistance, Vector2 target)
+        public void FireProjectile(float speed, float travelDistance, Vector2 target, string projectileType)
         {
-            this.speed = speed;
-            this.travelDistance = travelDistance;
-            this.target = target;
-            //attackDetails.damageAmount = damage;
-        }
+            this.projectileType = projectileType;
 
-        /*
-        private float speed;
-        private float travelDistance;
-        private Vector2 startPosition;
-
-        private void Start()
-        {
-            // Store the starting position
-            startPosition = transform.position;
-        }
-
-        private void Update()
-        {
-            // Move the projectile in a straight line
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-
-            // Destroy the projectile if it exceeds its travel distance
-            if (Vector2.Distance(startPosition, transform.position) >= travelDistance)
+            if(projectileType == "radialWithGravity")
             {
-                Destroy(gameObject);
+                this.speed = speed;
+                this.target = target;
+                this.travelDistance = travelDistance;
+                hasGravity = true;
+            }
+            else if (projectileType == "radialNoGravity")
+            {
+                this.speed = speed;
+                this.target = target;
+                hasGravity = false;
+            }
+            else if(projectileType =="linearWithGravity")
+            {
+                this.speed = speed;
+                this.travelDistance = travelDistance;
+                hasGravity = true;
             }
         }
-
-        // Initialize the projectile's movement and travel properties
-        public void FireProjectile(float speed, float travelDistance)
-        {
-            this.speed = speed;
-            this.travelDistance = travelDistance;
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            // Delegate collision and damage handling to the damage.cs component
-            Damage damageComponent = GetComponent<Damage>();
-            if (damageComponent != null)
-            {
-                damageComponent.HandleCollision(collision);
-            }
-
-            // Destroy the projectile after dealing damage
-            Destroy(gameObject);
-        }
-        */
     }
 
 }

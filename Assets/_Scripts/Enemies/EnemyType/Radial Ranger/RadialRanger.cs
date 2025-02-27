@@ -13,7 +13,7 @@ public class RadialRanger : Entity
     public RR_DeadState deadState { get; private set; }
     public RR_CooldownState cooldownState { get; private set; }
     public RR_RangedAttackState rangedAttackState { get; private set; }
-    public RR_RadialRangedAttackState radialRangedAttackState { get; private set; }
+    public RR_UpwardRangedAttack radialRangedAttackState { get; private set; }
 
     [SerializeField]
     private D_IdleState idleStateData;
@@ -40,6 +40,9 @@ public class RadialRanger : Entity
 
     [SerializeField]
     private Transform rangedAttackPosition;
+    [SerializeField]
+    private Transform radialRangedAttackPosition;
+
     public Transform player; // Reference to the player's transform
     public Rigidbody2D rb;
     public override void Awake()
@@ -59,7 +62,7 @@ public class RadialRanger : Entity
         deadState = new RR_DeadState(this, "dead", deadStateData, this);
         cooldownState = new RR_CooldownState(this, "cooldown", cooldownStateData, this);
         rangedAttackState = new RR_RangedAttackState(this, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this );
-        radialRangedAttackState = new RR_RadialRangedAttackState(this, "radialRangedAttack", rangedAttackPosition, rangedAttackStateData, this );
+        radialRangedAttackState = new RR_UpwardRangedAttack(this, "radialRangedAttack", radialRangedAttackPosition, rangedAttackStateData, this );
         stats.Stun.OnCurrentValueZero += HandleStunZero;
         stats.Health.OnValueChange += HandleDamageTaken;
 

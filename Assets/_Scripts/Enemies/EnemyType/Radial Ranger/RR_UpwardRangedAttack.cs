@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Projectiles;
 
-public class RR_RadialRangedAttackState : RangedAttackState
+public class RR_UpwardRangedAttack : RangedAttackState
 {
     private RadialRanger enemy;
 
-    public RR_RadialRangedAttackState(Entity entity, string animBoolName, Transform attackPosition, D_RangedAttackState stateData, RadialRanger enemy) 
+    public RR_UpwardRangedAttack(Entity entity, string animBoolName, Transform attackPosition, D_RangedAttackState stateData, RadialRanger enemy) 
         : base(entity, animBoolName, attackPosition, stateData)
     {
         this.enemy = enemy;
@@ -49,7 +49,7 @@ public class RR_RadialRangedAttackState : RangedAttackState
             Projectile projectileScript = projectile.GetComponent<Projectile>();
             if (projectileScript != null)
             {
-                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, enemy.player.position);
+                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, enemy.player.position, "radialNoGravity");
             }
 
             Damage damageComponent = projectile.GetComponentInChildren<Damage>();

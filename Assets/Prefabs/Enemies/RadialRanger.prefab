@@ -619,6 +619,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.40453625, y: 0.04492657}
   m_EdgeRadius: 0
+--- !u!1 &6222270379615594366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8179049672531530639}
+  m_Layer: 11
+  m_Name: RadialRangedAttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8179049672531530639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222270379615594366}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.43, y: 0.54, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4846833722265371268}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6360035130462158432
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,6 +690,7 @@ Transform:
   - {fileID: 3755304697358755252}
   - {fileID: 5242852835854976505}
   - {fileID: 8523294753171614164}
+  - {fileID: 8179049672531530639}
   - {fileID: 2697570814187950225}
   - {fileID: 507281897922863390}
   m_Father: {fileID: 0}
@@ -744,6 +776,7 @@ MonoBehaviour:
   cooldownStateData: {fileID: 11400000, guid: 5fc4573a317008e4a8cb7268a26c41f3, type: 2}
   rangedAttackStateData: {fileID: 11400000, guid: 668c3cd35ae032a49a2f973a49573cf1, type: 2}
   rangedAttackPosition: {fileID: 8523294753171614164}
+  radialRangedAttackPosition: {fileID: 8179049672531530639}
   player: {fileID: 0}
   rb: {fileID: 0}
 --- !u!50 &9113077644204671259

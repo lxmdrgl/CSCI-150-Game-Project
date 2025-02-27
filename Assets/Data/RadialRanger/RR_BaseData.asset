@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02b076e243c4b344a7f5d0339b942e2, type: 3}
   m_Name: RR_BaseData
   m_EditorClassIdentifier: 
-  agroRange: 10
-  pursuitRange: 10
-  maxAgroDistance: 10
+  agroRange: 5
+  pursuitRange: 5
+  maxAgroDistance: 5
   closeRangeActionDistance: 0
   whatIsGround:
     serializedVersion: 2
