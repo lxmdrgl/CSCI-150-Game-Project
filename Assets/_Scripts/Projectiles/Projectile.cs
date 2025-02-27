@@ -27,16 +27,17 @@ namespace Game.Projectiles
         private LayerMask whatIsPlayer;
         [SerializeField]
         private Transform damagePosition;
-
+        private Vector2 target;
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
-
             rb.gravityScale = 0.0f;
-            rb.linearVelocity = transform.right * speed;
+
+            Vector2 direction = (target - (Vector2)transform.position).normalized;
+            rb.linearVelocity = direction * speed;
+
 
             isGravityOn = false;
-
             xStartPos = transform.position.x;
         }
 
@@ -86,10 +87,11 @@ namespace Game.Projectiles
             }        
         }
 
-        public void FireProjectile(float speed, float travelDistance)
+        public void FireProjectile(float speed, float travelDistance, Vector2 target)
         {
             this.speed = speed;
             this.travelDistance = travelDistance;
+            this.target = target;
             //attackDetails.damageAmount = damage;
         }
 

@@ -34,6 +34,8 @@ public class RangedEnemy : Entity
     private D_CooldownState cooldownStateData;
     [SerializeField]
     private D_RangedAttackState rangedAttackStateData;
+    public Transform player; // Reference to the player's transform
+    public Rigidbody2D rb;
 
     private GameObject meleeAttackCollider;
 
@@ -59,6 +61,18 @@ public class RangedEnemy : Entity
         rangedAttackState = new RE_RangedAttackState(this, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this );
         stats.Stun.OnCurrentValueZero += HandleStunZero;
         stats.Health.OnValueChange += HandleDamageTaken;
+
+        
+        rb = GetComponent<Rigidbody2D>();
+        GameObject playerObject = GameObject.FindWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.transform;
+        }
+        else
+        {
+            Debug.LogError("Player not found in the scene! Make sure the player GameObject is tagged as 'Player'.");
+        }
     }
 
     private void HandleStunZero()
