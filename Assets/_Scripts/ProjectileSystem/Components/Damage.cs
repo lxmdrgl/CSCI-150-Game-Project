@@ -5,6 +5,7 @@ using Game.Combat.KnockBack;
 using Game.Combat.StunDamage;
 using Game.Utilities;
 using System.Collections.Generic;
+using Game.Projectiles;
 
 public class Damage : MonoBehaviour
 {
@@ -14,6 +15,13 @@ public class Damage : MonoBehaviour
 
     private Movement Movement { get => movement ?? GetComponentInParent<Core>()?.GetCoreComponent(ref movement); }
     private Movement movement;
+
+    private Projectile projectile;
+
+    private void Awake()
+    {
+        projectile = GetComponentInParent<Projectile>();
+    }
 
     // Method to dynamically set the damage
     public void SetDamage(float amount, Vector2 knockbackAngle, float knockbackStrength)
@@ -45,7 +53,12 @@ public class Damage : MonoBehaviour
         }
 
         // Check Knockback
-        int facingDirection = (Movement != null) ? Movement.FacingDirection : 1; // Default to right
+        int facingDirection;
+        if (projectile.startingRotation <= 0.05 && projectile.startingRotation >= -0.05) {
+            facingDirection = 1;
+        } else {
+            facingDirection = -1;
+        }
         Debug.Log($"Attempting Knockback - Angle: {knockbackAngle}, Strength: {knockbackStrength}, FacingDirection: {facingDirection}");
 
         bool didKnock = CombatKnockBackUtilities.TryKnockBack(
