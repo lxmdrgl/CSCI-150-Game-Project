@@ -87,13 +87,13 @@ public class Entity : MonoBehaviour, IDataPersistence
         RaycastHit2D hit = Physics2D.CircleCast(
             playerCheck.position, 
             entityData.pursuitRange, 
-            transform.right, 
-            entityData.pursuitRange, 
+            Vector2.zero, // Set distance to zero for a stationary circle cast
+            0, 
             entityData.whatIsPlayer
         );
 
         // Debug the CircleCast for visualization
-        DebugCircleCast(playerCheck.position, entityData.pursuitRange, transform.right, entityData.pursuitRange);
+        DebugCircleCast(playerCheck.position, entityData.pursuitRange, Vector2.zero, 0);
 
         // Return true if a player was hit, otherwise false
         return hit.collider != null;
