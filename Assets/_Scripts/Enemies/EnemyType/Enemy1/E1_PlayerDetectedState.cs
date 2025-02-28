@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class E1_PlayerDetectedState : PlayerDetectedState
 {
-    private Enemy1 enemy;
+    private Enemy5 enemy;
 
-    public E1_PlayerDetectedState(Entity entity, string animBoolName, D_PlayerDetected stateData, Enemy1 enemy) : base(entity, animBoolName, stateData)
+    public E1_PlayerDetectedState(Entity entity, string animBoolName, D_PlayerDetected stateData, Enemy5 enemy) : base(entity, animBoolName, stateData)
     {
         this.enemy = enemy;
     }
