@@ -12,10 +12,6 @@ public class Damage : MonoBehaviour
     [SerializeField] private float damageAmount;
     private Vector2 knockbackAngle;
     private float knockbackStrength;
-
-    private Movement Movement { get => movement ?? GetComponentInParent<Core>()?.GetCoreComponent(ref movement); }
-    private Movement movement;
-
     private Projectile projectile;
 
     private void Awake()
