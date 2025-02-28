@@ -15,7 +15,7 @@ MonoBehaviour:
   projectile: {fileID: 3266041613596240981, guid: 08781a27b32830c43a99cda0d922570c, type: 3}
   projectileDamage: 10
   projectileSpeed: 12
-  projectileTravelDistance: 3
+  projectileTravelDistance: 0
   knockbackAngle: {x: 1, y: 1}
   knockbackStrength: 10
   whatIsPlayer:

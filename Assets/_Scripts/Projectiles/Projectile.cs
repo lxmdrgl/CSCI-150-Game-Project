@@ -1,4 +1,5 @@
 using UnityEngine;
+using Game.CoreSystem;
 
 namespace Game.Projectiles
 {
@@ -29,6 +30,7 @@ namespace Game.Projectiles
         private Vector2 target;
         bool hasGravity;
         string projectileType;
+        public float startingRotation;
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -68,11 +70,11 @@ namespace Game.Projectiles
                 Collider2D damageHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsPlayer);
                 Collider2D groundHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsGround);
 
-
-                if (damageHit)
+                // damageHit.gameObject.GetComponentInChildren<DamageReceiver>().CanTakeDamage
+                // Debug.Log("damageHit: " + damageHit.gameObject.name + " " + damageHit.gameObject.GetComponentInChildren<DamageReceiver>().CanTakeDamage);
+                if (damageHit && damageHit.gameObject.GetComponentInChildren<DamageReceiver>().CanTakeDamage)
                 {
                     damageScript.HandleCollision(damageHit);
-                    Debug.Log("damageHit");
                     Destroy(gameObject);
                 }
 
@@ -95,9 +97,10 @@ namespace Game.Projectiles
             }        
         }
 
-        public void FireProjectile(float speed, float travelDistance, Vector2 target, string projectileType)
+        public void FireProjectile(float speed, float travelDistance, Vector2 target, string projectileType, float startingRotation)
         {
             this.projectileType = projectileType;
+            this.startingRotation = startingRotation;
 
             if(projectileType == "radialWithGravity")
             {

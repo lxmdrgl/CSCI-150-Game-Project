@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class E1_CooldownState : CooldownState
 {
-    private Enemy1 enemy;
+    private Enemy5 enemy;
 
-    public E1_CooldownState(Entity entity, string animBoolName, D_CooldownState stateData, Enemy1 enemy) : base(entity, animBoolName, stateData)
+    public E1_CooldownState(Entity entity, string animBoolName, D_CooldownState stateData, Enemy5 enemy) : base(entity, animBoolName, stateData)
     {
         this.enemy = enemy;
     }
