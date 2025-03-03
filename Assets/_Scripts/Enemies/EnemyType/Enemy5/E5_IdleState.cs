@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E1_IdleState : IdleState
+public class E5_IdleState : IdleState
 {
     private Enemy5 enemy;
 
-    public E1_IdleState(Entity entity, string animBoolName, D_IdleState stateData, Enemy5 enemy) : base(entity, animBoolName, stateData)
+    public E5_IdleState(Entity entity, string animBoolName, D_IdleState stateData, Enemy5 enemy) : base(entity, animBoolName, stateData)
     {
         this.enemy = enemy;
     }

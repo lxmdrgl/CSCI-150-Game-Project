@@ -1,12 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E1_DeadState : DeadState
+public class E5_DeadState : DeadState
 {
     private Enemy5 enemy;
 
-    public E1_DeadState(Entity entity, string animBoolName, D_DeadState stateData, Enemy5 enemy) : base(entity, animBoolName, stateData)
+    public E5_DeadState(Entity entity, string animBoolName, D_DeadState stateData, Enemy5 enemy) : base(entity, animBoolName, stateData)
     {
         this.enemy = enemy;
     }

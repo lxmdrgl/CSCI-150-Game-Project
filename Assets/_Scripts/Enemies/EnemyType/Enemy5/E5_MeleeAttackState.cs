@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E1_MeleeAttackState : MeleeAttackState
+public class E5_MeleeAttackState : MeleeAttackState
 {
     private Enemy5 enemy;
 	protected bool isAttackOffCooldown;
 
     protected bool triggeredAttack = false;
 
-    public E1_MeleeAttackState(Entity entity, string animBoolName, GameObject meleeAttackCollider, D_MeleeAttack stateData, Enemy5 enemy) : base(entity, animBoolName, meleeAttackCollider, stateData)
+    public E5_MeleeAttackState(Entity entity, string animBoolName, GameObject meleeAttackCollider, D_MeleeAttack stateData, Enemy5 enemy) : base(entity, animBoolName, meleeAttackCollider, stateData)
     {
         this.enemy = enemy;
     }

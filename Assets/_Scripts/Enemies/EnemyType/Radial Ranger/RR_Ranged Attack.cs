@@ -50,7 +50,7 @@ public class RR_RangedAttackState : RangedAttackState
             Projectile projectileScript = projectile.GetComponent<Projectile>();
             if (projectileScript != null)
             {
-                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, enemy.player.position, "radialWithGravity", enemy.transform.rotation.y);
+                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, enemy.player.position, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
             }
 
             Damage damageComponent = projectile.GetComponentInChildren<Damage>();

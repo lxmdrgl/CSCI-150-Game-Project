@@ -18,6 +18,7 @@ MonoBehaviour:
   projectileTravelDistance: 5
   knockbackAngle: {x: 1, y: 1}
   knockbackStrength: 10
+  gravityScale: 1
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Game.CoreSystem;
 using UnityEngine;
 
-public class E5_ChargeState : ChargeState
+public class E1_ChargeState : ChargeState
 {
-    private Enemy5 enemy;
+    private Enemy1 enemy;
 
-    public E5_ChargeState(Entity entity, string animBoolName, D_ChargeState stateData, Enemy5 enemy) : base(entity, animBoolName, stateData)
+    public E1_ChargeState(Entity entity, string animBoolName, D_ChargeState stateData, Enemy1 enemy) : base(entity, animBoolName, stateData)
     {
         this.enemy = enemy;
     }

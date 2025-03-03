@@ -9,7 +9,6 @@ namespace Game.Projectiles
         private float travelDistance;
         private float xStartPos;
 
-        [SerializeField]
         private float gravity;
         [SerializeField]
         private float damageRadius;
@@ -100,10 +99,12 @@ namespace Game.Projectiles
             }        
         }
 
-        public void FireProjectile(float speed, float travelDistance, Vector2 target, string projectileType, float startingRotation)
+        public void FireProjectile(float speed, float travelDistance, Vector2 target, string projectileType, float startingRotation, float gravity)
         {
             this.projectileType = projectileType;
             this.startingRotation = startingRotation;
+            this.gravity = gravity;
+            // Debug.Log("Gravity: " + this.gravity + " , " + gravity);
 
             if(projectileType == "radialWithGravity")
             {
@@ -124,12 +125,43 @@ namespace Game.Projectiles
                 this.travelDistance = travelDistance;
                 hasGravity = true;
             }
+            else if (projectileType == "radialLobbing")
+            {
+                this.speed = speed;
+                this.target = target;
+                hasGravity = true;
+            }
         }
 
         private void RadialLobbing()
         {
-            Vector2 direction = (target - (Vector2)transform.position).normalized;
-            rb.linearVelocity = new Vector2(direction.x * speed, direction.y * speed);
+            isGravityOn = true;
+            rb.gravityScale = gravity;
+
+            float gEffective = Mathf.Abs(Physics2D.gravity.y * rb.gravityScale);
+
+            float dx = target.x - transform.position.x;
+            float dy = target.y - transform.position.y;
+
+            float vy = speed;
+            float discriminant = vy * vy - 2 * gEffective * dy;
+
+            if (discriminant < 0)
+            {
+                Debug.LogWarning("No real solution exists for given parameters. Increase initialVy.");
+                return;
+            }
+
+            float t1 = (-vy + Mathf.Sqrt(discriminant)) / -gEffective;
+            float t2 = (-vy - Mathf.Sqrt(discriminant)) / -gEffective;
+            
+            float tTotal = Mathf.Max(t1, t2);
+
+            float vx = dx / tTotal;
+
+            // Debug.Log($"vx: {vx}, vy: {vy}, t1: {t1}, t2: {t2}, tTotal: {tTotal} gravityScale: {rb.gravityScale} gravity: {gravity}");
+
+            rb.linearVelocity = new Vector2(vx, vy);
         }
     }
 
