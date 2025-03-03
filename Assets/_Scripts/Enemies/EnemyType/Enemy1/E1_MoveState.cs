@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class E1_MoveState : MoveState
 {
-    private Enemy1 enemy;
+    private Enemy5 enemy;
 
-    public E1_MoveState(Entity entity, string animBoolName, D_MoveState stateData, Enemy1 enemy) : base(entity, animBoolName, stateData)
+    public E1_MoveState(Entity entity, string animBoolName, D_MoveState stateData, Enemy5 enemy) : base(entity, animBoolName, stateData)
     {
         this.enemy = enemy;
     }
