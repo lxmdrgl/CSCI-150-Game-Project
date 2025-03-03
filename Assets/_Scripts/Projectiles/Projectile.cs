@@ -51,6 +51,9 @@ namespace Game.Projectiles
             else if(projectileType == "linearWithGravity")
             {
                 rb.linearVelocity = transform.right * speed;
+            } else if (projectileType == "radialLobbing")
+            {
+                RadialLobbing();
             }
         }
 
@@ -121,6 +124,12 @@ namespace Game.Projectiles
                 this.travelDistance = travelDistance;
                 hasGravity = true;
             }
+        }
+
+        private void RadialLobbing()
+        {
+            Vector2 direction = (target - (Vector2)transform.position).normalized;
+            rb.linearVelocity = new Vector2(direction.x * speed, direction.y * speed);
         }
     }
 
