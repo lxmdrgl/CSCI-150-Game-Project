@@ -9,7 +9,7 @@ using Game.Projectiles;
 
 public class Damage : MonoBehaviour
 {
-    [SerializeField] private float damageAmount;
+    /* [SerializeField]  */private float damageAmount;
     private Vector2 knockbackAngle;
     private float knockbackStrength;
     private Projectile projectile;
