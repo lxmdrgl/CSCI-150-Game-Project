@@ -772,6 +772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4846833722265371268}
   - component: {fileID: -1460232046812936009}
+  - component: {fileID: 9179451651982989081}
   - component: {fileID: 9195671620027451164}
   - component: {fileID: 9113077644204671259}
   - component: {fileID: 556503304328713079}
@@ -860,6 +861,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9179451651982989081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6360035130462158432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b5487bc3a463d74c8a6f9951ef3e1d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityData: {fileID: 0}
+  playerCheck: {fileID: 0}
+  UniqueId: 
+  idleStateData: {fileID: 0}
+  chargeStateData: {fileID: 0}
+  meleeAttackStateData: {fileID: 0}
+  stunStateData: {fileID: 0}
+  deadStateData: {fileID: 0}
+  cooldownStateData: {fileID: 0}
+  player: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!114 &9195671620027451164
 MonoBehaviour:
   m_ObjectHideFlags: 0
