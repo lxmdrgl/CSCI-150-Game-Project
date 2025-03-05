@@ -76,22 +76,23 @@ public class LevelGenerator : MonoBehaviour
     }
 
     void spawnLinearPath(RoomNode root) {
-        RoomManager currNodeManager = root.roomObject.GetComponent<RoomManager>();
+        RoomNode currNode = root; 
+        RoomNode newNode; 
 
-        while(currNodeManager.exits.Count != 0) { // not reached dead end
-            break;
+        while(currNode.children.Count != 0) { // not reached dead end
+            Debug.Log(currNode.gameObject.name)
+            newNode = currNode.children[0];
+            spawnRoom(newNode);
+            connectRooms(currNode, newNode);
+            currNode = newNode;
         }
     }
 
-    void connectRooms(RoomNode currRoom, RoomNode newRoom) {
-    //         currRoom = roomObjQueue[i];
-    //         currRoomMan = currRoom.GetComponent<RoomManager>();
+    void connectRooms(RoomNode currNode, RoomNode newNode) {
+        RoomManager currNodeManager = currNode.roomObject.GetComponent<RoomManager>();
+        RoomManager newNodeManager = newNode.roomObject.GetComponent<RoomManager>();
 
-    //         newRoom = Instantiate(hallways[Random.Range(0, hallways.Count)].gameObj, new Vector3(0, 0, 0), transform.rotation);
-    //         newRoomMan = newRoom.GetComponent<RoomManager>();
-    //         roomObjQueue.Add(newRoom);
-
-    //         newRoom.transform.position += currRoomMan.exits[0].transform.position - newRoomMan.entrances[0].transform.position;
+        newNode.roomObject.transform.position += currNodeManager.exits[0].transform.position - newNodeManager.entrances[0].transform.position;
     }
 
     // bool generateLevel_1() {
