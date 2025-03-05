@@ -2,13 +2,15 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq; // Required for .ToList()
 
+[SerializeField]
 public class RoomNode : MonoBehaviour
 {
     public string roomType;
-    // public List<RoomManager> rooms = new List<RoomManager>();
     public GameObject roomObject;
     public RoomNode parent; // Parent node (null for root)
-    public List<RoomNode> children = new List<RoomNode>(); // Child nodes
+    
+    [SerializeField]
+    public List<RoomNode> children; // Child nodes
 
     void Start()
     {
@@ -34,6 +36,20 @@ public class RoomNode : MonoBehaviour
                 parent.AddChild(this);
             }
         }
+
+        // Ensure children are assigned correctly
+        foreach (Transform childTransform in transform)
+        {
+            RoomNode childNode = childTransform.GetComponent<RoomNode>();
+            if (childNode != null && !children.Contains(childNode))
+            {
+                AddChild(childNode);
+            }
+        }
+
+        PrintTree();
+
+        // Debug.Log(gameObject.name + ": " + children.Count);
     }
 
     // Add a child to this node
@@ -44,6 +60,7 @@ public class RoomNode : MonoBehaviour
             children.Add(child);
             child.parent = this; // Set this as the parent
         }
+        
     }
 
     // Print tree structure recursively

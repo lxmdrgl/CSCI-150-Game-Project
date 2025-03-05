@@ -10,7 +10,8 @@ public class LevelGenerator : MonoBehaviour
     public GameObject player;
     public float playerOffset = 2;
     public CinemachineCamera cinemachineCamera;
-
+    
+    [SerializeField]
     public RoomNode roomMap;
 
     // public RoomManager startRoom;
@@ -40,6 +41,11 @@ public class LevelGenerator : MonoBehaviour
         //     Debug.LogError("Level generation error");
         // }
     }
+
+    // void Start() {
+    //     roomMap.PrintTree();
+    //     Debug.Log(roomMap.roomType);
+    // }
 
     void spawnRoomMap() {
         if (roomMap != null) {
@@ -79,8 +85,10 @@ public class LevelGenerator : MonoBehaviour
         RoomNode currNode = root; 
         RoomNode newNode; 
 
+        Debug.Log("linear path reached, " + currNode.gameObject.name + ": " + currNode.children.Count);
+
         while(currNode.children.Count != 0) { // not reached dead end
-            Debug.Log(currNode.gameObject.name)
+            Debug.Log(currNode.gameObject.name);
             newNode = currNode.children[0];
             spawnRoom(newNode);
             connectRooms(currNode, newNode);
@@ -155,7 +163,6 @@ public class LevelGenerator : MonoBehaviour
     GameObject spawnRoom(RoomNode r) {
         // Instantiate a random resource of roomType
         List<RoomManager> roomList = new List<RoomManager>();
-        GameObject randRoom = null;
         
         if (r.roomType == "") {
             Debug.LogError(r.name + ": roomType left empty");
