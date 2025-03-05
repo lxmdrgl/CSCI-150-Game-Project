@@ -48,15 +48,20 @@ public class RR_RangedAttackState : RangedAttackState
             // Instantiate the projectile and set its properties
             GameObject projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
             Projectile projectileScript = projectile.GetComponent<Projectile>();
+            GameObject projectile2 = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
+            Projectile projectileScript2 = projectile2.GetComponent<Projectile>();
+            GameObject projectile3 = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
+            Projectile projectileScript3 = projectile3.GetComponent<Projectile>();
+            
             if (projectileScript != null)
             {
                 // projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, enemy.player.position, "radialWithGravity", enemy.transform.rotation.y, stateData.gravityScale);
-
-                Vector3 projectile2 = new Vector3(enemy.player.position.x - 2.0f, enemy.player.position.y, enemy.player.position.z);
-                Vector3 projectile3 = new Vector3(enemy.player.position.x + 2.0f, enemy.player.position.y, enemy.player.position.z);
-                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, enemy.player.position, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
-                // projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, projectile2, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
-                // projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, projectile3, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
+                Vector3 projectilePosition1 = enemy.player.position;
+                Vector3 projectilePosition2 = new Vector3(enemy.player.position.x - 2.0f, enemy.player.position.y, enemy.player.position.z);
+                Vector3 projectilePosition3 = new Vector3(enemy.player.position.x + 2.0f, enemy.player.position.y, enemy.player.position.z);
+                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, projectilePosition1, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
+                projectileScript2.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, projectilePosition2, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
+                projectileScript3.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, projectilePosition3, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
             }
 
             Damage damageComponent = projectile.GetComponentInChildren<Damage>();
