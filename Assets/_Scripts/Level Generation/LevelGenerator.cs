@@ -13,13 +13,13 @@ public class LevelGenerator : MonoBehaviour
 
     public RoomNode roomMap;
 
-    public RoomManager startRoom;
-    public List<RoomManager> hallways;
-    public List<RoomManager> rooms;
-    public RoomManager endRoom;
+    // public RoomManager startRoom;
+    // public List<RoomManager> hallways;
+    // public List<RoomManager> rooms;
+    // public RoomManager endRoom;
 
 
-    public List<GameObject> roomObjQueue = new List<GameObject>();
+    // public List<GameObject> roomObjQueue = new List<GameObject>();
 
     void Awake()
     {
@@ -75,6 +75,82 @@ public class LevelGenerator : MonoBehaviour
         return true;
     }
 
+    void spawnLinearPath(RoomNode root) {
+        RoomManager currNodeManager = root.roomObject.GetComponent<RoomManager>();
+
+        while(currNodeManager.exits.Count != 0) { // not reached dead end
+            break;
+        }
+    }
+
+    void connectRooms(RoomNode currRoom, RoomNode newRoom) {
+    //         currRoom = roomObjQueue[i];
+    //         currRoomMan = currRoom.GetComponent<RoomManager>();
+
+    //         newRoom = Instantiate(hallways[Random.Range(0, hallways.Count)].gameObj, new Vector3(0, 0, 0), transform.rotation);
+    //         newRoomMan = newRoom.GetComponent<RoomManager>();
+    //         roomObjQueue.Add(newRoom);
+
+    //         newRoom.transform.position += currRoomMan.exits[0].transform.position - newRoomMan.entrances[0].transform.position;
+    }
+
+    // bool generateLevel_1() {
+    //     // startRoom -> hallway -> hallway -> endRoom
+    //     GameObject currRoom;
+    //     RoomManager currRoomMan;
+    //     GameObject newRoom;
+    //     RoomManager newRoomMan;
+    //     int numHallways = Random.Range(3, 5);
+    //     int i = 0;
+
+    //     // Instantiate multiple hallways
+    //     for (i = 0; i < numHallways; i++) {
+    //         currRoom = roomObjQueue[i];
+    //         currRoomMan = currRoom.GetComponent<RoomManager>();
+
+    //         newRoom = Instantiate(hallways[Random.Range(0, hallways.Count)].gameObj, new Vector3(0, 0, 0), transform.rotation);
+    //         newRoomMan = newRoom.GetComponent<RoomManager>();
+    //         roomObjQueue.Add(newRoom);
+
+    //         newRoom.transform.position += currRoomMan.exits[0].transform.position - newRoomMan.entrances[0].transform.position;
+    //     }
+
+    //     // Instantiate end room
+    //     currRoom = roomObjQueue[i];
+    //     currRoomMan = currRoom.GetComponent<RoomManager>();
+
+    //     newRoom = Instantiate(endRoom.gameObj, new Vector3(0, 0, 0), transform.rotation);
+    //     newRoomMan = newRoom.GetComponent<RoomManager>();
+    //     roomObjQueue.Add(newRoom);
+
+    //     newRoom.transform.position += currRoomMan.exits[0].transform.position - newRoomMan.entrances[0].transform.position;
+
+    //     return true;
+    // }
+
+    // void spawnStartingRoom() {
+    //     // find origin location for level generator
+    //     GameObject levelOrigin = GameObject.Find("LevelOrigin");
+    //     Transform levelTransform;
+
+    //     // create starting room and find room origin location
+    //     GameObject newRoom = Instantiate(startRoom.gameObj, new Vector3(0, 0, 0), transform.rotation);   
+    //     roomObjQueue.Add(newRoom);
+
+    //     GameObject roomOrigin = GameObject.Find("RoomOrigin");
+    //     Transform roomTransform;
+
+    //     if (levelOrigin != null && roomOrigin != null) {
+    //         levelTransform = levelOrigin.transform;
+    //         roomTransform = roomOrigin.transform;
+
+    //         // change room location to difference in origins -> origins overlap
+    //         newRoom.transform.position += levelTransform.position - roomTransform.position;
+    //     } else {
+    //         Debug.LogError("Level or Room Origin not found");
+    //     }
+    // }
+
     GameObject spawnRoom(RoomNode r) {
         // Instantiate a random resource of roomType
         List<RoomManager> roomList = new List<RoomManager>();
@@ -87,71 +163,10 @@ public class LevelGenerator : MonoBehaviour
             if (roomList.Count == 0) {
                 Debug.LogError("Failed to load files from Resources/Rooms/" + r.roomType);
             } else {
-                randRoom = Instantiate(roomList[Random.Range(0, roomList.Count)].gameObj, new Vector3(0, 0, 0), transform.rotation); 
+                r.roomObject = Instantiate(roomList[Random.Range(0, roomList.Count)].gameObj, new Vector3(0, 0, 0), transform.rotation); 
             }
         }
-        return randRoom;
-    }
-
-    void spawnLinearPath(RoomNode root) {
-
-    }
-
-    bool generateLevel_1() {
-        // startRoom -> hallway -> hallway -> endRoom
-        GameObject currRoom;
-        RoomManager currRoomMan;
-        GameObject newRoom;
-        RoomManager newRoomMan;
-        int numHallways = Random.Range(3, 5);
-        int i = 0;
-
-        // Instantiate multiple hallways
-        for (i = 0; i < numHallways; i++) {
-            currRoom = roomObjQueue[i];
-            currRoomMan = currRoom.GetComponent<RoomManager>();
-
-            newRoom = Instantiate(hallways[Random.Range(0, hallways.Count)].gameObj, new Vector3(0, 0, 0), transform.rotation);
-            newRoomMan = newRoom.GetComponent<RoomManager>();
-            roomObjQueue.Add(newRoom);
-
-            newRoom.transform.position += currRoomMan.exits[0].transform.position - newRoomMan.entrances[0].transform.position;
-        }
-
-        // Instantiate end room
-        currRoom = roomObjQueue[i];
-        currRoomMan = currRoom.GetComponent<RoomManager>();
-
-        newRoom = Instantiate(endRoom.gameObj, new Vector3(0, 0, 0), transform.rotation);
-        newRoomMan = newRoom.GetComponent<RoomManager>();
-        roomObjQueue.Add(newRoom);
-
-        newRoom.transform.position += currRoomMan.exits[0].transform.position - newRoomMan.entrances[0].transform.position;
-
-        return true;
-    }
-
-    void spawnStartingRoom() {
-        // find origin location for level generator
-        GameObject levelOrigin = GameObject.Find("LevelOrigin");
-        Transform levelTransform;
-
-        // create starting room and find room origin location
-        GameObject newRoom = Instantiate(startRoom.gameObj, new Vector3(0, 0, 0), transform.rotation);   
-        roomObjQueue.Add(newRoom);
-
-        GameObject roomOrigin = GameObject.Find("RoomOrigin");
-        Transform roomTransform;
-
-        if (levelOrigin != null && roomOrigin != null) {
-            levelTransform = levelOrigin.transform;
-            roomTransform = roomOrigin.transform;
-
-            // change room location to difference in origins -> origins overlap
-            newRoom.transform.position += levelTransform.position - roomTransform.position;
-        } else {
-            Debug.LogError("Level or Room Origin not found");
-        }
+        return r.roomObject;
     }
 
     void spawnPlayer() {
