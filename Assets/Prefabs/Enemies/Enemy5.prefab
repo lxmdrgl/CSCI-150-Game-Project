@@ -629,14 +629,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4846833722265371268}
   - component: {fileID: -1460232046812936009}
-  - component: {fileID: 8321656139718377577}
   - component: {fileID: 9113077644204671259}
   - component: {fileID: 556503304328713079}
   - component: {fileID: 5719427680606851951}
   - component: {fileID: 857530055602809233}
   - component: {fileID: 3363648325032824417}
+  - component: {fileID: 6232173989934979480}
   m_Layer: 11
-  m_Name: Enemy1 1
+  m_Name: Enemy5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -717,30 +717,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8321656139718377577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6360035130462158432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88630b2bc06b1ee458534636409f812c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityData: {fileID: 11400000, guid: 6589930ae26576a45bdd200d10162427, type: 2}
-  playerCheck: {fileID: 3755304697358755252}
-  UniqueId: 
-  idleStateData: {fileID: 11400000, guid: 96d8d84a229f88840b9ad232a7f1feb7, type: 2}
-  moveStateData: {fileID: 11400000, guid: bbfdff6b149800a46a12eaa2ab18817d, type: 2}
-  playerDetectedData: {fileID: 11400000, guid: 451fc03b18889f04d9281d598c0389c0, type: 2}
-  chargeStateData: {fileID: 11400000, guid: 60b5d8749548b8748b3b11512e7c3588, type: 2}
-  lookForPlayerStateData: {fileID: 11400000, guid: 1c286e471b6dbc2429274191b472ec10, type: 2}
-  meleeAttackStateData: {fileID: 11400000, guid: 06bbec7a37b427b4ab304775860b3677, type: 2}
-  stunStateData: {fileID: 11400000, guid: 41a897605514532498df15931769dd09, type: 2}
-  deadStateData: {fileID: 11400000, guid: f2ebf86028f7ef8428fc2b876c4bce0f, type: 2}
-  cooldownStateData: {fileID: 11400000, guid: 5be2f09381462d4478ca9e825548f2ba, type: 2}
 --- !u!50 &9113077644204671259
 Rigidbody2D:
   serializedVersion: 5
@@ -862,6 +838,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashColor: {r: 1.4208422, g: 0.6943752, b: 3.1320755, a: 1}
   flashTime: 0.25
+--- !u!114 &6232173989934979480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6360035130462158432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c50c00600adf74a881a6b3bcc8d6ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityData: {fileID: 11400000, guid: 3cecdba9fb223a540aecf8452d074b80, type: 2}
+  playerCheck: {fileID: 3755304697358755252}
+  UniqueId: 
+  idleStateData: {fileID: 11400000, guid: 00630f1a6811faf49856aab8645206c5, type: 2}
+  moveStateData: {fileID: 11400000, guid: 0b07895feb7041245952fafa58f4e383, type: 2}
+  playerDetectedData: {fileID: 11400000, guid: f126e2093c4e485419d5a2efb783621c, type: 2}
+  chargeStateData: {fileID: 11400000, guid: 8955c442b99ce704ab0b1c7fc0880ff2, type: 2}
+  lookForPlayerStateData: {fileID: 11400000, guid: d69052c27a2b29e47a51fd9e97cb63e2, type: 2}
+  meleeAttackStateData: {fileID: 11400000, guid: c4bc1cd7154f33d4cbcd1ed25ef56d31, type: 2}
+  stunStateData: {fileID: 11400000, guid: f419591f279b5124a95cabc0d4958a50, type: 2}
+  deadStateData: {fileID: 11400000, guid: 5ac2ed3504bcb934f8f4471112f8fcac, type: 2}
+  cooldownStateData: {fileID: 11400000, guid: e6b496eff4d8fb44899437bf010d0317, type: 2}
 --- !u!1 &6412354468940492574
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,11 +912,20 @@ MonoBehaviour:
   wallCheck: {fileID: 2518377186256848546}
   groundCheckSize: {x: 0.3866667, y: 0.08333334}
   wallCheckDistance: 0.5
+  longGroundDistance: 0
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
-  platformTag: 
   ledgeCheckVertical: {fileID: 2181997544596436395}
+  platformTag: 
+  platformCheck: {fileID: 0}
+  platformCheckBottom: {fileID: 0}
+  platformCheckBottomDistance: 0
+  platformCheckTopDistance: 0
+  platformCheckBottomExtendDistance: 0
+  platformTopRight: {fileID: 0}
+  platformMidLeft: {fileID: 0}
+  platformBottomLeft: {fileID: 0}
 --- !u!1 &6834705499909733655
 GameObject:
   m_ObjectHideFlags: 0
