@@ -15,6 +15,7 @@ public class PlayerWallState : PlayerState
     protected bool isGrounded;
 	protected bool isTouchingWall;
     protected bool jumpInput;
+    protected bool downInput;
     protected int xInput;
 	protected int yInput;
     
@@ -50,6 +51,7 @@ public class PlayerWallState : PlayerState
         xInput = player.InputHandler.NormInputX;
 		yInput = player.InputHandler.NormInputY;
         jumpInput = player.InputHandler.JumpInput;
+        downInput = player.InputHandler.DownInput;
 
         if (jumpInput) 
         {
@@ -58,7 +60,7 @@ public class PlayerWallState : PlayerState
         else if (isGrounded)
         {
             stateMachine.ChangeState(player.IdleState);
-        }  else if (!isTouchingWall)
+        }  else if (!isTouchingWall || downInput)
         {
             stateMachine.ChangeState(player.AirState);
         } 
