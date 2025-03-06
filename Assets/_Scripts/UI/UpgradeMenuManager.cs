@@ -80,7 +80,7 @@ namespace Game.CoreSystem
             statUpgradeDataSet = dataSet;
 
             List<int> usedIndices = new List<int>();
-            System.Random random = new System.Random();
+            // System.Random random = new System.Random();
 
             for (int i = 0; i < upgradeSlots.Count; i++)
             {
@@ -89,7 +89,7 @@ namespace Game.CoreSystem
                     int index;
                     do
                     {
-                        index = random.Next(statUpgradeDataSet.statUpgradeData.Count);
+                        index = UnityEngine.Random.Range(0, statUpgradeDataSet.statUpgradeData.Count);
                     } while (usedIndices.Contains(index));
 
                     usedIndices.Add(index);
@@ -121,7 +121,7 @@ namespace Game.CoreSystem
             );
 
             List<int> usedIndices = new List<int>();
-            System.Random random = new System.Random();
+            // System.Random random = new System.Random();
 
             for (int i = 0; i < upgradeSlots.Count; i++)
             {
@@ -130,7 +130,7 @@ namespace Game.CoreSystem
                     int index;
                     do
                     {
-                        index = random.Next(localWeaponData.Count);
+                        index = UnityEngine.Random.Range(0, localWeaponData.Count);
                     } while (usedIndices.Contains(index));
 
                     usedIndices.Add(index);

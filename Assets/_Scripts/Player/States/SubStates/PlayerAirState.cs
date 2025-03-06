@@ -87,19 +87,19 @@ public class PlayerAirState : PlayerState
 
         // Debug.Log($"Actual y: {player.RB.linearVelocity.y}");
 
-        if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanAttack())
+        if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackPress] && player.PrimaryAttackState.CanAttack())
         {
             stateMachine.ChangeState(player.PrimaryAttackState);
         }
-        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttack] && player.SecondaryAttackState.CanAttack())
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackPress] && player.SecondaryAttackState.CanAttack())
         {
             stateMachine.ChangeState(player.SecondaryAttackState);
         }
-        if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkill] && player.PrimarySkillState.CanAttackCooldown())
+        if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillPress] && player.PrimarySkillState.CanAttackCooldown())
         {
             stateMachine.ChangeState(player.PrimarySkillState);
         }
-        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkill] && player.SecondarySkillState.CanAttackCooldown())
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillPress] && player.SecondarySkillState.CanAttackCooldown())
         {
             stateMachine.ChangeState(player.SecondarySkillState);
         }

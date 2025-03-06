@@ -20,6 +20,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public PlayerWallGrabState WallGrabState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerAttackState PrimaryAttackState { get; private set; }
+    public PlayerAttackState PrimaryAttackHoldState { get; private set; }
     public PlayerAttackState SecondaryAttackState { get; private set; }
     public PlayerAttackState PrimarySkillState { get; private set; }
     public PlayerAttackState SecondarySkillState { get; private set; }
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour, IDataPersistence
     private Vector2 workspace; 
 
     private Weapon primaryAttack;
+    private Weapon primaryAttackHold;
     private Weapon secondaryAttack;
     private Weapon primarySkill;
     private Weapon secondarySkill;
@@ -59,11 +61,13 @@ public class Player : MonoBehaviour, IDataPersistence
         knockBackReceiver = Core.GetCoreComponent<KnockBackReceiver>();
 
         primaryAttack = transform.Find("PrimaryAttack").GetComponent<Weapon>();
+        primaryAttackHold = transform.Find("PrimaryAttackHold").GetComponent<Weapon>();
         secondaryAttack = transform.Find("SecondaryAttack").GetComponent<Weapon>();
         primarySkill = transform.Find("PrimarySkill").GetComponent<Weapon>();
         secondarySkill = transform.Find("SecondarySkill").GetComponent<Weapon>();
 
         primaryAttack.SetCore(Core);
+        primaryAttackHold.SetCore(Core);
         secondaryAttack.SetCore(Core);
         primarySkill.SetCore(Core);
         secondarySkill.SetCore(Core);
@@ -84,10 +88,11 @@ public class Player : MonoBehaviour, IDataPersistence
         AirState = new PlayerNormalAirState(this, "air");
         WallGrabState = new PlayerWallGrabState(this, "wallGrab");
         WallJumpState = new PlayerWallJumpState(this, "air"); // was jump
-        PrimaryAttackState = new PlayerAttackState(this, "attack", primaryAttack, CombatInputs.primaryAttack);
-        SecondaryAttackState = new PlayerAttackState(this, "attack", secondaryAttack, CombatInputs.secondaryAttack);
-        PrimarySkillState = new PlayerAttackState(this, "attack", primarySkill, CombatInputs.primarySkill);
-        SecondarySkillState = new PlayerAttackState(this, "attack", secondarySkill, CombatInputs.secondarySkill);
+        PrimaryAttackState = new PlayerAttackState(this, "attack", primaryAttack, CombatInputs.primaryAttackPress);
+        PrimaryAttackHoldState = new PlayerAttackState(this, "attack", primaryAttackHold, CombatInputs.primaryAttackHold);
+        SecondaryAttackState = new PlayerAttackState(this, "attack", secondaryAttack, CombatInputs.secondaryAttackPress);
+        PrimarySkillState = new PlayerAttackState(this, "attack", primarySkill, CombatInputs.primarySkillPress);
+        SecondarySkillState = new PlayerAttackState(this, "attack", secondarySkill, CombatInputs.secondarySkillPress);
         KnockBackState = new PlayerKnockBackState(this, "knockBack");
         PlatformAirState = new PlayerPlatformAirState(this, "air");
 

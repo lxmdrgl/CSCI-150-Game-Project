@@ -16,13 +16,13 @@ namespace Game.Weapons.Components
         [field: SerializeField] public int NumberOfCharges { get; private set; }
         
         // Particles that will spawn when we add a charge
-        [field: SerializeField] public GameObject ChargeIncreaseIndicatorParticlePrefab { get; private set; }
+        // [field: SerializeField] public GameObject ChargeIncreaseIndicatorParticlePrefab { get; private set; }
         
-        // Particles that will spawn when we reach full charge
-        [field: SerializeField] public GameObject FullyChargedIndicatorParticlePrefab { get; private set; }
+        // // Particles that will spawn when we reach full charge
+        // [field: SerializeField] public GameObject FullyChargedIndicatorParticlePrefab { get; private set; }
         
         
-        // Offset relative to the players transform to spawn the particles
-        [field: SerializeField] public Vector2 ParticlesOffset { get; private set; }
+        // // Offset relative to the players transform to spawn the particles
+        // [field: SerializeField] public Vector2 ParticlesOffset { get; private set; }
     }
 }

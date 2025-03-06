@@ -30,7 +30,7 @@ public class Boss1 : Entity
     {
         base.Awake();
         meleeAttackCollider = transform.Find("MeleeAttackCollider").gameObject;
-        Debug.Log("meleeAttackCollider: " + meleeAttackCollider);
+        // Debug.Log("meleeAttackCollider: " + meleeAttackCollider);
 
 
         idleState = new Boss1_Idle(this, "idle", idleStateData, this);

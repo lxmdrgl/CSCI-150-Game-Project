@@ -50,12 +50,14 @@ namespace Game.Weapons.Components
                 // Spawn particles that indicate we have reached the max charge
                 // particleManager.StartParticlesRelative(currentAttackData.FullyChargedIndicatorParticlePrefab,
                 //     currentAttackData.ParticlesOffset, Quaternion.identity);
+                Debug.Log("Fully charged: " + currentCharge);
             }
             else
             {
                 // Spawn particles that indicate charge level has increased
                 // particleManager.StartParticlesRelative(currentAttackData.ChargeIncreaseIndicatorParticlePrefab,
                 //     currentAttackData.ParticlesOffset, Quaternion.identity);
+                Debug.Log("Charge Increases: " + currentCharge);
             }
         }
 

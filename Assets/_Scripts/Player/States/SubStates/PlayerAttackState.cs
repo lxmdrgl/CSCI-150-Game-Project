@@ -96,10 +96,10 @@ public class PlayerAttackState : PlayerActionState
         attackEnabled = false;
 
         weapon.Enter();
-        if (inputIndex == (int)CombatInputs.primarySkill) {
+        if (inputIndex == (int)CombatInputs.primarySkillPress) {
             player.primarySkillTimeNotifier.Disable();
         } 
-        else if (inputIndex == (int)CombatInputs.secondarySkill) {
+        else if (inputIndex == (int)CombatInputs.secondarySkillPress) {
             player.secondarySkillTimeNotifier.Disable();
         }
     }
@@ -110,11 +110,11 @@ public class PlayerAttackState : PlayerActionState
         base.Exit();
 
         weaponGenerator.OnWeaponGenerating -= HandleWeaponGenerating;
-        if (inputIndex == (int)CombatInputs.primarySkill) {
+        if (inputIndex == (int)CombatInputs.primarySkillPress) {
             player.primarySkillTimeNotifier.Init(weapon.Data.AttackCooldown);
             // Debug.Log("Start primary skill cooldown: " + weapon.Data.AttackCooldown);
         } 
-        else if (inputIndex == (int)CombatInputs.secondarySkill) {
+        else if (inputIndex == (int)CombatInputs.secondarySkillPress) {
             player.secondarySkillTimeNotifier.Init(weapon.Data.AttackCooldown);
         }
         

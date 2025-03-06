@@ -82,7 +82,13 @@ namespace Game.Weapons
         {
             if (inputIndex != (int)combatInput)
                 return;
-            
+
+            if (data == null)
+            {
+                Debug.LogError($"WeaponData is null for inputIndex: {inputIndex}");
+                return;
+            }
+
             GenerateWeapon(data);
         }
         
@@ -90,6 +96,7 @@ namespace Game.Weapons
 
         private void Start()
         {
+            Debug.Log("Weapon: " + weapon);
             weaponInventory = weapon.Core.GetCoreComponent<WeaponInventory>();
 
             weaponInventory.OnWeaponDataChanged += HandleWeaponDataChanged;

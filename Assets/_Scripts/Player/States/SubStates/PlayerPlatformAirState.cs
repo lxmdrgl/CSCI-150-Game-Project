@@ -44,22 +44,22 @@ public class PlayerPlatformAirState : PlayerAirState
 			// Debug.Log($"isPlatformOverlap: {isPlatformOverlap}, isPlatformOverlapTop: {isPlatformOverlapTop}");
 			if (isPlatformOverlap != null || isPlatformOverlapTop != null)
 			{	
-				if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanAttack())
+				if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackPress] && player.PrimaryAttackState.CanAttack())
 				{
 					StopPlatformMove();
 					stateMachine.ChangeState(player.PrimaryAttackState);
 				}
-				else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttack] && player.SecondaryAttackState.CanAttack())
+				else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackPress] && player.SecondaryAttackState.CanAttack())
 				{
 					StopPlatformMove();
 					stateMachine.ChangeState(player.SecondaryAttackState);
 				}
-				if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkill] && player.PrimarySkillState.CanAttackCooldown())
+				if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillPress] && player.PrimarySkillState.CanAttackCooldown())
 				{
 					StopPlatformMove();
 					stateMachine.ChangeState(player.PrimarySkillState);
 				}
-				else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkill] && player.SecondarySkillState.CanAttackCooldown())
+				else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillPress] && player.SecondarySkillState.CanAttackCooldown())
 				{
 					StopPlatformMove();
 					stateMachine.ChangeState(player.SecondarySkillState);
