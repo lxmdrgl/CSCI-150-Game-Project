@@ -14,7 +14,7 @@ namespace Game.CoreSystem
 
         private InteractableDetector interactableDetector;
         private Stats stats;
-        private StatUpgradeData newStatsData;
+        // private StatUpgradeData newStatsData;
 
         private MinorUpgrade minorUpgrade;
         public event Action<StatUpgradeDataSet> OnMinorUpgradeInteract;
@@ -40,7 +40,7 @@ namespace Game.CoreSystem
 
             minorUpgrade.Interact();
 
-            newStatsData = null;
+            // newStatsData = null;
         }
 
         protected override void Awake()

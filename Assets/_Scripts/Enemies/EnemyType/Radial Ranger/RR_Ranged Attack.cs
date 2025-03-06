@@ -46,8 +46,8 @@ public class RR_RangedAttackState : RangedAttackState
         if (isAnimationFinished)
         {
             // Instantiate the projectile and set its properties
-            GameObject projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
-            Projectile projectileScript = projectile.GetComponent<Projectile>();
+            GameObject projectile1 = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
+            Projectile projectileScript = projectile1.GetComponent<Projectile>();
             GameObject projectile2 = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
             Projectile projectileScript2 = projectile2.GetComponent<Projectile>();
             GameObject projectile3 = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
@@ -64,10 +64,14 @@ public class RR_RangedAttackState : RangedAttackState
                 projectileScript3.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, projectilePosition3, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
             }
 
-            Damage damageComponent = projectile.GetComponentInChildren<Damage>();
-            if (damageComponent != null)
+            Damage damageComponent1 = projectile1.GetComponentInChildren<Damage>();
+            Damage damageComponent2 = projectile2.GetComponentInChildren<Damage>();
+            Damage damageComponent3 = projectile3.GetComponentInChildren<Damage>();
+            if (damageComponent1 != null)
             {
-                damageComponent.SetDamage(stateData.projectileDamage, stateData.knockbackAngle, stateData.knockbackStrength);
+                damageComponent1.SetDamage(stateData.projectileDamage, stateData.knockbackAngle, stateData.knockbackStrength);
+                damageComponent2.SetDamage(stateData.projectileDamage, stateData.knockbackAngle, stateData.knockbackStrength);
+                damageComponent3.SetDamage(stateData.projectileDamage, stateData.knockbackAngle, stateData.knockbackStrength);
             }
 
             if (isPlayerInPursuitRange) // Player is in agro range

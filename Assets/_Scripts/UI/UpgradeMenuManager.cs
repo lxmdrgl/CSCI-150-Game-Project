@@ -28,7 +28,7 @@ namespace Game.CoreSystem
 
         public PlayerInputHandler InputHandler { get; private set; }
         private PlayerInput playerInput;
-        private bool upgradeMenuInteract = false;
+        // private bool upgradeMenuInteract = false;
         
         
         private void Awake()
