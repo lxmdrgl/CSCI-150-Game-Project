@@ -4,11 +4,14 @@ using System.Linq; // Required for .ToList()
 
 public class RoomType : MonoBehaviour
 {
-    public string name;
+    public string prefabName;
     public List<RoomManager> list = new List<RoomManager>();
 
-    void Start() // Use Start instead of Update
+    void Start()
     {
-        list = Resources.LoadAll<RoomManager>("Rooms").ToList();
+        list = Resources.LoadAll<RoomManager>("Rooms/" + prefabName).ToList();
+        if (list.Count == 0) {
+            Debug.LogError("Failed to load files from Resources/Rooms/" + prefabName);
+        }
     }
 }
