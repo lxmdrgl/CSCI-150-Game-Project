@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 6426281713410507453}
   m_Layer: 0
   m_Name: RoomExit
-  m_TagString: Untagged
+  m_TagString: RoomExit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,7 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60f945256179ca4796cfc4c2787aea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitDirection: 0
+  direction: 0
+  isDone: 0
 --- !u!1 &4487379232191985272
 GameObject:
   m_ObjectHideFlags: 0

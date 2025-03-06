@@ -98,6 +98,11 @@ MonoBehaviour:
   - {fileID: 208918222447923076}
   exits:
   - {fileID: 5281775285394296694}
+  colliders:
+  - {fileID: 5784189181271935270}
+  - {fileID: 5784189181271935270}
+  - {fileID: 5784189181271935270}
+  - {fileID: 5784189181271935270}
 --- !u!1001 &2178947358613406166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -308,6 +313,11 @@ PrefabInstance:
 --- !u!4 &2833206654934079933 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9179188799671620746, guid: 70a69ffe446c7f84fbb1ae432564b4ec, type: 3}
+  m_PrefabInstance: {fileID: 6355306836567362871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &5784189181271935270 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 609961288762295313, guid: 70a69ffe446c7f84fbb1ae432564b4ec, type: 3}
   m_PrefabInstance: {fileID: 6355306836567362871}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7851904921068524343

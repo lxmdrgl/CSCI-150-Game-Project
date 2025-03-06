@@ -23,6 +23,6 @@ MonoBehaviour:
   wallJumpVelocityXMax: 15
   wallJumpVelocityY: 18
   wallJumpTime: 0.2
-  platformVelocity: 25
-  platformMovementVelocity: 15
+  platformVelocity: 20
+  platformMovementVelocity: 10
   playerType: 0

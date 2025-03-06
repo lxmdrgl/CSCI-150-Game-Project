@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Unity.Cinemachine;
 using Unity.VisualScripting.Dependencies.NCalc;
@@ -11,16 +13,7 @@ public class LevelGenerator : MonoBehaviour
     public float playerOffset = 2;
     public CinemachineCamera cinemachineCamera;
     
-    [SerializeField]
     public RoomNode roomMap;
-
-    // public RoomManager startRoom;
-    // public List<RoomManager> hallways;
-    // public List<RoomManager> rooms;
-    // public RoomManager endRoom;
-
-
-    // public List<GameObject> roomObjQueue = new List<GameObject>();
 
     void Awake()
     {
@@ -28,34 +21,22 @@ public class LevelGenerator : MonoBehaviour
 
         spawnRoomMap();
 
-        if (spawnRoomsLinear()) { 
+        if (spawnStartingRoom() && spawnAllRooms(roomMap)) { 
             spawnPlayer();
         } else {
-            Debug.LogError("Level generation error");
+            UnityEngine.Debug.LogError("Level generation error");
         }
-
-        // spawnStartingRoom();
-        // if (generateLevel_1()) { 
-        //     spawnPlayer();
-        // } else {
-        //     Debug.LogError("Level generation error");
-        // }
     }
-
-    // void Start() {
-    //     roomMap.PrintTree();
-    //     Debug.Log(roomMap.roomType);
-    // }
 
     void spawnRoomMap() {
         if (roomMap != null) {
             roomMap = Instantiate(roomMap);
         } else {
-            Debug.LogError(gameObject.name + ": Room Map field not filled");
+            UnityEngine.Debug.LogError(gameObject.name + ": Room Map field not filled");
         }
     }
 
-    bool spawnRoomsLinear() {
+    bool spawnStartingRoom() {
         // find origin location for level generator
         GameObject levelOrigin = GameObject.Find("LevelOrigin");
         Transform levelTransform;
@@ -72,35 +53,102 @@ public class LevelGenerator : MonoBehaviour
             // change room location to difference in origins -> origins overlap
             newRoom.transform.position += levelTransform.position - roomTransform.position;
         } else {
-            Debug.LogError("Level Origin, Room Origin, or Room not found");
+            UnityEngine.Debug.LogError("Level Origin, Room Origin, or Room not found");
             return false;
         }
-
-        spawnLinearPath(roomMap);
 
         return true;
     }
 
-    void spawnLinearPath(RoomNode root) {
+    bool spawnAllRooms(RoomNode root) {
         RoomNode currNode = root; 
         RoomNode newNode; 
-
-        Debug.Log("linear path reached, " + currNode.gameObject.name + ": " + currNode.children.Count);
+        int randIndex = UnityEngine.Random.Range(0,2);
 
         while(currNode.children.Count != 0) { // not reached dead end
-            Debug.Log(currNode.gameObject.name);
-            newNode = currNode.children[0];
-            spawnRoom(newNode);
-            connectRooms(currNode, newNode);
-            currNode = newNode;
+            if (currNode.children.Count == 1) 
+            {
+                newNode = currNode.children[0];
+                spawnRoom(newNode);
+                connectRooms(currNode, 0, newNode, 0);
+                currNode = newNode;
+            } else if (currNode.children.Count == 2)
+            {
+                spawnRoom(currNode.children[0]);
+                spawnRoom(currNode.children[1]);
+
+                connectRooms(currNode, randIndex, currNode.children[0], 0);
+                connectRooms(currNode, Math.Abs(randIndex-1), currNode.children[1], 0);
+
+
+
+                spawnAllRooms(currNode.children[0]);
+                spawnAllRooms(currNode.children[1]);
+                break;
+            } else 
+            {
+                UnityEngine.Debug.LogError(gameObject.name + ": Unexpected number of exits");
+                return false;
+            }
         }
+
+        return true;
     }
 
-    void connectRooms(RoomNode currNode, RoomNode newNode) {
+
+    GameObject spawnRoom(RoomNode r) {
+        // Instantiate a random resource of roomType
+        List<RoomManager> roomList = new List<RoomManager>();
+        
+        if (r.roomType == "") {
+            UnityEngine.Debug.LogError(r.name + ": roomType left empty");
+        } else {
+            roomList = Resources.LoadAll<RoomManager>("Rooms/" + r.roomType).ToList();
+            if (roomList.Count == 0) {
+                UnityEngine.Debug.LogError("Failed to load files from Resources/Rooms/" + r.roomType);
+            } else {
+                r.roomObject = Instantiate(roomList[UnityEngine.Random.Range(0, roomList.Count)].gameObj, new Vector3(0, 0, 0), transform.rotation); 
+            }
+        }
+        return r.roomObject;
+    }
+    
+    bool connectRooms(RoomNode currNode, int exitIdx, RoomNode newNode, int entranceIdx) {
+        // UnityEngine.Debug.Log(currNode.gameObject.name + ": " + exitIdx + ", " + entranceIdx);
+
         RoomManager currNodeManager = currNode.roomObject.GetComponent<RoomManager>();
         RoomManager newNodeManager = newNode.roomObject.GetComponent<RoomManager>();
 
-        newNode.roomObject.transform.position += currNodeManager.exits[0].transform.position - newNodeManager.entrances[0].transform.position;
+        newNode.roomObject.transform.position += currNodeManager.exits[exitIdx].transform.position - newNodeManager.entrances[entranceIdx].transform.position;
+        
+        List<Collider2D> results = new List<Collider2D>();
+        ContactFilter2D contactFilter = new ContactFilter2D();
+        contactFilter.useTriggers = false; // Ignore triggers if necessary
+        contactFilter.SetLayerMask(LayerMask.GetMask("Room")); // Ensure the objects are on the "Room" layer
+        int overlaps = 0;
+
+        foreach (Collider2D collider in newNodeManager.colliders) {
+            overlaps += collider.Overlap(contactFilter, results);
+        }
+
+        if (overlaps != 0) {
+            UnityEngine.Debug.LogError(newNode.gameObject.name + ": " + overlaps);
+        }
+        
+        return true;
+    }
+
+    void spawnPlayer() {
+        GameObject levelOrigin = GameObject.Find("LevelOrigin");
+        Transform levelTransform;
+
+        if (levelOrigin != null) {
+            levelTransform = levelOrigin.transform;
+            player = Instantiate(player, new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0), levelTransform.rotation);
+            cinemachineCamera.Target.TrackingTarget = player.transform;
+        } else {
+            UnityEngine.Debug.LogError("Level Origin not found");
+        }
     }
 
     // bool generateLevel_1() {
@@ -159,34 +207,4 @@ public class LevelGenerator : MonoBehaviour
     //         Debug.LogError("Level or Room Origin not found");
     //     }
     // }
-
-    GameObject spawnRoom(RoomNode r) {
-        // Instantiate a random resource of roomType
-        List<RoomManager> roomList = new List<RoomManager>();
-        
-        if (r.roomType == "") {
-            Debug.LogError(r.name + ": roomType left empty");
-        } else {
-            roomList = Resources.LoadAll<RoomManager>("Rooms/" + r.roomType).ToList();
-            if (roomList.Count == 0) {
-                Debug.LogError("Failed to load files from Resources/Rooms/" + r.roomType);
-            } else {
-                r.roomObject = Instantiate(roomList[Random.Range(0, roomList.Count)].gameObj, new Vector3(0, 0, 0), transform.rotation); 
-            }
-        }
-        return r.roomObject;
-    }
-
-    void spawnPlayer() {
-        GameObject levelOrigin = GameObject.Find("LevelOrigin");
-        Transform levelTransform;
-
-        if (levelOrigin != null) {
-            levelTransform = levelOrigin.transform;
-            player = Instantiate(player, new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0), levelTransform.rotation);
-            cinemachineCamera.Target.TrackingTarget = player.transform;
-        } else {
-            Debug.LogError("Level Origin not found");
-        }
-    }
 }
