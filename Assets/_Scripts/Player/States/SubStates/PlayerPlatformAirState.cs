@@ -49,6 +49,11 @@ public class PlayerPlatformAirState : PlayerAirState
 					StopPlatformMove();
 					stateMachine.ChangeState(player.PrimaryAttackState);
 				}
+				else if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && player.PrimaryAttackHoldState.CanAttack())
+				{
+					StopPlatformMove();
+					stateMachine.ChangeState(player.PrimaryAttackHoldState);
+				}
 				else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackPress] && player.SecondaryAttackState.CanAttack())
 				{
 					StopPlatformMove();
