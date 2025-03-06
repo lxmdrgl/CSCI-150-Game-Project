@@ -12,28 +12,16 @@ public class RoomNode : MonoBehaviour
     [SerializeField]
     public List<RoomNode> children; // Child nodes
 
-    void Start()
+    void OnEnable()
     {
-        // load resources into rooms
-        // if (roomType == "") 
-        // {
-        //     Debug.LogError(gameObject.name + ": roomType left empty");
-        // } 
-        // else 
-        // {
-        //     rooms = Resources.LoadAll<RoomManager>("Rooms/" + roomType).ToList();
-        //     if (rooms.Count == 0) {
-        //         Debug.LogError("Failed to load files from Resources/Rooms/" + roomType);
-        //     }
-        // }
-
-        // create tree from hierarchy
+        // assign parent
         if (transform.parent != null)
         {
             parent = transform.parent.GetComponent<RoomNode>();
             if (parent != null)
             {
                 parent.AddChild(this);
+                // Debug.Log(gameObject.name + ": " + parent.gameObject.name + "->" + gameObject.name);
             }
         }
 
@@ -44,12 +32,16 @@ public class RoomNode : MonoBehaviour
             if (childNode != null && !children.Contains(childNode))
             {
                 AddChild(childNode);
+                // Debug.Log(gameObject.name + ": " + gameObject.name + "->" + childNode.gameObject.name);
             }
+        }   
+    }
+
+    void Start()
+    {
+        if (parent == null) {
+            // PrintTree();
         }
-
-        PrintTree();
-
-        // Debug.Log(gameObject.name + ": " + children.Count);
     }
 
     // Add a child to this node

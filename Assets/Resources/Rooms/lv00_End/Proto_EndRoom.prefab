@@ -96,6 +96,13 @@ MonoBehaviour:
   entrances:
   - {fileID: 208918222447923076}
   exits: []
+  colliders:
+  - {fileID: 4508469748907010281}
+  - {fileID: 4508469748907010281}
+  - {fileID: 4508469748907010281}
+  - {fileID: 4508469748907010281}
+  - {fileID: 4508469748907010281}
+  - {fileID: 4508469748907010281}
 --- !u!1001 &2178947358613406166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -187,6 +194,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 5.5
       objectReference: {fileID: 0}
+    - target: {fileID: 609961288762295313, guid: 70a69ffe446c7f84fbb1ae432564b4ec, type: 3}
+      propertyPath: m_ContactCaptureLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4968708978961473868, guid: 70a69ffe446c7f84fbb1ae432564b4ec, type: 3}
       propertyPath: m_Name
       value: RoomCollider
@@ -236,6 +247,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70a69ffe446c7f84fbb1ae432564b4ec, type: 3}
+--- !u!61 &4508469748907010281 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 609961288762295313, guid: 70a69ffe446c7f84fbb1ae432564b4ec, type: 3}
+  m_PrefabInstance: {fileID: 3955930510447406328}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5297726584427591794 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9179188799671620746, guid: 70a69ffe446c7f84fbb1ae432564b4ec, type: 3}

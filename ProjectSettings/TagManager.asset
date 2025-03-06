@@ -8,6 +8,9 @@ TagManager:
   - Deathscreen
   - GameplayCanvas
   - Portal1
+  - RoomEntrance
+  - RoomExit
+  - RoomCollider
   layers:
   - Default
   - TransparentFX

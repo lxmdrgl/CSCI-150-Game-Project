@@ -29,8 +29,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6448841864115882413}
+  m_Children: []
   m_Father: {fileID: 1642371634054565369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6307740670422623894
@@ -45,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2ff1ffad0a5c24391fcdaaaec2a87f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: lv00_Hallway
-  rooms: []
+  roomType: lv00_End
+  roomObject: {fileID: 0}
   parent: {fileID: 0}
   children: []
 --- !u!1 &1610528359090453823
@@ -95,55 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: lv00_Hallway
-  rooms: []
-  parent: {fileID: 0}
-  children: []
---- !u!1 &2035242356083126055
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6448841864115882413}
-  - component: {fileID: 7065335679706765036}
-  m_Layer: 0
-  m_Name: r4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6448841864115882413
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035242356083126055}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6665740284857792404}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7065335679706765036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035242356083126055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f2ff1ffad0a5c24391fcdaaaec2a87f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomType: lv00_End
-  rooms: []
+  roomObject: {fileID: 0}
   parent: {fileID: 0}
   children: []
 --- !u!1 &2125064754219370855
@@ -192,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: lv00_Hallway
-  rooms: []
+  roomObject: {fileID: 0}
   parent: {fileID: 0}
   children: []
 --- !u!1 &2817144629334334271
@@ -241,6 +192,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: lv00_Start
-  rooms: []
+  roomObject: {fileID: 0}
   parent: {fileID: 0}
   children: []
