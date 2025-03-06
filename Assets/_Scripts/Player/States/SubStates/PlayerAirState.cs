@@ -120,7 +120,7 @@ public class PlayerAirState : PlayerState
         {
             stateMachine.ChangeState(player.MoveState);
         } 
-        else if (isTouchingWall && xInput == Movement?.FacingDirection && !isCloseToGrounded) { // note: removed && Movement?.CurrentVelocity.y <= 0
+        else if (isTouchingWall && xInput == Movement?.FacingDirection && !isCloseToGrounded && Movement?.CurrentVelocity.y <= 0) { // note: removed && Movement?.CurrentVelocity.y <= 0
             stateMachine.ChangeState(player.WallGrabState);
         }
         else
