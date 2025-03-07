@@ -196,6 +196,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1343452053090071531, guid: a3a952f23387a75409724bb9a48b2bcf, type: 3}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: playerOffset
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: hallways.Array.size
       value: 3
       objectReference: {fileID: 0}
