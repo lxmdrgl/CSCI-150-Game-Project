@@ -16,7 +16,7 @@ MonoBehaviour:
   <Name>k__BackingField: Knight Primary Attack Hold 1
   <Description>k__BackingField: Hold Sword Swing
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: bd8df5bfc0b5a8c4298f1fa13d425c88, type: 2}
-  <weaponIndex>k__BackingField: 0
+  <weaponIndex>k__BackingField: 4
   <NumberOfAttacks>k__BackingField: 1
   <AttackCounterCooldown>k__BackingField: 2
   <AttackCooldown>k__BackingField: 0

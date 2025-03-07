@@ -16,7 +16,8 @@ public class PlayerData : ScriptableObject
     [Header("Dash State")]
     public float dashVelocity = 15f;
     public float dashTime = 0.25f;
-    public float dashCooldown = 0.1f;
+    public float dashCooldown = 0.2f;
+    public float dashAttackCooldown = 0.1f;
 
     [Header("In Air State")]
     public float coyoteTime = 0.2f;

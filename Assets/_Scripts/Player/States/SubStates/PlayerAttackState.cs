@@ -122,8 +122,16 @@ public class PlayerAttackState : PlayerActionState
         
     }
 
-    public bool CanAttack() => weapon.CanEnterAttack/*  && attackEnabled */;
-    // public bool CanAttackCooldown() => weapon.CanEnterAttack && attackEnabled;
+    public bool CanAttack() 
+    {
+        if (!weapon.CanEnterAttack) {
+            HandleUseInput();
+        }
+        return weapon.CanEnterAttack;
+    }
+    
+    /* => weapon.CanEnterAttack;/*  && attackEnabled */
+    // public bool CanAttackCooldown() => weapon.CanEnterAttack && attackEnabled; */
 
     public bool CanAttackCooldown() => weapon.CanEnterAttack && attackEnabled;
     

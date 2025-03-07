@@ -64,7 +64,7 @@ namespace Game.CoreSystem
         {
             return Vector3.Distance(transform.position, interactable.GetPosition());
         }
-
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.IsInteractable(out var interactable))

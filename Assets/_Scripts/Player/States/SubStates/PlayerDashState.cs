@@ -38,6 +38,7 @@ public class PlayerDashState : PlayerActionState
 		DamageReceiver?.SetCanTakeDamage(true);
 		KnockBackReceiver?.SetCanTakeKnockBack(true);
 		player.dashTimeNotifier.Init(playerData.dashCooldown);
+		player.dashAttackTimeNotifier.Init(playerData.dashAttackCooldown);
 		// Debug.Log("Init dash timer");
     }
 
@@ -46,7 +47,7 @@ public class PlayerDashState : PlayerActionState
         base.LogicUpdate();
 		// Debug.Log($"jump: {jumpInput} attack: {attackInputs.Any(x => x)}");
         if (Time.time >= startTime + playerData.dashTime || jumpInput || attackInputs.Any(x => x)) {
-			// Debug.Log("End dash");
+			Debug.Log("End dash: " + Time.time + " " + (startTime + playerData.dashTime) + " " + jumpInput + " " + attackInputs.Any(x => x));
 			isActionDone = true;
 		} 
 		else if (xInput != 0) {
