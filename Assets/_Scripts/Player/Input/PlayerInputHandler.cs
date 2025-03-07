@@ -109,13 +109,13 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 // Hold attack
                 AttackInputs[(int)CombatInputs.primaryAttackHold] = true;
-                Debug.Log("Primary Attack Hold Input: " + context.duration);
+                // Debug.Log("Primary Attack Hold Input: " + context.duration);
             }
             else if (context.interaction is UnityEngine.InputSystem.Interactions.PressInteraction)
             {
                 // Press attack (quick tap)
                 AttackInputs[(int)CombatInputs.primaryAttackPress] = true;
-                Debug.Log("Primary Attack Press Input");
+                // Debug.Log("Primary Attack Press Input");
             }
         }
 
@@ -124,7 +124,7 @@ public class PlayerInputHandler : MonoBehaviour
             // Reset both inputs when released
             AttackInputs[(int)CombatInputs.primaryAttackPress] = false;
             AttackInputs[(int)CombatInputs.primaryAttackHold] = false;
-            Debug.Log("Primary Attack End Input");
+            // Debug.Log("Primary Attack End Input");
         }
     }
 
@@ -134,11 +134,13 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.started)
         {
             AttackInputs[(int)CombatInputs.secondaryAttackPress] = true;
+            // Debug.Log("Secondary Attack Press Input");
         }
 
         if (context.canceled)
         {
             AttackInputs[(int)CombatInputs.secondaryAttackPress] = false;
+            // Debug.Log("Secondary Attack End Input");
         }
     }
 
@@ -229,6 +231,10 @@ public enum CombatInputs{
     secondaryAttackPress,
     primarySkillPress,
     secondarySkillPress,
-    primaryAttackHold
+    primaryAttackHold,
+    secondaryAttackHold,
+    primarySkillHold,
+    secondarySkillHold,
+    dashAttack
 }
 

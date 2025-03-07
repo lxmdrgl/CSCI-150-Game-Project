@@ -256,6 +256,7 @@ Transform:
   - {fileID: 2450177630060992994}
   - {fileID: 2460804865156047520}
   - {fileID: 3575279104749348562}
+  - {fileID: 7905829893549236001}
   - {fileID: 4472217068815146787}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1506,7 +1507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4467865697258645298, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
       propertyPath: m_Name
-      value: PrimaryAttack
+      value: PrimaryAttackPress
       objectReference: {fileID: 0}
     - target: {fileID: 6956340059033203090, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
       propertyPath: combatInput
@@ -1702,7 +1703,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: f5c695431eb63e0438565fc316ffa064, type: 2}
     - target: {fileID: 4467865697258645298, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
       propertyPath: m_Name
-      value: SecondarySkill
+      value: SecondarySkillPress
       objectReference: {fileID: 0}
     - target: {fileID: 6956340059033203090, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
       propertyPath: combatInput
@@ -1776,7 +1777,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: f5c695431eb63e0438565fc316ffa064, type: 2}
     - target: {fileID: 4467865697258645298, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
       propertyPath: m_Name
-      value: PrimarySkill
+      value: PrimarySkillPress
       objectReference: {fileID: 0}
     - target: {fileID: 6956340059033203090, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
       propertyPath: combatInput
@@ -1854,6 +1855,72 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 825905045288397366, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
   m_PrefabInstance: {fileID: 4245703834181569764}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7404219216543659287
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8673564491474926216}
+    m_Modifications:
+    - target: {fileID: 825905045288397366, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.3605727
+      objectReference: {fileID: 0}
+    - target: {fileID: 825905045288397366, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.391619
+      objectReference: {fileID: 0}
+    - target: {fileID: 825905045288397366, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825905045288397366, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825905045288397366, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825905045288397366, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825905045288397366, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825905045288397366, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825905045288397366, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 825905045288397366, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467865697258645298, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_Name
+      value: DashAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956340059033203090, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: combatInput
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+--- !u!4 &7905829893549236001 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 825905045288397366, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+  m_PrefabInstance: {fileID: 7404219216543659287}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8991506163526074155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1912,7 +1979,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: f5c695431eb63e0438565fc316ffa064, type: 2}
     - target: {fileID: 4467865697258645298, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
       propertyPath: m_Name
-      value: SecondaryAttack
+      value: SecondaryAttackPress
       objectReference: {fileID: 0}
     - target: {fileID: 6956340059033203090, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
       propertyPath: combatInput

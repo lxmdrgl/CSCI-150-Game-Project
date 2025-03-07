@@ -50,6 +50,7 @@ public class PlayerState
         player.dashTimeNotifier.Tick();
         player.primarySkillTimeNotifier.Tick();
         player.secondarySkillTimeNotifier.Tick();
+        player.dashAttackTimeNotifier.Tick();
     }
 
     public virtual void PhysicsUpdate()

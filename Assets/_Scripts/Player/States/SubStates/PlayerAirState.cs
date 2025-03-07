@@ -87,7 +87,8 @@ public class PlayerAirState : PlayerState
 
         // Debug.Log($"Actual y: {player.RB.linearVelocity.y}");
 
-        if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackPress] && player.PrimaryAttackState.CanAttack())
+        if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackPress] && player.PrimaryAttackState.CanAttack()
+            || (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && !player.PrimaryAttackHoldState.CanAttack()))
         {
             stateMachine.ChangeState(player.PrimaryAttackState);
         }
