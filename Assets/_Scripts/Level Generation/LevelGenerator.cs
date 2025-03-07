@@ -153,6 +153,8 @@ public class LevelGenerator : MonoBehaviour
         if (levelOrigin != null) {
             levelTransform = levelOrigin.transform;
             player = Instantiate(player, new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0), levelTransform.rotation);
+            
+            
             cinemachineCamera.Target.TrackingTarget = player.transform;
         } else {
             UnityEngine.Debug.LogError("Level Origin not found");

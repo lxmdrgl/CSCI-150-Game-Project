@@ -42,12 +42,6 @@ public class RoomManager : MonoBehaviour
             if (collider != null)
             {
                 colliders.Add(collider);
-
-                // BoxCollider2D boxCollider = collider as BoxCollider2D;
-                // if (boxCollider != null)
-                // {
-                //     boxCollider.size = new Vector2(boxCollider.size.x - 0.5f, boxCollider.size.y - 0.5f); // Set new size
-                // }
             }
         }
     }
@@ -61,7 +55,7 @@ public class RoomManager : MonoBehaviour
                 BoxCollider2D boxCollider = collider as BoxCollider2D;
                 if (boxCollider != null)
                 {
-                    boxCollider.size = new Vector2(boxCollider.size.x - 2f, boxCollider.size.y - 2f); // Set new size
+                    boxCollider.size = new Vector2(boxCollider.size.x - 0.5f, boxCollider.size.y - 0.5f); // Set new size
                 }
             }
         }
