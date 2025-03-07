@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private SaveSlotsMenu saveSlotsMenu;
     [SerializeField] private TextMeshProUGUI savesBtnText;
     public string GameSceneName;
+    public string generatorScene;
 
     private async void Awake()
     {
@@ -49,6 +50,10 @@ public class MainMenu : MonoBehaviour
     }
     public void Play()
     {
+        PlayerPrefs.SetInt("playerCount",1);
+        SceneManager.LoadSceneAsync(GameSceneName);
+
+        /*
         if (DataPersistenceManager.instance.HasGameData())
         {
             // Save current data and load the game
@@ -71,7 +76,40 @@ public class MainMenu : MonoBehaviour
 
             SceneManager.LoadSceneAsync(GameSceneName);
         }
+        */
     }
+
+    public void PlayLocalMultiplayer()
+    {
+        PlayerPrefs.SetInt("playerCount",2);
+        SceneManager.LoadSceneAsync(generatorScene);
+
+        /*
+        if (DataPersistenceManager.instance.HasGameData())
+        {
+            // Save current data and load the game
+            DataPersistenceManager.instance.SaveGame();
+            SceneManager.LoadSceneAsync(generatorScene);
+        }
+        else
+        {
+            string currentSave = DataPersistenceManager.instance.GetSelectedProfileId();
+            if(currentSave != "1" || currentSave != "2" || currentSave != "3")
+            {
+                currentSave = "1";
+                DataPersistenceManager.instance.ChangeSelectedProfileId(currentSave);
+                if (!DataPersistenceManager.instance.HasGameData())
+                {
+                    DataPersistenceManager.instance.NewGame();
+                    DataPersistenceManager.instance.SaveGame();
+                }
+            }   
+
+            SceneManager.LoadSceneAsync(generatorScene);
+        }
+        */
+    }
+
     public void OnSavesClicked()
     {
         saveSlotsMenu.ActivateMenu();
