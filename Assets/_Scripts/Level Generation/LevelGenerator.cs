@@ -14,15 +14,27 @@ public class LevelGenerator : MonoBehaviour
     public CinemachineCamera cinemachineCamera;
     
     public RoomNode roomMap;
+    private int playerCount;
 
     void Awake()
     {
+        playerCount = PlayerPrefs.GetInt("playerCount");
+
         DontDestroyOnLoad(gameObject);
 
         spawnRoomMap();
 
         if (spawnStartingRoom() && spawnAllRooms(roomMap)) { 
-            spawnPlayer();
+            if(playerCount == 1)
+            {
+                spawnPlayer();
+            }
+            else
+            {
+                // 2 player
+                UnityEngine.Debug.Log("2 PLAYERS");
+            }
+
         } else {
             UnityEngine.Debug.LogError("Level generation error");
         }
