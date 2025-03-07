@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class RoomManager : MonoBehaviour
 
     void OnEnable() {
         PopulateVars();
+        ShortenColliders();
     }
 
     void OnValidate() {
@@ -23,6 +25,7 @@ public class RoomManager : MonoBehaviour
     {
         entrances.Clear();
         exits.Clear();
+        colliders.Clear();
 
         foreach (Transform child in transform)
         {
@@ -39,6 +42,27 @@ public class RoomManager : MonoBehaviour
             if (collider != null)
             {
                 colliders.Add(collider);
+
+                // BoxCollider2D boxCollider = collider as BoxCollider2D;
+                // if (boxCollider != null)
+                // {
+                //     boxCollider.size = new Vector2(boxCollider.size.x - 0.5f, boxCollider.size.y - 0.5f); // Set new size
+                // }
+            }
+        }
+    }
+
+    void ShortenColliders() {
+        foreach (Transform child in transform)
+        {            
+            Collider2D collider = child.GetComponent<Collider2D>();
+            if (collider != null)
+            {
+                BoxCollider2D boxCollider = collider as BoxCollider2D;
+                if (boxCollider != null)
+                {
+                    boxCollider.size = new Vector2(boxCollider.size.x - 2f, boxCollider.size.y - 2f); // Set new size
+                }
             }
         }
     }

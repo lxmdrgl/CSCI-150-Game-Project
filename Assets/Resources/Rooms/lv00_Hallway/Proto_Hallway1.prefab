@@ -100,9 +100,6 @@ MonoBehaviour:
   - {fileID: 5281775285394296694}
   colliders:
   - {fileID: 5784189181271935270}
-  - {fileID: 5784189181271935270}
-  - {fileID: 5784189181271935270}
-  - {fileID: 5784189181271935270}
 --- !u!1001 &2178947358613406166
 PrefabInstance:
   m_ObjectHideFlags: 0

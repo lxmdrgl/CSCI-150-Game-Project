@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [ExecuteAlways]
-public class RoomExit : MonoBehaviour
+public class RoomDoor : MonoBehaviour
 {
     public enum Direction { Right, Up, Left, Down }
     public Direction direction;

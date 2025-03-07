@@ -122,17 +122,25 @@ public class LevelGenerator : MonoBehaviour
         newNode.roomObject.transform.position += currNodeManager.exits[exitIdx].transform.position - newNodeManager.entrances[entranceIdx].transform.position;
         
         List<Collider2D> results = new List<Collider2D>();
-        ContactFilter2D contactFilter = new ContactFilter2D();
-        contactFilter.useTriggers = false; // Ignore triggers if necessary
-        contactFilter.SetLayerMask(LayerMask.GetMask("Room")); // Ensure the objects are on the "Room" layer
+        // ContactFilter2D contactFilter = new ContactFilter2D();
+        // contactFilter.useTriggers = false; // Ignore triggers if necessary
+        // contactFilter.SetLayerMask(LayerMask.GetMask("Room")); // Ensure the objects are on the "Room" layer
         int overlaps = 0;
 
         foreach (Collider2D collider in newNodeManager.colliders) {
-            overlaps += collider.Overlap(contactFilter, results);
+            overlaps += Physics2D.OverlapCollider(collider, results);
+
+            foreach (Collider2D overlappingCollider in results) {
+                string colliderParentName = collider.transform.parent != null ? collider.transform.parent.name : collider.gameObject.name;
+                string overlappingParentName = overlappingCollider.transform.parent != null ? overlappingCollider.transform.parent.name : overlappingCollider.gameObject.name;
+                
+                UnityEngine.Debug.Log($"Overlap detected: {colliderParentName} is overlapping with {overlappingParentName}");
+            }
+            results.Clear();
         }
 
         if (overlaps != 0) {
-            UnityEngine.Debug.LogError(newNode.gameObject.name + ": " + overlaps);
+            UnityEngine.Debug.LogError("collision overlap " + newNode.gameObject.name + ": " + overlaps);
         }
         
         return true;
