@@ -90,18 +90,18 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: SetInterruptableSetActive
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
     functionName: EnterAttackPhase
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 2
+    messageOptions: 0
+  - time: 0
+    functionName: SetInterruptableSetActive
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
     messageOptions: 0
   - time: 0.25
     functionName: SetInterruptableSetInActive
@@ -111,14 +111,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.25
-    functionName: SetFlipInactive
+    functionName: UseInputTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.25
-    functionName: UseInputTrigger
+    functionName: SetFlipInactive
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -139,14 +139,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.41666666
-    functionName: SetFlipActive
+    functionName: AnimationFinishedTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.41666666
-    functionName: AnimationFinishedTrigger
+    functionName: SetFlipActive
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 using Game.Weapons;
 
@@ -10,13 +11,13 @@ public class PlayerAttackState : PlayerActionState
     private Weapon weapon;
     private WeaponGenerator weaponGenerator;
 
-    private int inputIndex;
+    protected int inputIndex;
 
     private bool canInterrupt;
 
     private bool checkFlip;
     private bool checkInterruptable;
-    protected bool attackEnabled = true;
+    public bool attackEnabled = true;
 
     public PlayerAttackState(
         Player player,
@@ -67,6 +68,8 @@ public class PlayerAttackState : PlayerActionState
 
         if (checkInterruptable) {
             if (jumpInput || dashInput) {
+                HandleUseInput();
+                Debug.Log("Interrupt attack: " + string.Join(", ", player.InputHandler.AttackInputs));
                 isActionDone = true;
             }
         }
@@ -74,9 +77,17 @@ public class PlayerAttackState : PlayerActionState
         if (!canInterrupt)
             return;
 
-        if (xInput != 0 || attackInputs[0] || attackInputs[1] || attackInputs[2] || attackInputs[3])
+        if (xInput != 0 )
         {
             isActionDone = true;
+        }
+
+        int count = Enum.GetValues(typeof(CombatInputs)).Length;
+        for (int i = 0; i < count; i++) {
+            if (playerInputHandler.AttackInputs[i]) {
+                isActionDone = true;
+                break;
+            }
         }
     }
 
@@ -101,7 +112,10 @@ public class PlayerAttackState : PlayerActionState
         } 
         else if (inputIndex == (int)CombatInputs.secondarySkillPress) {
             player.secondarySkillTimeNotifier.Disable();
-        }
+        } 
+        else if (inputIndex == (int)CombatInputs.dashAttack) {
+            Debug.Log("Dash attack enabled: " + attackEnabled);
+        } 
     }
 
 
@@ -129,14 +143,39 @@ public class PlayerAttackState : PlayerActionState
         }
         return weapon.CanEnterAttack;
     }
-    
-    /* => weapon.CanEnterAttack;/*  && attackEnabled */
-    // public bool CanAttackCooldown() => weapon.CanEnterAttack && attackEnabled; */
 
-    public bool CanAttackCooldown() => weapon.CanEnterAttack && attackEnabled;
-    
+    public bool CanAttackCooldown() 
+    {
+        bool canAttack = weapon.CanEnterAttack && attackEnabled;
+        if (!canAttack)
+        {
+            HandleUseInput();
+        }
+        return canAttack;
+    }
+
+    public bool CanDashAttackCooldown(CombatInputs input, CombatInputs output) 
+    {
+        bool canAttack = weapon.CanEnterAttack && attackEnabled;
+        bool hasInput = false;
+        if (canAttack)
+        {
+            hasInput = player.InputHandler.SimulateAttackInput(input, output);
+        }
+        // Debug.Log(string.Join(", ", player.InputHandler.AttackInputs));
+        return canAttack && hasInput;
+    }
 
     public void ResetAttackCooldown() => attackEnabled = true;
+    public void DashAttackCooldownDisable() {
+        attackEnabled = false;
+        Debug.Log("Reset dash attack cooldown: " + attackEnabled);   
+    }
+
+    public void DashAttackCooldownEnable() {
+        attackEnabled = true;
+        Debug.Log("Reset dash attack cooldown: " + attackEnabled);   
+    }
 
     private void HandleEnableInterrupt() => canInterrupt = true;
 

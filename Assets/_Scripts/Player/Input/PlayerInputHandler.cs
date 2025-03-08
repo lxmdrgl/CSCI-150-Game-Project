@@ -117,6 +117,7 @@ public class PlayerInputHandler : MonoBehaviour
                 AttackInputs[(int)CombatInputs.primaryAttackPress] = true;
                 // Debug.Log("Primary Attack Press Input");
             }
+            // AttackInputs[(int)CombatInputs.dashAttack] = true;
         }
 
         if (context.canceled)
@@ -124,6 +125,7 @@ public class PlayerInputHandler : MonoBehaviour
             // Reset both inputs when released
             AttackInputs[(int)CombatInputs.primaryAttackPress] = false;
             AttackInputs[(int)CombatInputs.primaryAttackHold] = false;
+            // AttackInputs[(int)CombatInputs.dashAttack] = false;
             // Debug.Log("Primary Attack End Input");
         }
     }
@@ -167,6 +169,21 @@ public class PlayerInputHandler : MonoBehaviour
         if (context.canceled)
         {
             AttackInputs[(int)CombatInputs.secondarySkillPress] = false;
+        }
+    }
+
+    public bool SimulateAttackInput(CombatInputs inital, CombatInputs final)
+    {
+        if (AttackInputs[(int)inital])
+        {
+            AttackInputs[(int)final] = true;
+            AttackInputs[(int)inital] = false;
+            return true;
+        }
+        else
+        {
+            // AttackInputs[(int)inital] = false;
+            return false;
         }
     }
 

@@ -99,9 +99,11 @@ public class Player : MonoBehaviour, IDataPersistence
         SecondaryAttackState = new PlayerAttackState(this, "attack", secondaryAttackPress, CombatInputs.secondaryAttackPress);
         PrimarySkillState = new PlayerAttackState(this, "attack", primarySkillPress, CombatInputs.primarySkillPress);
         SecondarySkillState = new PlayerAttackState(this, "attack", secondarySkillPress, CombatInputs.secondarySkillPress);
-        DashAttackState = new PlayerAttackState(this, "attack", dashAttack, CombatInputs.secondarySkillPress);
+        DashAttackState = new PlayerAttackState(this, "attack", dashAttack, CombatInputs.dashAttack);
         KnockBackState = new PlayerKnockBackState(this, "knockBack");
         PlatformAirState = new PlayerPlatformAirState(this, "air");
+
+        DashAttackState.attackEnabled = false;
 
         knockBackReceiver.OnKnockBackActive += HandleKnockBackActive;
     }
@@ -141,7 +143,7 @@ public class Player : MonoBehaviour, IDataPersistence
         dashTimeNotifier.OnNotify += DashState.ResetDashCooldown;
         primarySkillTimeNotifier.OnNotify += PrimarySkillState.ResetAttackCooldown;
         secondarySkillTimeNotifier.OnNotify += SecondarySkillState.ResetAttackCooldown;
-        dashAttackTimeNotifier.OnNotify += DashAttackState.ResetAttackCooldown;
+        dashAttackTimeNotifier.OnNotify += DashAttackState.DashAttackCooldownDisable;
         
     }
 
@@ -150,7 +152,7 @@ public class Player : MonoBehaviour, IDataPersistence
         dashTimeNotifier.OnNotify -= DashState.ResetDashCooldown;
         primarySkillTimeNotifier.OnNotify -= PrimarySkillState.ResetAttackCooldown;
         secondarySkillTimeNotifier.OnNotify -= SecondarySkillState.ResetAttackCooldown;
-        dashAttackTimeNotifier.OnNotify -= DashAttackState.ResetAttackCooldown;
+        dashAttackTimeNotifier.OnNotify -= DashAttackState.DashAttackCooldownDisable;
     }
 
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();

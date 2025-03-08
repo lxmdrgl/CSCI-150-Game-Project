@@ -27,6 +27,7 @@ public class PlayerDashState : PlayerActionState
 		KnockBackReceiver?.SetCanTakeKnockBack(false);
 
 		player.dashTimeNotifier.Disable();
+		player.dashAttackTimeNotifier.Disable();
 		dashEnabled = false;
 	}
 
@@ -39,7 +40,8 @@ public class PlayerDashState : PlayerActionState
 		KnockBackReceiver?.SetCanTakeKnockBack(true);
 		player.dashTimeNotifier.Init(playerData.dashCooldown);
 		player.dashAttackTimeNotifier.Init(playerData.dashAttackCooldown);
-		// Debug.Log("Init dash timer");
+		player.DashAttackState.DashAttackCooldownEnable();
+		Debug.Log("Init dash attack timer");
     }
 
     public override void LogicUpdate()
