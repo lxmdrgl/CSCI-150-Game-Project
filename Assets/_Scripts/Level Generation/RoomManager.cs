@@ -11,6 +11,8 @@ public class RoomManager : MonoBehaviour
     public List<GameObject> entrances;
     public List<GameObject> exits;
     public List<Collider2D> colliders;
+    public List<Entity> enemies;
+    public List<GameObject> enemySpawners;
 
     void OnEnable() {
         PopulateVars();
@@ -61,4 +63,11 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    public void SpawnEnemies()
+    {
+        foreach(GameObject enemySpawner in enemySpawners) 
+        {
+            Instantiate(enemies[Random.Range(0, enemies.Count)], enemySpawner.transform.position, Quaternion.identity);
+        }
+    }
 }

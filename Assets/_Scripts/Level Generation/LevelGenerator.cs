@@ -24,18 +24,24 @@ public class LevelGenerator : MonoBehaviour
 
         spawnRoomMap();
 
-        if (spawnStartingRoom() && spawnAllRooms(roomMap)) { 
+        if (spawnStartingRoom() && spawnAllRooms(roomMap)) 
+        {
             if(playerCount == 1)
             {
                 spawnPlayer();
             }
-            else
+            else if(playerCount == 2)
             {
                 // 2 player
                 UnityEngine.Debug.Log("2 PLAYERS");
             }
-
-        } else {
+            else    // FOR TESTING
+            {
+                spawnPlayer();
+            }
+        } 
+        else 
+        {
             UnityEngine.Debug.LogError("Level generation error");
         }
     }
@@ -81,18 +87,20 @@ public class LevelGenerator : MonoBehaviour
             if (currNode.children.Count == 1) 
             {
                 newNode = currNode.children[0];
-                spawnRoom(newNode);
+                RoomManager newRoomManager = spawnRoom(newNode).GetComponent<RoomManager>();
+                newRoomManager.SpawnEnemies(); // Spawn enemies in the new room
                 connectRooms(currNode, 0, newNode, 0);
                 currNode = newNode;
             } else if (currNode.children.Count == 2)
             {
-                spawnRoom(currNode.children[0]);
-                spawnRoom(currNode.children[1]);
+                RoomManager roomManager1 = spawnRoom(currNode.children[0]).GetComponent<RoomManager>();
+                RoomManager roomManager2 = spawnRoom(currNode.children[1]).GetComponent<RoomManager>();
 
                 connectRooms(currNode, randIndex, currNode.children[0], 0);
                 connectRooms(currNode, Math.Abs(randIndex-1), currNode.children[1], 0);
 
-
+                roomManager1.SpawnEnemies(); // Spawn enemies in the first room
+                roomManager2.SpawnEnemies(); // Spawn enemies in the second room
 
                 spawnAllRooms(currNode.children[0]);
                 spawnAllRooms(currNode.children[1]);
