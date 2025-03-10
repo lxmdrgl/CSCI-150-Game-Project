@@ -206,6 +206,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1660218450}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1313568089 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5685197618826063276, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+  m_PrefabInstance: {fileID: 1455375179}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1313568090 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5762434959370018848, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
@@ -229,6 +240,14 @@ PrefabInstance:
       propertyPath: Targets.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 186514406398219635, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: Targets.Array.data[0].Radius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 186514406398219635, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: Targets.Array.data[0].Weight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2101077910993159776, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -247,7 +266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3976672749772108850, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879487089115257012, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: Damping.x
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4899015308605980428, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -295,7 +318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5685197618826063276, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: Damping.x
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 5685197618826063276, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: Damping.y
@@ -303,7 +326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5685197618826063276, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: TargetOffset.x
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: endRoom
@@ -675,6 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa905b0dbc9a7f843bf3adefb6d34376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionComposer: {fileID: 1313568089}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
