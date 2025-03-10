@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -6,44 +7,62 @@ using Unity.Cinemachine;
 using Unity.VisualScripting.Dependencies.NCalc;
 // using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LevelGenerator : MonoBehaviour
 {
     public GameObject player;
     public float playerOffset = 2;
-    public CinemachineCamera cinemachineCamera;
+
+    [Header("Cameras")]
+    public CinemachineCamera singleplayerCinemachineCamera;
+    public CinemachineCamera multiplayerCinemachineCamera;
+    public CinemachineTargetGroup multiplayerTargetGroup;
     
     public RoomNode roomMap;
     private int playerCount;
 
+    PlayerInputManager playerInputManager;
+
     void Awake()
     {
         playerCount = PlayerPrefs.GetInt("playerCount");
+        playerInputManager = FindFirstObjectByType<PlayerInputManager>();
 
         DontDestroyOnLoad(gameObject);
 
         spawnRoomMap();
 
+        InputSystem.onDeviceChange += OnDeviceChange;
+
         if (spawnStartingRoom() && spawnAllRooms(roomMap)) 
         {
             if(playerCount == 1)
             {
-                spawnPlayer();
+                spawnPlayer(2);
+                UnityEngine.Debug.Log("1 PLAYER");
             }
             else if(playerCount == 2)
             {
                 // 2 player
+                // spawnPlayer(2);
                 UnityEngine.Debug.Log("2 PLAYERS");
             }
             else    // FOR TESTING
             {
-                spawnPlayer();
+                // spawnPlayer();
             }
         } 
         else 
         {
             UnityEngine.Debug.LogError("Level generation error");
         }
+    }
+
+
+    void OnDestroy()
+    {
+        InputSystem.onDeviceChange -= OnDeviceChange;
     }
 
     void spawnRoomMap() {
@@ -166,7 +185,7 @@ public class LevelGenerator : MonoBehaviour
         return true;
     }
 
-    void spawnPlayer() {
+    /* void spawnPlayer() {
         GameObject levelOrigin = GameObject.Find("LevelOrigin");
         Transform levelTransform;
 
@@ -178,6 +197,127 @@ public class LevelGenerator : MonoBehaviour
             cinemachineCamera.Target.TrackingTarget = player.transform;
         } else {
             UnityEngine.Debug.LogError("Level Origin not found");
+        }
+    } */
+    void setCameras(PlayerInput newPlayer)
+    {
+        int activePlayerCount = PlayerInput.all.Count;
+        if (activePlayerCount == 1)
+        {
+            singleplayerCinemachineCamera.enabled = true;
+            multiplayerCinemachineCamera.enabled = false;
+            if (newPlayer.playerIndex == 0)
+            {
+                singleplayerCinemachineCamera.Target.TrackingTarget = newPlayer.transform;
+                UnityEngine.Debug.Log("Singleplayer camera set to player 1");
+            }
+        }
+        else if (activePlayerCount == 2)
+        {
+            singleplayerCinemachineCamera.enabled = false;
+            multiplayerCinemachineCamera.enabled = true;
+            // multiplayerTargetGroup.AddMember(newPlayer.transform, 1f, 13.33f);
+            multiplayerTargetGroup.AddMember(PlayerInput.all[0].transform, 2f, 0f);
+            multiplayerTargetGroup.AddMember(PlayerInput.all[1].transform, 1f, 0f);
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("Invalid player count for camera setup.");
+        }
+    }
+
+    void spawnPlayer(int count)
+    {
+        GameObject levelOrigin = GameObject.Find("LevelOrigin");
+        Transform levelTransform;
+
+        if (levelOrigin != null)
+        {
+            levelTransform = levelOrigin.transform;
+
+            if (playerInputManager == null)
+            {
+                UnityEngine.Debug.LogError("PlayerInputManager not found in the scene.");
+                return;
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                PlayerInput newPlayer = playerInputManager.JoinPlayer(i);
+                if (newPlayer != null)
+                {
+                    newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
+
+                    // Update camera target if it's the first player
+                    /* if (count == 1 && i == 0 && singleplayerCinemachineCamera != null)
+                    {
+                        singleplayerCinemachineCamera.enabled = true;
+                        multiplayerCinemachineCamera.enabled = false;
+                        singleplayerCinemachineCamera.Target.TrackingTarget = newPlayer.transform;
+                    }
+                    else if (count == 2 && singleplayerCinemachineCamera != null)
+                    {
+                        singleplayerCinemachineCamera.enabled = false;
+                        multiplayerCinemachineCamera.enabled = true;
+                        multiplayerTargetGroup.AddMember(newPlayer.transform, 1f, 13.33f);
+                        multiplayerCinemachineCamera.Target.TrackingTarget = multiplayerTargetGroup.transform;
+                    } */
+                    setCameras(newPlayer);
+                    UnityEngine.Debug.Log("Player " + (i + 1) + " joined successfully!");
+                }
+                else
+                {
+                    UnityEngine.Debug.LogWarning("Waiting for second input device to join player " + (i + 1));
+                    StartCoroutine(WaitForSecondPlayer(playerInputManager, i));
+                    break;
+                }
+            }
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("Level Origin not found");
+        }
+    }
+
+    private void OnDeviceChange(InputDevice device, InputDeviceChange change)
+    {
+        if (change == InputDeviceChange.Disconnected)
+        {
+            UnityEngine.Debug.LogWarning($"Device disconnected: {device.displayName}");
+
+            // Check if the device belonged to a player and handle disconnection
+            var player = PlayerInput.all.FirstOrDefault(p => p.devices.Contains(device));
+            if (player != null)
+            {
+                UnityEngine.Debug.LogWarning($"Player {player.playerIndex + 1} disconnected. Waiting for reconnection...");
+                StartCoroutine(WaitForSecondPlayer(playerInputManager, player.playerIndex));
+            }
+        }
+        else if (change == InputDeviceChange.Reconnected)
+        {
+            UnityEngine.Debug.Log($"Device reconnected: {device.displayName}");
+        }
+    }
+
+    private IEnumerator WaitForSecondPlayer(PlayerInputManager playerInputManager, int playerIndex)
+    {
+        GameObject levelOrigin = GameObject.Find("LevelOrigin");
+        Transform levelTransform;
+        levelTransform = levelOrigin.transform;
+        while (true)
+        {
+            if (InputSystem.devices.Count > 1) // Check if there are multiple input devices
+            {
+                PlayerInput newPlayer = playerInputManager.JoinPlayer(playerIndex);
+                if (newPlayer != null)
+                {
+                    UnityEngine.Debug.Log("Second player joined successfully!");
+                    newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
+                    yield break;
+                }
+            }
+
+            yield return new WaitForSeconds(0.5f); // Check every half second
         }
     }
 
