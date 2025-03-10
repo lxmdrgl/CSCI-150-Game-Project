@@ -18,6 +18,8 @@ public class DataPersistenceManager : MonoBehaviour
     private string selectedProfileId = "";
     private void Awake()
     {
+        this.gameObject.transform.SetSiblingIndex(0);
+
         if (instance != null)
         {
             Debug.LogError("Found more than one data persistence manager in the scene, Destroying the newest one");
