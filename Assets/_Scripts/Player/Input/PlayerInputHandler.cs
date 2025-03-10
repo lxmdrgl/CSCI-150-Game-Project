@@ -16,6 +16,7 @@ public class PlayerInputHandler : MonoBehaviour
     public int NormInputY { get; private set; }
     public bool JumpInput { get; private set; }
     public bool DownInput { get; private set; }
+    public bool FallInput { get; private set; }
     public bool DashInput { get; private set; }
     public bool MenuOpenInput { get; private set; }
     public bool UIMenuCloseInput { get; private set; }
@@ -68,10 +69,49 @@ public class PlayerInputHandler : MonoBehaviour
         
         if (context.canceled)
         {
-            Debug.Log("Input Jump start");
+            Debug.Log("Input Jump end");
             JumpInput = false;
         }
     }
+
+    public void OnFallInput(InputAction.CallbackContext context)
+{
+    if (context.performed)
+    {
+        if (context.interaction is UnityEngine.InputSystem.Interactions.MultiTapInteraction)
+        {
+            Debug.Log("Multi-Tap Fall start");
+        }
+        else
+        {
+            Debug.Log("Single Press Fall start");
+        }
+
+        FallInput = true;
+    }
+    
+    if (context.canceled)
+    {
+        if (context.interaction is UnityEngine.InputSystem.Interactions.MultiTapInteraction)
+        {
+            Debug.Log("Multi-Tap Fall end - Adding slight delay");
+            StartCoroutine(ResetFallInput());
+        }
+        else
+        {
+            Debug.Log("Single Press Fall end");
+            FallInput = false;
+        }
+    }
+}
+
+private IEnumerator ResetFallInput()
+{
+    yield return new WaitForSeconds(0.1f); 
+    FallInput = false;
+    Debug.Log("Multi-Tap Fall Input Reset");
+}
+
 
     public void OnDashInput(InputAction.CallbackContext context)
     {
@@ -252,6 +292,7 @@ public enum CombatInputs{
     secondaryAttackHold,
     primarySkillHold,
     secondarySkillHold,
-    dashAttack
+    dashAttack,
+    
 }
 

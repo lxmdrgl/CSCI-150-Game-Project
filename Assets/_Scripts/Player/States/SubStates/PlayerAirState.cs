@@ -120,12 +120,12 @@ public class PlayerAirState : PlayerState
         {
             stateMachine.ChangeState(player.DashState);
         }
-        else if ((jumpInput) && player.JumpState.CanJump())
+        else if (jumpInput && player.JumpState.CanJump())
         {
             Debug.Log("Input: Air to Jump");
             stateMachine.ChangeState(player.JumpState);
         } 
-        else if (isGrounded && Movement?.CurrentVelocity.y < 0.01f && xInput == 0)
+        else if (isGrounded && platformDropped == null && Movement?.CurrentVelocity.y < 0.01f && xInput == 0)
         {
             stateMachine.ChangeState(player.IdleState);
         } 
@@ -164,8 +164,9 @@ public class PlayerAirState : PlayerState
 
     public void ResetPlatformCollision()
     {
+        // Debug.Log("Reset platform : " + (bool)platformDropped + ", " + (bool)isPlatformTop);
         if (platformDropped != null && isPlatformTop) {
-            Debug.Log("Reset platform collision");
+            Debug.Log("Reset platform Success: " + (bool)platformDropped + ", " + (bool)isPlatformTop);
             Physics2D.IgnoreCollision(platformDropped, player.boxCollider, false);
             platformDropped = null;
         }

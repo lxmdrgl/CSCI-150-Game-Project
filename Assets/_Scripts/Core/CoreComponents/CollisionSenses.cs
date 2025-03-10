@@ -47,6 +47,7 @@ namespace Game.CoreSystem
         [SerializeField] private string platformTag;
         [SerializeField] private Transform platformCheck;
         [SerializeField] private Transform platformCheckBottom;
+        [SerializeField] private Transform platformCheckTop;
         [SerializeField] private float platformCheckBottomDistance; 
         [SerializeField] private float platformCheckTopDistance; 
         [SerializeField] private float platformCheckBottomExtendDistance; 
@@ -121,12 +122,12 @@ namespace Game.CoreSystem
         {
             get 
             {   
-                RaycastHit2D hit = Physics2D.Raycast(platformCheck.position, Vector2.down, platformCheckTopDistance, whatIsGround);
+                RaycastHit2D hit = Physics2D.Raycast(platformCheckTop.position, Vector2.up, platformCheckTopDistance, whatIsGround);
                 if (hit.collider != null && hit.collider.CompareTag(platformTag)) {
-                    // Debug.Log($"PlatformBottom true");
+                    Debug.Log($"PlatformBottom true");
                     return hit;
                 } else {
-                    // Debug.Log($"PlatformBottom false");
+                    Debug.Log($"PlatformBottom false");
                     return new RaycastHit2D();
                 }
             }

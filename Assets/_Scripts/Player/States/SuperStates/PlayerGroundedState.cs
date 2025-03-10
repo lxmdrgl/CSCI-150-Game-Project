@@ -25,6 +25,7 @@ public class PlayerGroundedState : PlayerState
     private bool jumpInput;
     private bool downInput;
     private bool dashInput;
+    private bool fallInput;
     private bool isGrounded;
     private bool isTouchingWall;
     private RaycastHit2D isPlatformDown;
@@ -70,18 +71,22 @@ public class PlayerGroundedState : PlayerState
         jumpInput = player.InputHandler.JumpInput;
         downInput = player.InputHandler.DownInput;
         dashInput = player.InputHandler.DashInput;
+        fallInput = player.InputHandler.FallInput;
 
         if (player.DashAttackState.CanDashAttackCooldown(CombatInputs.primaryAttackPress, CombatInputs.dashAttack))
         {
             stateMachine.ChangeState(player.DashAttackState);
         }
-        else if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackPress] && player.PrimaryAttackState.CanAttack()
-            || (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && !player.PrimaryAttackHoldState.CanAttack()))
+        else if (player.PrimaryAttackState.CanAttack() && 
+                (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackPress]
+                || (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && !player.PrimaryAttackHoldState.CanAttack())))
         {
+            Debug.Log("Primary Attack Press state");
             stateMachine.ChangeState(player.PrimaryAttackState);
         }
         else if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && player.PrimaryAttackHoldState.CanAttack())
         {
+            Debug.Log("Primary Attack Hold state");
             stateMachine.ChangeState(player.PrimaryAttackHoldState);
         }
         else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackPress] && player.SecondaryAttackState.CanAttack())
@@ -100,7 +105,7 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.DashState);
         }
-        else if (jumpInput && downInput && (bool)isPlatformDown)
+        else if (fallInput /* jumpInput && downInput */ && (bool)isPlatformDown)
         {
             Debug.Log($"Jump Input: {jumpInput}, Down Input: {downInput}");
             player.InputHandler.UseJumpInput();
@@ -113,11 +118,11 @@ public class PlayerGroundedState : PlayerState
             player.AirState.StartCoyoteTime();
             stateMachine.ChangeState(player.AirState);
         } 
-        else if (jumpInput && downInput && !(bool)isPlatformDown && player.JumpState.CanJump())
+        /* else if (jumpInput && downInput && !(bool)isPlatformDown && player.JumpState.CanJump())
         {
             stateMachine.ChangeState(player.JumpState);
-        }
-        else if (jumpInput && !downInput && player.JumpState.CanJump())
+        } */
+        else if (jumpInput /* && !downInput */ && player.JumpState.CanJump())
         {
             Debug.Log($"Jump Input: {jumpInput}, Down Input: {downInput}");
             stateMachine.ChangeState(player.JumpState);
