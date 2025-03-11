@@ -7,6 +7,8 @@ using Game.CoreSystem;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
+using UnityEditor;
+
 // using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,15 +19,16 @@ public class LevelGenerator : MonoBehaviour
     public float playerOffset = 2;
 
     [Header("Cameras")]
+    public MainCamera mainCamera;
     public CinemachineCamera singleplayerCinemachineCamera;
     public CinemachineCamera multiplayerCinemachineCamera;
     public CinemachineTargetGroup multiplayerTargetGroup;
 
     [Header("User Interfaces")]
-    public GameObject gameplayCanvas;
-    public GameObject deathScreen;
-    public GameObject pauseMenu;
-    public GameObject upgradeMenu;
+    public GameplayCanvas gameplayCanvas;
+    public DeathScreenManager deathScreen;
+    public MenuManager pauseMenu;
+    public UpgradeMenuManager upgradeMenu;
     
     [Header("Rooms")]
     public RoomNode roomMap;
@@ -226,6 +229,9 @@ public class LevelGenerator : MonoBehaviour
                 singleplayerCinemachineCamera.Target.TrackingTarget = newPlayer.transform;
                 UnityEngine.Debug.Log("Singleplayer camera set to player 1");
             }
+
+            mainCamera.player1 = newPlayer.gameObject;
+            mainCamera.player2 = null;
         }
         else if (activePlayerCount == 2)
         {
@@ -234,6 +240,9 @@ public class LevelGenerator : MonoBehaviour
             // multiplayerTargetGroup.AddMember(newPlayer.transform, 1f, 13.33f);
             multiplayerTargetGroup.AddMember(PlayerInput.all[0].transform, 2f, 0f);
             multiplayerTargetGroup.AddMember(PlayerInput.all[1].transform, 1f, 0f);
+
+            mainCamera.player1 = PlayerInput.all[0].gameObject;
+            mainCamera.player2 = PlayerInput.all[1].gameObject;
         }
         else
         {
@@ -246,25 +255,25 @@ public class LevelGenerator : MonoBehaviour
         int activePlayerCount = PlayerInput.all.Count;
         UnityEngine.Debug.Log("Setting UI for player " + (newPlayer.playerIndex + 1) + " with " + activePlayerCount + " active players.");
         
-        GameplayCanvas gameplayCanvasScript = gameplayCanvas.GetComponent<GameplayCanvas>();
+        /* GameplayCanvas gameplayCanvasScript = gameplayCanvas.GetComponent<GameplayCanvas>();
         MenuManager pauseMenuManager = pauseMenu.GetComponent<MenuManager>();
-        UpgradeMenuManager upgradeMenuManager = upgradeMenu.GetComponent<UpgradeMenuManager>();
+        UpgradeMenuManager upgradeMenuManager = upgradeMenu.GetComponent<UpgradeMenuManager>(); */
 
         if (activePlayerCount == 1)
         {
             UnityEngine.Debug.Log("Singleplayer UI set for player 1");      
-            gameplayCanvasScript.playerHealthBar1.SetActive(true);
-            gameplayCanvasScript.playerHealthBar2.SetActive(false);
+            gameplayCanvas.playerHealthBar1.SetActive(true);
+            gameplayCanvas.playerHealthBar2.SetActive(false);
 
             if (newPlayer.playerIndex == 0)
             {
-                HealthBar playerHealthBar1 = gameplayCanvasScript.playerHealthBar1.GetComponent<HealthBar>();
+                HealthBar playerHealthBar1 = gameplayCanvas.playerHealthBar1.GetComponent<HealthBar>();
                 playerHealthBar1.SetPlayer(newPlayer.gameObject);
                 // Does nothing, but needed for some reason
-                HealthBar playerHealthBar2 = gameplayCanvasScript.playerHealthBar2.GetComponent<HealthBar>();
+                HealthBar playerHealthBar2 = gameplayCanvas.playerHealthBar2.GetComponent<HealthBar>();
                 playerHealthBar2.SetPlayer(newPlayer.gameObject);
-                pauseMenuManager.player1 = newPlayer.gameObject;
-                upgradeMenuManager.player1 = newPlayer.gameObject;
+                pauseMenu.player1 = newPlayer.gameObject;
+                upgradeMenu.player1 = newPlayer.gameObject;
             }   
             else
             {
@@ -274,22 +283,22 @@ public class LevelGenerator : MonoBehaviour
         else if (activePlayerCount == 2)
         {
             UnityEngine.Debug.Log("Multiplayer UI set for players 1 and 2");
-            gameplayCanvasScript.playerHealthBar1.SetActive(true);
-            gameplayCanvasScript.playerHealthBar2.SetActive(true);
+            gameplayCanvas.playerHealthBar1.SetActive(true);
+            gameplayCanvas.playerHealthBar2.SetActive(true);
 
             if (newPlayer.playerIndex == 0)
             {
-                HealthBar playerHealthBar1 = gameplayCanvasScript.playerHealthBar1.GetComponent<HealthBar>();
+                HealthBar playerHealthBar1 = gameplayCanvas.playerHealthBar1.GetComponent<HealthBar>();
                 playerHealthBar1.SetPlayer(newPlayer.gameObject);
-                pauseMenuManager.player1 = newPlayer.gameObject;
-                upgradeMenuManager.player1 = newPlayer.gameObject;
+                pauseMenu.player1 = newPlayer.gameObject;
+                upgradeMenu.player1 = newPlayer.gameObject;
             }
             else if (newPlayer.playerIndex == 1)
             {
-                HealthBar playerHealthBar2 = gameplayCanvasScript.playerHealthBar2.GetComponent<HealthBar>();
+                HealthBar playerHealthBar2 = gameplayCanvas.playerHealthBar2.GetComponent<HealthBar>();
                 playerHealthBar2.SetPlayer(newPlayer.gameObject);
-                pauseMenuManager.player2 = newPlayer.gameObject;
-                upgradeMenuManager.player2 = newPlayer.gameObject;
+                pauseMenu.player2 = newPlayer.gameObject;
+                upgradeMenu.player2 = newPlayer.gameObject;
             }
             else
             {
@@ -301,9 +310,9 @@ public class LevelGenerator : MonoBehaviour
             UnityEngine.Debug.LogError("Invalid player count for UI setup.");
         }
 
-        gameplayCanvasScript.SetDependencies();
-        pauseMenuManager.SetDependencies();
-        upgradeMenuManager.SetDependencies();
+        gameplayCanvas.SetDependencies();
+        pauseMenu.SetDependencies();
+        upgradeMenu.SetDependencies();
     }
 
     void spawnPlayer(int count)
