@@ -36,6 +36,7 @@ namespace Game.Weapons
             if (data is null)
             {
                 weapon.SetCanEnterAttack(false);
+                // Debug.LogError("WeaponData is null");
                 return;
             }
             
@@ -96,7 +97,7 @@ namespace Game.Weapons
 
         private void Start()
         {
-            Debug.Log("Weapon: " + weapon);
+            // Debug.Log("Weapon: " + weapon);
             weaponInventory = weapon.Core.GetCoreComponent<WeaponInventory>();
 
             weaponInventory.OnWeaponDataChanged += HandleWeaponDataChanged;

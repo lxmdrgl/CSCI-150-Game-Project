@@ -10,8 +10,9 @@ public class HealthBar : MonoBehaviour
     public Slider healthSlider;
     public Slider easeSlider;
     public TMP_Text healthText;
-    public Stats stats;
-    public Death death;
+    public GameObject player;
+    private Stats stats;
+    private Death death;
     public float lerpSpeed = 0.05f;
 
     public float xpos = 0;
@@ -31,6 +32,8 @@ public class HealthBar : MonoBehaviour
     }
 
     void Start() {
+        // SetDependencies();
+
         healthSlider.maxValue = stats.Health.MaxValue;
         healthSlider.value = stats.Health.CurrentValue;
         if (showNumbers) {
@@ -38,6 +41,21 @@ public class HealthBar : MonoBehaviour
         }
         easeSlider.maxValue = stats.Health.MaxValue;
         easeSlider.value = stats.Health.CurrentValue;
+    }
+
+    public void SetDependencies()
+    {
+        stats = player.GetComponentInChildren<Stats>();
+        death = player.GetComponentInChildren<Death>();
+        
+        stats.Health.OnValueChange += UpdateSlider;
+        if(death != null) {
+            death.OnDeath += DisableHealthBar;
+        }
+    }
+
+    public void SetPlayer(GameObject player) {
+        this.player = player;
     }
 
     void FixedUpdate() {
@@ -63,10 +81,10 @@ public class HealthBar : MonoBehaviour
     private void OnEnable()
     {
         // Debug.Log("HealthBar OnEnable called");
-        stats.Health.OnValueChange += UpdateSlider;
+        /* stats.Health.OnValueChange += UpdateSlider;
         if(death != null) {
             death.OnDeath += DisableHealthBar;
-        }
+        } */
     }
 
     private void OnDisable()

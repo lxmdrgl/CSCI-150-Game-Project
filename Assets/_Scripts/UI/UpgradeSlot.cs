@@ -52,6 +52,10 @@ public class UpgradeSlot : MonoBehaviour
     {
         // hasDataContent.transform.Find("UpgradeName").GetComponentInChildren<TextMeshProUGUI>().text = data.name;
         String text = "Attack: " + currentStatData.Attack.ToString() + ", Health: " + currentStatData.Health.ToString();
+        if (hasDataContent == null)
+        {
+            Debug.Log("hasDataContent is null");
+        }
         hasDataContent.GetComponent<TextMeshProUGUI>().text = currentStatData.name + "\n" + text;
     }
 

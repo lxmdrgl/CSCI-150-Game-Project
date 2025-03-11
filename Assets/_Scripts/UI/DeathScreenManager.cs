@@ -21,6 +21,10 @@ public class DeathScreenManager : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+    }
+
 
     public void DeathQuit()
     {   

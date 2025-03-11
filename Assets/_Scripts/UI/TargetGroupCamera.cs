@@ -35,16 +35,16 @@ public class TargetGroupCamera : MonoBehaviour
         positionComposer.TargetOffset = new Vector3(5, 0, 0);
         if (rightRotation)
         {
-            Debug.Log("Camera Right Rotation");
+            // Debug.Log("Camera Right Rotation");
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (leftRotation)
         {
-            Debug.Log("Camera Left Rotation");
+            // Debug.Log("Camera Left Rotation");
             transform.rotation = Quaternion.Euler(0, -180, 0);
         } else
         {
-            Debug.Log("Camera No Rotation");
+            // Debug.Log("Camera No Rotation");
             positionComposer.TargetOffset = new Vector3(0, 0, 0);
         }
     }

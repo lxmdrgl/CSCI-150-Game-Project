@@ -8,7 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
+    public GameObject player1;
+    public GameObject player2;
     
     [SerializeField] private GameObject mainMenuCanvasGO;
     [SerializeField] private GameObject optionsMenuCanvasGO;
@@ -18,14 +19,15 @@ public class MenuManager : MonoBehaviour
 
     private bool isPaused;
 
-    public PlayerInputHandler InputHandler { get; private set; }
-    private PlayerInput playerInput;
+    public PlayerInputHandler InputHandler1 { get; private set; }
+    public PlayerInputHandler InputHandler2 { get; private set; }
+    private PlayerInput playerInput1;
+    private PlayerInput playerInput2;
 
     void Start()
     {
 
-        InputHandler = player.GetComponent<PlayerInputHandler>();
-        playerInput = player.GetComponent<PlayerInput>();
+        SetDependencies();
         
         mainMenuCanvasGO.SetActive(false);
         optionsMenuCanvasGO.SetActive(false);
@@ -33,16 +35,30 @@ public class MenuManager : MonoBehaviour
         Unpause();
     }
 
+    public void SetDependencies()
+    {   
+        if (player1 != null)
+        {
+            InputHandler1 = player1.GetComponent<PlayerInputHandler>();
+            playerInput1 = player1.GetComponent<PlayerInput>();
+        }
+        if (player2 != null)
+        {
+            InputHandler2 = player2.GetComponent<PlayerInputHandler>();
+            playerInput2 = player2.GetComponent<PlayerInput>();
+        }
+    }
+
     void Update()
     {
-        if (InputHandler.MenuOpenInput)
+        if ((InputHandler1 != null && InputHandler1.MenuOpenInput) || (InputHandler2 != null && InputHandler2.MenuOpenInput))
         {
             if (!isPaused)
             {
                 Pause();
             }
         }
-        else if (InputHandler.UIMenuCloseInput)
+        else if ((InputHandler1 != null && InputHandler1.UIMenuCloseInput) || (InputHandler2 != null && InputHandler2.UIMenuCloseInput))
         {
             if (isPaused)
             {
@@ -57,7 +73,16 @@ public class MenuManager : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0f;
 
-        playerInput.SwitchCurrentActionMap("UI");
+        Debug.Log("Switching to UI");
+        if (playerInput1 != null)
+        {
+            playerInput1.SwitchCurrentActionMap("UI");
+        }
+        if (playerInput2 != null)
+        {
+            Debug.Log("Switching to UI Player 2");
+            playerInput2.SwitchCurrentActionMap("UI");
+        }
 
         OpenMainMenu();
     }
@@ -67,7 +92,14 @@ public class MenuManager : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1f;
 
-        playerInput.SwitchCurrentActionMap("Player");
+        if (playerInput1 != null)
+        {
+            playerInput1.SwitchCurrentActionMap("Player");
+        }
+        if (playerInput2 != null)
+        {
+            playerInput2.SwitchCurrentActionMap("Player");
+        }
 
         CloseAllMenus();
     }
@@ -79,7 +111,14 @@ public class MenuManager : MonoBehaviour
         mainMenuCanvasGO.SetActive(true);
         optionsMenuCanvasGO.SetActive(false);
 
-        InputHandler.UseMenuOpenInput();
+        if (InputHandler1 != null)
+        {
+            InputHandler1.UseMenuOpenInput();
+        } 
+        if (InputHandler2 != null)
+        {
+            InputHandler2.UseMenuOpenInput();
+        }
 
         EventSystem.current.SetSelectedGameObject(mainMenuFirst);
     }
@@ -97,7 +136,14 @@ public class MenuManager : MonoBehaviour
         mainMenuCanvasGO.SetActive(false);
         optionsMenuCanvasGO.SetActive(false);
 
-        InputHandler.UseMenuOpenInput();
+        if (InputHandler1 != null)
+        {
+            InputHandler1.UseMenuOpenInput();
+        }
+        if (InputHandler2 != null)
+        {
+            InputHandler2.UseMenuOpenInput();
+        }
 
         EventSystem.current.SetSelectedGameObject(null);
     }

@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Game.CoreSystem;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
 // using UnityEditorInternal;
 using UnityEngine;
@@ -18,7 +20,14 @@ public class LevelGenerator : MonoBehaviour
     public CinemachineCamera singleplayerCinemachineCamera;
     public CinemachineCamera multiplayerCinemachineCamera;
     public CinemachineTargetGroup multiplayerTargetGroup;
+
+    [Header("User Interfaces")]
+    public GameObject gameplayCanvas;
+    public GameObject deathScreen;
+    public GameObject pauseMenu;
+    public GameObject upgradeMenu;
     
+    [Header("Rooms")]
     public RoomNode roomMap;
     private int playerCount;
 
@@ -44,14 +53,15 @@ public class LevelGenerator : MonoBehaviour
             }
             else if(playerCount == 2)
             {
-                // 2 player
-                // spawnPlayer(2);
+                spawnPlayer(2);
                 UnityEngine.Debug.Log("2 PLAYERS");
             }
             else    // FOR TESTING
             {
                 // spawnPlayer();
             }
+
+
         } 
         else 
         {
@@ -65,6 +75,7 @@ public class LevelGenerator : MonoBehaviour
         InputSystem.onDeviceChange -= OnDeviceChange;
     }
 
+    #region SpawnRooms
     void spawnRoomMap() {
         if (roomMap != null) {
             roomMap = Instantiate(roomMap);
@@ -184,6 +195,10 @@ public class LevelGenerator : MonoBehaviour
         
         return true;
     }
+    #endregion SpawnRooms
+
+    
+    #region SpawnPlayer
 
     /* void spawnPlayer() {
         GameObject levelOrigin = GameObject.Find("LevelOrigin");
@@ -226,6 +241,71 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    void setUserInterface(PlayerInput newPlayer)
+    {
+        int activePlayerCount = PlayerInput.all.Count;
+        UnityEngine.Debug.Log("Setting UI for player " + (newPlayer.playerIndex + 1) + " with " + activePlayerCount + " active players.");
+        
+        GameplayCanvas gameplayCanvasScript = gameplayCanvas.GetComponent<GameplayCanvas>();
+        MenuManager pauseMenuManager = pauseMenu.GetComponent<MenuManager>();
+        UpgradeMenuManager upgradeMenuManager = upgradeMenu.GetComponent<UpgradeMenuManager>();
+
+        if (activePlayerCount == 1)
+        {
+            UnityEngine.Debug.Log("Singleplayer UI set for player 1");      
+            gameplayCanvasScript.playerHealthBar1.SetActive(true);
+            gameplayCanvasScript.playerHealthBar2.SetActive(false);
+
+            if (newPlayer.playerIndex == 0)
+            {
+                HealthBar playerHealthBar1 = gameplayCanvasScript.playerHealthBar1.GetComponent<HealthBar>();
+                playerHealthBar1.SetPlayer(newPlayer.gameObject);
+                // Does nothing, but needed for some reason
+                HealthBar playerHealthBar2 = gameplayCanvasScript.playerHealthBar2.GetComponent<HealthBar>();
+                playerHealthBar2.SetPlayer(newPlayer.gameObject);
+                pauseMenuManager.player1 = newPlayer.gameObject;
+                upgradeMenuManager.player1 = newPlayer.gameObject;
+            }   
+            else
+            {
+                UnityEngine.Debug.LogError("Player index mismatch for singleplayer UI setup.");
+            }
+        }   
+        else if (activePlayerCount == 2)
+        {
+            UnityEngine.Debug.Log("Multiplayer UI set for players 1 and 2");
+            gameplayCanvasScript.playerHealthBar1.SetActive(true);
+            gameplayCanvasScript.playerHealthBar2.SetActive(true);
+
+            if (newPlayer.playerIndex == 0)
+            {
+                HealthBar playerHealthBar1 = gameplayCanvasScript.playerHealthBar1.GetComponent<HealthBar>();
+                playerHealthBar1.SetPlayer(newPlayer.gameObject);
+                pauseMenuManager.player1 = newPlayer.gameObject;
+                upgradeMenuManager.player1 = newPlayer.gameObject;
+            }
+            else if (newPlayer.playerIndex == 1)
+            {
+                HealthBar playerHealthBar2 = gameplayCanvasScript.playerHealthBar2.GetComponent<HealthBar>();
+                playerHealthBar2.SetPlayer(newPlayer.gameObject);
+                pauseMenuManager.player2 = newPlayer.gameObject;
+                upgradeMenuManager.player2 = newPlayer.gameObject;
+            }
+            else
+            {
+                UnityEngine.Debug.LogError("Player index mismatch for multiplayer UI setup.");
+            }
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("Invalid player count for UI setup.");
+        }
+
+        gameplayCanvasScript.SetDependencies();
+        pauseMenuManager.SetDependencies();
+        upgradeMenuManager.SetDependencies();
+    }
+
     void spawnPlayer(int count)
     {
         GameObject levelOrigin = GameObject.Find("LevelOrigin");
@@ -246,24 +326,11 @@ public class LevelGenerator : MonoBehaviour
                 PlayerInput newPlayer = playerInputManager.JoinPlayer(i);
                 if (newPlayer != null)
                 {
-                    newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
-
-                    // Update camera target if it's the first player
-                    /* if (count == 1 && i == 0 && singleplayerCinemachineCamera != null)
-                    {
-                        singleplayerCinemachineCamera.enabled = true;
-                        multiplayerCinemachineCamera.enabled = false;
-                        singleplayerCinemachineCamera.Target.TrackingTarget = newPlayer.transform;
-                    }
-                    else if (count == 2 && singleplayerCinemachineCamera != null)
-                    {
-                        singleplayerCinemachineCamera.enabled = false;
-                        multiplayerCinemachineCamera.enabled = true;
-                        multiplayerTargetGroup.AddMember(newPlayer.transform, 1f, 13.33f);
-                        multiplayerCinemachineCamera.Target.TrackingTarget = multiplayerTargetGroup.transform;
-                    } */
-                    setCameras(newPlayer);
                     UnityEngine.Debug.Log("Player " + (i + 1) + " joined successfully!");
+                    newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
+                    
+                    setCameras(newPlayer);
+                    setUserInterface(newPlayer);
                 }
                 else
                 {
@@ -313,6 +380,7 @@ public class LevelGenerator : MonoBehaviour
                 {
                     UnityEngine.Debug.Log("Second player joined successfully!");
                     newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
+                    setCameras(newPlayer);
                     yield break;
                 }
             }
@@ -320,6 +388,8 @@ public class LevelGenerator : MonoBehaviour
             yield return new WaitForSeconds(0.5f); // Check every half second
         }
     }
+
+    #endregion SpawnPlayer
 
     // bool generateLevel_1() {
     //     // startRoom -> hallway -> hallway -> endRoom

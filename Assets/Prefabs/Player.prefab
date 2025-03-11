@@ -691,6 +691,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b53671a1-9bf9-48aa-b20e-2cd69bccb1cc
     m_ActionName: 'Player/DownJump[/Keyboard/downArrow,/Keyboard/space,/Keyboard/s]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 465b10cb-567e-4418-85d0-6a79f68d1074
+    m_ActionName: 'Player/Control Scheme[/Keyboard/1,/Keyboard/2]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -815,7 +819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1266653283
+  GlobalObjectIdHash: 1984610627
   InScenePlacedSourceGlobalObjectIdHash: 1266653283
   DeferredDespawnTick: 0
   Ownership: 1
@@ -1616,6 +1620,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 8673564491474926216}
     m_Modifications:
     - target: {fileID: 289043213564485787, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
+      propertyPath: death
+      value: 
+      objectReference: {fileID: 6113018660289269285}
+    - target: {fileID: 289043213564485787, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
       propertyPath: stats
       value: 
       objectReference: {fileID: 5136166664803493625}
@@ -1701,23 +1709,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3516341354251157583, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3516341354251157583, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6265091360826833538, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
       propertyPath: m_Name
       value: PlayerHealthBar
       objectReference: {fileID: 0}
-    - target: {fileID: 8717766552308816836, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 6265091360826833538, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8717766552308816836, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8717766552308816836, guid: c1dd80b0d2470e54396d21ba87783e43, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
