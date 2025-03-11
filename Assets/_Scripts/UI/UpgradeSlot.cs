@@ -7,16 +7,16 @@ using Game.Weapons;
 public class UpgradeSlot : MonoBehaviour
 {
     [Header("Content")]
-    private GameObject noDataContent;
-    private GameObject hasDataContent;
+    [SerializeField] private GameObject noDataContent;
+    [SerializeField] private GameObject hasDataContent;
 
     public StatUpgradeData currentStatData;
     public WeaponData currentWeaponData;
 
     public void Awake()
     {
-        noDataContent = transform.Find("NoDataContent").gameObject;   
-        hasDataContent = transform.Find("HasDataContent").gameObject;   
+        // noDataContent = transform.Find("NoDataContent").gameObject;   
+        // hasDataContent = transform.Find("HasDataContent").gameObject;   
     }
 
     public void SetData(object data)
@@ -43,6 +43,7 @@ public class UpgradeSlot : MonoBehaviour
                 currentWeaponData = weaponData;
                 SetWeaponDataContent();
             }
+
             noDataContent.SetActive(false);
             hasDataContent.SetActive(true);
         }

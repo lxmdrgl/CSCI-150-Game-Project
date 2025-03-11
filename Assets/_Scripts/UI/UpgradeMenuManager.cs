@@ -273,18 +273,25 @@ namespace Game.CoreSystem
 
         public void OnUpgradeClicked(UpgradeSlot slot)
         {
-            GameObject currentSelected = EventSystem.current.currentSelectedGameObject;
+            // int index = upgradeSlots.IndexOf(slot);
+            if (statUpgradeDataSet != null) {
+                // StatUpgradeData currentData = statUpgradeDataSet.statUpgradeData[index];
+                StatUpgradeData currentData = slot.currentStatData;
+                stats1.UpdateStats(currentData.Health, currentData.Attack);
 
-            if (currentSelected != null)
-            {
-                PlayerInput playerInput = currentSelected.GetComponent<PlayerInput>();
-
-                if (playerInput != null)
-                {
-                    Debug.Log("Button pressed by: " + playerInput.playerIndex);
-                }
+            } else if (weaponDataSet != null) {
+                // WeaponData currentData = weaponDataSet.weaponData[index];
+                WeaponData currentData = slot.currentWeaponData;
+                int weaponIndex = (int)currentData.weaponIndex;
+                weaponInventory1.TrySetWeapon(currentData, weaponIndex);
             }
 
+            statUpgradeDataSet = null;
+            weaponDataSet = null;
+        }
+
+        public void OnUpgradeClicked(UpgradeSlot slot, PlayerInput playerInput)
+        {
             // int index = upgradeSlots.IndexOf(slot);
             if (statUpgradeDataSet != null) {
                 // StatUpgradeData currentData = statUpgradeDataSet.statUpgradeData[index];

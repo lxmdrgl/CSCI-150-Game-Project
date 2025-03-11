@@ -159,7 +159,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176bd665edffe4247925d3dde4d0c307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeId: 
+  noDataContent: {fileID: 5500952353954467052}
+  hasDataContent: {fileID: 4236787104920329331}
+  currentStatData: {fileID: 0}
+  currentWeaponData: {fileID: 0}
 --- !u!1 &4236787104920329331
 GameObject:
   m_ObjectHideFlags: 0

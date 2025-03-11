@@ -783,7 +783,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.47, y: 2.3600001}
+  m_Size: {x: 0.47, y: 2.36}
   m_EdgeRadius: 0
 --- !u!95 &1680374484456591706
 Animator:
@@ -819,7 +819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1984610627
+  GlobalObjectIdHash: 1266653283
   InScenePlacedSourceGlobalObjectIdHash: 1266653283
   DeferredDespawnTick: 0
   Ownership: 1
@@ -997,15 +997,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <weaponDataSet>k__BackingField: {fileID: 11400000, guid: b7fff6ca91113b147941d5f19a832c4d, type: 2}
   <currentWeaponData>k__BackingField:
+  - {fileID: 11400000, guid: f97b7e60a4f61eb4b8fd9fbee64a0b61, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: c8ea6a7895ed42d4ebb0c4f799e39523, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 1ba28d0736b38d143bb8e1e45b0f061f, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: a455a597a3efd2f4b82dc3991a64d2a9, type: 2}
   <oldWeaponData>k__BackingField: []
 --- !u!1 &4442143133874731669
 GameObject:
@@ -1417,10 +1417,10 @@ MonoBehaviour:
     m_Bits: 128
   ledgeCheckVertical: {fileID: 0}
   platformTag: Platform
-  platformCheck: {fileID: 1919131208382917626}
   platformCheckBottom: {fileID: 3454839332791527534}
   platformCheckTop: {fileID: 9193700958131295734}
-  platformCheckBottomDistance: 1.693333
+  playerHeight: 2.36
+  platformCheckBottomDistance: 0.223333
   platformCheckTopDistance: 0.1933333
   platformCheckBottomExtendDistance: 2.5
   platformTopRight: {fileID: 3562108254003065707}

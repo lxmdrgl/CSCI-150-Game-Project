@@ -28,8 +28,9 @@ public class PlayerGroundedState : PlayerState
     private bool fallInput;
     private bool isGrounded;
     private bool isTouchingWall;
-    private RaycastHit2D isPlatformDown;
+    private RaycastHit2D isPlatformBottom;
     private Collider2D platformDropped = null;
+    private float delayAirTime = 0f;
 
     public PlayerGroundedState(Player player, string animBoolName) : base(player, animBoolName)
     {
@@ -44,7 +45,7 @@ public class PlayerGroundedState : PlayerState
             isGrounded = CollisionSenses.Ground;
             isTouchingWall = CollisionSenses.WallFront;
             // isPlatformDown = CollisionSenses.PlatformDown;
-            isPlatformDown = CollisionSenses.PlatformBottom;
+            isPlatformBottom = CollisionSenses.PlatformBottom;
             // Debug.Log($"isPlatformDown: {isPlatformDown.collider}");
         }
     }
@@ -105,12 +106,12 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.DashState);
         }
-        else if (fallInput /* jumpInput && downInput */ && (bool)isPlatformDown)
+        else if (fallInput /* jumpInput && downInput */ && (bool)isPlatformBottom)
         {
             Debug.Log($"Jump Input: {jumpInput}, Down Input: {downInput}");
             player.InputHandler.UseJumpInput();
             // platformDropped = isPlatformDown;
-            platformDropped = isPlatformDown.collider;
+            platformDropped = isPlatformBottom.collider;
             Debug.Log($"Drop platform: {platformDropped}, {player.boxCollider}");
             Physics2D.IgnoreCollision(platformDropped, player.boxCollider, true);
 
@@ -127,7 +128,7 @@ public class PlayerGroundedState : PlayerState
             Debug.Log($"Jump Input: {jumpInput}, Down Input: {downInput}");
             stateMachine.ChangeState(player.JumpState);
         } 
-        else if (!isGrounded)
+        else if (!isGrounded && DelayAirState(delayAirTime))
         {
             Debug.Log("Ground to Air state");
             player.AirState.StartCoyoteTime();
@@ -135,6 +136,18 @@ public class PlayerGroundedState : PlayerState
         } else {
         }
     }
+
+    public bool DelayAirState(float delayTime)
+    {
+        if (Time.time >= startTime + delayTime)
+        {
+            delayTime = 0f;
+            return true;
+        }
+        return false;
+    }
+
+    public void SetDelayTime(float delayTime) => delayAirTime = delayTime;
 
     public override void PhysicsUpdate()
     {

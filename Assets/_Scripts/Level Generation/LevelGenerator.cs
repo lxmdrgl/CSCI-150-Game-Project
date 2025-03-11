@@ -381,6 +381,7 @@ public class LevelGenerator : MonoBehaviour
                     UnityEngine.Debug.Log("Second player joined successfully!");
                     newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
                     setCameras(newPlayer);
+                    setUserInterface(newPlayer);
                     yield break;
                 }
             }

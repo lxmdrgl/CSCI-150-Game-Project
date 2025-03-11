@@ -4,9 +4,11 @@ using UnityEngine;
 
 using Game.CoreSystem;
 using UnityEditor;
+using System;
 public class PlayerPlatformAirState : PlayerAirState
 {
 	private Vector2 platformBottomPosition;
+	private bool jumpInputBuffer = false;
 
     public PlayerPlatformAirState(Player player, string animBoolName) : base(player, animBoolName)
     {
@@ -86,9 +88,10 @@ public class PlayerPlatformAirState : PlayerAirState
 				}
 				else if (jumpInput && player.JumpState.CanJump())
 				{
-					StopPlatformMove();
+					/* StopPlatformMove();
 					player.AirState.SetJumpingInPlatform(true);
-					stateMachine.ChangeState(player.JumpState);
+					stateMachine.ChangeState(player.JumpState); */
+					jumpInputBuffer = true;
 				} 
 			}
 			else if (isPlatformOverlap == null && isPlatformOverlapTop == null) 
@@ -97,8 +100,16 @@ public class PlayerPlatformAirState : PlayerAirState
 				StopPlatformMove();
 				isExitingState = true;
 
-				if(xInput == 0)
+				if (jumpInputBuffer) 
 				{
+					jumpInputBuffer = false;
+					Debug.Log("move platform jump buffer");
+					player.AirState.SetJumpingInPlatform(true);
+					stateMachine.ChangeState(player.JumpState);
+				} 
+				else if(xInput == 0)
+				{
+					player.IdleState.SetDelayTime(0.1f);
 					stateMachine.ChangeState(player.IdleState);
 				} 
 				else if (xInput != 0) 
@@ -127,7 +138,7 @@ public class PlayerPlatformAirState : PlayerAirState
 		Movement?.SetVelocityY(0);
 		isPlatformBottomExtend = CollisionSenses.PlatformBottomExtend;
 		if (isPlatformBottomExtend.collider != null) {
-			platformBottomPosition = new Vector2(player.transform.position.x, player.transform.position.y - isPlatformBottomExtend.distance);
+			platformBottomPosition = new Vector2(player.transform.position.x, player.transform.position.y - isPlatformBottomExtend.distance +0.25f);
 			Debug.Log($"Move platform position: {platformBottomPosition.y}, {player.transform.position.y}, {isPlatformBottomExtend.distance}");
 			player.transform.position = platformBottomPosition;
 		}

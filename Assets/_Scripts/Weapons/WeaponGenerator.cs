@@ -110,9 +110,9 @@ namespace Game.Weapons
             }
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
-            weaponInventory.OnWeaponDataChanged -= HandleWeaponDataChanged;
+            // weaponInventory.OnWeaponDataChanged -= HandleWeaponDataChanged;
         }
 
         #endregion

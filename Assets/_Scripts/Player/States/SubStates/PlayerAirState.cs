@@ -30,7 +30,7 @@ public class PlayerAirState : PlayerState
     protected Collider2D isPlatformOverlap;
     protected Collider2D isPlatformOverlapTop;
     protected RaycastHit2D isPlatformTop;
-    protected RaycastHit2D isPlatformBottom;
+    protected RaycastHit2D isPlatformBottomUp;
     protected RaycastHit2D isPlatformBottomExtend;
 
     private bool coyoteTime;
@@ -54,7 +54,7 @@ public class PlayerAirState : PlayerState
             isPlatformOverlap = CollisionSenses.PlatformOverlap;
             isPlatformOverlapTop = CollisionSenses.PlatformOverlapTop;
             isPlatformTop = CollisionSenses.PlatformTop;
-            isPlatformBottom = CollisionSenses.PlatformBottom;
+            isPlatformBottomUp = CollisionSenses.PlatformBottomUp;
             isPlatformBottomExtend = CollisionSenses.PlatformBottomExtend;
         }
     }
@@ -165,8 +165,10 @@ public class PlayerAirState : PlayerState
     public void ResetPlatformCollision()
     {
         // Debug.Log("Reset platform : " + (bool)platformDropped + ", " + (bool)isPlatformTop);
-        if (platformDropped != null && isPlatformTop) {
-            Debug.Log("Reset platform Success: " + (bool)platformDropped + ", " + (bool)isPlatformTop);
+        // isPlatformTop checks whether the the platform is above the top of the player
+        // isPlatformBottomUp checks whether the the platform is 
+        if (platformDropped != null && !isPlatformOverlap) {
+            Debug.Log("Reset platform Success: " + (bool)platformDropped + ", " + (bool)!isPlatformOverlap);
             Physics2D.IgnoreCollision(platformDropped, player.boxCollider, false);
             platformDropped = null;
         }
