@@ -49,9 +49,11 @@ public class LevelGenerator : MonoBehaviour
 
         if (spawnStartingRoom() && spawnAllRooms(roomMap)) 
         {
+            spawnAllEnemies(roomMap);
+
             if(playerCount == 1)
             {
-                spawnPlayer(2);
+                spawnPlayer(1);
                 UnityEngine.Debug.Log("1 PLAYER");
             }
             else if(playerCount == 2)
@@ -111,38 +113,30 @@ public class LevelGenerator : MonoBehaviour
         return true;
     }
 
-    bool spawnAllRooms(RoomNode root) {
+    bool spawnAllRooms(RoomNode root) { // supports rooms with one entrance, 0-2 exits
         RoomNode currNode = root; 
-        RoomNode newNode; 
         int randIndex = UnityEngine.Random.Range(0,2);
 
-        while(currNode.children.Count != 0) { // not reached dead end
-            if (currNode.children.Count == 1) 
-            {
-                newNode = currNode.children[0];
-                RoomManager newRoomManager = spawnRoom(newNode).GetComponent<RoomManager>();
-                newRoomManager.SpawnEnemies(); // Spawn enemies in the new room
-                connectRooms(currNode, 0, newNode, 0);
-                currNode = newNode;
-            } else if (currNode.children.Count == 2)
-            {
-                RoomManager roomManager1 = spawnRoom(currNode.children[0]).GetComponent<RoomManager>();
-                RoomManager roomManager2 = spawnRoom(currNode.children[1]).GetComponent<RoomManager>();
+        if (currNode.children.Count == 0) {
+            return true;
+        } else if (currNode.children.Count == 1) {
+            RoomManager newRoomManager = spawnRoom(currNode.children[0]).GetComponent<RoomManager>();
 
-                connectRooms(currNode, randIndex, currNode.children[0], 0);
-                connectRooms(currNode, Math.Abs(randIndex-1), currNode.children[1], 0);
+            connectRooms(currNode, 0, currNode.children[0], 0);
 
-                roomManager1.SpawnEnemies(); // Spawn enemies in the first room
-                roomManager2.SpawnEnemies(); // Spawn enemies in the second room
+            spawnAllRooms(currNode.children[0]); // recursively call child node
+        } else if (currNode.children.Count == 2) {
+            RoomManager roomManager1 = spawnRoom(currNode.children[0]).GetComponent<RoomManager>();
+            RoomManager roomManager2 = spawnRoom(currNode.children[1]).GetComponent<RoomManager>();
 
-                spawnAllRooms(currNode.children[0]);
-                spawnAllRooms(currNode.children[1]);
-                break;
-            } else 
-            {
-                UnityEngine.Debug.LogError(gameObject.name + ": Unexpected number of exits");
-                return false;
-            }
+            connectRooms(currNode, randIndex, currNode.children[0], 0);
+            connectRooms(currNode, Math.Abs(randIndex-1), currNode.children[1], 0);
+
+            spawnAllRooms(currNode.children[0]); // recursively call on both children
+            spawnAllRooms(currNode.children[1]);
+        } else {
+            UnityEngine.Debug.LogError(gameObject.name + ": Unexpected number of exits");
+            return false;
         }
 
         return true;
@@ -174,33 +168,58 @@ public class LevelGenerator : MonoBehaviour
 
         newNode.roomObject.transform.position += currNodeManager.exits[exitIdx].transform.position - newNodeManager.entrances[entranceIdx].transform.position;
         
-        List<Collider2D> results = new List<Collider2D>();
+        foreach (BoxCollider2D collider in newNodeManager.colliders) {
+            if (collider.gameObject.layer == LayerMask.NameToLayer("Room")) {
+                RoomCollider roomCollider = collider.GetComponent<RoomCollider>();
+                if (roomCollider.hasCollision) {                
+                    UnityEngine.Debug.Log($"Collision detected: {collider.transform.parent}");
+                }    
+            }
+        }
+
+        // List<Collider2D> results = new List<Collider2D>();
         // ContactFilter2D contactFilter = new ContactFilter2D();
         // contactFilter.useTriggers = false; // Ignore triggers if necessary
         // contactFilter.SetLayerMask(LayerMask.GetMask("Room")); // Ensure the objects are on the "Room" layer
-        int overlaps = 0;
+        // int overlaps = 0;
 
-        foreach (Collider2D collider in newNodeManager.colliders) {
-            overlaps += Physics2D.OverlapCollider(collider, results);
+        // foreach (Collider2D collider in newNodeManager.colliders) {
+        //     overlaps += Physics2D.OverlapCollider(collider, results);
 
-            foreach (Collider2D overlappingCollider in results) {
-                string colliderParentName = collider.transform.parent != null ? collider.transform.parent.name : collider.gameObject.name;
-                string overlappingParentName = overlappingCollider.transform.parent != null ? overlappingCollider.transform.parent.name : overlappingCollider.gameObject.name;
+        //     foreach (Collider2D overlappingCollider in results) {
+        //         string colliderParentName = collider.transform.parent != null ? collider.transform.parent.name : collider.gameObject.name;
+        //         string overlappingParentName = overlappingCollider.transform.parent != null ? overlappingCollider.transform.parent.name : overlappingCollider.gameObject.name;
                 
-                UnityEngine.Debug.Log($"Overlap detected: {colliderParentName} is overlapping with {overlappingParentName}");
-            }
-            results.Clear();
-        }
+        //         UnityEngine.Debug.Log($"Overlap detected: {colliderParentName} is overlapping with {overlappingParentName}");
+        //     }
+        //     results.Clear();
+        // }
 
-        if (overlaps != 0) {
-            UnityEngine.Debug.LogError("collision overlap " + newNode.gameObject.name + ": " + overlaps);
-        }
+        // if (overlaps != 0) {
+        //     UnityEngine.Debug.LogError("collision overlap " + newNode.gameObject.name + ": " + overlaps);
+        // }
         
         return true;
     }
     #endregion SpawnRooms
 
-    
+    bool spawnAllEnemies(RoomNode root) { 
+        RoomNode currNode = root; 
+        int randIndex = UnityEngine.Random.Range(0,2);
+
+        if (currNode.children.Count == 0) {
+            return true;
+        } 
+
+        foreach (RoomNode child in currNode.children) {
+            RoomManager childRoomManager = child.roomObject.GetComponent<RoomManager>();
+            childRoomManager.SpawnEnemies(); // Spawn enemies in the new room
+            spawnAllEnemies(child);
+        } 
+
+        return true;
+    }
+
     #region SpawnPlayer
 
     /* void spawnPlayer() {
