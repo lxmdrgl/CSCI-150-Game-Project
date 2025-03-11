@@ -32,6 +32,7 @@ public class LevelGenerator : MonoBehaviour
     
     [Header("Rooms")]
     public RoomNode roomMap;
+    private int roomNumber = 1;
     private int playerCount;
 
     PlayerInputManager playerInputManager;
@@ -155,6 +156,7 @@ public class LevelGenerator : MonoBehaviour
                 UnityEngine.Debug.LogError("Failed to load files from Resources/Rooms/" + r.roomType);
             } else {
                 r.roomObject = Instantiate(roomList[UnityEngine.Random.Range(0, roomList.Count)].gameObj, new Vector3(0, 0, 0), transform.rotation); 
+                r.roomObject.name = "Room_" + roomNumber++;
             }
         }
         return r.roomObject;
@@ -171,8 +173,10 @@ public class LevelGenerator : MonoBehaviour
         foreach (BoxCollider2D collider in newNodeManager.colliders) {
             if (collider.gameObject.layer == LayerMask.NameToLayer("Room")) {
                 RoomCollider roomCollider = collider.GetComponent<RoomCollider>();
+                roomCollider.enableCollider();
+                roomCollider.tryCollider();
                 if (roomCollider.hasCollision) {                
-                    UnityEngine.Debug.Log($"Collision detected: {collider.transform.parent}");
+                    // UnityEngine.Debug.Log($"Collision detected: {collider.transform.parent}");
                 }    
             }
         }
