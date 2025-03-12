@@ -290,7 +290,7 @@ namespace Game.CoreSystem
             weaponDataSet = null;
         }
 
-        public void OnUpgradeClicked(UpgradeSlot slot, PlayerInput playerInput)
+        /* public void OnUpgradeClicked(UpgradeSlot slot, PlayerInput playerInput)
         {
             // int index = upgradeSlots.IndexOf(slot);
             if (statUpgradeDataSet != null) {
@@ -307,6 +307,6 @@ namespace Game.CoreSystem
 
             statUpgradeDataSet = null;
             weaponDataSet = null;
-        }
+        } */
     }
 }
