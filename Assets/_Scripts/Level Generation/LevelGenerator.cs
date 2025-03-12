@@ -42,6 +42,8 @@ public class LevelGenerator : MonoBehaviour
         playerCount = PlayerPrefs.GetInt("playerCount");
         playerInputManager = FindFirstObjectByType<PlayerInputManager>();
 
+        DontDestroyOnLoad(gameObject);
+
         spawnRoomMap();
 
         InputSystem.onDeviceChange += OnDeviceChange;
@@ -52,7 +54,7 @@ public class LevelGenerator : MonoBehaviour
 
             if(playerCount == 1)
             {
-                spawnPlayer(1);
+                spawnPlayer(2);
                 UnityEngine.Debug.Log("1 PLAYER");
             }
             else if(playerCount == 2)
@@ -63,6 +65,7 @@ public class LevelGenerator : MonoBehaviour
             else    // FOR TESTING
             {
                 // spawnPlayer();
+                spawnPlayer(2);
             }
 
 
@@ -360,6 +363,7 @@ public class LevelGenerator : MonoBehaviour
                 {
                     UnityEngine.Debug.Log("Player " + (i + 1) + " joined successfully!");
                     newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
+                    newPlayer.transform.rotation = levelTransform.rotation;
                     
                     setCameras(newPlayer);
                     setUserInterface(newPlayer);
@@ -367,6 +371,9 @@ public class LevelGenerator : MonoBehaviour
                 else
                 {
                     UnityEngine.Debug.LogWarning("Waiting for second input device to join player " + (i + 1));
+
+                    // Pause the game, UI saying wait for second player, disable player 1 input (PlayerInput.all[0])
+
                     StartCoroutine(WaitForSecondPlayer(playerInputManager, i));
                     break;
                 }
@@ -389,6 +396,9 @@ public class LevelGenerator : MonoBehaviour
             if (player != null)
             {
                 UnityEngine.Debug.LogWarning($"Player {player.playerIndex + 1} disconnected. Waiting for reconnection...");
+
+                // Pause the game, UI saying second player disconnected, disable player 1 input (PlayerInput.all[0])
+
                 StartCoroutine(WaitForSecondPlayer(playerInputManager, player.playerIndex));
             }
         }
@@ -412,8 +422,13 @@ public class LevelGenerator : MonoBehaviour
                 {
                     UnityEngine.Debug.Log("Second player joined successfully!");
                     newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
+                    newPlayer.transform.rotation = levelTransform.rotation;
+
                     setCameras(newPlayer);
                     setUserInterface(newPlayer);
+
+                    // Second player found, resume the game
+
                     yield break;
                 }
             }

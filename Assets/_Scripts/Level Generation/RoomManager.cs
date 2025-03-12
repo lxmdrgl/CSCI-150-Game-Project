@@ -67,7 +67,8 @@ public class RoomManager : MonoBehaviour
     {
         foreach(GameObject enemySpawner in enemySpawners) 
         {
-            Instantiate(enemies[Random.Range(0, enemies.Count)], enemySpawner.transform.position, Quaternion.identity);
+            Entity enemy =  Instantiate(enemies[Random.Range(0, enemies.Count)], enemySpawner.transform.position, Quaternion.identity);
+            enemy.GenerateGuid();
         }
     }
 }

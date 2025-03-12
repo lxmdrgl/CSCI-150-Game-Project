@@ -27,9 +27,8 @@ public class Entity : MonoBehaviour, IDataPersistence
 
     protected Stats stats;
 
-    [SerializeField] private string UniqueId;
-    [ContextMenu("Generate guid for id")]
-    private void GenerateGuid()
+    public string UniqueId;
+    public void GenerateGuid()
     {
         UniqueId = System.Guid.NewGuid().ToString();
     }
