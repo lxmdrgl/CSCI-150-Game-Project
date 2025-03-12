@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class RoomCollider : MonoBehaviour
 {
 
@@ -20,9 +21,15 @@ public class RoomCollider : MonoBehaviour
     {
         int roomLayer = LayerMask.NameToLayer("Room");
         int layerMask = 1 << roomLayer; // Convert layer to bitmask
-        // List<Collider2D> results = new List<Collider2D>();
-
-        // int numOverlap = Physics2D.OverlapBox(transform.position, GetComponent<BoxCollider2D>().bounds.size, 0, layerMask, results);
+        
+        Collider2D[] results = Physics2D.OverlapBoxAll(transform.position, boxCollider.bounds.size, 0, layerMask);
+        int numOverlap = results.Length;
+        Debug.Log("tryCollider(): " + gameObject.transform.parent);
+        foreach (Collider2D collider in results) {
+            if (collider != boxCollider) {
+                Debug.LogError("Collision detected: " + gameObject.transform.parent + " collision with " + collider.gameObject.transform.parent);
+            }
+        }
 
         // if (hit != null) {
         //     Debug.Log("self:" + gameObject.transform.parent + ", hit: " + hit.gameObject.transform.parent);

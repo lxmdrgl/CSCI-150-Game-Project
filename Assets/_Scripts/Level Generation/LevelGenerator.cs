@@ -171,8 +171,10 @@ public class LevelGenerator : MonoBehaviour
         foreach (BoxCollider2D collider in newNodeManager.colliders) {
             if (collider.gameObject.layer == LayerMask.NameToLayer("Room")) {
                 RoomCollider roomCollider = collider.GetComponent<RoomCollider>();
+                
                 roomCollider.enableCollider();
                 roomCollider.tryCollider();
+
                 if (roomCollider.hasCollision) {                
                     // UnityEngine.Debug.Log($"Collision detected: {collider.transform.parent}");
                 }    
