@@ -54,7 +54,7 @@ public class LevelGenerator : MonoBehaviour
 
             if(playerCount == 1)
             {
-                spawnPlayer(1);
+                spawnPlayer(2);
                 UnityEngine.Debug.Log("1 PLAYER");
             }
             else if(playerCount == 2)
@@ -65,6 +65,7 @@ public class LevelGenerator : MonoBehaviour
             else    // FOR TESTING
             {
                 // spawnPlayer();
+                spawnPlayer(2);
             }
 
 
