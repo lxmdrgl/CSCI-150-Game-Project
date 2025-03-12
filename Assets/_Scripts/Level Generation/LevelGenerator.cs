@@ -42,8 +42,6 @@ public class LevelGenerator : MonoBehaviour
         playerCount = PlayerPrefs.GetInt("playerCount");
         playerInputManager = FindFirstObjectByType<PlayerInputManager>();
 
-        DontDestroyOnLoad(gameObject);
-
         spawnRoomMap();
 
         InputSystem.onDeviceChange += OnDeviceChange;
