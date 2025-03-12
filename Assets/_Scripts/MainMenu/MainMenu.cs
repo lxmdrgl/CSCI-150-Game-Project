@@ -51,7 +51,7 @@ public class MainMenu : MonoBehaviour
     public void Play()
     {
         PlayerPrefs.SetInt("playerCount",1);
-        SceneManager.LoadSceneAsync(GameSceneName);
+        SceneManager.LoadScene(generatorScene);
 
         /*
         if (DataPersistenceManager.instance.HasGameData())
@@ -82,7 +82,7 @@ public class MainMenu : MonoBehaviour
     public void PlayLocalMultiplayer()
     {
         PlayerPrefs.SetInt("playerCount",2);
-        SceneManager.LoadSceneAsync(generatorScene);
+        SceneManager.LoadScene(generatorScene);
 
         /*
         if (DataPersistenceManager.instance.HasGameData())
