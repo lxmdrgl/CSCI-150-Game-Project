@@ -1,86 +1,57 @@
 using UnityEngine;
-using System.Collections.Generic;
-using Game.Combat.Damage;
-using Game.Combat.KnockBack;
-using Game.Utilities;
 
-namespace Game.Projectiles
+public class ExplosiveProjectile : MonoBehaviour
 {
-    public class ExplosiveProjectile : MonoBehaviour
+    private Rigidbody2D rb;
+    private float speed;
+    private float travelDistance;
+    private float explosionDelay = 0.5f; // Short delay for grenade-like effect
+    private Vector2 startPosition;
+    private bool hasLanded;
+
+    public void FireProjectile(float projectileSpeed, float projectileTravelDistance)
     {
-        [SerializeField] private float explosionRadius;
-        [SerializeField] private float explosionDamage;
-        [SerializeField] private float knockbackStrength;
-        [SerializeField] private Vector2 knockbackAngle;
-        [SerializeField] private LayerMask whatIsPlayer;
-        [SerializeField] private GameObject explosionEffect;
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 1f;
+        speed = projectileSpeed;
+        travelDistance = projectileTravelDistance;
+        startPosition = transform.position;
 
-        private Rigidbody2D rb;
-        private bool hasExploded = false;
-        private float speed;
-        private float travelDistance;
-        private Vector2 startPosition;
+        // Launch at a 45-degree angle toward the direction it’s facing
+        Vector2 direction = transform.right; // Based on rotation set in attack state
+        rb.linearVelocity = direction * speed;
+    }
 
-        private void Start()
+    private void Update()
+    {
+        if (!hasLanded && Vector2.Distance(startPosition, transform.position) >= travelDistance)
         {
-            rb = GetComponent<Rigidbody2D>();
-            rb.linearVelocity = transform.right * speed;
-            startPosition = transform.position;
+            StopAndExplode();
         }
+    }
 
-        private void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ground") || collision.CompareTag("Player"))
         {
-            if (Vector2.Distance(startPosition, transform.position) >= travelDistance)
-            {
-                Explode();
-            }
+            StopAndExplode();
         }
+    }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+    private void StopAndExplode()
+    {
+        if (!hasLanded)
         {
-            if (!hasExploded && (collision.gameObject.layer == LayerMask.NameToLayer("Ground") || collision.CompareTag("Player")))
-            {
-                Explode();
-            }
+            hasLanded = true;
+            rb.linearVelocity = Vector2.zero;
+            Invoke("Explode", explosionDelay); // Explode after a short delay
         }
+    }
 
-        private void Explode()
-        {
-            hasExploded = true;
-            Instantiate(explosionEffect, transform.position, Quaternion.identity);
-
-            Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, explosionRadius, whatIsPlayer);
-
-            if (hitObjects.Length > 0)
-            {
-                Debug.Log($"💥 Explosion hit {hitObjects.Length} targets!");
-
-                if (CombatDamageUtilities.TryDamage(hitObjects, new DamageData(explosionDamage, gameObject), out _))
-                {
-                    Debug.Log($"✅ Explosive dealt {explosionDamage} damage.");
-                }
-
-                CombatKnockBackUtilities.TryKnockBack(
-                    hitObjects,
-                    new KnockBackData(knockbackAngle, knockbackStrength, transform.position.x < hitObjects[0].transform.position.x ? 1 : -1, gameObject),
-                    out _
-                );
-            }
-
-            Destroy(gameObject);
-        }
-
-        // `FireProjectile()` so `TriggerAttack()` can call it!
-        public void FireProjectile(float speed, float travelDistance)
-        {
-            this.speed = speed;
-            this.travelDistance = travelDistance;
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, explosionRadius);
-        }
+    private void Explode()
+    {
+        // Add your explosion logic here (e.g., deal AoE damage, spawn effect)
+        Debug.Log("Boom!");
+        Destroy(gameObject);
     }
 }
