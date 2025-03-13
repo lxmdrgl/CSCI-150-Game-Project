@@ -293,6 +293,6 @@ public enum CombatInputs{
     primarySkillHold,
     secondarySkillHold,
     dashAttack,
-    
+    fallAttack
 }
 

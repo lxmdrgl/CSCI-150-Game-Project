@@ -41,6 +41,7 @@ namespace Game.Weapons.Components
         {
             if(!isAttackActive)
                 return;
+            Debug.Log("Movement, isAttackActive: " + isAttackActive);
             
             coreMovement.SetVelocityX(velocity * coreMovement.FacingDirection);
         }

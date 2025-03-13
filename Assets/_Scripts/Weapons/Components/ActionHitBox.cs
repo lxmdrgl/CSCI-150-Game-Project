@@ -44,6 +44,7 @@ namespace Game.Weapons.Components
                 return;
 
             // Debug.Log("Charge Hitbox detected: " + detected.Count);
+            weapon.EventHandler.OnAttackActionSetActiveInvoke(false);
             OnDetectedCollider2D?.Invoke(detected.ToArray());
         }
 

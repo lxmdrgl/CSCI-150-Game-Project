@@ -17,7 +17,8 @@ public class PlayerAttackState : PlayerActionState
 
     private bool checkFlip;
     private bool checkInterruptable;
-    public bool attackEnabled = true;
+    private bool checkAttackAction;
+    private bool attackEnabled = true;
 
     public PlayerAttackState(
         Player player,
@@ -34,10 +35,12 @@ public class PlayerAttackState : PlayerActionState
 
         weapon.OnUseInput += HandleUseInput;
 
-        weapon.EventHandler.OnEnableInterrupt += HandleEnableInterrupt;
+        // weapon.EventHandler.OnEnableInterrupt += HandleEnableInterrupt;
         weapon.EventHandler.OnFinish += HandleFinish;
         weapon.EventHandler.OnFlipSetActive += HandleFlipSetActive;
         weapon.EventHandler.OnInterruptableSetActive += HandleInterruptableSetActive;
+        weapon.EventHandler.OnAttackActionSetActive += HandleAttackActionSetActive;
+
     }
 
     private void HandleFlipSetActive(bool value)
@@ -48,6 +51,11 @@ public class PlayerAttackState : PlayerActionState
     private void HandleInterruptableSetActive(bool value)
     {
         checkInterruptable = value;
+    }
+
+    private void HandleAttackActionSetActive(bool value)
+    {
+        checkAttackAction = value;
     }
 
     public override void LogicUpdate()
@@ -66,6 +74,16 @@ public class PlayerAttackState : PlayerActionState
             Movement.CheckIfShouldFlip(xInput);
         }
 
+        if (checkAttackAction)
+        {
+            weapon.EventHandler.OnAttackActionInvoke();
+        }
+
+        if (isGrounded)
+        {
+            
+        }
+
         if (checkInterruptable) {
             if (jumpInput || dashInput) {
                 HandleUseInput();
@@ -74,7 +92,7 @@ public class PlayerAttackState : PlayerActionState
             }
         }
 
-        if (!canInterrupt)
+        /* if (!canInterrupt)
             return;
 
         if (xInput != 0 )
@@ -88,7 +106,7 @@ public class PlayerAttackState : PlayerActionState
                 isActionDone = true;
                 break;
             }
-        }
+        } */
     }
 
     private void HandleWeaponGenerating()
@@ -144,6 +162,18 @@ public class PlayerAttackState : PlayerActionState
         return weapon.CanEnterAttack;
     }
 
+    public bool CanAttack(CombatInputs input, CombatInputs output) 
+    {
+        bool canAttack = weapon.CanEnterAttack;
+        bool hasInput = false;
+        if (canAttack)
+        {
+            hasInput = player.InputHandler.SimulateAttackInput(input, output);
+        }
+        // Debug.Log(string.Join(", ", player.InputHandler.AttackInputs));
+        return canAttack && hasInput;
+    }
+
     public bool CanAttackCooldown() 
     {
         bool canAttack = weapon.CanEnterAttack && attackEnabled;
@@ -154,7 +184,7 @@ public class PlayerAttackState : PlayerActionState
         return canAttack;
     }
 
-    public bool CanDashAttackCooldown(CombatInputs input, CombatInputs output) 
+    public bool CanAttackCooldown(CombatInputs input, CombatInputs output) 
     {
         bool canAttack = weapon.CanEnterAttack && attackEnabled;
         bool hasInput = false;
@@ -177,7 +207,9 @@ public class PlayerAttackState : PlayerActionState
         Debug.Log("Reset dash attack cooldown: " + attackEnabled);   
     }
 
-    private void HandleEnableInterrupt() => canInterrupt = true;
+    public void DisableAttack() => attackEnabled = false;
+
+    // private void HandleEnableInterrupt() => canInterrupt = true;
 
     private void HandleUseInput() => player.InputHandler.UseAttackInput(inputIndex);
 

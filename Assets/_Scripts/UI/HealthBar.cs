@@ -89,7 +89,9 @@ public class HealthBar : MonoBehaviour
 
     private void OnDisable()
     {
-        stats.Health.OnValueChange -= UpdateSlider;
+        if (stats != null) {
+            stats.Health.OnValueChange -= UpdateSlider;
+        }
         if(death != null) {
             death.OnDeath -= DisableHealthBar;
         }

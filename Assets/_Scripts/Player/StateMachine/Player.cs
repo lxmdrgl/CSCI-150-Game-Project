@@ -25,6 +25,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public PlayerAttackState PrimarySkillState { get; private set; }
     public PlayerAttackState SecondarySkillState { get; private set; }
     public PlayerAttackState DashAttackState { get; private set; }
+    public PlayerAttackState FallAttackState { get; private set; }
     public PlayerKnockBackState KnockBackState { get; private set; }
     public PlayerPlatformAirState PlatformAirState { get; private set; }
 
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour, IDataPersistence
     private Weapon primarySkillPress;
     private Weapon secondarySkillPress;
     private Weapon dashAttack;
+    private Weapon fallAttack;
 
     public TimeNotifier dashTimeNotifier;
     public TimeNotifier primarySkillTimeNotifier;
@@ -69,6 +71,7 @@ public class Player : MonoBehaviour, IDataPersistence
         primarySkillPress = transform.Find("PrimarySkillPress").GetComponent<Weapon>();
         secondarySkillPress = transform.Find("SecondarySkillPress").GetComponent<Weapon>();
         dashAttack = transform.Find("DashAttack").GetComponent<Weapon>();
+        fallAttack = transform.Find("FallAttack").GetComponent<Weapon>();
 
         primaryAttackPress.SetCore(Core);
         primaryAttackHold.SetCore(Core);
@@ -76,6 +79,7 @@ public class Player : MonoBehaviour, IDataPersistence
         primarySkillPress.SetCore(Core);
         secondarySkillPress.SetCore(Core);
         dashAttack.SetCore(Core);
+        fallAttack.SetCore(Core);
 
         InteractableDetector = Core.GetCoreComponent<InteractableDetector>();
 
@@ -94,16 +98,17 @@ public class Player : MonoBehaviour, IDataPersistence
         AirState = new PlayerNormalAirState(this, "air");
         WallGrabState = new PlayerWallGrabState(this, "wallGrab");
         WallJumpState = new PlayerWallJumpState(this, "air"); // was jump
+        KnockBackState = new PlayerKnockBackState(this, "knockBack");
+        PlatformAirState = new PlayerPlatformAirState(this, "air");
         PrimaryAttackState = new PlayerAttackState(this, "attack", primaryAttackPress, CombatInputs.primaryAttackPress);
         PrimaryAttackHoldState = new PlayerAttackState(this, "attack", primaryAttackHold, CombatInputs.primaryAttackHold);
         SecondaryAttackState = new PlayerAttackState(this, "attack", secondaryAttackPress, CombatInputs.secondaryAttackPress);
         PrimarySkillState = new PlayerAttackState(this, "attack", primarySkillPress, CombatInputs.primarySkillPress);
         SecondarySkillState = new PlayerAttackState(this, "attack", secondarySkillPress, CombatInputs.secondarySkillPress);
         DashAttackState = new PlayerAttackState(this, "attack", dashAttack, CombatInputs.dashAttack);
-        KnockBackState = new PlayerKnockBackState(this, "knockBack");
-        PlatformAirState = new PlayerPlatformAirState(this, "air");
+        FallAttackState = new PlayerAttackState(this, "attack", fallAttack, CombatInputs.fallAttack);
 
-        DashAttackState.attackEnabled = false;
+        DashAttackState.DisableAttack();
 
         knockBackReceiver.OnKnockBackActive += HandleKnockBackActive;
     }

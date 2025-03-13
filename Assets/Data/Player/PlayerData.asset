@@ -15,6 +15,7 @@ MonoBehaviour:
   movementVelocity: 15
   jumpVelocity: 15
   amountOfJumps: 2
+  gravityScale: 5
   dashVelocity: 18
   dashTime: 0.25
   dashCooldown: 0.2

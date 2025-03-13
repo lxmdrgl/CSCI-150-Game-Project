@@ -19,7 +19,7 @@ public class PlayerActionState : PlayerState
 	protected KnockBackReceiver KnockBackReceiver { get => knockBackReceiver ?? core.GetCoreComponent(ref knockBackReceiver); }
 	private KnockBackReceiver knockBackReceiver;
 
-	private bool isGrounded;
+	protected bool isGrounded;
 	protected bool isTouchingWall;
 	protected Collider2D isPlatformOverlap;
 	protected bool jumpInput;

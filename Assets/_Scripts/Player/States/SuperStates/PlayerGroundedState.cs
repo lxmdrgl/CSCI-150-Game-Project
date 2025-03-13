@@ -74,7 +74,7 @@ public class PlayerGroundedState : PlayerState
         dashInput = player.InputHandler.DashInput;
         fallInput = player.InputHandler.FallInput;
 
-        if (player.DashAttackState.CanDashAttackCooldown(CombatInputs.primaryAttackPress, CombatInputs.dashAttack))
+        if (player.DashAttackState.CanAttackCooldown(CombatInputs.primaryAttackPress, CombatInputs.dashAttack))
         {
             stateMachine.ChangeState(player.DashAttackState);
         }
