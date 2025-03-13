@@ -28,6 +28,7 @@ public class DeathScreenManager : MonoBehaviour
 
     public void DeathQuit()
     {   
+        Time.timeScale = 1;
         if(DataPersistenceManager.instance.disableDataPersistence)
         {
             SceneManager.LoadScene(MainMenuSceneName);
@@ -48,6 +49,7 @@ public class DeathScreenManager : MonoBehaviour
 
     public void DeathRestart()
     {   
+        Time.timeScale = 1;
         if(DataPersistenceManager.instance.disableDataPersistence)
         {
             SceneManager.LoadScene(GameplaySceneName);

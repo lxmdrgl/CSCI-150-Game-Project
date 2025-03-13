@@ -42,7 +42,7 @@ public class LevelGenerator : MonoBehaviour
         playerCount = PlayerPrefs.GetInt("playerCount");
         playerInputManager = FindFirstObjectByType<PlayerInputManager>();
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         spawnRoomMap();
 
@@ -62,10 +62,10 @@ public class LevelGenerator : MonoBehaviour
                 spawnPlayer(2);
                 UnityEngine.Debug.Log("2 PLAYERS");
             }
-            else    // FOR TESTING
+            else    
             {
-                // spawnPlayer();
-                spawnPlayer(2);
+                spawnPlayer(1);
+                UnityEngine.Debug.Log("PLAYERCOUNT NOT SET");
             }
 
 

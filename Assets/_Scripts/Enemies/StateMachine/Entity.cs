@@ -167,6 +167,11 @@ public class Entity : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
+        if(DataPersistenceManager.instance.disableDataPersistence)
+        {
+            return;
+        }
+
         if (string.IsNullOrEmpty(UniqueId))
         {
             Debug.LogError($"{name} has no UniqueID assigned. Cannot load data.");
@@ -197,6 +202,12 @@ public class Entity : MonoBehaviour, IDataPersistence
 
     public void SaveData(GameData data)
     {
+
+        if(DataPersistenceManager.instance.disableDataPersistence)
+        {
+            return;
+        }
+
         if (string.IsNullOrEmpty(UniqueId))
         {
             Debug.LogError($"{name} has no UniqueID assigned. Cannot save data.");

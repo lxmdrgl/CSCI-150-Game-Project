@@ -172,12 +172,22 @@ public class Player : MonoBehaviour, IDataPersistence
     }
     public void LoadData(GameData data)
     {
+        if(DataPersistenceManager.instance.disableDataPersistence)
+        {
+            return;
+        }
+
         stats.Health.CurrentValue = data.playerCurrentHp;
         stats.Health.MaxValue = data.playerMaxHp;
         Position = data.playerPosition.ToVector2();
     }
     public void SaveData(GameData data)
     {
+        if(DataPersistenceManager.instance.disableDataPersistence)
+        {
+            return;
+        }
+
         data.playerCurrentHp = stats.Health.CurrentValue;
         data.playerMaxHp = stats.Health.MaxValue;
         data.playerPosition = new GameData.Vector2Data(Position);

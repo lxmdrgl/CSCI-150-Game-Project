@@ -803,10 +803,10 @@ PrefabInstance:
       addedObject: {fileID: 1831244906}
     - targetCorrespondingSourceObject: {fileID: 4899015308605980428, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1786261737}
+      addedObject: {fileID: 1108257745}
     - targetCorrespondingSourceObject: {fileID: 4899015308605980428, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1108257745}
+      addedObject: {fileID: 1786261737}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 420101074536354539, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       insertIndex: -1

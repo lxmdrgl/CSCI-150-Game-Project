@@ -508,8 +508,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.02083333, y: 3.2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.02083333, y: 3.0748875, z: 1}
+  m_Center: {x: 0, y: 0.062556386, z: 0}
 --- !u!1 &5351031076077802823
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,7 +607,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.1262101, y: 0.020852111}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -617,7 +617,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.3866667, y: 0.08333334}
+  m_Size: {x: 0.7620045, y: 0.04162912}
   m_EdgeRadius: 0
 --- !u!1 &6360035130462158432
 GameObject:
@@ -912,11 +912,21 @@ MonoBehaviour:
   wallCheck: {fileID: 2518377186256848546}
   groundCheckSize: {x: 0.3866667, y: 0.08333334}
   wallCheckDistance: 0.5
+  longGroundDistance: 0
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
-  platformTag: 
   ledgeCheckVertical: {fileID: 2181997544596436395}
+  platformTag: 
+  platformCheckBottom: {fileID: 0}
+  platformCheckTop: {fileID: 0}
+  playerHeight: 0
+  platformCheckBottomDistance: 0
+  platformCheckTopDistance: 0
+  platformCheckBottomExtendDistance: 0
+  platformTopRight: {fileID: 0}
+  platformMidLeft: {fileID: 0}
+  platformBottomLeft: {fileID: 0}
 --- !u!1 &6834705499909733655
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,7 +952,7 @@ Transform:
   m_GameObject: {fileID: 6834705499909733655}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02083333, y: -1.5, z: 0}
+  m_LocalPosition: {x: 0.08, y: -1.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

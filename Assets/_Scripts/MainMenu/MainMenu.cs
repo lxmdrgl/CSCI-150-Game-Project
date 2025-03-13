@@ -31,6 +31,8 @@ public class MainMenu : MonoBehaviour
         string playerName = PlayerPrefs.GetString("PlayerName", "Player");
         Debug.Log("Loaded Player Name: " + playerName);  // Verify the name is loaded correctly
 
+
+        /*
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         string currentSave = DataPersistenceManager.instance.GetSelectedProfileId();
@@ -47,6 +49,7 @@ public class MainMenu : MonoBehaviour
         }   
 
         savesBtnText.text = "Save Slot: " + currentSave;
+        */
     }
     public void Play()
     {
@@ -136,6 +139,11 @@ public class MainMenu : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if(DataPersistenceManager.instance.disableDataPersistence)
+        {
+            return;
+        }
+
         // Check if the current scene is the Main Menu
         if (scene.name == "MainMenu") // Replace "MainMenu" with your actual scene name
         {

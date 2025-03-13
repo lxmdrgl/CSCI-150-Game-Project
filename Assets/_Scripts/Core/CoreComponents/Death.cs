@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 namespace Game.CoreSystem
 {
@@ -32,14 +33,33 @@ namespace Game.CoreSystem
         
             core.transform.parent.gameObject.SetActive(false);
 
-            // Invoke Player Death Screen
-            if (core.transform.parent.gameObject.tag == "Player") {
-                Debug.Log("Player died");
+            // Check if the current object is a player
+            if (core.transform.parent.gameObject.tag == "Player")
+            {
+                // Check if all players are inactive
+                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                bool allPlayersDead = true;
 
-                deathScreen = GameObject.FindGameObjectWithTag("Deathscreen");
-                deathScreen.transform.GetChild(0).gameObject.SetActive(true);
+                foreach (GameObject player in players)
+                {
+                    if (player.activeSelf) // If any player is still active
+                    {
+                        allPlayersDead = false;
+                        break;
+                    }
+                }
+
+                // If all players are dead, show the death screen
+                if (allPlayersDead)
+                {
+                    deathScreen = GameObject.FindGameObjectWithTag("Deathscreen");
+                    if (deathScreen != null)
+                    {
+                        deathScreen.transform.GetChild(0).gameObject.SetActive(true);
+                    }
+                    Time.timeScale = 0;
+                }
             }
-
             // Invoke Boss Death Portal
             if (core.transform.parent.gameObject.name == "Boss1") {
                 Debug.Log("Boss1 died");
