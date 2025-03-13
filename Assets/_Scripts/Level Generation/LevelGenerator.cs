@@ -12,6 +12,8 @@ using UnityEditor;
 // using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.InputSystem.Users;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -29,11 +31,13 @@ public class LevelGenerator : MonoBehaviour
     public DeathScreenManager deathScreen;
     public MenuManager pauseMenu;
     public UpgradeMenuManager upgradeMenu;
+    public InputMenuManager inputMenu;
     
     [Header("Rooms")]
     public RoomNode roomMap;
     private int roomNumber = 1;
     private int playerCount;
+    private int playerIndexToReplace = 0;
 
     PlayerInputManager playerInputManager;
 
@@ -47,14 +51,16 @@ public class LevelGenerator : MonoBehaviour
         spawnRoomMap();
 
         InputSystem.onDeviceChange += OnDeviceChange;
+        InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
 
         if (spawnStartingRoom() && spawnAllRooms(roomMap)) 
         {
             spawnAllEnemies(roomMap);
 
+            UnityEngine.Debug.Log("player count: " + playerCount);
             if(playerCount == 1)
             {
-                spawnPlayer(2);
+                spawnPlayer(1);
                 UnityEngine.Debug.Log("1 PLAYER");
             }
             else if(playerCount == 2)
@@ -65,7 +71,7 @@ public class LevelGenerator : MonoBehaviour
             else    // FOR TESTING
             {
                 // spawnPlayer();
-                spawnPlayer(2);
+                spawnPlayer(1);
             }
 
 
@@ -80,6 +86,7 @@ public class LevelGenerator : MonoBehaviour
     void OnDestroy()
     {
         InputSystem.onDeviceChange -= OnDeviceChange;
+        InputUser.onUnpairedDeviceUsed -= OnUnpairedDeviceUsed;
     }
 
     #region SpawnRooms
@@ -229,20 +236,6 @@ public class LevelGenerator : MonoBehaviour
 
     #region SpawnPlayer
 
-    /* void spawnPlayer() {
-        GameObject levelOrigin = GameObject.Find("LevelOrigin");
-        Transform levelTransform;
-
-        if (levelOrigin != null) {
-            levelTransform = levelOrigin.transform;
-            player = Instantiate(player, new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0), levelTransform.rotation);
-            
-            
-            cinemachineCamera.Target.TrackingTarget = player.transform;
-        } else {
-            UnityEngine.Debug.LogError("Level Origin not found");
-        }
-    } */
     void setCameras(PlayerInput newPlayer)
     {
         int activePlayerCount = PlayerInput.all.Count;
@@ -405,6 +398,76 @@ public class LevelGenerator : MonoBehaviour
         else if (change == InputDeviceChange.Reconnected)
         {
             UnityEngine.Debug.Log($"Device reconnected: {device.displayName}");
+        }
+        else if (change == InputDeviceChange.Added)
+        {
+            UnityEngine.Debug.Log($"New device detected: {device.displayName}");
+
+            /* if (PlayerInput.all.Count == 1)
+            {
+                ReplacePlayerInput(device, 0);
+            }
+            if (PlayerInput.all.Count >= 2)
+            {
+                // replace either device 0 or device 1 
+            } */
+        }
+    }
+
+    public void setPlayerIndexToReplace(int index)
+    {
+        playerIndexToReplace = index;
+    }
+
+    private void OnUnpairedDeviceUsed(InputControl control, InputEventPtr eventPtr)
+    {
+        InputDevice newDevice = control.device;
+
+        // Check if there are any players
+        if (PlayerInput.all.Count == 0)
+        {
+            UnityEngine.Debug.LogWarning("No players available to assign the device.");
+            return;
+        }
+
+        // Determine which player to replace
+        int playerIndexToReplace = 0; // Default to Player 1
+
+        // If there are two players, decide which one to replace based on your criteria
+        if (PlayerInput.all.Count > 1)
+        {
+            // Example: Replace Player 2's device
+            playerIndexToReplace = 1;
+        }
+
+        ReplacePlayerInput(newDevice, playerIndexToReplace);
+    }
+
+    private void ReplacePlayerInput(InputDevice newDevice, int playerIndex)
+    {
+        if (PlayerInput.all.Count > playerIndex)
+        {
+            PlayerInput player = PlayerInput.all[playerIndex];
+            player.user.UnpairDevices();
+            InputUser.PerformPairingWithDevice(newDevice, player.user);
+
+            // Determine the appropriate control scheme based on the new device
+            string controlScheme = player.actions.controlSchemes
+                .FirstOrDefault(scheme => scheme.SupportsDevice(newDevice)).name;
+
+            if (!string.IsNullOrEmpty(controlScheme))
+            {
+                player.SwitchCurrentControlScheme(controlScheme, newDevice);
+                UnityEngine.Debug.Log($"Replaced Player {playerIndex + 1} input with {newDevice.displayName} using control scheme '{controlScheme}'");
+            }
+            else
+            {
+                UnityEngine.Debug.LogWarning($"No matching control scheme found for device {newDevice.displayName}. Default control scheme will be used.");
+            }
+        }
+        else
+        {
+            UnityEngine.Debug.LogWarning($"Player {playerIndex + 1} does not exist.");
         }
     }
 
