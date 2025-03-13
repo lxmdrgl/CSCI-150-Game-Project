@@ -12,7 +12,6 @@ public class PlayerData : ScriptableObject
     [Header("Jump State")]
     public float jumpVelocity = 15f;
     public int amountOfJumps = 2;
-    public float gravityScale = 5.0f;
 
     [Header("Dash State")]
     public float dashVelocity = 15f;
@@ -22,6 +21,8 @@ public class PlayerData : ScriptableObject
 
     [Header("In Air State")]
     public float coyoteTime = 0.2f;
+    public float gravityScale = 5f;
+    public float terminalVelocityY = -30f;
 
     [Header("Wall Jump State")]
     public float wallJumpVelocityX = 15f;

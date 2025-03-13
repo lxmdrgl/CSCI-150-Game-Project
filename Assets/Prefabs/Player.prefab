@@ -819,7 +819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1984610627
+  GlobalObjectIdHash: 1266653283
   InScenePlacedSourceGlobalObjectIdHash: 1266653283
   DeferredDespawnTick: 0
   Ownership: 1
@@ -1660,6 +1660,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3604266058385138487, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7013b5a0c98fb7f4e8e15af94f52c5ff, type: 2}
     - target: {fileID: 4467865697258645298, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
       propertyPath: m_Name
       value: FallAttack
@@ -1874,6 +1878,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3604266058385138487, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: bd8df5bfc0b5a8c4298f1fa13d425c88, type: 2}
     - target: {fileID: 4467865697258645298, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
       propertyPath: m_Name
       value: PrimaryAttackHold

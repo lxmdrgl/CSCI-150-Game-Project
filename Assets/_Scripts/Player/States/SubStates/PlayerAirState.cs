@@ -20,7 +20,7 @@ public class PlayerAirState : PlayerState
 
     protected int xInput;
     protected bool jumpInput;
-    private bool downInput;
+    protected bool downInput;
     protected bool dashInput;
 
     private bool isGrounded;
@@ -142,6 +142,11 @@ public class PlayerAirState : PlayerState
         {
             Movement?.CheckIfShouldFlip(xInput);
             Movement?.SetVelocityX(playerData.movementVelocity * xInput);
+
+            if (Movement.CurrentVelocity.y < playerData.terminalVelocityY)
+            {
+                Movement?.SetVelocityY(playerData.terminalVelocityY);
+            }
 
             player.Anim.SetFloat("yVelocity", Movement.CurrentVelocity.y);
         }

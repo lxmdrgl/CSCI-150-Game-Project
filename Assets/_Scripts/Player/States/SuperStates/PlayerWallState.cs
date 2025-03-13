@@ -16,6 +16,7 @@ public class PlayerWallState : PlayerState
 	protected bool isTouchingWall;
     protected bool jumpInput;
     protected bool downInput;
+    protected bool dashInput;
     protected int xInput;
 	protected int yInput;
     
@@ -52,10 +53,16 @@ public class PlayerWallState : PlayerState
 		yInput = player.InputHandler.NormInputY;
         jumpInput = player.InputHandler.JumpInput;
         downInput = player.InputHandler.DownInput;
+        dashInput = player.InputHandler.DashInput;
 
         if (jumpInput) 
         {
             stateMachine.ChangeState(player.WallJumpState);
+        }
+        if (dashInput && player.DashState.CanDash())
+        {
+            Movement?.CheckIfShouldFlip(-Movement.FacingDirection);
+            stateMachine.ChangeState(player.DashState);
         }
         else if (isGrounded)
         {

@@ -29,6 +29,7 @@ namespace Game.Weapons.Components
 
             coreMovement.SetGravityScale(5f);
             coreMovement.SetVelocity(velocity, angle, coreMovement.FacingDirection);
+            anim.SetBool("hold", false);
         }
 
         protected override void Start()
@@ -44,6 +45,13 @@ namespace Game.Weapons.Components
             base.HandleEnter();
 
             anim.SetBool("hold", true);
+        }
+
+        protected override void HandleExit()
+        {
+            base.HandleExit();
+
+            HandleStopFall();
         }
 
         protected override void Awake()
@@ -64,7 +72,6 @@ namespace Game.Weapons.Components
 
             if (isGrounded)
             {
-                anim.SetBool("hold", false);
                 HandleStopFall();
             }
         }

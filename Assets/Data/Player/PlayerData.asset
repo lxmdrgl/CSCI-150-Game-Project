@@ -15,12 +15,13 @@ MonoBehaviour:
   movementVelocity: 15
   jumpVelocity: 15
   amountOfJumps: 2
-  gravityScale: 5
   dashVelocity: 18
   dashTime: 0.25
   dashCooldown: 0.2
   dashAttackCooldown: 0.2
   coyoteTime: 0.2
+  gravityScale: 5
+  terminalVelocityY: -30
   wallJumpVelocityX: 15
   wallJumpVelocityXMax: 15
   wallJumpVelocityY: 18

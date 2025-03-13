@@ -46,7 +46,12 @@ public class PlayerPlatformAirState : PlayerAirState
 			// Debug.Log($"isPlatformOverlap: {isPlatformOverlap}, isPlatformOverlapTop: {isPlatformOverlapTop}");
 			if (isPlatformOverlap != null || isPlatformOverlapTop != null)
 			{	
-				if (player.DashAttackState.CanAttackCooldown(CombatInputs.primaryAttackPress, CombatInputs.dashAttack))
+				if (downInput && player.FallAttackState.CanAttack(CombatInputs.primaryAttackPress, CombatInputs.fallAttack))
+				{
+					// StopPlatformMove();
+					stateMachine.ChangeState(player.FallAttackState);
+				}
+				else if (player.DashAttackState.CanAttackCooldown(CombatInputs.primaryAttackPress, CombatInputs.dashAttack))
 				{
 					StopPlatformMove();
 					stateMachine.ChangeState(player.DashAttackState);

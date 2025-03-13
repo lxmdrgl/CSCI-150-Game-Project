@@ -13,7 +13,7 @@ public class PlayerAttackState : PlayerActionState
 
     protected int inputIndex;
 
-    private bool canInterrupt;
+    // private bool canInterrupt;
 
     private bool checkFlip;
     private bool checkInterruptable;
@@ -79,15 +79,11 @@ public class PlayerAttackState : PlayerActionState
             weapon.EventHandler.OnAttackActionInvoke();
         }
 
-        if (isGrounded)
-        {
-            
-        }
-
+        // Debug.Log("checkInterruptable: " + checkInterruptable + " " + inputIndex);
         if (checkInterruptable) {
             if (jumpInput || dashInput) {
+                // Debug.Log("Interrupt attack: " + string.Join(", ", player.InputHandler.AttackInputs));
                 HandleUseInput();
-                Debug.Log("Interrupt attack: " + string.Join(", ", player.InputHandler.AttackInputs));
                 isActionDone = true;
             }
         }
@@ -121,7 +117,7 @@ public class PlayerAttackState : PlayerActionState
         weaponGenerator.OnWeaponGenerating += HandleWeaponGenerating;
         
         checkFlip = true;
-        canInterrupt = false;
+        // canInterrupt = false;
         attackEnabled = false;
 
         weapon.Enter();
@@ -168,9 +164,13 @@ public class PlayerAttackState : PlayerActionState
         bool hasInput = false;
         if (canAttack)
         {
+            // Debug.Log("CanAttack: " + string.Join(", ", player.InputHandler.AttackInputs));
             hasInput = player.InputHandler.SimulateAttackInput(input, output);
+            /* if (hasInput) 
+            {
+                Debug.Log("HasInput CanAttack: " + string.Join(", ", player.InputHandler.AttackInputs));
+            } */
         }
-        // Debug.Log(string.Join(", ", player.InputHandler.AttackInputs));
         return canAttack && hasInput;
     }
 
@@ -211,8 +211,11 @@ public class PlayerAttackState : PlayerActionState
 
     // private void HandleEnableInterrupt() => canInterrupt = true;
 
-    private void HandleUseInput() => player.InputHandler.UseAttackInput(inputIndex);
-
+    private void HandleUseInput() 
+    {
+        // Debug.Log("HandleUseInput: " + inputIndex);
+        player.InputHandler.UseAttackInput(inputIndex);
+    }
     private void HandleFinish()
     {
         AnimationFinishTrigger();

@@ -65,7 +65,7 @@ namespace Game.CoreSystem
         public void SetGravityScale(float gravityScale)
         {
             RB.gravityScale = gravityScale;
-            Debug.Log("Gravity scale: " + RB.gravityScale);
+            // Debug.Log("Gravity scale: " + RB.gravityScale);
         }
 
         public void CheckIfShouldFlip(int xInput)
