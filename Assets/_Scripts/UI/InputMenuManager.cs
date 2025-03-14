@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using System;
 
 public class InputMenuManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class InputMenuManager : MonoBehaviour
     public PlayerInputHandler InputHandler2 { get; private set; }
     private PlayerInput playerInput1;
     private PlayerInput playerInput2;
+    public int playerIndex;
+
+    public event Action<int> OnButtonClickedEvent;
 
 
     void Start()
@@ -39,15 +43,27 @@ public class InputMenuManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        /* if ((InputHandler1 != null && InputHandler1.UpgradeOpenInput) || (InputHandler2 != null && InputHandler2.UpgradeOpenInput))
         {
-            if ((InputHandler1 != null && InputHandler1.UpgradeOpenInput) || (InputHandler2 != null && InputHandler2.UpgradeOpenInput))
+            if (!isPaused)
             {
-                if (!isPaused)
-                {
-                    Pause();
-                }
+                Pause();
             }
-        }
+        } */
+    }
+    public void OpenMenu()
+    {
+        Pause();
+    }
+
+    public void OnButtonClicked(int index)
+    {
+        playerIndex = index;
+        Debug.Log("Button clicked: " + index);
+        OnButtonClickedEvent?.Invoke(index);
+        Unpause();
+    }
 
     #region Pause/Unpause Functions
     public void Pause()
@@ -55,8 +71,14 @@ public class InputMenuManager : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0f;
 
-        playerInput1.SwitchCurrentActionMap("UI");
-        playerInput2.SwitchCurrentActionMap("UI");
+        if (playerInput1 != null)
+        {
+            playerInput1.SwitchCurrentActionMap("UI");
+        }
+        if (playerInput2 != null)
+        {
+            playerInput2.SwitchCurrentActionMap("UI");
+        }
 
         OpenMainMenu();
     }

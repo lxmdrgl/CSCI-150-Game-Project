@@ -37,7 +37,7 @@ public class LevelGenerator : MonoBehaviour
     public RoomNode roomMap;
     private int roomNumber = 1;
     private int playerCount;
-    private int playerIndexToReplace = 0;
+    private InputDevice replaceInputDevice;
 
     PlayerInputManager playerInputManager;
 
@@ -51,10 +51,11 @@ public class LevelGenerator : MonoBehaviour
         spawnRoomMap();
 
         InputSystem.onDeviceChange += OnDeviceChange;
-        InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
+        inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
 
         if (spawnStartingRoom() && spawnAllRooms(roomMap)) 
         {
+
             spawnAllEnemies(roomMap);
 
             UnityEngine.Debug.Log("player count: " + playerCount);
@@ -74,6 +75,7 @@ public class LevelGenerator : MonoBehaviour
                 UnityEngine.Debug.Log("PLAYERCOUNT NOT SET");
             }
 
+            InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
 
         } 
         else 
@@ -293,6 +295,7 @@ public class LevelGenerator : MonoBehaviour
                 playerHealthBar2.SetPlayer(newPlayer.gameObject);
                 pauseMenu.player1 = newPlayer.gameObject;
                 upgradeMenu.player1 = newPlayer.gameObject;
+                inputMenu.player1 = newPlayer.gameObject;
             }   
             else
             {
@@ -311,6 +314,7 @@ public class LevelGenerator : MonoBehaviour
                 playerHealthBar1.SetPlayer(newPlayer.gameObject);
                 pauseMenu.player1 = newPlayer.gameObject;
                 upgradeMenu.player1 = newPlayer.gameObject;
+                inputMenu.player1 = newPlayer.gameObject;
             }
             else if (newPlayer.playerIndex == 1)
             {
@@ -318,6 +322,7 @@ public class LevelGenerator : MonoBehaviour
                 playerHealthBar2.SetPlayer(newPlayer.gameObject);
                 pauseMenu.player2 = newPlayer.gameObject;
                 upgradeMenu.player2 = newPlayer.gameObject;
+                inputMenu.player2 = newPlayer.gameObject;
             }
             else
             {
@@ -332,6 +337,7 @@ public class LevelGenerator : MonoBehaviour
         gameplayCanvas.SetDependencies();
         pauseMenu.SetDependencies();
         upgradeMenu.SetDependencies();
+        inputMenu.SetDependencies();
     }
 
     void spawnPlayer(int count)
@@ -414,11 +420,6 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    public void setPlayerIndexToReplace(int index)
-    {
-        playerIndexToReplace = index;
-    }
-
     private void OnUnpairedDeviceUsed(InputControl control, InputEventPtr eventPtr)
     {
         InputDevice newDevice = control.device;
@@ -434,13 +435,25 @@ public class LevelGenerator : MonoBehaviour
         int playerIndexToReplace = 0; // Default to Player 1
 
         // If there are two players, decide which one to replace based on your criteria
+        if (PlayerInput.all.Count == 1)
+        {
+            ReplacePlayerInput(newDevice, playerIndexToReplace);
+        }
         if (PlayerInput.all.Count > 1)
         {
-            // Example: Replace Player 2's device
-            playerIndexToReplace = 1;
+            UnityEngine.Debug.Log("Replacing input device for player " + (playerIndexToReplace + 1));
+            if (newDevice != null)
+            {
+                UnityEngine.Debug.Log("Replacing input device: " + newDevice.displayName);
+            }
+            else
+            {
+                UnityEngine.Debug.LogError("New device is null.");
+            }
+            replaceInputDevice = newDevice;
+            inputMenu.OpenMenu();
         }
 
-        ReplacePlayerInput(newDevice, playerIndexToReplace);
     }
 
     private void ReplacePlayerInput(InputDevice newDevice, int playerIndex)
