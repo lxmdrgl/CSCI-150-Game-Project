@@ -178,18 +178,18 @@ public class LevelGenerator : MonoBehaviour
 
         newNode.roomObject.transform.position += currNodeManager.exits[exitIdx].transform.position - newNodeManager.entrances[entranceIdx].transform.position;
         
-        foreach (BoxCollider2D collider in newNodeManager.colliders) {
-            if (collider.gameObject.layer == LayerMask.NameToLayer("Room")) {
-                RoomCollider roomCollider = collider.GetComponent<RoomCollider>();
+        // foreach (BoxCollider2D collider in newNodeManager.colliders) {
+        //     if (collider.gameObject.layer == LayerMask.NameToLayer("Room")) {
+        //         RoomCollider roomCollider = collider.GetComponent<RoomCollider>();
                 
-                roomCollider.enableCollider();
-                roomCollider.tryCollider();
+        //         roomCollider.enableCollider();
+        //         roomCollider.tryCollider();
 
-                if (roomCollider.hasCollision) {                
-                    // UnityEngine.Debug.Log($"Collision detected: {collider.transform.parent}");
-                }    
-            }
-        }
+        //         if (roomCollider.hasCollision) {                
+        //             UnityEngine.Debug.Log($"Collision detected: {collider.transform.parent}");
+        //         }    
+        //     }
+        // }
 
         // List<Collider2D> results = new List<Collider2D>();
         // ContactFilter2D contactFilter = new ContactFilter2D();
