@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,4 +40,3 @@ public class EE_IdleState : IdleState
         base.PhysicsUpdate();
     }
 }
-*/

@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,4 +48,3 @@ public class EE_PlayerDetectedState : PlayerDetectedState
         base.PhysicsUpdate();
     }
 }
-*/

@@ -9,7 +9,7 @@ public class D_ExplosiveAttackState : ScriptableObject
     public float projectileDamage = 10f;
     public float projectileSpeed = 12f;
     public float projectileTravelDistance = 10f;
-    public float explosionRadius = 3f; // Explosion area
+    public float explosionRadius = 3f; // ✅ Explosion area
     public Vector2 knockbackAngle = Vector2.one;
     public float knockbackStrength = 10f;
     public LayerMask whatIsPlayer;

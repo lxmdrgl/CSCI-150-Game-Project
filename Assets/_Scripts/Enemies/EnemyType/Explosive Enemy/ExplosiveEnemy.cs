@@ -1,4 +1,4 @@
-/*using Unity.VisualScripting;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ExplosiveEnemy : Entity
@@ -103,4 +103,3 @@ public class ExplosiveEnemy : Entity
         stats.Health.OnValueChange -= HandleDamageTaken;
     }
 }
-*/

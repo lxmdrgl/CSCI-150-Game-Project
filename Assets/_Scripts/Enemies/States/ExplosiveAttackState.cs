@@ -1,79 +1,75 @@
+using System.Collections;
+using System.Collections.Generic;
+using Game.Projectiles;
 using UnityEngine;
+using Game.CoreSystem;
 
 public class ExplosiveAttackState : AttackState
 {
-    protected D_ExplosiveAttackState stateData; // Data for this state (e.g., projectile prefab)
-    protected Transform attackPosition;         // Where the projectile spawns
-    //private bool isAnimationFinished;           // Tracks when the attack animation ends
 
-    // State data for transitions
-    protected D_CooldownState cooldownData;
-    protected D_IdleState idleData;
+    public Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+    private Movement movement;
+    protected D_ExplosiveAttackState stateData;
+    protected Transform attackPosition;
 
-    // Constructor: Pass entity, animation name, attack position, and state data
-    public ExplosiveAttackState(Entity entity, string animBoolName, Transform attackPosition, 
-        D_ExplosiveAttackState stateData, D_CooldownState cooldownData, D_IdleState idleData) 
+    public ExplosiveAttackState(Entity entity, string animBoolName, Transform attackPosition, D_ExplosiveAttackState stateData) 
         : base(entity, animBoolName, attackPosition.gameObject)
     {
         this.stateData = stateData;
         this.attackPosition = attackPosition;
-        this.cooldownData = cooldownData;
-        this.idleData = idleData;
     }
 
     public override void DoChecks()
     {
         base.DoChecks();
-        isPlayerInAgroRange = entity.CheckPlayerInAgroRange(); // Check if player is in range
+        isPlayerInAgroRange = entity.CheckPlayerInMaxAgroRange();
     }
 
     public override void Enter()
     {
         base.Enter();
-        isAnimationFinished = false; // Reset animation flag
+        isAnimationFinished = false;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        // Transition to cooldown or idle after animation finishes
+        
         if (isAnimationFinished)
         {
-            if (isPlayerInAgroRange && cooldownData != null)
+            if (isPlayerInAgroRange)
             {
-                entity.stateMachine.ChangeState(new CooldownState(entity, "cooldown", cooldownData));
-            }
-            else
-            {
-                entity.stateMachine.ChangeState(new IdleState(entity, "idle", idleData));
+                TriggerAttack();
             }
         }
     }
 
-    public override bool TriggerAttack()
+    public override bool TriggerAttack() 
     {
         base.TriggerAttack();
 
-        // Spawn the explosive projectile
+        Debug.Log("⚠️ Spawning explosive projectile...");
+
+        // Instantiate the explosive projectile at the attack position
         GameObject projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
         ExplosiveProjectile projectileScript = projectile.GetComponent<ExplosiveProjectile>();
 
         if (projectileScript != null)
         {
+            Debug.Log("✅ Found ExplosiveProjectile script, firing projectile...");
             projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance);
-            return true; // Successfully spawned
+            return true; // Return true after successful attack
         }
         else
         {
-            Debug.LogError("No ExplosiveProjectile script found on spawned object!");
-            return false;
+            Debug.LogError("❌ No ExplosiveProjectile script found on spawned object!");
+            return false; // Return false if attack failed
         }
     }
 
     public override void FinishAttack()
     {
         base.FinishAttack();
-        isAnimationFinished = true; // Mark animation as complete
+        isAnimationFinished = true;
     }
 }

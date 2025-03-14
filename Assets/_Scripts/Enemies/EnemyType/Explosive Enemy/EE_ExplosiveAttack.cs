@@ -1,5 +1,4 @@
-/*using UnityEngine;
-using Game.Projectiles;
+using UnityEngine;
 
 public class EE_ExplosiveAttackState : ExplosiveAttackState
 {
@@ -67,4 +66,4 @@ public class EE_ExplosiveAttackState : ExplosiveAttackState
         base.FinishAttack();
         isAnimationFinished = true;
     }
-}*/
+}

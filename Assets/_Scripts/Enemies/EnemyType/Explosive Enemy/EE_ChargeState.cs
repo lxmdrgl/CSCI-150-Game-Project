@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Game.CoreSystem;
 using UnityEngine;
@@ -54,10 +54,10 @@ public class EE_ChargeState : ChargeState
                 stateMachine.ChangeState(enemy.rangedAttackState);
             }
             // Radial attack if the player is higher up
-            else if (verticalDistance >= 3f)
-            {
-                stateMachine.ChangeState(enemy.radialRangedAttackState);
-            }
+            //else if (verticalDistance >= 3f)
+            //{
+            //    stateMachine.ChangeState(enemy.radialRangedAttackState);
+            //}
 
         }
         else if (!isDetectingLedge || isDetectingWall)
@@ -71,4 +71,3 @@ public class EE_ChargeState : ChargeState
         base.PhysicsUpdate();
     }
 }
-*/
