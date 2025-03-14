@@ -1,0 +1,1142 @@
+fileFormatVersion: 2
+guid: 27142e4ad501dc54184c07b1af4f48a8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 206722160481932544
+    second: barrhit and death_0
+  - first:
+      213: -3475526660450073248
+    second: barrhit and death_1
+  - first:
+      213: -6181086411771874598
+    second: barrhit and death_2
+  - first:
+      213: 8316243417655574681
+    second: barrhit and death_3
+  - first:
+      213: 8447220703062057121
+    second: barrhit and death_4
+  - first:
+      213: 3875063393814937420
+    second: barrhit and death_5
+  - first:
+      213: -203691109654748822
+    second: barrhit and death_6
+  - first:
+      213: -6336006485729318926
+    second: barrhit and death_7
+  - first:
+      213: -1722881809896247162
+    second: barrhit and death_8
+  - first:
+      213: -8252466902860915023
+    second: barrhit and death_9
+  - first:
+      213: 6937859064549622433
+    second: barrhit and death_10
+  - first:
+      213: -4263046565233288684
+    second: barrhit and death_11
+  - first:
+      213: -7082794365402831862
+    second: barrhit and death_12
+  - first:
+      213: -8827676352313653190
+    second: barrhit and death_13
+  - first:
+      213: 6135599193407867108
+    second: barrhit and death_14
+  - first:
+      213: 1933964053902560137
+    second: barrhit and death_15
+  - first:
+      213: 8570388859305181435
+    second: barrhit and death_16
+  - first:
+      213: 8922316175993748226
+    second: barrhit and death_17
+  - first:
+      213: 7715385454298296998
+    second: barrhit and death_18
+  - first:
+      213: 1727745436371031925
+    second: barrhit and death_19
+  - first:
+      213: -3205551267731896953
+    second: barrhit and death_20
+  - first:
+      213: 5379657254827319258
+    second: barrhit and death_21
+  - first:
+      213: -6658629175970265733
+    second: barrhit and death_22
+  - first:
+      213: 5885778760018597503
+    second: barrhit and death_23
+  - first:
+      213: 7900880435788765622
+    second: barrhit and death_24
+  - first:
+      213: 551695295092569527
+    second: barrhit and death_25
+  - first:
+      213: -5192970046401142994
+    second: barrhit and death_26
+  - first:
+      213: 3480119985471999348
+    second: barrhit and death_27
+  - first:
+      213: 7244556895250261911
+    second: barrhit and death_28
+  - first:
+      213: 5569105048161468861
+    second: barrhit and death_29
+  - first:
+      213: -3883435234509996359
+    second: barrhit and death_30
+  - first:
+      213: 6119762031590781439
+    second: barrhit and death_31
+  - first:
+      213: -2952925929929205873
+    second: barrhit and death_32
+  - first:
+      213: 5334052727098033436
+    second: barrhit and death_33
+  - first:
+      213: 1735671353881766426
+    second: barrhit and death_34
+  - first:
+      213: 6999781631015428749
+    second: barrhit and death_35
+  - first:
+      213: -7833651468067243158
+    second: barrhit and death_36
+  - first:
+      213: 6328074407307451513
+    second: barrhit and death_37
+  - first:
+      213: 7687952547253163242
+    second: barrhit and death_38
+  - first:
+      213: 1032694692801250492
+    second: barrhit and death_39
+  - first:
+      213: -9198080886306356678
+    second: barrhit and death_40
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: barrhit and death_0
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 22
+        width: 37
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0051abea5bc6ed200800000000000000
+      internalID: 206722160481932544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_1
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 22
+        width: 37
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 065497c9ae274cfc0800000000000000
+      internalID: -3475526660450073248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_2
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 22
+        width: 37
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad2f75448ae583aa0800000000000000
+      internalID: -6181086411771874598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_3
+      rect:
+        serializedVersion: 2
+        x: 627
+        y: 22
+        width: 37
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9908a07b35b396370800000000000000
+      internalID: 8316243417655574681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_4
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 46
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a0e651697e8a3570800000000000000
+      internalID: 8447220703062057121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_5
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 46
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4f757e20adf6c530800000000000000
+      internalID: 3875063393814937420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_6
+      rect:
+        serializedVersion: 2
+        x: 1234
+        y: 46
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a61af15d3085c2df0800000000000000
+      internalID: -203691109654748822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_7
+      rect:
+        serializedVersion: 2
+        x: 1251
+        y: 43
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f7688bbbabf118a0800000000000000
+      internalID: -6336006485729318926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_8
+      rect:
+        serializedVersion: 2
+        x: 1429
+        y: 46
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 680f6234f181718e0800000000000000
+      internalID: -1722881809896247162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_9
+      rect:
+        serializedVersion: 2
+        x: 1451
+        y: 51
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1be9e464319597d80800000000000000
+      internalID: -8252466902860915023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_10
+      rect:
+        serializedVersion: 2
+        x: 1602
+        y: 22
+        width: 38
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a244349f0a384060800000000000000
+      internalID: 6937859064549622433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_11
+      rect:
+        serializedVersion: 2
+        x: 1646
+        y: 56
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41a125a4cbd96d4c0800000000000000
+      internalID: -4263046565233288684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_12
+      rect:
+        serializedVersion: 2
+        x: 1797
+        y: 22
+        width: 55
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a04a6090d0cd4bd90800000000000000
+      internalID: -7082794365402831862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_13
+      rect:
+        serializedVersion: 2
+        x: 2014
+        y: 46
+        width: 15
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a388a3ce02bcd7580800000000000000
+      internalID: -8827676352313653190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_14
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 13
+        width: 57
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e8cf3765f6062550800000000000000
+      internalID: 6135599193407867108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_15
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 22
+        width: 15
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98b8c397f02d6da10800000000000000
+      internalID: 1933964053902560137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_16
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 38
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf0c9d9724320f670800000000000000
+      internalID: 8570388859305181435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_17
+      rect:
+        serializedVersion: 2
+        x: 1254
+        y: 28
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20b34d32a4f62db70800000000000000
+      internalID: 8922316175993748226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_18
+      rect:
+        serializedVersion: 2
+        x: 1266
+        y: 39
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a27aac513e821b60800000000000000
+      internalID: 7715385454298296998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_19
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 45
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5779235025f2af710800000000000000
+      internalID: 1727745436371031925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_20
+      rect:
+        serializedVersion: 2
+        x: 1643
+        y: 45
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78589811b189383d0800000000000000
+      internalID: -3205551267731896953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_21
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 15
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adfd55745c168aa40800000000000000
+      internalID: 5379657254827319258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_22
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 37
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b758d3b1b0cc793a0800000000000000
+      internalID: -6658629175970265733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_23
+      rect:
+        serializedVersion: 2
+        x: 1442
+        y: 38
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f769279199c7ea150800000000000000
+      internalID: 5885778760018597503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_24
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 32
+        width: 19
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b9d50c45e095ad60800000000000000
+      internalID: 7900880435788765622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_25
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 33
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b53f38a2f308a700800000000000000
+      internalID: 551695295092569527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_26
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 15
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2f140f914ddee7b0800000000000000
+      internalID: -5192970046401142994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_27
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 15
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47dcbc530bedb4030800000000000000
+      internalID: 3480119985471999348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_28
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 15
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 797af78ec16d98460800000000000000
+      internalID: 7244556895250261911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_29
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 14
+        width: 29
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db1cf70f88f694d40800000000000000
+      internalID: 5569105048161468861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_30
+      rect:
+        serializedVersion: 2
+        x: 1045
+        y: 13
+        width: 34
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bebbc2ca344b1ac0800000000000000
+      internalID: -3883435234509996359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_31
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 14
+        width: 26
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff134e2d423cde450800000000000000
+      internalID: 6119762031590781439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_32
+      rect:
+        serializedVersion: 2
+        x: 1212
+        y: 14
+        width: 20
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f87978213891507d0800000000000000
+      internalID: -2952925929929205873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_33
+      rect:
+        serializedVersion: 2
+        x: 1240
+        y: 13
+        width: 34
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c15c1ebb1bc560a40800000000000000
+      internalID: 5334052727098033436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_34
+      rect:
+        serializedVersion: 2
+        x: 1283
+        y: 14
+        width: 19
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1aa1fe76e7561810800000000000000
+      internalID: 1735671353881766426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_35
+      rect:
+        serializedVersion: 2
+        x: 1407
+        y: 14
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d82aaf59e48342160800000000000000
+      internalID: 6999781631015428749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_36
+      rect:
+        serializedVersion: 2
+        x: 1435
+        y: 13
+        width: 34
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6b72a78e77494390800000000000000
+      internalID: -7833651468067243158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_37
+      rect:
+        serializedVersion: 2
+        x: 1493
+        y: 14
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97c1dc75526d1d750800000000000000
+      internalID: 6328074407307451513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_38
+      rect:
+        serializedVersion: 2
+        x: 1630
+        y: 13
+        width: 34
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae49515fb1811ba60800000000000000
+      internalID: 7687952547253163242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_39
+      rect:
+        serializedVersion: 2
+        x: 1825
+        y: 13
+        width: 34
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb489d50a5ed45e00800000000000000
+      internalID: 1032694692801250492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: barrhit and death_40
+      rect:
+        serializedVersion: 2
+        x: 1992
+        y: 13
+        width: 62
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a32466cda2ad95080800000000000000
+      internalID: -9198080886306356678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

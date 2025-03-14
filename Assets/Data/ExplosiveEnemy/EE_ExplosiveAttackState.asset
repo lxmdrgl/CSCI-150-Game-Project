@@ -21,4 +21,4 @@ MonoBehaviour:
   knockbackStrength: 10
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
