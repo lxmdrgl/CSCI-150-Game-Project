@@ -59,10 +59,10 @@ public class InputMenuManager : MonoBehaviour
 
     public void OnButtonClicked(int index)
     {
+        Unpause();
         playerIndex = index;
         Debug.Log("Button clicked: " + index);
         OnButtonClickedEvent?.Invoke(index);
-        Unpause();
     }
 
     #region Pause/Unpause Functions
@@ -85,6 +85,7 @@ public class InputMenuManager : MonoBehaviour
 
     public void Unpause()
     {
+        Debug.Log("Unpausing game...");
         isPaused = false;
         Time.timeScale = 1f;
 

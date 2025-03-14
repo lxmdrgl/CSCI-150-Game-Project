@@ -238,6 +238,13 @@ public class LevelGenerator : MonoBehaviour
 
     #region SpawnPlayer
 
+    void setPlayerDependencies(PlayerInput newPlayer)
+    {
+        setCameras(newPlayer);
+        setUserInterface(newPlayer);
+        setEnemyDependencies();
+    }
+
     void setCameras(PlayerInput newPlayer)
     {
         int activePlayerCount = PlayerInput.all.Count;
@@ -373,9 +380,10 @@ public class LevelGenerator : MonoBehaviour
                     newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
                     newPlayer.transform.rotation = levelTransform.rotation;
                     
-                    setCameras(newPlayer);
+                    setPlayerDependencies(newPlayer);
+                    /* setCameras(newPlayer);
                     setUserInterface(newPlayer);
-                    setEnemyDependencies();
+                    setEnemyDependencies(); */
                 }
                 else
                 {
@@ -383,7 +391,7 @@ public class LevelGenerator : MonoBehaviour
 
                     // Pause the game, UI saying wait for second player, disable player 1 input (PlayerInput.all[0])
 
-                    StartCoroutine(WaitForSecondPlayer(playerInputManager, i));
+                    StartCoroutine(WaitForUnpairedPlayer(playerInputManager, i));
                     break;
                 }
             }
@@ -408,7 +416,7 @@ public class LevelGenerator : MonoBehaviour
 
                 // Pause the game, UI saying second player disconnected, disable player 1 input (PlayerInput.all[0])
 
-                StartCoroutine(WaitForSecondPlayer(playerInputManager, player.playerIndex));
+                StartCoroutine(WaitForUnpairedPlayer(playerInputManager, player.playerIndex));
             }
         }
         else if (change == InputDeviceChange.Reconnected)
@@ -494,7 +502,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitForSecondPlayer(PlayerInputManager playerInputManager, int playerIndex)
+    private IEnumerator WaitForUnpairedPlayer(PlayerInputManager playerInputManager, int playerIndex)
     {
         GameObject levelOrigin = GameObject.Find("LevelOrigin");
         Transform levelTransform;
@@ -510,8 +518,10 @@ public class LevelGenerator : MonoBehaviour
                     newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
                     newPlayer.transform.rotation = levelTransform.rotation;
 
-                    setCameras(newPlayer);
-                    setUserInterface(newPlayer);
+
+                    setPlayerDependencies(newPlayer);
+                    /* setCameras(newPlayer);
+                    setUserInterface(newPlayer); */
 
                     // Second player found, resume the game
 
