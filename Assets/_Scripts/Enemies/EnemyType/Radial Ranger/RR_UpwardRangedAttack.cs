@@ -35,7 +35,7 @@ public class RR_UpwardRangedAttack : RangedAttackState
     {
         base.LogicUpdate();
 
-        Vector2 direction = (enemy.playersInRange[0].transform.position - enemy.transform.position).normalized;
+        Vector2 direction = (enemy.targetPlayer.position - enemy.transform.position).normalized;
 
         if ((direction.x > 0 &&  Movement?.FacingDirection < 0) || (direction.x < 0 && Movement?.FacingDirection > 0))
         {
@@ -49,7 +49,7 @@ public class RR_UpwardRangedAttack : RangedAttackState
             Projectile projectileScript = projectile.GetComponent<Projectile>();
             if (projectileScript != null)
             {
-                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, enemy.playersInRange[0].transform.position, "radialNoGravity", enemy.transform.rotation.y, stateData.gravityScale);
+                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, enemy.targetPlayer.position, "radialNoGravity", enemy.transform.rotation.y, stateData.gravityScale);
             }
 
             Damage damageComponent = projectile.GetComponentInChildren<Damage>();

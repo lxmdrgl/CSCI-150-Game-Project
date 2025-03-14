@@ -32,7 +32,7 @@ public class SwoopFlying_Pursuit : ChargeState
         base.Exit();
         movingToTargetPosition = false;
 
-        if (((enemy.playersInRange[0].transform.position - enemy.transform.position).x > 0 && Movement?.FacingDirection < 0) || ((enemy.playersInRange[0].transform.position - enemy.transform.position).x < 0 && Movement?.FacingDirection > 0))
+        if (((enemy.targetPlayer.position - enemy.transform.position).x > 0 && Movement?.FacingDirection < 0) || ((enemy.targetPlayer.position - enemy.transform.position).x < 0 && Movement?.FacingDirection > 0))
         {
             Movement?.Flip();
         }
@@ -69,15 +69,15 @@ public class SwoopFlying_Pursuit : ChargeState
         float offsetX = 5.0f; 
         float offsetY = 3.0f; 
 
-        if (enemy.transform.position.x < enemy.playersInRange[0].transform.position.x)
+        if (enemy.transform.position.x < enemy.targetPlayer.position.x)
         {
             // Move to the top left of the player
-            targetPosition = new Vector2(enemy.playersInRange[0].transform.position.x - offsetX, enemy.playersInRange[0].transform.position.y + offsetY);
+            targetPosition = new Vector2(enemy.targetPlayer.position.x - offsetX, enemy.targetPlayer.position.y + offsetY);
         }
         else
         {
             // Move to the top right of the player
-            targetPosition = new Vector2(enemy.playersInRange[0].transform.position.x + offsetX, enemy.playersInRange[0].transform.position.y + offsetY);
+            targetPosition = new Vector2(enemy.targetPlayer.position.x + offsetX, enemy.targetPlayer.position.y + offsetY);
         }
     }
 

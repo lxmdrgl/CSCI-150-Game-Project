@@ -29,7 +29,8 @@ public class StunState : EnemyState {
 		// isGrounded = CollisionSenses.Ground;
 		performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
 		isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
-		isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
+		isPlayerInPursuitRange = entity.isPlayerInPursuitRange;
+
 	}
 
 	public override void Enter() {

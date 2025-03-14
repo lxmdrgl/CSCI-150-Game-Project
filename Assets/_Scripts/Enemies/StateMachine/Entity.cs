@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Game.CoreSystem;
+using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 public class Entity : MonoBehaviour, IDataPersistence
 {
     private Movement Movement { get => movement ?? Core.GetCoreComponent(ref movement); }
@@ -19,6 +21,9 @@ public class Entity : MonoBehaviour, IDataPersistence
     [SerializeField]
 	public Transform playerCheck;
     public List<GameObject> playersInRange;
+    public Transform playerPosition1, playerPosition2;
+    public Transform targetPlayer;
+    public bool isPlayerInPursuitRange;
     private float currentStunResistance;
 
     private Vector2 velocityWorkspace;
@@ -26,7 +31,7 @@ public class Entity : MonoBehaviour, IDataPersistence
     protected bool isStunned;
 
     protected Stats stats;
-
+    public CircleCollider2D pursuitRangeCollider;
     public string UniqueId;
     public void GenerateGuid()
     {
@@ -45,6 +50,10 @@ public class Entity : MonoBehaviour, IDataPersistence
         stateMachine = new EnemyStateMachine();
 
         damageFlash = GetComponent<DamageFlash>();
+
+        pursuitRangeCollider.radius = entityData.pursuitRange;
+        
+        playersInRange = new List<GameObject>();
     }
 
     public virtual void Update()
@@ -80,34 +89,56 @@ public class Entity : MonoBehaviour, IDataPersistence
         return false;
     }
 
-    public virtual bool CheckPlayerInPursuitRange()
+    public void SetDependencies()
     {
-        // Perform the CircleCast to check for players
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(
-            playerCheck.position,
-            entityData.pursuitRange,
-            Vector2.zero, // Set distance to zero for a stationary circle cast
-            0,
-            entityData.whatIsPlayer
-        );
+        // Find all players in the scene
+        PlayerInput[] players = FindObjectsByType<PlayerInput>(FindObjectsSortMode.None);
 
-        // Clear the list of players in range
+        // Clear the playersInRange list to avoid duplicates
         playersInRange.Clear();
 
-        // Add detected players to the list
-        foreach (RaycastHit2D hit in hits)
+        // Store each player's GameObject and position
+        foreach (PlayerInput player in players)
         {
-            if (hit.collider != null && hit.collider.CompareTag("Player"))
+            if (!playersInRange.Contains(player.gameObject))
             {
-                playersInRange.Add(hit.collider.gameObject);
+                playersInRange.Add(player.gameObject);
+
+                // Store player positions in playerPosition1 and playerPosition2
+                if (playersInRange.Count == 1)
+                {
+                    playerPosition1 = player.transform;
+                }
+                else if (playersInRange.Count == 2)
+                {
+                    playerPosition2 = player.transform;
+                }
             }
         }
+    }
 
-        // Debug the CircleCast for visualization
-        DebugCircleCast(playerCheck.position, entityData.pursuitRange, Vector2.zero, 0);
 
-        // Return true if any players are in range
-        return playersInRange.Count > 0;
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerInPursuitRange = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isPlayerInPursuitRange = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isPlayerInPursuitRange = false;
+        }
     }
 
     void DebugCircleCast(Vector2 origin, float radius, Vector2 direction, float distance)

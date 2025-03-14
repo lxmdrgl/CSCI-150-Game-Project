@@ -35,10 +35,11 @@ public class RR_RangedAttackState : RangedAttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        
+        Vector2 direction = (enemy.targetPlayer.position - enemy.transform.position).normalized;
+        Vector3 target = enemy.targetPlayer.position;
 
-        Vector2 direction = (enemy.playersInRange[0].transform.position - enemy.transform.position).normalized;
-        Vector3 target = enemy.playersInRange[0].transform.position;
-        if ((direction.x > 0 &&  Movement?.FacingDirection < 0) || (direction.x < 0 && Movement?.FacingDirection > 0))
+        if ((direction.x > 0 && Movement?.FacingDirection < 0) || (direction.x < 0 && Movement?.FacingDirection > 0))
         {
             Movement?.Flip();
         }
@@ -52,10 +53,9 @@ public class RR_RangedAttackState : RangedAttackState
             Projectile projectileScript2 = projectile2.GetComponent<Projectile>();
             GameObject projectile3 = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
             Projectile projectileScript3 = projectile3.GetComponent<Projectile>();
-            
+
             if (projectileScript != null)
             {
-                // projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, enemy.player.position, "radialWithGravity", enemy.transform.rotation.y, stateData.gravityScale);
                 Vector3 projectilePosition1 = target;
                 Vector3 projectilePosition2 = new Vector3(target.x - 2.0f, target.y, target.z);
                 Vector3 projectilePosition3 = new Vector3(target.x + 2.0f, target.y, target.z);
@@ -73,7 +73,6 @@ public class RR_RangedAttackState : RangedAttackState
                 damageComponent2.SetDamage(stateData.projectileDamage, stateData.knockbackAngle, stateData.knockbackStrength);
                 damageComponent3.SetDamage(stateData.projectileDamage, stateData.knockbackAngle, stateData.knockbackStrength);
             }
-
             if (isPlayerInPursuitRange) // Player is in agro range
             {
                 stateMachine.ChangeState(enemy.chargeState); // Transition to PlayerDetectedState
@@ -83,6 +82,7 @@ public class RR_RangedAttackState : RangedAttackState
                 stateMachine.ChangeState(enemy.lookForPlayerState); // Transition to LookForPlayerState
             }
         }
+
     }
 
     public override void PhysicsUpdate()

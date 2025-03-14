@@ -27,7 +27,8 @@ public class MoveState : EnemyState
         isDetectingLedge = CollisionSenses.LedgeVertical;
         isDetectingWall = CollisionSenses.WallFront;
         isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
-        isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
+		isPlayerInPursuitRange = entity.isPlayerInPursuitRange;
+
     }
 
     public override void Enter()

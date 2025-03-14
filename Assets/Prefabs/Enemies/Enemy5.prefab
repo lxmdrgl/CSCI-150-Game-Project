@@ -298,6 +298,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f129dba50ebac8448b82f69cf27910a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2063474288267477172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1933061572786687172}
+  - component: {fileID: 4446954341491533323}
+  m_Layer: 0
+  m_Name: PursuitRange
+  m_TagString: PursuitRange
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1933061572786687172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063474288267477172}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4846833722265371268}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &4446954341491533323
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063474288267477172}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 1
 --- !u!1 &2165807423997325925
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +726,7 @@ Transform:
   - {fileID: 274265649255061878}
   - {fileID: 3755304697358755252}
   - {fileID: 5242852835854976505}
+  - {fileID: 1933061572786687172}
   - {fileID: 2697570814187950225}
   - {fileID: 507281897922863390}
   m_Father: {fileID: 0}
@@ -852,6 +921,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: 3cecdba9fb223a540aecf8452d074b80, type: 2}
   playerCheck: {fileID: 3755304697358755252}
+  playersInRange: []
+  pursuitRangeCollider: {fileID: 4446954341491533323}
   UniqueId: 
   idleStateData: {fileID: 11400000, guid: 00630f1a6811faf49856aab8645206c5, type: 2}
   moveStateData: {fileID: 11400000, guid: 0b07895feb7041245952fafa58f4e383, type: 2}
@@ -918,8 +989,9 @@ MonoBehaviour:
     m_Bits: 128
   ledgeCheckVertical: {fileID: 2181997544596436395}
   platformTag: 
-  platformCheck: {fileID: 0}
   platformCheckBottom: {fileID: 0}
+  platformCheckTop: {fileID: 0}
+  playerHeight: 0
   platformCheckBottomDistance: 0
   platformCheckTopDistance: 0
   platformCheckBottomExtendDistance: 0

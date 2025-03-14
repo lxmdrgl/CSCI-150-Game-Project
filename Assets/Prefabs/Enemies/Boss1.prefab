@@ -222,6 +222,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f129dba50ebac8448b82f69cf27910a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2096424277341498582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3212769931651078232}
+  - component: {fileID: 4313723213794779289}
+  m_Layer: 0
+  m_Name: PursuitRange
+  m_TagString: PursuitRange
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3212769931651078232
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096424277341498582}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4846833722265371268}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &4313723213794779289
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096424277341498582}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 1
 --- !u!1 &2165807423997325925
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,6 +649,7 @@ Transform:
   m_Children:
   - {fileID: 274265649255061878}
   - {fileID: 3755304697358755252}
+  - {fileID: 3212769931651078232}
   - {fileID: 5242852835854976505}
   - {fileID: 2697570814187950225}
   - {fileID: 2179996373575558070}
@@ -656,14 +725,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: 23b71e26830d1b94eaa66e6b4fe873ff, type: 2}
   playerCheck: {fileID: 3755304697358755252}
+  playersInRange: []
+  pursuitRangeCollider: {fileID: 4313723213794779289}
   UniqueId: 
   idleStateData: {fileID: 11400000, guid: 99b502b7f957b6e41abfa754948ac0d9, type: 2}
   chargeStateData: {fileID: 11400000, guid: 7d619e020d1f71e4db3f77dd9d25abb3, type: 2}
   meleeAttackStateData: {fileID: 11400000, guid: a7c079c45d9592649a1e2c7f63d1fce3, type: 2}
   deadStateData: {fileID: 11400000, guid: 9b067725bf861f44fad65335ff2db33e, type: 2}
   cooldownStateData: {fileID: 11400000, guid: 599782faf83778143a91c1673249a38d, type: 2}
-  player: {fileID: 0}
-  rb: {fileID: 0}
 --- !u!50 &9113077644204671259
 Rigidbody2D:
   serializedVersion: 5
@@ -841,8 +910,9 @@ MonoBehaviour:
     m_Bits: 128
   ledgeCheckVertical: {fileID: 2181997544596436395}
   platformTag: 
-  platformCheck: {fileID: 0}
   platformCheckBottom: {fileID: 0}
+  platformCheckTop: {fileID: 0}
+  playerHeight: 0
   platformCheckBottomDistance: 0
   platformCheckTopDistance: 0
   platformCheckBottomExtendDistance: 0

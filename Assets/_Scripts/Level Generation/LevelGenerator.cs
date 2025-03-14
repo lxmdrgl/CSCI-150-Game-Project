@@ -38,7 +38,7 @@ public class LevelGenerator : MonoBehaviour
     private int roomNumber = 1;
     private int playerCount;
     private int playerIndexToReplace = 0;
-
+    private List<Entity> enemies = new List<Entity>();
     PlayerInputManager playerInputManager;
 
     void Awake()
@@ -334,6 +334,15 @@ public class LevelGenerator : MonoBehaviour
         upgradeMenu.SetDependencies();
     }
 
+    private void setEnemyDependencies()
+    {
+        enemies = FindObjectsByType<Entity>(FindObjectsSortMode.None).ToList();
+        foreach (Entity enemy in enemies)
+        {
+            enemy.SetDependencies();
+        }
+    }
+
     void spawnPlayer(int count)
     {
         GameObject levelOrigin = GameObject.Find("LevelOrigin");
@@ -360,6 +369,7 @@ public class LevelGenerator : MonoBehaviour
                     
                     setCameras(newPlayer);
                     setUserInterface(newPlayer);
+                    setEnemyDependencies();
                 }
                 else
                 {
