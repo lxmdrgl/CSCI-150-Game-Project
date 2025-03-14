@@ -36,8 +36,8 @@ public class RR_RangedAttackState : RangedAttackState
     {
         base.LogicUpdate();
 
-        Vector2 direction = (enemy.player.position - enemy.transform.position).normalized;
-
+        Vector2 direction = (enemy.playersInRange[0].transform.position - enemy.transform.position).normalized;
+        Vector3 target = enemy.playersInRange[0].transform.position;
         if ((direction.x > 0 &&  Movement?.FacingDirection < 0) || (direction.x < 0 && Movement?.FacingDirection > 0))
         {
             Movement?.Flip();
@@ -56,9 +56,9 @@ public class RR_RangedAttackState : RangedAttackState
             if (projectileScript != null)
             {
                 // projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, enemy.player.position, "radialWithGravity", enemy.transform.rotation.y, stateData.gravityScale);
-                Vector3 projectilePosition1 = enemy.player.position;
-                Vector3 projectilePosition2 = new Vector3(enemy.player.position.x - 2.0f, enemy.player.position.y, enemy.player.position.z);
-                Vector3 projectilePosition3 = new Vector3(enemy.player.position.x + 2.0f, enemy.player.position.y, enemy.player.position.z);
+                Vector3 projectilePosition1 = target;
+                Vector3 projectilePosition2 = new Vector3(target.x - 2.0f, target.y, target.z);
+                Vector3 projectilePosition3 = new Vector3(target.x + 2.0f, target.y, target.z);
                 projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, projectilePosition1, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
                 projectileScript2.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, projectilePosition2, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
                 projectileScript3.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, projectilePosition3, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
