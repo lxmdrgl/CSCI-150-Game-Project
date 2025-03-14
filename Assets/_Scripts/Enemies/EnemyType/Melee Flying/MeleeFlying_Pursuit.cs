@@ -33,19 +33,21 @@ public class MeleeFlying_Pursuit : ChargeState
         
         if (performCloseRangeAction)
         {
-            enemy.rb.linearVelocity = Vector2.zero;
+            Movement.SetVelocityX(0);
+            Movement.SetVelocityY(0);
             stateMachine.ChangeState(enemy.meleeAttackState);
         }
         else if(isPlayerInPursuitRange)
         {
-            Vector2 direction = (enemy.player.position - enemy.transform.position).normalized;
+            Vector2 direction = (enemy.targetPlayer.position - enemy.transform.position).normalized;
 
             if ((direction.x > 0 &&  Movement?.FacingDirection < 0) || (direction.x < 0 && Movement?.FacingDirection > 0))
             {
-                Movement?.Flip();
+                Movement.Flip();
             }
 
-            enemy.rb.linearVelocity = direction * stateData.chargeSpeed;
+            Movement.SetVelocityX(direction.x * stateData.chargeSpeed);
+            Movement.SetVelocityY(direction.y * stateData.chargeSpeed);
         }
         else
         {

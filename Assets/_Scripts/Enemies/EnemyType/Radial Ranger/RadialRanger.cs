@@ -42,9 +42,6 @@ public class RadialRanger : Entity
     private Transform rangedAttackPosition;
     [SerializeField]
     private Transform radialRangedAttackPosition;
-
-    public Transform player; // Reference to the player's transform
-    public Rigidbody2D rb;
     public override void Awake()
     {
         base.Awake();
@@ -65,17 +62,6 @@ public class RadialRanger : Entity
         radialRangedAttackState = new RR_UpwardRangedAttack(this, "radialRangedAttack", radialRangedAttackPosition, rangedAttackStateData, this );
         stats.Stun.OnCurrentValueZero += HandleStunZero;
         stats.Health.OnValueChange += HandleDamageTaken;
-
-        rb = GetComponent<Rigidbody2D>();
-        GameObject playerObject = GameObject.FindWithTag("Player");
-        if (playerObject != null)
-        {
-            player = playerObject.transform;
-        }
-        else
-        {
-            Debug.LogError("Player not found in the scene! Make sure the player GameObject is tagged as 'Player'.");
-        }
     }
 
     private void HandleStunZero()

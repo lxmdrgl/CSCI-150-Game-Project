@@ -381,6 +381,74 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+--- !u!1 &2768585574289540914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5696347569896316733}
+  - component: {fileID: 6136554695012746107}
+  m_Layer: 0
+  m_Name: PursuitRange
+  m_TagString: PursuitRange
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5696347569896316733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2768585574289540914}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4846833722265371268}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &6136554695012746107
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2768585574289540914}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 1
 --- !u!1 &4280942900579701105
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,6 +756,7 @@ Transform:
   m_Children:
   - {fileID: 274265649255061878}
   - {fileID: 3755304697358755252}
+  - {fileID: 5696347569896316733}
   - {fileID: 5242852835854976505}
   - {fileID: 8523294753171614164}
   - {fileID: 8179049672531530639}
@@ -764,6 +833,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: 1e91f6d6173e5f146bc14c8c6503387c, type: 2}
   playerCheck: {fileID: 3755304697358755252}
+  playersInRange: []
+  pursuitRangeCollider: {fileID: 6136554695012746107}
   UniqueId: 
   idleStateData: {fileID: 11400000, guid: 8adebb8c913174945ae5da73791fdf82, type: 2}
   moveStateData: {fileID: 11400000, guid: 5f1f4172bc205a246b26d29a8573a475, type: 2}
@@ -777,8 +848,6 @@ MonoBehaviour:
   rangedAttackStateData: {fileID: 11400000, guid: 668c3cd35ae032a49a2f973a49573cf1, type: 2}
   rangedAttackPosition: {fileID: 8523294753171614164}
   radialRangedAttackPosition: {fileID: 8179049672531530639}
-  player: {fileID: 0}
-  rb: {fileID: 0}
 --- !u!50 &9113077644204671259
 Rigidbody2D:
   serializedVersion: 5
@@ -956,8 +1025,9 @@ MonoBehaviour:
     m_Bits: 128
   ledgeCheckVertical: {fileID: 2181997544596436395}
   platformTag: 
-  platformCheck: {fileID: 0}
   platformCheckBottom: {fileID: 0}
+  platformCheckTop: {fileID: 0}
+  playerHeight: 0
   platformCheckBottomDistance: 0
   platformCheckTopDistance: 0
   platformCheckBottomExtendDistance: 0

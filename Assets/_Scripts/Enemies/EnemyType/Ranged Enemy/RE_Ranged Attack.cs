@@ -36,6 +36,7 @@ public class RE_RangedAttackState : RangedAttackState
     {
         base.LogicUpdate();
 
+
         if (isAnimationFinished)
         {
             // Instantiate the projectile and set its properties
@@ -43,7 +44,7 @@ public class RE_RangedAttackState : RangedAttackState
             Projectile projectileScript = projectile.GetComponent<Projectile>();
             if (projectileScript != null)
             {
-                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance,enemy.player.position,"linearWithGravity", enemy.transform.rotation.y, stateData.gravityScale);
+                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance,enemy.targetPlayer.position,"linearWithGravity", enemy.transform.rotation.y, stateData.gravityScale);
             }
 
             Damage damageComponent = projectile.GetComponentInChildren<Damage>();
@@ -61,6 +62,7 @@ public class RE_RangedAttackState : RangedAttackState
                 stateMachine.ChangeState(enemy.lookForPlayerState); // Transition to LookForPlayerState
             }
         }
+        
     }
 
     public override void PhysicsUpdate()

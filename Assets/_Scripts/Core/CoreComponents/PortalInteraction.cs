@@ -27,6 +27,7 @@ namespace Game.CoreSystem
 
             locationData = portal.GetContext();
             
+            /*
             if(DataPersistenceManager.instance.disableDataPersistence)
             {
                 SceneManager.LoadScene(locationData);
@@ -40,11 +41,12 @@ namespace Game.CoreSystem
                 DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
                 DataPersistenceManager.instance.SaveGame();
             }
+            */
+
+            SceneManager.LoadScene(locationData);
 
             portal.Interact();
             locationData = null;
-
-            
         }
 
 
@@ -54,10 +56,12 @@ namespace Game.CoreSystem
 
             interactableDetector = core.GetCoreComponent<InteractableDetector>();
 
+            /*
             if(DataPersistenceManager.instance.disableDataPersistence == false)
             {
                 selectedProfileId = DataPersistenceManager.instance.GetSelectedProfileId();
             }
+            */
         }
 
         private void OnEnable()

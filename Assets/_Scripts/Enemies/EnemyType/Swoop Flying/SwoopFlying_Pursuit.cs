@@ -32,7 +32,7 @@ public class SwoopFlying_Pursuit : ChargeState
         base.Exit();
         movingToTargetPosition = false;
 
-        if (((enemy.player.position - enemy.transform.position).x > 0 && Movement?.FacingDirection < 0) || ((enemy.player.position - enemy.transform.position).x < 0 && Movement?.FacingDirection > 0))
+        if (((enemy.targetPlayer.position - enemy.transform.position).x > 0 && Movement?.FacingDirection < 0) || ((enemy.targetPlayer.position - enemy.transform.position).x < 0 && Movement?.FacingDirection > 0))
         {
             Movement?.Flip();
         }
@@ -69,15 +69,15 @@ public class SwoopFlying_Pursuit : ChargeState
         float offsetX = 5.0f; 
         float offsetY = 3.0f; 
 
-        if (enemy.transform.position.x < enemy.player.position.x)
+        if (enemy.transform.position.x < enemy.targetPlayer.position.x)
         {
             // Move to the top left of the player
-            targetPosition = new Vector2(enemy.player.position.x - offsetX, enemy.player.position.y + offsetY);
+            targetPosition = new Vector2(enemy.targetPlayer.position.x - offsetX, enemy.targetPlayer.position.y + offsetY);
         }
         else
         {
             // Move to the top right of the player
-            targetPosition = new Vector2(enemy.player.position.x + offsetX, enemy.player.position.y + offsetY);
+            targetPosition = new Vector2(enemy.targetPlayer.position.x + offsetX, enemy.targetPlayer.position.y + offsetY);
         }
     }
 
@@ -90,12 +90,14 @@ public class SwoopFlying_Pursuit : ChargeState
             Movement?.Flip();
         }
 
-        enemy.rb.linearVelocity = direction * stateData.chargeSpeed;
+        Movement.SetVelocityX(direction.x * stateData.chargeSpeed);
+        Movement.SetVelocityY(direction.y * stateData.chargeSpeed);
 
         // Check if the enemy has reached the target position
         if (Vector2.Distance(enemy.transform.position, targetPosition) < 0.1f)
         {
-            enemy.rb.linearVelocity = Vector2.zero;
+            Movement.SetVelocityX(0);
+            Movement.SetVelocityY(0);
             movingToTargetPosition = false;
         }
 
