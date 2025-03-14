@@ -104,7 +104,7 @@ namespace Game.CoreSystem
             }
         }
 
-        public RaycastHit2D PlatformBottomUp
+        /* public RaycastHit2D PlatformBottomUp
         {
             get 
             {   
@@ -117,7 +117,7 @@ namespace Game.CoreSystem
                     return new RaycastHit2D();
                 }
             }
-        }
+        } */
 
         public RaycastHit2D PlatformBottomExtend
         {
@@ -134,7 +134,7 @@ namespace Game.CoreSystem
             }
         }
 
-        public RaycastHit2D PlatformTop
+        /* public RaycastHit2D PlatformTop
         {
             get 
             {   
@@ -147,7 +147,7 @@ namespace Game.CoreSystem
                     return new RaycastHit2D();
                 }
             }
-        }
+        } */
 
         public Collider2D PlatformOverlap
         {

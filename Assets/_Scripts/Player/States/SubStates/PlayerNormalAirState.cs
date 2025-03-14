@@ -34,6 +34,7 @@ public class PlayerNormalAirState : PlayerAirState
 
         if (!isExitingState) 
         {
+            // was isPlatformOverapTop
             if (isPlatformOverlapTop != null && Movement.CurrentVelocity.y > 0.01f && !isJumpingInPlatform) 
             {   
                 // Debug.Log($"Air State: Platform State: isPlatformOverlap: {isPlatformOverlap != null}, isPlatformOverlapTop: {isPlatformOverlapTop != null}");

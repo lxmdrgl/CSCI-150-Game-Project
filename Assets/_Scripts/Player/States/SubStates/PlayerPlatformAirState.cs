@@ -15,6 +15,8 @@ public class PlayerPlatformAirState : PlayerAirState
     }	
 	public override void Enter() {
 		base.Enter();
+		UnityEngine.Debug.Log("Current state: platform air :" + isPlatformOverlap + ", "+ player.boxCollider);
+		Physics2D.IgnoreCollision(isPlatformOverlap, player.boxCollider, false);
 	}
 
 	public override void DoChecks()

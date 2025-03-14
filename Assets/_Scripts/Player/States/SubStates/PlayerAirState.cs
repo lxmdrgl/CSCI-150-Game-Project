@@ -29,8 +29,8 @@ public class PlayerAirState : PlayerState
 
     protected Collider2D isPlatformOverlap;
     protected Collider2D isPlatformOverlapTop;
-    protected RaycastHit2D isPlatformTop;
-    protected RaycastHit2D isPlatformBottomUp;
+    // protected RaycastHit2D isPlatformTop;
+    // protected RaycastHit2D isPlatformBottomUp;
     protected RaycastHit2D isPlatformBottomExtend;
 
     private bool coyoteTime;
@@ -53,8 +53,8 @@ public class PlayerAirState : PlayerState
 
             isPlatformOverlap = CollisionSenses.PlatformOverlap;
             isPlatformOverlapTop = CollisionSenses.PlatformOverlapTop;
-            isPlatformTop = CollisionSenses.PlatformTop;
-            isPlatformBottomUp = CollisionSenses.PlatformBottomUp;
+            // isPlatformTop = CollisionSenses.PlatformTop;
+            // isPlatformBottomUp = CollisionSenses.PlatformBottomUp;
             isPlatformBottomExtend = CollisionSenses.PlatformBottomExtend;
         }
     }

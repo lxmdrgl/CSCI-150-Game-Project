@@ -56,7 +56,7 @@ public class LevelGenerator : MonoBehaviour
         if (spawnStartingRoom() && spawnAllRooms(roomMap)) 
         {
 
-            spawnAllEnemies(roomMap);
+            // spawnAllEnemies(roomMap);
 
             UnityEngine.Debug.Log("player count: " + playerCount);
             if(playerCount == 1)
@@ -76,7 +76,8 @@ public class LevelGenerator : MonoBehaviour
             }
 
             InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
-
+            // PlayerInput.all[0].user.UnpairDevices();
+            // UnityEngine.Debug.Log("Unpairing player 1 input devices: " + PlayerInput.all[0].user.pairedDevices.Count);
         } 
         else 
         {
@@ -240,6 +241,7 @@ public class LevelGenerator : MonoBehaviour
 
     void setPlayerDependencies(PlayerInput newPlayer)
     {
+        UnityEngine.Debug.Log("Setting player dependencies for player " + (newPlayer.playerIndex + 1));
         setCameras(newPlayer);
         setUserInterface(newPlayer);
         setEnemyDependencies();
@@ -394,6 +396,8 @@ public class LevelGenerator : MonoBehaviour
                     StartCoroutine(WaitForUnpairedPlayer(playerInputManager, i));
                     break;
                 }
+
+                // GameObject newPlayer = Instantiate(player, new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0), levelTransform.rotation);
             }
         }
         else
@@ -449,12 +453,15 @@ public class LevelGenerator : MonoBehaviour
             return;
         }
 
+        UnityEngine.Debug.Log($"Unpaired device used: {newDevice.displayName}");
+
         // Determine which player to replace
         int playerIndexToReplace = 0; // Default to Player 1
 
         // If there are two players, decide which one to replace based on your criteria
         if (PlayerInput.all.Count == 1)
         {
+            UnityEngine.Debug.Log("Replacing input device for player 1");
             ReplacePlayerInput(newDevice, playerIndexToReplace);
         }
         if (PlayerInput.all.Count > 1)
@@ -471,7 +478,6 @@ public class LevelGenerator : MonoBehaviour
             replaceInputDevice = newDevice;
             inputMenu.OpenMenu();
         }
-
     }
 
     private void ReplacePlayerInput(InputDevice newDevice, int playerIndex)
@@ -480,21 +486,46 @@ public class LevelGenerator : MonoBehaviour
         {
             PlayerInput player = PlayerInput.all[playerIndex];
             player.user.UnpairDevices();
-            InputUser.PerformPairingWithDevice(newDevice, player.user);
 
-            // Determine the appropriate control scheme based on the new device
-            string controlScheme = player.actions.controlSchemes
-                .FirstOrDefault(scheme => scheme.SupportsDevice(newDevice)).name;
-
-            if (!string.IsNullOrEmpty(controlScheme))
+            // Check if the new device is either the keyboard or mouse
+            if (newDevice is Keyboard || newDevice is Mouse)
             {
-                player.SwitchCurrentControlScheme(controlScheme, newDevice);
-                UnityEngine.Debug.Log($"Replaced Player {playerIndex + 1} input with {newDevice.displayName} using control scheme '{controlScheme}'");
+                // Pair both keyboard and mouse together
+                InputUser.PerformPairingWithDevice(Keyboard.current, player.user);
+                InputUser.PerformPairingWithDevice(Mouse.current, player.user);
+
+                string controlScheme = player.actions.controlSchemes
+                    .FirstOrDefault(scheme => scheme.SupportsDevice(Keyboard.current) && scheme.SupportsDevice(Mouse.current)).name;
+
+                if (!string.IsNullOrEmpty(controlScheme))
+                {
+                    player.SwitchCurrentControlScheme(controlScheme, Keyboard.current, Mouse.current);
+                    UnityEngine.Debug.Log($"Replaced Player {playerIndex + 1} input with Mouse and Keyboard using control scheme '{controlScheme}'");
+                }
+                else
+                {
+                    UnityEngine.Debug.LogWarning($"No matching control scheme found for Mouse and Keyboard. Default control scheme will be used.");
+                }
             }
             else
             {
-                UnityEngine.Debug.LogWarning($"No matching control scheme found for device {newDevice.displayName}. Default control scheme will be used.");
+                // Handle other devices (like gamepads) as usual
+                InputUser.PerformPairingWithDevice(newDevice, player.user);
+
+                string controlScheme = player.actions.controlSchemes
+                    .FirstOrDefault(scheme => scheme.SupportsDevice(newDevice)).name;
+
+                if (!string.IsNullOrEmpty(controlScheme))
+                {
+                    player.SwitchCurrentControlScheme(controlScheme, newDevice);
+                    UnityEngine.Debug.Log($"Replaced Player {playerIndex + 1} input with {newDevice.displayName} using control scheme '{controlScheme}'");
+                }
+                else
+                {
+                    UnityEngine.Debug.LogWarning($"No matching control scheme found for device {newDevice.displayName}. Default control scheme will be used.");
+                }
             }
+            setPlayerDependencies(player);
         }
         else
         {
