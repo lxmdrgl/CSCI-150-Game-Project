@@ -7,6 +7,8 @@ public class E1_MeleeAttackState : MeleeAttackState
     private Enemy1 enemy;
 	protected bool isAttackOffCooldown;
 
+    protected bool triggeredAttack = false;
+
     public E1_MeleeAttackState(Entity entity, string animBoolName, GameObject meleeAttackCollider, D_MeleeAttack stateData, Enemy1 enemy) : base(entity, animBoolName, meleeAttackCollider, stateData)
     {
         this.enemy = enemy;
@@ -40,6 +42,18 @@ public class E1_MeleeAttackState : MeleeAttackState
         {
             stateMachine.ChangeState(enemy.cooldownState);
         }
+
+        // Loop attack for the entire state
+        /* if (!triggeredAttack) {
+            TriggerAttack();
+            triggeredAttack = true;
+        } */
+
+        // Needs a time
+        /* if (Time.time >= startTime + dashTime)
+        {
+            isAttackOver = true;
+        } */
     }
 
     public override void PhysicsUpdate()
@@ -47,8 +61,9 @@ public class E1_MeleeAttackState : MeleeAttackState
         base.PhysicsUpdate();
     }
 
-    public override void TriggerAttack()
+    public override bool TriggerAttack()
     {
         base.TriggerAttack();
+        return false;
     }
 }

@@ -33,19 +33,19 @@ public class Boss1_Pursuit : ChargeState
         
         if (performCloseRangeAction)
         {
-            enemy.rb.linearVelocity = Vector2.zero;
+            Movement.SetVelocityX(0);
             stateMachine.ChangeState(enemy.meleeAttackState);
         }
         else if(isPlayerInPursuitRange)
         {
-            Vector2 direction = (enemy.player.position - enemy.transform.position).normalized;
+            Vector2 direction = (enemy.targetPlayer.position - enemy.transform.position).normalized;
             direction.y = enemy.transform.position.y;
             if ((direction.x > 0 &&  Movement?.FacingDirection < 0) || (direction.x < 0 && Movement?.FacingDirection > 0))
             {
-                Movement?.Flip();
+                Movement.Flip();
             }
 
-            enemy.rb.linearVelocityX = direction.x * stateData.chargeSpeed;
+            Movement.SetVelocityX(direction.x * stateData.chargeSpeed);        
         }
         else
         {

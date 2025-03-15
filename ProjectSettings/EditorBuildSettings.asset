@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gameplay.unity
     guid: 7cf3f77722ba21743b44c642b0924455
+  - enabled: 1
+    path: Assets/Scenes/Nate's Scene.unity
+    guid: 154029b96c86eaf4784a34a4405a0b25
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 409ec3e0fc238f148a86da541f5407a2, type: 2}
   m_UseUCBPForAssetBundles: 0

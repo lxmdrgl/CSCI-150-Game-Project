@@ -15,8 +15,8 @@ public class PlayerInputHandler : MonoBehaviour
     public int NormInputX { get; private set; }
     public int NormInputY { get; private set; }
     public bool JumpInput { get; private set; }
-    // public bool DownJumpInput { get; private set; }
     public bool DownInput { get; private set; }
+    public bool FallInput { get; private set; }
     public bool DashInput { get; private set; }
     public bool MenuOpenInput { get; private set; }
     public bool UIMenuCloseInput { get; private set; }
@@ -69,10 +69,49 @@ public class PlayerInputHandler : MonoBehaviour
         
         if (context.canceled)
         {
-            Debug.Log("Input Jump start");
+            Debug.Log("Input Jump end");
             JumpInput = false;
         }
     }
+
+    public void OnFallInput(InputAction.CallbackContext context)
+{
+    if (context.performed)
+    {
+        if (context.interaction is UnityEngine.InputSystem.Interactions.MultiTapInteraction)
+        {
+            Debug.Log("Multi-Tap Fall start");
+        }
+        else
+        {
+            Debug.Log("Single Press Fall start");
+        }
+
+        FallInput = true;
+    }
+    
+    if (context.canceled)
+    {
+        if (context.interaction is UnityEngine.InputSystem.Interactions.MultiTapInteraction)
+        {
+            Debug.Log("Multi-Tap Fall end - Adding slight delay");
+            StartCoroutine(ResetFallInput());
+        }
+        else
+        {
+            Debug.Log("Single Press Fall end");
+            FallInput = false;
+        }
+    }
+}
+
+private IEnumerator ResetFallInput()
+{
+    yield return new WaitForSeconds(0.1f); 
+    FallInput = false;
+    Debug.Log("Multi-Tap Fall Input Reset");
+}
+
 
     public void OnDashInput(InputAction.CallbackContext context)
     {
@@ -104,27 +143,46 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnPrimaryAttackInput(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.performed)
         {
-            AttackInputs[(int)CombatInputs.primaryAttack] = true;
+            if (context.interaction is UnityEngine.InputSystem.Interactions.HoldInteraction)
+            {
+                // Hold attack
+                AttackInputs[(int)CombatInputs.primaryAttackHold] = true;
+                // Debug.Log("Primary Attack Hold Input: " + context.duration);
+            }
+            else if (context.interaction is UnityEngine.InputSystem.Interactions.PressInteraction)
+            {
+                // Press attack (quick tap)
+                AttackInputs[(int)CombatInputs.primaryAttackPress] = true;
+                // Debug.Log("Primary Attack Press Input");
+            }
+            // AttackInputs[(int)CombatInputs.dashAttack] = true;
         }
 
         if (context.canceled)
         {
-            AttackInputs[(int)CombatInputs.primaryAttack] = false;
+            // Reset both inputs when released
+            AttackInputs[(int)CombatInputs.primaryAttackPress] = false;
+            AttackInputs[(int)CombatInputs.primaryAttackHold] = false;
+            // AttackInputs[(int)CombatInputs.dashAttack] = false;
+            // Debug.Log("Primary Attack End Input");
         }
     }
+
 
     public void OnSecondaryAttackInput(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            AttackInputs[(int)CombatInputs.secondaryAttack] = true;
+            AttackInputs[(int)CombatInputs.secondaryAttackPress] = true;
+            // Debug.Log("Secondary Attack Press Input");
         }
 
         if (context.canceled)
         {
-            AttackInputs[(int)CombatInputs.secondaryAttack] = false;
+            AttackInputs[(int)CombatInputs.secondaryAttackPress] = false;
+            // Debug.Log("Secondary Attack End Input");
         }
     }
 
@@ -132,12 +190,12 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            AttackInputs[(int)CombatInputs.primarySkill] = true;
+            AttackInputs[(int)CombatInputs.primarySkillPress] = true;
         }
 
         if (context.canceled)
         {
-            AttackInputs[(int)CombatInputs.primarySkill] = false;
+            AttackInputs[(int)CombatInputs.primarySkillPress] = false;
         }
     }
 
@@ -145,12 +203,27 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            AttackInputs[(int)CombatInputs.secondarySkill] = true;
+            AttackInputs[(int)CombatInputs.secondarySkillPress] = true;
         }
 
         if (context.canceled)
         {
-            AttackInputs[(int)CombatInputs.secondarySkill] = false;
+            AttackInputs[(int)CombatInputs.secondarySkillPress] = false;
+        }
+    }
+
+    public bool SimulateAttackInput(CombatInputs inital, CombatInputs final)
+    {
+        if (AttackInputs[(int)inital])
+        {
+            AttackInputs[(int)final] = true;
+            AttackInputs[(int)inital] = false;
+            return true;
+        }
+        else
+        {
+            // AttackInputs[(int)inital] = false;
+            return false;
         }
     }
 
@@ -211,9 +284,15 @@ public class PlayerInputHandler : MonoBehaviour
 }
 
 public enum CombatInputs{
-    primaryAttack,
-    secondaryAttack,
-    primarySkill,
-    secondarySkill
+    primaryAttackPress,
+    secondaryAttackPress,
+    primarySkillPress,
+    secondarySkillPress,
+    primaryAttackHold,
+    secondaryAttackHold,
+    primarySkillHold,
+    secondarySkillHold,
+    dashAttack,
+    fallAttack
 }
 

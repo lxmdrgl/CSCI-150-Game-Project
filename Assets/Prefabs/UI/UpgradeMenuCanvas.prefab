@@ -428,12 +428,15 @@ MonoBehaviour:
   core: {fileID: 0}
   stats: {fileID: 0}
   statsChange: {fileID: 0}
+  weaponSwap: {fileID: 0}
+  weaponInventory: {fileID: 0}
   UpgradeCanvasGO: {fileID: 3857457547263950843}
   upgradeSlots:
   - {fileID: 2438862670406432779}
   - {fileID: 1287499243153251886}
   - {fileID: 7718030206466930543}
-  upgradeDataSet: {fileID: 0}
+  statUpgradeDataSet: {fileID: 0}
+  weaponDataSet: {fileID: 0}
 --- !u!1 &9217729955972256128
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +711,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UpgradeSlot, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 6361690131849282190, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -833,6 +840,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 6723686613299453890}
+    - target: {fileID: 6361690131849282190, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -962,6 +973,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1605538473468910104, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 2
@@ -989,6 +1004,10 @@ PrefabInstance:
     - target: {fileID: 3447905113790871938, guid: 496446059630ff041af4327ee76b476a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UpgradeSlot, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6361690131849282190, guid: 496446059630ff041af4327ee76b476a, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

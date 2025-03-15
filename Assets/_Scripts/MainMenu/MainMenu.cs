@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private SaveSlotsMenu saveSlotsMenu;
     [SerializeField] private TextMeshProUGUI savesBtnText;
     public string GameSceneName;
+    public string generatorScene;
 
     private async void Awake()
     {
@@ -30,6 +31,8 @@ public class MainMenu : MonoBehaviour
         string playerName = PlayerPrefs.GetString("PlayerName", "Player");
         Debug.Log("Loaded Player Name: " + playerName);  // Verify the name is loaded correctly
 
+
+        /*
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         string currentSave = DataPersistenceManager.instance.GetSelectedProfileId();
@@ -46,9 +49,14 @@ public class MainMenu : MonoBehaviour
         }   
 
         savesBtnText.text = "Save Slot: " + currentSave;
+        */
     }
     public void Play()
     {
+        PlayerPrefs.SetInt("playerCount",1);
+        SceneManager.LoadScene(generatorScene);
+
+        /*
         if (DataPersistenceManager.instance.HasGameData())
         {
             // Save current data and load the game
@@ -71,7 +79,40 @@ public class MainMenu : MonoBehaviour
 
             SceneManager.LoadSceneAsync(GameSceneName);
         }
+        */
     }
+
+    public void PlayLocalMultiplayer()
+    {
+        PlayerPrefs.SetInt("playerCount",2);
+        SceneManager.LoadScene(generatorScene);
+
+        /*
+        if (DataPersistenceManager.instance.HasGameData())
+        {
+            // Save current data and load the game
+            DataPersistenceManager.instance.SaveGame();
+            SceneManager.LoadSceneAsync(generatorScene);
+        }
+        else
+        {
+            string currentSave = DataPersistenceManager.instance.GetSelectedProfileId();
+            if(currentSave != "1" || currentSave != "2" || currentSave != "3")
+            {
+                currentSave = "1";
+                DataPersistenceManager.instance.ChangeSelectedProfileId(currentSave);
+                if (!DataPersistenceManager.instance.HasGameData())
+                {
+                    DataPersistenceManager.instance.NewGame();
+                    DataPersistenceManager.instance.SaveGame();
+                }
+            }   
+
+            SceneManager.LoadSceneAsync(generatorScene);
+        }
+        */
+    }
+
     public void OnSavesClicked()
     {
         saveSlotsMenu.ActivateMenu();
@@ -98,6 +139,11 @@ public class MainMenu : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if(DataPersistenceManager.instance.disableDataPersistence)
+        {
+            return;
+        }
+
         // Check if the current scene is the Main Menu
         if (scene.name == "MainMenu") // Replace "MainMenu" with your actual scene name
         {

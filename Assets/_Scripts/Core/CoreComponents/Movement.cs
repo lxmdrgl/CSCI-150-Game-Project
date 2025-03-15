@@ -24,7 +24,7 @@ namespace Game.CoreSystem
             base.Awake();
 
             RB = GetComponentInParent<Rigidbody2D>();
-
+        
             FacingDirection = 1;
             CanSetVelocity = true;
         }
@@ -60,6 +60,12 @@ namespace Game.CoreSystem
                 RB.linearVelocity = workspace;
                 CurrentVelocity = workspace;
             }        
+        }
+
+        public void SetGravityScale(float gravityScale)
+        {
+            RB.gravityScale = gravityScale;
+            // Debug.Log("Gravity scale: " + RB.gravityScale);
         }
 
         public void CheckIfShouldFlip(int xInput)

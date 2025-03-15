@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b320fd8433894df4e8f5abc27bf3fea1, type: 3}
+  m_Name: KnightPrimaryAttackHold1
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 0}
+  <Name>k__BackingField: Knight Primary Attack Hold 1
+  <Description>k__BackingField: Hold Sword Swing
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: bd8df5bfc0b5a8c4298f1fa13d425c88, type: 2}
+  <weaponIndex>k__BackingField: 4
+  <NumberOfAttacks>k__BackingField: 1
+  <AttackCounterCooldown>k__BackingField: 2
+  <AttackCooldown>k__BackingField: 0
+  prereqWeapon: {fileID: 11400000, guid: f97b7e60a4f61eb4b8fd9fbee64a0b61, type: 2}
+  <ComponentData>k__BackingField:
+  - rid: 6902827587173613661
+  - rid: 6902827598733115489
+  - rid: 5949095188800471134
+  - rid: 5949095222658203648
+  - rid: 5949095222658203649
+  - rid: 6902827598733115513
+  - rid: 6902827598733115515
+  references:
+    version: 2
+    RefIds:
+    - rid: 5949095188800471134
+      type: {class: WeaponSpriteData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponSpriteData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <PhaseSprites>k__BackingField:
+          - <Phase>k__BackingField: 0
+            <Sprites>k__BackingField:
+            - {fileID: -976979401, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 581828395, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+          - <Phase>k__BackingField: 1
+            <Sprites>k__BackingField:
+            - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+          - <Phase>k__BackingField: 2
+            <Sprites>k__BackingField:
+            - {fileID: -720425029, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1331580839, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+    - rid: 5949095222658203648
+      type: {class: ActionHitBoxData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ActionHitBoxData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          Debug: 1
+          <HitBox>k__BackingField: {fileID: 2049185860700366576, guid: d354854779bb3674aabc999f622958c8, type: 3}
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 2048
+    - rid: 5949095222658203649
+      type: {class: MovementData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: MovementData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <VelocityX>k__BackingField: 5
+    - rid: 6902827587173613661
+      type: {class: InputHoldData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: InputHoldData
+    - rid: 6902827598733115489
+      type: {class: ChargeData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ChargeData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <ChargeTime>k__BackingField: 0.5
+          <InitialChargeAmount>k__BackingField: 1
+          <NumberOfCharges>k__BackingField: 3
+    - rid: 6902827598733115513
+      type: {class: DamageOnHitBoxActionChargeData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: DamageOnHitBoxActionChargeData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <Amounts>k__BackingField:
+          - 12
+          - 25
+          - 35
+    - rid: 6902827598733115515
+      type: {class: StunDamageChargeData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: StunDamageChargeData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <Amounts>k__BackingField:
+          - 30
+          - 50
+          - 70

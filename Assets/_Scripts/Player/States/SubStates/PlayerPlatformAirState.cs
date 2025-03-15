@@ -4,15 +4,19 @@ using UnityEngine;
 
 using Game.CoreSystem;
 using UnityEditor;
+using System;
 public class PlayerPlatformAirState : PlayerAirState
 {
 	private Vector2 platformBottomPosition;
+	private bool jumpInputBuffer = false;
 
     public PlayerPlatformAirState(Player player, string animBoolName) : base(player, animBoolName)
     {
     }	
 	public override void Enter() {
 		base.Enter();
+		UnityEngine.Debug.Log("Current state: platform air :" + isPlatformOverlap + ", "+ player.boxCollider);
+		Physics2D.IgnoreCollision(isPlatformOverlap, player.boxCollider, false);
 	}
 
 	public override void DoChecks()
@@ -44,22 +48,39 @@ public class PlayerPlatformAirState : PlayerAirState
 			// Debug.Log($"isPlatformOverlap: {isPlatformOverlap}, isPlatformOverlapTop: {isPlatformOverlapTop}");
 			if (isPlatformOverlap != null || isPlatformOverlapTop != null)
 			{	
-				if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanAttack())
+				if (downInput && player.FallAttackState.CanAttack(CombatInputs.primaryAttackPress, CombatInputs.fallAttack))
+				{
+					// StopPlatformMove();
+					stateMachine.ChangeState(player.FallAttackState);
+				}
+				else if (player.DashAttackState.CanAttackCooldown(CombatInputs.primaryAttackPress, CombatInputs.dashAttack))
+				{
+					StopPlatformMove();
+					stateMachine.ChangeState(player.DashAttackState);
+				}
+				else if (player.PrimaryAttackState.CanAttack() && 
+						(player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackPress]
+						|| (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && !player.PrimaryAttackHoldState.CanAttack())))
 				{
 					StopPlatformMove();
 					stateMachine.ChangeState(player.PrimaryAttackState);
 				}
-				else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttack] && player.SecondaryAttackState.CanAttack())
+				else if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && player.PrimaryAttackHoldState.CanAttack())
+				{
+					StopPlatformMove();
+					stateMachine.ChangeState(player.PrimaryAttackHoldState);
+				}
+				else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackPress] && player.SecondaryAttackState.CanAttack())
 				{
 					StopPlatformMove();
 					stateMachine.ChangeState(player.SecondaryAttackState);
 				}
-				if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkill] && player.PrimarySkillState.CanAttackCooldown())
+				if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillPress] && player.PrimarySkillState.CanAttackCooldown())
 				{
 					StopPlatformMove();
 					stateMachine.ChangeState(player.PrimarySkillState);
 				}
-				else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkill] && player.SecondarySkillState.CanAttackCooldown())
+				else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillPress] && player.SecondarySkillState.CanAttackCooldown())
 				{
 					StopPlatformMove();
 					stateMachine.ChangeState(player.SecondarySkillState);
@@ -71,9 +92,10 @@ public class PlayerPlatformAirState : PlayerAirState
 				}
 				else if (jumpInput && player.JumpState.CanJump())
 				{
-					StopPlatformMove();
+					/* StopPlatformMove();
 					player.AirState.SetJumpingInPlatform(true);
-					stateMachine.ChangeState(player.JumpState);
+					stateMachine.ChangeState(player.JumpState); */
+					jumpInputBuffer = true;
 				} 
 			}
 			else if (isPlatformOverlap == null && isPlatformOverlapTop == null) 
@@ -82,8 +104,16 @@ public class PlayerPlatformAirState : PlayerAirState
 				StopPlatformMove();
 				isExitingState = true;
 
-				if(xInput == 0)
+				if (jumpInputBuffer) 
 				{
+					jumpInputBuffer = false;
+					Debug.Log("move platform jump buffer");
+					player.AirState.SetJumpingInPlatform(true);
+					stateMachine.ChangeState(player.JumpState);
+				} 
+				else if(xInput == 0)
+				{
+					player.IdleState.SetDelayTime(0.1f);
 					stateMachine.ChangeState(player.IdleState);
 				} 
 				else if (xInput != 0) 
@@ -112,7 +142,7 @@ public class PlayerPlatformAirState : PlayerAirState
 		Movement?.SetVelocityY(0);
 		isPlatformBottomExtend = CollisionSenses.PlatformBottomExtend;
 		if (isPlatformBottomExtend.collider != null) {
-			platformBottomPosition = new Vector2(player.transform.position.x, player.transform.position.y - isPlatformBottomExtend.distance);
+			platformBottomPosition = new Vector2(player.transform.position.x, player.transform.position.y - isPlatformBottomExtend.distance +0.25f);
 			Debug.Log($"Move platform position: {platformBottomPosition.y}, {player.transform.position.y}, {isPlatformBottomExtend.distance}");
 			player.transform.position = platformBottomPosition;
 		}

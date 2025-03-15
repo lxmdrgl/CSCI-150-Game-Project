@@ -12,12 +12,16 @@ namespace Game.CoreSystem
 {
     public class UpgradeMenuManager : MonoBehaviour
     {
-        [SerializeField] private GameObject player;
-        [SerializeField] private Core core;
-        [SerializeField] private Stats stats;
-        [SerializeField] private StatsChange statsChange;
-        [SerializeField] private WeaponSwap weaponSwap;
-        [SerializeField] private WeaponInventory weaponInventory;
+        public GameObject player1;
+        public GameObject player2;
+        private Stats stats1;
+        private Stats stats2;
+        private StatsChange statsChange1;
+        private StatsChange statsChange2;
+        private WeaponSwap weaponSwap1;
+        private WeaponSwap weaponSwap2;
+        private WeaponInventory weaponInventory1;
+        private WeaponInventory weaponInventory2;
         
         [SerializeField] private GameObject UpgradeCanvasGO;
         [SerializeField] private List<UpgradeSlot> upgradeSlots;
@@ -26,9 +30,11 @@ namespace Game.CoreSystem
 
         private bool isPaused;
 
-        public PlayerInputHandler InputHandler { get; private set; }
-        private PlayerInput playerInput;
-        private bool upgradeMenuInteract = false;
+        public PlayerInputHandler InputHandler1 { get; private set; }
+        public PlayerInputHandler InputHandler2 { get; private set; }
+        private PlayerInput playerInput1;
+        private PlayerInput playerInput2;
+        // private bool upgradeMenuInteract = false;
         
         
         private void Awake()
@@ -37,17 +43,46 @@ namespace Game.CoreSystem
 
         void Start()
         {
-            InputHandler = player.GetComponent<PlayerInputHandler>();
-            playerInput = player.GetComponent<PlayerInput>();
+            SetDependencies();
 
-            UpgradeCanvasGO.SetActive(true);
+            UpgradeCanvasGO.SetActive(false);
 
             Unpause();
         }
 
+        public void SetDependencies()
+        {
+            if (player1 != null)
+            {
+                stats1 = player1.GetComponentInChildren<Stats>();
+                statsChange1 = player1.GetComponentInChildren<StatsChange>();
+                weaponSwap1 = player1.GetComponentInChildren<WeaponSwap>();
+                weaponInventory1 = player1.GetComponentInChildren<WeaponInventory>();
+                InputHandler1 = player1.GetComponent<PlayerInputHandler>();
+                playerInput1 = player1.GetComponent<PlayerInput>();
+
+                statsChange1.OnMinorUpgradeInteract += HandleStatUpgradeMenuInteract;
+                // weaponSwap1.OnMajorUpgradeInteract += HandleWeaponMenuInteract;
+                weaponSwap1.OnMajorUpgradeInteract += (dataSet) => HandleWeaponMenuInteract(dataSet, 0);
+            }
+            if (player2 != null)
+            {
+                stats2 = player2.GetComponentInChildren<Stats>();
+                statsChange2 = player2.GetComponentInChildren<StatsChange>();
+                weaponSwap2 = player2.GetComponentInChildren<WeaponSwap>();
+                weaponInventory2 = player2.GetComponentInChildren<WeaponInventory>();
+                InputHandler2 = player2.GetComponent<PlayerInputHandler>();
+                playerInput2 = player2.GetComponent<PlayerInput>();
+
+                statsChange2.OnMinorUpgradeInteract += HandleStatUpgradeMenuInteract;
+                // weaponSwap2.OnMajorUpgradeInteract += HandleWeaponMenuInteract;
+                weaponSwap2.OnMajorUpgradeInteract += (dataSet) => HandleWeaponMenuInteract(dataSet, 1);
+            }
+        }
+
         void Update()
         {
-            if (InputHandler.UpgradeOpenInput)
+            if ((InputHandler1 != null && InputHandler1.UpgradeOpenInput) || (InputHandler2 != null && InputHandler2.UpgradeOpenInput))
             {
                 if (!isPaused)
                 {
@@ -61,18 +96,35 @@ namespace Game.CoreSystem
                     Unpause();
                 }
             }*/
+
         }
 
         private void OnEnable()
         {
-            statsChange.OnMinorUpgradeInteract += HandleStatUpgradeMenuInteract;
-            weaponSwap.OnMajorUpgradeInteract += HandleWeaponMenuInteract;
+            /* if (player1 != null)
+            {
+                statsChange1.OnMinorUpgradeInteract += HandleStatUpgradeMenuInteract;
+                weaponSwap1.OnMajorUpgradeInteract += (dataSet) => HandleWeaponMenuInteract(dataSet, 0);
+            }
+            if (player2 != null)
+            {
+                statsChange2.OnMinorUpgradeInteract += HandleStatUpgradeMenuInteract;
+                weaponSwap2.OnMajorUpgradeInteract += (dataSet) => HandleWeaponMenuInteract(dataSet, 1);
+            } */
         }
 
         private void OnDisable()
         {
-            statsChange.OnMinorUpgradeInteract -= HandleStatUpgradeMenuInteract;
-            weaponSwap.OnMajorUpgradeInteract -= HandleWeaponMenuInteract;
+            /* if (player1 != null)
+            {
+                statsChange1.OnMinorUpgradeInteract -= HandleStatUpgradeMenuInteract;
+                weaponSwap1.OnMajorUpgradeInteract -= (dataSet) => HandleWeaponMenuInteract(dataSet, 0);
+            }
+            if (player2 != null)
+            {
+                statsChange2.OnMinorUpgradeInteract -= HandleStatUpgradeMenuInteract;
+                weaponSwap2.OnMajorUpgradeInteract -= (dataSet) => HandleWeaponMenuInteract(dataSet, 1);
+            } */
         }
 
         private void HandleStatUpgradeMenuInteract(StatUpgradeDataSet dataSet)
@@ -80,7 +132,7 @@ namespace Game.CoreSystem
             statUpgradeDataSet = dataSet;
 
             List<int> usedIndices = new List<int>();
-            System.Random random = new System.Random();
+            // System.Random random = new System.Random();
 
             for (int i = 0; i < upgradeSlots.Count; i++)
             {
@@ -89,7 +141,7 @@ namespace Game.CoreSystem
                     int index;
                     do
                     {
-                        index = random.Next(statUpgradeDataSet.statUpgradeData.Count);
+                        index = UnityEngine.Random.Range(0, statUpgradeDataSet.statUpgradeData.Count);
                     } while (usedIndices.Contains(index));
 
                     usedIndices.Add(index);
@@ -104,7 +156,7 @@ namespace Game.CoreSystem
             Pause();
         }
 
-        private void HandleWeaponMenuInteract(WeaponDataSet dataSet)
+        private void HandleWeaponMenuInteract(WeaponDataSet dataSet, int playerIndex)
         {
             weaponDataSet = dataSet;
 
@@ -112,16 +164,29 @@ namespace Game.CoreSystem
             List<WeaponData> localWeaponData = new List<WeaponData>(weaponDataSet.weaponData);
 
             // Remove weapons that are already in the inventory or do not meet prerequisites
-            localWeaponData.RemoveAll(weaponData => 
-                weaponInventory.currentWeaponData.Contains(weaponData) ||
-                weaponInventory.oldWeaponData.Contains(weaponData) ||
-                (weaponData.prereqWeapon != null &&
-                !weaponInventory.currentWeaponData.Contains(weaponData.prereqWeapon) &&
-                !weaponInventory.oldWeaponData.Contains(weaponData.prereqWeapon))
-            );
+            if (playerIndex == 0)
+            {
+                localWeaponData.RemoveAll(weaponData => 
+                    weaponInventory1.currentWeaponData.Contains(weaponData) ||
+                    weaponInventory1.oldWeaponData.Contains(weaponData) ||
+                    (weaponData.prereqWeapon != null &&
+                    !weaponInventory1.currentWeaponData.Contains(weaponData.prereqWeapon) &&
+                    !weaponInventory1.oldWeaponData.Contains(weaponData.prereqWeapon))
+                );
+            }
+            else if (playerIndex == 1)
+            {
+                localWeaponData.RemoveAll(weaponData => 
+                    weaponInventory2.currentWeaponData.Contains(weaponData) ||
+                    weaponInventory2.oldWeaponData.Contains(weaponData) ||
+                    (weaponData.prereqWeapon != null &&
+                    !weaponInventory2.currentWeaponData.Contains(weaponData.prereqWeapon) &&
+                    !weaponInventory2.oldWeaponData.Contains(weaponData.prereqWeapon))
+                );
+            }
 
             List<int> usedIndices = new List<int>();
-            System.Random random = new System.Random();
+            // System.Random random = new System.Random();
 
             for (int i = 0; i < upgradeSlots.Count; i++)
             {
@@ -130,7 +195,7 @@ namespace Game.CoreSystem
                     int index;
                     do
                     {
-                        index = random.Next(localWeaponData.Count);
+                        index = UnityEngine.Random.Range(0, localWeaponData.Count);
                     } while (usedIndices.Contains(index));
 
                     usedIndices.Add(index);
@@ -151,7 +216,8 @@ namespace Game.CoreSystem
             isPaused = true;
             Time.timeScale = 0f;
 
-            playerInput.SwitchCurrentActionMap("UI");
+            playerInput1.SwitchCurrentActionMap("UI");
+            playerInput2.SwitchCurrentActionMap("UI");
 
             OpenMainMenu();
         }
@@ -161,7 +227,14 @@ namespace Game.CoreSystem
             isPaused = false;
             Time.timeScale = 1f;
 
-            playerInput.SwitchCurrentActionMap("Player");
+            if (playerInput1 != null)
+            {
+                playerInput1.SwitchCurrentActionMap("Player");
+            }
+            if (playerInput2 != null)
+            {
+                playerInput2.SwitchCurrentActionMap("Player");
+            }
 
             CloseAllMenus();
         }
@@ -172,14 +245,28 @@ namespace Game.CoreSystem
         {
             UpgradeCanvasGO.SetActive(true);
 
-            InputHandler.UseUpgradeOpenInput();
+            if (InputHandler1 != null)
+            {
+                InputHandler1.UseUpgradeOpenInput();
+            }
+            if (InputHandler2 != null)
+            {
+                InputHandler2.UseUpgradeOpenInput();
+            }
         }
 
         private void CloseAllMenus()
         {
             UpgradeCanvasGO.SetActive(false);
 
-            InputHandler.UseUpgradeOpenInput();
+            if (InputHandler1 != null)
+            {
+                InputHandler1.UseUpgradeOpenInput();
+            }
+            if (InputHandler2 != null)
+            {
+                InputHandler2.UseUpgradeOpenInput();
+            }
 
             EventSystem.current.SetSelectedGameObject(null); // CLEAR SELECTED BUTTON FOR COLOR TRANSITIONS
         }
@@ -191,17 +278,36 @@ namespace Game.CoreSystem
             if (statUpgradeDataSet != null) {
                 // StatUpgradeData currentData = statUpgradeDataSet.statUpgradeData[index];
                 StatUpgradeData currentData = slot.currentStatData;
-                stats.UpdateStats(currentData.Health, currentData.Attack);
+                stats1.UpdateStats(currentData.Health, currentData.Attack);
 
             } else if (weaponDataSet != null) {
                 // WeaponData currentData = weaponDataSet.weaponData[index];
                 WeaponData currentData = slot.currentWeaponData;
                 int weaponIndex = (int)currentData.weaponIndex;
-                weaponInventory.TrySetWeapon(currentData, weaponIndex);
+                weaponInventory1.TrySetWeapon(currentData, weaponIndex);
             }
 
             statUpgradeDataSet = null;
             weaponDataSet = null;
         }
+
+        /* public void OnUpgradeClicked(UpgradeSlot slot, PlayerInput playerInput)
+        {
+            // int index = upgradeSlots.IndexOf(slot);
+            if (statUpgradeDataSet != null) {
+                // StatUpgradeData currentData = statUpgradeDataSet.statUpgradeData[index];
+                StatUpgradeData currentData = slot.currentStatData;
+                stats1.UpdateStats(currentData.Health, currentData.Attack);
+
+            } else if (weaponDataSet != null) {
+                // WeaponData currentData = weaponDataSet.weaponData[index];
+                WeaponData currentData = slot.currentWeaponData;
+                int weaponIndex = (int)currentData.weaponIndex;
+                weaponInventory1.TrySetWeapon(currentData, weaponIndex);
+            }
+
+            statUpgradeDataSet = null;
+            weaponDataSet = null;
+        } */
     }
 }

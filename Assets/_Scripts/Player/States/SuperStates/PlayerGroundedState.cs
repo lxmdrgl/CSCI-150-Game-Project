@@ -25,10 +25,12 @@ public class PlayerGroundedState : PlayerState
     private bool jumpInput;
     private bool downInput;
     private bool dashInput;
+    private bool fallInput;
     private bool isGrounded;
     private bool isTouchingWall;
-    private RaycastHit2D isPlatformDown;
+    private RaycastHit2D isPlatformBottom;
     private Collider2D platformDropped = null;
+    private float delayAirTime = 0f;
 
     public PlayerGroundedState(Player player, string animBoolName) : base(player, animBoolName)
     {
@@ -43,7 +45,7 @@ public class PlayerGroundedState : PlayerState
             isGrounded = CollisionSenses.Ground;
             isTouchingWall = CollisionSenses.WallFront;
             // isPlatformDown = CollisionSenses.PlatformDown;
-            isPlatformDown = CollisionSenses.PlatformBottom;
+            isPlatformBottom = CollisionSenses.PlatformBottom;
             // Debug.Log($"isPlatformDown: {isPlatformDown.collider}");
         }
     }
@@ -70,20 +72,39 @@ public class PlayerGroundedState : PlayerState
         jumpInput = player.InputHandler.JumpInput;
         downInput = player.InputHandler.DownInput;
         dashInput = player.InputHandler.DashInput;
+        fallInput = player.InputHandler.FallInput;
 
-        if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanAttack())
+        /* if(!fallInput && (bool)isPlatformBottom)
         {
+            platformDropped = isPlatformBottom.collider;
+            Physics2D.IgnoreCollision(platformDropped, player.boxCollider, false);
+        } */
+
+        if (player.DashAttackState.CanAttackCooldown(CombatInputs.primaryAttackPress, CombatInputs.dashAttack))
+        {
+            stateMachine.ChangeState(player.DashAttackState);
+        }
+        else if (player.PrimaryAttackState.CanAttack() && 
+                (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackPress]
+                || (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && !player.PrimaryAttackHoldState.CanAttack())))
+        {
+            Debug.Log("Primary Attack Press state");
             stateMachine.ChangeState(player.PrimaryAttackState);
         }
-        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttack] && player.SecondaryAttackState.CanAttack())
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && player.PrimaryAttackHoldState.CanAttack())
+        {
+            Debug.Log("Primary Attack Hold state");
+            stateMachine.ChangeState(player.PrimaryAttackHoldState);
+        }
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackPress] && player.SecondaryAttackState.CanAttack())
         {
             stateMachine.ChangeState(player.SecondaryAttackState);
         }
-        if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkill] && player.PrimarySkillState.CanAttackCooldown())
+        if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillPress] && player.PrimarySkillState.CanAttackCooldown())
         {
             stateMachine.ChangeState(player.PrimarySkillState);
         }
-        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkill] && player.SecondarySkillState.CanAttackCooldown())
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillPress] && player.SecondarySkillState.CanAttackCooldown())
         {
             stateMachine.ChangeState(player.SecondarySkillState);
         }
@@ -91,29 +112,29 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.DashState);
         }
-        else if (jumpInput && downInput && (bool)isPlatformDown)
+        else if (fallInput /* jumpInput && downInput */ && (bool)isPlatformBottom)
         {
             Debug.Log($"Jump Input: {jumpInput}, Down Input: {downInput}");
             player.InputHandler.UseJumpInput();
             // platformDropped = isPlatformDown;
-            platformDropped = isPlatformDown.collider;
-            Debug.Log($"Drop platform: {platformDropped}, {player.boxCollider}");
+            platformDropped = isPlatformBottom.collider;
+            Debug.Log($"Current State Drop platform: {platformDropped}, {player.boxCollider}");
             Physics2D.IgnoreCollision(platformDropped, player.boxCollider, true);
 
             player.AirState.SetPlatformDropped(platformDropped);
             player.AirState.StartCoyoteTime();
             stateMachine.ChangeState(player.AirState);
         } 
-        else if (jumpInput && downInput && !(bool)isPlatformDown && player.JumpState.CanJump())
+        /* else if (jumpInput && downInput && !(bool)isPlatformDown && player.JumpState.CanJump())
         {
             stateMachine.ChangeState(player.JumpState);
-        }
-        else if (jumpInput && !downInput && player.JumpState.CanJump())
+        } */
+        else if (jumpInput /* && !downInput */ && player.JumpState.CanJump())
         {
             Debug.Log($"Jump Input: {jumpInput}, Down Input: {downInput}");
             stateMachine.ChangeState(player.JumpState);
         } 
-        else if (!isGrounded)
+        else if (!isGrounded && DelayAirState(delayAirTime))
         {
             Debug.Log("Ground to Air state");
             player.AirState.StartCoyoteTime();
@@ -121,6 +142,18 @@ public class PlayerGroundedState : PlayerState
         } else {
         }
     }
+
+    public bool DelayAirState(float delayTime)
+    {
+        if (Time.time >= startTime + delayTime)
+        {
+            delayTime = 0f;
+            return true;
+        }
+        return false;
+    }
+
+    public void SetDelayTime(float delayTime) => delayAirTime = delayTime;
 
     public override void PhysicsUpdate()
     {

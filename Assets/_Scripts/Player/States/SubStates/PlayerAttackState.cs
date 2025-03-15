@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 using Game.Weapons;
 
@@ -10,13 +11,14 @@ public class PlayerAttackState : PlayerActionState
     private Weapon weapon;
     private WeaponGenerator weaponGenerator;
 
-    private int inputIndex;
+    protected int inputIndex;
 
-    private bool canInterrupt;
+    // private bool canInterrupt;
 
     private bool checkFlip;
     private bool checkInterruptable;
-    protected bool attackEnabled = true;
+    private bool checkAttackAction;
+    private bool attackEnabled = true;
 
     public PlayerAttackState(
         Player player,
@@ -33,10 +35,12 @@ public class PlayerAttackState : PlayerActionState
 
         weapon.OnUseInput += HandleUseInput;
 
-        weapon.EventHandler.OnEnableInterrupt += HandleEnableInterrupt;
+        // weapon.EventHandler.OnEnableInterrupt += HandleEnableInterrupt;
         weapon.EventHandler.OnFinish += HandleFinish;
         weapon.EventHandler.OnFlipSetActive += HandleFlipSetActive;
         weapon.EventHandler.OnInterruptableSetActive += HandleInterruptableSetActive;
+        weapon.EventHandler.OnAttackActionSetActive += HandleAttackActionSetActive;
+
     }
 
     private void HandleFlipSetActive(bool value)
@@ -47,6 +51,11 @@ public class PlayerAttackState : PlayerActionState
     private void HandleInterruptableSetActive(bool value)
     {
         checkInterruptable = value;
+    }
+
+    private void HandleAttackActionSetActive(bool value)
+    {
+        checkAttackAction = value;
     }
 
     public override void LogicUpdate()
@@ -65,19 +74,35 @@ public class PlayerAttackState : PlayerActionState
             Movement.CheckIfShouldFlip(xInput);
         }
 
+        if (checkAttackAction)
+        {
+            weapon.EventHandler.OnAttackActionInvoke();
+        }
+
+        // Debug.Log("checkInterruptable: " + checkInterruptable + " " + inputIndex);
         if (checkInterruptable) {
             if (jumpInput || dashInput) {
+                // Debug.Log("Interrupt attack: " + string.Join(", ", player.InputHandler.AttackInputs));
+                HandleUseInput();
                 isActionDone = true;
             }
         }
 
-        if (!canInterrupt)
+        /* if (!canInterrupt)
             return;
 
-        if (xInput != 0 || attackInputs[0] || attackInputs[1] || attackInputs[2] || attackInputs[3])
+        if (xInput != 0 )
         {
             isActionDone = true;
         }
+
+        int count = Enum.GetValues(typeof(CombatInputs)).Length;
+        for (int i = 0; i < count; i++) {
+            if (playerInputHandler.AttackInputs[i]) {
+                isActionDone = true;
+                break;
+            }
+        } */
     }
 
     private void HandleWeaponGenerating()
@@ -92,16 +117,19 @@ public class PlayerAttackState : PlayerActionState
         weaponGenerator.OnWeaponGenerating += HandleWeaponGenerating;
         
         checkFlip = true;
-        canInterrupt = false;
+        // canInterrupt = false;
         attackEnabled = false;
 
         weapon.Enter();
-        if (inputIndex == (int)CombatInputs.primarySkill) {
+        if (inputIndex == (int)CombatInputs.primarySkillPress) {
             player.primarySkillTimeNotifier.Disable();
         } 
-        else if (inputIndex == (int)CombatInputs.secondarySkill) {
+        else if (inputIndex == (int)CombatInputs.secondarySkillPress) {
             player.secondarySkillTimeNotifier.Disable();
-        }
+        } 
+        else if (inputIndex == (int)CombatInputs.dashAttack) {
+            Debug.Log("Dash attack enabled: " + attackEnabled);
+        } 
     }
 
 
@@ -110,11 +138,11 @@ public class PlayerAttackState : PlayerActionState
         base.Exit();
 
         weaponGenerator.OnWeaponGenerating -= HandleWeaponGenerating;
-        if (inputIndex == (int)CombatInputs.primarySkill) {
+        if (inputIndex == (int)CombatInputs.primarySkillPress) {
             player.primarySkillTimeNotifier.Init(weapon.Data.AttackCooldown);
             // Debug.Log("Start primary skill cooldown: " + weapon.Data.AttackCooldown);
         } 
-        else if (inputIndex == (int)CombatInputs.secondarySkill) {
+        else if (inputIndex == (int)CombatInputs.secondarySkillPress) {
             player.secondarySkillTimeNotifier.Init(weapon.Data.AttackCooldown);
         }
         
@@ -122,18 +150,72 @@ public class PlayerAttackState : PlayerActionState
         
     }
 
-    public bool CanAttack() => weapon.CanEnterAttack/*  && attackEnabled */;
-    // public bool CanAttackCooldown() => weapon.CanEnterAttack && attackEnabled;
+    public bool CanAttack() 
+    {
+        if (!weapon.CanEnterAttack) {
+            HandleUseInput();
+        }
+        return weapon.CanEnterAttack;
+    }
 
-    public bool CanAttackCooldown() => weapon.CanEnterAttack && attackEnabled;
-    
+    public bool CanAttack(CombatInputs input, CombatInputs output) 
+    {
+        bool canAttack = weapon.CanEnterAttack;
+        bool hasInput = false;
+        if (canAttack)
+        {
+            // Debug.Log("CanAttack: " + string.Join(", ", player.InputHandler.AttackInputs));
+            hasInput = player.InputHandler.SimulateAttackInput(input, output);
+            /* if (hasInput) 
+            {
+                Debug.Log("HasInput CanAttack: " + string.Join(", ", player.InputHandler.AttackInputs));
+            } */
+        }
+        return canAttack && hasInput;
+    }
+
+    public bool CanAttackCooldown() 
+    {
+        bool canAttack = weapon.CanEnterAttack && attackEnabled;
+        if (!canAttack)
+        {
+            HandleUseInput();
+        }
+        return canAttack;
+    }
+
+    public bool CanAttackCooldown(CombatInputs input, CombatInputs output) 
+    {
+        bool canAttack = weapon.CanEnterAttack && attackEnabled;
+        bool hasInput = false;
+        if (canAttack)
+        {
+            hasInput = player.InputHandler.SimulateAttackInput(input, output);
+        }
+        // Debug.Log(string.Join(", ", player.InputHandler.AttackInputs));
+        return canAttack && hasInput;
+    }
 
     public void ResetAttackCooldown() => attackEnabled = true;
+    public void DashAttackCooldownDisable() {
+        attackEnabled = false;
+        Debug.Log("Reset dash attack cooldown: " + attackEnabled);   
+    }
 
-    private void HandleEnableInterrupt() => canInterrupt = true;
+    public void DashAttackCooldownEnable() {
+        attackEnabled = true;
+        Debug.Log("Reset dash attack cooldown: " + attackEnabled);   
+    }
 
-    private void HandleUseInput() => player.InputHandler.UseAttackInput(inputIndex);
+    public void DisableAttack() => attackEnabled = false;
 
+    // private void HandleEnableInterrupt() => canInterrupt = true;
+
+    private void HandleUseInput() 
+    {
+        // Debug.Log("HandleUseInput: " + inputIndex);
+        player.InputHandler.UseAttackInput(inputIndex);
+    }
     private void HandleFinish()
     {
         AnimationFinishTrigger();

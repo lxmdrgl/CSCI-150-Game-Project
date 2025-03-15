@@ -27,7 +27,7 @@ public class AttackState : EnemyState
 		base.DoChecks();
 
 		isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
-		isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
+		isPlayerInPursuitRange = entity.isPlayerInPursuitRange;
 	}
 
 	public override void Enter() 
@@ -56,9 +56,9 @@ public class AttackState : EnemyState
 		base.PhysicsUpdate();
 	}
 
-	public virtual void TriggerAttack() 
+	public virtual bool TriggerAttack() 
 	{
-		
+		return false;
 	}
 
 	public virtual void FinishAttack() 

@@ -20,6 +20,7 @@ public class E1_ChargeState : ChargeState
     public override void Enter()
     {
         base.Enter();
+        // Movement?.SetVelocityY(10.0f);
     }
 
     public override void Exit()

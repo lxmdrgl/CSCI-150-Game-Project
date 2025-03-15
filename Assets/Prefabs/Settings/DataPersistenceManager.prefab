@@ -45,4 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: data.json
+  disableDataPersistence: 1
   saveDataFileName: saveData.json

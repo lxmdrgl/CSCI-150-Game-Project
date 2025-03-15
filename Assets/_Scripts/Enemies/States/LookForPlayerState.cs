@@ -32,7 +32,8 @@ public class LookForPlayerState : EnemyState {
 		base.DoChecks();
 
 		isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
-		isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
+		isPlayerInPursuitRange = entity.isPlayerInPursuitRange;
+
 	}
 
 	public override void Enter() {

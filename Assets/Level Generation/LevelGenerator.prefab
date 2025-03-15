@@ -50,12 +50,7 @@ MonoBehaviour:
   player: {fileID: 1336391331439146869, guid: 3bebee964b90ead448e7485725be8a54, type: 3}
   playerOffset: 2
   cinemachineCamera: {fileID: 9036539549934334048}
-  startRoom: {fileID: 0}
-  hallways:
-  - {fileID: 0}
-  rooms:
-  - {fileID: 0}
-  endRoom: {fileID: 0}
+  roomMap: {fileID: 0}
 --- !u!1001 &7726647097500563541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126,6 +121,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4899015308605980428}
     m_Modifications:
+    - target: {fileID: 1972342266824061655, guid: eb4e2fdf20034ef4b8d215feaef6087a, type: 3}
+      propertyPath: UpdateMethod
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3490564064648944104, guid: eb4e2fdf20034ef4b8d215feaef6087a, type: 3}
       propertyPath: m_Name
       value: Cameras

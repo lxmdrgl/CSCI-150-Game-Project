@@ -34,7 +34,6 @@ public class RangedEnemy : Entity
     private D_CooldownState cooldownStateData;
     [SerializeField]
     private D_RangedAttackState rangedAttackStateData;
-
     private GameObject meleeAttackCollider;
 
     [SerializeField]

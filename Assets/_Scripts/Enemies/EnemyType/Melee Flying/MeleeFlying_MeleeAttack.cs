@@ -47,8 +47,9 @@ public class MeleeFlying_MeleeAttack : MeleeAttackState
         base.PhysicsUpdate();
     }
 
-    public override void TriggerAttack()
+    public override bool TriggerAttack()
     {
         base.TriggerAttack();
+        return false;
     }
 }

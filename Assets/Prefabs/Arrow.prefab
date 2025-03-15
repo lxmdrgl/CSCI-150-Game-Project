@@ -137,7 +137,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 8
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -161,7 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bfb0a7454616134ba6097bb7e164297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 3
   damageRadius: 0.15
   damageScript: {fileID: 7346761872037831879}
   whatIsGround:
@@ -171,6 +170,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   damagePosition: {fileID: 3860982416809161787}
+  startingRotation: 0
 --- !u!1 &5100082979071793321
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ Transform:
   m_GameObject: {fileID: 5100082979071793321}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.741716, y: -71.49314, z: -0.053288814}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -215,4 +215,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607eae77b37f7734d805319e17f424e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 15

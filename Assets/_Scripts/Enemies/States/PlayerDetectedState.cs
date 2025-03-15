@@ -36,10 +36,11 @@ public class PlayerDetectedState : EnemyState
         base.DoChecks();
 
         isPlayerInAgroRange = entity.CheckPlayerInAgroRange();
-        isPlayerInPursuitRange = entity.CheckPlayerInPursuitRange();
         isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
         isDetectingLedge = CollisionSenses.LedgeVertical;
         performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
+		isPlayerInPursuitRange = entity.isPlayerInPursuitRange;
+
     }
 
     public override void Enter()

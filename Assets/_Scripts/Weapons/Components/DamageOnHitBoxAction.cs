@@ -16,12 +16,14 @@ namespace Game.Weapons.Components
         
         private float totalAmount;
 
+
         private void HandleDetectCollider2D(Collider2D[] colliders)
         {
             // Notice that this is equal to (1), the logic has just been offloaded to a static helper class. Notice the using statement (2) is static, allowing as to call the Damage function directly instead of saying
             // Bardent.Utilities.CombatUtilities.Damage(...);
 
-            totalAmount = currentAttackData.Amount * (stats.Attack / 100f);
+            totalAmount = currentAttackData.Amount * (stats.Attack / 100f); 
+
 
             TryDamage(colliders, new DamageData(totalAmount, Core.Root), out _); 
 

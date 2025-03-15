@@ -45,8 +45,10 @@ namespace Game.CoreSystem
 
         [Header("Platform Check")]
         [SerializeField] private string platformTag;
-        [SerializeField] private Transform platformCheck;
+        // [SerializeField] private Transform platformCheck;
         [SerializeField] private Transform platformCheckBottom;
+        [SerializeField] private Transform platformCheckTop;
+        [SerializeField] private float playerHeight; 
         [SerializeField] private float platformCheckBottomDistance; 
         [SerializeField] private float platformCheckTopDistance; 
         [SerializeField] private float platformCheckBottomExtendDistance; 
@@ -91,7 +93,7 @@ namespace Game.CoreSystem
         {
             get 
             {   
-                RaycastHit2D hit = Physics2D.Raycast(platformCheck.position, Vector2.down, platformCheckBottomDistance, whatIsGround);
+                RaycastHit2D hit = Physics2D.Raycast(platformCheckBottom.position, Vector2.down, platformCheckBottomDistance, whatIsGround);
                 if (hit.collider != null && hit.collider.CompareTag(platformTag)) {
                     // Debug.Log($"PlatformBottom true");
                     return hit;
@@ -101,6 +103,21 @@ namespace Game.CoreSystem
                 }
             }
         }
+
+        /* public RaycastHit2D PlatformBottomUp
+        {
+            get 
+            {   
+                RaycastHit2D hit = Physics2D.Raycast(platformCheckBottom.position, Vector2.up, playerHeight, whatIsGround);
+                if (hit.collider != null && hit.collider.CompareTag(platformTag)) {
+                    // Debug.Log($"PlatformBottom true");
+                    return hit;
+                } else {
+                    // Debug.Log($"PlatformBottom false");
+                    return new RaycastHit2D();
+                }
+            }
+        } */
 
         public RaycastHit2D PlatformBottomExtend
         {
@@ -117,20 +134,20 @@ namespace Game.CoreSystem
             }
         }
 
-        public RaycastHit2D PlatformTop
+        /* public RaycastHit2D PlatformTop
         {
             get 
             {   
-                RaycastHit2D hit = Physics2D.Raycast(platformCheck.position, Vector2.down, platformCheckTopDistance, whatIsGround);
+                RaycastHit2D hit = Physics2D.Raycast(platformCheckTop.position, Vector2.up, platformCheckTopDistance, whatIsGround);
                 if (hit.collider != null && hit.collider.CompareTag(platformTag)) {
-                    // Debug.Log($"PlatformBottom true");
+                    Debug.Log($"PlatformBottom true");
                     return hit;
                 } else {
-                    // Debug.Log($"PlatformBottom false");
+                    Debug.Log($"PlatformBottom false");
                     return new RaycastHit2D();
                 }
             }
-        }
+        } */
 
         public Collider2D PlatformOverlap
         {

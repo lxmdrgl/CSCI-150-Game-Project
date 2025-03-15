@@ -54,10 +54,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3084334527185242176}
-  - component: {fileID: 6426281713410507453}
+  - component: {fileID: 7190378446536183457}
   m_Layer: 0
   m_Name: RoomEntrance
-  m_TagString: Untagged
+  m_TagString: RoomEntrance
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,7 +78,7 @@ Transform:
   - {fileID: 3482674726067082847}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6426281713410507453
+--- !u!114 &7190378446536183457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,7 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60f945256179ca4796cfc4c2787aea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  exitDirection: 0
+  direction: 0
+  isDone: 0
 --- !u!1 &4487379232191985272
 GameObject:
   m_ObjectHideFlags: 0

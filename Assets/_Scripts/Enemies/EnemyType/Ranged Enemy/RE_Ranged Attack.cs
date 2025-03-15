@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Projectiles;
+using JetBrains.Annotations;
 
 public class RE_RangedAttackState : RangedAttackState
 {
@@ -34,8 +36,23 @@ public class RE_RangedAttackState : RangedAttackState
     {
         base.LogicUpdate();
 
+
         if (isAnimationFinished)
         {
+            // Instantiate the projectile and set its properties
+            GameObject projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
+            Projectile projectileScript = projectile.GetComponent<Projectile>();
+            if (projectileScript != null)
+            {
+                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance,enemy.targetPlayer.position,"linearWithGravity", enemy.transform.rotation.y, stateData.gravityScale);
+            }
+
+            Damage damageComponent = projectile.GetComponentInChildren<Damage>();
+            if (damageComponent != null)
+            {
+                damageComponent.SetDamage(stateData.projectileDamage, stateData.knockbackAngle, stateData.knockbackStrength);
+            }
+
             if (isPlayerInAgroRange) // Player is in agro range
             {
                 stateMachine.ChangeState(enemy.rangedAttackState); // Transition to PlayerDetectedState
@@ -45,6 +62,7 @@ public class RE_RangedAttackState : RangedAttackState
                 stateMachine.ChangeState(enemy.lookForPlayerState); // Transition to LookForPlayerState
             }
         }
+        
     }
 
     public override void PhysicsUpdate()
@@ -53,9 +71,10 @@ public class RE_RangedAttackState : RangedAttackState
         
     }
 
-    public override void TriggerAttack()
+    public override bool TriggerAttack()
     {
         base.TriggerAttack();
+        return false;
     }
 
     public override void FinishAttack()

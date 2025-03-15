@@ -11,5 +11,6 @@ public class D_RangedAttackState : ScriptableObject
     public float projectileTravelDistance = 10f;
     public Vector2 knockbackAngle = Vector2.one;
     public float knockbackStrength = 10f;
+    public float gravityScale = 3f;
     public LayerMask whatIsPlayer;
 }

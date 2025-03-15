@@ -20,7 +20,7 @@ public class PlayerAirState : PlayerState
 
     protected int xInput;
     protected bool jumpInput;
-    private bool downInput;
+    protected bool downInput;
     protected bool dashInput;
 
     private bool isGrounded;
@@ -29,8 +29,8 @@ public class PlayerAirState : PlayerState
 
     protected Collider2D isPlatformOverlap;
     protected Collider2D isPlatformOverlapTop;
-    protected RaycastHit2D isPlatformTop;
-    protected RaycastHit2D isPlatformBottom;
+    // protected RaycastHit2D isPlatformTop;
+    // protected RaycastHit2D isPlatformBottomUp;
     protected RaycastHit2D isPlatformBottomExtend;
 
     private bool coyoteTime;
@@ -53,8 +53,8 @@ public class PlayerAirState : PlayerState
 
             isPlatformOverlap = CollisionSenses.PlatformOverlap;
             isPlatformOverlapTop = CollisionSenses.PlatformOverlapTop;
-            isPlatformTop = CollisionSenses.PlatformTop;
-            isPlatformBottom = CollisionSenses.PlatformBottom;
+            // isPlatformTop = CollisionSenses.PlatformTop;
+            // isPlatformBottomUp = CollisionSenses.PlatformBottomUp;
             isPlatformBottomExtend = CollisionSenses.PlatformBottomExtend;
         }
     }
@@ -87,19 +87,33 @@ public class PlayerAirState : PlayerState
 
         // Debug.Log($"Actual y: {player.RB.linearVelocity.y}");
 
-        if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttack] && player.PrimaryAttackState.CanAttack())
+        if (downInput && player.FallAttackState.CanAttack(CombatInputs.primaryAttackPress, CombatInputs.fallAttack))
+        {
+            stateMachine.ChangeState(player.FallAttackState);
+        }
+        else if (player.DashAttackState.CanAttackCooldown(CombatInputs.primaryAttackPress, CombatInputs.dashAttack))
+        {
+            stateMachine.ChangeState(player.DashAttackState);
+        }
+        else if (player.PrimaryAttackState.CanAttack() && 
+                (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackPress]
+                || (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && !player.PrimaryAttackHoldState.CanAttack())))
         {
             stateMachine.ChangeState(player.PrimaryAttackState);
         }
-        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttack] && player.SecondaryAttackState.CanAttack())
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && player.PrimaryAttackHoldState.CanAttack())
+        {
+            stateMachine.ChangeState(player.PrimaryAttackHoldState);
+        }
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackPress] && player.SecondaryAttackState.CanAttack())
         {
             stateMachine.ChangeState(player.SecondaryAttackState);
         }
-        if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkill] && player.PrimarySkillState.CanAttackCooldown())
+        if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillPress] && player.PrimarySkillState.CanAttackCooldown())
         {
             stateMachine.ChangeState(player.PrimarySkillState);
         }
-        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkill] && player.SecondarySkillState.CanAttackCooldown())
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillPress] && player.SecondarySkillState.CanAttackCooldown())
         {
             stateMachine.ChangeState(player.SecondarySkillState);
         }
@@ -107,12 +121,12 @@ public class PlayerAirState : PlayerState
         {
             stateMachine.ChangeState(player.DashState);
         }
-        else if ((jumpInput) && player.JumpState.CanJump())
+        else if (jumpInput && player.JumpState.CanJump())
         {
             Debug.Log("Input: Air to Jump");
             stateMachine.ChangeState(player.JumpState);
         } 
-        else if (isGrounded && Movement?.CurrentVelocity.y < 0.01f && xInput == 0)
+        else if (isGrounded && platformDropped == null && Movement?.CurrentVelocity.y < 0.01f && xInput == 0)
         {
             stateMachine.ChangeState(player.IdleState);
         } 
@@ -120,13 +134,19 @@ public class PlayerAirState : PlayerState
         {
             stateMachine.ChangeState(player.MoveState);
         } 
-        else if (isTouchingWall && xInput == Movement?.FacingDirection && !isCloseToGrounded) { // note: removed && Movement?.CurrentVelocity.y <= 0
+        else if (isTouchingWall && xInput == Movement?.FacingDirection && !isCloseToGrounded 
+                 && Movement?.CurrentVelocity.y <= 0 && !downInput) { 
             stateMachine.ChangeState(player.WallGrabState);
         }
         else
         {
             Movement?.CheckIfShouldFlip(xInput);
             Movement?.SetVelocityX(playerData.movementVelocity * xInput);
+
+            if (Movement.CurrentVelocity.y < playerData.terminalVelocityY)
+            {
+                Movement?.SetVelocityY(playerData.terminalVelocityY);
+            }
 
             player.Anim.SetFloat("yVelocity", Movement.CurrentVelocity.y);
         }
@@ -150,8 +170,11 @@ public class PlayerAirState : PlayerState
 
     public void ResetPlatformCollision()
     {
-        if (platformDropped != null && isPlatformTop) {
-            Debug.Log("Reset platform collision");
+        // Debug.Log("Reset platform : " + (bool)platformDropped + ", " + (bool)isPlatformTop);
+        // isPlatformTop checks whether the the platform is above the top of the player
+        // isPlatformBottomUp checks whether the the platform is 
+        if (platformDropped != null && !isPlatformOverlap) {
+            Debug.Log("Reset platform Success: " + (bool)platformDropped + ", " + (bool)!isPlatformOverlap);
             Physics2D.IgnoreCollision(platformDropped, player.boxCollider, false);
             platformDropped = null;
         }

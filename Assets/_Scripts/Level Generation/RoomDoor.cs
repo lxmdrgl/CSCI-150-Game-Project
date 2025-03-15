@@ -2,20 +2,15 @@ using System;
 using UnityEngine;
 
 [ExecuteAlways]
-public class RoomExit : MonoBehaviour
+public class RoomDoor : MonoBehaviour
 {
     public enum Direction { Right, Up, Left, Down }
-    public Direction exitDirection;
+    public Direction direction;
     public bool isDone = false;
 
-    void Start()
-    {
-        
-    }
-    
-    void Update()
+    void OnValidate()
     {
         // Rotate from Direction enum selection
-        transform.rotation = Quaternion.Euler(0, 0, (int)exitDirection * 90);
+        transform.rotation = Quaternion.Euler(0, 0, (int)direction * 90);
     }
 }
