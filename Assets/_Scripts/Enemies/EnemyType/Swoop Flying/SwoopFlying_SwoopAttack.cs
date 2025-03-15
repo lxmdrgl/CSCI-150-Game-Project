@@ -8,7 +8,7 @@ public class SwoopFlying_SwoopAttack : MeleeAttackState
 	protected bool isAttackOffCooldown;
     protected bool triggeredAttack;
     private Vector3 startPos;
-    private Vector3 swoopTarget;
+    //private Vector3 swoopTarget;
     private Vector3 returnPos;
     private float swoopProgress;
     private float swoopDuration = 1f; // How long the swoop lasts
@@ -59,7 +59,7 @@ public class SwoopFlying_SwoopAttack : MeleeAttackState
             triggeredAttack = TriggerAttack();
         }
 
-        if (swoopProgress < swoopDuration)
+        if (swoopProgress <= swoopDuration)
         {
             swoopProgress += Time.deltaTime / swoopDuration;
 
