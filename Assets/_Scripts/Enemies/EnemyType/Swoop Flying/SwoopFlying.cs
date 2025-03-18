@@ -22,10 +22,6 @@ public class SwoopFlying : Entity
     private D_DeadState deadStateData;
     [SerializeField]
     private D_CooldownState cooldownStateData;
-
-    public Transform player; // Reference to the player's transform
-    public Rigidbody2D rb;
-
     private GameObject meleeAttackCollider;
 
 
@@ -46,16 +42,6 @@ public class SwoopFlying : Entity
         stats.Stun.OnCurrentValueZero += HandleStunZero;
         stats.Health.OnValueChange += HandleDamageTaken;
 
-        rb = GetComponent<Rigidbody2D>();
-        GameObject playerObject = GameObject.FindWithTag("Player");
-        if (playerObject != null)
-        {
-            player = playerObject.transform;
-        }
-        else
-        {
-            Debug.LogError("Player not found in the scene! Make sure the player GameObject is tagged as 'Player'.");
-        }
     }
 
     private void HandleStunZero()

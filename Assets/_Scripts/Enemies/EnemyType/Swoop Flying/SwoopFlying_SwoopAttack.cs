@@ -34,7 +34,7 @@ public class SwoopFlying_SwoopAttack : MeleeAttackState
         startPos = enemy.transform.position;
 
         // Set the target position 
-        swoopTarget = enemy.player.transform.position;
+        swoopTarget = enemy.playersInRange[0].transform.position;
 
         returnPos = startPos + new Vector3(10f * (Movement?.FacingDirection<=0 ? -1 : 1), 0, 0);
 

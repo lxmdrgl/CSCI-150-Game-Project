@@ -18,7 +18,7 @@ public class Entity : MonoBehaviour, IDataPersistence
 
     [SerializeField]
 	public Transform playerCheck;
-
+    public List<GameObject> playersInRange;
     private float currentStunResistance;
 
     private Vector2 velocityWorkspace;
@@ -82,20 +82,32 @@ public class Entity : MonoBehaviour, IDataPersistence
 
     public virtual bool CheckPlayerInPursuitRange()
     {
-        // Perform the CircleCast to check for the player only
-        RaycastHit2D hit = Physics2D.CircleCast(
-            playerCheck.position, 
-            entityData.pursuitRange, 
+        // Perform the CircleCast to check for players
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(
+            playerCheck.position,
+            entityData.pursuitRange,
             Vector2.zero, // Set distance to zero for a stationary circle cast
-            0, 
+            0,
             entityData.whatIsPlayer
         );
+
+        // Clear the list of players in range
+        playersInRange.Clear();
+
+        // Add detected players to the list
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider != null && hit.collider.CompareTag("Player"))
+            {
+                playersInRange.Add(hit.collider.gameObject);
+            }
+        }
 
         // Debug the CircleCast for visualization
         DebugCircleCast(playerCheck.position, entityData.pursuitRange, Vector2.zero, 0);
 
-        // Return true if a player was hit, otherwise false
-        return hit.collider != null;
+        // Return true if any players are in range
+        return playersInRange.Count > 0;
     }
 
     void DebugCircleCast(Vector2 origin, float radius, Vector2 direction, float distance)

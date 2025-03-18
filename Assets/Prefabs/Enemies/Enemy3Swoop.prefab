@@ -773,7 +773,6 @@ GameObject:
   - component: {fileID: 4846833722265371268}
   - component: {fileID: -1460232046812936009}
   - component: {fileID: 9179451651982989081}
-  - component: {fileID: 9195671620027451164}
   - component: {fileID: 9113077644204671259}
   - component: {fileID: 556503304328713079}
   - component: {fileID: 5719427680606851951}
@@ -873,40 +872,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5487bc3a463d74c8a6f9951ef3e1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityData: {fileID: 0}
-  playerCheck: {fileID: 0}
-  UniqueId: 
-  idleStateData: {fileID: 0}
-  chargeStateData: {fileID: 0}
-  meleeAttackStateData: {fileID: 0}
-  stunStateData: {fileID: 0}
-  deadStateData: {fileID: 0}
-  cooldownStateData: {fileID: 0}
-  player: {fileID: 0}
-  rb: {fileID: 0}
---- !u!114 &9195671620027451164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6360035130462158432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a8a7974ca5d01e4cbac8ec398802d57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityData: {fileID: 11400000, guid: 7a9ca2b5c36c30c469795c667b005412, type: 2}
+  entityData: {fileID: 11400000, guid: 9a218a985f8aaca469be98cbb819a699, type: 2}
   playerCheck: {fileID: 3755304697358755252}
+  playersInRange: []
   UniqueId: 
-  idleStateData: {fileID: 11400000, guid: 2ee38f026771ef8469cfd9e20f0f32f7, type: 2}
-  chargeStateData: {fileID: 11400000, guid: 7b34f319f0b1aea42a14158d1889d51f, type: 2}
-  meleeAttackStateData: {fileID: 11400000, guid: 2d12f20b78363be44aa46370fa9044f1, type: 2}
-  stunStateData: {fileID: 11400000, guid: a257c31ca6a84cf48afcae8bce9dd5e6, type: 2}
-  deadStateData: {fileID: 11400000, guid: 712360c6029613644910bdfd84960887, type: 2}
-  cooldownStateData: {fileID: 11400000, guid: 181fbb2b6ab2487469d9ca2d58ca9e97, type: 2}
-  player: {fileID: 0}
-  rb: {fileID: 0}
+  idleStateData: {fileID: 11400000, guid: 9d968793cd0a073418d73c370aa1bd02, type: 2}
+  chargeStateData: {fileID: 11400000, guid: 816bd11bf61e8014fb01ec581ec5be84, type: 2}
+  meleeAttackStateData: {fileID: 11400000, guid: e9266d1e068be0b4fa9badf88d1b9c8a, type: 2}
+  stunStateData: {fileID: 11400000, guid: 56e5463cf6bdfaa45bcc2f8a750efd38, type: 2}
+  deadStateData: {fileID: 11400000, guid: 964d325a09edebf4e8739837c9fb68ee, type: 2}
+  cooldownStateData: {fileID: 11400000, guid: 85105a76a72772e4e890b7b15b97c7f9, type: 2}
 --- !u!50 &9113077644204671259
 Rigidbody2D:
   serializedVersion: 5
@@ -1084,8 +1059,9 @@ MonoBehaviour:
     m_Bits: 128
   ledgeCheckVertical: {fileID: 2181997544596436395}
   platformTag: 
-  platformCheck: {fileID: 0}
   platformCheckBottom: {fileID: 0}
+  platformCheckTop: {fileID: 0}
+  playerHeight: 0
   platformCheckBottomDistance: 0
   platformCheckTopDistance: 0
   platformCheckBottomExtendDistance: 0
