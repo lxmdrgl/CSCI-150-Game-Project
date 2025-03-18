@@ -216,8 +216,14 @@ namespace Game.CoreSystem
             isPaused = true;
             Time.timeScale = 0f;
 
-            playerInput1.SwitchCurrentActionMap("UI");
-            playerInput2.SwitchCurrentActionMap("UI");
+            if (playerInput1 != null)
+            {
+                playerInput1.SwitchCurrentActionMap("UI");
+            }
+            if (playerInput2 != null)
+            {
+                playerInput2.SwitchCurrentActionMap("UI");
+            }
 
             OpenMainMenu();
         }
@@ -272,7 +278,7 @@ namespace Game.CoreSystem
         }
         #endregion
 
-        public void OnUpgradeClicked(UpgradeSlot slot)
+        /*public void OnUpgradeClicked(UpgradeSlot slot)
         {
             // int index = upgradeSlots.IndexOf(slot);
             if (statUpgradeDataSet != null) {
@@ -285,6 +291,53 @@ namespace Game.CoreSystem
                 WeaponData currentData = slot.currentWeaponData;
                 int weaponIndex = (int)currentData.weaponIndex;
                 weaponInventory1.TrySetWeapon(currentData, weaponIndex);
+            }
+
+            statUpgradeDataSet = null;
+            weaponDataSet = null;
+        }*/
+
+        public void OnUpgradeClicked(UpgradeSlot slot)
+        {
+            // Get the player input from the EventSystem (the last player to interact with UI)
+            PlayerInput playerInput = EventSystem.current.currentSelectedGameObject?.GetComponentInParent<PlayerInput>();
+
+            if (playerInput == null)
+            {
+                Debug.LogWarning("No player input detected for upgrade selection!");
+                return;
+            }
+
+            int playerIndex = playerInput.playerIndex; // Get player index
+
+            if (statUpgradeDataSet != null)
+            {
+                // Get the selected stat upgrade
+                StatUpgradeData currentData = slot.currentStatData;
+
+                if (playerIndex == 0)
+                {
+                    stats1.UpdateStats(currentData.Health, currentData.Attack);
+                }
+                else if (playerIndex == 1)
+                {
+                    stats2.UpdateStats(currentData.Health, currentData.Attack);
+                }
+            }
+            else if (weaponDataSet != null)
+            {
+                // Get the selected weapon upgrade
+                WeaponData currentData = slot.currentWeaponData;
+                int weaponIndex = (int)currentData.weaponIndex;
+
+                if (playerIndex == 0)
+                {
+                    weaponInventory1.TrySetWeapon(currentData, weaponIndex);
+                }
+                else if (playerIndex == 1)
+                {
+                    weaponInventory2.TrySetWeapon(currentData, weaponIndex);
+                }
             }
 
             statUpgradeDataSet = null;
