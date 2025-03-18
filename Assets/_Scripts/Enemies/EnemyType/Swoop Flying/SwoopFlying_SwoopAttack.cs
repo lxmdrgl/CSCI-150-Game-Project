@@ -8,7 +8,7 @@ public class SwoopFlying_SwoopAttack : MeleeAttackState
 	protected bool isAttackOffCooldown;
     protected bool triggeredAttack;
     private Vector3 startPos;
-    private Vector3 swoopTarget;
+    //private Vector3 swoopTarget;
     private Vector3 returnPos;
     private float swoopProgress;
     private float swoopDuration = 1f; // How long the swoop lasts
@@ -34,7 +34,7 @@ public class SwoopFlying_SwoopAttack : MeleeAttackState
         startPos = enemy.transform.position;
 
         // Set the target position 
-        swoopTarget = enemy.playersInRange[0].transform.position;
+        swoopTarget = enemy.targetPlayer.position;
 
         returnPos = startPos + new Vector3(10f * (Movement?.FacingDirection<=0 ? -1 : 1), 0, 0);
 
@@ -59,7 +59,7 @@ public class SwoopFlying_SwoopAttack : MeleeAttackState
             triggeredAttack = TriggerAttack();
         }
 
-        if (swoopProgress < swoopDuration)
+        if (swoopProgress <= swoopDuration)
         {
             swoopProgress += Time.deltaTime / swoopDuration;
 

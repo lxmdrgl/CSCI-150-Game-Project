@@ -74,6 +74,12 @@ public class PlayerGroundedState : PlayerState
         dashInput = player.InputHandler.DashInput;
         fallInput = player.InputHandler.FallInput;
 
+        /* if(!fallInput && (bool)isPlatformBottom)
+        {
+            platformDropped = isPlatformBottom.collider;
+            Physics2D.IgnoreCollision(platformDropped, player.boxCollider, false);
+        } */
+
         if (player.DashAttackState.CanAttackCooldown(CombatInputs.primaryAttackPress, CombatInputs.dashAttack))
         {
             stateMachine.ChangeState(player.DashAttackState);
@@ -112,7 +118,7 @@ public class PlayerGroundedState : PlayerState
             player.InputHandler.UseJumpInput();
             // platformDropped = isPlatformDown;
             platformDropped = isPlatformBottom.collider;
-            Debug.Log($"Drop platform: {platformDropped}, {player.boxCollider}");
+            Debug.Log($"Current State Drop platform: {platformDropped}, {player.boxCollider}");
             Physics2D.IgnoreCollision(platformDropped, player.boxCollider, true);
 
             player.AirState.SetPlatformDropped(platformDropped);

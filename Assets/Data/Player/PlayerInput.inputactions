@@ -273,7 +273,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse2;Gamepad;Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse2;Keyboard&Mouse;Gamepad",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false

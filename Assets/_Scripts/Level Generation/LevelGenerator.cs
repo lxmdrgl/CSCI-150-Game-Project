@@ -37,8 +37,8 @@ public class LevelGenerator : MonoBehaviour
     public RoomNode roomMap;
     private int roomNumber = 1;
     private int playerCount;
-    private int playerIndexToReplace = 0;
-
+    private InputDevice replaceInputDevice;
+    private List<Entity> enemies = new List<Entity>();
     PlayerInputManager playerInputManager;
 
     void Awake()
@@ -51,11 +51,12 @@ public class LevelGenerator : MonoBehaviour
         spawnRoomMap();
 
         InputSystem.onDeviceChange += OnDeviceChange;
-        InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
+        inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
 
         if (spawnStartingRoom() && spawnAllRooms(roomMap)) 
         {
-            spawnAllEnemies(roomMap);
+
+            // spawnAllEnemies(roomMap);
 
             UnityEngine.Debug.Log("player count: " + playerCount);
             if(playerCount == 1)
@@ -74,7 +75,9 @@ public class LevelGenerator : MonoBehaviour
                 UnityEngine.Debug.Log("PLAYERCOUNT NOT SET");
             }
 
-
+            InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
+            // PlayerInput.all[0].user.UnpairDevices();
+            // UnityEngine.Debug.Log("Unpairing player 1 input devices: " + PlayerInput.all[0].user.pairedDevices.Count);
         } 
         else 
         {
@@ -236,6 +239,14 @@ public class LevelGenerator : MonoBehaviour
 
     #region SpawnPlayer
 
+    void setPlayerDependencies(PlayerInput newPlayer)
+    {
+        UnityEngine.Debug.Log("Setting player dependencies for player " + (newPlayer.playerIndex + 1));
+        setCameras(newPlayer);
+        setUserInterface(newPlayer);
+        setEnemyDependencies();
+    }
+
     void setCameras(PlayerInput newPlayer)
     {
         int activePlayerCount = PlayerInput.all.Count;
@@ -293,6 +304,7 @@ public class LevelGenerator : MonoBehaviour
                 playerHealthBar2.SetPlayer(newPlayer.gameObject);
                 pauseMenu.player1 = newPlayer.gameObject;
                 upgradeMenu.player1 = newPlayer.gameObject;
+                inputMenu.player1 = newPlayer.gameObject;
             }   
             else
             {
@@ -311,6 +323,7 @@ public class LevelGenerator : MonoBehaviour
                 playerHealthBar1.SetPlayer(newPlayer.gameObject);
                 pauseMenu.player1 = newPlayer.gameObject;
                 upgradeMenu.player1 = newPlayer.gameObject;
+                inputMenu.player1 = newPlayer.gameObject;
             }
             else if (newPlayer.playerIndex == 1)
             {
@@ -318,6 +331,7 @@ public class LevelGenerator : MonoBehaviour
                 playerHealthBar2.SetPlayer(newPlayer.gameObject);
                 pauseMenu.player2 = newPlayer.gameObject;
                 upgradeMenu.player2 = newPlayer.gameObject;
+                inputMenu.player2 = newPlayer.gameObject;
             }
             else
             {
@@ -332,6 +346,16 @@ public class LevelGenerator : MonoBehaviour
         gameplayCanvas.SetDependencies();
         pauseMenu.SetDependencies();
         upgradeMenu.SetDependencies();
+        inputMenu.SetDependencies();
+    }
+
+    private void setEnemyDependencies()
+    {
+        enemies = FindObjectsByType<Entity>(FindObjectsSortMode.None).ToList();
+        foreach (Entity enemy in enemies)
+        {
+            enemy.SetDependencies();
+        }
     }
 
     void spawnPlayer(int count)
@@ -358,8 +382,10 @@ public class LevelGenerator : MonoBehaviour
                     newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
                     newPlayer.transform.rotation = levelTransform.rotation;
                     
-                    setCameras(newPlayer);
+                    setPlayerDependencies(newPlayer);
+                    /* setCameras(newPlayer);
                     setUserInterface(newPlayer);
+                    setEnemyDependencies(); */
                 }
                 else
                 {
@@ -367,9 +393,11 @@ public class LevelGenerator : MonoBehaviour
 
                     // Pause the game, UI saying wait for second player, disable player 1 input (PlayerInput.all[0])
 
-                    StartCoroutine(WaitForSecondPlayer(playerInputManager, i));
+                    StartCoroutine(WaitForUnpairedPlayer(playerInputManager, i));
                     break;
                 }
+
+                // GameObject newPlayer = Instantiate(player, new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0), levelTransform.rotation);
             }
         }
         else
@@ -392,7 +420,7 @@ public class LevelGenerator : MonoBehaviour
 
                 // Pause the game, UI saying second player disconnected, disable player 1 input (PlayerInput.all[0])
 
-                StartCoroutine(WaitForSecondPlayer(playerInputManager, player.playerIndex));
+                StartCoroutine(WaitForUnpairedPlayer(playerInputManager, player.playerIndex));
             }
         }
         else if (change == InputDeviceChange.Reconnected)
@@ -414,11 +442,6 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    public void setPlayerIndexToReplace(int index)
-    {
-        playerIndexToReplace = index;
-    }
-
     private void OnUnpairedDeviceUsed(InputControl control, InputEventPtr eventPtr)
     {
         InputDevice newDevice = control.device;
@@ -430,17 +453,31 @@ public class LevelGenerator : MonoBehaviour
             return;
         }
 
+        UnityEngine.Debug.Log($"Unpaired device used: {newDevice.displayName}");
+
         // Determine which player to replace
         int playerIndexToReplace = 0; // Default to Player 1
 
         // If there are two players, decide which one to replace based on your criteria
+        if (PlayerInput.all.Count == 1)
+        {
+            UnityEngine.Debug.Log("Replacing input device for player 1");
+            ReplacePlayerInput(newDevice, playerIndexToReplace);
+        }
         if (PlayerInput.all.Count > 1)
         {
-            // Example: Replace Player 2's device
-            playerIndexToReplace = 1;
+            UnityEngine.Debug.Log("Replacing input device for player " + (playerIndexToReplace + 1));
+            if (newDevice != null)
+            {
+                UnityEngine.Debug.Log("Replacing input device: " + newDevice.displayName);
+            }
+            else
+            {
+                UnityEngine.Debug.LogError("New device is null.");
+            }
+            replaceInputDevice = newDevice;
+            inputMenu.OpenMenu();
         }
-
-        ReplacePlayerInput(newDevice, playerIndexToReplace);
     }
 
     private void ReplacePlayerInput(InputDevice newDevice, int playerIndex)
@@ -449,21 +486,46 @@ public class LevelGenerator : MonoBehaviour
         {
             PlayerInput player = PlayerInput.all[playerIndex];
             player.user.UnpairDevices();
-            InputUser.PerformPairingWithDevice(newDevice, player.user);
 
-            // Determine the appropriate control scheme based on the new device
-            string controlScheme = player.actions.controlSchemes
-                .FirstOrDefault(scheme => scheme.SupportsDevice(newDevice)).name;
-
-            if (!string.IsNullOrEmpty(controlScheme))
+            // Check if the new device is either the keyboard or mouse
+            if (newDevice is Keyboard || newDevice is Mouse)
             {
-                player.SwitchCurrentControlScheme(controlScheme, newDevice);
-                UnityEngine.Debug.Log($"Replaced Player {playerIndex + 1} input with {newDevice.displayName} using control scheme '{controlScheme}'");
+                // Pair both keyboard and mouse together
+                InputUser.PerformPairingWithDevice(Keyboard.current, player.user);
+                InputUser.PerformPairingWithDevice(Mouse.current, player.user);
+
+                string controlScheme = player.actions.controlSchemes
+                    .FirstOrDefault(scheme => scheme.SupportsDevice(Keyboard.current) && scheme.SupportsDevice(Mouse.current)).name;
+
+                if (!string.IsNullOrEmpty(controlScheme))
+                {
+                    player.SwitchCurrentControlScheme(controlScheme, Keyboard.current, Mouse.current);
+                    UnityEngine.Debug.Log($"Replaced Player {playerIndex + 1} input with Mouse and Keyboard using control scheme '{controlScheme}'");
+                }
+                else
+                {
+                    UnityEngine.Debug.LogWarning($"No matching control scheme found for Mouse and Keyboard. Default control scheme will be used.");
+                }
             }
             else
             {
-                UnityEngine.Debug.LogWarning($"No matching control scheme found for device {newDevice.displayName}. Default control scheme will be used.");
+                // Handle other devices (like gamepads) as usual
+                InputUser.PerformPairingWithDevice(newDevice, player.user);
+
+                string controlScheme = player.actions.controlSchemes
+                    .FirstOrDefault(scheme => scheme.SupportsDevice(newDevice)).name;
+
+                if (!string.IsNullOrEmpty(controlScheme))
+                {
+                    player.SwitchCurrentControlScheme(controlScheme, newDevice);
+                    UnityEngine.Debug.Log($"Replaced Player {playerIndex + 1} input with {newDevice.displayName} using control scheme '{controlScheme}'");
+                }
+                else
+                {
+                    UnityEngine.Debug.LogWarning($"No matching control scheme found for device {newDevice.displayName}. Default control scheme will be used.");
+                }
             }
+            setPlayerDependencies(player);
         }
         else
         {
@@ -471,7 +533,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private IEnumerator WaitForSecondPlayer(PlayerInputManager playerInputManager, int playerIndex)
+    private IEnumerator WaitForUnpairedPlayer(PlayerInputManager playerInputManager, int playerIndex)
     {
         GameObject levelOrigin = GameObject.Find("LevelOrigin");
         Transform levelTransform;
@@ -487,8 +549,10 @@ public class LevelGenerator : MonoBehaviour
                     newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
                     newPlayer.transform.rotation = levelTransform.rotation;
 
-                    setCameras(newPlayer);
-                    setUserInterface(newPlayer);
+
+                    setPlayerDependencies(newPlayer);
+                    /* setCameras(newPlayer);
+                    setUserInterface(newPlayer); */
 
                     // Second player found, resume the game
 

@@ -38,7 +38,7 @@ public class Boss1_Pursuit : ChargeState
         }
         else if(isPlayerInPursuitRange)
         {
-            Vector2 direction = (enemy.playersInRange[0].transform.position - enemy.transform.position).normalized;
+            Vector2 direction = (enemy.targetPlayer.position - enemy.transform.position).normalized;
             direction.y = enemy.transform.position.y;
             if ((direction.x > 0 &&  Movement?.FacingDirection < 0) || (direction.x < 0 && Movement?.FacingDirection > 0))
             {

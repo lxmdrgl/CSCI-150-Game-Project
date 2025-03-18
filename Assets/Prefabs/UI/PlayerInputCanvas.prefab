@@ -191,6 +191,7 @@ MonoBehaviour:
   PlayerInputCanvas: {fileID: 8042701416190250270}
   player1: {fileID: 0}
   player2: {fileID: 0}
+  playerIndex: 0
 --- !u!1 &3086583144309470319
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +205,7 @@ GameObject:
   - component: {fileID: 4321413863794658850}
   - component: {fileID: 7606804550637833773}
   m_Layer: 5
-  m_Name: Player1
+  m_Name: Player1Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,7 +312,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4321413863794658850}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1785590083586977910}
+        m_TargetAssemblyTypeName: InputMenuManager, Assembly-CSharp
+        m_MethodName: OnButtonClicked
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3112584380938381904
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +338,7 @@ GameObject:
   - component: {fileID: 4863807073357775543}
   - component: {fileID: 8543895928035997046}
   m_Layer: 5
-  m_Name: Player2
+  m_Name: Player2Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,7 +445,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4863807073357775543}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1785590083586977910}
+        m_TargetAssemblyTypeName: InputMenuManager, Assembly-CSharp
+        m_MethodName: OnButtonClicked
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5938414040597214378
 GameObject:
   m_ObjectHideFlags: 0

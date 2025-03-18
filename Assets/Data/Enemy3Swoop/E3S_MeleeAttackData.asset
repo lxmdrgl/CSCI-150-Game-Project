@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: E3S_MeleeAttackData
   m_EditorClassIdentifier: 
   attackRadius: 1
-  attackDamage: 15
+  attackDamage: 10
   knockbackAngle: {x: 5, y: 5}
   knockbackStrength: 15
   whatIsPlayer:
