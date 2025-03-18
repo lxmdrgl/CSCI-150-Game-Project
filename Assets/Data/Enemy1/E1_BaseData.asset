@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agroRange: 10
   pursuitRange: 10
-  maxAgroDistance: 20
+  maxAgroDistance: 10
   closeRangeActionDistance: 1
   whatIsGround:
     serializedVersion: 2

@@ -56,7 +56,7 @@ public class LevelGenerator : MonoBehaviour
         if (spawnStartingRoom() && spawnAllRooms(roomMap)) 
         {
 
-            // spawnAllEnemies(roomMap);
+            //spawnAllEnemies(roomMap);
 
             UnityEngine.Debug.Log("player count: " + playerCount);
             if(playerCount == 1)
@@ -78,6 +78,7 @@ public class LevelGenerator : MonoBehaviour
             InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
             // PlayerInput.all[0].user.UnpairDevices();
             // UnityEngine.Debug.Log("Unpairing player 1 input devices: " + PlayerInput.all[0].user.pairedDevices.Count);
+
         } 
         else 
         {
