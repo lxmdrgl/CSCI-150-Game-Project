@@ -155,69 +155,69 @@ public class LevelGenerator : MonoBehaviour
         return true;
     }
 
+    List<RoomManager> loadRoomList(String roomType) {
+        List<RoomManager> roomList = new List<RoomManager>();
+        
+        roomList = Resources.LoadAll<RoomManager>("Rooms/" + roomType).ToList();
+        if (roomList.Count == 0) {
+            UnityEngine.Debug.LogError("Failed to load files from Resources/Rooms/" + roomType);
+        }
+
+        return roomList;
+    }
 
     GameObject spawnRoom(RoomNode r) {
         // Instantiate a random resource of roomType
-        List<RoomManager> roomList = new List<RoomManager>();
+        List<RoomManager> roomList = loadRoomList(r.roomType);
+        r.roomObject = Instantiate(roomList[UnityEngine.Random.Range(0, roomList.Count)].gameObj, new Vector3(0, 0, 0), transform.rotation); 
         
-        if (r.roomType == "") {
-            UnityEngine.Debug.LogError(r.name + ": roomType left empty");
-        } else {
-            roomList = Resources.LoadAll<RoomManager>("Rooms/" + r.roomType).ToList();
-            if (roomList.Count == 0) {
-                UnityEngine.Debug.LogError("Failed to load files from Resources/Rooms/" + r.roomType);
-            } else {
-                r.roomObject = Instantiate(roomList[UnityEngine.Random.Range(0, roomList.Count)].gameObj, new Vector3(0, 0, 0), transform.rotation); 
-                r.roomObject.name = "Room_" + roomNumber++;
-            }
-        }
+        r.roomObject.name = "Room_" + roomNumber++;
+        r.roomObject.GetComponent<RoomManager>().roomCollider.enabled = true;
+        
         return r.roomObject;
     }
     
     bool connectRooms(RoomNode currNode, int exitIdx, RoomNode newNode, int entranceIdx) {
-        // UnityEngine.Debug.Log(currNode.gameObject.name + ": " + exitIdx + ", " + entranceIdx);
-
+        // UnityEngine.Debug.Log(currNode.gameObject.name + ": " + exitIdx + ", " + entranceIdx)
         RoomManager currNodeManager = currNode.roomObject.GetComponent<RoomManager>();
         RoomManager newNodeManager = newNode.roomObject.GetComponent<RoomManager>();
-
         newNode.roomObject.transform.position += currNodeManager.exits[exitIdx].transform.position - newNodeManager.entrances[entranceIdx].transform.position;
-        
-        // foreach (BoxCollider2D collider in newNodeManager.colliders) {
-        //     if (collider.gameObject.layer == LayerMask.NameToLayer("Room")) {
-        //         RoomCollider roomCollider = collider.GetComponent<RoomCollider>();
-                
-        //         roomCollider.enableCollider();
-        //         roomCollider.tryCollider();
 
-        //         if (roomCollider.hasCollision) {                
-        //             UnityEngine.Debug.Log($"Collision detected: {collider.transform.parent}");
-        //         }    
-        //     }
-        // }
+        newNodeManager.hasCollision = false;
+        StartCoroutine(DelayedCollisionCheck(newNode, newNodeManager)); // Check collision after physics update
+        if (newNodeManager.hasCollision) {
+            return false;
+        }
 
-        // List<Collider2D> results = new List<Collider2D>();
-        // ContactFilter2D contactFilter = new ContactFilter2D();
-        // contactFilter.useTriggers = false; // Ignore triggers if necessary
-        // contactFilter.SetLayerMask(LayerMask.GetMask("Room")); // Ensure the objects are on the "Room" layer
-        // int overlaps = 0;
-
-        // foreach (Collider2D collider in newNodeManager.colliders) {
-        //     overlaps += Physics2D.OverlapCollider(collider, results);
-
-        //     foreach (Collider2D overlappingCollider in results) {
-        //         string colliderParentName = collider.transform.parent != null ? collider.transform.parent.name : collider.gameObject.name;
-        //         string overlappingParentName = overlappingCollider.transform.parent != null ? overlappingCollider.transform.parent.name : overlappingCollider.gameObject.name;
-                
-        //         UnityEngine.Debug.Log($"Overlap detected: {colliderParentName} is overlapping with {overlappingParentName}");
-        //     }
-        //     results.Clear();
-        // }
-
-        // if (overlaps != 0) {
-        //     UnityEngine.Debug.LogError("collision overlap " + newNode.gameObject.name + ": " + overlaps);
-        // }
-        
         return true;
+    }
+
+    // Coroutine to delay collision checking until physics updates
+    IEnumerator DelayedCollisionCheck(RoomNode newNode, RoomManager newNodeManager) {
+        yield return new WaitForFixedUpdate(); // Wait for physics engine update
+
+        newNodeManager.roomCollider.enabled = true; // Enable collider after move
+
+        // Create a ContactFilter2D to filter only the "Room" layer
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.SetLayerMask(LayerMask.GetMask("Room"));
+        filter.useTriggers = false;
+
+        // Check for overlapping colliders
+        Collider2D[] results = new Collider2D[10]; // Buffer for results
+        int collisionCount = newNodeManager.roomCollider.Overlap(filter, results);
+
+        UnityEngine.Debug.Log("Num collisions on " + newNode.roomObject.name + ": " + collisionCount);
+        if (collisionCount > 0) {
+            newNodeManager.hasCollision = true;
+            string s = "";
+            foreach (Collider2D collider in results) {
+                if (collider != null) {
+                    s += collider.transform.parent.name + ", ";
+                }
+            }
+            UnityEngine.Debug.Log(s);
+        }
     }
     #endregion SpawnRooms
 
@@ -566,61 +566,4 @@ public class LevelGenerator : MonoBehaviour
     }
 
     #endregion SpawnPlayer
-
-    // bool generateLevel_1() {
-    //     // startRoom -> hallway -> hallway -> endRoom
-    //     GameObject currRoom;
-    //     RoomManager currRoomMan;
-    //     GameObject newRoom;
-    //     RoomManager newRoomMan;
-    //     int numHallways = Random.Range(3, 5);
-    //     int i = 0;
-
-    //     // Instantiate multiple hallways
-    //     for (i = 0; i < numHallways; i++) {
-    //         currRoom = roomObjQueue[i];
-    //         currRoomMan = currRoom.GetComponent<RoomManager>();
-
-    //         newRoom = Instantiate(hallways[Random.Range(0, hallways.Count)].gameObj, new Vector3(0, 0, 0), transform.rotation);
-    //         newRoomMan = newRoom.GetComponent<RoomManager>();
-    //         roomObjQueue.Add(newRoom);
-
-    //         newRoom.transform.position += currRoomMan.exits[0].transform.position - newRoomMan.entrances[0].transform.position;
-    //     }
-
-    //     // Instantiate end room
-    //     currRoom = roomObjQueue[i];
-    //     currRoomMan = currRoom.GetComponent<RoomManager>();
-
-    //     newRoom = Instantiate(endRoom.gameObj, new Vector3(0, 0, 0), transform.rotation);
-    //     newRoomMan = newRoom.GetComponent<RoomManager>();
-    //     roomObjQueue.Add(newRoom);
-
-    //     newRoom.transform.position += currRoomMan.exits[0].transform.position - newRoomMan.entrances[0].transform.position;
-
-    //     return true;
-    // }
-
-    // void spawnStartingRoom() {
-    //     // find origin location for level generator
-    //     GameObject levelOrigin = GameObject.Find("LevelOrigin");
-    //     Transform levelTransform;
-
-    //     // create starting room and find room origin location
-    //     GameObject newRoom = Instantiate(startRoom.gameObj, new Vector3(0, 0, 0), transform.rotation);   
-    //     roomObjQueue.Add(newRoom);
-
-    //     GameObject roomOrigin = GameObject.Find("RoomOrigin");
-    //     Transform roomTransform;
-
-    //     if (levelOrigin != null && roomOrigin != null) {
-    //         levelTransform = levelOrigin.transform;
-    //         roomTransform = roomOrigin.transform;
-
-    //         // change room location to difference in origins -> origins overlap
-    //         newRoom.transform.position += levelTransform.position - roomTransform.position;
-    //     } else {
-    //         Debug.LogError("Level or Room Origin not found");
-    //     }
-    // }
 }

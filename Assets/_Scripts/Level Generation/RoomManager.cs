@@ -11,14 +11,12 @@ public class RoomManager : MonoBehaviour
     public List<GameObject> entrances;
     public List<GameObject> exits;
     public PolygonCollider2D roomCollider;
-    public List<Entity> enemies;
-    public List<Collider2D> colliders;
+    public bool hasCollision = false;
     public List<GameObject> enemies;
     public List<GameObject> enemySpawners;
 
     void Awake() {
         PopulateVars();
-        ResizeCollider();
     }
 
     void OnValidate() {
@@ -49,38 +47,6 @@ public class RoomManager : MonoBehaviour
                 roomCollider = collider;
             }
         }
-    }
-
-    void ResizeCollider() {
-        float tileSize = 0.5f;
-
-        Vector2[] points = roomCollider.points;
-        int numPoints = points.Length;
-        Vector2[] newPoints = new Vector2[numPoints];
-
-        // Compute inward normals and move each point
-        for (int i = 0; i < numPoints; i++)
-        {
-            // Get the previous and next point to determine the normal
-            Vector2 prev = points[(i - 1 + numPoints) % numPoints]; // Wrap around
-            Vector2 next = points[(i + 1) % numPoints];
-
-            // Edge vectors
-            Vector2 edge1 = (points[i] - prev).normalized;
-            Vector2 edge2 = (next - points[i]).normalized;
-
-            // Compute an inward normal (perpendicular to edges)
-            Vector2 normal1 = new Vector2(-edge1.y, edge1.x);
-            Vector2 normal2 = new Vector2(-edge2.y, edge2.x);
-
-            // Average normals for smooth inward movement
-            Vector2 inwardNormal = (normal1 + normal2).normalized;
-
-            // Move the point inward
-            newPoints[i] = points[i] + inwardNormal * -tileSize;
-        }
-
-        roomCollider.points = newPoints; // Apply new collider shape
     }
 
     public void SpawnEnemies()

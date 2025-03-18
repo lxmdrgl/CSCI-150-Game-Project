@@ -1,10 +1,9 @@
+using NUnit.Framework;
 using UnityEngine;
 
 
 public class RoomCollider : MonoBehaviour
 {
-
-    public bool hasCollision = false;
     private PolygonCollider2D polyCollider;
 
     void Awake()
@@ -16,40 +15,67 @@ public class RoomCollider : MonoBehaviour
 
     void resizeCollider() {
         float tileSize = 0.5f;
-
         Vector2[] points = polyCollider.points;
         int numPoints = points.Length;
         Vector2[] newPoints = new Vector2[numPoints];
 
+        // Check if any point has non-whole-number coordinates
+        bool hasNonWholeNumbers = false;
+        foreach (Vector2 point in points) {
+            if (point.x % 1 != 0 || point.y % 1 != 0) {
+                hasNonWholeNumbers = true;
+                break;
+            }
+        }
+
+        // If any point is not a whole number, keep the collider unchanged
+        if (hasNonWholeNumbers) {
+            // Debug.Log("Skipping collider resize: Awake called twice");
+            polyCollider.points = points;
+            return;
+        }
+
         // Compute inward normals and move each point
-        for (int i = 0; i < numPoints; i++)
-        {
-            // Get the previous and next point to determine the normal
+        for (int i = 0; i < numPoints; i++) {
             Vector2 prev = points[(i - 1 + numPoints) % numPoints]; // Wrap around
             Vector2 next = points[(i + 1) % numPoints];
 
-            // Edge vectors
             Vector2 edge1 = (points[i] - prev).normalized;
             Vector2 edge2 = (next - points[i]).normalized;
 
-            // Compute an inward normal (perpendicular to edges)
             Vector2 normal1 = new Vector2(-edge1.y, edge1.x);
             Vector2 normal2 = new Vector2(-edge2.y, edge2.x);
 
-            // Average normals for smooth inward movement
             Vector2 inwardNormal = (normal1 + normal2).normalized;
 
-            // Move the point inward
             newPoints[i] = points[i] + inwardNormal * -tileSize;
         }
 
         polyCollider.points = newPoints; // Apply new collider shape
-        polyCollider.enabled = true; // reenable collision after resize
+
+        // Debug.Log("Collision resized for: " + gameObject.transform.parent);
     }
 
-    public void tryCollider()
-    {
-        // int roomLayer = LayerMask.NameToLayer("Room");
+    // public void tryCollider() {
+    //     hasCollision = false; // Reset collision flag
+
+    //     // Create a ContactFilter2D to filter only the "Room" layer
+    //     ContactFilter2D filter = new ContactFilter2D();
+    //     filter.SetLayerMask(LayerMask.GetMask("Room"));
+    //     filter.useTriggers = true;
+
+    //     // Check for overlapping colliders
+    //     Collider2D[] results = new Collider2D[10]; // Buffer for results
+    //     int collisionCount = polyCollider.Overlap(filter, results);
+
+    //     if (collisionCount > 0)
+    //     {
+    //         hasCollision = true;
+    //     }
+    //     Debug.Log("Number of collisions detected on: " + gameObject.transform.parent + ", " + collisionCount);
+    // }
+
+    // int roomLayer = LayerMask.NameToLayer("Room");
         // int layerMask = 1 << roomLayer; // Convert layer to bitmask
         
         // Collider2D[] results = Physics2D.OverlapBoxAll(transform.position, boxCollider.bounds.size, 0, layerMask);
@@ -73,5 +99,4 @@ public class RoomCollider : MonoBehaviour
         //     hasCollision = true;
         //     Debug.Log("Collision detected: " + gameObject.transform.parent + " collision with " + hit.gameObject.transform.parent);
         // }
-    }
 }

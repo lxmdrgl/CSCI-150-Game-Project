@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 638563931219205483}
   - component: {fileID: 1023143018909075880}
   - component: {fileID: 5221068659973759159}
+  - component: {fileID: 2202160298554818005}
   m_Layer: 14
   m_Name: RoomPolyCollider
   m_TagString: Untagged
@@ -111,3 +112,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2202160298554818005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5285881790251485257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d2da8e77af49d2429d151cd70554b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasCollision: 0
