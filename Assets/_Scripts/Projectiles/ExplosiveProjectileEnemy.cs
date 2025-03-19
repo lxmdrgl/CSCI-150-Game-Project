@@ -6,7 +6,7 @@ using Game.Utilities;
 
 namespace Game.Projectiles
 {
-    public class ExplosiveProjectile : MonoBehaviour
+    public class ExplosiveProjectileEnemy : MonoBehaviour
     {
         [SerializeField] private float explosionRadius;
         [SerializeField] private float explosionDamage;

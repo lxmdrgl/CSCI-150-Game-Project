@@ -49,7 +49,7 @@ public class ExplosiveAttackState : AttackState
 
         // Instantiate the explosive projectile at the attack position
         GameObject projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
-        ExplosiveProjectile projectileScript = projectile.GetComponent<ExplosiveProjectile>();
+        ExplosiveProjectileEnemy projectileScript = projectile.GetComponent<ExplosiveProjectileEnemy>();
 
         if (projectileScript != null)
         {

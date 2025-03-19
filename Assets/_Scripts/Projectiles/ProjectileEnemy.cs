@@ -3,7 +3,7 @@ using Game.CoreSystem;
 
 namespace Game.Projectiles
 {
-    public class Projectile : MonoBehaviour
+    public class ProjectileEnemy : MonoBehaviour
     {
         private float speed;
         private float travelDistance;
@@ -14,7 +14,7 @@ namespace Game.Projectiles
         private float damageRadius;
 
         [SerializeField]
-        private Damage damageScript;
+        private DamageEnemy damageScript;
         private Rigidbody2D rb;
 
         private bool isGravityOn;

@@ -7,16 +7,16 @@ using Game.Utilities;
 using System.Collections.Generic;
 using Game.Projectiles;
 
-public class Damage : MonoBehaviour
+public class DamageEnemy : MonoBehaviour
 {
     /* [SerializeField]  */private float damageAmount;
     private Vector2 knockbackAngle;
     private float knockbackStrength;
-    private Projectile projectile;
+    private ProjectileEnemy projectile;
 
     private void Awake()
     {
-        projectile = GetComponentInParent<Projectile>();
+        projectile = GetComponentInParent<ProjectileEnemy>();
     }
 
     // Method to dynamically set the damage
