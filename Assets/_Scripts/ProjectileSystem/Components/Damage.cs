@@ -1,77 +1,100 @@
-using UnityEngine;
-using Game.CoreSystem;
-using Game.Combat.Damage;
-using Game.Combat.KnockBack;
-using Game.Combat.StunDamage;
+﻿using Game.Combat.Damage;
+using Game.ProjectileSystem.DataPackages;
 using Game.Utilities;
-using System.Collections.Generic;
-using Game.Projectiles;
+using UnityEngine;
+using UnityEngine.Events;
 
-public class Damage : MonoBehaviour
+namespace Game.ProjectileSystem.Components
 {
-    /* [SerializeField]  */private float damageAmount;
-    private Vector2 knockbackAngle;
-    private float knockbackStrength;
-    private Projectile projectile;
-
-    private void Awake()
+    /*
+     * The Damage component is responsible for using information provided by the HitBox component to damage any entities that are on the relevant LayerMask
+     * The damage amount comes from the weapon via the ProjectileDataPackage system.
+     */
+    public class Damage : ProjectileComponent
     {
-        projectile = GetComponentInParent<Projectile>();
-    }
+        public UnityEvent<IDamageable> OnDamage;
+        public UnityEvent<RaycastHit2D> OnRaycastHit;
 
-    // Method to dynamically set the damage
-    public void SetDamage(float amount, Vector2 knockbackAngle, float knockbackStrength)
-    {
-        damageAmount = amount;
-        this.knockbackAngle = knockbackAngle;
-        this.knockbackStrength = knockbackStrength;
-    }
+        [field: SerializeField] public LayerMask LayerMask { get; private set; }
+        [field: SerializeField] public bool SetInactiveAfterDamage { get; private set; }
+        [field: SerializeField] public float Cooldown { get; private set; }
 
-    public void HandleCollision(Collider2D collision)
-{
-    if (collision.CompareTag("Player"))
-    {
-        List<Collider2D> detected = new List<Collider2D> { collision };
+        private HitBox hitBox;
 
-        Debug.Log("Detected: " + detected.ToArray() + " count: " + detected.Count);
+        private float amount;
 
-        // Apply Damage
-        if (CombatDamageUtilities.TryDamage(detected.ToArray(), new DamageData(damageAmount, gameObject), out var damageables))
+        private float lastDamageTime;
+
+        protected override void Init()
         {
-            foreach (var damageable in damageables)
+            base.Init();
+
+            lastDamageTime = Mathf.NegativeInfinity;
+        }
+
+        private void HandleRaycastHit2D(RaycastHit2D[] hits)
+        {
+            if (!Active)
+                return;
+
+            if (Time.time < lastDamageTime + Cooldown)
+                return;
+
+            foreach (var hit in hits)
             {
-                Debug.Log("Projectile Dealing " + damageAmount + " Damage To Player");
+                // Is the object under consideration part of the LayerMask that we can damage?
+                if (!LayerMaskUtilities.IsLayerInMask(hit, LayerMask))
+                    continue;
+
+                // NOTE: We need to use .collider.transform instead of just .transform to get the GameObject the collider we detected is attached to, otherwise it returns the parent
+                if (!hit.collider.transform.gameObject.TryGetComponent(out IDamageable damageable))
+                    continue;
+                
+                damageable.Damage(new DamageData(amount, projectile.gameObject));
+                
+                OnDamage?.Invoke(damageable);
+                OnRaycastHit?.Invoke(hit);
+
+                lastDamageTime = Time.time;
+
+                if (SetInactiveAfterDamage)
+                {
+                    SetActive(false);
+                }
+
+                return;
             }
         }
-        else
+
+        // Handles checking to see if the data is relevant or not, and if so, extracts the information we care about
+        protected override void HandleReceiveDataPackage(ProjectileDataPackage dataPackage)
         {
-            Debug.Log("No damageable objects detected.");
+            base.HandleReceiveDataPackage(dataPackage);
+
+            if (dataPackage is not DamageDataPackage package)
+                return;
+
+            amount = package.Amount;
         }
 
-        // Check Knockback
-        int facingDirection;
-        if (projectile.startingRotation <= 0.05 && projectile.startingRotation >= -0.05) {
-            facingDirection = 1;
-        } else {
-            facingDirection = -1;
-        }
-        Debug.Log($"Attempting Knockback - Angle: {knockbackAngle}, Strength: {knockbackStrength}, FacingDirection: {facingDirection}");
+        #region Plumbing
 
-        bool didKnock = CombatKnockBackUtilities.TryKnockBack(
-            detected.ToArray(),
-            new KnockBackData(knockbackAngle, knockbackStrength, facingDirection, gameObject),
-            out _
-        );
+        protected override void Awake()
+        {
+            base.Awake();
 
-        if (didKnock)
-        {
-            Debug.Log("✅ Projectile applied knockback to Player.");
+            hitBox = GetComponent<HitBox>();
+
+            hitBox.OnRaycastHit2D.AddListener(HandleRaycastHit2D);
         }
-        else
+
+        protected override void OnDestroy()
         {
-            Debug.Log("❌ No knockback applied. Check Player's Knockback Component.");
+            base.OnDestroy();
+
+            hitBox.OnRaycastHit2D.RemoveListener(HandleRaycastHit2D);
         }
+
+        #endregion
     }
-}
-
 }

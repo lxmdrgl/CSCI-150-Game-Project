@@ -46,13 +46,13 @@ public class RR_UpwardRangedAttack : RangedAttackState
         {
             // Instantiate the projectile and set its properties
             GameObject projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
-            Projectile projectileScript = projectile.GetComponent<Projectile>();
+            ProjectileEnemy projectileScript = projectile.GetComponent<ProjectileEnemy>();
             if (projectileScript != null)
             {
                 projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, enemy.targetPlayer.position, "radialNoGravity", enemy.transform.rotation.y, stateData.gravityScale);
             }
 
-            Damage damageComponent = projectile.GetComponentInChildren<Damage>();
+            DamageEnemy damageComponent = projectile.GetComponentInChildren<DamageEnemy>();
             if (damageComponent != null)
             {
                 damageComponent.SetDamage(stateData.projectileDamage, stateData.knockbackAngle, stateData.knockbackStrength);

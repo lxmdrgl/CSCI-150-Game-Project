@@ -998,7 +998,7 @@ MonoBehaviour:
   <weaponDataSet>k__BackingField: {fileID: 11400000, guid: b7fff6ca91113b147941d5f19a832c4d, type: 2}
   <currentWeaponData>k__BackingField:
   - {fileID: 11400000, guid: f97b7e60a4f61eb4b8fd9fbee64a0b61, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 8199b6d8bb295fb428ed3283374ee7e5, type: 2}
   - {fileID: 11400000, guid: c8ea6a7895ed42d4ebb0c4f799e39523, type: 2}
   - {fileID: 0}
   - {fileID: 11400000, guid: 1ba28d0736b38d143bb8e1e45b0f061f, type: 2}

@@ -7,7 +7,7 @@ namespace Game.CoreSystem
     {
         private Stats stats;
 
-        // public Modifiers<Modifier<PoiseDamageData>, PoiseDamageData> Modifiers { get; } = new();
+        // public Modifiers<Modifier<StunDamageData>, StunDamageData> Modifiers { get; } = new();
 
         public void DamageStun(StunDamageData data)
         {

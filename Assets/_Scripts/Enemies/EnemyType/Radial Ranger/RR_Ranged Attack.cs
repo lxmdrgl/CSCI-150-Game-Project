@@ -48,11 +48,11 @@ public class RR_RangedAttackState : RangedAttackState
         {
             // Instantiate the projectile and set its properties
             GameObject projectile1 = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
-            Projectile projectileScript = projectile1.GetComponent<Projectile>();
+            ProjectileEnemy projectileScript = projectile1.GetComponent<ProjectileEnemy>();
             GameObject projectile2 = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
-            Projectile projectileScript2 = projectile2.GetComponent<Projectile>();
+            ProjectileEnemy projectileScript2 = projectile2.GetComponent<ProjectileEnemy>();
             GameObject projectile3 = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
-            Projectile projectileScript3 = projectile3.GetComponent<Projectile>();
+            ProjectileEnemy projectileScript3 = projectile3.GetComponent<ProjectileEnemy>();
 
             if (projectileScript != null)
             {
@@ -64,9 +64,9 @@ public class RR_RangedAttackState : RangedAttackState
                 projectileScript3.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, projectilePosition3, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
             }
 
-            Damage damageComponent1 = projectile1.GetComponentInChildren<Damage>();
-            Damage damageComponent2 = projectile2.GetComponentInChildren<Damage>();
-            Damage damageComponent3 = projectile3.GetComponentInChildren<Damage>();
+            DamageEnemy damageComponent1 = projectile1.GetComponentInChildren<DamageEnemy>();
+            DamageEnemy damageComponent2 = projectile2.GetComponentInChildren<DamageEnemy>();
+            DamageEnemy damageComponent3 = projectile3.GetComponentInChildren<DamageEnemy>();
             if (damageComponent1 != null)
             {
                 damageComponent1.SetDamage(stateData.projectileDamage, stateData.knockbackAngle, stateData.knockbackStrength);
