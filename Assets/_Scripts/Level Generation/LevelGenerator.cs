@@ -107,8 +107,12 @@ public class LevelGenerator : MonoBehaviour
         GameObject levelOrigin = GameObject.Find("LevelOrigin");
         Transform levelTransform;
 
+        // load random starting room
+        List<RoomManager> roomList = loadRoomList(roomMap.roomType);
+        RoomManager randRoom = roomList[UnityEngine.Random.Range(0, roomList.Count)];
+
         // create starting room and find room origin location
-        GameObject newRoom = spawnRoom(roomMap);
+        GameObject newRoom = spawnRoom(roomMap, randRoom);
         GameObject roomOrigin = GameObject.Find("RoomOrigin");
         Transform roomTransform;
 
@@ -133,26 +137,63 @@ public class LevelGenerator : MonoBehaviour
         if (currNode.children.Count == 0) {
             return true;
         } else if (currNode.children.Count == 1) {
-            RoomManager newRoomManager = spawnRoom(currNode.children[0]).GetComponent<RoomManager>();
+            
+            tryNextRoom(currNode);
 
-            connectRooms(currNode, 0, currNode.children[0], 0);
-
-            spawnAllRooms(currNode.children[0]); // recursively call child node
         } else if (currNode.children.Count == 2) {
-            RoomManager roomManager1 = spawnRoom(currNode.children[0]).GetComponent<RoomManager>();
-            RoomManager roomManager2 = spawnRoom(currNode.children[1]).GetComponent<RoomManager>();
+            // RoomManager roomManager1 = spawnRoom(currNode.children[0]).GetComponent<RoomManager>();
+            // RoomManager roomManager2 = spawnRoom(currNode.children[1]).GetComponent<RoomManager>();
 
-            connectRooms(currNode, randIndex, currNode.children[0], 0);
-            connectRooms(currNode, Math.Abs(randIndex-1), currNode.children[1], 0);
+            // connectRooms(currNode, randIndex, currNode.children[0], 0);
+            // connectRooms(currNode, Math.Abs(randIndex-1), currNode.children[1], 0);
 
-            spawnAllRooms(currNode.children[0]); // recursively call on both children
-            spawnAllRooms(currNode.children[1]);
+            // spawnAllRooms(currNode.children[0]); // recursively call on both children
+            // spawnAllRooms(currNode.children[1]);
         } else {
             UnityEngine.Debug.LogError(gameObject.name + ": Unexpected number of exits");
             return false;
         }
 
         return true;
+    }
+
+    void tryNextRoom(RoomNode currNode) {
+        // List<RoomManager> roomList = loadRoomList(currNode.children[0].roomType);
+        // RoomManager randRoom = roomList[UnityEngine.Random.Range(0, roomList.Count)];
+
+        // RoomManager newRoomManager = spawnRoom(currNode.children[0], randRoom).GetComponent<RoomManager>();
+        // connectRooms(currNode, 0, currNode.children[0], 0);
+        // spawnAllRooms(currNode.children[0]); // recursively call child node
+
+        RoomNode nextNode = currNode.children[0];
+        List<RoomManager> roomList = loadRoomList(nextNode.roomType);
+
+        while (true) {
+            // no room found which works
+            if (roomList.Count == 0) {
+                UnityEngine.Debug.LogError("");
+                return;
+            }
+
+            // random query without replacement
+            int randIndex = UnityEngine.Random.Range(0, roomList.Count);
+            RoomManager randRoom = roomList[randIndex];
+            roomList.RemoveAt(randIndex);
+            
+            // spawn and try to connect
+            GameObject spawnObj = spawnRoom(nextNode, randRoom);
+            bool isValid = connectRooms(currNode, 0, nextNode, 0);
+
+            if (isValid) {
+                UnityEngine.Debug.Log("Valid room");
+                return;
+            } else {
+                UnityEngine.Debug.Log("Invalid room, looping");
+                // delete spawned room and try again
+                
+                DestroyImmediate(spawnObj);
+            }
+        }
     }
 
     List<RoomManager> loadRoomList(String roomType) {
@@ -166,10 +207,8 @@ public class LevelGenerator : MonoBehaviour
         return roomList;
     }
 
-    GameObject spawnRoom(RoomNode r) {
-        // Instantiate a random resource of roomType
-        List<RoomManager> roomList = loadRoomList(r.roomType);
-        r.roomObject = Instantiate(roomList[UnityEngine.Random.Range(0, roomList.Count)].gameObj, new Vector3(0, 0, 0), transform.rotation); 
+    GameObject spawnRoom(RoomNode r, RoomManager randRoom) {
+        r.roomObject = Instantiate(randRoom.gameObj, new Vector3(0, 0, 0), transform.rotation); 
         
         r.roomObject.name = "Room_" + roomNumber++;
         r.roomObject.GetComponent<RoomManager>().roomCollider.enabled = true;
@@ -213,7 +252,7 @@ public class LevelGenerator : MonoBehaviour
             string s = "";
             foreach (Collider2D collider in results) {
                 if (collider != null) {
-                    s += collider.transform.parent.name + ", ";
+                    s += collider.transform.parent.name + " | ";
                 }
             }
             UnityEngine.Debug.Log(s);
