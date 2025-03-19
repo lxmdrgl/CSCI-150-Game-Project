@@ -644,7 +644,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 274265649255061878}
@@ -726,6 +726,10 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 23b71e26830d1b94eaa66e6b4fe873ff, type: 2}
   playerCheck: {fileID: 3755304697358755252}
   playersInRange: []
+  playerPosition1: {fileID: 0}
+  playerPosition2: {fileID: 0}
+  targetPlayer: {fileID: 0}
+  isPlayerInPursuitRange: 0
   pursuitRangeCollider: {fileID: 4313723213794779289}
   UniqueId: 
   idleStateData: {fileID: 11400000, guid: 99b502b7f957b6e41abfa754948ac0d9, type: 2}
@@ -976,7 +980,7 @@ Transform:
   m_GameObject: {fileID: 7713608560364900413}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.6, y: 7.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1028,16 +1032,17 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.9462013, y: 1.0155113}
-      - {x: 0.34156418, y: 0.9145794}
-      - {x: -0.20869064, y: 0.54110503}
-      - {x: -0.40815264, y: 0.07634428}
-      - {x: -0.2155127, y: -0.45225286}
-      - {x: 0.27368164, y: -0.59559333}
-      - {x: 1.1274109, y: -0.6510645}
-      - {x: 1.7001991, y: -0.49199188}
-      - {x: 2.154447, y: -0.07997668}
-      - {x: 2.0058355, y: 0.85192007}
+    - - {x: -0.24079946, y: -6.460402}
+      - {x: 1.2829617, y: -7.0825777}
+      - {x: 2.5816658, y: -6.639892}
+      - {x: 1.942591, y: 1.6174971}
+      - {x: -3.7893023, y: 3.9452658}
+      - {x: -7.889198, y: 2.9698055}
+      - {x: -8.661869, y: -0.42603922}
+      - {x: -7.74607, y: -1.6670501}
+      - {x: -5.6048684, y: 0.3654055}
+      - {x: -3.5675132, y: 1.0351156}
+      - {x: -0.47042662, y: -0.7539811}
   m_UseDelaunayMesh: 0
 --- !u!1 &9060381249121296852
 GameObject:

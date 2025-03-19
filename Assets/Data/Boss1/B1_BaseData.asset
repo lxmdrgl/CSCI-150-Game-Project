@@ -15,7 +15,7 @@ MonoBehaviour:
   agroRange: 20
   pursuitRange: 20
   maxAgroDistance: 20
-  closeRangeActionDistance: 1
+  closeRangeActionDistance: 4
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
