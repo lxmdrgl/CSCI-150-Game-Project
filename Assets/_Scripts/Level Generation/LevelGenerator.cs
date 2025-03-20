@@ -150,7 +150,7 @@ public class LevelGenerator : MonoBehaviour
                 else // retry parent
                 {
                     roomNumber = roomNumber - 1;
-                    UnityEngine.Debug.Log("Retrying parent, deleting " + root.roomObject);
+                    // UnityEngine.Debug.Log("Retrying parent, deleting " + root.roomObject);
                     Destroy(root.roomObject);
                     await spawnAllRooms(root.parent);
                 }
@@ -190,7 +190,7 @@ public class LevelGenerator : MonoBehaviour
             foreach (RoomManager room in roomList) {
                 s += room.name + "|";
             }
-            UnityEngine.Debug.Log("Possible rooms for " + nextNode.transform.name + ": " + s);
+            // UnityEngine.Debug.Log("Possible rooms for " + nextNode.transform.name + ": " + s);
 
             // No valid room found
             if (roomList.Count == 0)
@@ -199,7 +199,7 @@ public class LevelGenerator : MonoBehaviour
                 // retry from parent while not repeating previously tried rooms
                 nextNode.listTriedRooms.Clear();
 
-                UnityEngine.Debug.Log("Clear tried of " + nextNode.transform.name + ", No valid rooms available");
+                // UnityEngine.Debug.Log("Clear tried of " + nextNode.transform.name + ", No valid rooms available");
                 return false;
             }
 
@@ -214,22 +214,22 @@ public class LevelGenerator : MonoBehaviour
             // Spawn the room
             GameObject spawnObj = spawnRoom(nextNode, randRoom);
 
-            UnityEngine.Debug.Log("Spawned and trying to connect: " + spawnObj.name);
+            // UnityEngine.Debug.Log("Spawned and trying to connect: " + spawnObj.name);
 
             // Ensure ConnectRooms fully completes before continuing
             bool isValid = await ConnectRooms(currNode, 0, nextNode, 0);
 
             if (isValid)
             {
-                UnityEngine.Debug.Log("Valid room: " + spawnObj.name);
+                // UnityEngine.Debug.Log("Valid room: " + spawnObj.name);
                 return true; // Exit loop on first valid room
             }
             else
             {
-                UnityEngine.Debug.Log("Invalid room, deleting: " + spawnObj.name);
+                // UnityEngine.Debug.Log("Invalid room, deleting: " + spawnObj.name);
                 DestroyImmediate(spawnObj);
                 roomNumber -= 1; // Adjust room count
-                UnityEngine.Debug.Log("Retrying...");
+                // UnityEngine.Debug.Log("Retrying...");
             }
 
             // Small delay to avoid instant looping issues
@@ -328,7 +328,7 @@ public class LevelGenerator : MonoBehaviour
                     s += collider.transform.parent.name + " | ";
                 }
             }
-            UnityEngine.Debug.Log(newNode.roomObject.name + " has collisions with: " + s);
+            // UnityEngine.Debug.Log(newNode.roomObject.name + " has collisions with: " + s);
         }
 
         tcs.SetResult(true); // Mark the coroutine as complete
