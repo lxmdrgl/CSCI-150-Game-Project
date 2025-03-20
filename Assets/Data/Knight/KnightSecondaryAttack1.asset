@@ -23,9 +23,9 @@ MonoBehaviour:
   prereqWeapon: {fileID: 0}
   <ComponentData>k__BackingField:
   - rid: 5949095188800471134
-  - rid: 5949095222658203649
-  - rid: 6902827909092212839
   - rid: 6902827909092212840
+  - rid: 6902827909092212839
+  - rid: 5949095222658203649
   references:
     version: 2
     RefIds:
@@ -60,7 +60,7 @@ MonoBehaviour:
         attackData:
         - name: Attack 1
           <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 5899bd83d15cb514eb5eda4a490a2f01, type: 3}
-          <position>k__BackingField: {x: 0, y: 0}
+          <position>k__BackingField: {x: 1, y: 0}
           <count>k__BackingField: 1
           <timeInterval>k__BackingField: 0
     - rid: 6902827909092212840
@@ -70,14 +70,18 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <velocity>k__BackingField: 45
-          <direction>k__BackingField: {x: 1, y: 0}
+          <velocity>k__BackingField: 15
+          <direction>k__BackingField: {x: 1, y: 1}
           <rotate>k__BackingField: 1
-          <hasGravity>k__BackingField: 0
+          <hasGravity>k__BackingField: 1
           <gravityScale>k__BackingField: 5
           <damage>k__BackingField: 10
           <stun>k__BackingField: 10
-          <pierce>k__BackingField: 0
+          <pierce>k__BackingField: 1
+          <explosive>k__BackingField: 1
+          <explosiveRadius>k__BackingField: 3
+          <target>k__BackingField: 0
+          <targetRadius>k__BackingField: 0
           <whatIsGround>k__BackingField:
             serializedVersion: 2
             m_Bits: 128

@@ -12,6 +12,7 @@ TagManager:
   - RoomExit
   - RoomCollider
   - PursuitRange
+  - Projectile
   layers:
   - Default
   - TransparentFX

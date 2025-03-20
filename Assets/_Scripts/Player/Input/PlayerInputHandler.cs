@@ -147,42 +147,40 @@ private IEnumerator ResetFallInput()
         {
             if (context.interaction is UnityEngine.InputSystem.Interactions.HoldInteraction)
             {
-                // Hold attack
                 AttackInputs[(int)CombatInputs.primaryAttackHold] = true;
-                // Debug.Log("Primary Attack Hold Input: " + context.duration);
             }
             else if (context.interaction is UnityEngine.InputSystem.Interactions.PressInteraction)
             {
-                // Press attack (quick tap)
                 AttackInputs[(int)CombatInputs.primaryAttackPress] = true;
-                // Debug.Log("Primary Attack Press Input");
             }
-            // AttackInputs[(int)CombatInputs.dashAttack] = true;
         }
 
         if (context.canceled)
         {
-            // Reset both inputs when released
             AttackInputs[(int)CombatInputs.primaryAttackPress] = false;
             AttackInputs[(int)CombatInputs.primaryAttackHold] = false;
-            // AttackInputs[(int)CombatInputs.dashAttack] = false;
-            // Debug.Log("Primary Attack End Input");
         }
     }
 
 
     public void OnSecondaryAttackInput(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.performed)
         {
-            AttackInputs[(int)CombatInputs.secondaryAttackPress] = true;
-            // Debug.Log("Secondary Attack Press Input");
+            if (context.interaction is UnityEngine.InputSystem.Interactions.HoldInteraction)
+            {
+                AttackInputs[(int)CombatInputs.secondaryAttackHold] = true;
+            }
+            else if (context.interaction is UnityEngine.InputSystem.Interactions.PressInteraction)
+            {
+                AttackInputs[(int)CombatInputs.secondaryAttackPress] = true;
+            }
         }
 
         if (context.canceled)
         {
             AttackInputs[(int)CombatInputs.secondaryAttackPress] = false;
-            // Debug.Log("Secondary Attack End Input");
+            AttackInputs[(int)CombatInputs.secondaryAttackHold] = false;
         }
     }
 

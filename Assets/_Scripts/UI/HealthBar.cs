@@ -34,17 +34,22 @@ public class HealthBar : MonoBehaviour
     void Start() {
         // SetDependencies();
 
-        healthSlider.maxValue = stats.Health.MaxValue;
+        /* healthSlider.maxValue = stats.Health.MaxValue;
         healthSlider.value = stats.Health.CurrentValue;
         if (showNumbers) {
             healthText.text = healthSlider.value + "/" + healthSlider.maxValue;
         }
         easeSlider.maxValue = stats.Health.MaxValue;
-        easeSlider.value = stats.Health.CurrentValue;
+        easeSlider.value = stats.Health.CurrentValue; */
     }
 
     public void SetDependencies()
     {
+        if (player == null)
+        {
+            return;
+        }
+        
         stats = player.GetComponentInChildren<Stats>();
         death = player.GetComponentInChildren<Death>();
         
@@ -52,6 +57,14 @@ public class HealthBar : MonoBehaviour
         if(death != null) {
             death.OnDeath += DisableHealthBar;
         }
+
+        healthSlider.maxValue = stats.Health.MaxValue;
+        healthSlider.value = stats.Health.CurrentValue;
+        if (showNumbers) {
+            healthText.text = healthSlider.value + "/" + healthSlider.maxValue;
+        }
+        easeSlider.maxValue = stats.Health.MaxValue;
+        easeSlider.value = stats.Health.CurrentValue;
     }
 
     public void SetPlayer(GameObject player) {

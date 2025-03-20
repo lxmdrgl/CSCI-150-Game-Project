@@ -14,7 +14,13 @@ namespace Game.Weapons.Components
         [field: SerializeField] public float gravityScale { get; private set; }
         [field: SerializeField] public float damage { get; private set; }
         [field: SerializeField] public float stun { get; private set; }
+
         [field: SerializeField] public bool pierce { get; private set; }
+        [field: SerializeField] public bool explosive { get; private set; }
+        [field: SerializeField] public float explosiveRadius { get; private set; }
+        [field: SerializeField] public bool target { get; private set; }
+        [field: SerializeField] public float targetRadius { get; private set; }
+        
         [field: SerializeField] public LayerMask whatIsGround { get; private set; }
         [field: SerializeField] public LayerMask whatIsDamageable { get; private set; }
     }

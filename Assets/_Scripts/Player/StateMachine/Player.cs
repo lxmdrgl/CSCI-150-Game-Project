@@ -19,9 +19,10 @@ public class Player : MonoBehaviour, IDataPersistence
     public PlayerNormalAirState AirState { get; private set; }
     public PlayerWallGrabState WallGrabState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
-    public PlayerAttackState PrimaryAttackState { get; private set; }
+    public PlayerAttackState PrimaryAttackPressState { get; private set; }
     public PlayerAttackState PrimaryAttackHoldState { get; private set; }
-    public PlayerAttackState SecondaryAttackState { get; private set; }
+    public PlayerAttackState SecondaryAttackPressState { get; private set; }
+    public PlayerAttackState SecondaryAttackHoldState { get; private set; }
     public PlayerAttackState PrimarySkillState { get; private set; }
     public PlayerAttackState SecondarySkillState { get; private set; }
     public PlayerAttackState DashAttackState { get; private set; }
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour, IDataPersistence
     private Weapon primaryAttackPress;
     private Weapon primaryAttackHold;
     private Weapon secondaryAttackPress;
+    private Weapon secondaryAttackHold;
     private Weapon primarySkillPress;
     private Weapon secondarySkillPress;
     private Weapon dashAttack;
@@ -68,6 +70,7 @@ public class Player : MonoBehaviour, IDataPersistence
         primaryAttackPress = transform.Find("PrimaryAttackPress").GetComponent<Weapon>();
         primaryAttackHold = transform.Find("PrimaryAttackHold").GetComponent<Weapon>();
         secondaryAttackPress = transform.Find("SecondaryAttackPress").GetComponent<Weapon>();
+        secondaryAttackHold = transform.Find("SecondaryAttackHold").GetComponent<Weapon>();
         primarySkillPress = transform.Find("PrimarySkillPress").GetComponent<Weapon>();
         secondarySkillPress = transform.Find("SecondarySkillPress").GetComponent<Weapon>();
         dashAttack = transform.Find("DashAttack").GetComponent<Weapon>();
@@ -76,6 +79,7 @@ public class Player : MonoBehaviour, IDataPersistence
         primaryAttackPress.SetCore(Core);
         primaryAttackHold.SetCore(Core);
         secondaryAttackPress.SetCore(Core);
+        secondaryAttackHold.SetCore(Core);
         primarySkillPress.SetCore(Core);
         secondarySkillPress.SetCore(Core);
         dashAttack.SetCore(Core);
@@ -100,9 +104,10 @@ public class Player : MonoBehaviour, IDataPersistence
         WallJumpState = new PlayerWallJumpState(this, "air"); // was jump
         KnockBackState = new PlayerKnockBackState(this, "knockBack");
         PlatformAirState = new PlayerPlatformAirState(this, "air");
-        PrimaryAttackState = new PlayerAttackState(this, "attack", primaryAttackPress, CombatInputs.primaryAttackPress);
+        PrimaryAttackPressState = new PlayerAttackState(this, "attack", primaryAttackPress, CombatInputs.primaryAttackPress);
         PrimaryAttackHoldState = new PlayerAttackState(this, "attack", primaryAttackHold, CombatInputs.primaryAttackHold);
-        SecondaryAttackState = new PlayerAttackState(this, "attack", secondaryAttackPress, CombatInputs.secondaryAttackPress);
+        SecondaryAttackPressState = new PlayerAttackState(this, "attack", secondaryAttackPress, CombatInputs.secondaryAttackPress);
+        SecondaryAttackHoldState = new PlayerAttackState(this, "attack", secondaryAttackHold, CombatInputs.secondaryAttackHold);
         PrimarySkillState = new PlayerAttackState(this, "attack", primarySkillPress, CombatInputs.primarySkillPress);
         SecondarySkillState = new PlayerAttackState(this, "attack", secondarySkillPress, CombatInputs.secondarySkillPress);
         DashAttackState = new PlayerAttackState(this, "attack", dashAttack, CombatInputs.dashAttack);

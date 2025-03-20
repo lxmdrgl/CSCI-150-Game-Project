@@ -8,6 +8,7 @@ using static Game.Utilities.CombatDamageUtilities;
 using static Game.Utilities.StunDamageUtilities;
 using Game.Combat.Damage;
 using System.Linq;
+using System.Collections;
 
 namespace Game.Projectiles
 {
@@ -20,6 +21,10 @@ namespace Game.Projectiles
         private Vector2 direction;
         private bool rotate;
         private bool pierce;
+        private bool explosive;
+        private float explosiveRadius;
+        private bool target;
+        private float targetRadius;
         bool hasGravity;
         private float gravityScale;
         private LayerMask whatIsGround;
@@ -36,6 +41,8 @@ namespace Game.Projectiles
         private bool hasHitGround;
         private float attack;
         private int facingDirection;
+        float totalDamage;
+        float totalStun;
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -55,7 +62,22 @@ namespace Game.Projectiles
                 rb.gravityScale = 0f;
             }
 
-            rb.linearVelocity = direction * velocity * facingDirection;
+            totalDamage = damage * (attack / 100f); 
+            totalStun = stun * (attack / 100f); 
+
+            if (target)
+            {
+                if (!HandleTargetDirection())
+                {
+                    rb.linearVelocity = new Vector2(direction.x * velocity * facingDirection, direction.y * velocity);
+                    // Debug.Log("Target not found: " + rb.linearVelocity);
+                }
+            }
+            else 
+            {
+                rb.linearVelocity = new Vector2(direction.x * velocity * facingDirection, direction.y * velocity);
+            }
+
         }
 
         private void Update()
@@ -71,41 +93,152 @@ namespace Game.Projectiles
         {
             if (!hasHitGround)
             {
-
                 Physics2D.OverlapCollider(hitbox, filterGround, detectedGround);
                 Physics2D.OverlapCollider(hitbox, filterDamageable, detectedDamageable);
 
 
                 if (detectedDamageable.Count > 0)
                 {
-                    // Find damageable that have not been damaged 
-                    Collider2D[] notDamaged = detectedDamageable.Except(hasDamaged).ToArray();
-                    // Add damageable to has been damaged
-                    hasDamaged.AddRange(detectedDamageable);
-
-                    float totalDamage = damage * (attack / 100f); 
-                    float totalStun = stun * (attack / 100f); 
-
-                    if (!notDamaged.Any()) // check if not empty
+                    if (explosive)
                     {
-                        TryDamage(notDamaged, new DamageData(totalDamage, gameObject), out _); 
-                        TryStunDamage(notDamaged, new Combat.StunDamage.StunDamageData(totalStun, gameObject), out _); 
+                        // Explosive, ignore pierce
+                        HandleExplosiveProjectile();
                     }
-
-                    if (!pierce)
+                    else
                     {
-                        Destroy(gameObject);
+                        // Pierce or not pierce 
+                        HandleProjectile();
                     }
                 }
 
                 if (detectedGround.Count > 0)
                 {
                     hasHitGround = true;
-                    rb.linearVelocity = Vector2.zero;
-                    rb.gravityScale = 0f;
+                    rb.linearVelocity = Vector2.zero; 
+                    rb.gravityScale = 0f; 
+                    Debug.Log("Hit Ground: " + hasHitGround + ", " + rb.linearVelocity + ", " + rb.gravityScale);
+                    if (explosive)
+                    {
+                        HandleExplosiveProjectile();
+                    }
                     Destroy(gameObject, 1.0f);
                 }
             }        
+        }
+
+        private void HandleExplosiveProjectile()
+        {
+            Vector2 position = new Vector2(transform.position.x, transform.position.y);
+            Collider2D[] detectedExplosive = Physics2D.OverlapCircleAll(position, explosiveRadius, whatIsDamageable);
+
+            if (detectedExplosive.Length > 0)
+            {
+                bool tryDamage = TryDamage(detectedExplosive, new DamageData(totalDamage, gameObject), out _); 
+                bool tryStun = TryStunDamage(detectedExplosive, new Combat.StunDamage.StunDamageData(totalStun, gameObject), out _); 
+                Debug.Log($"hit (damage, stun): {tryDamage}, {tryStun}");
+            }
+
+            Destroy(gameObject);
+        }
+
+        private void HandleProjectile()
+        {
+            Collider2D[] notDamaged = detectedDamageable.Except(hasDamaged).ToArray();
+            hasDamaged.AddRange(detectedDamageable);
+
+            if (notDamaged.Length > 0)
+            {
+                bool tryDamage = TryDamage(notDamaged, new DamageData(totalDamage, gameObject), out _); 
+                bool tryStun = TryStunDamage(notDamaged, new Combat.StunDamage.StunDamageData(totalStun, gameObject), out _); 
+                Debug.Log($"hit (damage, stun): {tryDamage}, {tryStun}");
+            }
+
+            if (!pierce)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        private bool HandleTargetDirection()
+        {
+            Vector2 position = new Vector2(transform.position.x, transform.position.y);
+            Collider2D[] detectedTarget = Physics2D.OverlapCircleAll(position, targetRadius, whatIsDamageable);
+
+            if (detectedTarget.Length == 0)
+            {
+                Debug.Log("No target in radius found");
+                return false;
+            }
+
+            List<Collider2D> validTargets = new List<Collider2D>();
+
+            foreach (Collider2D detected in detectedTarget)
+            {
+                // Exclude self and other projectiles
+                if (detected.gameObject != gameObject && !detected.CompareTag("Projectile"))
+                {
+                    validTargets.Add(detected);
+                }
+            }
+
+            if (validTargets.Count == 0)
+            {
+                Debug.Log("No valid target in radius found");
+                return false;
+            }
+
+            Collider2D nearestTarget = null;
+            float minDistance = float.MaxValue;
+
+            foreach (Collider2D detected in detectedTarget)
+            {
+                Vector2 targetPosition = detected.transform.position;
+                float direction = targetPosition.x - transform.position.x; 
+
+                if (/* Mathf.Sign(direction) == facingDirection */ true)
+                {
+                    float distance = (targetPosition - (Vector2)transform.position).sqrMagnitude;
+
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        nearestTarget = detected;
+                    }
+                }
+            }
+
+            if (nearestTarget == null)
+            {
+                Debug.Log("No nearest target in front found: " + detectedTarget.Length);
+                return false;
+            }
+
+            float gEffective = Mathf.Abs(Physics2D.gravity.y * rb.gravityScale);
+
+            float dx = nearestTarget.transform.position.x - transform.position.x;
+            float dy = nearestTarget.transform.position.y - transform.position.y;
+
+            float vy = velocity;
+            float discriminant = vy * vy - 2 * gEffective * dy;
+
+            if (discriminant < 0)
+            {
+                Debug.Log("No target direction valid: " + nearestTarget);
+                return false;
+            }
+
+            float t1 = (-vy + Mathf.Sqrt(discriminant)) / -gEffective;
+            float t2 = (-vy - Mathf.Sqrt(discriminant)) / -gEffective;
+
+            float tTotal = Mathf.Max(t1, t2);
+
+            // Adjust vx calculation to consider facing direction
+            // float vx = Mathf.Abs(dx / tTotal) * facingDirection;
+            float vx = dx / tTotal;
+
+            rb.linearVelocity = new Vector2(vx, vy);
+            Debug.Log("Target found: " + rb.linearVelocity);
+            return true;
         }
 
         public void FireProjectile(AttackProjectileFire fireData, float attack, int facingDirection)
@@ -117,6 +250,10 @@ namespace Game.Projectiles
             this.direction = fireData.direction;
             this.rotate = fireData.rotate;
             this.pierce = fireData.pierce;
+            this.explosive = fireData.explosive;
+            this.explosiveRadius = fireData.explosiveRadius;
+            this.target = fireData.target;
+            this.targetRadius = fireData.targetRadius;
             this.hasGravity = fireData.hasGravity;
             this.gravityScale = fireData.gravityScale;
             this.whatIsGround = fireData.whatIsGround;

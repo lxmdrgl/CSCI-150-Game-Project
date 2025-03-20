@@ -21,13 +21,19 @@ namespace Game.Weapons.Components
 
         private IEnumerator SpawnProjectilesCoroutine()
         {
+            float nextSpawnTime = Time.time;
+
             for (int i = 0; i < currentAttackData.count; i++)
             {
                 SpawnProjectile();
 
-                if (i < currentAttackData.count - 1)
+                // Calculate the next spawn time
+                nextSpawnTime += currentAttackData.timeInterval;
+
+                // Wait until the next spawn time
+                while (Time.time < nextSpawnTime)
                 {
-                    yield return new WaitForSeconds(currentAttackData.timeInterval);
+                    yield return null;
                 }
             }
         }

@@ -84,21 +84,29 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.DashAttackState);
         }
-        else if (player.PrimaryAttackState.CanAttack() && 
+        else if (player.PrimaryAttackPressState.CanAttack() && 
                 (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackPress]
                 || (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && !player.PrimaryAttackHoldState.CanAttack())))
         {
             Debug.Log("Primary Attack Press state");
-            stateMachine.ChangeState(player.PrimaryAttackState);
+            stateMachine.ChangeState(player.PrimaryAttackPressState);
         }
         else if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && player.PrimaryAttackHoldState.CanAttack())
         {
             Debug.Log("Primary Attack Hold state");
             stateMachine.ChangeState(player.PrimaryAttackHoldState);
         }
-        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackPress] && player.SecondaryAttackState.CanAttack())
+        else if (player.SecondaryAttackPressState.CanAttack() && 
+                (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackPress]
+                || (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackHold] && !player.SecondaryAttackHoldState.CanAttack())))
         {
-            stateMachine.ChangeState(player.SecondaryAttackState);
+            Debug.Log("Secondary Attack Press state");
+            stateMachine.ChangeState(player.SecondaryAttackPressState);
+        }
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackHold] && player.SecondaryAttackHoldState.CanAttack())
+        {
+            Debug.Log("Secondary Attack Hold state");
+            stateMachine.ChangeState(player.SecondaryAttackHoldState);
         }
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillPress] && player.PrimarySkillState.CanAttackCooldown())
         {

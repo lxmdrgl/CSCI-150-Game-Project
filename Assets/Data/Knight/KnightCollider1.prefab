@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 932303125920431605}
   - component: {fileID: 2049185860700366576}
   m_Layer: 11
-  m_Name: KnightOneCollider
+  m_Name: KnightCollider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

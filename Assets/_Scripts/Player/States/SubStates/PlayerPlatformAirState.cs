@@ -58,22 +58,29 @@ public class PlayerPlatformAirState : PlayerAirState
 					StopPlatformMove();
 					stateMachine.ChangeState(player.DashAttackState);
 				}
-				else if (player.PrimaryAttackState.CanAttack() && 
+				else if (player.PrimaryAttackPressState.CanAttack() && 
 						(player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackPress]
 						|| (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && !player.PrimaryAttackHoldState.CanAttack())))
 				{
 					StopPlatformMove();
-					stateMachine.ChangeState(player.PrimaryAttackState);
+					stateMachine.ChangeState(player.PrimaryAttackPressState);
 				}
 				else if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && player.PrimaryAttackHoldState.CanAttack())
 				{
 					StopPlatformMove();
 					stateMachine.ChangeState(player.PrimaryAttackHoldState);
 				}
-				else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackPress] && player.SecondaryAttackState.CanAttack())
+				else if (player.SecondaryAttackPressState.CanAttack() && 
+                (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackPress]
+                || (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackHold] && !player.SecondaryAttackHoldState.CanAttack())))
 				{
 					StopPlatformMove();
-					stateMachine.ChangeState(player.SecondaryAttackState);
+					stateMachine.ChangeState(player.SecondaryAttackPressState);
+				}
+				else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackHold] && player.SecondaryAttackHoldState.CanAttack())
+				{
+					StopPlatformMove();
+					stateMachine.ChangeState(player.SecondaryAttackHoldState);
 				}
 				if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillPress] && player.PrimarySkillState.CanAttackCooldown())
 				{

@@ -55,19 +55,44 @@ public class PlayerWallState : PlayerState
         downInput = player.InputHandler.DownInput;
         dashInput = player.InputHandler.DashInput;
 
-        if (jumpInput) 
+        if (player.PrimaryAttackPressState.CanAttack() && 
+                (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackPress]
+                || (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && !player.PrimaryAttackHoldState.CanAttack())))
         {
-            stateMachine.ChangeState(player.WallJumpState);
+            Movement?.CheckIfShouldFlip(-Movement.FacingDirection);
+            stateMachine.ChangeState(player.PrimaryAttackPressState);
         }
-        if (dashInput && player.DashState.CanDash())
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.primaryAttackHold] && player.PrimaryAttackHoldState.CanAttack())
+        {
+            Movement?.CheckIfShouldFlip(-Movement.FacingDirection);
+            stateMachine.ChangeState(player.PrimaryAttackHoldState);
+        }
+        else if (player.SecondaryAttackPressState.CanAttack() && 
+                (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackPress]
+                || (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackHold] && !player.SecondaryAttackHoldState.CanAttack())))
+        {
+            Movement?.CheckIfShouldFlip(-Movement.FacingDirection);
+            stateMachine.ChangeState(player.SecondaryAttackPressState);
+        }
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondaryAttackHold] && player.SecondaryAttackHoldState.CanAttack())
+        {
+            Movement?.CheckIfShouldFlip(-Movement.FacingDirection);
+            stateMachine.ChangeState(player.SecondaryAttackHoldState);
+        }
+        else if (dashInput && player.DashState.CanDash())
         {
             Movement?.CheckIfShouldFlip(-Movement.FacingDirection);
             stateMachine.ChangeState(player.DashState);
         }
+        else if (jumpInput) 
+        {
+            stateMachine.ChangeState(player.WallJumpState);
+        }
         else if (isGrounded)
         {
             stateMachine.ChangeState(player.IdleState);
-        }  else if (!isTouchingWall || downInput)
+        }  
+        else if (!isTouchingWall || downInput)
         {
             stateMachine.ChangeState(player.AirState);
         } 
