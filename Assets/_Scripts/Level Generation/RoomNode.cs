@@ -1,19 +1,31 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq; // Required for .ToList()
 
 [SerializeField]
 public class RoomNode : MonoBehaviour
 {
-    public string roomType;
+    public static List<string> RoomTypes = new List<string>(); // Dynamic "enum"
+    [SerializeField] public string roomType;
     public GameObject roomObject;
     public RoomNode parent; // Parent node (null for root)
     
     [SerializeField]
     public List<RoomNode> children; // Child nodes
 
+    public List<RoomManager> listTriedRooms = new List<RoomManager>();
+
     void OnEnable()
     {
+        UpdateRoomTypes(); // Refresh room types list
+
+        // Ensure roomType is valid
+        if (!RoomTypes.Contains(roomType))
+        {
+            roomType = RoomTypes.Count > 0 ? RoomTypes[0] : "None"; // Assign default valid type
+        }
+
         // assign parent
         if (transform.parent != null)
         {
@@ -37,11 +49,9 @@ public class RoomNode : MonoBehaviour
         }   
     }
 
-    void Start()
+    private void OnValidate()
     {
-        if (parent == null) {
-            // PrintTree();
-        }
+        UpdateRoomTypes();
     }
 
     // Add a child to this node
@@ -65,4 +75,29 @@ public class RoomNode : MonoBehaviour
         }
     }
 
+    public static void UpdateRoomTypes()
+    {
+        string path = Path.Combine(Application.dataPath, "Resources/Rooms");
+        if (!Directory.Exists(path))
+        {
+            RoomTypes = new List<string> { "None" }; // Default value
+            return;
+        }
+
+        RoomTypes = new List<string>(Directory.GetDirectories(path));
+        for (int i = 0; i < RoomTypes.Count; i++)
+        {
+            RoomTypes[i] = Path.GetFileName(RoomTypes[i]); // Extract folder names only
+        }
+    }
+
+    public string RoomType
+    {
+        get => roomType;
+        set
+        {
+            if (RoomTypes.Contains(value))
+                roomType = value;
+        }
+    }
 }
