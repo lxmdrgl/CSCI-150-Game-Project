@@ -79,6 +79,16 @@ public class PlayerWallState : PlayerState
             Movement?.CheckIfShouldFlip(-Movement.FacingDirection);
             stateMachine.ChangeState(player.SecondaryAttackHoldState);
         }
+        if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillPress] && player.PrimarySkillState.CanAttackCooldown())
+        {
+            Movement?.CheckIfShouldFlip(-Movement.FacingDirection);
+            stateMachine.ChangeState(player.PrimarySkillState);
+        }
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillPress] && player.SecondarySkillState.CanAttackCooldown())
+        {
+            Movement?.CheckIfShouldFlip(-Movement.FacingDirection);
+            stateMachine.ChangeState(player.SecondarySkillState);
+        }
         else if (dashInput && player.DashState.CanDash())
         {
             Movement?.CheckIfShouldFlip(-Movement.FacingDirection);

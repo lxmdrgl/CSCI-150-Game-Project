@@ -70,15 +70,15 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <velocity>k__BackingField: 15
-          <direction>k__BackingField: {x: 1, y: 1}
+          <velocity>k__BackingField: 30
+          <direction>k__BackingField: {x: 1, y: 0}
           <rotate>k__BackingField: 1
           <hasGravity>k__BackingField: 1
-          <gravityScale>k__BackingField: 5
+          <gravityScale>k__BackingField: 1
           <damage>k__BackingField: 10
           <stun>k__BackingField: 10
           <pierce>k__BackingField: 1
-          <explosive>k__BackingField: 1
+          <explosive>k__BackingField: 0
           <explosiveRadius>k__BackingField: 3
           <target>k__BackingField: 0
           <targetRadius>k__BackingField: 0
