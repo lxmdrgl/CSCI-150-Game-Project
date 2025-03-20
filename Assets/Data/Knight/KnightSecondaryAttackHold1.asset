@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b320fd8433894df4e8f5abc27bf3fea1, type: 3}
+  m_Name: KnightSecondaryAttackHold1
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 0}
+  <Name>k__BackingField: Knight Secondary Attack Hold 1
+  <Description>k__BackingField: Basic Sword Swing Projectile Hold
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: 0e95b3802278b324a986acdfdd5c199e, type: 2}
+  <weaponIndex>k__BackingField: 5
+  <NumberOfAttacks>k__BackingField: 1
+  <AttackCounterCooldown>k__BackingField: 2
+  <AttackCooldown>k__BackingField: 0
+  prereqWeapon: {fileID: 11400000, guid: dbd35097a8e6f00499e22f4c77ee023b, type: 2}
+  <ComponentData>k__BackingField:
+  - rid: 6902827928974262425
+  - rid: 5949095188800471134
+  - rid: 6902827909092212840
+  - rid: 6902827909092212839
+  - rid: 5949095222658203649
+  references:
+    version: 2
+    RefIds:
+    - rid: 5949095188800471134
+      type: {class: WeaponSpriteData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: WeaponSpriteData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <PhaseSprites>k__BackingField:
+          - <Phase>k__BackingField: 2
+            <Sprites>k__BackingField:
+            - {fileID: -976979401, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 581828395, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: -720425029, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            - {fileID: 1331580839, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+    - rid: 5949095222658203649
+      type: {class: MovementData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: MovementData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <VelocityX>k__BackingField: 5
+    - rid: 6902827909092212839
+      type: {class: ProjectileSpawnerData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ProjectileSpawnerData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 5899bd83d15cb514eb5eda4a490a2f01, type: 3}
+          <position>k__BackingField: {x: 1, y: 0}
+          <count>k__BackingField: 1
+          <timeInterval>k__BackingField: 0
+    - rid: 6902827909092212840
+      type: {class: ProjectileFireData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ProjectileFireData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <velocity>k__BackingField: 30
+          <direction>k__BackingField: {x: 1, y: 0}
+          <rotate>k__BackingField: 1
+          <hasGravity>k__BackingField: 1
+          <gravityScale>k__BackingField: 1
+          <damage>k__BackingField: 10
+          <stun>k__BackingField: 10
+          <pierce>k__BackingField: 1
+          <explosive>k__BackingField: 0
+          <explosiveRadius>k__BackingField: 3
+          <target>k__BackingField: 0
+          <targetRadius>k__BackingField: 0
+          <whatIsGround>k__BackingField:
+            serializedVersion: 2
+            m_Bits: 128
+          <whatIsDamageable>k__BackingField:
+            serializedVersion: 2
+            m_Bits: 2048
+    - rid: 6902827928974262425
+      type: {class: InputHoldData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: InputHoldData

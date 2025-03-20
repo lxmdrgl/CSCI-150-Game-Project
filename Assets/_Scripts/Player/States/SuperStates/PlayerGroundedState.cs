@@ -108,14 +108,39 @@ public class PlayerGroundedState : PlayerState
             Debug.Log("Secondary Attack Hold state");
             stateMachine.ChangeState(player.SecondaryAttackHoldState);
         }
-        if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillPress] && player.PrimarySkillState.CanAttackCooldown())
+        else if (player.PrimarySkillPressState.CanAttackCooldown() && 
+                (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillPress]
+                || (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillHold] && !player.PrimarySkillHoldState.CanAttackCooldown())))
         {
-            stateMachine.ChangeState(player.PrimarySkillState);
+            Debug.Log("Primary Skill Press state");
+            stateMachine.ChangeState(player.PrimarySkillPressState);
         }
-        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillPress] && player.SecondarySkillState.CanAttackCooldown())
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillHold] && player.PrimarySkillHoldState.CanAttackCooldown())
         {
-            stateMachine.ChangeState(player.SecondarySkillState);
+            Debug.Log("Primary Skill Hold state");
+            stateMachine.ChangeState(player.PrimarySkillHoldState);
         }
+
+        else if (player.SecondarySkillPressState.CanAttackCooldown() && 
+                (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillPress]
+                || (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillHold] && !player.SecondarySkillHoldState.CanAttackCooldown())))
+        {
+            Debug.Log("Secondary Skill Press state");
+            stateMachine.ChangeState(player.SecondarySkillPressState);
+        }
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillHold] && player.SecondarySkillHoldState.CanAttackCooldown())
+        {
+            Debug.Log("Secondary Skill Hold state");
+            stateMachine.ChangeState(player.SecondarySkillHoldState);
+        }
+        // if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillPress] && player.PrimarySkillPressState.CanAttackCooldown())
+        // {
+        //     stateMachine.ChangeState(player.PrimarySkillPressState);
+        // }
+        // else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillPress] && player.SecondarySkillPressState.CanAttackCooldown())
+        // {
+        //     stateMachine.ChangeState(player.SecondarySkillPressState);
+        // }
         else if (dashInput && player.DashState.CanDash())
         {
             stateMachine.ChangeState(player.DashState);
