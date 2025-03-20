@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using Game.CoreSystem;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
@@ -41,19 +42,17 @@ public class LevelGenerator : MonoBehaviour
     private List<Entity> enemies = new List<Entity>();
     PlayerInputManager playerInputManager;
 
-    void Awake()
+    async Task Awake()
     {
         playerCount = PlayerPrefs.GetInt("playerCount");
         playerInputManager = FindFirstObjectByType<PlayerInputManager>();
-
-        //DontDestroyOnLoad(gameObject);
 
         spawnRoomMap();
 
         InputSystem.onDeviceChange += OnDeviceChange;
         inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
 
-        if (spawnStartingRoom() && spawnAllRooms(roomMap)) 
+        if (spawnStartingRoom() && await spawnAllRooms(roomMap)) 
         {
 
             //spawnAllEnemies(roomMap);
@@ -123,14 +122,14 @@ public class LevelGenerator : MonoBehaviour
             // change room location to difference in origins -> origins overlap
             newRoom.transform.position += levelTransform.position - roomTransform.position;
         } else {
-            UnityEngine.Debug.LogError("Level Origin, Room Origin, or Room not found");
+            UnityEngine.Debug.LogError("SpawnStartingRoom Error");
             return false;
         }
 
         return true;
     }
 
-    bool spawnAllRooms(RoomNode root) { // supports rooms with one entrance, 0-2 exits
+    async Task<bool> spawnAllRooms(RoomNode root) { // supports rooms with one entrance, 0-2 exits
         RoomNode currNode = root; 
         int randIndex = UnityEngine.Random.Range(0,2);
 
@@ -138,7 +137,8 @@ public class LevelGenerator : MonoBehaviour
             return true;
         } else if (currNode.children.Count == 1) {
             
-            tryNextRoom(currNode);
+            await TryNextRoom(currNode);
+            await spawnAllRooms(currNode.children[0]);
 
         } else if (currNode.children.Count == 2) {
             // RoomManager roomManager1 = spawnRoom(currNode.children[0]).GetComponent<RoomManager>();
@@ -157,42 +157,48 @@ public class LevelGenerator : MonoBehaviour
         return true;
     }
 
-    void tryNextRoom(RoomNode currNode) {
-        // List<RoomManager> roomList = loadRoomList(currNode.children[0].roomType);
-        // RoomManager randRoom = roomList[UnityEngine.Random.Range(0, roomList.Count)];
-
-        // RoomManager newRoomManager = spawnRoom(currNode.children[0], randRoom).GetComponent<RoomManager>();
-        // connectRooms(currNode, 0, currNode.children[0], 0);
-        // spawnAllRooms(currNode.children[0]); // recursively call child node
-
+    async Task TryNextRoom(RoomNode currNode)
+    {
         RoomNode nextNode = currNode.children[0];
         List<RoomManager> roomList = loadRoomList(nextNode.roomType);
 
-        while (true) {
-            // no room found which works
-            if (roomList.Count == 0) {
-                UnityEngine.Debug.LogError("");
+        while (true)
+        {
+            // No valid room found
+            if (roomList.Count == 0)
+            {
+                UnityEngine.Debug.LogError("No valid rooms available");
                 return;
             }
 
-            // random query without replacement
+            // Random query without replacement
             int randIndex = UnityEngine.Random.Range(0, roomList.Count);
             RoomManager randRoom = roomList[randIndex];
             roomList.RemoveAt(randIndex);
-            
-            // spawn and try to connect
-            GameObject spawnObj = spawnRoom(nextNode, randRoom);
-            bool isValid = connectRooms(currNode, 0, nextNode, 0);
 
-            if (isValid) {
-                UnityEngine.Debug.Log("Valid room");
-                return;
-            } else {
-                UnityEngine.Debug.Log("Invalid room, looping");
-                // delete spawned room and try again
-                
-                DestroyImmediate(spawnObj);
+            // Spawn the room
+            GameObject spawnObj = spawnRoom(nextNode, randRoom);
+
+            UnityEngine.Debug.Log("Spawned and trying to connect: " + spawnObj.name);
+
+            // Ensure ConnectRooms fully completes before continuing
+            bool isValid = await ConnectRooms(currNode, 0, nextNode, 0);
+
+            if (isValid)
+            {
+                UnityEngine.Debug.Log("Valid room: " + spawnObj.name);
+                return; // Exit loop on first valid room
             }
+            else
+            {
+                UnityEngine.Debug.Log("Invalid room, deleting: " + spawnObj.name);
+                DestroyImmediate(spawnObj);
+                roomNumber -= 1; // Adjust room count
+                UnityEngine.Debug.Log("Retrying...");
+            }
+
+            // Small delay to avoid instant looping issues
+            await Task.Yield();
         }
     }
 
@@ -215,67 +221,78 @@ public class LevelGenerator : MonoBehaviour
         
         return r.roomObject;
     }
-    
-    bool connectRooms(RoomNode currNode, int exitIdx, RoomNode newNode, int entranceIdx) {
-        // UnityEngine.Debug.Log(currNode.gameObject.name + ": " + exitIdx + ", " + entranceIdx)
+
+    async Task<bool> ConnectRooms(RoomNode currNode, int exitIdx, RoomNode newNode, int entranceIdx)
+    {
         RoomManager currNodeManager = currNode.roomObject.GetComponent<RoomManager>();
         RoomManager newNodeManager = newNode.roomObject.GetComponent<RoomManager>();
-        newNode.roomObject.transform.position += currNodeManager.exits[exitIdx].transform.position - newNodeManager.entrances[entranceIdx].transform.position;
+
+        newNode.roomObject.transform.position += currNodeManager.exits[exitIdx].transform.position 
+                                                 - newNodeManager.entrances[entranceIdx].transform.position;
 
         newNodeManager.hasCollision = false;
-        StartCoroutine(DelayedCollisionCheck(newNode, newNodeManager)); // Check collision after physics update
-        if (newNodeManager.hasCollision) {
-            return false;
-        }
+        await DelayedCollisionCheck(newNode, newNodeManager); // Await coroutine
 
-        return true;
+        return !newNodeManager.hasCollision;
     }
 
-    // Coroutine to delay collision checking until physics updates
-    IEnumerator DelayedCollisionCheck(RoomNode newNode, RoomManager newNodeManager) {
-        yield return new WaitForFixedUpdate(); // Wait for physics engine update
+    async Task<bool> DelayedCollisionCheck(RoomNode newNode, RoomManager newNodeManager)
+    {
+        var tcs = new TaskCompletionSource<bool>();
 
-        newNodeManager.roomCollider.enabled = true; // Enable collider after move
+        IEnumerator coroutine = DelayedCollisionCoroutine(newNode, newNodeManager, tcs);
+        if (newNodeManager != null && newNodeManager.gameObject.activeInHierarchy)
+        {
+            newNodeManager.StartCoroutine(coroutine); // Ensure it runs on an active GameObject
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("Failed to start coroutine: GameObject is inactive");
+            return false; // Fail early if object is disabled
+        }
 
-        // Create a ContactFilter2D to filter only the "Room" layer
+        try
+        {
+            return await tcs.Task; // Await coroutine completion
+        }
+        catch (Exception e)
+        {
+            UnityEngine.Debug.LogError("Exception in DelayedCollisionCheck: " + e.Message);
+            return false;
+        }
+    }
+
+    IEnumerator DelayedCollisionCoroutine(RoomNode newNode, RoomManager newNodeManager, TaskCompletionSource<bool> tcs)
+    {
+        yield return new WaitForFixedUpdate(); // Wait for physics update
+
+        newNodeManager.roomCollider.enabled = true;
+
         ContactFilter2D filter = new ContactFilter2D();
         filter.SetLayerMask(LayerMask.GetMask("Room"));
         filter.useTriggers = false;
 
-        // Check for overlapping colliders
-        Collider2D[] results = new Collider2D[10]; // Buffer for results
+        Collider2D[] results = new Collider2D[10];
         int collisionCount = newNodeManager.roomCollider.Overlap(filter, results);
 
-        UnityEngine.Debug.Log("Num collisions on " + newNode.roomObject.name + ": " + collisionCount);
-        if (collisionCount > 0) {
+        if (collisionCount > 0)
+        {
             newNodeManager.hasCollision = true;
             string s = "";
-            foreach (Collider2D collider in results) {
-                if (collider != null) {
+            foreach (Collider2D collider in results)
+            {
+                if (collider != null)
+                {
                     s += collider.transform.parent.name + " | ";
                 }
             }
-            UnityEngine.Debug.Log(s);
+            UnityEngine.Debug.Log(newNode.roomObject.name + " has collisions with: " + s);
         }
+
+        tcs.SetResult(true); // Mark the coroutine as complete
     }
+
     #endregion SpawnRooms
-
-    bool spawnAllEnemies(RoomNode root) { 
-        RoomNode currNode = root; 
-        int randIndex = UnityEngine.Random.Range(0,2);
-
-        if (currNode.children.Count == 0) {
-            return true;
-        } 
-
-        foreach (RoomNode child in currNode.children) {
-            RoomManager childRoomManager = child.roomObject.GetComponent<RoomManager>();
-            childRoomManager.SpawnEnemies(); // Spawn enemies in the new room
-            spawnAllEnemies(child);
-        } 
-
-        return true;
-    }
 
     #region SpawnPlayer
 
