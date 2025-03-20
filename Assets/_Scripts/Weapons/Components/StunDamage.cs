@@ -2,6 +2,7 @@
 using UnityEngine;
 
 using Game.Combat.StunDamage;
+using Game.CoreSystem;
 using static Game.Utilities.StunDamageUtilities;
 
 namespace Game.Weapons.Components
@@ -9,6 +10,7 @@ namespace Game.Weapons.Components
     public class StunDamage : WeaponComponent<StunDamageData, AttackStunDamage>
     {
         private ActionHitBox hitBox;
+        private Stats stats;
 
         private void HandleDetectCollider2D(Collider2D[] colliders)
         {
@@ -21,10 +23,9 @@ namespace Game.Weapons.Components
             //         Debug.Log("Stun Damage Delt");
             //     }
             // }
+            float stunAmount = currentAttackData.Amount * (stats.Attack / 100f);
 
-            
-
-            TryStunDamage(colliders, new Combat.StunDamage.StunDamageData(currentAttackData.Amount, Core.Root), out _);
+            TryStunDamage(colliders, new Combat.StunDamage.StunDamageData(stunAmount, Core.Root), out _);
         }
         
         protected override void Start()
@@ -32,6 +33,7 @@ namespace Game.Weapons.Components
             base.Start();
 
             hitBox = GetComponent<ActionHitBox>();
+            stats = Core.GetCoreComponent<Stats>();
 
             hitBox.OnDetectedCollider2D += HandleDetectCollider2D;
         }
