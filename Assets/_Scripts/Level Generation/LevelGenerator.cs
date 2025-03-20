@@ -133,23 +133,42 @@ public class LevelGenerator : MonoBehaviour
         RoomNode currNode = root; 
         int randIndex = UnityEngine.Random.Range(0,2);
 
-        if (currNode.children.Count == 0) {
+        if (currNode.children.Count == 0) 
+        {
             return true;
-        } else if (currNode.children.Count == 1) {
+        } 
+        else if (currNode.children.Count == 1) 
+        {
+            // try next room, if fails (all rooms have collision error)
+            if (!await TryNextRoom(currNode)) 
+            {
+                if (root.parent == null) // end case reached start room
+                {
+                    UnityEngine.Debug.LogError("No permutation of map possible for: " + roomMap.name);
+                    return false;
+                } 
+                else // retry parent
+                {
+                    roomNumber = roomNumber - 1;
+                    // UnityEngine.Debug.Log("Retrying parent, deleting " + root.roomObject);
+                    Destroy(root.roomObject);
+                    await spawnAllRooms(root.parent);
+                }
+            } 
+            else 
+            {
+                await spawnAllRooms(currNode.children[0]);
+            }
+        } 
+        else if (currNode.children.Count == 2) 
+        {
             
-            await TryNextRoom(currNode);
-            await spawnAllRooms(currNode.children[0]);
+            // fork case
+            return false;
 
-        } else if (currNode.children.Count == 2) {
-            // RoomManager roomManager1 = spawnRoom(currNode.children[0]).GetComponent<RoomManager>();
-            // RoomManager roomManager2 = spawnRoom(currNode.children[1]).GetComponent<RoomManager>();
-
-            // connectRooms(currNode, randIndex, currNode.children[0], 0);
-            // connectRooms(currNode, Math.Abs(randIndex-1), currNode.children[1], 0);
-
-            // spawnAllRooms(currNode.children[0]); // recursively call on both children
-            // spawnAllRooms(currNode.children[1]);
-        } else {
+        } 
+        else 
+        {
             UnityEngine.Debug.LogError(gameObject.name + ": Unexpected number of exits");
             return false;
         }
@@ -157,18 +176,31 @@ public class LevelGenerator : MonoBehaviour
         return true;
     }
 
-    async Task TryNextRoom(RoomNode currNode)
+    async Task<bool> TryNextRoom(RoomNode currNode)
     {
         RoomNode nextNode = currNode.children[0];
         List<RoomManager> roomList = loadRoomList(nextNode.roomType);
 
+        // exclude previously tried rooms if necessary
+        roomList = roomList.Except(nextNode.listTriedRooms).ToList<RoomManager>();
+
         while (true)
         {
+            String s = "";
+            foreach (RoomManager room in roomList) {
+                s += room.name + "|";
+            }
+            // UnityEngine.Debug.Log("Possible rooms for " + nextNode.transform.name + ": " + s);
+
             // No valid room found
             if (roomList.Count == 0)
             {
-                UnityEngine.Debug.LogError("No valid rooms available");
-                return;
+                // clear next's triedRoomList
+                // retry from parent while not repeating previously tried rooms
+                nextNode.listTriedRooms.Clear();
+
+                // UnityEngine.Debug.Log("Clear tried of " + nextNode.transform.name + ", No valid rooms available");
+                return false;
             }
 
             // Random query without replacement
@@ -176,25 +208,28 @@ public class LevelGenerator : MonoBehaviour
             RoomManager randRoom = roomList[randIndex];
             roomList.RemoveAt(randIndex);
 
+            // add selected room to next's listTriedRooms
+            nextNode.listTriedRooms.Add(randRoom);
+
             // Spawn the room
             GameObject spawnObj = spawnRoom(nextNode, randRoom);
 
-            UnityEngine.Debug.Log("Spawned and trying to connect: " + spawnObj.name);
+            // UnityEngine.Debug.Log("Spawned and trying to connect: " + spawnObj.name);
 
             // Ensure ConnectRooms fully completes before continuing
             bool isValid = await ConnectRooms(currNode, 0, nextNode, 0);
 
             if (isValid)
             {
-                UnityEngine.Debug.Log("Valid room: " + spawnObj.name);
-                return; // Exit loop on first valid room
+                // UnityEngine.Debug.Log("Valid room: " + spawnObj.name);
+                return true; // Exit loop on first valid room
             }
             else
             {
-                UnityEngine.Debug.Log("Invalid room, deleting: " + spawnObj.name);
+                // UnityEngine.Debug.Log("Invalid room, deleting: " + spawnObj.name);
                 DestroyImmediate(spawnObj);
                 roomNumber -= 1; // Adjust room count
-                UnityEngine.Debug.Log("Retrying...");
+                // UnityEngine.Debug.Log("Retrying...");
             }
 
             // Small delay to avoid instant looping issues
@@ -224,16 +259,21 @@ public class LevelGenerator : MonoBehaviour
 
     async Task<bool> ConnectRooms(RoomNode currNode, int exitIdx, RoomNode newNode, int entranceIdx)
     {
+
+        
         RoomManager currNodeManager = currNode.roomObject.GetComponent<RoomManager>();
         RoomManager newNodeManager = newNode.roomObject.GetComponent<RoomManager>();
+
+        if (currNodeManager.exits.Count() == 0) {
+            UnityEngine.Debug.LogError("End room found prematurely in: " + roomMap.name);
+            return false;
+        }
 
         newNode.roomObject.transform.position += currNodeManager.exits[exitIdx].transform.position 
                                                  - newNodeManager.entrances[entranceIdx].transform.position;
 
         newNodeManager.hasCollision = false;
         await DelayedCollisionCheck(newNode, newNodeManager); // Await coroutine
-
-
 
         return !newNodeManager.hasCollision;
     }
@@ -288,7 +328,7 @@ public class LevelGenerator : MonoBehaviour
                     s += collider.transform.parent.name + " | ";
                 }
             }
-            UnityEngine.Debug.Log(newNode.roomObject.name + " has collisions with: " + s);
+            // UnityEngine.Debug.Log(newNode.roomObject.name + " has collisions with: " + s);
         }
 
         tcs.SetResult(true); // Mark the coroutine as complete
