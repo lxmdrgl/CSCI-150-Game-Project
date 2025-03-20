@@ -9,6 +9,8 @@ using static Game.Utilities.StunDamageUtilities;
 using Game.Combat.Damage;
 using System.Linq;
 using System.Collections;
+using UnityEngine.Splines;
+using Unity.VisualScripting;
 
 namespace Game.Projectiles
 {
@@ -82,17 +84,25 @@ namespace Game.Projectiles
 
         private void Update()
         {
-            if (rotate && !hasHitGround)
+            /* if (rotate && !hasHitGround)
             {
                 float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            }
+                Debug.Log("rotation: " + transform.rotation);
+            } */
         }
 
         private void FixedUpdate()
         {
             if (!hasHitGround)
             {
+                if (rotate)
+                {
+                    float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                    Debug.Log("rotation: " + transform.rotation);
+                }
+
                 Physics2D.OverlapCollider(hitbox, filterGround, detectedGround);
                 Physics2D.OverlapCollider(hitbox, filterDamageable, detectedDamageable);
 
@@ -111,11 +121,25 @@ namespace Game.Projectiles
                     }
                 }
 
+                List<Collider2D> detectedGroundFiltered = new List<Collider2D>();
+
                 if (detectedGround.Count > 0)
+                {
+                    foreach(Collider2D detected in detectedGround)
+                    {
+                        if (!detected.CompareTag("Platform"))
+                        {
+                            detectedGroundFiltered.Add(detected);
+                        }
+                    }
+                }
+
+                if (detectedGroundFiltered.Count > 0)
                 {
                     hasHitGround = true;
                     rb.linearVelocity = Vector2.zero; 
                     rb.gravityScale = 0f; 
+                    rb.freezeRotation = true;
                     Debug.Log("Hit Ground: " + hasHitGround + ", " + rb.linearVelocity + ", " + rb.gravityScale);
                     if (explosive)
                     {
@@ -190,12 +214,12 @@ namespace Game.Projectiles
             Collider2D nearestTarget = null;
             float minDistance = float.MaxValue;
 
-            foreach (Collider2D detected in detectedTarget)
+            foreach (Collider2D detected in validTargets)
             {
                 Vector2 targetPosition = detected.transform.position;
-                float direction = targetPosition.x - transform.position.x; 
+                float checkDirection = targetPosition.x - transform.position.x; 
 
-                if (/* Mathf.Sign(direction) == facingDirection */ true)
+                if (Mathf.Sign(checkDirection) == facingDirection /* true */)
                 {
                     float distance = (targetPosition - (Vector2)transform.position).sqrMagnitude;
 
@@ -213,31 +237,47 @@ namespace Game.Projectiles
                 return false;
             }
 
+
             float gEffective = Mathf.Abs(Physics2D.gravity.y * rb.gravityScale);
 
             float dx = nearestTarget.transform.position.x - transform.position.x;
             float dy = nearestTarget.transform.position.y - transform.position.y;
 
-            float vy = velocity;
-            float discriminant = vy * vy - 2 * gEffective * dy;
-
-            if (discriminant < 0)
+            // Prevent division by zero and unreachable targets
+            if (Mathf.Approximately(dx, 0) || Mathf.Approximately(velocity, 0))
             {
-                Debug.Log("No target direction valid: " + nearestTarget);
+                Debug.LogError("Cannot calculate direction: zero distance or zero velocity.");
                 return false;
             }
 
-            float t1 = (-vy + Mathf.Sqrt(discriminant)) / -gEffective;
-            float t2 = (-vy - Mathf.Sqrt(discriminant)) / -gEffective;
+            // X direction is always fixed to 1
+            float directionX = dx > 0 ? 1f : -1f;
 
-            float tTotal = Mathf.Max(t1, t2);
+            // Calculate time to reach the target horizontally
+            float time = Mathf.Abs(dx) / velocity;
 
-            // Adjust vx calculation to consider facing direction
-            // float vx = Mathf.Abs(dx / tTotal) * facingDirection;
-            float vx = dx / tTotal;
+            // Calculate the required vertical velocity using the projectile motion equation
+            // vy = (dy + 0.5 * g * t^2) / t
+            float vy = (dy + 0.5f * gEffective * time * time) / time;
 
-            rb.linearVelocity = new Vector2(vx, vy);
-            Debug.Log("Target found: " + rb.linearVelocity);
+            // Normalize Y velocity between 0 and 1
+            float directionY = vy / velocity;
+
+            // Check if the calculated Y direction is outside the valid range [0, 1]
+            if (Mathf.Abs(directionY) > 1.732f) // 60 degrees
+            {
+                Debug.LogWarning("Target is unreachable with given velocity, gravity, and angle limit.");
+                return false;
+            }
+
+            // Create the direction vector with X fixed to 1 and Y calculated
+            Vector2 direction = new Vector2(directionX, directionY);
+
+            // Apply the calculated velocity
+            rb.linearVelocity = direction * velocity;
+            Debug.Log($"Target found: velocity {rb.linearVelocity}, direction: {direction}, dxdy: {dx}, {dy}");
+            // Debug.Log($"near: {nearestTarget}, {nearestTarget.transform.position.x}, {nearestTarget.transform.position.y}");
+            // Debug.Log($"transform: {transform.position.x}, {transform.position.y}");
             return true;
         }
 

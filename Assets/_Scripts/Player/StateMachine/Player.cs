@@ -23,8 +23,10 @@ public class Player : MonoBehaviour, IDataPersistence
     public PlayerAttackState PrimaryAttackHoldState { get; private set; }
     public PlayerAttackState SecondaryAttackPressState { get; private set; }
     public PlayerAttackState SecondaryAttackHoldState { get; private set; }
-    public PlayerAttackState PrimarySkillState { get; private set; }
-    public PlayerAttackState SecondarySkillState { get; private set; }
+    public PlayerAttackState PrimarySkillPressState { get; private set; }
+    public PlayerAttackState PrimarySkillHoldState { get; private set; }
+    public PlayerAttackState SecondarySkillPressState { get; private set; }
+    public PlayerAttackState SecondarySkillHoldState { get; private set; }
     public PlayerAttackState DashAttackState { get; private set; }
     public PlayerAttackState FallAttackState { get; private set; }
     public PlayerKnockBackState KnockBackState { get; private set; }
@@ -52,7 +54,9 @@ public class Player : MonoBehaviour, IDataPersistence
     private Weapon secondaryAttackPress;
     private Weapon secondaryAttackHold;
     private Weapon primarySkillPress;
+    private Weapon primarySkillHold;
     private Weapon secondarySkillPress;
+    private Weapon secondarySkillHold;
     private Weapon dashAttack;
     private Weapon fallAttack;
 
@@ -68,11 +72,13 @@ public class Player : MonoBehaviour, IDataPersistence
         knockBackReceiver = Core.GetCoreComponent<KnockBackReceiver>();
 
         primaryAttackPress = transform.Find("PrimaryAttackPress").GetComponent<Weapon>();
-        primaryAttackHold = transform.Find("PrimaryAttackHold").GetComponent<Weapon>();
         secondaryAttackPress = transform.Find("SecondaryAttackPress").GetComponent<Weapon>();
+        primaryAttackHold = transform.Find("PrimaryAttackHold").GetComponent<Weapon>();
         secondaryAttackHold = transform.Find("SecondaryAttackHold").GetComponent<Weapon>();
         primarySkillPress = transform.Find("PrimarySkillPress").GetComponent<Weapon>();
+        primarySkillHold = transform.Find("PrimarySkillHold").GetComponent<Weapon>();
         secondarySkillPress = transform.Find("SecondarySkillPress").GetComponent<Weapon>();
+        secondarySkillHold = transform.Find("SecondarySkillHold").GetComponent<Weapon>();
         dashAttack = transform.Find("DashAttack").GetComponent<Weapon>();
         fallAttack = transform.Find("FallAttack").GetComponent<Weapon>();
 
@@ -81,7 +87,9 @@ public class Player : MonoBehaviour, IDataPersistence
         secondaryAttackPress.SetCore(Core);
         secondaryAttackHold.SetCore(Core);
         primarySkillPress.SetCore(Core);
+        primarySkillHold.SetCore(Core);
         secondarySkillPress.SetCore(Core);
+        secondarySkillHold.SetCore(Core);
         dashAttack.SetCore(Core);
         fallAttack.SetCore(Core);
 
@@ -108,8 +116,10 @@ public class Player : MonoBehaviour, IDataPersistence
         PrimaryAttackHoldState = new PlayerAttackState(this, "attack", primaryAttackHold, CombatInputs.primaryAttackHold);
         SecondaryAttackPressState = new PlayerAttackState(this, "attack", secondaryAttackPress, CombatInputs.secondaryAttackPress);
         SecondaryAttackHoldState = new PlayerAttackState(this, "attack", secondaryAttackHold, CombatInputs.secondaryAttackHold);
-        PrimarySkillState = new PlayerAttackState(this, "attack", primarySkillPress, CombatInputs.primarySkillPress);
-        SecondarySkillState = new PlayerAttackState(this, "attack", secondarySkillPress, CombatInputs.secondarySkillPress);
+        PrimarySkillPressState = new PlayerAttackState(this, "attack", primarySkillPress, CombatInputs.primarySkillPress);
+        PrimarySkillHoldState = new PlayerAttackState(this, "attack", primarySkillHold, CombatInputs.primarySkillHold);
+        SecondarySkillPressState = new PlayerAttackState(this, "attack", secondarySkillPress, CombatInputs.secondarySkillPress);
+        SecondarySkillHoldState = new PlayerAttackState(this, "attack", secondarySkillHold, CombatInputs.secondarySkillHold);
         DashAttackState = new PlayerAttackState(this, "attack", dashAttack, CombatInputs.dashAttack);
         FallAttackState = new PlayerAttackState(this, "attack", fallAttack, CombatInputs.fallAttack);
 
@@ -151,8 +161,10 @@ public class Player : MonoBehaviour, IDataPersistence
     public virtual void OnEnable()
     {
         dashTimeNotifier.OnNotify += DashState.ResetDashCooldown;
-        primarySkillTimeNotifier.OnNotify += PrimarySkillState.ResetAttackCooldown;
-        secondarySkillTimeNotifier.OnNotify += SecondarySkillState.ResetAttackCooldown;
+        primarySkillTimeNotifier.OnNotify += PrimarySkillPressState.ResetAttackCooldown;
+        primarySkillTimeNotifier.OnNotify += PrimarySkillHoldState.ResetAttackCooldown;
+        secondarySkillTimeNotifier.OnNotify += SecondarySkillPressState.ResetAttackCooldown;
+        secondarySkillTimeNotifier.OnNotify += SecondarySkillHoldState.ResetAttackCooldown;
         dashAttackTimeNotifier.OnNotify += DashAttackState.DashAttackCooldownDisable;
         
     }
@@ -160,8 +172,10 @@ public class Player : MonoBehaviour, IDataPersistence
     public virtual void OnDisable()
     {
         dashTimeNotifier.OnNotify -= DashState.ResetDashCooldown;
-        primarySkillTimeNotifier.OnNotify -= PrimarySkillState.ResetAttackCooldown;
-        secondarySkillTimeNotifier.OnNotify -= SecondarySkillState.ResetAttackCooldown;
+        primarySkillTimeNotifier.OnNotify -= PrimarySkillPressState.ResetAttackCooldown;
+        primarySkillTimeNotifier.OnNotify -= PrimarySkillHoldState.ResetAttackCooldown;
+        secondarySkillTimeNotifier.OnNotify -= SecondarySkillPressState.ResetAttackCooldown;
+        secondarySkillTimeNotifier.OnNotify -= SecondarySkillHoldState.ResetAttackCooldown;
         dashAttackTimeNotifier.OnNotify -= DashAttackState.DashAttackCooldownDisable;
     }
 

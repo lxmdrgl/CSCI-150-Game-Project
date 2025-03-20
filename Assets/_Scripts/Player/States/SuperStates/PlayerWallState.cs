@@ -79,6 +79,31 @@ public class PlayerWallState : PlayerState
             Movement?.CheckIfShouldFlip(-Movement.FacingDirection);
             stateMachine.ChangeState(player.SecondaryAttackHoldState);
         }
+        else if (player.PrimarySkillPressState.CanAttackCooldown() && 
+                (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillPress]
+                || (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillHold] && !player.PrimarySkillHoldState.CanAttackCooldown())))
+        {
+            Movement?.CheckIfShouldFlip(-Movement.FacingDirection);
+            stateMachine.ChangeState(player.PrimarySkillPressState);
+        }
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillHold] && player.PrimarySkillHoldState.CanAttackCooldown())
+        {
+            Movement?.CheckIfShouldFlip(-Movement.FacingDirection);
+            stateMachine.ChangeState(player.PrimarySkillHoldState);
+        }
+
+        else if (player.SecondarySkillPressState.CanAttackCooldown() && 
+                (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillPress]
+                || (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillHold] && !player.SecondarySkillHoldState.CanAttackCooldown())))
+        {
+            Movement?.CheckIfShouldFlip(-Movement.FacingDirection);
+            stateMachine.ChangeState(player.SecondarySkillPressState);
+        }
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillHold] && player.SecondarySkillHoldState.CanAttackCooldown())
+        {
+            Movement?.CheckIfShouldFlip(-Movement.FacingDirection);
+            stateMachine.ChangeState(player.SecondarySkillHoldState);
+        }
         else if (dashInput && player.DashState.CanDash())
         {
             Movement?.CheckIfShouldFlip(-Movement.FacingDirection);

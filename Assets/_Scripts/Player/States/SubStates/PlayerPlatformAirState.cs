@@ -82,15 +82,30 @@ public class PlayerPlatformAirState : PlayerAirState
 					StopPlatformMove();
 					stateMachine.ChangeState(player.SecondaryAttackHoldState);
 				}
-				if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillPress] && player.PrimarySkillState.CanAttackCooldown())
+				else if (player.PrimarySkillPressState.CanAttackCooldown() && 
+                (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillPress]
+                || (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillHold] && !player.PrimarySkillHoldState.CanAttackCooldown())))
 				{
 					StopPlatformMove();
-					stateMachine.ChangeState(player.PrimarySkillState);
+					stateMachine.ChangeState(player.PrimarySkillPressState);
 				}
-				else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillPress] && player.SecondarySkillState.CanAttackCooldown())
+				else if (player.InputHandler.AttackInputs[(int)CombatInputs.primarySkillHold] && player.PrimarySkillHoldState.CanAttackCooldown())
 				{
 					StopPlatformMove();
-					stateMachine.ChangeState(player.SecondarySkillState);
+					stateMachine.ChangeState(player.PrimarySkillHoldState);
+				}
+
+				else if (player.SecondarySkillPressState.CanAttackCooldown() && 
+						(player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillPress]
+						|| (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillHold] && !player.SecondarySkillHoldState.CanAttackCooldown())))
+				{
+					StopPlatformMove();
+					stateMachine.ChangeState(player.SecondarySkillPressState);
+				}
+				else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondarySkillHold] && player.SecondarySkillHoldState.CanAttackCooldown())
+				{
+					StopPlatformMove();
+					stateMachine.ChangeState(player.SecondarySkillHoldState);
 				}
 				else if (dashInput && player.DashState.CanDash())
 				{
