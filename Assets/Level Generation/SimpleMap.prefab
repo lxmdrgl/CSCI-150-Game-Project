@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7601103171102213267}
   - component: {fileID: 9172367668874627993}
   m_Layer: 0
-  m_Name: r4_1
+  m_Name: r5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,6 +100,55 @@ MonoBehaviour:
   parent: {fileID: 0}
   children: []
   listTriedRooms: []
+--- !u!1 &3437282840425117424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2018410725635635508}
+  - component: {fileID: 6533770168735826634}
+  m_Layer: 0
+  m_Name: r9
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2018410725635635508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3437282840425117424}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5311938939554491316}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6533770168735826634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3437282840425117424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f2ff1ffad0a5c24391fcdaaaec2a87f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomType: lv00_End
+  roomObject: {fileID: 0}
+  parent: {fileID: 0}
+  children: []
+  listTriedRooms: []
 --- !u!1 &5470439856220567541
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +160,7 @@ GameObject:
   - component: {fileID: 7209848717127991903}
   - component: {fileID: 7498087320210622875}
   m_Layer: 0
-  m_Name: r4_3
+  m_Name: r7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +310,7 @@ GameObject:
   - component: {fileID: 5311938939554491316}
   - component: {fileID: 2231642118147810086}
   m_Layer: 0
-  m_Name: r4_4
+  m_Name: r8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,7 +328,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2018410725635635508}
   m_Father: {fileID: 7209848717127991903}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2231642118147810086
@@ -294,7 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2ff1ffad0a5c24391fcdaaaec2a87f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: lv00_End
+  roomType: lv00_Hallway
   roomObject: {fileID: 0}
   parent: {fileID: 0}
   children: []
@@ -360,7 +410,7 @@ GameObject:
   - component: {fileID: 5457676827774094446}
   - component: {fileID: 4598874354411924826}
   m_Layer: 0
-  m_Name: r4_2
+  m_Name: r6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

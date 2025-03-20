@@ -140,7 +140,7 @@ public class LevelGenerator : MonoBehaviour
         else if (currNode.children.Count == 1) 
         {
             // try next room, if fails (all rooms have collision error)
-            if (!await TryNextRoom(currNode)) 
+            if (!await TryNextRoom(currNode, 0, 0)) 
             {
                 if (root.parent == null) // end case reached start room
                 {
@@ -164,21 +164,55 @@ public class LevelGenerator : MonoBehaviour
         {
             
             // fork case
-            return false;
+            // if either path fails, swap paths and try again
 
+            int exitIndex = 0;
+            int numTrials = 0;
+            int maxTrials = 20;
+
+            while (true) {
+                if (await TryNextRoom(currNode, 0, exitIndex) && 
+                    await TryNextRoom(currNode, 1, 1 - exitIndex)) // success
+                { 
+                    break;
+                }
+                else // swap exits and try again
+                {
+                    exitIndex = 1 - exitIndex;
+                    numTrials++;
+                }
+                
+                if (numTrials > maxTrials) { // fork is a failure need to retry parent
+                    if (root.parent == null) // end case reached start room
+                    {
+                        UnityEngine.Debug.LogError("No permutation of map possible for: " + roomMap.name);
+                        return false;
+                    } 
+                    else // retry parent
+                    {
+                        roomNumber = roomNumber - 1;
+                        UnityEngine.Debug.LogError("Retrying fork, deleting " + root.roomObject);
+                        
+                        DestroyPath(root);
+
+                        await spawnAllRooms(root.parent);
+                    }
+                }
+            }
+            await spawnAllRooms(currNode.children[0]);
+            await spawnAllRooms(currNode.children[1]);
         } 
         else 
         {
             UnityEngine.Debug.LogError(gameObject.name + ": Unexpected number of exits");
             return false;
         }
-
         return true;
     }
 
-    async Task<bool> TryNextRoom(RoomNode currNode)
+    async Task<bool> TryNextRoom(RoomNode currNode, int childIndex, int exitIndex)
     {
-        RoomNode nextNode = currNode.children[0];
+        RoomNode nextNode = currNode.children[childIndex];
         List<RoomManager> roomList = loadRoomList(nextNode.roomType);
 
         // exclude previously tried rooms if necessary
@@ -217,7 +251,7 @@ public class LevelGenerator : MonoBehaviour
             // UnityEngine.Debug.Log("Spawned and trying to connect: " + spawnObj.name);
 
             // Ensure ConnectRooms fully completes before continuing
-            bool isValid = await ConnectRooms(currNode, 0, nextNode, 0);
+            bool isValid = await ConnectRooms(currNode, exitIndex, nextNode, 0);
 
             if (isValid)
             {
@@ -235,6 +269,11 @@ public class LevelGenerator : MonoBehaviour
             // Small delay to avoid instant looping issues
             await Task.Yield();
         }
+    }
+
+    void DestroyPath(RoomNode root) // deletes all room objects in the subtree of root
+    {
+
     }
 
     List<RoomManager> loadRoomList(String roomType) {
