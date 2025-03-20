@@ -9,6 +9,7 @@ namespace Game.Weapons
         public event Action OnStartMovement;
         public event Action OnStopMovement;
         public event Action OnAttackAction;
+        public event Action OnProjectileAction;
         public event Action<bool> OnAttackActionSetActive;
         public event Action<bool> OnFlipSetActive; 
         public event Action<bool> OnInterruptableSetActive;
@@ -36,7 +37,8 @@ namespace Game.Weapons
         private void AnimationFinishedTrigger() => OnFinish?.Invoke();
         private void StartMovementTrigger() => OnStartMovement?.Invoke();
         private void StopMovementTrigger() => OnStopMovement?.Invoke();
-        private void AttackActionTrigger() => OnAttackAction?.Invoke();
+        // private void AttackActionTrigger() => OnAttackAction?.Invoke();
+        private void ProjectileActionTrigger() => OnProjectileAction?.Invoke();
         private void StartAttackActionTrigger() => OnAttackActionSetActive?.Invoke(true);
         private void StopAttackActionTrigger() => OnAttackActionSetActive?.Invoke(false);
         private void MinHoldPassedTrigger() => OnMinHoldPassed?.Invoke();

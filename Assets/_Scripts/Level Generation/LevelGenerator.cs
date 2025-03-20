@@ -56,7 +56,7 @@ public class LevelGenerator : MonoBehaviour
         if (spawnStartingRoom() && spawnAllRooms(roomMap)) 
         {
 
-            //spawnAllEnemies(roomMap);
+            spawnAllEnemies(roomMap);
 
             UnityEngine.Debug.Log("player count: " + playerCount);
             if(playerCount == 1)
