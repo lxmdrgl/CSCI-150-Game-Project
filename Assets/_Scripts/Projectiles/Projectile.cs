@@ -84,17 +84,25 @@ namespace Game.Projectiles
 
         private void Update()
         {
-            if (rotate && !hasHitGround)
+            /* if (rotate && !hasHitGround)
             {
                 float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            }
+                Debug.Log("rotation: " + transform.rotation);
+            } */
         }
 
         private void FixedUpdate()
         {
             if (!hasHitGround)
             {
+                if (rotate)
+                {
+                    float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                    Debug.Log("rotation: " + transform.rotation);
+                }
+
                 Physics2D.OverlapCollider(hitbox, filterGround, detectedGround);
                 Physics2D.OverlapCollider(hitbox, filterDamageable, detectedDamageable);
 
@@ -113,12 +121,16 @@ namespace Game.Projectiles
                     }
                 }
 
-                List<Collider2D> detectedGroundFiltered = null;
-                foreach(Collider2D detected in detectedGround)
+                List<Collider2D> detectedGroundFiltered = new List<Collider2D>();
+
+                if (detectedGround.Count > 0)
                 {
-                    if (!detected.CompareTag("Platform"))
+                    foreach(Collider2D detected in detectedGround)
                     {
-                        detectedGroundFiltered.Add(detected);
+                        if (!detected.CompareTag("Platform"))
+                        {
+                            detectedGroundFiltered.Add(detected);
+                        }
                     }
                 }
 
@@ -127,6 +139,7 @@ namespace Game.Projectiles
                     hasHitGround = true;
                     rb.linearVelocity = Vector2.zero; 
                     rb.gravityScale = 0f; 
+                    rb.freezeRotation = true;
                     Debug.Log("Hit Ground: " + hasHitGround + ", " + rb.linearVelocity + ", " + rb.gravityScale);
                     if (explosive)
                     {
