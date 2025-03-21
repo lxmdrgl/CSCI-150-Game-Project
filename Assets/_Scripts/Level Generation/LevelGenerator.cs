@@ -154,9 +154,10 @@ public class LevelGenerator : MonoBehaviour
                 } 
                 else // retry parent
                 {
-                    roomNumber = roomNumber - 1;
-                    // UnityEngine.Debug.Log("Retrying parent, deleting " + root.roomObject);
-                    Destroy(root.roomObject);
+                    UnityEngine.Debug.Log("Retrying parent, deleting " + root.name);
+                    DestroyPath(root);
+                    // DestroyImmediate(.roomObject);
+                    // roomNumber--;
                     await spawnAllRooms(root.parent);
                 }
             } 
@@ -173,9 +174,9 @@ public class LevelGenerator : MonoBehaviour
 
             int exitIndex = 0;
             int numTrials = 0;
-            int maxTrials = 20;
+            int maxTrials = 50;
 
-            while (true) {
+            while (true) { 
                 if (await TryNextRoom(currNode, 0, exitIndex) && 
                     await TryNextRoom(currNode, 1, 1 - exitIndex)) // success
                 { 
@@ -185,6 +186,8 @@ public class LevelGenerator : MonoBehaviour
                 {
                     exitIndex = 1 - exitIndex;
                     numTrials++;
+                    DestroyPath(currNode.children[0]);
+                    DestroyPath(currNode.children[1]);
                 }
                 
                 if (numTrials > maxTrials) { // fork is a failure need to retry parent
@@ -195,9 +198,7 @@ public class LevelGenerator : MonoBehaviour
                     } 
                     else // retry parent
                     {
-                        roomNumber = roomNumber - 1;
-                        UnityEngine.Debug.LogError("Retrying fork, deleting " + root.roomObject);
-                        
+                        UnityEngine.Debug.LogError("Retrying fork, deleting " + root.name);   
                         DestroyPath(root);
 
                         await spawnAllRooms(root.parent);
@@ -229,7 +230,7 @@ public class LevelGenerator : MonoBehaviour
             foreach (RoomManager room in roomList) {
                 s += room.name + "|";
             }
-            // UnityEngine.Debug.Log("Possible rooms for " + nextNode.transform.name + ": " + s);
+            UnityEngine.Debug.Log("Possible rooms for " + nextNode.transform.name + ": " + s);
 
             // No valid room found
             if (roomList.Count == 0)
@@ -238,7 +239,7 @@ public class LevelGenerator : MonoBehaviour
                 // retry from parent while not repeating previously tried rooms
                 nextNode.listTriedRooms.Clear();
 
-                // UnityEngine.Debug.Log("Clear tried of " + nextNode.transform.name + ", No valid rooms available");
+                UnityEngine.Debug.Log("Clear tried of " + nextNode.transform.name + ", No valid rooms available");
                 return false;
             }
 
@@ -253,19 +254,19 @@ public class LevelGenerator : MonoBehaviour
             // Spawn the room
             GameObject spawnObj = spawnRoom(nextNode, randRoom);
 
-            // UnityEngine.Debug.Log("Spawned and trying to connect: " + spawnObj.name);
+            UnityEngine.Debug.Log("Spawned and trying to connect: " + nextNode.name);
 
             // Ensure ConnectRooms fully completes before continuing
             bool isValid = await ConnectRooms(currNode, exitIndex, nextNode, 0);
 
             if (isValid)
             {
-                // UnityEngine.Debug.Log("Valid room: " + spawnObj.name);
+                UnityEngine.Debug.Log("Valid room: " + nextNode.name);
                 return true; // Exit loop on first valid room
             }
             else
             {
-                // UnityEngine.Debug.Log("Invalid room, deleting: " + spawnObj.name);
+                UnityEngine.Debug.Log("Invalid room, deleting: " + nextNode.name);
                 DestroyImmediate(spawnObj);
                 roomNumber -= 1; // Adjust room count
                 // UnityEngine.Debug.Log("Retrying...");
@@ -278,7 +279,23 @@ public class LevelGenerator : MonoBehaviour
 
     void DestroyPath(RoomNode root) // deletes all room objects in the subtree of root
     {
+        if (root == null) 
+        {
+            return;
+        } 
+        else
+        {
+            if (root.roomObject != null) 
+            {
+                UnityEngine.Debug.LogError("Deleting: " + root.name);
+                DestroyImmediate(root.roomObject);
+                roomNumber--;
+            } 
+        }
 
+        foreach(RoomNode childNode in root.children) {
+            DestroyPath(childNode);
+        }
     }
 
     List<RoomManager> loadRoomList(String roomType) {
