@@ -19,7 +19,7 @@ MonoBehaviour:
   <weaponIndex>k__BackingField: 3
   <NumberOfAttacks>k__BackingField: 1
   <AttackCounterCooldown>k__BackingField: 2
-  <AttackCooldown>k__BackingField: 0
+  <AttackCooldown>k__BackingField: 2
   prereqWeapon: {fileID: 0}
   <ComponentData>k__BackingField:
   - rid: 5949095188800471134
@@ -38,12 +38,7 @@ MonoBehaviour:
         - name: Attack 1
           <PhaseSprites>k__BackingField:
           - <Phase>k__BackingField: 2
-            <Sprites>k__BackingField:
-            - {fileID: -976979401, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
-            - {fileID: 581828395, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
-            - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
-            - {fileID: -720425029, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
-            - {fileID: 1331580839, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            <Sprites>k__BackingField: []
     - rid: 5949095222658203649
       type: {class: MovementData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -76,7 +71,7 @@ MonoBehaviour:
           <hasGravity>k__BackingField: 1
           <gravityScale>k__BackingField: 5
           <damage>k__BackingField: 25
-          <stun>k__BackingField: 25
+          <stun>k__BackingField: 37.5
           <pierce>k__BackingField: 1
           <explosive>k__BackingField: 1
           <explosiveRadius>k__BackingField: 5

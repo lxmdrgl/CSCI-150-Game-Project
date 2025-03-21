@@ -23,9 +23,10 @@ MonoBehaviour:
   prereqWeapon: {fileID: 11400000, guid: dbd35097a8e6f00499e22f4c77ee023b, type: 2}
   <ComponentData>k__BackingField:
   - rid: 6902827928974262425
+  - rid: 6902827928974262426
   - rid: 5949095188800471134
-  - rid: 6902827909092212840
-  - rid: 6902827909092212839
+  - rid: 6902827928974262431
+  - rid: 6902827928974262432
   - rid: 5949095222658203649
   references:
     version: 2
@@ -39,12 +40,7 @@ MonoBehaviour:
         - name: Attack 1
           <PhaseSprites>k__BackingField:
           - <Phase>k__BackingField: 2
-            <Sprites>k__BackingField:
-            - {fileID: -976979401, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
-            - {fileID: 581828395, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
-            - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
-            - {fileID: -720425029, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
-            - {fileID: 1331580839, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+            <Sprites>k__BackingField: []
     - rid: 5949095222658203649
       type: {class: MovementData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -53,43 +49,105 @@ MonoBehaviour:
         attackData:
         - name: Attack 1
           <VelocityX>k__BackingField: 5
-    - rid: 6902827909092212839
-      type: {class: ProjectileSpawnerData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: ProjectileSpawnerData
-        repeatData: 0
-        attackData:
-        - name: Attack 1
-          <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 5899bd83d15cb514eb5eda4a490a2f01, type: 3}
-          <position>k__BackingField: {x: 1, y: 0}
-          <count>k__BackingField: 1
-          <timeInterval>k__BackingField: 0
-    - rid: 6902827909092212840
-      type: {class: ProjectileFireData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: ProjectileFireData
-        repeatData: 0
-        attackData:
-        - name: Attack 1
-          <velocity>k__BackingField: 30
-          <direction>k__BackingField: {x: 1, y: 0}
-          <rotate>k__BackingField: 1
-          <hasGravity>k__BackingField: 1
-          <gravityScale>k__BackingField: 1
-          <damage>k__BackingField: 10
-          <stun>k__BackingField: 10
-          <pierce>k__BackingField: 1
-          <explosive>k__BackingField: 0
-          <explosiveRadius>k__BackingField: 3
-          <target>k__BackingField: 0
-          <targetRadius>k__BackingField: 0
-          <whatIsGround>k__BackingField:
-            serializedVersion: 2
-            m_Bits: 128
-          <whatIsDamageable>k__BackingField:
-            serializedVersion: 2
-            m_Bits: 2048
     - rid: 6902827928974262425
       type: {class: InputHoldData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: InputHoldData
+    - rid: 6902827928974262426
+      type: {class: ChargeData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ChargeData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <ChargeTime>k__BackingField: 0.5
+          <InitialChargeAmount>k__BackingField: 1
+          <NumberOfCharges>k__BackingField: 3
+    - rid: 6902827928974262431
+      type: {class: ProjectileFireChargeData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ProjectileFireChargeData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <ProjectileFires>k__BackingField:
+          - name: Attack 1
+            <velocity>k__BackingField: 40
+            <direction>k__BackingField: {x: 1, y: 0}
+            <rotate>k__BackingField: 0
+            <hasGravity>k__BackingField: 0
+            <gravityScale>k__BackingField: 1
+            <damage>k__BackingField: 15
+            <stun>k__BackingField: 22.5
+            <pierce>k__BackingField: 1
+            <explosive>k__BackingField: 0
+            <explosiveRadius>k__BackingField: 0
+            <target>k__BackingField: 0
+            <targetRadius>k__BackingField: 0
+            <whatIsGround>k__BackingField:
+              serializedVersion: 2
+              m_Bits: 128
+            <whatIsDamageable>k__BackingField:
+              serializedVersion: 2
+              m_Bits: 2048
+          - name: Attack 1
+            <velocity>k__BackingField: 40
+            <direction>k__BackingField: {x: 1, y: 0}
+            <rotate>k__BackingField: 0
+            <hasGravity>k__BackingField: 0
+            <gravityScale>k__BackingField: 1
+            <damage>k__BackingField: 25
+            <stun>k__BackingField: 37.5
+            <pierce>k__BackingField: 1
+            <explosive>k__BackingField: 0
+            <explosiveRadius>k__BackingField: 0
+            <target>k__BackingField: 0
+            <targetRadius>k__BackingField: 0
+            <whatIsGround>k__BackingField:
+              serializedVersion: 2
+              m_Bits: 128
+            <whatIsDamageable>k__BackingField:
+              serializedVersion: 2
+              m_Bits: 2048
+          - name: Attack 1
+            <velocity>k__BackingField: 40
+            <direction>k__BackingField: {x: 1, y: 0}
+            <rotate>k__BackingField: 0
+            <hasGravity>k__BackingField: 0
+            <gravityScale>k__BackingField: 1
+            <damage>k__BackingField: 35
+            <stun>k__BackingField: 52.5
+            <pierce>k__BackingField: 1
+            <explosive>k__BackingField: 0
+            <explosiveRadius>k__BackingField: 0
+            <target>k__BackingField: 0
+            <targetRadius>k__BackingField: 0
+            <whatIsGround>k__BackingField:
+              serializedVersion: 2
+              m_Bits: 128
+            <whatIsDamageable>k__BackingField:
+              serializedVersion: 2
+              m_Bits: 2048
+    - rid: 6902827928974262432
+      type: {class: ProjectileSpawnerChargeData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ProjectileSpawnerChargeData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <ProjectileSpawners>k__BackingField:
+          - name: 
+            <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 5899bd83d15cb514eb5eda4a490a2f01, type: 3}
+            <position>k__BackingField: {x: 1, y: 0}
+            <count>k__BackingField: 1
+            <timeInterval>k__BackingField: 0
+          - name: 
+            <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 5899bd83d15cb514eb5eda4a490a2f01, type: 3}
+            <position>k__BackingField: {x: 1, y: 0}
+            <count>k__BackingField: 1
+            <timeInterval>k__BackingField: 0
+          - name: 
+            <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 5899bd83d15cb514eb5eda4a490a2f01, type: 3}
+            <position>k__BackingField: {x: 1, y: 0}
+            <count>k__BackingField: 1
+            <timeInterval>k__BackingField: 0
