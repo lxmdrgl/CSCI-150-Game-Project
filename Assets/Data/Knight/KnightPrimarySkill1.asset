@@ -37,7 +37,7 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <Amount>k__BackingField: 40
+          <Amount>k__BackingField: 60
     - rid: 5949095188800471134
       type: {class: WeaponSpriteData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -80,4 +80,4 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <Amount>k__BackingField: 20
+          <Amount>k__BackingField: 30
