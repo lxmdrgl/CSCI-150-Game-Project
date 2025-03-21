@@ -1,6 +1,7 @@
 using System;
 using Game.Interaction;
 using Game.Interaction.Interactables;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Game.CoreSystem
@@ -43,6 +44,10 @@ namespace Game.CoreSystem
             }
             */
 
+            // Total time = runtime + Time.timeSinceLevelLoad
+            // Scene time = Time.timeSinceLevelLoad
+
+            PlayerPrefs.SetFloat("runTime", PlayerPrefs.GetFloat("runTime") + Time.timeSinceLevelLoad);
             SceneManager.LoadScene(locationData);
 
             portal.Interact();

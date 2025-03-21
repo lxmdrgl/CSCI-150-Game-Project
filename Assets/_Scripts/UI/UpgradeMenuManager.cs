@@ -299,16 +299,18 @@ namespace Game.CoreSystem
 
         public void OnUpgradeClicked(UpgradeSlot slot)
         {
+            Debug.Log("On upgrade clicked");
             // Get the player input from the EventSystem (the last player to interact with UI)
             PlayerInput playerInput = EventSystem.current.currentSelectedGameObject?.GetComponentInParent<PlayerInput>();
 
             if (playerInput == null)
             {
-                Debug.LogWarning("No player input detected for upgrade selection!");
+                Debug.Log("No player input detected for upgrade selection!");
                 return;
             }
 
             int playerIndex = playerInput.playerIndex; // Get player index
+            Debug.Log("upgrade playerIndex: " + playerIndex);
 
             if (statUpgradeDataSet != null)
             {
@@ -318,6 +320,7 @@ namespace Game.CoreSystem
                 if (playerIndex == 0)
                 {
                     stats1.UpdateStats(currentData.Health, currentData.Attack);
+
                 }
                 else if (playerIndex == 1)
                 {

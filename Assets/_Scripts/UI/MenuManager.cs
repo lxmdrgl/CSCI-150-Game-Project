@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -16,6 +17,8 @@ public class MenuManager : MonoBehaviour
     
     [SerializeField] private GameObject mainMenuFirst;
     [SerializeField] private GameObject optionsMenuFirst;
+    [SerializeField] TextMeshProUGUI timeText;
+    [SerializeField] TextMeshProUGUI leaderboardText;
 
     private bool isPaused;
 
@@ -24,8 +27,11 @@ public class MenuManager : MonoBehaviour
     private PlayerInput playerInput1;
     private PlayerInput playerInput2;
 
+    
     void Start()
     {
+        timeText = transform.Find("TimeText").GetComponent<TextMeshProUGUI>();
+        leaderboardText = transform.Find("LeaderboardText").GetComponent<TextMeshProUGUI>();
 
         SetDependencies();
         
@@ -110,6 +116,37 @@ public class MenuManager : MonoBehaviour
     {
         mainMenuCanvasGO.SetActive(true);
         optionsMenuCanvasGO.SetActive(false);
+
+        float totalTime =  PlayerPrefs.GetFloat("runTime") + Time.timeSinceLevelLoad; 
+        float levelTime = Time.timeSinceLevelLoad;
+
+        TimeSpan totalTimeSpan = TimeSpan.FromSeconds(totalTime);
+        string formattedTotalTime = string.Format("{0:D2}:{1:D2}:{2:D2}",
+                                                totalTimeSpan.Hours,
+                                                totalTimeSpan.Minutes,
+                                                totalTimeSpan.Seconds);
+        TimeSpan levelTimeSpan = TimeSpan.FromSeconds(levelTime);
+        string formattedLevelTime = string.Format("{0:D2}:{1:D2}:{2:D2}",
+                                                levelTimeSpan.Hours,
+                                                levelTimeSpan.Minutes,
+                                                levelTimeSpan.Seconds);
+        timeText.text = "Total run time: " + formattedTotalTime + "\n\n" + 
+                        "Current level time: " + formattedLevelTime;
+
+        leaderboardText.text = "Leaderboard: " + "\n\n";
+
+        if (playerInput1)
+        {
+            leaderboardText.text += "Player 1: " + "\n" + 
+                                    "  Kills: " + PlayerPrefs.GetInt("player1Kills") + "\n" + 
+                                    "  Damage: " + PlayerPrefs.GetInt("player1Damage") + "\n\n"; 
+        }
+        if (playerInput2)
+        {
+            leaderboardText.text += "Player 2: " + "\n" + 
+                                    "  Kills: " + PlayerPrefs.GetInt("player2Kills") + "\n" + 
+                                    "  Damage: " + PlayerPrefs.GetInt("player2Damage") + "\n\n"; 
+        }
 
         if (InputHandler1 != null)
         {

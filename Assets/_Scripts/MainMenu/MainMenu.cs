@@ -53,7 +53,10 @@ public class MainMenu : MonoBehaviour
     }
     public void Play()
     {
+        PlayerPrefs.SetFloat("runTime", 0f);
         PlayerPrefs.SetInt("playerCount",1);
+        PlayerPrefs.SetInt("player1Kills", 0);
+        PlayerPrefs.SetInt("player1Damage", 0);
         SceneManager.LoadScene(generatorScene);
 
         /*
@@ -84,7 +87,12 @@ public class MainMenu : MonoBehaviour
 
     public void PlayLocalMultiplayer()
     {
+        PlayerPrefs.SetFloat("runTime", 0f);
         PlayerPrefs.SetInt("playerCount",2);
+        PlayerPrefs.SetInt("player1Kills", 0);
+        PlayerPrefs.SetInt("player1Damage", 0);
+        PlayerPrefs.SetInt("player2Kills", 0);
+        PlayerPrefs.SetInt("player2Damage", 0);
         SceneManager.LoadScene(generatorScene);
 
         /*
