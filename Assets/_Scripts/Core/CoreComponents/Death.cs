@@ -61,7 +61,8 @@ namespace Game.CoreSystem
                 }
             }
             // Invoke Boss Death Portal
-            if (core.transform.parent.gameObject.name == "Boss1") {
+            if (core.transform.parent.gameObject.name == "Boss1") 
+            {
                 Debug.Log("Boss1 died");
                 portal1 = GameObject.FindGameObjectWithTag("Portal1");
                 portal1.transform.GetChild(0).gameObject.SetActive(true);
