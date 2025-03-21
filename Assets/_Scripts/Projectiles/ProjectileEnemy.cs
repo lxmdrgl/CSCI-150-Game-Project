@@ -74,7 +74,7 @@ namespace Game.Projectiles
 
                 // damageHit.gameObject.GetComponentInChildren<DamageReceiver>().CanTakeDamage
                 // Debug.Log("damageHit: " + damageHit.gameObject.name + " " + damageHit.gameObject.GetComponentInChildren<DamageReceiver>().CanTakeDamage);
-                if (damageHit && damageHit.gameObject.GetComponentInChildren<DamageReceiver>().CanTakeDamage)
+                if (damageHit /* && damageHit.gameObject.GetComponentInChildren<DamageReceiver>().CanTakeDamage */)
                 {
                     damageScript.HandleCollision(damageHit);
                     Destroy(gameObject);

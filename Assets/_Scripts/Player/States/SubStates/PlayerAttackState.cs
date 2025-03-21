@@ -213,8 +213,11 @@ public class PlayerAttackState : PlayerActionState
 
     private void HandleUseInput() 
     {
-        // Debug.Log("HandleUseInput: " + inputIndex);
-        player.InputHandler.UseAttackInput(inputIndex);
+        Debug.Log("HandleUseInput: " + inputIndex);
+        if (player.InputHandler)
+        {
+            player.InputHandler.UseAttackInput(inputIndex);
+        }
     }
     private void HandleFinish()
     {

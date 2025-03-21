@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KnightPrimaryAttackHold1_Action
+  m_Name: KnightSecondaryAttackPress2_Anticipation
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,8 +21,14 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -2131503151, guid: f538f848143c9e042b7e038c802fa315, type: 3}
+      value: {fileID: 1598235626, guid: f538f848143c9e042b7e038c802fa315, type: 3}
     - time: 0.083333336
+      value: {fileID: 295729449, guid: f538f848143c9e042b7e038c802fa315, type: 3}
+    - time: 0.16666667
+      value: {fileID: -2116287694, guid: f538f848143c9e042b7e038c802fa315, type: 3}
+    - time: 0.25
+      value: {fileID: -2131503151, guid: f538f848143c9e042b7e038c802fa315, type: 3}
+    - time: 0.33333334
       value: {fileID: 1605264295, guid: f538f848143c9e042b7e038c802fa315, type: 3}
     attribute: m_Sprite
     path: 
@@ -46,6 +52,9 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
+    - {fileID: 1598235626, guid: f538f848143c9e042b7e038c802fa315, type: 3}
+    - {fileID: 295729449, guid: f538f848143c9e042b7e038c802fa315, type: 3}
+    - {fileID: -2116287694, guid: f538f848143c9e042b7e038c802fa315, type: 3}
     - {fileID: -2131503151, guid: f538f848143c9e042b7e038c802fa315, type: 3}
     - {fileID: 1605264295, guid: f538f848143c9e042b7e038c802fa315, type: 3}
   m_AnimationClipSettings:
@@ -53,7 +62,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.16666667
+    m_StopTime: 0.4166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -74,14 +83,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
+    functionName: UseInputTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
     functionName: EnterAttackPhase
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 2
+    intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: UseInputTrigger
+    functionName: StartParryActionTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -95,49 +111,21 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0
-    functionName: StartMovementTrigger
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0
     functionName: SetFlipInactive
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0
-    functionName: StartAttackActionTrigger
+  - time: 0.25
+    functionName: StopParryActionTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.16666667
+  - time: 0.41666666
     functionName: AnimationFinishedTrigger
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.16666667
-    functionName: SetFlipActive
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.16666667
-    functionName: StopMovementTrigger
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.16666667
-    functionName: StopAttackActionTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

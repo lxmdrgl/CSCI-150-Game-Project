@@ -22,35 +22,12 @@ MonoBehaviour:
   <AttackCooldown>k__BackingField: 0
   prereqWeapon: {fileID: 0}
   <ComponentData>k__BackingField:
-  - rid: 5949095188800471134
   - rid: 6902827909092212840
   - rid: 6902827909092212839
   - rid: 5949095222658203649
   references:
     version: 2
     RefIds:
-    - rid: 5949095188800471134
-      type: {class: WeaponSpriteData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: WeaponSpriteData
-        repeatData: 0
-        attackData:
-        - name: Attack 1
-          <PhaseSprites>k__BackingField:
-          - <Phase>k__BackingField: 2
-            <Sprites>k__BackingField: []
-        - name: Attack 2
-          <PhaseSprites>k__BackingField:
-          - <Phase>k__BackingField: 2
-            <Sprites>k__BackingField: []
-        - name: Attack 3
-          <PhaseSprites>k__BackingField:
-          - <Phase>k__BackingField: 2
-            <Sprites>k__BackingField: []
-        - name: Attack 4
-          <PhaseSprites>k__BackingField:
-          - <Phase>k__BackingField: 2
-            <Sprites>k__BackingField: []
     - rid: 5949095222658203649
       type: {class: MovementData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:

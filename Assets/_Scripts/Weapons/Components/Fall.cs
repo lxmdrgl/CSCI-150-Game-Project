@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.XR;
+using Game.CoreSystem;
 
 namespace Game.Weapons.Components
 {
@@ -8,7 +9,7 @@ namespace Game.Weapons.Components
     {
         private Animator anim;
         private CoreSystem.Movement coreMovement;
-        private CoreSystem.CollisionSenses coreCollisionSenses;
+        private CollisionSenses coreCollisionSenses;
         private float velocity;
         private Vector2 angle;
         private bool isGrounded;
@@ -37,7 +38,7 @@ namespace Game.Weapons.Components
             base.Start();
 
             coreMovement = Core.GetCoreComponent<CoreSystem.Movement>();
-            coreCollisionSenses = Core.GetCoreComponent<CoreSystem.CollisionSenses>();
+            coreCollisionSenses = Core.GetCoreComponent<CollisionSenses>();
         }
 
         protected override void HandleEnter()

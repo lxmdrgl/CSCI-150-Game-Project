@@ -30,9 +30,6 @@ public class MenuManager : MonoBehaviour
     
     void Start()
     {
-        timeText = transform.Find("TimeText").GetComponent<TextMeshProUGUI>();
-        leaderboardText = transform.Find("LeaderboardText").GetComponent<TextMeshProUGUI>();
-
         SetDependencies();
         
         mainMenuCanvasGO.SetActive(false);

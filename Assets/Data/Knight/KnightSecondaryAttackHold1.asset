@@ -24,23 +24,12 @@ MonoBehaviour:
   <ComponentData>k__BackingField:
   - rid: 6902827928974262425
   - rid: 6902827928974262426
-  - rid: 5949095188800471134
   - rid: 6902827928974262431
   - rid: 6902827928974262432
   - rid: 5949095222658203649
   references:
     version: 2
     RefIds:
-    - rid: 5949095188800471134
-      type: {class: WeaponSpriteData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: WeaponSpriteData
-        repeatData: 0
-        attackData:
-        - name: Attack 1
-          <PhaseSprites>k__BackingField:
-          - <Phase>k__BackingField: 2
-            <Sprites>k__BackingField: []
     - rid: 5949095222658203649
       type: {class: MovementData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -74,7 +63,7 @@ MonoBehaviour:
           - name: Attack 1
             <velocity>k__BackingField: 40
             <direction>k__BackingField: {x: 1, y: 0}
-            <rotate>k__BackingField: 0
+            <rotate>k__BackingField: 1
             <hasGravity>k__BackingField: 0
             <gravityScale>k__BackingField: 1
             <damage>k__BackingField: 15
@@ -93,7 +82,7 @@ MonoBehaviour:
           - name: Attack 1
             <velocity>k__BackingField: 40
             <direction>k__BackingField: {x: 1, y: 0}
-            <rotate>k__BackingField: 0
+            <rotate>k__BackingField: 1
             <hasGravity>k__BackingField: 0
             <gravityScale>k__BackingField: 1
             <damage>k__BackingField: 25
@@ -112,7 +101,7 @@ MonoBehaviour:
           - name: Attack 1
             <velocity>k__BackingField: 40
             <direction>k__BackingField: {x: 1, y: 0}
-            <rotate>k__BackingField: 0
+            <rotate>k__BackingField: 1
             <hasGravity>k__BackingField: 0
             <gravityScale>k__BackingField: 1
             <damage>k__BackingField: 35

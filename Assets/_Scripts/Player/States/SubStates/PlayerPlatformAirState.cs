@@ -164,9 +164,9 @@ public class PlayerPlatformAirState : PlayerAirState
 		Movement?.SetVelocityY(0);
 		isPlatformBottomExtend = CollisionSenses.PlatformBottomExtend;
 		if (isPlatformBottomExtend.collider != null) {
-			platformBottomPosition = new Vector2(player.transform.position.x, player.transform.position.y - isPlatformBottomExtend.distance +0.25f);
+			platformBottomPosition = new Vector2(player.transform.position.x, player.transform.position.y - isPlatformBottomExtend.distance +0.1f);
 			Debug.Log($"Move platform position: {platformBottomPosition.y}, {player.transform.position.y}, {isPlatformBottomExtend.distance}");
-			player.transform.position = platformBottomPosition;
+			// player.transform.position = platformBottomPosition;
 		}
 	}
 }

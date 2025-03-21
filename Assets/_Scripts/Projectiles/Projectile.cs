@@ -80,6 +80,7 @@ namespace Game.Projectiles
                 rb.linearVelocity = new Vector2(direction.x * velocity * facingDirection, direction.y * velocity);
             }
 
+            Debug.Log("spawn fire position: " + transform.position);
         }
 
         private void Update()
@@ -100,7 +101,7 @@ namespace Game.Projectiles
                 {
                     float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
                     transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                    Debug.Log("rotation: " + transform.rotation);
+                    // Debug.Log("rotation: " + transform.rotation);
                 }
 
                 Physics2D.OverlapCollider(hitbox, filterGround, detectedGround);
@@ -121,7 +122,7 @@ namespace Game.Projectiles
                     }
                 }
 
-                List<Collider2D> detectedGroundFiltered = new List<Collider2D>();
+                /* List<Collider2D> detectedGroundFiltered = new List<Collider2D>();
 
                 if (detectedGround.Count > 0)
                 {
@@ -132,9 +133,9 @@ namespace Game.Projectiles
                             detectedGroundFiltered.Add(detected);
                         }
                     }
-                }
+                } */
 
-                if (detectedGroundFiltered.Count > 0)
+                if (detectedGround.Count > 0)
                 {
                     hasHitGround = true;
                     rb.linearVelocity = Vector2.zero; 

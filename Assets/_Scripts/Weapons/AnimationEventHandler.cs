@@ -11,6 +11,7 @@ namespace Game.Weapons
         public event Action OnAttackAction;
         public event Action OnProjectileAction;
         public event Action<bool> OnAttackActionSetActive;
+        public event Action<bool> OnParryActionSetActive;
         public event Action<bool> OnFlipSetActive; 
         public event Action<bool> OnInterruptableSetActive;
         public event Action<AttackPhases> OnEnterAttackPhase;
@@ -41,6 +42,8 @@ namespace Game.Weapons
         private void ProjectileActionTrigger() => OnProjectileAction?.Invoke();
         private void StartAttackActionTrigger() => OnAttackActionSetActive?.Invoke(true);
         private void StopAttackActionTrigger() => OnAttackActionSetActive?.Invoke(false);
+        private void StartParryActionTrigger() => OnParryActionSetActive?.Invoke(true);
+        private void StopParryActionTrigger() => OnParryActionSetActive?.Invoke(false);
         private void MinHoldPassedTrigger() => OnMinHoldPassed?.Invoke();
         private void UseInputTrigger() => OnUseInput?.Invoke();
         private void SetFlipActive() => OnFlipSetActive?.Invoke(true);

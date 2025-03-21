@@ -42,12 +42,14 @@ namespace Game.CoreSystem
             {
                 return;
             }
+            // Debug.Log($"called Ignore damage, {CanTakeDamage}");
 
             if (CanTakeDamage) {
                 stats.Health.Decrease(data.Amount);
                 Debug.Log($"Deal {data.Amount} damage, {CanTakeDamage}");
             } else {
                 Debug.Log($"Ignore damage, {CanTakeDamage}");
+                OnIgnoreDamage?.Invoke();
             }
 
             // if (data.Source)

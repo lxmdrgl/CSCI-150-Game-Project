@@ -23,12 +23,14 @@ public class PlayerInputHandler : MonoBehaviour
     public bool UpgradeOpenInput { get; private set; }
 
     public bool[] AttackInputs { get; private set; }
-
+    private void Awake()
+    {
+        int count = Enum.GetValues(typeof(CombatInputs)).Length;    
+        AttackInputs = new bool[count];
+    }
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>(); 
-        int count = Enum.GetValues(typeof(CombatInputs)).Length;
-        AttackInputs = new bool[count];
     }
 
     private void Update()

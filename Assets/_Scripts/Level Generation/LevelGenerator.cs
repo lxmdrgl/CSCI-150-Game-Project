@@ -49,9 +49,6 @@ public class LevelGenerator : MonoBehaviour
 
         // PlayerPrefs.SetInt("player1Kills", PlayerPrefs.GetInt("player1Kills") + 1);
 
-        // Total time = runtime + Time.timeSinceLevelLoad
-        // Scene time = Time.timeSinceLevelLoad
-
         spawnRoomMap();
 
         InputSystem.onDeviceChange += OnDeviceChange;

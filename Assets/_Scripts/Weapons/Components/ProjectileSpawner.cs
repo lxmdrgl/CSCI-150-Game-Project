@@ -41,8 +41,8 @@ namespace Game.Weapons.Components
         private void SpawnProjectile()
         {
             Vector3 spawnPosition = transform.position + new Vector3(currentAttackData.position.x * movement.FacingDirection, currentAttackData.position.y, 0f);
-            
             Projectile newProjectile = Instantiate(currentAttackData.projectile, spawnPosition, Quaternion.identity);
+            Debug.Log("Spawnposition: " + spawnPosition + ", " + transform.position);
 
             OnSpawnProjectile?.Invoke(newProjectile);
         }

@@ -42,18 +42,19 @@ public class MeleeAttackState : AttackState
 		Debug.Log("Detected: " + detected.ToArray() + "count: " +  detected.Count);
 
     	// Use the TryDamage utility to apply damage to detected objects
-    	if (CombatDamageUtilities.TryDamage(detected.ToArray(), new DamageData(stateData.attackDamage, core.Root), out var damageables))
+		bool didDamage = CombatDamageUtilities.TryDamage(detected.ToArray(), new DamageData(stateData.attackDamage, core.Root), out var damageables);
+    	if (didDamage)
     	{
         	foreach (var damageable in damageables)
         	{
             	Debug.Log("Enemy Dealing " + stateData.attackDamage + " Damage To Player");
-				return true;
         	}
     	}
     	else
     	{
         	Debug.Log("No damageable objects detected");
     	}
+
 
 		bool didKnock = CombatKnockBackUtilities.TryKnockBack(detected.ToArray(), new KnockBackData(stateData.knockbackAngle, stateData.knockbackStrength, Movement.FacingDirection, core.Root), out _);
 		if (didKnock) {
@@ -62,6 +63,12 @@ public class MeleeAttackState : AttackState
 		else {
 			Debug.Log("No knockbackable objects detected");
 		}
+
+		if (didDamage || didKnock)
+		{
+			return true;
+		}
+
 		return false;
 	}
 
