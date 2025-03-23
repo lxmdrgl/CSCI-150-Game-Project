@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class ExplosiveEnemy : Entity
 {
-    //public EE_IdleState idleState { get; private set; }
-    //public EE_MoveState moveState { get; private set; }
-    //public EE_PlayerDetectedState playerDetectedState { get; private set; }
-    //public EE_ChargeState chargeState { get; private set; }
-    //public EE_LookForPlayerState lookForPlayerState { get; private set; }
-    //public EE_StunState stunState { get; private set; }
-    //public EE_DeadState deadState { get; private set; }
-    //public EE_CooldownState cooldownState { get; private set; }
-    //public EE_RangedAttackState rangedAttackState { get; private set; }
+    public EE_IdleState idleState { get; private set; }
+    public EE_MoveState moveState { get; private set; }
+    public EE_PlayerDetectedState playerDetectedState { get; private set; }
+    public EE_ChargeState chargeState { get; private set; }
+    public EE_LookForPlayerState lookForPlayerState { get; private set; }
+    public EE_StunState stunState { get; private set; }
+    public EE_DeadState deadState { get; private set; }
+    public EE_CooldownState cooldownState { get; private set; }
+    public EE_ExplosiveAttackState explosiveAttackState { get; private set; }
 
     [SerializeField] private D_IdleState idleStateData;
     [SerializeField] private D_MoveState moveStateData;
@@ -21,10 +21,10 @@ public class ExplosiveEnemy : Entity
     [SerializeField] private D_StunState stunStateData;
     [SerializeField] private D_DeadState deadStateData;
     [SerializeField] private D_CooldownState cooldownStateData;
-    [SerializeField] private D_RangedAttackState rangedAttackStateData;
+    [SerializeField] private D_ExplosiveAttackState explosiveAttackStateData;
     [SerializeField] private Transform rangedAttackPosition;
 
-/*
+
     public override void Awake()
     {
         base.Awake();
@@ -36,9 +36,9 @@ public class ExplosiveEnemy : Entity
         stunState = new EE_StunState(this, "stun", stunStateData, this);
         deadState = new EE_DeadState(this, "dead", deadStateData, this);
         cooldownState = new EE_CooldownState(this, "cooldown", cooldownStateData, this);
-        rangedAttackState = new EE_RangedAttackState(this, "rangedAttack", rangedAttackPosition, rangedAttackStateData, this);
+        explosiveAttackState = new EE_ExplosiveAttackState(this, "rangedAttack", rangedAttackPosition, explosiveAttackStateData, this);
     }
-}
+
 
     private void HandleStunZero()
     {
@@ -66,6 +66,7 @@ public class ExplosiveEnemy : Entity
         stats.Health.OnValueChange -= HandleDamageTaken;
     }
 
-*/
+
 
 }
+
