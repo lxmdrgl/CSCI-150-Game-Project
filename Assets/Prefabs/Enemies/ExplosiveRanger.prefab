@@ -728,7 +728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4846833722265371268}
   - component: {fileID: -1460232046812936009}
-  - component: {fileID: 1823189157020074964}
+  - component: {fileID: 8732468354057477058}
   - component: {fileID: 9113077644204671259}
   - component: {fileID: 556503304328713079}
   - component: {fileID: 5719427680606851951}
@@ -819,7 +819,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1823189157020074964
+--- !u!114 &8732468354057477058
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6360035130462158432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d5e322934145644b95897dde0c1d59f, type: 3}
+  m_Script: {fileID: 11500000, guid: 285f0545a6ee3db40b6cc63c26ca5356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: a175a4f5c6e30f14ea449d9aa9883428, type: 2}
@@ -845,13 +845,11 @@ MonoBehaviour:
   playerDetectedData: {fileID: 11400000, guid: 603cbc9d853bb594fa3e65fd29619bcd, type: 2}
   chargeStateData: {fileID: 11400000, guid: 9a78c82bc970c2449a967860a1438bc4, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: 9ed9cdd7f3b0782419c8da80f4a40606, type: 2}
-  meleeAttackStateData: {fileID: 11400000, guid: 6c0960a93adb9854cb7c0d32d47e717b, type: 2}
   stunStateData: {fileID: 11400000, guid: 86186064d0c42c14193f82479734c367, type: 2}
   deadStateData: {fileID: 11400000, guid: 5c1efe8312cd2d143861d22d26c07966, type: 2}
   cooldownStateData: {fileID: 11400000, guid: 5b9d32f2715759345bcb11ccb7df19c3, type: 2}
-  rangedAttackStateData: {fileID: 11400000, guid: 668c3cd35ae032a49a2f973a49573cf1, type: 2}
+  explosiveAttackStateData: {fileID: 11400000, guid: 1b7987c0c014d0c4880d285adb69859d, type: 2}
   rangedAttackPosition: {fileID: 8523294753171614164}
-  radialRangedAttackPosition: {fileID: 8179049672531530639}
 --- !u!50 &9113077644204671259
 Rigidbody2D:
   serializedVersion: 5
