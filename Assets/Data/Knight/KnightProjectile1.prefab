@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7183815178981981099}
   - component: {fileID: 7213433012223740782}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,9 +82,9 @@ GameObject:
   - component: {fileID: 1926996799381955567}
   - component: {fileID: 3898372573242532847}
   - component: {fileID: 6408115147835007157}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: KnightProjectile1
-  m_TagString: Projectile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,7 +229,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -280,7 +280,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

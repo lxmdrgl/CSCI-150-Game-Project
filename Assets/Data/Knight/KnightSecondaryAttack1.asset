@@ -80,7 +80,7 @@ MonoBehaviour:
           <rotate>k__BackingField: 1
           <hasGravity>k__BackingField: 1
           <gravityScale>k__BackingField: 1
-          <damage>k__BackingField: 7
+          <damage>k__BackingField: 0
           <stun>k__BackingField: 10.5
           <pierce>k__BackingField: 0
           <explosive>k__BackingField: 0
@@ -93,13 +93,14 @@ MonoBehaviour:
           <whatIsDamageable>k__BackingField:
             serializedVersion: 2
             m_Bits: 2048
+          <FireStatusData>k__BackingField: {fileID: 0}
         - name: Attack 2
           <velocity>k__BackingField: 30
           <direction>k__BackingField: {x: 1, y: 0}
           <rotate>k__BackingField: 1
           <hasGravity>k__BackingField: 1
           <gravityScale>k__BackingField: 1
-          <damage>k__BackingField: 6
+          <damage>k__BackingField: 0
           <stun>k__BackingField: 9
           <pierce>k__BackingField: 0
           <explosive>k__BackingField: 0
@@ -112,13 +113,14 @@ MonoBehaviour:
           <whatIsDamageable>k__BackingField:
             serializedVersion: 2
             m_Bits: 2048
+          <FireStatusData>k__BackingField: {fileID: 0}
         - name: Attack 3
           <velocity>k__BackingField: 35
           <direction>k__BackingField: {x: 1, y: 0}
           <rotate>k__BackingField: 1
           <hasGravity>k__BackingField: 1
           <gravityScale>k__BackingField: 1
-          <damage>k__BackingField: 5
+          <damage>k__BackingField: 0
           <stun>k__BackingField: 7.5
           <pierce>k__BackingField: 0
           <explosive>k__BackingField: 0
@@ -131,13 +133,14 @@ MonoBehaviour:
           <whatIsDamageable>k__BackingField:
             serializedVersion: 2
             m_Bits: 2048
+          <FireStatusData>k__BackingField: {fileID: 0}
         - name: Attack 4
           <velocity>k__BackingField: 40
           <direction>k__BackingField: {x: 1, y: 0}
           <rotate>k__BackingField: 1
-          <hasGravity>k__BackingField: 0
+          <hasGravity>k__BackingField: 1
           <gravityScale>k__BackingField: 1
-          <damage>k__BackingField: 20
+          <damage>k__BackingField: 0
           <stun>k__BackingField: 30
           <pierce>k__BackingField: 0
           <explosive>k__BackingField: 0
@@ -150,3 +153,4 @@ MonoBehaviour:
           <whatIsDamageable>k__BackingField:
             serializedVersion: 2
             m_Bits: 2048
+          <FireStatusData>k__BackingField: {fileID: 0}

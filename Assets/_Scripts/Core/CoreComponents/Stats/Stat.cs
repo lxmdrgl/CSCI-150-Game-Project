@@ -53,6 +53,5 @@ namespace Game.CoreSystem.StatsSystem
             Debug.Log("Health: " + MaxValue + " " + currentValue);
             OnValueChange?.Invoke();
         }
-
     }
 }

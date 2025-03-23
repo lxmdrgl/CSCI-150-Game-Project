@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Game.CoreSystem.StatsSystem;
+using System.Collections.Generic;
+using Game.Combat.Status;
 
 namespace Game.CoreSystem
 {
@@ -10,8 +12,11 @@ namespace Game.CoreSystem
     {
        [field: SerializeField] public Stat Health { get; private set; }
        [field: SerializeField] public Stat Stun { get; private set; }
-
+       [field: SerializeField] public List<(Stat, StatusData)> Statuses { get; private set; }
+       [field: SerializeField] public float Status { get; private set; }
        [field: SerializeField] public float Attack { get; private set; }
+       [field: SerializeField] public float Bonus { get; private set; }
+       [field: SerializeField] public float Defense { get; private set; }
 
        [SerializeField] private float stunRecoveryRate = 5;
 
@@ -22,6 +27,7 @@ namespace Game.CoreSystem
         {
             base.Awake();
             
+            Statuses = new List<(Stat, StatusData)>();
             Health.Init();
             Stun.Init();
         }

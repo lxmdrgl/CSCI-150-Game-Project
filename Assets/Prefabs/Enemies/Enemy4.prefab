@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: 6023186084007274103}
   - component: {fileID: 6018641023207751906}
   - component: {fileID: 8152913140020985367}
+  - component: {fileID: 3478353694541711834}
   m_Layer: 11
   m_Name: Combat
   m_TagString: Untagged
@@ -298,6 +299,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f129dba50ebac8448b82f69cf27910a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3478353694541711834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889751854183777090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf85a92b0095ae041b50ddcf3e166061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2165807423997325925
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +361,10 @@ MonoBehaviour:
   <Stun>k__BackingField:
     <MaxValue>k__BackingField: 30
     damageTaken: 0
+  <Status>k__BackingField: 100
   <Attack>k__BackingField: 100
+  <Bonus>k__BackingField: 0
+  <Defense>k__BackingField: 0
   stunRecoveryRate: 5
   filledBar: {fileID: 0}
   gradient:
@@ -734,6 +750,10 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: f66b8d8531fb23d478e0cf87d151f310, type: 2}
   playerCheck: {fileID: 3755304697358755252}
   playersInRange: []
+  playerPosition1: {fileID: 0}
+  playerPosition2: {fileID: 0}
+  targetPlayer: {fileID: 0}
+  isPlayerInPursuitRange: 0
   pursuitRangeCollider: {fileID: 7633073356677528485}
   UniqueId: 
   idleStateData: {fileID: 11400000, guid: 7b9574335b5514c4eaa9e8808b31ee8f, type: 2}

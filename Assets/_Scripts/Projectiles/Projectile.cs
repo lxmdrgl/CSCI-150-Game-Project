@@ -6,11 +6,13 @@ using System.Collections.Generic;
 
 using static Game.Utilities.CombatDamageUtilities;
 using static Game.Utilities.StunDamageUtilities;
+using static Game.Utilities.CombatStatusDamageUtilities;
 using Game.Combat.Damage;
 using System.Linq;
 using System.Collections;
 using UnityEngine.Splines;
 using Unity.VisualScripting;
+using Game.Combat.Status;
 
 namespace Game.Projectiles
 {
@@ -45,6 +47,8 @@ namespace Game.Projectiles
         private int facingDirection;
         float totalDamage;
         float totalStun;
+
+        FireStatus fireStatus;
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -158,9 +162,7 @@ namespace Game.Projectiles
 
             if (detectedExplosive.Length > 0)
             {
-                bool tryDamage = TryDamage(detectedExplosive, new DamageData(totalDamage, gameObject), out _); 
-                bool tryStun = TryStunDamage(detectedExplosive, new Combat.StunDamage.StunDamageData(totalStun, gameObject), out _); 
-                Debug.Log($"hit (damage, stun): {tryDamage}, {tryStun}");
+                HandleDamage(detectedExplosive);
             }
 
             Destroy(gameObject);
@@ -173,15 +175,24 @@ namespace Game.Projectiles
 
             if (notDamaged.Length > 0)
             {
-                bool tryDamage = TryDamage(notDamaged, new DamageData(totalDamage, gameObject), out _); 
-                bool tryStun = TryStunDamage(notDamaged, new Combat.StunDamage.StunDamageData(totalStun, gameObject), out _); 
-                Debug.Log($"hit (damage, stun): {tryDamage}, {tryStun}");
+                HandleDamage(notDamaged);
             }
 
             if (!pierce)
             {
                 Destroy(gameObject);
             }
+        }
+
+        private void HandleDamage(Collider2D[] colliders)
+        {
+            bool tryDamage = TryDamage(colliders, new DamageData(totalDamage, gameObject), out _); 
+            bool tryStun = TryStunDamage(colliders, new Combat.StunDamage.StunDamageData(totalStun, gameObject), out _); 
+            if (fireStatus != null)
+            {
+                bool tryFireStatus = TryStatus(colliders, fireStatus, out _);
+            }
+            Debug.Log($"hit (damage, stun): {tryDamage}, {tryStun}");
         }
 
         private bool HandleTargetDirection()
@@ -302,6 +313,17 @@ namespace Game.Projectiles
 
             this.attack = attack;
             this.facingDirection = facingDirection;
+
+            if (fireData.FireStatusData)
+            {
+                fireStatus = new FireStatus(fireData.FireStatusData.Amount,
+                                            fireData.FireStatusData.Damage * (attack / 100f),
+                                            fireData.FireStatusData.Stun * (attack / 100f),
+                                            gameObject,
+                                            fireData.FireStatusData.Ticks,
+                                            fireData.FireStatusData.Delay,
+                                            fireData.FireStatusData.Mult);
+            }
         }
     }
 

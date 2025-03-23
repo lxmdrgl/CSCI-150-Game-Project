@@ -988,8 +988,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <weaponDataSet>k__BackingField: {fileID: 11400000, guid: b7fff6ca91113b147941d5f19a832c4d, type: 2}
   <currentWeaponData>k__BackingField:
-  - {fileID: 11400000, guid: f97b7e60a4f61eb4b8fd9fbee64a0b61, type: 2}
-  - {fileID: 11400000, guid: 15959f66144d6c54eadca011cc1c4ab0, type: 2}
+  - {fileID: 11400000, guid: d562f90691393804c97a3e4a2bd9734a, type: 2}
+  - {fileID: 11400000, guid: dbd35097a8e6f00499e22f4c77ee023b, type: 2}
   - {fileID: 11400000, guid: c8ea6a7895ed42d4ebb0c4f799e39523, type: 2}
   - {fileID: 11400000, guid: 5c43415ad5e6a884b8cc56c8aef522a3, type: 2}
   - {fileID: 11400000, guid: 1ba28d0736b38d143bb8e1e45b0f061f, type: 2}
@@ -1468,7 +1468,10 @@ MonoBehaviour:
   <Stun>k__BackingField:
     <MaxValue>k__BackingField: 0
     damageTaken: 0
+  <Status>k__BackingField: 0
   <Attack>k__BackingField: 100
+  <Bonus>k__BackingField: 0
+  <Defense>k__BackingField: 0
   stunRecoveryRate: 0
   filledBar: {fileID: 0}
   gradient:
