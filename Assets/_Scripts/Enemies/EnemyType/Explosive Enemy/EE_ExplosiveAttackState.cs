@@ -37,7 +37,7 @@ public class EE_ExplosiveAttackState : ExplosiveAttackState
             ExplosiveProjectileEnemy projectileScript = projectile.GetComponent<ExplosiveProjectileEnemy>();
             if (projectileScript != null)
             {
-                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance);
+                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance,enemy.targetPlayer.position,"linearWithGravity", enemy.transform.rotation.y);
             }
 
             if (isPlayerInPursuitRange)

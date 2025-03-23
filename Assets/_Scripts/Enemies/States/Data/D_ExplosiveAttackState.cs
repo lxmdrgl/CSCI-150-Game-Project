@@ -12,5 +12,6 @@ public class D_ExplosiveAttackState : ScriptableObject
     public float explosionRadius = 3f; // Explosion area
     public Vector2 knockbackAngle = Vector2.one;
     public float knockbackStrength = 10f;
+    public float gravityScale = 3f;
     public LayerMask whatIsPlayer;
 }

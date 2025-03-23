@@ -6,6 +6,10 @@ using Game.CoreSystem;
 
 public class ExplosiveAttackState : AttackState
 {
+    
+    public Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+    private Movement movement;
+
     protected D_ExplosiveAttackState stateData;
     protected Transform attackPosition;
 
@@ -32,15 +36,29 @@ public class ExplosiveAttackState : AttackState
     {
         base.LogicUpdate();
         
-        if (isAnimationFinished)
+        /*if (isAnimationFinished)
         {
             if (isPlayerInAgroRange)
             {
                 TriggerAttack();
             }
-        }
+        }*/
     }
 
+     public override bool TriggerAttack()
+    {
+        base.TriggerAttack();
+
+        return false;
+    }
+
+    public override void FinishAttack()
+    {
+        base.FinishAttack();
+        isAnimationFinished = true; // Mark the animation as finished
+    }
+
+    /*
     public override bool TriggerAttack() 
     {
         base.TriggerAttack();
@@ -64,9 +82,6 @@ public class ExplosiveAttackState : AttackState
         }
     }
 
-    public override void FinishAttack()
-    {
-        base.FinishAttack();
-        isAnimationFinished = true;
-    }
+    */
+    
 }
