@@ -37,16 +37,22 @@ public class EE_ExplosiveAttackState : ExplosiveAttackState
             ExplosiveProjectileEnemy projectileScript = projectile.GetComponent<ExplosiveProjectileEnemy>();
             if (projectileScript != null)
             {
-                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance,enemy.targetPlayer.position,"linearWithGravity", enemy.transform.rotation.y);
+                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance,enemy.targetPlayer.position,"linearWithGravity", enemy.transform.rotation.y, stateData.gravityScale);
             }
 
-            if (isPlayerInPursuitRange)
+            DamageEnemy damageComponent = projectile.GetComponentInChildren<DamageEnemy>();
+            if (damageComponent != null)
             {
-                stateMachine.ChangeState(enemy.chargeState);
+                damageComponent.SetDamage(stateData.projectileDamage, stateData.knockbackAngle, stateData.knockbackStrength);
+            }
+
+            if (isPlayerInAgroRange) // Player is in agro range
+            {
+                stateMachine.ChangeState(enemy.explosiveAttackState); // Transition to PlayerDetectedState
             }
             else
             {
-                stateMachine.ChangeState(enemy.lookForPlayerState);
+                stateMachine.ChangeState(enemy.lookForPlayerState); // Transition to LookForPlayerState
             }
         }
     }

@@ -20,6 +20,11 @@ namespace Game.Projectiles
         private float speed;
         private float travelDistance;
         private Vector2 startPosition;
+        private Vector2 target;
+        bool hasGravity;
+        string projectileType;
+        public float startingRotation;
+         private float gravity;
 
         private void Start()
         {
@@ -71,10 +76,38 @@ namespace Game.Projectiles
         }
 
         // `FireProjectile()` so `TriggerAttack()` can call it!
-        public void FireProjectile(float speed, float travelDistance)
+        public void FireProjectile(float speed, float travelDistance, Vector2 target, string projectileType, float startingRotation, float gravity)
         {
-            this.speed = speed;
-            this.travelDistance = travelDistance;
+             this.projectileType = projectileType;
+            this.startingRotation = startingRotation;
+            this.gravity = gravity;
+            // Debug.Log("Gravity: " + this.gravity + " , " + gravity);
+
+            if(projectileType == "radialWithGravity")
+            {
+                this.speed = speed;
+                this.target = target;
+                this.travelDistance = travelDistance;
+                hasGravity = true;
+            }
+            else if (projectileType == "radialNoGravity")
+            {
+                this.speed = speed;
+                this.target = target;
+                hasGravity = false;
+            }
+            else if(projectileType =="linearWithGravity")
+            {
+                this.speed = speed;
+                this.travelDistance = travelDistance;
+                hasGravity = true;
+            }
+            else if (projectileType == "radialLobbing")
+            {
+                this.speed = speed;
+                this.target = target;
+                hasGravity = true;
+            }
         }
 
         private void OnDrawGizmos()
