@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Game.Weapons.Components
 {
-    public class StatusDamageData : ComponentData<FireStatusDamage>
+    public class StatusFireDamageData : ComponentData<AttackStatusFireDamage>
     {
         protected override void SetComponentDependency()
         {
-            ComponentDependency = typeof(StatusDamage);
+            ComponentDependency = typeof(StatusFireDamage);
         }
     }
 }

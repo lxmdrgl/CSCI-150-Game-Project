@@ -33,7 +33,10 @@ namespace Game.Combat.Status
             Count = 0;
             Debug.Log($"Apply Fire status first: {Damage}, {Stun}, {newMult}, {Count}");
 
-            Source.GetComponent<MonoBehaviour>().StartCoroutine(ApplyStatusOverTime());
+            if (Stats.isActiveAndEnabled)
+            {
+                Stats.GetComponent<MonoBehaviour>().StartCoroutine(ApplyStatusOverTime());
+            }
         }
 
         private IEnumerator ApplyStatusOverTime()

@@ -177,6 +177,8 @@ public class Entity : MonoBehaviour, IDataPersistence
         int damageAmount = Mathf.RoundToInt(stats.Health.damageTaken);
         Vector3 damageNumPos = gameObject.GetComponentInChildren<Canvas>().transform.position;
         damageNumPos.y -= 0.5f;
+        damageNumPos.x += UnityEngine.Random.Range(-0.5f, 0.5f); // Random x offset
+        damageNumPos.y += UnityEngine.Random.Range(-0.5f, 0.5f); // Random y offset
         DamagePopup.Create(damageNumPos,damageAmount,false);
         // Damage Flash Effect
         if(damageFlash)

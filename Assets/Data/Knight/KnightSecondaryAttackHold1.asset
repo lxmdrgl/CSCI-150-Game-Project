@@ -27,6 +27,7 @@ MonoBehaviour:
   - rid: 6902827928974262431
   - rid: 6902827928974262432
   - rid: 5949095222658203649
+  - rid: 6902828002530558140
   references:
     version: 2
     RefIds:
@@ -140,3 +141,20 @@ MonoBehaviour:
             <position>k__BackingField: {x: 1, y: 0}
             <count>k__BackingField: 1
             <timeInterval>k__BackingField: 0
+    - rid: 6902828002530558140
+      type: {class: ProjectileStatusLightningData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ProjectileStatusLightningData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <Amount>k__BackingField: 100
+          <Damage>k__BackingField: 2
+          <Stun>k__BackingField: 10
+          <Ticks>k__BackingField: 3
+          <Delay>k__BackingField: 0.5
+          <Count>k__BackingField: 3
+          <Radius>k__BackingField: 15
+          <WhatIsDamageable>k__BackingField:
+            serializedVersion: 2
+            m_Bits: 2048

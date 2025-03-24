@@ -8,6 +8,7 @@ using JetBrains.Annotations; //(2)
 
 using Game.Projectiles;
 using System.Collections;
+using Game.Combat.Status;
 
 
 namespace Game.Weapons.Components
@@ -17,12 +18,24 @@ namespace Game.Weapons.Components
         private ProjectileSpawner projectileSpawner;
         private Stats stats;
         private Game.CoreSystem.Movement movement;
+        private StatusData statusData;
 
         private void HandleSpawnProjectile(Projectile projectile)
         {
-            // currentAttackData.attack = stats.Attack;
-            
-            projectile.FireProjectile(currentAttackData, stats.Attack, movement.FacingDirection);
+            projectile.FireProjectile(currentAttackData, stats.Attack, movement.FacingDirection, statusData);
+            if (statusData != null)
+            {
+                // statusData = null;
+            }
+            else 
+            {
+                Debug.Log("StatusData is null");
+            }
+        }
+
+        public void SetStatusData(StatusData statusData)
+        {
+            this.statusData = statusData;
         }
 
         protected override void Start()

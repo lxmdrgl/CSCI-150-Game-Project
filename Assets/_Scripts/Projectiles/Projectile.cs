@@ -48,7 +48,7 @@ namespace Game.Projectiles
         float totalDamage;
         float totalStun;
 
-        FireStatus fireStatus;
+        StatusData statusData;
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -188,11 +188,16 @@ namespace Game.Projectiles
         {
             bool tryDamage = TryDamage(colliders, new DamageData(totalDamage, gameObject), out _); 
             bool tryStun = TryStunDamage(colliders, new Combat.StunDamage.StunDamageData(totalStun, gameObject), out _); 
-            if (fireStatus != null)
+            /* if (fireStatus != null)
             {
                 bool tryFireStatus = TryStatus(colliders, fireStatus, out _);
+            } */
+            bool tryStatus = false;
+            if (statusData != null)
+            {
+                tryStatus = TryStatus(colliders, statusData, out _);
             }
-            Debug.Log($"hit (damage, stun): {tryDamage}, {tryStun}");
+            Debug.Log($"hit (damage, stun): {tryDamage}, {tryStun}, {tryStatus}");
         }
 
         private bool HandleTargetDirection()
@@ -293,7 +298,7 @@ namespace Game.Projectiles
             return true;
         }
 
-        public void FireProjectile(AttackProjectileFire fireData, float attack, int facingDirection)
+        public void FireProjectile(AttackProjectileFire fireData, float attack, int facingDirection, StatusData statusData)
         {
             this.damage = fireData.damage;
             this.stun = fireData.stun;
@@ -313,17 +318,7 @@ namespace Game.Projectiles
 
             this.attack = attack;
             this.facingDirection = facingDirection;
-
-            if (fireData.FireStatusData)
-            {
-                fireStatus = new FireStatus(fireData.FireStatusData.Amount,
-                                            fireData.FireStatusData.Damage * (attack / 100f),
-                                            fireData.FireStatusData.Stun * (attack / 100f),
-                                            gameObject,
-                                            fireData.FireStatusData.Ticks,
-                                            fireData.FireStatusData.Delay,
-                                            fireData.FireStatusData.Mult);
-            }
+            this.statusData = statusData;
         }
     }
 

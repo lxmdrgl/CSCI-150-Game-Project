@@ -8,6 +8,7 @@ using JetBrains.Annotations; //(2)
 
 using Game.Projectiles;
 using System.Collections;
+using Game.Combat.Status;
 
 
 namespace Game.Weapons.Components
@@ -19,6 +20,7 @@ namespace Game.Weapons.Components
         private Game.CoreSystem.Movement movement;
         private Charge charge;
         private int chargeAmount;
+        private StatusData statusData;
 
         private void HandleSpawnProjectile(Projectile projectile)
         {
@@ -27,7 +29,20 @@ namespace Game.Weapons.Components
                 chargeAmount = charge.TakeFinalChargeReading() - 1;
             } 
             
-            projectile.FireProjectile(currentAttackData.ProjectileFires[chargeAmount], stats.Attack, movement.FacingDirection);
+            projectile.FireProjectile(currentAttackData.ProjectileFires[chargeAmount], stats.Attack, movement.FacingDirection, statusData);
+            if (statusData != null)
+            {
+                // statusData = null;
+            }
+            else 
+            {
+                Debug.Log("StatusData is null");
+            }
+        }
+
+        public void SetStatusData(StatusData statusData)
+        {
+            this.statusData = statusData;
         }
 
         protected override void Start()

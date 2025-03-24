@@ -7,21 +7,22 @@ using Game.Combat.Status;
 
 namespace Game.Weapons.Components
 {
-    public class StatusDamage : WeaponComponent<StatusDamageData, FireStatusDamage>
+    public class StatusLightningDamage : WeaponComponent<StatusLightningDamageData, AttackStatusLightningDamage>
     {
         private ActionHitBox hitBox;
         private Stats stats;
 
         protected virtual void HandleDetectCollider2D(Collider2D[] colliders)
         {
-            FireStatus newStatus = new FireStatus(currentAttackData.Amount,
+            LightningStatus newStatus = new LightningStatus(currentAttackData.Amount,
                                                 currentAttackData.Damage * (stats.Attack/100f),
                                                 currentAttackData.Stun * (stats.Attack/100f),
                                                 Core.Root,
                                                 currentAttackData.Ticks,
                                                 currentAttackData.Delay,
-                                                currentAttackData.Mult);
-
+                                                currentAttackData.Count,
+                                                currentAttackData.Radius,
+                                                currentAttackData.WhatIsDamageable);
             // Debug.Log("TryStatus");
             TryStatus(colliders, newStatus, out _);
         }

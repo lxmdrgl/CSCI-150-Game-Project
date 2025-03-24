@@ -24,7 +24,8 @@ namespace Game.Weapons.Components
         
         [field: SerializeField] public LayerMask whatIsGround { get; private set; }
         [field: SerializeField] public LayerMask whatIsDamageable { get; private set; }
+        public StatusData statusData { get; private set;}
 
-        [field: SerializeField] public D_FireStatus FireStatusData { get; private set; }
+        // [field: SerializeField] public D_FireStatus FireStatusData { get; private set; }
     }
 }

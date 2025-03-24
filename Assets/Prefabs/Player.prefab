@@ -988,8 +988,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <weaponDataSet>k__BackingField: {fileID: 11400000, guid: b7fff6ca91113b147941d5f19a832c4d, type: 2}
   <currentWeaponData>k__BackingField:
-  - {fileID: 11400000, guid: d562f90691393804c97a3e4a2bd9734a, type: 2}
-  - {fileID: 11400000, guid: dbd35097a8e6f00499e22f4c77ee023b, type: 2}
+  - {fileID: 11400000, guid: fff032e29a64ed74f9ac213e62d7f53d, type: 2}
+  - {fileID: 11400000, guid: a376768698607d2459082d6755425dcd, type: 2}
   - {fileID: 11400000, guid: c8ea6a7895ed42d4ebb0c4f799e39523, type: 2}
   - {fileID: 11400000, guid: 5c43415ad5e6a884b8cc56c8aef522a3, type: 2}
   - {fileID: 11400000, guid: 1ba28d0736b38d143bb8e1e45b0f061f, type: 2}

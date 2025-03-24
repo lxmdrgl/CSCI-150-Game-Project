@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b320fd8433894df4e8f5abc27bf3fea1, type: 3}
-  m_Name: KnightPrimaryAttack3
+  m_Name: KnightPrimaryAttack4
   m_EditorClassIdentifier: 
   <Icon>k__BackingField: {fileID: 0}
-  <Name>k__BackingField: Knight Primary Attack 3
-  <Description>k__BackingField: 'Basic Sword Swing Fire '
+  <Name>k__BackingField: Knight Primary Attack 4
+  <Description>k__BackingField: Basic Sword Swing Lightning
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: f5c695431eb63e0438565fc316ffa064, type: 2}
   <weaponIndex>k__BackingField: 0
   <NumberOfAttacks>k__BackingField: 3
@@ -27,7 +27,7 @@ MonoBehaviour:
   - rid: 5949095222658203649
   - rid: 5949095255883382997
   - rid: 5199004585061515379
-  - rid: 6902828002530558056
+  - rid: 6902828002530558078
   references:
     version: 2
     RefIds:
@@ -118,30 +118,42 @@ MonoBehaviour:
           <Amount>k__BackingField: 5
         - name: Attack 3
           <Amount>k__BackingField: 5
-    - rid: 6902828002530558056
-      type: {class: StatusFireDamageData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+    - rid: 6902828002530558078
+      type: {class: StatusLightningDamageData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:
-        name: StatusFireDamageData
+        name: StatusLightningDamageData
         repeatData: 0
         attackData:
         - name: Attack 1
           <Amount>k__BackingField: 50
-          <Damage>k__BackingField: 1
+          <Damage>k__BackingField: 2
           <Stun>k__BackingField: 0
-          <Ticks>k__BackingField: 4
-          <Delay>k__BackingField: 0.2
-          <Mult>k__BackingField: 100
+          <Ticks>k__BackingField: 2
+          <Delay>k__BackingField: 0.5
+          <Count>k__BackingField: 3
+          <Radius>k__BackingField: 15
+          <WhatIsDamageable>k__BackingField:
+            serializedVersion: 2
+            m_Bits: 2048
         - name: Attack 2
           <Amount>k__BackingField: 50
-          <Damage>k__BackingField: 1
+          <Damage>k__BackingField: 2
           <Stun>k__BackingField: 0
-          <Ticks>k__BackingField: 4
-          <Delay>k__BackingField: 0.2
-          <Mult>k__BackingField: 100
+          <Ticks>k__BackingField: 2
+          <Delay>k__BackingField: 0.5
+          <Count>k__BackingField: 3
+          <Radius>k__BackingField: 15
+          <WhatIsDamageable>k__BackingField:
+            serializedVersion: 2
+            m_Bits: 2048
         - name: Attack 3
           <Amount>k__BackingField: 50
-          <Damage>k__BackingField: 1
+          <Damage>k__BackingField: 2
           <Stun>k__BackingField: 0
-          <Ticks>k__BackingField: 4
-          <Delay>k__BackingField: 0.2
-          <Mult>k__BackingField: 100
+          <Ticks>k__BackingField: 2
+          <Delay>k__BackingField: 0.5
+          <Count>k__BackingField: 3
+          <Radius>k__BackingField: 15
+          <WhatIsDamageable>k__BackingField:
+            serializedVersion: 2
+            m_Bits: 2048
