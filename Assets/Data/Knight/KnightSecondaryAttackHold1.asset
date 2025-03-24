@@ -67,8 +67,8 @@ MonoBehaviour:
             <rotate>k__BackingField: 1
             <hasGravity>k__BackingField: 0
             <gravityScale>k__BackingField: 1
-            <damage>k__BackingField: 15
-            <stun>k__BackingField: 22.5
+            <damage>k__BackingField: 5
+            <stun>k__BackingField: 15
             <pierce>k__BackingField: 1
             <explosive>k__BackingField: 0
             <explosiveRadius>k__BackingField: 0
@@ -86,8 +86,8 @@ MonoBehaviour:
             <rotate>k__BackingField: 1
             <hasGravity>k__BackingField: 0
             <gravityScale>k__BackingField: 1
-            <damage>k__BackingField: 25
-            <stun>k__BackingField: 37.5
+            <damage>k__BackingField: 7
+            <stun>k__BackingField: 21
             <pierce>k__BackingField: 1
             <explosive>k__BackingField: 0
             <explosiveRadius>k__BackingField: 0
@@ -105,8 +105,8 @@ MonoBehaviour:
             <rotate>k__BackingField: 1
             <hasGravity>k__BackingField: 0
             <gravityScale>k__BackingField: 1
-            <damage>k__BackingField: 35
-            <stun>k__BackingField: 52.5
+            <damage>k__BackingField: 9
+            <stun>k__BackingField: 27
             <pierce>k__BackingField: 1
             <explosive>k__BackingField: 0
             <explosiveRadius>k__BackingField: 0
@@ -149,9 +149,9 @@ MonoBehaviour:
         attackData:
         - name: Attack 1
           <Amount>k__BackingField: 100
-          <Damage>k__BackingField: 2
+          <Damage>k__BackingField: 4
           <Stun>k__BackingField: 10
-          <Ticks>k__BackingField: 3
+          <Ticks>k__BackingField: 2
           <Delay>k__BackingField: 0.5
           <Count>k__BackingField: 3
           <Radius>k__BackingField: 15
