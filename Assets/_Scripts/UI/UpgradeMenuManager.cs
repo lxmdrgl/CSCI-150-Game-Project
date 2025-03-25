@@ -259,6 +259,8 @@ namespace Game.CoreSystem
             {
                 InputHandler2.UseUpgradeOpenInput();
             }
+
+            EventSystem.current.SetSelectedGameObject(upgradeSlots[0].gameObject); // SET SELECTED BUTTON FOR COLOR TRANSITIONS
         }
 
         private void CloseAllMenus()
