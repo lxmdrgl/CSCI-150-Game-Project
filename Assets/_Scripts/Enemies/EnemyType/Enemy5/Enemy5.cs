@@ -8,10 +8,12 @@ public class Enemy5 : Entity
     public E5_PlayerDetectedState playerDetectedState { get; private set; }
     public E5_ChargeState chargeState { get; private set; }
     public E5_LookForPlayerState lookForPlayerState { get; private set; }
-    public E5_MeleeAttackState meleeAttackState{get;private set;}
+    public E5_MeleeAttackState meleeAttackState{ get;private set; }
     public E5_StunState stunState { get; private set; }
     public E5_DeadState deadState { get; private set; }
     public E5_CooldownState cooldownState { get; private set; }
+    
+   // public E5_EnemyDashState enemyDashState { get; private set; }  //for EnemyDashState data 
 
     [SerializeField]
     private D_IdleState idleStateData;
@@ -31,6 +33,10 @@ public class Enemy5 : Entity
     private D_DeadState deadStateData;
     [SerializeField]
     private D_CooldownState cooldownStateData;
+  
+   // [SerializeField]
+   // private D_EnemyDashState enemyDashStateData; //for enemyDashState data
+
 
 
     private GameObject meleeAttackCollider;

@@ -19,13 +19,13 @@ public class E5_StunState : StunState
     public override void Enter()
     {
         base.Enter();
-        enemy.meleeAttackState.DisableHitbox();
+        
     }
 
     public override void Exit()
     {
         base.Exit();
-        enemy.meleeAttackState.DisableHitbox();
+      
     }
 
     public override void LogicUpdate()

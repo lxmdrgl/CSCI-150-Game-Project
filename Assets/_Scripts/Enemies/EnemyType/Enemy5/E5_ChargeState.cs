@@ -6,13 +6,8 @@ using UnityEngine;
 public class E5_ChargeState : ChargeState
 {
     private Enemy5 enemy;
-    private float lastDashTime;
-    private bool canDash;
-    private float dashCooldown = 2f;  // Time between dashes
-    private float dashForce = 20f;    // Dash speed multiplier
 
-    public E5_ChargeState(Entity entity, string animBoolName, D_ChargeState stateData, Enemy5 enemy) 
-        : base(entity, animBoolName, stateData)
+    public E5_ChargeState(Entity entity, string animBoolName, D_ChargeState stateData, Enemy5 enemy) : base(entity, animBoolName, stateData)
     {
         this.enemy = enemy;
     }
@@ -25,7 +20,7 @@ public class E5_ChargeState : ChargeState
     public override void Enter()
     {
         base.Enter();
-        lastDashTime = Time.time - dashCooldown; // Allow instant dash on entering state
+        // Movement?.SetVelocityY(10.0f);
     }
 
     public override void Exit()
@@ -37,17 +32,8 @@ public class E5_ChargeState : ChargeState
     {
         base.LogicUpdate();
 
-        // Regular charge movement
         Movement?.SetVelocityX(stateData.chargeSpeed * Movement.FacingDirection);
 
-        // Dash Mechanic: If cooldown has passed, perform a dash
-        if (Time.time >= lastDashTime + dashCooldown)
-        {
-            PerformDash();
-            lastDashTime = Time.time;
-        }
-
-        // State Transitions
         if (performCloseRangeAction)
         {
             stateMachine.ChangeState(enemy.meleeAttackState);
@@ -65,11 +51,5 @@ public class E5_ChargeState : ChargeState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-    }
-
-    private void PerformDash()
-    {
-        Debug.Log("Enemy is dashing!");  // Debug message to check dashing behavior
-        Movement?.SetVelocityX(dashForce * Movement.FacingDirection);
     }
 }
