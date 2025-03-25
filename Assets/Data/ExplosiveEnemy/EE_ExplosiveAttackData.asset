@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9e3f2d4dc03ebd478e70c20334dedb0, type: 3}
   m_Name: EE_ExplosiveAttackData
   m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
+  projectile: {fileID: 3266041613596240981, guid: e9d0ac22815ab4b40827a2e8319bc071, type: 3}
   projectileDamage: 10
   projectileSpeed: 12
-  projectileTravelDistance: 10
+  projectileTravelDistance: 30
   explosionRadius: 3
   knockbackAngle: {x: 1, y: 1}
   knockbackStrength: 10
+  gravityScale: 3
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256

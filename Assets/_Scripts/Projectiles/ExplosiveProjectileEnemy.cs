@@ -31,6 +31,21 @@ namespace Game.Projectiles
             rb = GetComponent<Rigidbody2D>();
             rb.linearVelocity = transform.right * speed;
             startPosition = transform.position;
+
+            if(projectileType == "radialWithGravity")
+            {
+                Vector2 direction = (target - (Vector2)transform.position).normalized;
+                rb.linearVelocity = direction * speed;
+            }
+            else if (projectileType == "radialNoGravity")
+            {
+                Vector2 direction = (target - (Vector2)transform.position).normalized;
+                rb.linearVelocity = direction * speed;
+            }
+            else if(projectileType == "linearWithGravity")
+            {
+                rb.linearVelocity = transform.right * speed;
+            }
         }
 
         private void Update()
@@ -78,7 +93,7 @@ namespace Game.Projectiles
         // `FireProjectile()` so `TriggerAttack()` can call it!
         public void FireProjectile(float speed, float travelDistance, Vector2 target, string projectileType, float startingRotation, float gravity)
         {
-             this.projectileType = projectileType;
+            this.projectileType = projectileType;
             this.startingRotation = startingRotation;
             this.gravity = gravity;
             // Debug.Log("Gravity: " + this.gravity + " , " + gravity);
@@ -116,4 +131,6 @@ namespace Game.Projectiles
             Gizmos.DrawWireSphere(transform.position, explosionRadius);
         }
     }
+    
 }
+
