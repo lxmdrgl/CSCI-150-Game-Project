@@ -23,7 +23,9 @@ namespace Game.CoreSystem
         private void HandleTryInteract(IInteractable interactable)
         {
             if (interactable is not MajorUpgrade pickup)
+            {
                 return;
+            }
 
             majorUpgrade = pickup;
 

@@ -8,7 +8,9 @@ public class PlayerInputHandler : MonoBehaviour
 {
     public event Action<bool> OnInteractInputChanged; 
 
-    public static PlayerInput playerInput;
+    public event Action<int> OnUpgradeInputChanged;
+
+    public PlayerInput playerInput;
     
     public Vector2 RawMovementInput { get; private set; }
 
@@ -281,6 +283,19 @@ private IEnumerator ResetFallInput()
     }
 
     public void UseUpgradeOpenInput() => UpgradeOpenInput = false;
+
+    public void OnUISubmitOrClick(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            // string playerName = "Player " + (playerInput.user.index); // Player 1 or Player 2
+            // InputDevice device = context.control.device; // Get device used
+
+            //Debug.Log(playerName + " pressed Upgrade using " + device.displayName);
+
+            OnUpgradeInputChanged?.Invoke(playerInput.user.index);
+        }
+    }
 }
 
 public enum CombatInputs{

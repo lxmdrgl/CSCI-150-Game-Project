@@ -22,6 +22,9 @@ namespace Game.CoreSystem
         private WeaponSwap weaponSwap2;
         private WeaponInventory weaponInventory1;
         private WeaponInventory weaponInventory2;
+        private int playerIndex = -1;
+        private UpgradeSlot player1Slot;
+        private UpgradeSlot player2Slot;
         
         [SerializeField] private GameObject UpgradeCanvasGO;
         [SerializeField] private List<UpgradeSlot> upgradeSlots;
@@ -64,6 +67,7 @@ namespace Game.CoreSystem
                 statsChange1.OnMinorUpgradeInteract += HandleStatUpgradeMenuInteract;
                 // weaponSwap1.OnMajorUpgradeInteract += HandleWeaponMenuInteract;
                 weaponSwap1.OnMajorUpgradeInteract += (dataSet) => HandleWeaponMenuInteract(dataSet, 0);
+                InputHandler1.OnUpgradeInputChanged += HelperUIUpgradeClicked;
             }
             if (player2 != null)
             {
@@ -77,6 +81,7 @@ namespace Game.CoreSystem
                 statsChange2.OnMinorUpgradeInteract += HandleStatUpgradeMenuInteract;
                 // weaponSwap2.OnMajorUpgradeInteract += HandleWeaponMenuInteract;
                 weaponSwap2.OnMajorUpgradeInteract += (dataSet) => HandleWeaponMenuInteract(dataSet, 1);
+                InputHandler2.OnUpgradeInputChanged += HelperUIUpgradeClicked;
             }
         }
 
@@ -159,6 +164,8 @@ namespace Game.CoreSystem
         private void HandleWeaponMenuInteract(WeaponDataSet dataSet, int playerIndex)
         {
             weaponDataSet = dataSet;
+            
+            // Debug.Log("Debugging .....");
 
             // Create a local copy of the weaponData list
             List<WeaponData> localWeaponData = new List<WeaponData>(weaponDataSet.weaponData);
@@ -299,21 +306,73 @@ namespace Game.CoreSystem
             weaponDataSet = null;
         }*/
 
+        public void HelperUIUpgradeClicked(int Index)
+        {
+            if (EventSystem.current.currentSelectedGameObject.GetComponent<UpgradeSlot>() != null)
+            {
+                Debug.Log("upgrade clicked: " + EventSystem.current.currentSelectedGameObject.name);
+                playerIndex = Index;
+            }
+        }
+
         public void OnUpgradeClicked(UpgradeSlot slot)
         {
-            Debug.Log("On upgrade clicked");
-            // Get the player input from the EventSystem (the last player to interact with UI)
-            PlayerInput playerInput = EventSystem.current.currentSelectedGameObject?.GetComponentInParent<PlayerInput>();
+            Debug.Log("upgrade playerIndex: " + playerIndex);
 
-            if (playerInput == null)
+            if (playerIndex == -1)    
             {
-                Debug.Log("No player input detected for upgrade selection!");
                 return;
             }
 
-            int playerIndex = playerInput.playerIndex; // Get player index
-            Debug.Log("upgrade playerIndex: " + playerIndex);
+            if (playerIndex == 0)
+            {
+                player1Slot = slot;
+            }
+            else if (playerIndex == 1)
+            {
+                player2Slot = slot;
+            }
 
+            if (player1Slot != null && player2Slot != null)
+            {
+                Debug.Log("Both players have selected. Applying upgrades...");
+
+                if (statUpgradeDataSet != null)
+                {
+                    // Player 1 upgrade
+                    StatUpgradeData currentData = player1Slot.currentStatData;
+                    stats1.UpdateStats(currentData.Health, currentData.Attack);
+                    
+
+                    // Player 2 upgrade
+                    currentData = player2Slot.currentStatData;
+                    stats2.UpdateStats(currentData.Health, currentData.Attack);
+                    
+                }
+                else if (weaponDataSet != null)
+                {
+                    // Player 1 weapon upgrade
+                    WeaponData currentData = player1Slot.currentWeaponData;
+                    weaponInventory1.TrySetWeapon(currentData, (int)currentData.weaponIndex);
+                    
+
+                    // Player 2 weapon upgrade
+                    currentData = player2Slot.currentWeaponData;
+                    weaponInventory2.TrySetWeapon(currentData, (int)currentData.weaponIndex);
+                    
+                }
+
+                // Reset selections for next upgrade
+                player1Slot = null;
+                player2Slot = null;
+                statUpgradeDataSet = null;
+                weaponDataSet = null;
+                playerIndex = -1;
+
+
+                Unpause();
+            }
+/*
             if (statUpgradeDataSet != null)
             {
                 // Get the selected stat upgrade
@@ -347,6 +406,7 @@ namespace Game.CoreSystem
 
             statUpgradeDataSet = null;
             weaponDataSet = null;
+            playerIndex = -1;*/
         }
 
         /* public void OnUpgradeClicked(UpgradeSlot slot, PlayerInput playerInput)
