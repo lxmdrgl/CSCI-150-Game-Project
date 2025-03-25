@@ -22,12 +22,12 @@ MonoBehaviour:
   <AttackCooldown>k__BackingField: 0
   prereqWeapon: {fileID: 0}
   <ComponentData>k__BackingField:
-  - rid: 6902827937346879607
   - rid: 5949095188800471134
   - rid: 5949095222658203648
   - rid: 5949095222658203649
   - rid: 5949095255883382997
   - rid: 5199004585061515379
+  - rid: 6902828016660381797
   references:
     version: 2
     RefIds:
@@ -86,7 +86,15 @@ MonoBehaviour:
         attackData:
         - name: Attack 1
           <Amount>k__BackingField: 10
-    - rid: 6902827937346879607
+    - rid: 6902828016660381797
       type: {class: ParryData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:
         name: ParryData
+        repeatData: 1
+        attackData:
+        - name: Attack 1
+          Debug: 0
+          <HitBox>k__BackingField: {fileID: 3553292388843534013, guid: 18ce7c09d2fecc14f947463e04ad58ec, type: 3}
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 0

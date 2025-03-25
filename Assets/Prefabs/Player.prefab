@@ -810,7 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1266653283
+  GlobalObjectIdHash: 387556200
   InScenePlacedSourceGlobalObjectIdHash: 1266653283
   DeferredDespawnTick: 0
   Ownership: 1
@@ -1820,6 +1820,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8673564491474926216}
     m_Modifications:
+    - target: {fileID: 760541771957795888, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 825905045288397366, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

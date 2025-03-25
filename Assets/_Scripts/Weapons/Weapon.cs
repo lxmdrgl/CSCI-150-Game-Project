@@ -45,6 +45,7 @@ namespace Game.Weapons
         public GameObject BaseGameObject { get; private set; }
         public GameObject WeaponSpriteGameObject { get; private set; }
         public GameObject WeaponColliderGameObject { get; private set; }
+        public GameObject WeaponPlayerColliderGameObject { get; private set; }
 
         public AnimationEventHandler EventHandler
         {
@@ -134,6 +135,7 @@ namespace Game.Weapons
             BaseGameObject = transform.Find("Base").gameObject;
             WeaponSpriteGameObject = transform.Find("WeaponSprite").gameObject;
             WeaponColliderGameObject = transform.Find("WeaponCollider").gameObject;
+            WeaponPlayerColliderGameObject = transform.Find("WeaponPlayerCollider").gameObject;
 
             Anim = BaseGameObject.GetComponent<Animator>();
 
