@@ -16,6 +16,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Users;
 
+using Debug=UnityEngine.Debug;
+using Random=UnityEngine.Random;
+
 public class LevelGenerator : MonoBehaviour
 {
     public GameObject player;
@@ -169,9 +172,9 @@ public class LevelGenerator : MonoBehaviour
             // fork case
             // if either path fails, swap paths and try again
 
-            int exitIndex = 0;
-            int numTrials = 0;
-            int maxTrials = 50;
+            int exitIndex = Random.Range(0,2);
+            int numTrials = 1;
+            int maxTrials = 4;
 
             while (true) { 
                 if (await TryNextRoom(currNode, 0, exitIndex) && 
@@ -183,6 +186,7 @@ public class LevelGenerator : MonoBehaviour
                 {
                     exitIndex = 1 - exitIndex;
                     numTrials++;
+                    UnityEngine.Debug.LogError("Destroying children of fork and flipping paths: " + roomMap.name);
                     DestroyPath(currNode.children[0]);
                     DestroyPath(currNode.children[1]);
                 }
@@ -199,6 +203,7 @@ public class LevelGenerator : MonoBehaviour
                         DestroyPath(root);
 
                         await spawnAllRooms(root.parent);
+                        return false;
                     }
                 }
             }
@@ -287,12 +292,45 @@ public class LevelGenerator : MonoBehaviour
                 UnityEngine.Debug.LogError("Deleting: " + root.name);
                 DestroyImmediate(root.roomObject);
                 roomNumber--;
+                DeleteFreeRooms();
             } 
         }
 
         foreach(RoomNode childNode in root.children) {
             DestroyPath(childNode);
         }
+    }
+
+    void DeleteFreeRooms() {
+        List<GameObject> roomManagers = new List<GameObject>();
+
+        foreach (RoomManager room in FindObjectsOfType<RoomManager>()) {
+            if (!IsFreeRoom(room, roomMap)) {
+                roomManagers.Add(room.gameObject);
+            }
+        }
+
+        // Delete all rooms that are not part of the tree
+        foreach (GameObject room in roomManagers) {
+            // UnityEngine.Debug.LogError("Found free room: " + room.name);
+            UnityEngine.Debug.LogError("Deleting free room: " + room.name);
+            Destroy(room);
+        }
+    }
+
+
+    bool IsFreeRoom(RoomManager room, RoomNode root) {
+        if (root.roomObject == room.gameObj) {
+            return true;
+        } 
+
+        foreach (RoomNode childNode in root.children) {
+            if (IsFreeRoom(room, childNode)) {
+                return true;
+            }
+        }
+
+        return false; // Room is not part of the hierarchy
     }
 
     List<RoomManager> loadRoomList(String roomType) {
