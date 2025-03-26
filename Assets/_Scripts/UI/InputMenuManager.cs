@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using System;
+using UnityEngine.AI;
+using Unity.VisualScripting;
 
 public class InputMenuManager : MonoBehaviour
 {
@@ -130,7 +132,10 @@ public class InputMenuManager : MonoBehaviour
                 InputHandler2.UseUpgradeOpenInput();
             } */
 
-            EventSystem.current.SetSelectedGameObject(null); // CLEAR SELECTED BUTTON FOR COLOR TRANSITIONS
+            if (EventSystem.current != null)
+            {
+                EventSystem.current.SetSelectedGameObject(null); // CLEAR SELECTED BUTTON FOR COLOR TRANSITIONS
+            }
         }
         #endregion
 }

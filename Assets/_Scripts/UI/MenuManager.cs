@@ -179,7 +179,10 @@ public class MenuManager : MonoBehaviour
             InputHandler2.UseMenuOpenInput();
         }
 
-        EventSystem.current.SetSelectedGameObject(null);
+        if (EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
     }
     #endregion
 

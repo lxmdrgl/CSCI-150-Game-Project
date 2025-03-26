@@ -286,7 +286,10 @@ namespace Game.CoreSystem
                 InputHandler2.UseUpgradeOpenInput();
             }
 
-            EventSystem.current.SetSelectedGameObject(null); // CLEAR SELECTED BUTTON FOR COLOR TRANSITIONS
+            if (EventSystem.current != null)
+            {
+                EventSystem.current.SetSelectedGameObject(null); // CLEAR SELECTED BUTTON FOR COLOR TRANSITIONS
+            }
         }
         #endregion
 

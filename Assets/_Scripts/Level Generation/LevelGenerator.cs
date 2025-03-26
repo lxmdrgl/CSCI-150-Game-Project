@@ -45,14 +45,69 @@ public class LevelGenerator : MonoBehaviour
     private List<Entity> enemies = new List<Entity>();
     PlayerInputManager playerInputManager;
 
-    async Task Awake()
+    void Awake()
+    {
+        Debug.Log("Subscribing to InputUser.onUnpairedDeviceUsed");
+        InputSystem.onDeviceChange += OnDeviceChange;
+        inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
+        InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
+    }
+
+    async void Start()
+    {
+        InputUser.listenForUnpairedDeviceActivity = 1;
+        InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
+        Debug.Log("Starting level gen");
+        await InitializeLevel();
+    }
+
+    private async Task InitializeLevel()
     {
         playerCount = PlayerPrefs.GetInt("playerCount");
         playerInputManager = FindFirstObjectByType<PlayerInputManager>();
 
-        InputSystem.onDeviceChange += OnDeviceChange;
-        inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
-        InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
+        // PlayerPrefs.SetInt("player1Kills", PlayerPrefs.GetInt("player1Kills") + 1);
+
+        spawnRoomMap();
+
+        if (spawnStartingRoom() && await spawnAllRooms(roomMap)) 
+        {
+
+            // spawnAllEnemies(roomMap);
+
+            UnityEngine.Debug.Log("player count: " + playerCount);
+            if(playerCount == 1)
+            {
+                spawnPlayer(1);
+                UnityEngine.Debug.Log("1 PLAYER");
+            }
+            else if(playerCount == 2)
+            {
+                spawnPlayer(2);
+                UnityEngine.Debug.Log("2 PLAYERS");
+            }
+            else    
+            {
+                spawnPlayer(1);
+                UnityEngine.Debug.Log("PLAYERCOUNT NOT SET");
+            }
+            // PlayerInput.all[0].user.UnpairDevices();
+            UnityEngine.Debug.Log("Unpairing player 1 input devices: " + PlayerInput.all[0].user.pairedDevices.Count);
+        } 
+        else 
+        {
+            UnityEngine.Debug.LogError("Level generation error");
+        }
+    }
+
+    /* async Task Awake()
+    {
+        playerCount = PlayerPrefs.GetInt("playerCount");
+        playerInputManager = FindFirstObjectByType<PlayerInputManager>();
+
+        // InputSystem.onDeviceChange += OnDeviceChange;
+        // inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
+        // InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
 
         // PlayerPrefs.SetInt("player1Kills", PlayerPrefs.GetInt("player1Kills") + 1);
 
@@ -87,22 +142,15 @@ public class LevelGenerator : MonoBehaviour
         {
             UnityEngine.Debug.LogError("Level generation error");
         }
-    }
+    } */
 
-    void OnEnable()
+    /* void OnEnable()
     {
         Debug.Log("Subscribing to InputUser.onUnpairedDeviceUsed");
         InputSystem.onDeviceChange += OnDeviceChange;
         inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
         InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
-    }
-
-    void Start()
-    {
-        InputSystem.onDeviceChange += OnDeviceChange;
-        inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
-        InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
-    }
+    } */
 
     void OnDestroy()
     {
