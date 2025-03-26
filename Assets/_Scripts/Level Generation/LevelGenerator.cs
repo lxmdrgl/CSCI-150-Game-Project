@@ -47,17 +47,18 @@ public class LevelGenerator : MonoBehaviour
         playerCount = PlayerPrefs.GetInt("playerCount");
         playerInputManager = FindFirstObjectByType<PlayerInputManager>();
 
+        InputSystem.onDeviceChange += OnDeviceChange;
+        inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
+        InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
+
         // PlayerPrefs.SetInt("player1Kills", PlayerPrefs.GetInt("player1Kills") + 1);
 
         spawnRoomMap();
 
-        InputSystem.onDeviceChange += OnDeviceChange;
-        inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
-
         if (spawnStartingRoom() && await spawnAllRooms(roomMap)) 
         {
 
-            spawnAllEnemies(roomMap);
+            // spawnAllEnemies(roomMap);
 
             UnityEngine.Debug.Log("player count: " + playerCount);
             if(playerCount == 1)
@@ -67,7 +68,7 @@ public class LevelGenerator : MonoBehaviour
             }
             else if(playerCount == 2)
             {
-                spawnPlayer(2);
+                spawnPlayer(1);
                 UnityEngine.Debug.Log("2 PLAYERS");
             }
             else    
@@ -75,10 +76,8 @@ public class LevelGenerator : MonoBehaviour
                 spawnPlayer(1);
                 UnityEngine.Debug.Log("PLAYERCOUNT NOT SET");
             }
-
-            InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
-            // PlayerInput.all[0].user.UnpairDevices();
-            // UnityEngine.Debug.Log("Unpairing player 1 input devices: " + PlayerInput.all[0].user.pairedDevices.Count);
+            PlayerInput.all[0].user.UnpairDevices();
+            UnityEngine.Debug.Log("Unpairing player 1 input devices: " + PlayerInput.all[0].user.pairedDevices.Count);
 
         } 
         else 
@@ -87,6 +86,19 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        InputSystem.onDeviceChange += OnDeviceChange;
+        inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
+        InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
+    }
+
+    void Start()
+    {
+        InputSystem.onDeviceChange += OnDeviceChange;
+        inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
+        InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
+    }
 
     void OnDestroy()
     {

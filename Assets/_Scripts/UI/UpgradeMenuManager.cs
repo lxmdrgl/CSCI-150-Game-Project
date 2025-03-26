@@ -30,6 +30,7 @@ namespace Game.CoreSystem
         [SerializeField] private List<UpgradeSlot> upgradeSlots;
         [SerializeField] private StatUpgradeDataSet statUpgradeDataSet;
         [SerializeField] private WeaponDataSet weaponDataSet;
+        [SerializeField] private int currentPlayer = -1;
 
         private bool isPaused;
 
@@ -164,6 +165,8 @@ namespace Game.CoreSystem
         private void HandleWeaponMenuInteract(WeaponDataSet dataSet, int playerIndex)
         {
             weaponDataSet = dataSet;
+            currentPlayer = playerIndex;
+
             
             // Debug.Log("Debugging .....");
 
@@ -313,7 +316,10 @@ namespace Game.CoreSystem
                 Debug.Log("upgrade clicked: " + EventSystem.current.currentSelectedGameObject.name);
                 playerIndex = Index;
             }
-        }
+        }   
+
+        bool handlePlayer1 = false;
+        bool handlePlayer2 = false;
 
         public void OnUpgradeClicked(UpgradeSlot slot)
         {
@@ -324,13 +330,31 @@ namespace Game.CoreSystem
                 return;
             }
 
-            if (playerIndex == 0)
+            if (playerIndex == 0  && currentPlayer == 0)
             {
                 player1Slot = slot;
             }
-            else if (playerIndex == 1)
+            else if (playerIndex == 1 && currentPlayer == 1)
             {
                 player2Slot = slot;
+            }
+
+            if (player1Slot != null && player2Slot == null)
+            {
+                if (!handlePlayer1)
+                {
+                    HandleWeaponMenuInteract(weaponDataSet, 1); // set player 2
+                    handlePlayer1 = true;
+                }
+            }
+            if (player1Slot == null && player2Slot != null)
+            {
+                HandleWeaponMenuInteract(weaponDataSet, 0); // set player 1
+                if (!handlePlayer2)
+                {
+                    HandleWeaponMenuInteract(weaponDataSet, 0); // set player 1
+                    handlePlayer2 = true;
+                }
             }
 
             if (player1Slot != null && player2Slot != null)
@@ -369,7 +393,8 @@ namespace Game.CoreSystem
                 weaponDataSet = null;
                 playerIndex = -1;
 
-
+                handlePlayer1 = false;
+                handlePlayer2 = false;
                 Unpause();
             }
 /*
