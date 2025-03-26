@@ -31,6 +31,9 @@ namespace Game.Weapons.Components
             // filter.useLayerMask = true;
 
             // currentAttackData.HitBox.Overlap(filter, detected);
+
+            base.HandleEnter();
+            
             hitbox.enabled = true;
             hitbox.points = currentAttackData.HitBox.points;
 

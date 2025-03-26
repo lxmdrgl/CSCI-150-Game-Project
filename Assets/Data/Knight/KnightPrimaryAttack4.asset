@@ -125,7 +125,7 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <Amount>k__BackingField: 50
+          <Amount>k__BackingField: 100
           <Damage>k__BackingField: 2
           <Stun>k__BackingField: 0
           <Ticks>k__BackingField: 2
@@ -136,7 +136,7 @@ MonoBehaviour:
             serializedVersion: 2
             m_Bits: 2048
         - name: Attack 2
-          <Amount>k__BackingField: 50
+          <Amount>k__BackingField: 100
           <Damage>k__BackingField: 2
           <Stun>k__BackingField: 0
           <Ticks>k__BackingField: 2
@@ -147,7 +147,7 @@ MonoBehaviour:
             serializedVersion: 2
             m_Bits: 2048
         - name: Attack 3
-          <Amount>k__BackingField: 50
+          <Amount>k__BackingField: 100
           <Damage>k__BackingField: 2
           <Stun>k__BackingField: 0
           <Ticks>k__BackingField: 2

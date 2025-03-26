@@ -117,7 +117,7 @@ namespace Game.Projectiles
                     if (explosive)
                     {
                         // Explosive, ignore pierce
-                        HandleExplosiveProjectile();
+                        HandleExplosiveProjectile(); 
                     }
                     else
                     {
