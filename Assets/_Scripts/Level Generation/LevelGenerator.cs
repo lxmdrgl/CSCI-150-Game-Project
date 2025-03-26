@@ -91,6 +91,7 @@ public class LevelGenerator : MonoBehaviour
 
     void OnEnable()
     {
+        Debug.Log("Subscribing to InputUser.onUnpairedDeviceUsed");
         InputSystem.onDeviceChange += OnDeviceChange;
         inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
         InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
@@ -668,6 +669,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void OnUnpairedDeviceUsed(InputControl control, InputEventPtr eventPtr)
     {
+        UnityEngine.Debug.Log("OnUnpairedDeviceUsed");
         InputDevice newDevice = control.device;
 
         // Check if there are any players
