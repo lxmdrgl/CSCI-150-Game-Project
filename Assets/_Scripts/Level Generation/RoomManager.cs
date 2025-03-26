@@ -13,7 +13,7 @@ public class RoomManager : MonoBehaviour
     public PolygonCollider2D roomCollider;
     public List<Entity> enemies;
     public List<Collider2D> colliders;
-    public List<GameObject> enemies;
+    // public List<GameObject> enemies;
     public List<GameObject> enemySpawners;
 
     void Awake() {
@@ -87,8 +87,8 @@ public class RoomManager : MonoBehaviour
     {
         foreach(GameObject enemySpawner in enemySpawners) 
         {
-            GameObject enemy =  Instantiate(enemies[Random.Range(0, enemies.Count)], enemySpawner.transform.position, Quaternion.identity);
-            enemy.GetComponent<Entity>().GenerateGuid();
+            // GameObject enemy =  Instantiate(enemies[Random.Range(0, enemies.Count)], enemySpawner.transform.position, Quaternion.identity);
+            // enemy.GetComponent<Entity>().GenerateGuid();
         }
     }
 }
