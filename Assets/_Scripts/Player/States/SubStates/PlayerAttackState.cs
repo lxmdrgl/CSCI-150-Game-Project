@@ -76,6 +76,7 @@ public class PlayerAttackState : PlayerActionState
 
         if (checkAttackAction)
         {
+            Debug.Log("Action hitbox on action invoke");
             weapon.EventHandler.OnAttackActionInvoke();
         }
 
@@ -114,6 +115,11 @@ public class PlayerAttackState : PlayerActionState
     {
         base.Enter();
 
+        weapon.EventHandler.OnFinish += HandleFinish;
+        weapon.EventHandler.OnFlipSetActive += HandleFlipSetActive;
+        weapon.EventHandler.OnInterruptableSetActive += HandleInterruptableSetActive;
+        weapon.EventHandler.OnAttackActionSetActive += HandleAttackActionSetActive;
+
         weaponGenerator.OnWeaponGenerating += HandleWeaponGenerating;
         
         checkFlip = true;
@@ -137,6 +143,11 @@ public class PlayerAttackState : PlayerActionState
     {
         base.Exit();
 
+        weapon.EventHandler.OnFinish -= HandleFinish;
+        weapon.EventHandler.OnFlipSetActive -= HandleFlipSetActive;
+        weapon.EventHandler.OnInterruptableSetActive -= HandleInterruptableSetActive;
+        weapon.EventHandler.OnAttackActionSetActive -= HandleAttackActionSetActive;
+
         weaponGenerator.OnWeaponGenerating -= HandleWeaponGenerating;
         if (inputIndex == (int)CombatInputs.primarySkillPress || inputIndex == (int)CombatInputs.primarySkillHold) {
             player.primarySkillTimeNotifier.Init(weapon.Data.AttackCooldown);
@@ -145,7 +156,8 @@ public class PlayerAttackState : PlayerActionState
         else if (inputIndex == (int)CombatInputs.secondarySkillPress || inputIndex == (int)CombatInputs.secondarySkillHold) {
             player.secondarySkillTimeNotifier.Init(weapon.Data.AttackCooldown);
         }
-        
+
+        Debug.Log("Action hitbox Weapon exit");
         weapon.Exit();
         
     }

@@ -35,6 +35,7 @@ namespace Game.Weapons.Components
             base.HandleEnter();
             
             hitbox.enabled = true;
+            Debug.Log("Action hitbox true: " + hitbox.enabled);
             hitbox.points = currentAttackData.HitBox.points;
 
             // Debug.Log($"Weapon points: {currentAttackData.HitBox}");
@@ -54,6 +55,7 @@ namespace Game.Weapons.Components
         protected override void HandleExit()
         {
             hitbox.enabled = false;
+            Debug.Log("Action hitbox false: " + hitbox.enabled);
         }
 
         protected override void Start()

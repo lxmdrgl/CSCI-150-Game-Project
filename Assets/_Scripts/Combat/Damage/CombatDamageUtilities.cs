@@ -22,6 +22,20 @@ namespace Game.Utilities
                 return true;
             }
 
+            Transform currTransform = gameObject.transform;
+            Debug.Log("Start combat damage transform: " + currTransform);
+            while (gameObject.transform != null)
+            {
+                if (currTransform.TryGetComponentInChildren(out damageable))
+                {
+                    Debug.Log("Deal combat damage transform: " + currTransform);
+                    damageable.Damage(damageData);
+                    return true;
+                }
+                currTransform = currTransform.parent;
+                Debug.Log("Loop combat damage transform: " + currTransform);
+            }
+
             return false;
         }
 

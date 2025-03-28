@@ -18,6 +18,8 @@ public class PlayerKnockBackState : PlayerActionState
         KnockBackReceiver.OnKnockBackInactive += HandleKnockBackInactive;
         DamageReceiver?.SetCanTakeDamage(false);
         KnockBackReceiver?.SetCanTakeKnockBack(false);
+
+        Debug.Log("Action hitbox knockback start");
     }
 
     public override void Exit()
