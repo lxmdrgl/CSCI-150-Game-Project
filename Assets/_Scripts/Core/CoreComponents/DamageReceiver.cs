@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 
 using Game.Combat.Damage;
+using UnityEngine.InputSystem;
 // using Game.ModifierSystem;
 
 namespace Game.CoreSystem
@@ -19,6 +20,7 @@ namespace Game.CoreSystem
         // public Modifiers<Modifier<DamageData>, DamageData> Modifiers { get; } = new();
 
         private Stats stats;
+        private Death death;
         // private ParticleManager particleManager;
         public bool CanTakeDamage { get; set; }
         public Action OnIgnoreDamage;
@@ -46,7 +48,23 @@ namespace Game.CoreSystem
 
             if (CanTakeDamage) {
                 stats.Health.Decrease(data.Amount);
-                Debug.Log($"Deal {data.Amount} damage, {CanTakeDamage}");
+                PlayerInput input = data.Source.GetComponentInChildren<PlayerInput>();
+                Debug.Log($"Deal {data.Amount} damage, Source: {input.playerIndex}, {CanTakeDamage}");
+
+                if (input != null)
+                {
+                    if (input.playerIndex == 0)
+                    {
+                        PlayerPrefs.SetInt("player1Damage", PlayerPrefs.GetInt("player1Damage") + Mathf.RoundToInt(stats.Health.damageTaken));
+                        death.Source = 0;
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetInt("player2Damage", PlayerPrefs.GetInt("player2Damage") + Mathf.RoundToInt(stats.Health.damageTaken));
+                        death.Source = 1;
+                    }
+                }
+
             } else {
                 Debug.Log($"Ignore damage, {CanTakeDamage}");
                 OnIgnoreDamage?.Invoke();
@@ -63,6 +81,7 @@ namespace Game.CoreSystem
             base.Awake();
 
             stats = core.GetCoreComponent<Stats>();
+            death = core.GetCoreComponent<Death>();
             CanTakeDamage = true;
             // particleManager = core.GetCoreComponent<ParticleManager>();
         }

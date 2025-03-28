@@ -28,7 +28,6 @@ MonoBehaviour:
   - rid: 5949095255883382997
   - rid: 5199004585061515379
   - rid: 6902828002530558056
-  - rid: 6902828046615052381
   references:
     version: 2
     RefIds:
@@ -131,57 +130,18 @@ MonoBehaviour:
           <Stun>k__BackingField: 0
           <Ticks>k__BackingField: 4
           <Delay>k__BackingField: 0.2
-          <Mult>k__BackingField: 100
+          <Mult>k__BackingField: 0
         - name: Attack 2
           <Amount>k__BackingField: 100
           <Damage>k__BackingField: 1
           <Stun>k__BackingField: 0
           <Ticks>k__BackingField: 4
           <Delay>k__BackingField: 0.2
-          <Mult>k__BackingField: 100
+          <Mult>k__BackingField: 0
         - name: Attack 3
           <Amount>k__BackingField: 100
           <Damage>k__BackingField: 1
           <Stun>k__BackingField: 0
           <Ticks>k__BackingField: 4
           <Delay>k__BackingField: 0.2
-          <Mult>k__BackingField: 100
-    - rid: 6902828046615052381
-      type: {class: StatusLightningDamageData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: StatusLightningDamageData
-        repeatData: 0
-        attackData:
-        - name: Attack 1
-          <Amount>k__BackingField: 100
-          <Damage>k__BackingField: 2
-          <Stun>k__BackingField: 0
-          <Ticks>k__BackingField: 2
-          <Delay>k__BackingField: 0.5
-          <Count>k__BackingField: 3
-          <Radius>k__BackingField: 15
-          <WhatIsDamageable>k__BackingField:
-            serializedVersion: 2
-            m_Bits: 2048
-        - name: Attack 2
-          <Amount>k__BackingField: 100
-          <Damage>k__BackingField: 2
-          <Stun>k__BackingField: 0
-          <Ticks>k__BackingField: 2
-          <Delay>k__BackingField: 0.5
-          <Count>k__BackingField: 3
-          <Radius>k__BackingField: 15
-          <WhatIsDamageable>k__BackingField:
-            serializedVersion: 2
-            m_Bits: 2048
-        - name: Attack 3
-          <Amount>k__BackingField: 100
-          <Damage>k__BackingField: 2
-          <Stun>k__BackingField: 0
-          <Ticks>k__BackingField: 2
-          <Delay>k__BackingField: 0.5
-          <Count>k__BackingField: 3
-          <Radius>k__BackingField: 15
-          <WhatIsDamageable>k__BackingField:
-            serializedVersion: 2
-            m_Bits: 2048
+          <Mult>k__BackingField: 0

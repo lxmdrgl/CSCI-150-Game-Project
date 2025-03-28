@@ -16,6 +16,7 @@ public class InputMenuManager : MonoBehaviour
     private PlayerInput playerInput1;
     private PlayerInput playerInput2;
     public int playerIndex;
+    [SerializeField] private GameObject inputMenuButton;
 
     public event Action<int> OnButtonClickedEvent;
 
@@ -57,6 +58,8 @@ public class InputMenuManager : MonoBehaviour
     public void OpenMenu()
     {
         Pause();
+        playerInput1.enabled = false;
+        playerInput2.enabled = false;
     }
 
     public void OnButtonClicked(int index)
@@ -64,6 +67,8 @@ public class InputMenuManager : MonoBehaviour
         Unpause();
         playerIndex = index;
         Debug.Log("Button clicked: " + index);
+        playerInput1.enabled = true;
+        playerInput2.enabled = true;
         OnButtonClickedEvent?.Invoke(index);
     }
 
@@ -75,11 +80,11 @@ public class InputMenuManager : MonoBehaviour
 
         if (playerInput1 != null)
         {
-            playerInput1.SwitchCurrentActionMap("UI");
+            // playerInput1.SwitchCurrentActionMap("UI");
         }
         if (playerInput2 != null)
         {
-            playerInput2.SwitchCurrentActionMap("UI");
+            // playerInput2.SwitchCurrentActionMap("UI");
         }
 
         OpenMainMenu();
@@ -117,6 +122,7 @@ public class InputMenuManager : MonoBehaviour
             {
                 InputHandler2.UseUpgradeOpenInput();
             } */
+            EventSystem.current.SetSelectedGameObject(inputMenuButton);
         }
 
         private void CloseAllMenus()

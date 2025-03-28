@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 namespace Game.CoreSystem
 {
@@ -21,6 +23,8 @@ namespace Game.CoreSystem
         // public GameObject healthBar;
 
         public event Action OnDeath;
+
+        public int Source;
     
         public void Die()
         {
@@ -58,6 +62,17 @@ namespace Game.CoreSystem
                         deathScreen.transform.GetChild(0).gameObject.SetActive(true);
                     }
                     Time.timeScale = 0;
+                }
+            }
+            else
+            {
+                if (Source == 0)
+                {
+                    PlayerPrefs.SetInt("player1Kills", PlayerPrefs.GetInt("player1Kills") + 1);
+                }
+                else if (Source == 1)
+                {
+                    PlayerPrefs.SetInt("player2Kills", PlayerPrefs.GetInt("player2Kills") + 1);
                 }
             }
             // Invoke Boss Death Portal

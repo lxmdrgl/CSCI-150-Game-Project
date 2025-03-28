@@ -9,6 +9,8 @@ namespace Game.CoreSystem
     public class StatusDamageReceiver : CoreComponent, IStatusDamageable
     {
         private Stats stats;
+        private DamageReceiver damageReceiver;
+        private StunDamageReceiver stunDamageReceiver;
 
         private List<StatusData> statusEffects = new List<StatusData>();
 
@@ -62,7 +64,7 @@ namespace Game.CoreSystem
                 index = statusEffects.FindIndex(s => s.GetType() == data.GetType());
 
                 UnityEngine.Debug.Log($"Apply status: {index} {data.GetType()}");
-                statusEffects[index].ApplyStatus(stats, () => RemoveStatus(data));
+                statusEffects[index].ApplyStatus(stats, damageReceiver, stunDamageReceiver, () => RemoveStatus(data));
             }
         }
 
@@ -80,6 +82,8 @@ namespace Game.CoreSystem
             base.Awake();
 
             stats = core.GetCoreComponent<Stats>();
+            damageReceiver = core.GetCoreComponent<DamageReceiver>();
+            stunDamageReceiver = core.GetCoreComponent<StunDamageReceiver>();
         }
     }
 }

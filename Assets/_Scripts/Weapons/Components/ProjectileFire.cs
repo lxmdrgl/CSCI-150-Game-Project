@@ -22,7 +22,7 @@ namespace Game.Weapons.Components
 
         private void HandleSpawnProjectile(Projectile projectile)
         {
-            projectile.FireProjectile(currentAttackData, stats.Attack, movement.FacingDirection, statusData);
+            projectile.FireProjectile(currentAttackData, stats.Attack, movement.FacingDirection, statusData, Core.Root);
             if (statusData != null)
             {
                 // statusData = null;

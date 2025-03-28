@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Game.Combat.Damage;
 using Game.CoreSystem;
 using UnityEngine;
 
@@ -28,9 +29,9 @@ namespace Game.Combat.Status
             WhatIsDamageable = whatIsDamageable;
         }
 
-        public override void ApplyStatus(Stats stats, Action onCompleteCallback)
+        public override void ApplyStatus(Stats stats, DamageReceiver damageReceiver, StunDamageReceiver stunDamageReceiver, Action onCompleteCallback)
         {
-            base.ApplyStatus(stats, onCompleteCallback);
+            base.ApplyStatus(stats, damageReceiver, stunDamageReceiver, onCompleteCallback);
 
             OnComplete = onCompleteCallback;
 
@@ -62,7 +63,8 @@ namespace Game.Combat.Status
         {
             List<Stats> currentStats = new List<Stats>{Stats};
 
-            currentStats[0].Health.Decrease(Damage);
+            // currentStats[0].Health.Decrease(Damage);
+            DamageReceiver.Damage(new DamageData(Damage, Source));
             currentStats[0].Stun.Decrease(Stun);
             Debug.Log($"Apply Lightning status first: {Damage}, {Stun}");
 
@@ -93,7 +95,9 @@ namespace Game.Combat.Status
                     yield return new WaitForSeconds(0.2f);
 
                     Stats newStats = nearestTarget.gameObject.GetComponentInChildren<Stats>();
-                    newStats.Health.Decrease(Damage);
+                    DamageReceiver newDamageReceiever = nearestTarget.gameObject.GetComponentInChildren<DamageReceiver>();
+                    // newStats.Health.Decrease(Damage);
+                    newDamageReceiever.Damage(new DamageData(Damage, Source));
                     newStats.Stun.Decrease(Stun);
                     currentPosition = newStats.transform.position;
                     currentStats.Add(newStats);

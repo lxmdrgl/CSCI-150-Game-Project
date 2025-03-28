@@ -47,6 +47,7 @@ namespace Game.Projectiles
         private int facingDirection;
         float totalDamage;
         float totalStun;
+        GameObject parent;
 
         StatusData statusData;
         private void Start()
@@ -186,8 +187,8 @@ namespace Game.Projectiles
 
         private void HandleDamage(Collider2D[] colliders)
         {
-            bool tryDamage = TryDamage(colliders, new DamageData(totalDamage, gameObject), out _); 
-            bool tryStun = TryStunDamage(colliders, new Combat.StunDamage.StunDamageData(totalStun, gameObject), out _); 
+            bool tryDamage = TryDamage(colliders, new DamageData(totalDamage, parent), out _); 
+            bool tryStun = TryStunDamage(colliders, new Combat.StunDamage.StunDamageData(totalStun, parent), out _); 
             /* if (fireStatus != null)
             {
                 bool tryFireStatus = TryStatus(colliders, fireStatus, out _);
@@ -298,7 +299,7 @@ namespace Game.Projectiles
             return true;
         }
 
-        public void FireProjectile(AttackProjectileFire fireData, float attack, int facingDirection, StatusData statusData)
+        public void FireProjectile(AttackProjectileFire fireData, float attack, int facingDirection, StatusData statusData, GameObject parent)
         {
             this.damage = fireData.damage;
             this.stun = fireData.stun;
@@ -319,6 +320,7 @@ namespace Game.Projectiles
             this.attack = attack;
             this.facingDirection = facingDirection;
             this.statusData = statusData;
+            this.parent = parent;
         }
     }
 

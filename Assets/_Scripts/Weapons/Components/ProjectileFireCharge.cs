@@ -29,7 +29,7 @@ namespace Game.Weapons.Components
                 chargeAmount = charge.TakeFinalChargeReading() - 1;
             } 
             
-            projectile.FireProjectile(currentAttackData.ProjectileFires[chargeAmount], stats.Attack, movement.FacingDirection, statusData);
+            projectile.FireProjectile(currentAttackData.ProjectileFires[chargeAmount], stats.Attack, movement.FacingDirection, statusData, Core.Root);
             if (statusData != null)
             {
                 // statusData = null;

@@ -40,7 +40,7 @@ namespace Game.CoreSystem.StatsSystem
         }
 
         public void Decrease(float amount) {
-            damageTaken = amount;
+            damageTaken = Mathf.Min(amount, CurrentValue);
             CurrentValue -= amount;    
             OnValueChange?.Invoke();
             // OnValueChangeFloat?.Invoke(amount);
