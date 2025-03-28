@@ -253,6 +253,8 @@ public class LevelGenerator : MonoBehaviour
                 }
                 
                 if (numTrials > maxTrials) { // fork is a failure need to retry parent
+                    root.listTriedRooms.Clear(); // chatgpt logical error
+
                     if (root.parent == null) // end case reached start room
                     {
                         UnityEngine.Debug.LogError("No permutation of map possible for: " + roomMap.name);
@@ -264,8 +266,9 @@ public class LevelGenerator : MonoBehaviour
                         DestroyPath(root);
 
                         await spawnAllRooms(root.parent);
-                        return false;
                     }
+
+                    return false;
                 }
             }
             await spawnAllRooms(currNode.children[0]);
@@ -346,19 +349,19 @@ public class LevelGenerator : MonoBehaviour
         {
             return;
         } 
-        else
-        {
-            if (root.roomObject != null) 
-            {
-                UnityEngine.Debug.LogError("Deleting: " + root.name);
-                DestroyImmediate(root.roomObject);
-                roomNumber--;
-                DeleteFreeRooms();
-            } 
-        }
-
+        
+        // Recursively delete child rooms first
         foreach(RoomNode childNode in root.children) {
             DestroyPath(childNode);
+        }
+
+        // Decrease room count when deleting a room
+        if (root.roomObject != null) 
+        {
+            UnityEngine.Debug.LogError("Deleting: " + root.name);
+            DestroyImmediate(root.roomObject);
+            roomNumber--;
+            DeleteFreeRooms();
         }
     }
 
