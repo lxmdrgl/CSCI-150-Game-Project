@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Game.Combat.Damage;
+using Game.Combat.StunDamage;
 using Game.CoreSystem;
 using UnityEngine;
 
@@ -65,7 +66,8 @@ namespace Game.Combat.Status
 
             // currentStats[0].Health.Decrease(Damage);
             DamageReceiver.Damage(new DamageData(Damage, Source));
-            currentStats[0].Stun.Decrease(Stun);
+            StunDamageReceiver.DamageStun(new StunDamageData(Damage, Source));
+            // currentStats[0].Stun.Decrease(Stun);
             Debug.Log($"Apply Lightning status first: {Damage}, {Stun}");
 
             Vector2 currentPosition = currentStats[0].transform.position;
@@ -96,6 +98,7 @@ namespace Game.Combat.Status
 
                     Stats newStats = nearestTarget.gameObject.GetComponentInChildren<Stats>();
                     DamageReceiver newDamageReceiever = nearestTarget.gameObject.GetComponentInChildren<DamageReceiver>();
+                    StunDamageReceiver newStunDamageReceiever = nearestTarget.gameObject.GetComponentInChildren<StunDamageReceiver>();
                     // newStats.Health.Decrease(Damage);
                     newDamageReceiever.Damage(new DamageData(Damage, Source));
                     newStats.Stun.Decrease(Stun);

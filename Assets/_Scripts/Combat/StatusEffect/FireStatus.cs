@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Game.Combat.Damage;
+using Game.Combat.StunDamage;
 using Game.CoreSystem;
 using UnityEngine;
 
@@ -30,8 +31,9 @@ namespace Game.Combat.Status
 
             float newMult = 1f + (Count * Mult / 100f);
             DamageReceiver.Damage(new DamageData(Damage * newMult, Source));
+            StunDamageReceiver.DamageStun(new StunDamageData(Damage * newMult, Source));
             // Stats.Health.Decrease(Damage * newMult);
-            Stats.Stun.Decrease(Stun * newMult);
+            // Stats.Stun.Decrease(Stun * newMult);
             Count = 0;
             Debug.Log($"Apply Fire status first: {Damage}, {Stun}, {newMult}, {Count}");
 
@@ -49,8 +51,9 @@ namespace Game.Combat.Status
 
                 float newMult = 1f + (Count * Mult / 100f);
                 DamageReceiver.Damage(new DamageData(Damage * newMult, Source));
+                StunDamageReceiver.DamageStun(new StunDamageData(Damage * newMult, Source));
                 // Stats.Health.Decrease(Damage * newMult);
-                Stats.Stun.Decrease(Stun * newMult);
+                // Stats.Stun.Decrease(Stun * newMult);
                 Debug.Log($"Apply Fire status time: {Damage}, {Stun}, {newMult}, {Count}, t{index}");
             }
             

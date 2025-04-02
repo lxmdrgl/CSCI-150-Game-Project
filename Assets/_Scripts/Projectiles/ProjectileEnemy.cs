@@ -1,5 +1,6 @@
 using UnityEngine;
 using Game.CoreSystem;
+// using System.Numerics;
 
 namespace Game.Projectiles
 {
@@ -30,6 +31,13 @@ namespace Game.Projectiles
         bool hasGravity;
         string projectileType;
         public float startingRotation;
+
+        [SerializeField] private bool explosive;
+        [SerializeField] private float explosionTimer;
+        [SerializeField] private float explosionRadius;
+        private bool hasExploded = false;
+        private bool startTimer = false;
+        private float startTime = 0f;
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -76,19 +84,48 @@ namespace Game.Projectiles
                 // Debug.Log("damageHit: " + damageHit.gameObject.name + " " + damageHit.gameObject.GetComponentInChildren<DamageReceiver>().CanTakeDamage);
                 if (damageHit /* && damageHit.gameObject.GetComponentInChildren<DamageReceiver>().CanTakeDamage */)
                 {
-                    damageScript.HandleCollision(damageHit);
-                    Destroy(gameObject);
+                    if (explosive)
+                    {
+                        startTimer = true;
+                        startTime = Time.time;
+                        rb.gravityScale = 0f;
+                        rb.linearVelocity = Vector2.zero;
+                        rb.freezeRotation = true;
+                    }
+                    else
+                    {
+                        damageScript.HandleCollision(damageHit);
+                        Destroy(gameObject);
+                    }
                 }
 
                 if (groundHit)
                 {
-                    hasHitGround = true;
-                    rb.gravityScale = 0f;
-                    rb.linearVelocity = Vector2.zero;
-                    Destroy(gameObject, 1.0f);
+                    if (explosive)
+                    {
+                        startTimer = true;
+                        startTime = Time.time;
+                        rb.gravityScale = 0f;
+                        rb.linearVelocity = Vector2.zero;
+                        rb.freezeRotation = true;
+                    }
+                    else
+                    {
+                        hasHitGround = true;
+                        rb.gravityScale = 0f;
+                        rb.linearVelocity = Vector2.zero;
+                        rb.freezeRotation = true;
+                        Destroy(gameObject, 1.0f);
+                    }
                 }
 
-                if(hasGravity)
+                if (!hasExploded && startTimer && Time.time - startTime >= explosionTimer)
+                {
+                    Explode();
+                    hasExploded = true;
+                }
+
+                if (hasGravity)
                 {
                     if (Mathf.Abs(xStartPos - transform.position.x) >= travelDistance && !isGravityOn)
                     {
@@ -97,6 +134,30 @@ namespace Game.Projectiles
                     }
                 }
             }        
+        }
+
+        private void Explode()
+        {
+            Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, explosionRadius, whatIsPlayer);
+
+            if (hitObjects.Length > 0)
+            {
+                foreach (Collider2D hitObject in hitObjects)
+                {
+                    float direction = transform.position.x - hitObject.transform.position.x;
+                    if (direction > 0)
+                    {
+                        startingRotation = 180f;
+                    }
+                    else
+                    {
+                        startingRotation = 0f;
+                    }
+                    damageScript.HandleCollision(hitObject);
+                    Debug.Log("Explosive rotation: " + startingRotation);
+                }
+            }
+            Destroy(gameObject);
         }
 
         public void FireProjectile(float speed, float travelDistance, Vector2 target, string projectileType, float startingRotation, float gravity)

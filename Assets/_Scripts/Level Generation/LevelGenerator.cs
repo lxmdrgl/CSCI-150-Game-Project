@@ -726,7 +726,7 @@ public class LevelGenerator : MonoBehaviour
         // Check if there are any players
         if (PlayerInput.all.Count == 0)
         {
-            UnityEngine.Debug.LogWarning("No players available to assign the device.");
+            // UnityEngine.Debug.LogWarning("No players available to assign the device.");
             return;
         }
 

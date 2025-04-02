@@ -22,7 +22,7 @@ namespace Game.Utilities
                 return true;
             }
 
-            Transform currTransform = gameObject.transform;
+            /* Transform currTransform = gameObject.transform;
             Debug.Log("Start combat damage transform: " + currTransform);
             while (gameObject.transform != null)
             {
@@ -34,7 +34,7 @@ namespace Game.Utilities
                 }
                 currTransform = currTransform.parent;
                 Debug.Log("Loop combat damage transform: " + currTransform);
-            }
+            } */
 
             return false;
         }

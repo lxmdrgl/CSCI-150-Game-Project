@@ -115,10 +115,10 @@ public class PlayerAttackState : PlayerActionState
     {
         base.Enter();
 
-        weapon.EventHandler.OnFinish += HandleFinish;
-        weapon.EventHandler.OnFlipSetActive += HandleFlipSetActive;
-        weapon.EventHandler.OnInterruptableSetActive += HandleInterruptableSetActive;
-        weapon.EventHandler.OnAttackActionSetActive += HandleAttackActionSetActive;
+        // weapon.EventHandler.OnFinish += HandleFinish;
+        // weapon.EventHandler.OnFlipSetActive += HandleFlipSetActive;
+        // weapon.EventHandler.OnInterruptableSetActive += HandleInterruptableSetActive;
+        // weapon.EventHandler.OnAttackActionSetActive += HandleAttackActionSetActive;
 
         weaponGenerator.OnWeaponGenerating += HandleWeaponGenerating;
         
@@ -143,10 +143,10 @@ public class PlayerAttackState : PlayerActionState
     {
         base.Exit();
 
-        weapon.EventHandler.OnFinish -= HandleFinish;
-        weapon.EventHandler.OnFlipSetActive -= HandleFlipSetActive;
-        weapon.EventHandler.OnInterruptableSetActive -= HandleInterruptableSetActive;
-        weapon.EventHandler.OnAttackActionSetActive -= HandleAttackActionSetActive;
+        // weapon.EventHandler.OnFinish -= HandleFinish;
+        // weapon.EventHandler.OnFlipSetActive -= HandleFlipSetActive;
+        // weapon.EventHandler.OnInterruptableSetActive -= HandleInterruptableSetActive;
+        // weapon.EventHandler.OnAttackActionSetActive -= HandleAttackActionSetActive;
 
         weaponGenerator.OnWeaponGenerating -= HandleWeaponGenerating;
         if (inputIndex == (int)CombatInputs.primarySkillPress || inputIndex == (int)CombatInputs.primarySkillHold) {

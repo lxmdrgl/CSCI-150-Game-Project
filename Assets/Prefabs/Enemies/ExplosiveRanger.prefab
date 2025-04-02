@@ -345,10 +345,15 @@ MonoBehaviour:
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 30
     damageTaken: 0
+    damageAmount: 0
   <Stun>k__BackingField:
     <MaxValue>k__BackingField: 30
     damageTaken: 0
+    damageAmount: 0
+  <Status>k__BackingField: 0
   <Attack>k__BackingField: 100
+  <Bonus>k__BackingField: 0
+  <Defense>k__BackingField: 0
   stunRecoveryRate: 5
   filledBar: {fileID: 0}
   gradient:
@@ -834,6 +839,10 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 1e91f6d6173e5f146bc14c8c6503387c, type: 2}
   playerCheck: {fileID: 3755304697358755252}
   playersInRange: []
+  playerPosition1: {fileID: 0}
+  playerPosition2: {fileID: 0}
+  targetPlayer: {fileID: 0}
+  isPlayerInPursuitRange: 0
   pursuitRangeCollider: {fileID: 6136554695012746107}
   UniqueId: 
   idleStateData: {fileID: 11400000, guid: 8adebb8c913174945ae5da73791fdf82, type: 2}
@@ -845,7 +854,7 @@ MonoBehaviour:
   stunStateData: {fileID: 11400000, guid: 3447c9b47ec6050428cc36af6a6795bc, type: 2}
   deadStateData: {fileID: 11400000, guid: e6819adccd070ae46bb7261c507fa080, type: 2}
   cooldownStateData: {fileID: 11400000, guid: 5fc4573a317008e4a8cb7268a26c41f3, type: 2}
-  rangedAttackStateData: {fileID: 11400000, guid: 668c3cd35ae032a49a2f973a49573cf1, type: 2}
+  rangedAttackStateData: {fileID: 11400000, guid: 06bca2bcf4245b24485e475b49c4345b, type: 2}
   rangedAttackPosition: {fileID: 8523294753171614164}
   radialRangedAttackPosition: {fileID: 8179049672531530639}
 --- !u!50 &9113077644204671259
@@ -1447,3 +1456,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f827444f74f6545b66ca62d2192dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Source: 0

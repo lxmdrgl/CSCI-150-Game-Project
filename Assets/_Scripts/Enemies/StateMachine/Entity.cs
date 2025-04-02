@@ -174,7 +174,7 @@ public class Entity : MonoBehaviour, IDataPersistence
     private void OnDamageTaken() 
     {
         // Damage Numbers
-        int damageAmount = Mathf.RoundToInt(stats.Health.damageTaken);
+        int damageAmount = Mathf.RoundToInt(stats.Health.damageAmount);
         Vector3 damageNumPos = gameObject.GetComponentInChildren<Canvas>().transform.position;
         damageNumPos.y -= 0.5f;
         damageNumPos.x += UnityEngine.Random.Range(-0.5f, 0.5f); // Random x offset

@@ -49,7 +49,7 @@ namespace Game.CoreSystem
             if (CanTakeDamage) {
                 stats.Health.Decrease(data.Amount);
                 PlayerInput input = data.Source.GetComponentInChildren<PlayerInput>();
-                Debug.Log($"Deal {data.Amount} damage, Source: {input.playerIndex}, {CanTakeDamage}");
+                Debug.Log($"Deal {data.Amount} damage, {CanTakeDamage}");
 
                 if (input != null)
                 {

@@ -14,6 +14,7 @@ namespace Game.CoreSystem.StatsSystem
         [field: SerializeField] public float MaxValue { get; set; }
 
         public float damageTaken;
+        public float damageAmount;
 
         public float CurrentValue
         {
@@ -40,6 +41,7 @@ namespace Game.CoreSystem.StatsSystem
         }
 
         public void Decrease(float amount) {
+            damageAmount = amount;
             damageTaken = Mathf.Min(amount, CurrentValue);
             CurrentValue -= amount;    
             OnValueChange?.Invoke();
