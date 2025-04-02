@@ -237,7 +237,7 @@ public class LevelGenerator : MonoBehaviour
             int numTrials = 1;
             int maxTrials = 4;
 
-            while (true) { 
+            while (numTrials <= maxTrials) { 
                 if (await TryNextRoom(currNode, 0, exitIndex) && 
                     await TryNextRoom(currNode, 1, 1 - exitIndex)) // success
                 { 
@@ -251,26 +251,25 @@ public class LevelGenerator : MonoBehaviour
                     DestroyPath(currNode.children[0]);
                     DestroyPath(currNode.children[1]);
                 }
+            }
                 
-                if (numTrials > maxTrials) { // fork is a failure need to retry parent
-                    root.listTriedRooms.Clear(); // chatgpt logical error
+            if (numTrials > maxTrials) { // fork is a failure need to retry parent
+                root.listTriedRooms.Clear(); // chatgpt logical error
 
-                    if (root.parent == null) // end case reached start room
-                    {
-                        UnityEngine.Debug.LogError("No permutation of map possible for: " + roomMap.name);
-                        return false;
-                    } 
-                    else // retry parent
-                    {
-                        UnityEngine.Debug.LogError("Retrying fork, deleting " + root.name);   
-                        DestroyPath(root);
-
-                        await spawnAllRooms(root.parent);
-                    }
-
+                if (root.parent == null) // end case reached start room
+                {
+                    UnityEngine.Debug.LogError("No permutation of map possible for: " + roomMap.name);
                     return false;
+                } 
+                else // retry parent
+                {
+                    UnityEngine.Debug.LogError("Retrying fork, deleting " + root.name);   
+                    DestroyPath(root);
+
+                    return await spawnAllRooms(root.parent);
                 }
             }
+            
             await spawnAllRooms(currNode.children[0]);
             await spawnAllRooms(currNode.children[1]);
         } 
@@ -397,6 +396,16 @@ public class LevelGenerator : MonoBehaviour
         return false; // Room is not part of the hierarchy
     }
 
+
+    GameObject spawnRoom(RoomNode r, RoomManager randRoom) {
+        r.roomObject = Instantiate(randRoom.gameObj, new Vector3(0, 0, 0), transform.rotation); 
+        
+        r.roomObject.name = "Room_" + roomNumber++;
+        r.roomObject.GetComponent<RoomManager>().roomCollider.enabled = true;
+        
+        return r.roomObject;
+    }
+    
     List<RoomManager> loadRoomList(String roomType) {
         List<RoomManager> roomList = new List<RoomManager>();
         
@@ -406,15 +415,6 @@ public class LevelGenerator : MonoBehaviour
         }
 
         return roomList;
-    }
-
-    GameObject spawnRoom(RoomNode r, RoomManager randRoom) {
-        r.roomObject = Instantiate(randRoom.gameObj, new Vector3(0, 0, 0), transform.rotation); 
-        
-        r.roomObject.name = "Room_" + roomNumber++;
-        r.roomObject.GetComponent<RoomManager>().roomCollider.enabled = true;
-        
-        return r.roomObject;
     }
 
     async Task<bool> ConnectRooms(RoomNode currNode, int exitIdx, RoomNode newNode, int entranceIdx)
