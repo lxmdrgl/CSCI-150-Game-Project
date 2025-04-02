@@ -5,16 +5,16 @@ public class Chest : MonoBehaviour
 {
     public Animator animator;
     private bool isOpened = false;
-
+    public GameObject upgradePrefab;
     void Start()
     {
-        if (animator == null)
-            animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!isOpened && other.CompareTag("Player"))
+        Debug.Log(other.name);
+        if (!isOpened)
         {
             OpenChest();
         }
@@ -25,10 +25,9 @@ public class Chest : MonoBehaviour
         isOpened = true;
         animator.SetTrigger("Open");
 
-        Transform upgrade = transform.GetChild(0);
-        if (upgrade != null)
+        if (upgradePrefab != null)
         {
-            upgrade.gameObject.SetActive(true);
+            Instantiate(upgradePrefab, transform.position, Quaternion.identity);
         }
         StartCoroutine(DisappearAfterAnimation());
     }
