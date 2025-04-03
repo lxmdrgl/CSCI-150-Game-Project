@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Game.Combat.Damage;
+using Unity.VisualScripting;
 
 namespace Game.Utilities
 {
@@ -22,19 +23,23 @@ namespace Game.Utilities
                 return true;
             }
 
-            /* Transform currTransform = gameObject.transform;
+            // If we don't find a damageable component on the gameObject, we need to check the parent transforms.
+            Transform currTransform = gameObject.transform;
+            Transform oldTransform = currTransform;
             Debug.Log("Start combat damage transform: " + currTransform);
-            while (gameObject.transform != null)
+            while (currTransform != null)
             {
-                if (currTransform.TryGetComponentInChildren(out damageable))
-                {
-                    Debug.Log("Deal combat damage transform: " + currTransform);
-                    damageable.Damage(damageData);
-                    return true;
-                }
+                oldTransform = currTransform;
                 currTransform = currTransform.parent;
                 Debug.Log("Loop combat damage transform: " + currTransform);
-            } */
+            }
+
+            if (oldTransform.gameObject.TryGetComponentInChildren(out damageable))
+            {
+                Debug.Log("Deal combat damage transform: " + currTransform);
+                damageable.Damage(damageData);
+                return true;
+            }
 
             return false;
         }
