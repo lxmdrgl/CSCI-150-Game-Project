@@ -88,9 +88,9 @@ namespace Game.Projectiles
                     {
                         startTimer = true;
                         startTime = Time.time;
-                        rb.gravityScale = 0f;
-                        rb.linearVelocity = Vector2.zero;
-                        rb.freezeRotation = true;
+                        // rb.gravityScale = 0f;
+                        // rb.linearVelocity = Vector2.zero;
+                        // rb.freezeRotation = true;
                     }
                     else
                     {
@@ -105,6 +105,7 @@ namespace Game.Projectiles
                     {
                         startTimer = true;
                         startTime = Time.time;
+                        hasHitGround = true;
                         rb.gravityScale = 0f;
                         rb.linearVelocity = Vector2.zero;
                         rb.freezeRotation = true;
@@ -119,12 +120,6 @@ namespace Game.Projectiles
                     }
                 }
 
-                if (!hasExploded && startTimer && Time.time - startTime >= explosionTimer)
-                {
-                    Explode();
-                    hasExploded = true;
-                }
-
                 if (hasGravity)
                 {
                     if (Mathf.Abs(xStartPos - transform.position.x) >= travelDistance && !isGravityOn)
@@ -133,7 +128,12 @@ namespace Game.Projectiles
                         rb.gravityScale = gravity;
                     }
                 }
-            }        
+            }     
+            if (!hasExploded && startTimer && Time.time - startTime >= explosionTimer)
+            {
+                Explode();
+                hasExploded = true;
+            }   
         }
 
         private void Explode()
