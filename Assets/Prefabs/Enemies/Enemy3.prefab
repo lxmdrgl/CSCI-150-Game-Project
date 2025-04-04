@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 6023186084007274103}
   - component: {fileID: 6018641023207751906}
   - component: {fileID: 8152913140020985367}
+  - component: {fileID: 4130148945030326383}
   m_Layer: 11
   m_Name: Combat
   m_TagString: Untagged
@@ -259,6 +260,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f129dba50ebac8448b82f69cf27910a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4130148945030326383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889751854183777090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf85a92b0095ae041b50ddcf3e166061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2165807423997325925
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,10 +319,15 @@ MonoBehaviour:
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 50
     damageTaken: 0
+    damageAmount: 0
   <Stun>k__BackingField:
     <MaxValue>k__BackingField: 30
     damageTaken: 0
+    damageAmount: 0
+  <Status>k__BackingField: 100
   <Attack>k__BackingField: 0
+  <Bonus>k__BackingField: 0
+  <Defense>k__BackingField: 0
   stunRecoveryRate: 5
   filledBar: {fileID: 0}
   gradient:
@@ -944,6 +962,10 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 7a9ca2b5c36c30c469795c667b005412, type: 2}
   playerCheck: {fileID: 3755304697358755252}
   playersInRange: []
+  playerPosition1: {fileID: 0}
+  playerPosition2: {fileID: 0}
+  targetPlayer: {fileID: 0}
+  isPlayerInPursuitRange: 0
   pursuitRangeCollider: {fileID: 4734574683613811972}
   UniqueId: 
   idleStateData: {fileID: 11400000, guid: 2ee38f026771ef8469cfd9e20f0f32f7, type: 2}
@@ -1418,3 +1440,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f827444f74f6545b66ca62d2192dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Source: 0
