@@ -35,6 +35,7 @@ namespace Game.Projectiles
         [SerializeField] private bool explosive;
         [SerializeField] private float explosionTimer;
         [SerializeField] private float explosionRadius;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         private bool hasExploded = false;
         private bool startTimer = false;
         private float startTime = 0f;
@@ -44,6 +45,12 @@ namespace Game.Projectiles
             rb.gravityScale = 0.0f;
             isGravityOn = false;
             xStartPos = transform.position.x;
+
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.transform.localScale = new Vector3(0f, 0f, 1f);
+            }
+            
 
             if(projectileType == "radialWithGravity")
             {
@@ -89,8 +96,13 @@ namespace Game.Projectiles
                         startTimer = true;
                         startTime = Time.time;
                         // rb.gravityScale = 0f;
-                        // rb.linearVelocity = Vector2.zero;
+                        rb.linearVelocity = new Vector2(0f, rb.linearVelocityY);
                         // rb.freezeRotation = true;
+
+                        if (spriteRenderer != null)
+                        {
+                            spriteRenderer.transform.localScale = new Vector3(explosionRadius * 2f, explosionRadius * 2f, 1f);
+                        }
                     }
                     else
                     {
@@ -109,10 +121,11 @@ namespace Game.Projectiles
                         rb.gravityScale = 0f;
                         rb.linearVelocity = Vector2.zero;
                         rb.freezeRotation = true;
-                    }
-                    else
-                    {
-                        hasHitGround = true;
+
+                        if (spriteRenderer != null)
+                        {
+                            spriteRenderer.transform.localScale = new Vector3(explosionRadius * 2f, explosionRadius * 2f, 1f);
+                        }
                         rb.gravityScale = 0f;
                         rb.linearVelocity = Vector2.zero;
                         rb.freezeRotation = true;

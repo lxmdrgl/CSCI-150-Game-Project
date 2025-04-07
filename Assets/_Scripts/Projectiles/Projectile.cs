@@ -25,6 +25,7 @@ namespace Game.Projectiles
         private Vector2 direction;
         private bool rotate;
         private bool pierce;
+        [SerializeField] private SpriteRenderer spriteRenderer;
         private bool explosive;
         private float explosiveRadius;
         private bool target;

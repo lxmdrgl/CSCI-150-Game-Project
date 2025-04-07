@@ -10,7 +10,7 @@ namespace Game.CoreSystem
     {
         SoundAnimationEventHandler AnimationEventHandler;
 
-        AudioPlayer audioPlayer;
+        AudioSource audioSource;
 
         [SerializeField] private List<AudioClip> footstepSounds;
         [SerializeField] private AudioClip jumpSound;
@@ -23,7 +23,7 @@ namespace Game.CoreSystem
                 return;
             } */
             Debug.Log("Footstep sound played.");
-            Debug.Log("audioPlayer: " + audioPlayer);
+            Debug.Log("audioPlayer: " + audioSource);
         }
         private void HandleJump()
         {
@@ -38,7 +38,7 @@ namespace Game.CoreSystem
         protected override void Awake()
         {
             AnimationEventHandler = GetComponentInParent<SoundAnimationEventHandler>();
-            audioPlayer = GameObject.FindGameObjectsWithTag("Audio")[0].GetComponent<AudioPlayer>();
+            audioSource = GetComponentInParent<AudioSource>();
         }
         protected void Start()
         {

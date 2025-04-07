@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour
 {
-    public AudioSource musicAudioSource;
-    public AudioSource effectAudioSource;
+    public AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 }

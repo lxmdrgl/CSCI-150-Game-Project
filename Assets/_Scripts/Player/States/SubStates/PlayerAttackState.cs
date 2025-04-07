@@ -40,7 +40,6 @@ public class PlayerAttackState : PlayerActionState
         weapon.EventHandler.OnFlipSetActive += HandleFlipSetActive;
         weapon.EventHandler.OnInterruptableSetActive += HandleInterruptableSetActive;
         weapon.EventHandler.OnAttackActionSetActive += HandleAttackActionSetActive;
-
     }
 
     private void HandleFlipSetActive(bool value)
@@ -113,14 +112,13 @@ public class PlayerAttackState : PlayerActionState
 
     public override void Enter()
     {
-        base.Enter();
-
-        // weapon.EventHandler.OnFinish += HandleFinish;
-        // weapon.EventHandler.OnFlipSetActive += HandleFlipSetActive;
-        // weapon.EventHandler.OnInterruptableSetActive += HandleInterruptableSetActive;
-        // weapon.EventHandler.OnAttackActionSetActive += HandleAttackActionSetActive;
-
+        weapon.EventHandler.OnFinish += HandleFinish;
+        weapon.EventHandler.OnFlipSetActive += HandleFlipSetActive;
+        weapon.EventHandler.OnInterruptableSetActive += HandleInterruptableSetActive;
+        weapon.EventHandler.OnAttackActionSetActive += HandleAttackActionSetActive;
         weaponGenerator.OnWeaponGenerating += HandleWeaponGenerating;
+
+        base.Enter();
         
         checkFlip = true;
         // canInterrupt = false;
@@ -141,14 +139,14 @@ public class PlayerAttackState : PlayerActionState
 
     public override void Exit()
     {
+        weapon.EventHandler.OnFinish -= HandleFinish;
+        weapon.EventHandler.OnFlipSetActive -= HandleFlipSetActive;
+        weapon.EventHandler.OnInterruptableSetActive -= HandleInterruptableSetActive;
+        weapon.EventHandler.OnAttackActionSetActive -= HandleAttackActionSetActive;
+        weaponGenerator.OnWeaponGenerating -= HandleWeaponGenerating;
+
         base.Exit();
 
-        // weapon.EventHandler.OnFinish -= HandleFinish;
-        // weapon.EventHandler.OnFlipSetActive -= HandleFlipSetActive;
-        // weapon.EventHandler.OnInterruptableSetActive -= HandleInterruptableSetActive;
-        // weapon.EventHandler.OnAttackActionSetActive -= HandleAttackActionSetActive;
-
-        weaponGenerator.OnWeaponGenerating -= HandleWeaponGenerating;
         if (inputIndex == (int)CombatInputs.primarySkillPress || inputIndex == (int)CombatInputs.primarySkillHold) {
             player.primarySkillTimeNotifier.Init(weapon.Data.AttackCooldown);
             // Debug.Log("Start primary skill cooldown: " + weapon.Data.AttackCooldown);
