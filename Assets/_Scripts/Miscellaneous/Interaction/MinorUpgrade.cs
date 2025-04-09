@@ -15,6 +15,9 @@ namespace Game.Interaction.Interactables
         [SerializeField] private SpriteRenderer spriteIcon;
         private Vector3 basePosition; // The position to bounce around
         private bool isBouncing = false;
+        public Material material;
+        public float hueSpeed = 0.1f;
+        private float hue;
         [SerializeField] private StatUpgradeDataSet statUpgradeDataSet;
 
         public StatUpgradeDataSet GetContext() => statUpgradeDataSet;
@@ -55,7 +58,13 @@ namespace Game.Interaction.Interactables
             basePosition = transform.position;
             StartCoroutine(ContinuousBounce());
         }
-
+        void Update()
+        {
+            hue += hueSpeed * Time.deltaTime;
+            if (hue > 1f) hue -= 1f;
+            material.SetFloat("_HueShift", hue);
+        }
+        
         private IEnumerator ContinuousBounce()
         {
             isBouncing = true;
