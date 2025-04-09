@@ -13,7 +13,8 @@ TagManager:
   - RoomCollider
   - PursuitRange
   - Projectile
-  - Audio
+  - Music
+  - SFX
   layers:
   - Default
   - TransparentFX
