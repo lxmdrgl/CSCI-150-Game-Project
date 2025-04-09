@@ -37,7 +37,7 @@ namespace Game.CoreSystem
 
         protected override void Awake()
         {
-            AnimationEventHandler = GetComponentInParent<SoundAnimationEventHandler>();
+            AnimationEventHandler = GetComponent<SoundAnimationEventHandler>();
             audioSource = GetComponent<AudioSource>();
         }
         protected void Start()
