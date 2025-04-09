@@ -1211,8 +1211,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf90bf20dd110c54da8b527572786f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footstepSounds: []
-  jumpSound: {fileID: 0}
+  footstepSounds:
+  - {fileID: 8300000, guid: c5175be124baecc46b4f3013171229dd, type: 3}
+  jumpSound: {fileID: 8300000, guid: c5175be124baecc46b4f3013171229dd, type: 3}
 --- !u!1 &4752368789924137004
 GameObject:
   m_ObjectHideFlags: 0
