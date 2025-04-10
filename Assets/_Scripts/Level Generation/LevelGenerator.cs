@@ -178,7 +178,7 @@ public class LevelGenerator : MonoBehaviour
 
         // create starting room and find room origin location
         GameObject newRoom = spawnRoom(roomMap, randRoom);
-        GameObject roomOrigin = GameObject.Find("RoomOrigin");
+        GameObject roomOrigin = GameObject.Find("PlayerOrigin");
         Transform roomTransform;
 
         if (levelOrigin != null && roomOrigin != null && newRoom != null) {
