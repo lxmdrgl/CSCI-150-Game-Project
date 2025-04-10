@@ -147,6 +147,9 @@ public class PlayerAttackState : PlayerActionState
 
         base.Exit();
 
+        weapon.Anim.SetBool("break", true);
+        HandleUseInput();
+
         if (inputIndex == (int)CombatInputs.primarySkillPress || inputIndex == (int)CombatInputs.primarySkillHold) {
             player.primarySkillTimeNotifier.Init(weapon.Data.AttackCooldown);
             // Debug.Log("Start primary skill cooldown: " + weapon.Data.AttackCooldown);
@@ -157,7 +160,6 @@ public class PlayerAttackState : PlayerActionState
 
         Debug.Log("Action hitbox Weapon exit");
         weapon.Exit();
-        
     }
 
     public bool CanAttack() 

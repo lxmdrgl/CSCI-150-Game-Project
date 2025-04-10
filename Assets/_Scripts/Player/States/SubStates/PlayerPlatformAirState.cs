@@ -27,7 +27,7 @@ public class PlayerPlatformAirState : PlayerAirState
     public override void LogicUpdate() {
 		// base.LogicUpdate();
 
-		CheckCoyoteTime();
+		// CheckCoyoteTime();
 
         xInput = player.InputHandler.NormInputX;
 		jumpInput = player.InputHandler.JumpInput;
@@ -136,10 +136,12 @@ public class PlayerPlatformAirState : PlayerAirState
 				else if(xInput == 0)
 				{
 					player.IdleState.SetDelayTime(0.1f);
+					player.JumpState.ResetAmountOfJumpsLeft();
 					stateMachine.ChangeState(player.IdleState);
 				} 
 				else if (xInput != 0) 
 				{
+					player.JumpState.ResetAmountOfJumpsLeft();
 					stateMachine.ChangeState(player.MoveState);
 				}
 			} else {

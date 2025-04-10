@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Rigidbody2D>k__BackingField: {fileID: 8851325382855593670}
   spriteIcon: {fileID: 5085274027199746271}
-  material: {fileID: 0}
+  material: {fileID: -876546973899608171, guid: 8f9adf74c63300641b3e92fc8f163069, type: 3}
   hueSpeed: 0.1
   statUpgradeDataSet: {fileID: 11400000, guid: 929614a4aba17b647a310f0bbfbe950a, type: 2}
 --- !u!50 &8851325382855593670
@@ -102,7 +102,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: -876546973899608171, guid: 8f9adf74c63300641b3e92fc8f163069, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -123,12 +123,12 @@ SpriteRenderer:
   m_SortingLayerID: -1910979831
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1329472449, guid: 577653c7bc490dc41accf019f8ad8080, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 179baeaf909ec9a4997444c726ba6ca4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.3333334, y: 1.3333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -173,7 +173,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.3333334, y: 1.3333334}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1.3333334, y: 1.3333334}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
