@@ -82,6 +82,7 @@ namespace Game.Weapons
             attackCounterResetTimeNotifier.Disable();
 
             Anim.SetBool("active", true);
+            Anim.SetBool("break", false);
             Anim.SetInteger("counter", currentAttackCounter);
 
             OnEnter?.Invoke();
