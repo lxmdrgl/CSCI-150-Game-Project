@@ -27,6 +27,7 @@ public class RoomManager : MonoBehaviour
     {
         entrances.Clear();
         exits.Clear();
+        enemySpawners.Clear();
         roomCollider = null;
 
 
@@ -39,6 +40,10 @@ public class RoomManager : MonoBehaviour
             else if (child.CompareTag("RoomExit")) // Ensure exit objects are tagged properly
             {
                 exits.Add(child.gameObject);
+            }
+            else if (child.CompareTag("EnemySpawner")) // Ensure exit objects are tagged properly
+            {
+                enemySpawners.Add(child.gameObject);
             }
 
             PolygonCollider2D collider = child.GetComponent<PolygonCollider2D>();
