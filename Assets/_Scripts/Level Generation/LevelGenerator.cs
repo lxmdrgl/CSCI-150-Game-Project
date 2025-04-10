@@ -496,22 +496,24 @@ public class LevelGenerator : MonoBehaviour
 
     #endregion SpawnRooms
 
+    #region SpawnEnemies
     bool spawnAllEnemies(RoomNode root) { 
-         RoomNode currNode = root; 
-         int randIndex = UnityEngine.Random.Range(0,2);
- 
-         if (currNode.children.Count == 0) {
-             return true;
-         } 
- 
-         foreach (RoomNode child in currNode.children) {
-             RoomManager childRoomManager = child.roomObject.GetComponent<RoomManager>();
-             childRoomManager.SpawnEnemies(); // Spawn enemies in the new room
-             spawnAllEnemies(child);
-         } 
- 
-         return true;
-     }
+        RoomNode currNode = root; 
+        int randIndex = UnityEngine.Random.Range(0,2);
+
+        if (currNode.children.Count == 0) {
+            return true;
+        } 
+
+        foreach (RoomNode child in currNode.children) {
+            RoomManager childRoomManager = child.roomObject.GetComponent<RoomManager>();
+            childRoomManager.SpawnEnemies(); // Spawn enemies in the new room
+            spawnAllEnemies(child);
+        } 
+
+        return true;
+    }
+    #endregion SpawnEnemies
 
     #region SpawnPlayer
 
