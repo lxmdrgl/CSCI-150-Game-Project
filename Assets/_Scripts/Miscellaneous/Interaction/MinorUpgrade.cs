@@ -62,7 +62,7 @@ namespace Game.Interaction.Interactables
         {
             hue += hueSpeed * Time.deltaTime;
             if (hue > 1f) hue -= 1f;
-            material.SetFloat("_HueShift", hue);
+            // material.SetFloat("_HueShift", hue);
         }
         
         private IEnumerator ContinuousBounce()
