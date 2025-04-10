@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using Game.CoreSystem;
+using UnityEngine;
 
 namespace Game.Weapons.Components
 {
     public class InputHold : WeaponComponent
     {
         private Animator anim;
+        private KnockBackReceiver knockbackReceiver;
 
         private bool input;
 
@@ -15,6 +17,18 @@ namespace Game.Weapons.Components
             base.HandleEnter();
 
             minHoldPassed = false;
+            anim.SetBool("hold", true);
+        }
+
+        protected override void HandleExit()
+        {
+            base.HandleExit();
+            anim.SetBool("hold", false);
+        }
+
+        private void HandleKnockbackActive()
+        {
+            anim.SetBool("break", true);
         }
 
         private void HandleCurrentInputChange(bool newInput)
@@ -50,9 +64,11 @@ namespace Game.Weapons.Components
             base.Awake();
 
             anim = GetComponentInChildren<Animator>();
+            knockbackReceiver = Core.GetCoreComponent<KnockBackReceiver>();
 
             weapon.OnCurrentInputChange += HandleCurrentInputChange;
             AnimationEventHandler.OnMinHoldPassed += HandleMinHoldPassed;
+            knockbackReceiver.OnKnockBackActive += HandleKnockbackActive;
         }
 
         protected override void OnDestroy()
