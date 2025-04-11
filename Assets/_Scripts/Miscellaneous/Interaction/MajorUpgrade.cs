@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using System.Collections;
+
 
 using Game.Weapons;
 
@@ -15,7 +17,11 @@ namespace Game.Interaction.Interactables
         // [SerializeField] private Bobber bobber;
         
         [SerializeField] private WeaponDataSet weaponDataSet;
-        
+        private Vector3 basePosition; // The position to bounce around
+        private bool isBouncing = false;
+        public Material material;
+        public float hueSpeed = 0.1f;
+        private float hue;
         public WeaponDataSet GetContext() => weaponDataSet;
         public void SetContext(WeaponDataSet context)
         {
@@ -53,6 +59,40 @@ namespace Game.Interaction.Interactables
                 return;
 
             // spriteIcon.sprite = weaponData.Icon;
+        }
+
+                private void Start()
+        {
+            // Set the base position as the final position after pop-out (set by Chest)
+            basePosition = transform.position;
+            StartCoroutine(ContinuousBounce());
+        }
+        void Update()
+        {
+            hue += hueSpeed * Time.deltaTime;
+            if (hue > 1f) hue -= 1f;
+            material.SetFloat("_HueShift", hue);
+        }
+        
+        private IEnumerator ContinuousBounce()
+        {
+            isBouncing = true;
+            float bounceHeight = 0.2f; // Adjust height of bounce
+            float bounceSpeed = 2f;    // Adjust speed of bounce
+            float time = 0f;
+
+            while (isBouncing) // Runs until the object is destroyed or stopped
+            {
+                time += Time.deltaTime * bounceSpeed;
+                float height = Mathf.Abs(Mathf.Sin(time)) * bounceHeight; // Smooth up-down motion
+                transform.position = basePosition + Vector3.up * height;
+                yield return null;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            isBouncing = false; // Ensures the coroutine stops when the object is destroyed
         }
     }
 }

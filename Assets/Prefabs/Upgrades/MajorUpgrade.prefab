@@ -50,6 +50,8 @@ MonoBehaviour:
   <Rigidbody2D>k__BackingField: {fileID: 8851325382855593670}
   spriteIcon: {fileID: 5085274027199746271}
   weaponDataSet: {fileID: 0}
+  material: {fileID: -876546973899608171, guid: 8f9adf74c63300641b3e92fc8f163069, type: 3}
+  hueSpeed: 0.1
 --- !u!50 &8851325382855593670
 Rigidbody2D:
   serializedVersion: 5
@@ -100,7 +102,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: -876546973899608171, guid: 8f9adf74c63300641b3e92fc8f163069, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -121,7 +123,7 @@ SpriteRenderer:
   m_SortingLayerID: -1910979831
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1910030903, guid: a943dd5336185fa43ab0ad9fdeb628fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c7ab0381015b4cf4fa9c0a799970336d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -170,7 +172,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.3333334, y: 1.3333334}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
