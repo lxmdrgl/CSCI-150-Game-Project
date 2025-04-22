@@ -24,6 +24,8 @@ namespace Game.CoreSystem
 
         public event Action OnDeath;
 
+        public event Action OnPlayerDeath;
+
         public int Source;
     
         public void Die()
@@ -55,13 +57,8 @@ namespace Game.CoreSystem
 
                 // If all players are dead, show the death screen
                 if (allPlayersDead)
-                {
-                    deathScreen = GameObject.FindGameObjectWithTag("Deathscreen");
-                    if (deathScreen != null)
-                    {
-                        deathScreen.transform.GetChild(0).gameObject.SetActive(true);
-                    }
-                    Time.timeScale = 0;
+                {   
+                    OnPlayerDeath?.Invoke();
                 }
             }
             else

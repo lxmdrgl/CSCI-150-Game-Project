@@ -119,6 +119,22 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &30966274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2822560048218542566, guid: 7b17d3ec01207d64184f480ce7405ff3, type: 3}
+  m_PrefabInstance: {fileID: 1302914794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &30966276 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 468814983782596756, guid: 7b17d3ec01207d64184f480ce7405ff3, type: 3}
+  m_PrefabInstance: {fileID: 1302914794}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30966274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &94121442 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 420101074536354539, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
@@ -244,6 +260,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92c439a80504d8440870ed47dde4a85a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &227826904 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9088834609520566884, guid: 7b17d3ec01207d64184f480ce7405ff3, type: 3}
+  m_PrefabInstance: {fileID: 1302914794}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &456413651 stripped
@@ -820,10 +847,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 468814983782596756, guid: 7b17d3ec01207d64184f480ce7405ff3, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 468814983782596756, guid: 7b17d3ec01207d64184f480ce7405ff3, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 227826904}
+    - target: {fileID: 468814983782596756, guid: 7b17d3ec01207d64184f480ce7405ff3, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 227826904}
+    - target: {fileID: 6468454859128659685, guid: 7b17d3ec01207d64184f480ce7405ff3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823887704825144744, guid: 7b17d3ec01207d64184f480ce7405ff3, type: 3}
+      propertyPath: menuFirst
+      value: 
+      objectReference: {fileID: 30966274}
     - target: {fileID: 7883538681597448593, guid: 7b17d3ec01207d64184f480ce7405ff3, type: 3}
       propertyPath: m_Name
       value: DeathScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 9088834609520566884, guid: 7b17d3ec01207d64184f480ce7405ff3, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9088834609520566884, guid: 7b17d3ec01207d64184f480ce7405ff3, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 30966276}
+    - target: {fileID: 9088834609520566884, guid: 7b17d3ec01207d64184f480ce7405ff3, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 30966276}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -581,6 +581,7 @@ public class LevelGenerator : MonoBehaviour
                 // Does nothing, but needed for some reason
                 HealthBar playerHealthBar2 = gameplayCanvas.playerHealthBar2.GetComponent<HealthBar>();
                 playerHealthBar2.SetPlayer(newPlayer.gameObject);
+                deathScreen.player1 = newPlayer.gameObject;
                 pauseMenu.player1 = newPlayer.gameObject;
                 upgradeMenu.player1 = newPlayer.gameObject;
                 inputMenu.player1 = newPlayer.gameObject;
@@ -601,6 +602,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 HealthBar playerHealthBar1 = gameplayCanvas.playerHealthBar1.GetComponent<HealthBar>();
                 playerHealthBar1.SetPlayer(newPlayer.gameObject);
+                deathScreen.player1 = newPlayer.gameObject;
                 pauseMenu.player1 = newPlayer.gameObject;
                 upgradeMenu.player1 = newPlayer.gameObject;
                 inputMenu.player1 = newPlayer.gameObject;
@@ -610,6 +612,7 @@ public class LevelGenerator : MonoBehaviour
             {
                 HealthBar playerHealthBar2 = gameplayCanvas.playerHealthBar2.GetComponent<HealthBar>();
                 playerHealthBar2.SetPlayer(newPlayer.gameObject);
+                deathScreen.player2 = newPlayer.gameObject;
                 pauseMenu.player2 = newPlayer.gameObject;
                 upgradeMenu.player2 = newPlayer.gameObject;
                 inputMenu.player2 = newPlayer.gameObject;
@@ -626,6 +629,7 @@ public class LevelGenerator : MonoBehaviour
         }
 
         gameplayCanvas.SetDependencies();
+        deathScreen.SetDependencies();
         pauseMenu.SetDependencies();
         upgradeMenu.SetDependencies();
         inputMenu.SetDependencies();
