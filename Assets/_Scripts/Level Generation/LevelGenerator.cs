@@ -36,6 +36,7 @@ public class LevelGenerator : MonoBehaviour
     public MenuManager pauseMenu;
     public UpgradeMenuManager upgradeMenu;
     public InputMenuManager inputMenu;
+    public WaitingPlayerManager waitingPlayerScreen;
     
     [Header("Rooms")]
     public RoomNode roomMap;
@@ -583,6 +584,7 @@ public class LevelGenerator : MonoBehaviour
                 pauseMenu.player1 = newPlayer.gameObject;
                 upgradeMenu.player1 = newPlayer.gameObject;
                 inputMenu.player1 = newPlayer.gameObject;
+                waitingPlayerScreen.player1 = newPlayer.gameObject;
             }   
             else
             {
@@ -602,6 +604,7 @@ public class LevelGenerator : MonoBehaviour
                 pauseMenu.player1 = newPlayer.gameObject;
                 upgradeMenu.player1 = newPlayer.gameObject;
                 inputMenu.player1 = newPlayer.gameObject;
+                waitingPlayerScreen.player1 = newPlayer.gameObject;
             }
             else if (newPlayer.playerIndex == 1)
             {
@@ -610,6 +613,7 @@ public class LevelGenerator : MonoBehaviour
                 pauseMenu.player2 = newPlayer.gameObject;
                 upgradeMenu.player2 = newPlayer.gameObject;
                 inputMenu.player2 = newPlayer.gameObject;
+                waitingPlayerScreen.player2 = newPlayer.gameObject;
             }
             else
             {
@@ -625,6 +629,7 @@ public class LevelGenerator : MonoBehaviour
         pauseMenu.SetDependencies();
         upgradeMenu.SetDependencies();
         inputMenu.SetDependencies();
+        waitingPlayerScreen.SetDependencies();
     }
 
     private void setEnemyDependencies()
@@ -670,6 +675,7 @@ public class LevelGenerator : MonoBehaviour
                     UnityEngine.Debug.LogWarning("Waiting for second input device to join player " + (i + 1));
 
                     // Pause the game, UI saying wait for second player, disable player 1 input (PlayerInput.all[0])
+                    waitingPlayerScreen.Initialize();
 
                     StartCoroutine(WaitForUnpairedPlayer(playerInputManager, i));
                     break;
@@ -697,6 +703,7 @@ public class LevelGenerator : MonoBehaviour
                 UnityEngine.Debug.LogWarning($"Player {player.playerIndex + 1} disconnected. Waiting for reconnection...");
 
                 // Pause the game, UI saying second player disconnected, disable player 1 input (PlayerInput.all[0])
+                waitingPlayerScreen.Initialize();
 
                 StartCoroutine(WaitForUnpairedPlayer(playerInputManager, player.playerIndex));
             }
@@ -834,6 +841,8 @@ public class LevelGenerator : MonoBehaviour
                     setUserInterface(newPlayer); */
 
                     // Second player found, resume the game
+
+                    waitingPlayerScreen.ExitScreen();
 
                     yield break;
                 }

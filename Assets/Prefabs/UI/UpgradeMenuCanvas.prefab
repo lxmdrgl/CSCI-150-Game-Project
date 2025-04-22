@@ -433,6 +433,7 @@ MonoBehaviour:
   - {fileID: 7718030206466930543}
   statUpgradeDataSet: {fileID: 0}
   weaponDataSet: {fileID: 0}
+  currentPlayer: -1
 --- !u!1 &9217729955972256128
 GameObject:
   m_ObjectHideFlags: 0

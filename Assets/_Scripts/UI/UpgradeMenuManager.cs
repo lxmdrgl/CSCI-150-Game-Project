@@ -328,6 +328,27 @@ namespace Game.CoreSystem
         {
             Debug.Log("upgrade playerIndex: " + playerIndex);
 
+            if (player2 == null)
+            {
+                if (statUpgradeDataSet != null) {
+
+                    StatUpgradeData currentData = slot.currentStatData;
+                    stats1.UpdateStats(currentData.Health, currentData.Attack);
+
+                } else if (weaponDataSet != null) {
+
+                    WeaponData currentData = slot.currentWeaponData;
+                    weaponInventory1.TrySetWeapon(currentData, (int)currentData.weaponIndex);
+                }
+
+                statUpgradeDataSet = null;
+                weaponDataSet = null;
+                playerIndex = -1;
+
+                Unpause();
+                return;
+            }
+
             if (playerIndex == -1)    
             {
                 return;

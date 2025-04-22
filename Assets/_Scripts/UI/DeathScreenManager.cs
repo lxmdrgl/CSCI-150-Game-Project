@@ -15,9 +15,22 @@ public class DeathScreenManager : MonoBehaviour
     
     private void Awake()
     {
+        foreach (var death in FindObjectsOfType<Game.CoreSystem.Death>())
+        {
+            death.OnDeath += DeathQuit;
+        }
+        
         if(DataPersistenceManager.instance.disableDataPersistence == false)
         {
             selectedProfileId = DataPersistenceManager.instance.GetSelectedProfileId();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var death in FindObjectsOfType<Game.CoreSystem.Death>())
+        {
+            death.OnDeath -= DeathQuit;
         }
     }
 
