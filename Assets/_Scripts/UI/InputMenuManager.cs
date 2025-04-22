@@ -8,7 +8,7 @@ using Unity.VisualScripting;
 public class InputMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject PlayerInputCanvas;
-    private bool isPaused;
+    //private bool isPaused;
     public GameObject player1;
     public GameObject player2;
     public PlayerInputHandler InputHandler1 { get; private set; }
@@ -75,7 +75,7 @@ public class InputMenuManager : MonoBehaviour
     #region Pause/Unpause Functions
     public void Pause()
     {
-        isPaused = true;
+        //isPaused = true;
         Time.timeScale = 0f;
 
         if (playerInput1 != null)
@@ -93,7 +93,7 @@ public class InputMenuManager : MonoBehaviour
     public void Unpause()
     {
         Debug.Log("Unpausing game...");
-        isPaused = false;
+        //isPaused = false;
         Time.timeScale = 1f;
 
         if (playerInput1 != null)

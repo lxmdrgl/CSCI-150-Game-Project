@@ -14,7 +14,7 @@ public class WaitingPlayerManager : MonoBehaviour
     private PlayerInput playerInput1;
     private PlayerInput playerInput2;
 
-    private bool isPaused;
+    //private bool isPaused;
     
     [SerializeField] private GameObject singlePlayerScreenCanvasGO;
     [SerializeField] private GameObject menuFirst;
@@ -89,7 +89,7 @@ public class WaitingPlayerManager : MonoBehaviour
     #region Pause/Unpause Functions
     public void Pause()
     {
-        isPaused = true;
+        //isPaused = true;
         Time.timeScale = 0f;
 
         Debug.Log("Switching to UI");
@@ -106,7 +106,7 @@ public class WaitingPlayerManager : MonoBehaviour
 
     public void Unpause()
     {
-        isPaused = false;
+        //isPaused = false;
         Time.timeScale = 1f;
 
         if (playerInput1 != null)

@@ -14,7 +14,7 @@ public class DeathScreenManager : MonoBehaviour
     private PlayerInput playerInput1;
     private PlayerInput playerInput2;
 
-    private bool isPaused;
+    //private bool isPaused;
     
     [SerializeField] private GameObject deathScreenCanvasGO;
     [SerializeField] private GameObject menuFirst;
@@ -100,7 +100,7 @@ public class DeathScreenManager : MonoBehaviour
     #region Pause/Unpause Functions
     public void Pause()
     {
-        isPaused = true;
+        //isPaused = true;
         Time.timeScale = 0.3f;
         /*
         Debug.Log("Switching to UI");
@@ -117,7 +117,7 @@ public class DeathScreenManager : MonoBehaviour
 
     public void Unpause()
     {
-        isPaused = false;
+        //isPaused = false;
         Time.timeScale = 1f;
         /*
         if (playerInput1 != null)

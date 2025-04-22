@@ -17,6 +17,17 @@ public class MenuManager : MonoBehaviour
     
     [SerializeField] private GameObject mainMenuFirst;
     [SerializeField] private GameObject optionsMenuFirst;
+
+    [Header("Options Tabs")]
+    [SerializeField] private GameObject volumePanel;
+    [SerializeField] private GameObject gameplayPanel;
+    [SerializeField] private GameObject controlsPanel;
+    [SerializeField] private GameObject volumeTabButton;
+    [SerializeField] private GameObject gameplayTabButton;
+    [SerializeField] private GameObject controlsTabButton;
+
+    private GameObject currentTabButton;
+
     [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] TextMeshProUGUI leaderboardText;
 
@@ -44,11 +55,15 @@ public class MenuManager : MonoBehaviour
         {
             InputHandler1 = player1.GetComponent<PlayerInputHandler>();
             playerInput1 = player1.GetComponent<PlayerInput>();
+
+            InputHandler1.OnUIOptionMenuChanged += OnTabSelect;
         }
         if (player2 != null)
         {
             InputHandler2 = player2.GetComponent<PlayerInputHandler>();
             playerInput2 = player2.GetComponent<PlayerInput>();
+
+            InputHandler2.OnUIOptionMenuChanged += OnTabSelect;
         }
     }
 
@@ -209,5 +224,46 @@ public class MenuManager : MonoBehaviour
     {
         OpenMainMenu();
     }
+
+    public void ShowVolumePanel()
+    {
+        volumePanel.SetActive(true);
+        gameplayPanel.SetActive(false);
+        controlsPanel.SetActive(false);
+    }
+
+    public void ShowGameplayPanel()
+    {
+        volumePanel.SetActive(false);
+        gameplayPanel.SetActive(true);
+        controlsPanel.SetActive(false);
+    }
+
+    public void ShowControlsPanel()
+    {
+        volumePanel.SetActive(false);
+        gameplayPanel.SetActive(false);
+        controlsPanel.SetActive(true);
+    }
     #endregion
+
+    public void OnTabSelect()
+    {
+        Debug.Log("Tab selected: " + EventSystem.current.currentSelectedGameObject.name);
+        GameObject selected = EventSystem.current.currentSelectedGameObject;
+        if (selected == null) return;
+
+        if (selected == volumeTabButton)
+        {
+            ShowVolumePanel();
+        }
+        else if (selected == gameplayTabButton)
+        {
+            ShowGameplayPanel();
+        }
+        else if (selected == controlsTabButton)
+        {
+            ShowControlsPanel();
+        }
+    }
 }
