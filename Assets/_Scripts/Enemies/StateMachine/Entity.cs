@@ -54,6 +54,8 @@ public class Entity : MonoBehaviour, IDataPersistence
         pursuitRangeCollider.radius = entityData.pursuitRange;
         
         playersInRange = new List<GameObject>();
+
+        SetDependencies();
     }
 
     public virtual void Update()

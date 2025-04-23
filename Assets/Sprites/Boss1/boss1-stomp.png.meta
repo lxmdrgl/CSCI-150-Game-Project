@@ -1,49 +1,70 @@
 fileFormatVersion: 2
-guid: 2d04b7cd8fd70c444bba209ea1f07062
+guid: 21be5e2a6c552224faed1da8896fdccb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4950610573200465139
-    second: Boss1-Attack1_0
+      213: 1982615402953413683
+    second: boss1-stomp_0
   - first:
-      213: 6467342871689879194
-    second: Boss1-Attack1_1
+      213: -4761568629678568961
+    second: boss1-stomp_1
   - first:
-      213: -4073380814627826903
-    second: Boss1-Attack1_2
+      213: 6389094966218611118
+    second: boss1-stomp_2
   - first:
-      213: 8461673812814514729
-    second: Boss1-Attack1_3
+      213: 1137617893606530097
+    second: boss1-stomp_3
   - first:
-      213: 8390234276434372891
-    second: Boss1-Attack1_4
+      213: -3326306742315352898
+    second: boss1-stomp_4
   - first:
-      213: 5210846463869000216
-    second: Boss1-Attack1_5
+      213: -7255872194861370277
+    second: boss1-stomp_5
   - first:
-      213: 3993893120129672012
-    second: Boss1-Attack1_6
+      213: 3691408296514542753
+    second: boss1-stomp_6
   - first:
-      213: 2647108410346060492
-    second: Boss1-Attack1_7
+      213: -2490107358977789827
+    second: boss1-stomp_7
   - first:
-      213: -1410928288466220411
-    second: Boss1-Attack1_8
+      213: -2717723515696142512
+    second: boss1-stomp_8
   - first:
-      213: 5752836037668438612
-    second: Boss1-Attack1_9
+      213: -4882714196259219398
+    second: boss1-stomp_9
   - first:
-      213: 8447100359390299266
-    second: Boss1-Attack1_10
+      213: 3777566449576672543
+    second: boss1-stomp_10
   - first:
-      213: -4400004851795455950
-    second: Boss1-Attack1_11
+      213: 5264935507463016403
+    second: boss1-stomp_11
   - first:
-      213: -7569657530601045123
-    second: Boss1-Attack1_12
+      213: -4875948374607539288
+    second: boss1-stomp_12
   - first:
-      213: 6384407441021896692
-    second: Boss1-Attack1_13
+      213: 4676618561172598868
+    second: boss1-stomp_13
+  - first:
+      213: -2150323767644496193
+    second: boss1-stomp_14
+  - first:
+      213: 6299524811775124591
+    second: boss1-stomp_15
+  - first:
+      213: -366740589958383899
+    second: boss1-stomp_16
+  - first:
+      213: -3992256164191540535
+    second: boss1-stomp_17
+  - first:
+      213: 3830256700196423596
+    second: boss1-stomp_18
+  - first:
+      213: -227660967027722293
+    second: boss1-stomp_19
+  - first:
+      213: -9165994169394530301
+    second: boss1-stomp_20
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,7 +160,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boss1-Attack1_0
+      name: boss1-stomp_0
       rect:
         serializedVersion: 2
         x: 0
@@ -154,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ebcb052068e3284491e551487b16f37
-      internalID: 1823341723
+      spriteID: 85e00e67b683a19488b9eedf208f971b
+      internalID: 404570993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss1-Attack1_1
+      name: boss1-stomp_1
       rect:
         serializedVersion: 2
         x: 300
@@ -176,14 +197,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcfd72c54b537ba4dbf8e8a0ee045fb4
-      internalID: 371034356
+      spriteID: 05e9acf033e811c4a8969ee101921f2d
+      internalID: -1970727431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss1-Attack1_2
+      name: boss1-stomp_2
       rect:
         serializedVersion: 2
         x: 600
@@ -198,14 +219,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49099cf4e10ab5442a7a110af89209d9
-      internalID: 1895107647
+      spriteID: 6842ef54383122840b1b3d9bcbdeab06
+      internalID: -327564487
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss1-Attack1_3
+      name: boss1-stomp_3
       rect:
         serializedVersion: 2
         x: 900
@@ -220,14 +241,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f77a8539beb8025418cb8ad560f7385a
-      internalID: 1238560995
+      spriteID: 85f4c3da9d746134986c6f8f5cda65ed
+      internalID: 1873281809
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss1-Attack1_4
+      name: boss1-stomp_4
       rect:
         serializedVersion: 2
         x: 1200
@@ -242,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e125cc778a1c78e47bdf9bafe0ff2de1
-      internalID: 109209315
+      spriteID: 2b86e35ac823e534abb703ccb0f3dfc2
+      internalID: -1842805009
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss1-Attack1_5
+      name: boss1-stomp_5
       rect:
         serializedVersion: 2
         x: 1500
@@ -264,14 +285,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a821bdfae1b1b84f8d0892d73ea94a5
-      internalID: -899981752
+      spriteID: 5ff7fed234a99614983c675901edf2fc
+      internalID: 1466176567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss1-Attack1_6
+      name: boss1-stomp_6
       rect:
         serializedVersion: 2
         x: 1800
@@ -286,14 +307,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74016483a75c1d84483b1e5ee6b92f8c
-      internalID: -580187077
+      spriteID: d4c7f748cc4eb74459b8fdc5f200ec99
+      internalID: -2128187189
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss1-Attack1_7
+      name: boss1-stomp_7
       rect:
         serializedVersion: 2
         x: 2100
@@ -308,14 +329,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d95a7f0011549bc4ba13e8d2240485c0
-      internalID: -633035963
+      spriteID: a346bbb45f8405e40a59938ad76b16b0
+      internalID: -796585278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss1-Attack1_8
+      name: boss1-stomp_8
       rect:
         serializedVersion: 2
         x: 2400
@@ -330,8 +351,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97840412e3c999148a326efe21fb4b7f
-      internalID: 1179320345
+      spriteID: 29c21f93af1c48e47a659dd03cfca4dc
+      internalID: -680862520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1-stomp_9
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 0
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 996fe256cf69c754d8ef4f9c836c738f
+      internalID: -1967009680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1-stomp_10
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 0
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24990949eb0fd39448cbead3cf7c0689
+      internalID: 228451116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1-stomp_11
+      rect:
+        serializedVersion: 2
+        x: 3300
+        y: 0
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c616203496393b43bc273ee5d67d536
+      internalID: 1602635220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss1-stomp_12
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 0
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f18387ba04261d4bace80bb86997763
+      internalID: 409479042
       vertices: []
       indices: 
       edges: []
@@ -350,15 +459,19 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Boss1-Attack1_0: 1823341723
-      Boss1-Attack1_1: 371034356
-      Boss1-Attack1_2: 1895107647
-      Boss1-Attack1_3: 1238560995
-      Boss1-Attack1_4: 109209315
-      Boss1-Attack1_5: -899981752
-      Boss1-Attack1_6: -580187077
-      Boss1-Attack1_7: -633035963
-      Boss1-Attack1_8: 1179320345
+      boss1-stomp_0: 404570993
+      boss1-stomp_1: -1970727431
+      boss1-stomp_10: 228451116
+      boss1-stomp_11: 1602635220
+      boss1-stomp_12: 409479042
+      boss1-stomp_2: -327564487
+      boss1-stomp_3: 1873281809
+      boss1-stomp_4: -1842805009
+      boss1-stomp_5: 1466176567
+      boss1-stomp_6: -2128187189
+      boss1-stomp_7: -796585278
+      boss1-stomp_8: -680862520
+      boss1-stomp_9: -1967009680
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

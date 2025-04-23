@@ -3,17 +3,17 @@ guid: e3a69d07e9d5405419a943ddc9d446d7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8352439536245954234
-    second: Boss1-Walk_0
+      213: -8920879495259787555
+    second: boss1-walk_0
   - first:
-      213: -8394801870211786415
-    second: Boss1-Walk_1
+      213: 5088804222023818575
+    second: boss1-walk_1
   - first:
-      213: 4555936107192225516
-    second: Boss1-Walk_2
+      213: 6001497026998696604
+    second: boss1-walk_2
   - first:
-      213: 1887142380522282534
-    second: Boss1-Walk_3
+      213: 3405230582846185297
+    second: boss1-walk_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,7 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boss1-Walk_0
+      name: boss1-walk_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70048192ede932641a68b8e21d29e96c
-      internalID: -239571151
+      spriteID: 7e8aa3acbc9b7cd408ad4844c142751b
+      internalID: -1186171412
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss1-Walk_1
+      name: boss1-walk_1
       rect:
         serializedVersion: 2
         x: 300
@@ -146,14 +146,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ce18aaf016e9044c8e65e9e6be9cfab
-      internalID: 1281146254
+      spriteID: 998080e4fef81b94f99e78bcf8421f0f
+      internalID: -1966757354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss1-Walk_2
+      name: boss1-walk_2
       rect:
         serializedVersion: 2
         x: 600
@@ -168,14 +168,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a6a8e3b5b9948947b8e440451dcda52
-      internalID: -17421876
+      spriteID: febc2a29ee6b5a249a75540c2866fdb1
+      internalID: -1107485630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss1-Walk_3
+      name: boss1-walk_3
       rect:
         serializedVersion: 2
         x: 900
@@ -190,8 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69cfa06642769a94ba29e325212a09b3
-      internalID: 1543533463
+      spriteID: 47045f469edad274e901481eed72e665
+      internalID: 1965718037
       vertices: []
       indices: 
       edges: []
@@ -210,10 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Boss1-Walk_0: -239571151
-      Boss1-Walk_1: 1281146254
-      Boss1-Walk_2: -17421876
-      Boss1-Walk_3: 1543533463
+      boss1-walk_0: -1186171412
+      boss1-walk_1: -1966757354
+      boss1-walk_2: -1107485630
+      boss1-walk_3: 1965718037
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
