@@ -30,22 +30,27 @@ public class Boss1_Pursuit : ChargeState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        
+
         if (performCloseRangeAction)
         {
             Movement.SetVelocityX(0);
-            stateMachine.ChangeState(enemy.meleeAttackState);
+            stateMachine.ChangeState(enemy.stompAttackState); // Use stomp attack
         }
-        else if(isPlayerInPursuitRange)
+        else if(isPlayerInMaxAgroRange)
+        {
+            stateMachine.ChangeState(enemy.meleeAttackState); // Use overhead swing attack
+            Movement.SetVelocityX(0);
+        }
+        else if (isPlayerInPursuitRange)
         {
             Vector2 direction = (enemy.targetPlayer.position - enemy.transform.position).normalized;
             direction.y = enemy.transform.position.y;
-            if ((direction.x > 0 &&  Movement?.FacingDirection < 0) || (direction.x < 0 && Movement?.FacingDirection > 0))
+            if ((direction.x > 0 && Movement?.FacingDirection < 0) || (direction.x < 0 && Movement?.FacingDirection > 0))
             {
                 Movement.Flip();
             }
 
-            Movement.SetVelocityX(direction.x * stateData.chargeSpeed);        
+            Movement.SetVelocityX(direction.x * stateData.chargeSpeed);
         }
         else
         {

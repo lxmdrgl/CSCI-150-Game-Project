@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss1_MeleeAttack : MeleeAttackState
+public class Boss1_Stomp : MeleeAttackState
 {
     private Boss1 enemy;
 	protected bool isAttackOffCooldown;
 
-    public Boss1_MeleeAttack(Entity entity, string animBoolName, GameObject meleeAttackCollider, D_MeleeAttack stateData, Boss1 enemy) : base(entity, animBoolName, meleeAttackCollider, stateData)
+    public Boss1_Stomp(Entity entity, string animBoolName, GameObject meleeAttackCollider, D_MeleeAttack stateData, Boss1 enemy) : base(entity, animBoolName, meleeAttackCollider, stateData)
     {
         this.enemy = enemy;
     }
@@ -31,7 +31,6 @@ public class Boss1_MeleeAttack : MeleeAttackState
     {
         base.FinishAttack();
     }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -39,9 +38,9 @@ public class Boss1_MeleeAttack : MeleeAttackState
         if (isAnimationFinished)
         {
             // Transition to another attack (combo) or cooldown
-            if (entity.CheckPlayerInCloseRangeAction())
+            if (entity.CheckPlayerInMaxAgroRange())
             {
-                stateMachine.ChangeState(enemy.stompAttackState); // Combo back to stomp
+                stateMachine.ChangeState(enemy.meleeAttackState); // Combo to overhead swing
             }
             else
             {

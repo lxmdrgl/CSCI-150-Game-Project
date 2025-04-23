@@ -670,6 +670,7 @@ Transform:
   - {fileID: 3212769931651078232}
   - {fileID: 5242852835854976505}
   - {fileID: 2697570814187950225}
+  - {fileID: 1449880067013199355}
   - {fileID: 2179996373575558070}
   - {fileID: 1655073866675532234}
   m_Father: {fileID: 0}
@@ -718,12 +719,12 @@ SpriteRenderer:
   m_SortingLayerID: -1729951543
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2544869468421937344, guid: 174898456ddaa6746ab12dead6230767, type: 3}
+  m_Sprite: {fileID: -1636703863, guid: 8f5d97c24e35bd045b7b98d9613a08e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3, y: 3}
+  m_Size: {x: 12.5, y: 12.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -753,8 +754,11 @@ MonoBehaviour:
   idleStateData: {fileID: 11400000, guid: 99b502b7f957b6e41abfa754948ac0d9, type: 2}
   chargeStateData: {fileID: 11400000, guid: 7d619e020d1f71e4db3f77dd9d25abb3, type: 2}
   meleeAttackStateData: {fileID: 11400000, guid: a7c079c45d9592649a1e2c7f63d1fce3, type: 2}
+  stompAttackData: {fileID: 11400000, guid: ea0ee5f7f3e327a449c45270169494b4, type: 2}
   deadStateData: {fileID: 11400000, guid: 9b067725bf861f44fad65335ff2db33e, type: 2}
   cooldownStateData: {fileID: 11400000, guid: 599782faf83778143a91c1673249a38d, type: 2}
+  meleeAttackCollider: {fileID: 7713608560364900413}
+  stompAttackCollider: {fileID: 7998998494292055464}
 --- !u!50 &9113077644204671259
 Rigidbody2D:
   serializedVersion: 5
@@ -842,8 +846,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 7.25, y: 8.25}
-    newSize: {x: 3, y: 3}
+    oldSize: {x: 12.5, y: 12.5}
+    newSize: {x: 12.5, y: 12.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1061,6 +1065,94 @@ PolygonCollider2D:
       - {x: -5.6048684, y: 0.3654055}
       - {x: -3.5675132, y: 1.0351156}
       - {x: -0.47042662, y: -0.7539811}
+  m_UseDelaunayMesh: 0
+--- !u!1 &7998998494292055464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1449880067013199355}
+  - component: {fileID: 5185842445752768953}
+  m_Layer: 13
+  m_Name: StompAttackCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1449880067013199355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7998998494292055464}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4846833722265371268}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &5185842445752768953
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7998998494292055464}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -1.2431037, y: 0.8149872}
+      - {x: -1.2307072, y: 0.79019433}
+      - {x: -0.9550853, y: 0.3057565}
+      - {x: -0.4432665, y: 0.03352669}
+      - {x: 1.4011322, y: 0.013883531}
+      - {x: 2.2373605, y: 0.04948187}
+      - {x: 2.5576172, y: 0.21974587}
+      - {x: 3.1078687, y: 0.7621333}
+      - {x: 3.0830765, y: 0.7497369}
   m_UseDelaunayMesh: 0
 --- !u!1 &9060381249121296852
 GameObject:
