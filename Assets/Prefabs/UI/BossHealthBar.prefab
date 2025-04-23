@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -292,6 +292,8 @@ MonoBehaviour:
   healthSlider: {fileID: 4412433621948068976}
   easeSlider: {fileID: 6666127169416933940}
   healthText: {fileID: 1019094243345212857}
+  stats: {fileID: 0}
+  death: {fileID: 0}
   lerpSpeed: 0.025
   xpos: 0
   ypos: 440
@@ -346,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}

@@ -5,6 +5,7 @@ using Unity.Services.Core;
 using Unity.Services.Authentication;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 
 
 public class MainMenu : MonoBehaviour
@@ -12,6 +13,9 @@ public class MainMenu : MonoBehaviour
     [Header("Menu Navigation")]
     [SerializeField] private SaveSlotsMenu saveSlotsMenu;
     [SerializeField] private TextMeshProUGUI savesBtnText;
+
+    [SerializeField] private GameObject mainMenuFirst;
+
     public string GameSceneName;
     public string generatorScene;
 
@@ -51,6 +55,12 @@ public class MainMenu : MonoBehaviour
         savesBtnText.text = "Save Slot: " + currentSave;
         */
     }
+
+    void Start()
+    {
+        EventSystem.current.SetSelectedGameObject(mainMenuFirst);
+    }
+
     public void Play()
     {
         PlayerPrefs.SetFloat("runTime", 0f);
