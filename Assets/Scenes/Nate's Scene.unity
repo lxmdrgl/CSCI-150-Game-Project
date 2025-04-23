@@ -162,6 +162,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 68433494534334199, guid: 2b754d7db940714469cde2583319283f, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.27058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 68433494534334199, guid: 2b754d7db940714469cde2583319283f, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.27058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 68433494534334199, guid: 2b754d7db940714469cde2583319283f, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3894684054440809669, guid: 2b754d7db940714469cde2583319283f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -242,6 +254,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6723686613299453890, guid: 2b754d7db940714469cde2583319283f, type: 3}
+      propertyPath: upgradeText
+      value: 
+      objectReference: {fileID: 538747782}
     - target: {fileID: 7764758852796880388, guid: 2b754d7db940714469cde2583319283f, type: 3}
       propertyPath: m_Name
       value: UpgradeMenuCanvas
@@ -273,6 +289,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &290476886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 292529464246149863, guid: 0caae5d375039db4bbc1a528a4e4186b, type: 3}
+  m_PrefabInstance: {fileID: 1229478732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &456413651 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9036539549934334048, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
@@ -457,10 +478,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ae7b587886eec45a405c47fb9fdbd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &538747782 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2816107860896760228, guid: 2b754d7db940714469cde2583319283f, type: 3}
+  m_PrefabInstance: {fileID: 217460143}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &547254959 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3434060704950409908, guid: d206e1de2a5fe50459673be301271009, type: 3}
   m_PrefabInstance: {fileID: 1939424290}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &549366030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8559880859209120067, guid: 0caae5d375039db4bbc1a528a4e4186b, type: 3}
+  m_PrefabInstance: {fileID: 1229478732}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1061343003 stripped
 GameObject:
@@ -771,6 +808,18 @@ PrefabInstance:
     - target: {fileID: 4237888412543198855, guid: 0caae5d375039db4bbc1a528a4e4186b, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5589483099202990660, guid: 0caae5d375039db4bbc1a528a4e4186b, type: 3}
+      propertyPath: menuFirst2
+      value: 
+      objectReference: {fileID: 549366030}
+    - target: {fileID: 5589483099202990660, guid: 0caae5d375039db4bbc1a528a4e4186b, type: 3}
+      propertyPath: foundPlayerScreenCanvasGO
+      value: 
+      objectReference: {fileID: 290476886}
+    - target: {fileID: 6252403775111460183, guid: 0caae5d375039db4bbc1a528a4e4186b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Unpause
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

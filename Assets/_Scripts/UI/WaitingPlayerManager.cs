@@ -17,7 +17,9 @@ public class WaitingPlayerManager : MonoBehaviour
     //private bool isPaused;
     
     [SerializeField] private GameObject singlePlayerScreenCanvasGO;
+    [SerializeField] private GameObject foundPlayerScreenCanvasGO;
     [SerializeField] private GameObject menuFirst;
+    [SerializeField] private GameObject menuFirst2;
 
     private string selectedProfileId = "";
 
@@ -39,6 +41,7 @@ public class WaitingPlayerManager : MonoBehaviour
         SetDependencies();
         
         singlePlayerScreenCanvasGO.SetActive(false);
+        foundPlayerScreenCanvasGO.SetActive(false);
 
         Unpause();
     }
@@ -77,13 +80,11 @@ public class WaitingPlayerManager : MonoBehaviour
         {
             singlePlayerScreenCanvasGO.SetActive(false);
         }
+        foundPlayerScreenCanvasGO.SetActive(true);
 
-        if (EventSystem.current != null)
-        {
-            EventSystem.current.SetSelectedGameObject(null);
-        }
+        EventSystem.current.SetSelectedGameObject(menuFirst2);
 
-        Unpause();
+        // Unpause();
     }
 
     #region Pause/Unpause Functions
@@ -107,6 +108,13 @@ public class WaitingPlayerManager : MonoBehaviour
     public void Unpause()
     {
         //isPaused = false;
+        foundPlayerScreenCanvasGO.SetActive(false);
+
+        if (EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+
         Time.timeScale = 1f;
 
         if (playerInput1 != null)
@@ -117,6 +125,7 @@ public class WaitingPlayerManager : MonoBehaviour
         {
             playerInput2.SwitchCurrentActionMap("Player");
         }
+
     }
     #endregion
 

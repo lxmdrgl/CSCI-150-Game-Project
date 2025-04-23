@@ -141,7 +141,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 370, y: 50}
+  m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1985869081624522372
 CanvasRenderer:
@@ -427,6 +427,7 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   UpgradeCanvasGO: {fileID: 3857457547263950843}
+  upgradeText: {fileID: 2816107860896760228}
   upgradeSlots:
   - {fileID: 2438862670406432779}
   - {fileID: 1287499243153251886}

@@ -707,14 +707,17 @@ public class LevelGenerator : MonoBehaviour
                 UnityEngine.Debug.LogWarning($"Player {player.playerIndex + 1} disconnected. Waiting for reconnection...");
 
                 // Pause the game, UI saying second player disconnected, disable player 1 input (PlayerInput.all[0])
-                waitingPlayerScreen.Initialize();
 
                 StartCoroutine(WaitForUnpairedPlayer(playerInputManager, player.playerIndex));
+            } else
+            {
+                waitingPlayerScreen.Initialize();
             }
         }
         else if (change == InputDeviceChange.Reconnected)
         {
             UnityEngine.Debug.Log($"Device reconnected: {device.displayName}");
+            waitingPlayerScreen.ExitScreen();
         }
         else if (change == InputDeviceChange.Added)
         {
@@ -751,8 +754,15 @@ public class LevelGenerator : MonoBehaviour
         // If there are two players, decide which one to replace based on your criteria
         if (PlayerInput.all.Count == 1)
         {
-            UnityEngine.Debug.Log("Replacing input device for player 1");
-            ReplacePlayerInput(newDevice, playerIndexToReplace);
+            if (PlayerPrefs.GetInt("playerCount") == 1)
+            {
+                UnityEngine.Debug.Log("Replacing input device for player 1");
+                ReplacePlayerInput(newDevice, playerIndexToReplace);
+            } else
+            {
+                UnityEngine.Debug.LogWarning("Exit Screen");
+                waitingPlayerScreen.ExitScreen();
+            }
         }
         if (PlayerInput.all.Count > 1)
         {
@@ -846,6 +856,7 @@ public class LevelGenerator : MonoBehaviour
 
                     // Second player found, resume the game
 
+                    Debug.LogWarning("Exiting waiting player screen");
                     waitingPlayerScreen.ExitScreen();
 
                     yield break;

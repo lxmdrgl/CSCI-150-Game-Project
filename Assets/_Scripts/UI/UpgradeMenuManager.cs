@@ -7,6 +7,7 @@ using Game.Weapons;
 using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 namespace Game.CoreSystem
 {
@@ -27,10 +28,12 @@ namespace Game.CoreSystem
         private UpgradeSlot player2Slot;
         
         [SerializeField] private GameObject UpgradeCanvasGO;
+        [SerializeField] private TextMeshProUGUI upgradeText;
         [SerializeField] private List<UpgradeSlot> upgradeSlots;
         [SerializeField] private StatUpgradeDataSet statUpgradeDataSet;
         [SerializeField] private WeaponDataSet weaponDataSet;
         [SerializeField] private int currentPlayer = -1;
+        private int currentUpgrade = -1;
 
         private bool isPaused;
 
@@ -65,7 +68,7 @@ namespace Game.CoreSystem
                 InputHandler1 = player1.GetComponent<PlayerInputHandler>();
                 playerInput1 = player1.GetComponent<PlayerInput>();
 
-                statsChange1.OnMinorUpgradeInteract += HandleStatUpgradeMenuInteract;
+                statsChange1.OnMinorUpgradeInteract += (dataSet) => HandleStatUpgradeMenuInteract(dataSet, 0);
                 // weaponSwap1.OnMajorUpgradeInteract += HandleWeaponMenuInteract;
                 weaponSwap1.OnMajorUpgradeInteract += (dataSet) => HandleWeaponMenuInteract(dataSet, 0);
                 InputHandler1.OnUpgradeInputChanged += HelperUIUpgradeClicked;
@@ -79,7 +82,7 @@ namespace Game.CoreSystem
                 InputHandler2 = player2.GetComponent<PlayerInputHandler>();
                 playerInput2 = player2.GetComponent<PlayerInput>();
 
-                statsChange2.OnMinorUpgradeInteract += HandleStatUpgradeMenuInteract;
+                statsChange2.OnMinorUpgradeInteract += (dataSet) => HandleStatUpgradeMenuInteract(dataSet, 1);
                 // weaponSwap2.OnMajorUpgradeInteract += HandleWeaponMenuInteract;
                 weaponSwap2.OnMajorUpgradeInteract += (dataSet) => HandleWeaponMenuInteract(dataSet, 1);
                 InputHandler2.OnUpgradeInputChanged += HelperUIUpgradeClicked;
@@ -133,9 +136,20 @@ namespace Game.CoreSystem
             } */
         }
 
-        private void HandleStatUpgradeMenuInteract(StatUpgradeDataSet dataSet)
+        private void HandleStatUpgradeMenuInteract(StatUpgradeDataSet dataSet, int playerIndex)
         {
             statUpgradeDataSet = dataSet;
+            currentPlayer = playerIndex;
+            currentUpgrade = 0;
+
+            if (currentPlayer == 0) 
+            {
+                upgradeText.text = "Player 1 Stat Upgrade";
+            }
+            else if (currentPlayer == 1)
+            {
+                upgradeText.text = "Player 2 Stat Upgrade";
+            }
 
             List<int> usedIndices = new List<int>();
             // System.Random random = new System.Random();
@@ -166,12 +180,26 @@ namespace Game.CoreSystem
         {
             weaponDataSet = dataSet;
             currentPlayer = playerIndex;
+            currentUpgrade = 1;
+
+            if (currentPlayer == 0) 
+            {
+                upgradeText.text = "Player 1 Weapon Upgrade";
+            }
+            else if (currentPlayer == 1)
+            {
+                upgradeText.text = "Player 2 Weapon Upgrade";
+            }
 
             
             // Debug.Log("Debugging .....");
 
             // Create a local copy of the weaponData list
-            List<WeaponData> localWeaponData = new List<WeaponData>(weaponDataSet.weaponData);
+            List<WeaponData> localWeaponData = new List<WeaponData>();
+            if (weaponDataSet != null)
+            {
+                localWeaponData = new List<WeaponData>(weaponDataSet.weaponData);
+            }
 
             // Remove weapons that are already in the inventory or do not meet prerequisites
             if (playerIndex == 0)
@@ -353,6 +381,7 @@ namespace Game.CoreSystem
             {
                 return;
             }
+            Debug.Log("upgrade menu: playerIndex: " + playerIndex + " currentPlayer: " + currentPlayer);
 
             if (playerIndex == 0  && currentPlayer == 0)
             {
@@ -367,16 +396,28 @@ namespace Game.CoreSystem
             {
                 if (!handlePlayer1)
                 {
-                    HandleWeaponMenuInteract(weaponDataSet, 1); // set player 2
+                    if (currentUpgrade == 0)
+                    { 
+                        HandleStatUpgradeMenuInteract(statUpgradeDataSet, 1); // set player 2
+                    } else if (currentUpgrade == 1)
+                    { 
+                        HandleWeaponMenuInteract(weaponDataSet, 1); // set player 2
+                    }
                     handlePlayer1 = true;
                 }
             }
             if (player1Slot == null && player2Slot != null)
             {
-                HandleWeaponMenuInteract(weaponDataSet, 0); // set player 1
+                // HandleWeaponMenuInteract(weaponDataSet, 0); // set player 1
                 if (!handlePlayer2)
                 {
-                    HandleWeaponMenuInteract(weaponDataSet, 0); // set player 1
+                    if (currentUpgrade == 0)
+                    { 
+                        HandleStatUpgradeMenuInteract(statUpgradeDataSet, 0); // set player 1
+                    } else if (currentUpgrade == 1)
+                    { 
+                        HandleWeaponMenuInteract(weaponDataSet, 0); // set player 1
+                    }
                     handlePlayer2 = true;
                 }
             }
