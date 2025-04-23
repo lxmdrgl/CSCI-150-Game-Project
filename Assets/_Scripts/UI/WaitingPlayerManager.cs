@@ -80,11 +80,32 @@ public class WaitingPlayerManager : MonoBehaviour
         {
             singlePlayerScreenCanvasGO.SetActive(false);
         }
-        foundPlayerScreenCanvasGO.SetActive(true);
+        // foundPlayerScreenCanvasGO.SetActive(true);
+
+        // EventSystem.current.SetSelectedGameObject(menuFirst2);
+
+        if (EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+
+        Unpause();
+    }
+
+    public void SwitchScreen()
+    {
+        if (singlePlayerScreenCanvasGO != null)
+        {
+            singlePlayerScreenCanvasGO.SetActive(false);
+        }
+        if (foundPlayerScreenCanvasGO != null)
+        {
+            foundPlayerScreenCanvasGO.SetActive(true);
+        }
 
         EventSystem.current.SetSelectedGameObject(menuFirst2);
 
-        // Unpause();
+        Pause();
     }
 
     #region Pause/Unpause Functions
@@ -108,12 +129,9 @@ public class WaitingPlayerManager : MonoBehaviour
     public void Unpause()
     {
         //isPaused = false;
-        foundPlayerScreenCanvasGO.SetActive(false);
+        // foundPlayerScreenCanvasGO.SetActive(false);
 
-        if (EventSystem.current != null)
-        {
-            EventSystem.current.SetSelectedGameObject(null);
-        }
+        
 
         Time.timeScale = 1f;
 
@@ -177,5 +195,23 @@ public class WaitingPlayerManager : MonoBehaviour
             DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
             DataPersistenceManager.instance.SaveGame();   
         }
+    }
+
+    public void Resume()
+    {   
+        if (foundPlayerScreenCanvasGO != null)
+        {
+            foundPlayerScreenCanvasGO.SetActive(false);
+        }
+        // foundPlayerScreenCanvasGO.SetActive(true);
+
+        // EventSystem.current.SetSelectedGameObject(menuFirst2);
+
+        if (EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+
+        Unpause();
     }
 }

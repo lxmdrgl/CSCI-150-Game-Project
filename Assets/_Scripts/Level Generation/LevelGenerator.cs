@@ -717,7 +717,7 @@ public class LevelGenerator : MonoBehaviour
         else if (change == InputDeviceChange.Reconnected)
         {
             UnityEngine.Debug.Log($"Device reconnected: {device.displayName}");
-            waitingPlayerScreen.ExitScreen();
+            waitingPlayerScreen.SwitchScreen();
         }
         else if (change == InputDeviceChange.Added)
         {
@@ -857,7 +857,7 @@ public class LevelGenerator : MonoBehaviour
                     // Second player found, resume the game
 
                     Debug.LogWarning("Exiting waiting player screen");
-                    waitingPlayerScreen.ExitScreen();
+                    waitingPlayerScreen.SwitchScreen();
 
                     yield break;
                 }
