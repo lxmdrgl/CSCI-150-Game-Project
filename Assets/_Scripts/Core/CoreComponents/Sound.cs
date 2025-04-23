@@ -20,8 +20,13 @@ namespace Game.CoreSystem
             /* if (footstepSounds.Count == 0)
             {
                 Debug.LogWarning("No footstep sounds assigned.");
-                return;
-            } */
+                
+            }
+            else if (footstepSounds.Count > 0)
+            {
+                audioSource.clip = footstepSounds[Random.Range(0, footstepSounds.Count)];
+                audioSource.Play();
+             } */
             Debug.Log("Footstep sound played.");
             Debug.Log("audioPlayer: " + audioSource);
         }
