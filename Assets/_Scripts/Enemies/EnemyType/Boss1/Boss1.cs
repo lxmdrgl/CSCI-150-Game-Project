@@ -10,6 +10,9 @@ public class Boss1 : Entity
     public Boss1_Cooldown cooldownState { get; private set; }
     public Boss1_Stomp stompAttackState { get; private set; }
 
+    public float stompRange;
+    public float swingRange;
+    
     [SerializeField]
     private D_IdleState idleStateData;
     [SerializeField]
@@ -34,7 +37,7 @@ public class Boss1 : Entity
         meleeAttackState = new Boss1_MeleeAttack(this, "meleeAttack", meleeAttackCollider, meleeAttackStateData, this);
         deadState = new Boss1_Dead(this, "dead", deadStateData, this);
         cooldownState = new Boss1_Cooldown(this, "cooldown", cooldownStateData, this);
-        stompAttackState = new Boss1_Stomp(this, "stompAttack", meleeAttackCollider, stompAttackData, this);
+        stompAttackState = new Boss1_Stomp(this, "stompAttack", stompAttackCollider, stompAttackData, this);
 
         stats.Stun.OnCurrentValueZero += HandleStunZero;
         stats.Health.OnValueChange += HandleDamageTaken;
@@ -63,5 +66,13 @@ public class Boss1 : Entity
     private void OnDisable() {
         stats.Stun.OnCurrentValueZero -= HandleStunZero;
         stats.Health.OnValueChange -= HandleDamageTaken;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, stompRange);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, swingRange);
     }
 }

@@ -751,6 +751,8 @@ MonoBehaviour:
   isPlayerInPursuitRange: 0
   pursuitRangeCollider: {fileID: 4313723213794779289}
   UniqueId: 
+  stompRange: 4
+  swingRange: 6.5
   idleStateData: {fileID: 11400000, guid: 99b502b7f957b6e41abfa754948ac0d9, type: 2}
   chargeStateData: {fileID: 11400000, guid: 7d619e020d1f71e4db3f77dd9d25abb3, type: 2}
   meleeAttackStateData: {fileID: 11400000, guid: a7c079c45d9592649a1e2c7f63d1fce3, type: 2}

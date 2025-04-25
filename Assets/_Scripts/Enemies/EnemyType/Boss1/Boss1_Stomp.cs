@@ -20,6 +20,12 @@ public class Boss1_Stomp : MeleeAttackState
     public override void Enter()
     {
         base.Enter();
+        Vector2 direction = (enemy.targetPlayer.position - enemy.transform.position).normalized;
+        if ((direction.x > 0 && Movement?.FacingDirection < 0) || (direction.x < 0 && Movement?.FacingDirection > 0))
+        {
+            Movement.Flip();
+        }
+        isAttackOffCooldown = false; // Reset cooldown flag
     }
 
     public override void Exit()
@@ -37,14 +43,16 @@ public class Boss1_Stomp : MeleeAttackState
 
         if (isAnimationFinished)
         {
-            // Transition to another attack (combo) or cooldown
-            if (entity.CheckPlayerInMaxAgroRange())
+            float distanceToPlayer = Vector2.Distance(enemy.targetPlayer.position, enemy.transform.position);
+
+            // Check if the player is in medium range for a melee attack
+            if (distanceToPlayer > enemy.stompRange && distanceToPlayer <= enemy.swingRange)
             {
-                stateMachine.ChangeState(enemy.meleeAttackState); // Combo to overhead swing
+                stateMachine.ChangeState(enemy.meleeAttackState); // Transition to melee
             }
             else
             {
-                stateMachine.ChangeState(enemy.cooldownState); // Go to cooldown
+                stateMachine.ChangeState(enemy.cooldownState); // Transition to cooldown
             }
         }
     }
