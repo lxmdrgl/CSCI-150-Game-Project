@@ -24,6 +24,7 @@ public class DeathScreenManager : MonoBehaviour
     public string MainMenuSceneName;
 
     public string GameplaySceneName;
+    private int deathCount = 0;
     
     
     private void Awake()
@@ -74,7 +75,11 @@ public class DeathScreenManager : MonoBehaviour
     {
         if (deathScreenCanvasGO != null)
         {
-            deathScreenCanvasGO.SetActive(true);
+            deathCount++;
+            if (PlayerPrefs.GetInt("playerCount") == deathCount)
+            {
+                deathScreenCanvasGO.SetActive(true);
+            }
         }
 
         EventSystem.current.SetSelectedGameObject(menuFirst);

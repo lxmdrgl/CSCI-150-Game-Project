@@ -56,7 +56,7 @@ namespace Game.Weapons.Components
                 anim.SetTrigger("parry");
             }
             damageReceiver.SetCanTakeDamage(true);
-            knockbackReceiver.SetCanTakeKnockBack(true);
+            // knockbackReceiver.SetCanTakeKnockBack(true);
             hitbox.enabled = false;
         }
 

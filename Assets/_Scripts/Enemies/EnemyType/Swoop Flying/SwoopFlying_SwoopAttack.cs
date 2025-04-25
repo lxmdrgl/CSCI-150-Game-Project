@@ -72,7 +72,8 @@ public class SwoopFlying_SwoopAttack : MeleeAttackState
         else
         {
             // When the swoop is complete, transition to chargeState
-            stateMachine.ChangeState(enemy.chargeState);
+            // stateMachine.ChangeState(enemy.chargeState);
+            stateMachine.ChangeState(enemy.cooldownState);
         }
 
         // Needs a time

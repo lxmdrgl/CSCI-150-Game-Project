@@ -32,7 +32,7 @@ namespace Game.CoreSystem
         public void SetCanTakeKnockBack(bool value) 
         {
             CanTakeKnockBack = value;
-            Debug.Log($"knockback set to, {CanTakeKnockBack}");
+            Debug.Log($"knock active back set to, {CanTakeKnockBack}");
         }
 
         public void KnockBack(KnockBackData data)
@@ -42,15 +42,15 @@ namespace Game.CoreSystem
             movement.CanSetVelocity = false;
             isKnockBackActive = true;
             knockBackStartTime = Time.time; */
-            Debug.Log("Knock active");
+            Debug.Log("Knock active: " + CanTakeKnockBack);
             if (CanTakeKnockBack) {
                 movement.SetVelocity(data.Strength, data.Angle, data.Direction);
                 movement.CanSetVelocity = false;
                 isKnockBackActive = true;
                 knockBackStartTime = Time.time;
                 // Debug.Log("Knock active");
-                OnKnockBackActive?.Invoke();
                 Debug.Log($"take knockback, {CanTakeKnockBack}");
+                OnKnockBackActive?.Invoke();
             } else {
                 Debug.Log($"Ignore knockback false, {CanTakeKnockBack}");
             }

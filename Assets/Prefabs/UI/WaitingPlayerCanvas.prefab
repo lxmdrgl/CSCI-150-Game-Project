@@ -562,7 +562,9 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   singlePlayerScreenCanvasGO: {fileID: 4237888412543198855}
+  foundPlayerScreenCanvasGO: {fileID: 292529464246149863}
   menuFirst: {fileID: 8663181495792760193}
+  menuFirst2: {fileID: 8559880859209120067}
   MainMenuSceneName: MainMenu
   GameplaySceneName: Nate's Scene
 --- !u!1 &3533948794985317244
@@ -1481,7 +1483,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5589483099202990660}
         m_TargetAssemblyTypeName: WaitingPlayerManager, Assembly-CSharp
-        m_MethodName: ExitScreen
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

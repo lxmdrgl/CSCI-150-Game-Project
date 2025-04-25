@@ -634,7 +634,7 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   deathScreenCanvasGO: {fileID: 6468454859128659685}
-  menuFirst: {fileID: 0}
+  menuFirst: {fileID: 2822560048218542566}
   MainMenuSceneName: MainMenu
   GameplaySceneName: Nate's Scene
 --- !u!1 &9125108263371099105

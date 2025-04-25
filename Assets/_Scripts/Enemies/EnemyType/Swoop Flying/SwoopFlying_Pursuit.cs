@@ -25,6 +25,10 @@ public class SwoopFlying_Pursuit : ChargeState
     {
         base.Enter();
         movingToTargetPosition = true;
+
+        CalculateTargetPosition();
+
+        // MoveToTargetPosition(); // only set position once
     }
 
     public override void Exit()
@@ -42,7 +46,7 @@ public class SwoopFlying_Pursuit : ChargeState
     {
         base.LogicUpdate();
 
-        CalculateTargetPosition();
+        // CalculateTargetPosition();
 
         if (isPlayerInPursuitRange && movingToTargetPosition)
         {
@@ -50,7 +54,8 @@ public class SwoopFlying_Pursuit : ChargeState
         }
         else if (!movingToTargetPosition)
         {
-            stateMachine.ChangeState(enemy.cooldownState);
+            // stateMachine.ChangeState(enemy.cooldownState);
+            stateMachine.ChangeState(enemy.meleeAttackState);
         }
         else
         {

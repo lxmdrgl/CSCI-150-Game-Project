@@ -61,7 +61,7 @@ public class MeleeAttackState : AttackState
 			Debug.Log("Enemy Knocking Player Back");
 		}
 		else {
-			Debug.Log("No knockbackable objects detected");
+			// Debug.Log("No knockbackable objects detected");
 		}
 
 		if (didDamage || didKnock)

@@ -1,4 +1,5 @@
 using System;
+using Game.CoreSystem;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -6,6 +7,10 @@ public class MainCamera : MonoBehaviour
 {
     public GameObject player1;
     public GameObject player2;
+    public CinemachineCamera singleplayerCinemachineCamera;
+    public CinemachineCamera multiplayerCinemachineCamera;
+    private Death death1;
+    private Death death2;
 
     private Camera mainCamera;
 
@@ -22,6 +27,35 @@ public class MainCamera : MonoBehaviour
         }
         // CheckPlayerBounds(player1.transform, player2.transform);
         CheckPlayerBounds(player2.transform, player1.transform);
+    }
+
+    public void SetDependencies()
+    {
+        if (player1 != null)
+        {
+            death1 = player1.GetComponent<Death>();
+            death1.OnPlayerDeath += () => HandleOnPlayerDeath(0);
+        }
+        if (player2 != null)
+        {
+            death2 = player2.GetComponent<Death>();
+            death2.OnPlayerDeath += () => HandleOnPlayerDeath(1);
+        }
+    }
+
+    public void HandleOnPlayerDeath(int index)
+    {
+        singleplayerCinemachineCamera.enabled = true;
+        multiplayerCinemachineCamera.enabled = false;
+        if (index == 0 && player2 != null)
+        {
+            singleplayerCinemachineCamera.Target.TrackingTarget = player2.transform;
+            UnityEngine.Debug.Log("Singleplayer camera set to player 2");
+        } else if (player1 != null)
+        {
+            singleplayerCinemachineCamera.Target.TrackingTarget = player1.transform;
+            UnityEngine.Debug.Log("Singleplayer camera set to player 1");
+        }
     }
 
     private void CheckPlayerBounds(Transform player, Transform otherPlayer)
