@@ -6,6 +6,8 @@ using Unity.Services.Authentication;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
+using System.Linq;
 
 
 public class MainMenu : MonoBehaviour
@@ -59,6 +61,13 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         EventSystem.current.SetSelectedGameObject(mainMenuFirst);
+
+        List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList<GameObject>();
+
+        foreach (GameObject player in players)
+        {
+            Destroy(player);
+        }
     }
 
     public void Play()

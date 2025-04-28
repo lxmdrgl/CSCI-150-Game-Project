@@ -27,7 +27,7 @@ public class DamageEnemy : MonoBehaviour
         this.knockbackStrength = knockbackStrength;
     }
 
-    public void HandleCollision(Collider2D collision)
+    public void HandleCollision(Collider2D collision, float attack)
 {
     if (collision.CompareTag("Player"))
     {
@@ -36,7 +36,7 @@ public class DamageEnemy : MonoBehaviour
         Debug.Log("Detected: " + detected.ToArray() + " count: " + detected.Count);
 
         // Apply Damage
-        if (CombatDamageUtilities.TryDamage(detected.ToArray(), new DamageData(damageAmount, gameObject), out var damageables))
+        if (CombatDamageUtilities.TryDamage(detected.ToArray(), new DamageData(damageAmount * (attack / 100f), gameObject), out var damageables))
         {
             foreach (var damageable in damageables)
             {

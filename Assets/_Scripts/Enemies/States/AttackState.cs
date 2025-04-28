@@ -6,7 +6,8 @@ using UnityEngine;
 public class AttackState : EnemyState 
 {
 
-	private Movement movement;
+	protected Movement movement;
+	protected Stats stats;
 	// private ParryReceiver parryReceiver;
 
 	protected GameObject meleeAttackCollider;
@@ -19,6 +20,7 @@ public class AttackState : EnemyState
 		this.meleeAttackCollider = meleeAttackCollider;
 
 		movement = core.GetCoreComponent<Movement>();
+		stats = core.GetCoreComponent<Stats>();
 		// parryReceiver = core.GetCoreComponent<ParryReceiver>();
 	}
 

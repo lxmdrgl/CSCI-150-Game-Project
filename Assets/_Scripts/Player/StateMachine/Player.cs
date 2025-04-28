@@ -145,6 +145,8 @@ public class Player : MonoBehaviour, IDataPersistence
         boxCollider = GetComponent<Collider2D>();
 
         StateMachine.Initialize(IdleState);
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Update()
@@ -167,6 +169,12 @@ public class Player : MonoBehaviour, IDataPersistence
         secondarySkillTimeNotifier.OnNotify += SecondarySkillHoldState.ResetAttackCooldown;
         dashAttackTimeNotifier.OnNotify += DashAttackState.DashAttackCooldownDisable;
         
+        
+    }
+
+    public void Respawn()
+    {
+        stats.Health.Increase(stats.Health.MaxValue * 0.5f);
     }
 
     public virtual void OnDisable()

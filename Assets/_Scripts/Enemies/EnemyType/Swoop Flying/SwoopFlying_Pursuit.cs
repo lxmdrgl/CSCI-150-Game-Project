@@ -54,8 +54,8 @@ public class SwoopFlying_Pursuit : ChargeState
         }
         else if (!movingToTargetPosition)
         {
-            // stateMachine.ChangeState(enemy.cooldownState);
-            stateMachine.ChangeState(enemy.meleeAttackState);
+            stateMachine.ChangeState(enemy.cooldownState);
+            // stateMachine.ChangeState(enemy.meleeAttackState);
         }
         else
         {

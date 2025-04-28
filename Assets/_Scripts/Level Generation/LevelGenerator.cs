@@ -45,6 +45,8 @@ public class LevelGenerator : MonoBehaviour
     private InputDevice replaceInputDevice;
     private List<Entity> enemies = new List<Entity>();
     PlayerInputManager playerInputManager;
+    public float maxHealthIncrease = 30f;
+    public float attackIncrease = 30f;
 
     void Awake()
     {
@@ -508,7 +510,7 @@ public class LevelGenerator : MonoBehaviour
 
         foreach (RoomNode child in currNode.children) {
             RoomManager childRoomManager = child.roomObject.GetComponent<RoomManager>();
-            childRoomManager.SpawnEnemies(); // Spawn enemies in the new room
+            childRoomManager.SpawnEnemies(maxHealthIncrease, attackIncrease); // Spawn enemies in the new room
             spawnAllEnemies(child);
         } 
 
@@ -662,27 +664,63 @@ public class LevelGenerator : MonoBehaviour
 
             for (int i = 0; i < count; i++)
             {
-                PlayerInput newPlayer = playerInputManager.JoinPlayer(i);
+                List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList<GameObject>();
+
+                foreach (GameObject player in players)
+                {
+                    if (!player.activeInHierarchy)
+                    {
+                        player.SetActive(true); 
+                        player.GetComponent<Player>().Respawn();
+                    }
+                }
+
+                List<PlayerInput> playerInputs = PlayerInput.all.ToList<PlayerInput>();
+
+                PlayerInput newPlayer = null;
+
+                foreach (PlayerInput playerInput in playerInputs)
+                {
+                    if (playerInput.playerIndex == i)
+                    {
+                        newPlayer = playerInput;
+                        break;
+                    }
+                }
+
                 if (newPlayer != null)
                 {
-                    UnityEngine.Debug.Log("Player " + (i + 1) + " joined successfully!");
+                    UnityEngine.Debug.Log("Player " + (i + 1) + " already exists, replacing input device.");
+                    // ReplacePlayerInput(newPlayer.devices[0], i);
                     newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
-                    newPlayer.transform.rotation = levelTransform.rotation;
-                    
+                    // newPlayer.transform.rotation = levelTransform.rotation;
+
                     setPlayerDependencies(newPlayer);
-                    /* setCameras(newPlayer);
-                    setUserInterface(newPlayer);
-                    setEnemyDependencies(); */
                 }
-                else
+                else  
                 {
-                    UnityEngine.Debug.LogWarning("Waiting for second input device to join player " + (i + 1));
+                    newPlayer = playerInputManager.JoinPlayer(i);
+                    if (newPlayer != null)
+                    {
+                        UnityEngine.Debug.Log("Player " + (i + 1) + " joined successfully!");
+                        newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
+                        newPlayer.transform.rotation = levelTransform.rotation;
+                        
+                        setPlayerDependencies(newPlayer);
+                        /* setCameras(newPlayer);
+                        setUserInterface(newPlayer);
+                        setEnemyDependencies(); */
+                    }
+                    else
+                    {
+                        UnityEngine.Debug.LogWarning("Waiting for second input device to join player " + (i + 1));
 
-                    // Pause the game, UI saying wait for second player, disable player 1 input (PlayerInput.all[0])
-                    waitingPlayerScreen.Initialize();
+                        // Pause the game, UI saying wait for second player, disable player 1 input (PlayerInput.all[0])
+                        waitingPlayerScreen.Initialize();
 
-                    StartCoroutine(WaitForUnpairedPlayer(playerInputManager, i));
-                    break;
+                        StartCoroutine(WaitForUnpairedPlayer(playerInputManager, i));
+                        break;
+                    }
                 }
 
                 // GameObject newPlayer = Instantiate(player, new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0), levelTransform.rotation);

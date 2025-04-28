@@ -9,6 +9,9 @@ public class RangedAttackState : AttackState
     public Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
     private Movement movement;
 
+    public Stats Stats { get => stats ?? core.GetCoreComponent(ref stats); }
+    private Stats stats;
+
     protected D_RangedAttackState stateData;
     protected Transform attackPosition;
     public RangedAttackState(Entity entity, string animBoolName, Transform attackPosition, D_RangedAttackState stateData) : base(entity, animBoolName, attackPosition.gameObject)

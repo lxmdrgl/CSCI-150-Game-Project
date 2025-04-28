@@ -59,7 +59,7 @@ public class RR_RangedAttackState : RangedAttackState
                 Vector3 projectilePosition1 = target;
                 // Vector3 projectilePosition2 = new Vector3(target.x - 2.0f, target.y, target.z);
                 // Vector3 projectilePosition3 = new Vector3(target.x + 2.0f, target.y, target.z);
-                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, projectilePosition1, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
+                projectileScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, projectilePosition1, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale, Stats.Attack);
                 // projectileScript2.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, projectilePosition2, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
                 // projectileScript3.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, projectilePosition3, "radialLobbing", enemy.transform.rotation.y, stateData.gravityScale);
             }

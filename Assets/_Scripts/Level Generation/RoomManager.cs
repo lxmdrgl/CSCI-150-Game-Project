@@ -54,12 +54,17 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    public void SpawnEnemies()
+    public void SpawnEnemies(float healthIncrease, float attackIncrease)
     {
         foreach(GameObject enemySpawner in enemySpawners) 
         {
             GameObject enemy =  Instantiate(enemies[Random.Range(0, enemies.Count)], enemySpawner.transform.position, Quaternion.identity);
-            enemy.GetComponent<Entity>().GenerateGuid();
+            Entity entity = enemy.GetComponent<Entity>();
+            // enemy.GetComponent<Entity>().GenerateGuid();
+            entity.GenerateGuid();
+            
+            entity.stats.UpdateStats(healthIncrease, attackIncrease);
+            entity.stats.Health.Increase(entity.stats.Health.MaxValue);
         }
     }
 }

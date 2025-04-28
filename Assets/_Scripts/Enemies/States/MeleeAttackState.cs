@@ -13,9 +13,11 @@ public class MeleeAttackState : AttackState
 {
 	protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
 	private CollisionSenses CollisionSenses { get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses); }
+	private Stats Stats { get => stats ?? core.GetCoreComponent(ref stats); }
 
 	private Movement movement;
 	private CollisionSenses collisionSenses;
+	private Stats stats;
 
 	protected D_MeleeAttack stateData;
 
@@ -42,7 +44,11 @@ public class MeleeAttackState : AttackState
 		Debug.Log("Detected: " + detected.ToArray() + "count: " +  detected.Count);
 
     	// Use the TryDamage utility to apply damage to detected objects
-		bool didDamage = CombatDamageUtilities.TryDamage(detected.ToArray(), new DamageData(stateData.attackDamage, core.Root), out var damageables);
+		if (Stats == null) {
+			Debug.LogError("Stats is null");
+		}
+
+		bool didDamage = CombatDamageUtilities.TryDamage(detected.ToArray(), new DamageData(stateData.attackDamage * (Stats.Attack / 100f), core.Root), out var damageables);
     	if (didDamage)
     	{
         	foreach (var damageable in damageables)

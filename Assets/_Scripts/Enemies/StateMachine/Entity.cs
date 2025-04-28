@@ -30,7 +30,7 @@ public class Entity : MonoBehaviour, IDataPersistence
 
     protected bool isStunned;
 
-    protected Stats stats;
+    public Stats stats;
     public CircleCollider2D pursuitRangeCollider;
     public string UniqueId;
     public void GenerateGuid()

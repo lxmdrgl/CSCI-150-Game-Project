@@ -65,7 +65,7 @@ namespace Game.Combat.Status
             List<Stats> currentStats = new List<Stats>{Stats};
 
             // currentStats[0].Health.Decrease(Damage);
-            DamageReceiver.Damage(new DamageData(Damage, Source));
+            DamageReceiver.Damage(new DamageData(Damage * (Stats.Attack / 100f), Source));
             StunDamageReceiver.DamageStun(new StunDamageData(Damage, Source));
             // currentStats[0].Stun.Decrease(Stun);
             Debug.Log($"Apply Lightning status first: {Damage}, {Stun}");
@@ -100,7 +100,7 @@ namespace Game.Combat.Status
                     DamageReceiver newDamageReceiever = nearestTarget.gameObject.GetComponentInChildren<DamageReceiver>();
                     StunDamageReceiver newStunDamageReceiever = nearestTarget.gameObject.GetComponentInChildren<StunDamageReceiver>();
                     // newStats.Health.Decrease(Damage);
-                    newDamageReceiever.Damage(new DamageData(Damage, Source));
+                    newDamageReceiever.Damage(new DamageData(Damage * (Stats.Attack / 100f), Source));
                     newStats.Stun.Decrease(Stun);
                     currentPosition = newStats.transform.position;
                     currentStats.Add(newStats);

@@ -8,7 +8,7 @@ public class Enemy5 : Entity
     public E5_PlayerDetectedState playerDetectedState { get; private set; }
     public E5_ChargeState chargeState { get; private set; }
     public E5_LookForPlayerState lookForPlayerState { get; private set; }
-    public E5_MeleeAttackState meleeAttackState{ get;private set; }
+    public E5_MeleeDashState meleeAttackState{ get;private set; }
     public E5_StunState stunState { get; private set; }
     public E5_DeadState deadState { get; private set; }
     public E5_CooldownState cooldownState { get; private set; }
@@ -54,7 +54,7 @@ public class Enemy5 : Entity
         playerDetectedState = new E5_PlayerDetectedState(this, "playerDetected", playerDetectedData, this);
         chargeState = new E5_ChargeState(this, "charge", chargeStateData, this); // was charge
         lookForPlayerState = new E5_LookForPlayerState(this, "lookForPlayer", lookForPlayerStateData, this); // was lookForPlayer
-        meleeAttackState = new E5_MeleeAttackState(this, "meleeAttack", meleeAttackCollider, meleeAttackStateData, this);
+        meleeAttackState = new E5_MeleeDashState(this, "meleeAttack", meleeAttackCollider, meleeAttackStateData, this);
         stunState = new E5_StunState(this, "stun", stunStateData, this);
         deadState = new E5_DeadState(this, "dead", deadStateData, this);
         cooldownState = new E5_CooldownState(this, "cooldown", cooldownStateData, this);

@@ -30,7 +30,7 @@ namespace Game.Combat.Status
             OnComplete = onCompleteCallback;
 
             float newMult = 1f + (Count * Mult / 100f);
-            DamageReceiver.Damage(new DamageData(Damage * newMult, Source));
+            DamageReceiver.Damage(new DamageData(Damage * newMult * (Stats.Attack / 100f), Source));
             StunDamageReceiver.DamageStun(new StunDamageData(Damage * newMult, Source));
             // Stats.Health.Decrease(Damage * newMult);
             // Stats.Stun.Decrease(Stun * newMult);
@@ -50,7 +50,7 @@ namespace Game.Combat.Status
                 yield return new WaitForSeconds(Delay);
 
                 float newMult = 1f + (Count * Mult / 100f);
-                DamageReceiver.Damage(new DamageData(Damage * newMult, Source));
+                DamageReceiver.Damage(new DamageData(Damage * newMult * (Stats.Attack / 100f), Source));
                 StunDamageReceiver.DamageStun(new StunDamageData(Damage * newMult, Source));
                 // Stats.Health.Decrease(Damage * newMult);
                 // Stats.Stun.Decrease(Stun * newMult);

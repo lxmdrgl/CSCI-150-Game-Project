@@ -29,8 +29,8 @@ public class SwoopFlying_Cooldown : CooldownState
         {
             if (isPlayerInPursuitRange)
             {
-                // stateMachine.ChangeState(enemy.meleeAttackState);
-                stateMachine.ChangeState(enemy.chargeState);
+                stateMachine.ChangeState(enemy.meleeAttackState);
+                // stateMachine.ChangeState(enemy.chargeState);
             }
             else
             {

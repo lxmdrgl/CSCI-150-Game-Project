@@ -103,9 +103,7 @@ MonoBehaviour:
   roomCollider: {fileID: 4140994982679677310}
   hasCollision: 0
   enemies:
-  - {fileID: 6360035130462158432, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
-  - {fileID: 6360035130462158432, guid: d470026ccf3c5724d87ca8473678453f, type: 3}
-  - {fileID: 6360035130462158432, guid: 354e845eee81c794db2b106c14393855, type: 3}
+  - {fileID: 6360035130462158432, guid: b1a49f40fa6fa6d4bb052ae55f9d69c7, type: 3}
   enemySpawners:
   - {fileID: 2610624204521952926}
 --- !u!1001 &845838692303786376
@@ -116,6 +114,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4665717594518068809}
     m_Modifications:
+    - target: {fileID: 2497570181553715543, guid: 8d308dd4a34854a4ca2ee9edd4bc8844, type: 3}
+      propertyPath: possible_enemies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3424927244409964310, guid: 8d308dd4a34854a4ca2ee9edd4bc8844, type: 3}
       propertyPath: m_Name
       value: EnemySpawner

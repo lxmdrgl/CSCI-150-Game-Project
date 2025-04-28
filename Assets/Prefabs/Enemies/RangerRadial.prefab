@@ -753,7 +753,7 @@ GameObject:
   - component: {fileID: 857530055602809233}
   - component: {fileID: 3363648325032824417}
   m_Layer: 11
-  m_Name: RadialRanger
+  m_Name: RangerRadial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

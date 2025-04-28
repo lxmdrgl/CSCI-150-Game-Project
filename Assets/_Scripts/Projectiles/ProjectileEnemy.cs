@@ -39,6 +39,8 @@ namespace Game.Projectiles
         private bool hasExploded = false;
         private bool startTimer = false;
         private float startTime = 0f;
+
+        private float attack = 0f;
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -106,7 +108,7 @@ namespace Game.Projectiles
                     }
                     else
                     {
-                        damageScript.HandleCollision(damageHit);
+                        damageScript.HandleCollision(damageHit, attack);
                         Destroy(gameObject);
                     }
                 }
@@ -166,18 +168,19 @@ namespace Game.Projectiles
                     {
                         startingRotation = 0f;
                     }
-                    damageScript.HandleCollision(hitObject);
+                    damageScript.HandleCollision(hitObject, attack);
                     Debug.Log("Explosive rotation: " + startingRotation);
                 }
             }
             Destroy(gameObject);
         }
 
-        public void FireProjectile(float speed, float travelDistance, Vector2 target, string projectileType, float startingRotation, float gravity)
+        public void FireProjectile(float speed, float travelDistance, Vector2 target, string projectileType, float startingRotation, float gravity, float attack)
         {
             this.projectileType = projectileType;
             this.startingRotation = startingRotation;
             this.gravity = gravity;
+            this.attack = attack;
             // Debug.Log("Gravity: " + this.gravity + " , " + gravity);
 
             if(projectileType == "radialWithGravity")
