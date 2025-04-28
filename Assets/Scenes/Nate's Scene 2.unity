@@ -606,6 +606,10 @@ PrefabInstance:
       propertyPath: waitingPlayerScreen
       value: 
       objectReference: {fileID: 1229478733}
+    - target: {fileID: 8857452221912433817, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
