@@ -19,6 +19,7 @@ public class Boss1_Cooldown : CooldownState
     public override void Exit()
     {
         base.Exit();
+        enemy.lastAttackType = Boss1.LastAttackType.None;
     }
 
     public override void LogicUpdate()

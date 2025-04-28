@@ -749,6 +749,7 @@ MonoBehaviour:
   playerPosition2: {fileID: 0}
   targetPlayer: {fileID: 0}
   isPlayerInPursuitRange: 0
+  stats: {fileID: 0}
   pursuitRangeCollider: {fileID: 4313723213794779289}
   UniqueId: 
   stompRange: 4
@@ -761,6 +762,7 @@ MonoBehaviour:
   cooldownStateData: {fileID: 11400000, guid: 599782faf83778143a91c1673249a38d, type: 2}
   meleeAttackCollider: {fileID: 7713608560364900413}
   stompAttackCollider: {fileID: 7998998494292055464}
+  lastAttackType: 0
 --- !u!50 &9113077644204671259
 Rigidbody2D:
   serializedVersion: 5
@@ -1107,7 +1109,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7998998494292055464}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}

@@ -30,6 +30,7 @@ public class Boss1_Pursuit : ChargeState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
         float distanceToPlayer = Vector2.Distance(enemy.targetPlayer.position, enemy.transform.position);
         Vector2 direction = (enemy.targetPlayer.position - enemy.transform.position).normalized;
 

@@ -45,14 +45,15 @@ public class Boss1_MeleeAttack : MeleeAttackState
         {
             float distanceToPlayer = Vector2.Distance(enemy.targetPlayer.position, enemy.transform.position);
 
-            // Check if the player is close enough for a stomp attack
-            if (distanceToPlayer <= enemy.stompRange)
+            if (distanceToPlayer <= enemy.stompRange && enemy.lastAttackType != Boss1.LastAttackType.Stomp)
             {
-                stateMachine.ChangeState(enemy.stompAttackState); // Transition to stomp attack
+                enemy.lastAttackType = Boss1.LastAttackType.Swing;
+                stateMachine.ChangeState(enemy.stompAttackState); 
             }
             else
             {
-                stateMachine.ChangeState(enemy.cooldownState); // Transition to cooldown
+                enemy.lastAttackType = Boss1.LastAttackType.Swing;
+                stateMachine.ChangeState(enemy.cooldownState); 
             }
         }
     }

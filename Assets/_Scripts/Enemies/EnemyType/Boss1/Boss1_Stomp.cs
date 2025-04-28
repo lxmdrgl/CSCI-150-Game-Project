@@ -46,8 +46,10 @@ public class Boss1_Stomp : MeleeAttackState
             float distanceToPlayer = Vector2.Distance(enemy.targetPlayer.position, enemy.transform.position);
 
             // Check if the player is in medium range for a melee attack
-            if (distanceToPlayer > enemy.stompRange && distanceToPlayer <= enemy.swingRange)
+            if (distanceToPlayer > enemy.stompRange && distanceToPlayer <= enemy.swingRange && enemy.lastAttackType != Boss1.LastAttackType.Swing)
             {
+                Debug.LogWarning("Transitioning to melee attack state from stomp attack state.");
+                enemy.lastAttackType = Boss1.LastAttackType.Stomp;
                 stateMachine.ChangeState(enemy.meleeAttackState); // Transition to melee
             }
             else

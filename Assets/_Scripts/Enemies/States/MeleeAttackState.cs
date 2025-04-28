@@ -14,13 +14,8 @@ public class MeleeAttackState : AttackState
 	protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
 	private CollisionSenses CollisionSenses { get => collisionSenses ?? core.GetCoreComponent(ref collisionSenses); }
 	private Stats Stats { get => stats ?? core.GetCoreComponent(ref stats); }
-
-	private Movement movement;
 	private CollisionSenses collisionSenses;
-	private Stats stats;
-
 	protected D_MeleeAttack stateData;
-
 	PolygonCollider2D hitbox;  
 	private List<Collider2D> detected = new List<Collider2D>();
 

@@ -28,6 +28,16 @@ public class Boss1 : Entity
     public GameObject meleeAttackCollider;
     public GameObject stompAttackCollider;
 
+    public enum LastAttackType
+    {
+        None,
+        Swing,
+        Stomp
+    }
+
+    public LastAttackType lastAttackType = LastAttackType.None;
+
+
     public override void Awake()
     {
         base.Awake();
