@@ -30,31 +30,34 @@ public class Boss1_Pursuit : ChargeState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        float distanceToPlayer = Vector2.Distance(enemy.targetPlayer.position, enemy.transform.position);
+        Vector2 direction = (enemy.targetPlayer.position - enemy.transform.position).normalized;
 
-        if (performCloseRangeAction)
+        // Check if the boss needs to flip to face the player
+        if ((direction.x > 0 && Movement?.FacingDirection < 0) || (direction.x < 0 && Movement?.FacingDirection > 0))
         {
-            Movement.SetVelocityX(0);
-            stateMachine.ChangeState(enemy.stompAttackState); // Use stomp attack
+            Movement.Flip();
         }
-        else if(isPlayerInMaxAgroRange)
+
+        if (distanceToPlayer <= enemy.stompRange)
         {
-            stateMachine.ChangeState(enemy.meleeAttackState); // Use overhead swing attack
+            // Check if the player is close enough for a stomp attack
             Movement.SetVelocityX(0);
+            stateMachine.ChangeState(enemy.stompAttackState); // Transition to stomp attack
+        }
+        else if (distanceToPlayer <= enemy.swingRange && distanceToPlayer > enemy.stompRange)
+        {
+            // Check if the player is close enough for a melee attack
+            Movement.SetVelocityX(0);
+            stateMachine.ChangeState(enemy.meleeAttackState); // Transition to melee attack
         }
         else if (isPlayerInPursuitRange)
         {
-            Vector2 direction = (enemy.targetPlayer.position - enemy.transform.position).normalized;
-            direction.y = enemy.transform.position.y;
-            if ((direction.x > 0 && Movement?.FacingDirection < 0) || (direction.x < 0 && Movement?.FacingDirection > 0))
-            {
-                Movement.Flip();
-            }
-
             Movement.SetVelocityX(direction.x * stateData.chargeSpeed);
         }
         else
         {
-            stateMachine.ChangeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState); // Transition to idle state
         }
     }
 

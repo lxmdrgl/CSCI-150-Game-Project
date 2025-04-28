@@ -6,7 +6,6 @@ public class Boss1_MeleeAttack : MeleeAttackState
 {
     private Boss1 enemy;
 	protected bool isAttackOffCooldown;
-
     public Boss1_MeleeAttack(Entity entity, string animBoolName, GameObject meleeAttackCollider, D_MeleeAttack stateData, Boss1 enemy) : base(entity, animBoolName, meleeAttackCollider, stateData)
     {
         this.enemy = enemy;
@@ -20,6 +19,12 @@ public class Boss1_MeleeAttack : MeleeAttackState
     public override void Enter()
     {
         base.Enter();
+        Vector2 direction = (enemy.targetPlayer.position - enemy.transform.position).normalized;
+        if ((direction.x > 0 && Movement?.FacingDirection < 0) || (direction.x < 0 && Movement?.FacingDirection > 0))
+        {
+            Movement.Flip();
+        }
+        isAttackOffCooldown = false; // Reset cooldown flag
     }
 
     public override void Exit()
@@ -38,14 +43,16 @@ public class Boss1_MeleeAttack : MeleeAttackState
 
         if (isAnimationFinished)
         {
-            // Transition to another attack (combo) or cooldown
-            if (entity.CheckPlayerInCloseRangeAction())
+            float distanceToPlayer = Vector2.Distance(enemy.targetPlayer.position, enemy.transform.position);
+
+            // Check if the player is close enough for a stomp attack
+            if (distanceToPlayer <= enemy.stompRange)
             {
-                stateMachine.ChangeState(enemy.stompAttackState); // Combo back to stomp
+                stateMachine.ChangeState(enemy.stompAttackState); // Transition to stomp attack
             }
             else
             {
-                stateMachine.ChangeState(enemy.cooldownState); // Go to cooldown
+                stateMachine.ChangeState(enemy.cooldownState); // Transition to cooldown
             }
         }
     }

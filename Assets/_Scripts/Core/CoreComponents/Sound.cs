@@ -17,16 +17,16 @@ namespace Game.CoreSystem
 
         private void HandleFootstep()
         {
-            /* if (footstepSounds.Count == 0)
+             if (footstepSounds.Count == 0)
             {
                 Debug.LogWarning("No footstep sounds assigned.");
                 
             }
             else if (footstepSounds.Count > 0)
             {
-                audioSource.clip = footstepSounds[Random.Range(0, footstepSounds.Count)];
+                audioSource.clip = footstepSounds[UnityEngine.Random.Range(0, footstepSounds.Count)];
                 audioSource.Play();
-             } */
+             } 
             Debug.Log("Footstep sound played.");
             Debug.Log("audioPlayer: " + audioSource);
         }
