@@ -841,7 +841,7 @@ Animator:
   m_GameObject: {fileID: 6360035130462158432}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 79700331ca917eb4d9c7505e25acdb12, type: 2}
+  m_Controller: {fileID: 9100000, guid: 83a763fbbed3d284faad176a1da043e2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -944,6 +944,7 @@ MonoBehaviour:
   playerPosition2: {fileID: 0}
   targetPlayer: {fileID: 0}
   isPlayerInPursuitRange: 0
+  stats: {fileID: 0}
   pursuitRangeCollider: {fileID: 4446954341491533323}
   UniqueId: 
   idleStateData: {fileID: 11400000, guid: 00630f1a6811faf49856aab8645206c5, type: 2}

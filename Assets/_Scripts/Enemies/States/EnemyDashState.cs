@@ -10,12 +10,14 @@ public class EnemyDashState : MeleeAttackState
     private Enemy5 enemy;
     private float dashSpeed;
     private float dashDuration;
+    private float jumpSpeed;
     private float dashStartTime;
 
 	protected bool isDetectingLedge;
 	protected bool isDetectingWall;
 	protected bool isChargeTimeOver;
 	protected bool performCloseRangeAction;
+    private bool triggeredAttack;
 
     /* public EnemyDashState(Entity entity, string animBoolName, float dashSpeed, float dashDuration) 
         : base(entity, animBoolName)
@@ -27,7 +29,8 @@ public class EnemyDashState : MeleeAttackState
     public EnemyDashState(Entity entity, string animBoolName, GameObject meleeAttackCollider, D_MeleeAttack stateData, Enemy5 enemy) : base(entity, animBoolName, meleeAttackCollider, stateData)
     {
         this.enemy = enemy;
-        dashSpeed = 10f;
+        dashSpeed = 5f;
+        jumpSpeed = 20f;
         dashDuration = 0.5f;
     }
 
@@ -35,6 +38,8 @@ public class EnemyDashState : MeleeAttackState
     {
         base.Enter();
         dashStartTime = Time.time;
+        Movement?.SetVelocityY(jumpSpeed); // Apply an upward force for jumping
+        triggeredAttack = false;
 
         // Apply an immediate force or velocity for dashing
     }
@@ -42,11 +47,13 @@ public class EnemyDashState : MeleeAttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
         Movement?.SetVelocityX(dashSpeed * Movement.FacingDirection);
 
         // If dash duration is over, transition to another state
         if (Time.time >= dashStartTime + dashDuration)
         {
+            Movement.SetVelocityX(0);
             stateMachine.ChangeState(enemy.idleState); // Assuming IdleState exists
         }
     }

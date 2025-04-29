@@ -7,6 +7,8 @@ public class E5_MeleeDashState : EnemyDashState
     private Enemy5 enemy;
 
 
+    private bool triggeredAttack;
+
     public E5_MeleeDashState(Entity entity, string animBoolName, GameObject meleeAttackCollider, D_MeleeAttack stateData, Enemy5 enemy) : base(entity, animBoolName, meleeAttackCollider, stateData, enemy)
     {
         this.enemy = enemy;
@@ -21,6 +23,7 @@ public class E5_MeleeDashState : EnemyDashState
     public override void Enter()
     {
         base.Enter();
+        triggeredAttack = false;
     }
 
     public override void FinishAttack()
@@ -31,6 +34,10 @@ public class E5_MeleeDashState : EnemyDashState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if (!triggeredAttack) {
+            triggeredAttack = TriggerAttack();
+        }
     }
 
     
