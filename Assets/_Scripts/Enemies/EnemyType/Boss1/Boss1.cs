@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -34,9 +35,11 @@ public class Boss1 : Entity
         Swing,
         Stomp
     }
-
     public LastAttackType lastAttackType = LastAttackType.None;
-
+    public GameObject spikePrefab;
+    public float delayBetweenSteps = 0.25f;
+    public int steps = 5;
+    public float spacing = 2f;
 
     public override void Awake()
     {
@@ -84,5 +87,18 @@ public class Boss1 : Entity
         Gizmos.DrawWireSphere(transform.position, stompRange);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, swingRange);
+    }
+
+    public IEnumerator SpawnSpikes()
+    {
+        for (int i = 1; i <= steps; i++)
+        {
+            float offset = spacing * i;
+
+            Instantiate(spikePrefab, transform.position + Vector3.left * offset, Quaternion.identity);
+            Instantiate(spikePrefab, transform.position + Vector3.right * offset, Quaternion.identity);
+
+            yield return new WaitForSeconds(delayBetweenSteps);
+        }
     }
 }
