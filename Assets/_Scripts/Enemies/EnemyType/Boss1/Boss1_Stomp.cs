@@ -67,6 +67,7 @@ public class Boss1_Stomp : MeleeAttackState
     public override bool TriggerAttack()
     {
         base.TriggerAttack();
+        enemy.StartCoroutine(enemy.SpawnSpikes());
         return false;
     }
 }

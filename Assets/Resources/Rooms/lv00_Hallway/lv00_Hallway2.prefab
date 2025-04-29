@@ -104,7 +104,6 @@ MonoBehaviour:
   hasCollision: 0
   enemies:
   - {fileID: 6360035130462158432, guid: b1a49f40fa6fa6d4bb052ae55f9d69c7, type: 3}
-  - {fileID: 6360035130462158432, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
   enemySpawners:
   - {fileID: 2610624204521952926}
 --- !u!1001 &845838692303786376
