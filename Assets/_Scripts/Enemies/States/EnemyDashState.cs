@@ -29,7 +29,7 @@ public class EnemyDashState : MeleeAttackState
     public EnemyDashState(Entity entity, string animBoolName, GameObject meleeAttackCollider, D_MeleeAttack stateData, Enemy5 enemy) : base(entity, animBoolName, meleeAttackCollider, stateData)
     {
         this.enemy = enemy;
-        dashSpeed = 5f;
+        dashSpeed = 10f;
         jumpSpeed = 20f;
         dashDuration = 0.5f;
     }
