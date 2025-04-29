@@ -34,16 +34,20 @@ public class E5_ChargeState : ChargeState
 
         Movement?.SetVelocityX(stateData.chargeSpeed * Movement.FacingDirection);
 
+        Debug.Log("Enemy Charge State: " + isPlayerInPursuitRange + " " + isPlayerInAgroRange + " " + performCloseRangeAction + " " + isDetectingLedge + " " + isDetectingWall);
         if (performCloseRangeAction)
         {
+            Debug.Log("Perform close range action");
             stateMachine.ChangeState(enemy.meleeAttackState);
         }
         else if (!isPlayerInAgroRange && isPlayerInPursuitRange)
         {
+            Debug.Log("Enter look state");
             stateMachine.ChangeState(enemy.lookForPlayerState);
         }
         else if (!isDetectingLedge || isDetectingWall)
         {
+            Debug.Log("Enter look 2 state");
             stateMachine.ChangeState(enemy.lookForPlayerState);
         }
     }
