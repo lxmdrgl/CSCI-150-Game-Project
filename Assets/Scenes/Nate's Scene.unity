@@ -200,8 +200,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 3.84, y: 2.16}
+  m_DrawMode: 2
+  m_Size: {x: 500, y: 13.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6330dbf75dfe1b24e8f247713d7da553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.2
+  parallaxFactor: 0.3
   globalParallaxMultiplier: 2
 --- !u!1001 &217460143
 PrefabInstance:
@@ -355,7 +355,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2, y: -0.5, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2145777111}
@@ -554,8 +554,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 3.84, y: 2.16}
+  m_DrawMode: 2
+  m_Size: {x: 500, y: 13.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6330dbf75dfe1b24e8f247713d7da553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.3
+  parallaxFactor: 0.25
   globalParallaxMultiplier: 2
 --- !u!1 &542008315
 GameObject:
@@ -656,8 +656,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 3.84, y: 2.16}
+  m_DrawMode: 2
+  m_Size: {x: 500, y: 13.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -675,7 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6330dbf75dfe1b24e8f247713d7da553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.4
+  parallaxFactor: 0.2
   globalParallaxMultiplier: 2
 --- !u!114 &1202014332 stripped
 MonoBehaviour:
@@ -945,8 +945,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 3.84, y: 2.16}
+  m_DrawMode: 2
+  m_Size: {x: 500, y: 13.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -964,7 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6330dbf75dfe1b24e8f247713d7da553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.5
+  parallaxFactor: 0.15
   globalParallaxMultiplier: 2
 --- !u!1001 &1455375179
 PrefabInstance:
@@ -974,6 +974,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 593787929915724436, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2416301796915866718, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1040,7 +1044,7 @@ PrefabInstance:
       objectReference: {fileID: 217460145}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: attackIncrease
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: gameplayCanvas
@@ -1048,7 +1052,7 @@ PrefabInstance:
       objectReference: {fileID: 488974052}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: maxHealthIncrease
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: waitingPlayerScreen
@@ -1273,8 +1277,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 3.84, y: 2.16}
+  m_DrawMode: 2
+  m_Size: {x: 500, y: 13.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1292,7 +1296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6330dbf75dfe1b24e8f247713d7da553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.6
+  parallaxFactor: 0.1
   globalParallaxMultiplier: 2
 --- !u!1001 &8046977110594866248
 PrefabInstance:
