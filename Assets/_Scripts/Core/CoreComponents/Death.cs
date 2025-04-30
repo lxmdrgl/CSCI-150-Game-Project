@@ -90,7 +90,7 @@ namespace Game.CoreSystem
         {
             Stats.Health.OnCurrentValueZero -= Die;
 
-            Destroy(core.transform.parent.gameObject);
+            // Destroy(core.transform.parent.gameObject);
         }
     }
 }

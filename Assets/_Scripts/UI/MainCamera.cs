@@ -45,8 +45,8 @@ public class MainCamera : MonoBehaviour
 
     public void HandleOnPlayerDeath(int index)
     {
-        singleplayerCinemachineCamera.enabled = true;
-        multiplayerCinemachineCamera.enabled = false;
+        // singleplayerCinemachineCamera.enabled = true;
+        // multiplayerCinemachineCamera.enabled = false;
         if (index == 0 && player2 != null)
         {
             singleplayerCinemachineCamera.Target.TrackingTarget = player2.transform;
