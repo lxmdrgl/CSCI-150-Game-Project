@@ -52,7 +52,7 @@ public class HealthBar : MonoBehaviour
         
         stats = player.GetComponentInChildren<Stats>();
         death = player.GetComponentInChildren<Death>();
-        
+        Debug.Log("HealthBar SetDependecies DEATH" + death);
         stats.Health.OnValueChange += UpdateSlider;
         if(death != null) {
             death.OnDeath += DisableHealthBar;

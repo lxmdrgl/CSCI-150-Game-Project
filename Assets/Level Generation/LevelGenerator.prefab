@@ -269,6 +269,8 @@ MonoBehaviour:
   inputMenu: {fileID: 0}
   waitingPlayerScreen: {fileID: 0}
   roomMap: {fileID: 1844784247302642640, guid: 4c5165f4028036945a86b5b40d7fca73, type: 3}
+  maxHealthIncrease: 30
+  attackIncrease: 30
 --- !u!1 &6288190796899597517
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,6 +651,10 @@ PrefabInstance:
     - target: {fileID: 6159921083976789660, guid: eb4e2fdf20034ef4b8d215feaef6087a, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6246399254771592064, guid: eb4e2fdf20034ef4b8d215feaef6087a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8480673325129519789, guid: eb4e2fdf20034ef4b8d215feaef6087a, type: 3}
       propertyPath: Targets.Array.size

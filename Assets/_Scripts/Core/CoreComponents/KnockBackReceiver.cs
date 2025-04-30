@@ -43,6 +43,7 @@ namespace Game.CoreSystem
             isKnockBackActive = true;
             knockBackStartTime = Time.time; */
             Debug.Log("Knock active: " + CanTakeKnockBack);
+
             if (CanTakeKnockBack) {
                 movement.SetVelocity(data.Strength, data.Angle, data.Direction);
                 movement.CanSetVelocity = false;

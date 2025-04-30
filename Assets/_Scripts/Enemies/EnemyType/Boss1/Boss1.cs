@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -40,7 +41,10 @@ public class Boss1 : Entity
     public float delayBetweenSteps = 0.25f;
     public int steps = 5;
     public float spacing = 2f;
-
+    public GameObject stalactitePrefab;
+    public Transform spawnAreaLeft;
+    public Transform spawnAreaRight;
+    public int stalactitesPerAttack = 5;
     public override void Awake()
     {
         base.Awake();
@@ -94,11 +98,76 @@ public class Boss1 : Entity
         for (int i = 1; i <= steps; i++)
         {
             float offset = spacing * i;
+            Vector3 spawnHeightOffset = Vector3.up * 0.75f;
 
-            Instantiate(spikePrefab, transform.position + Vector3.left * offset, Quaternion.identity);
-            Instantiate(spikePrefab, transform.position + Vector3.right * offset, Quaternion.identity);
+            // Left spike (normal rotation)
+            Instantiate(spikePrefab, transform.position + Vector3.left * offset + spawnHeightOffset, Quaternion.identity);
+
+            // Right spike (flipped 180° on Y-axis)
+            Quaternion flipY = Quaternion.Euler(0, 180f, 0);
+            Instantiate(spikePrefab, transform.position + Vector3.right * offset + spawnHeightOffset, flipY);
 
             yield return new WaitForSeconds(delayBetweenSteps);
+        }
+    }
+
+
+    public float minSpacing = 1.5f;
+    public float minGravity = 3f;
+    public float maxGravity = 7f;
+    public void SpawnStalactites()
+    {
+        List<float> usedX = new List<float>();
+
+        float baseY = spawnAreaLeft.position.y;
+
+        // 1. Spawn directly above the player
+        float playerX = targetPlayer.position.x;
+        float clampedX = Mathf.Clamp(playerX, spawnAreaLeft.position.x, spawnAreaRight.position.x);
+        usedX.Add(clampedX);
+
+        GameObject playerStalactite = Instantiate(stalactitePrefab, new Vector2(clampedX, baseY), Quaternion.identity);
+        SetRandomGravity(playerStalactite);
+
+        // 2. Spawn the rest randomly without stacking
+        for (int i = 1; i < stalactitesPerAttack; i++)
+        {
+            int attempts = 0;
+            float xPos = 0f;
+            bool valid = false;
+
+            while (attempts < 10 && !valid)
+            {
+                xPos = Random.Range(spawnAreaLeft.position.x, spawnAreaRight.position.x);
+                valid = true;
+
+                foreach (float used in usedX)
+                {
+                    if (Mathf.Abs(xPos - used) < minSpacing)
+                    {
+                        valid = false;
+                        break;
+                    }
+                }
+
+                attempts++;
+            }
+
+            if (valid)
+            {
+                usedX.Add(xPos);
+                GameObject stalactite = Instantiate(stalactitePrefab, new Vector2(xPos, baseY), Quaternion.identity);
+                SetRandomGravity(stalactite);
+            }
+        }
+    }
+
+    private void SetRandomGravity(GameObject obj)
+    {
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.gravityScale = Random.Range(minGravity, maxGravity);
         }
     }
 }

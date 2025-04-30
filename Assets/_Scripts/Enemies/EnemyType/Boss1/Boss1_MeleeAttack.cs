@@ -66,6 +66,7 @@ public class Boss1_MeleeAttack : MeleeAttackState
     public override bool TriggerAttack()
     {
         base.TriggerAttack();
+        enemy.SpawnStalactites(); 
         return false;
     }
 }

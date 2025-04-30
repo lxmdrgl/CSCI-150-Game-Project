@@ -763,6 +763,17 @@ MonoBehaviour:
   meleeAttackCollider: {fileID: 7713608560364900413}
   stompAttackCollider: {fileID: 7998998494292055464}
   lastAttackType: 0
+  spikePrefab: {fileID: 7172540724301310696, guid: 076d77f63216c134f83f3c5d8f06d987, type: 3}
+  delayBetweenSteps: 0.25
+  steps: 30
+  spacing: 1
+  stalactitePrefab: {fileID: 7108401955841115565, guid: 6fe354fe3dacbf7428f806f9724a7dd5, type: 3}
+  spawnAreaLeft: {fileID: 0}
+  spawnAreaRight: {fileID: 0}
+  stalactitesPerAttack: 10
+  minSpacing: 1
+  minGravity: 1
+  maxGravity: 3
 --- !u!50 &9113077644204671259
 Rigidbody2D:
   serializedVersion: 5
@@ -1221,7 +1232,7 @@ PrefabInstance:
       objectReference: {fileID: 7966933337800604805}
     - target: {fileID: 1019094243345212857, guid: b17dda79164a5ae4a8cf24aa482b08e2, type: 3}
       propertyPath: m_text
-      value: Boss 1
+      value: Gorath the Bloodhorn
       objectReference: {fileID: 0}
     - target: {fileID: 2738078670945885726, guid: b17dda79164a5ae4a8cf24aa482b08e2, type: 3}
       propertyPath: m_Pivot.x
