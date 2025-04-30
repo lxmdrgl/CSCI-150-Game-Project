@@ -17,6 +17,12 @@ public class TargetGroupCamera : MonoBehaviour
     {
         rightRotation = true;
         leftRotation = true;
+
+        foreach (var target in targetGroup.Targets)
+        {
+            if (target.Object == null) return;
+        }
+
         foreach (var target in targetGroup.Targets)
         {
             float rotationY = target.Object.rotation.eulerAngles.y;

@@ -559,6 +559,8 @@ public class LevelGenerator : MonoBehaviour
         {
             UnityEngine.Debug.LogError("Invalid player count for camera setup.");
         }
+
+        mainCamera.SetDependencies();
     }
 
     void setUserInterface(PlayerInput newPlayer)
@@ -799,7 +801,7 @@ public class LevelGenerator : MonoBehaviour
             } else
             {
                 UnityEngine.Debug.LogWarning("Exit Screen");
-                waitingPlayerScreen.ExitScreen();
+                waitingPlayerScreen.SwitchScreen();
             }
         }
         if (PlayerInput.all.Count > 1)
@@ -894,8 +896,8 @@ public class LevelGenerator : MonoBehaviour
 
                     // Second player found, resume the game
 
-                    Debug.LogWarning("Exiting waiting player screen");
-                    waitingPlayerScreen.SwitchScreen();
+                    // Debug.LogWarning("Exiting waiting player screen");
+                    // waitingPlayerScreen.SwitchScreen();      // Redundant (change == InputDeviceChange.Reconnected)
 
                     yield break;
                 }

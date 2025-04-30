@@ -89,6 +89,8 @@ namespace Game.CoreSystem
         private void OnDisable()
         {
             Stats.Health.OnCurrentValueZero -= Die;
+
+            Destroy(core.transform.parent.gameObject);
         }
     }
 }

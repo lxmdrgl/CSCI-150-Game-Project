@@ -69,6 +69,11 @@ public class WaitingPlayerManager : MonoBehaviour
             singlePlayerScreenCanvasGO.SetActive(true);
         }
 
+        if (foundPlayerScreenCanvasGO != null)
+        {
+            foundPlayerScreenCanvasGO.SetActive(false);
+        }
+
         EventSystem.current.SetSelectedGameObject(menuFirst);
 
         Pause();

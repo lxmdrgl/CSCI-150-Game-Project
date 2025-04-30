@@ -75,11 +75,7 @@ public class DeathScreenManager : MonoBehaviour
     {
         if (deathScreenCanvasGO != null)
         {
-            deathCount++;
-            if (PlayerPrefs.GetInt("playerCount") == deathCount)
-            {
-                deathScreenCanvasGO.SetActive(true);
-            }
+            deathScreenCanvasGO.SetActive(true);
         }
 
         EventSystem.current.SetSelectedGameObject(menuFirst);

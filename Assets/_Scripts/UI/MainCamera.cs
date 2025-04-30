@@ -33,13 +33,13 @@ public class MainCamera : MonoBehaviour
     {
         if (player1 != null)
         {
-            death1 = player1.GetComponent<Death>();
-            death1.OnPlayerDeath += () => HandleOnPlayerDeath(0);
+            death1 = player1.GetComponentInChildren<Core>().GetComponentInChildren<Death>();
+            death1.OnDeath += () => HandleOnPlayerDeath(0);
         }
         if (player2 != null)
         {
-            death2 = player2.GetComponent<Death>();
-            death2.OnPlayerDeath += () => HandleOnPlayerDeath(1);
+            death2 = player2.GetComponentInChildren<Core>().GetComponentInChildren<Death>();
+            death2.OnDeath += () => HandleOnPlayerDeath(1);
         }
     }
 
@@ -51,7 +51,7 @@ public class MainCamera : MonoBehaviour
         {
             singleplayerCinemachineCamera.Target.TrackingTarget = player2.transform;
             UnityEngine.Debug.Log("Singleplayer camera set to player 2");
-        } else if (player1 != null)
+        } else if (index == 1 && player1 != null)
         {
             singleplayerCinemachineCamera.Target.TrackingTarget = player1.transform;
             UnityEngine.Debug.Log("Singleplayer camera set to player 1");
