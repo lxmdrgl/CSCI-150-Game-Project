@@ -113,7 +113,8 @@ public class Boss1 : Entity
 
 
     public float minSpacing = 1.5f;
-    public float yOffsetRange = 3f;
+    public float minGravity = 3f;
+    public float maxGravity = 7f;
     public void SpawnStalactites()
     {
         List<float> usedX = new List<float>();
@@ -123,9 +124,10 @@ public class Boss1 : Entity
         // 1. Spawn directly above the player
         float playerX = targetPlayer.position.x;
         float clampedX = Mathf.Clamp(playerX, spawnAreaLeft.position.x, spawnAreaRight.position.x);
-        float playerY = baseY + Random.Range(-yOffsetRange, yOffsetRange); // Add random height
         usedX.Add(clampedX);
-        Instantiate(stalactitePrefab, new Vector2(clampedX, playerY), Quaternion.identity);
+
+        GameObject playerStalactite = Instantiate(stalactitePrefab, new Vector2(clampedX, baseY), Quaternion.identity);
+        SetRandomGravity(playerStalactite);
 
         // 2. Spawn the rest randomly without stacking
         for (int i = 1; i < stalactitesPerAttack; i++)
@@ -154,9 +156,18 @@ public class Boss1 : Entity
             if (valid)
             {
                 usedX.Add(xPos);
-                float randomY = baseY + Random.Range(-yOffsetRange, yOffsetRange);
-                Instantiate(stalactitePrefab, new Vector2(xPos, randomY), Quaternion.identity);
+                GameObject stalactite = Instantiate(stalactitePrefab, new Vector2(xPos, baseY), Quaternion.identity);
+                SetRandomGravity(stalactite);
             }
+        }
+    }
+
+    private void SetRandomGravity(GameObject obj)
+    {
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.gravityScale = Random.Range(minGravity, maxGravity);
         }
     }
 }

@@ -771,8 +771,9 @@ MonoBehaviour:
   spawnAreaLeft: {fileID: 0}
   spawnAreaRight: {fileID: 0}
   stalactitesPerAttack: 10
-  minSpacing: 1.5
-  yOffsetRange: 5
+  minSpacing: 1
+  minGravity: 1
+  maxGravity: 3
 --- !u!50 &9113077644204671259
 Rigidbody2D:
   serializedVersion: 5
@@ -1231,7 +1232,7 @@ PrefabInstance:
       objectReference: {fileID: 7966933337800604805}
     - target: {fileID: 1019094243345212857, guid: b17dda79164a5ae4a8cf24aa482b08e2, type: 3}
       propertyPath: m_text
-      value: Boss 1
+      value: Gorath the Bloodhorn
       objectReference: {fileID: 0}
     - target: {fileID: 2738078670945885726, guid: b17dda79164a5ae4a8cf24aa482b08e2, type: 3}
       propertyPath: m_Pivot.x
