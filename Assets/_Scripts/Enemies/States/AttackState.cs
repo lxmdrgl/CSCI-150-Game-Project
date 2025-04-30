@@ -39,6 +39,7 @@ public class AttackState : EnemyState
 		entity.atsm.attackState = this;
 		isAnimationFinished = false;
 		movement?.SetVelocityX(0f);
+		movement?.SetVelocityY(0f);
 	}
 
 	public override void Exit() 
@@ -49,8 +50,8 @@ public class AttackState : EnemyState
 	public override void LogicUpdate() 
 	{
 		base.LogicUpdate();
-		movement?.SetVelocityX(0f);
-		movement?.SetVelocityY(0f);
+		// movement?.SetVelocityX(0f);
+		// movement?.SetVelocityY(0f);
 	}
 
 	public override void PhysicsUpdate() 

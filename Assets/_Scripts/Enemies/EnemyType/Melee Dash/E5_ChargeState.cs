@@ -45,6 +45,11 @@ public class E5_ChargeState : ChargeState
             Debug.Log("Enter look state");
             stateMachine.ChangeState(enemy.lookForPlayerState);
         }
+        // else if (!isPlayerInPursuitRange)
+        // {
+        //     Debug.Log("Enter idle state");
+        //     stateMachine.ChangeState(enemy.idleState);
+        // }
         else if (!isDetectingLedge || isDetectingWall)
         {
             Debug.Log("Enter look 2 state");

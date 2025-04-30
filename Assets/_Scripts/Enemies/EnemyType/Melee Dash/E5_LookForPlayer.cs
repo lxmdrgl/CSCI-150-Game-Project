@@ -32,7 +32,7 @@ public class E5_LookForPlayerState : LookForPlayerState
 
         if(isPlayerInAgroRange && isPlayerInPursuitRange) 
         {
-            stateMachine.ChangeState(enemy.playerDetectedState);
+            stateMachine.ChangeState(enemy.chargeState);
         }
         else if (isAllTurnsTimeDone)
         {
