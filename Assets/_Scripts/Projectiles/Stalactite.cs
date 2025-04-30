@@ -1,4 +1,6 @@
 using UnityEngine;
+using Game.Combat.Damage;
+using Game.Utilities;
 
 public class Stalactite : MonoBehaviour
 {
@@ -13,9 +15,11 @@ public class Stalactite : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Collider2D[] colliders = new Collider2D[1] { collision };
+
         if (collision.CompareTag("Player"))
         {
-
+            CombatDamageUtilities.TryDamage(colliders, new DamageData(damage, gameObject), out _);
             Destroy(gameObject);
         }
         else if (((1 << collision.gameObject.layer) & groundLayer) != 0)

@@ -61,7 +61,7 @@ public class SpikeEffect : MonoBehaviour
         Collider2D[] colliders = new Collider2D[1] { collision };
         if(collision.CompareTag("Player"))
         {
-            //CombatDamageUtilities.TryDamage(colliders, new DamageData(damage, gameObject), out _);
+            CombatDamageUtilities.TryDamage(colliders, new DamageData(damage, gameObject), out _);
         }
     }
 }

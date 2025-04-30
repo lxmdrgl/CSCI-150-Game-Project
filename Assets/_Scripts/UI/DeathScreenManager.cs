@@ -3,6 +3,8 @@ using System.IO;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using System.Linq;
 
 public class DeathScreenManager : MonoBehaviour
 {
@@ -164,6 +166,7 @@ public class DeathScreenManager : MonoBehaviour
         {
             SceneManager.LoadScene(GameplaySceneName);
             deathScreenCanvasGO.SetActive(false);
+
             return;
         }
         else
@@ -178,4 +181,5 @@ public class DeathScreenManager : MonoBehaviour
             DataPersistenceManager.instance.SaveGame();   
         }
     }
+
 }

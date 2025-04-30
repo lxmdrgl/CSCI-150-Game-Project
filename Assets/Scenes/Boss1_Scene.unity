@@ -138,6 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 0}
   player2: {fileID: 0}
+  singleplayerCinemachineCamera: {fileID: 0}
+  multiplayerCinemachineCamera: {fileID: 0}
 --- !u!1001 &217460143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -730,6 +732,10 @@ PrefabInstance:
     - target: {fileID: 5132510945296525546, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: m_Name
       value: LevelGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662045743087320979, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: orthographic size
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 5685197618826063276, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: Damping.x

@@ -37,7 +37,7 @@ public class MainMenu : MonoBehaviour
         string playerName = PlayerPrefs.GetString("PlayerName", "Player");
         Debug.Log("Loaded Player Name: " + playerName);  // Verify the name is loaded correctly
 
-
+        SceneManager.sceneLoaded += OnSceneLoaded;
         /*
         SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -62,12 +62,6 @@ public class MainMenu : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(mainMenuFirst);
 
-        List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList<GameObject>();
-
-        foreach (GameObject player in players)
-        {
-            Destroy(player);
-        }
     }
 
     public void Play()
@@ -166,6 +160,16 @@ public class MainMenu : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        List<GameObject> players = new List<GameObject>();
+        FindGameObjectsWithTagIncludingInactive("Player", players);
+
+        foreach (GameObject player in players)
+        {
+            Destroy(player);
+        }
+
+        /*
+
         if(DataPersistenceManager.instance.disableDataPersistence)
         {
             return;
@@ -192,6 +196,19 @@ public class MainMenu : MonoBehaviour
             // Set the save slots button text
             savesBtnText.text = "Save Slot: " + currentSave;
 
+        }
+        */
+    }
+
+    private void FindGameObjectsWithTagIncludingInactive(string tag, List<GameObject> result)
+    {
+        Transform[] allObjects = Resources.FindObjectsOfTypeAll<Transform>();
+        foreach (Transform t in allObjects)
+        {
+            if (t.hideFlags == HideFlags.None && t.CompareTag(tag))
+            {
+                result.Add(t.gameObject);
+            }
         }
     }
 }

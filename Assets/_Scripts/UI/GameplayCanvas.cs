@@ -12,11 +12,11 @@ public class GameplayCanvas : MonoBehaviour
 
     public void SetDependencies()
     {
-        if (playerHealthBar1 != null)
+        if (playerHealthBar1.activeInHierarchy)
         {
             playerHealthBar1.GetComponent<HealthBar>().SetDependencies();
         }
-        if (playerHealthBar2 != null)
+        if (playerHealthBar2.activeInHierarchy)
         {
             playerHealthBar2.GetComponent<HealthBar>().SetDependencies();
         }

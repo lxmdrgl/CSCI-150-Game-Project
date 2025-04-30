@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: B1_BaseData
   m_EditorClassIdentifier: 
   agroRange: 20
-  pursuitRange: 20
+  pursuitRange: 35
   maxAgroDistance: 5
   closeRangeActionDistance: 2.5
   whatIsGround:
