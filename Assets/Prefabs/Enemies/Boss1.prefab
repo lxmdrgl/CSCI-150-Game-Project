@@ -763,6 +763,16 @@ MonoBehaviour:
   meleeAttackCollider: {fileID: 7713608560364900413}
   stompAttackCollider: {fileID: 7998998494292055464}
   lastAttackType: 0
+  spikePrefab: {fileID: 7172540724301310696, guid: 076d77f63216c134f83f3c5d8f06d987, type: 3}
+  delayBetweenSteps: 0.25
+  steps: 30
+  spacing: 1
+  stalactitePrefab: {fileID: 7108401955841115565, guid: 6fe354fe3dacbf7428f806f9724a7dd5, type: 3}
+  spawnAreaLeft: {fileID: 0}
+  spawnAreaRight: {fileID: 0}
+  stalactitesPerAttack: 10
+  minSpacing: 1.5
+  yOffsetRange: 5
 --- !u!50 &9113077644204671259
 Rigidbody2D:
   serializedVersion: 5
