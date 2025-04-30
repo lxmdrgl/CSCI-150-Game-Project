@@ -15,7 +15,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Users;
-
+using UnityEngine.Tilemaps;
 using Debug=UnityEngine.Debug;
 using Random=UnityEngine.Random;
 
@@ -47,6 +47,13 @@ public class LevelGenerator : MonoBehaviour
     PlayerInputManager playerInputManager;
     public float maxHealthIncrease = 30f;
     public float attackIncrease = 30f;
+
+    [Header("TilePlacement")]
+    public Grid grid;
+    public Tilemap tilemap;
+    public Tile tileToPlace;
+    public Vector2Int gridSize = new Vector2Int(100, 100); // Width and height of your grid
+    public LayerMask collisionMask; // Set this to the layers you want to check collisions with
 
     void Awake()
     {
@@ -94,8 +101,8 @@ public class LevelGenerator : MonoBehaviour
                 spawnPlayer(1);
                 UnityEngine.Debug.Log("PLAYERCOUNT NOT SET");
             }
-            // PlayerInput.all[0].user.UnpairDevices();
-            UnityEngine.Debug.Log("Unpairing player 1 input devices: " + PlayerInput.all[0].user.pairedDevices.Count);
+
+            PlaceTiles(); 
         } 
         else 
         {
@@ -495,6 +502,26 @@ public class LevelGenerator : MonoBehaviour
         }
 
         tcs.SetResult(true); // Mark the coroutine as complete
+    }
+
+    void PlaceTiles()
+    {
+        int halfWidth = gridSize.x / 2;
+        int halfHeight = gridSize.y / 2;
+
+        for (int x = -halfWidth; x <= halfWidth; x++)
+        {
+            for (int y = -halfHeight; y <= halfHeight; y++)
+            {
+                Vector3Int cellPosition = new Vector3Int(x, y, 0);
+                Vector3 worldPosition = grid.CellToWorld(cellPosition) + grid.cellSize / 2;
+
+                if (!Physics2D.OverlapPoint(worldPosition, collisionMask))
+                {
+                    tilemap.SetTile(cellPosition, tileToPlace);
+                }
+            }
+        }
     }
 
     #endregion SpawnRooms
