@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Rigidbody2D>k__BackingField: {fileID: 8851325382855593670}
   spriteIcon: {fileID: 5085274027199746271}
-  weaponDataSet: {fileID: 0}
+  weaponDataSet: {fileID: 11400000, guid: b7fff6ca91113b147941d5f19a832c4d, type: 2}
   material: {fileID: -876546973899608171, guid: 8f9adf74c63300641b3e92fc8f163069, type: 3}
   hueSpeed: 0.1
 --- !u!50 &8851325382855593670

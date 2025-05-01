@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b320fd8433894df4e8f5abc27bf3fea1, type: 3}
-  m_Name: KnightSecondaryAttack2
+  m_Name: KnightSecondaryAttack1 Parry
   m_EditorClassIdentifier: 
   <Icon>k__BackingField: {fileID: 0}
-  <Name>k__BackingField: Knight Secondary Attack 2
-  <Description>k__BackingField: Basic Sword Swing Parry
+  <Name>k__BackingField: Secondary Attack Parry
+  <Description>k__BackingField: Parry enemies attacks
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: dc0f02357c8180c48bca2a79aa2a197f, type: 2}
   <weaponIndex>k__BackingField: 1
   <NumberOfAttacks>k__BackingField: 1

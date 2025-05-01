@@ -10,34 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b320fd8433894df4e8f5abc27bf3fea1, type: 3}
-  m_Name: KnightPrimarySkill1
+  m_Name: KnightPrimaryAttackHold1 Charge
   m_EditorClassIdentifier: 
   <Icon>k__BackingField: {fileID: 0}
-  <Name>k__BackingField: Knight Primary Skill 1
-  <Description>k__BackingField: Basic Sword Swing
-  <AnimatorController>k__BackingField: {fileID: 9100000, guid: f5c695431eb63e0438565fc316ffa064, type: 2}
-  <weaponIndex>k__BackingField: 2
+  <Name>k__BackingField: Primary Attack Hold
+  <Description>k__BackingField: Charge to deal high damage
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: bd8df5bfc0b5a8c4298f1fa13d425c88, type: 2}
+  <weaponIndex>k__BackingField: 4
   <NumberOfAttacks>k__BackingField: 1
-  <AttackCounterCooldown>k__BackingField: 0
-  <AttackCooldown>k__BackingField: 2
-  prereqWeapon: {fileID: 0}
+  <AttackCounterCooldown>k__BackingField: 2
+  <AttackCooldown>k__BackingField: 0
+  prereqWeapon: {fileID: 11400000, guid: f97b7e60a4f61eb4b8fd9fbee64a0b61, type: 2}
   <ComponentData>k__BackingField:
+  - rid: 6902827587173613661
+  - rid: 6902827598733115489
   - rid: 5949095188800471134
   - rid: 5949095222658203648
   - rid: 5949095222658203649
-  - rid: 5949095255883382997
-  - rid: 5199004585061515379
+  - rid: 6902827598733115513
+  - rid: 6902827598733115515
   references:
     version: 2
     RefIds:
-    - rid: 5199004585061515379
-      type: {class: StunDamageData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
-      data:
-        name: StunDamageData
-        repeatData: 0
-        attackData:
-        - name: Attack 1
-          <Amount>k__BackingField: 60
     - rid: 5949095188800471134
       type: {class: WeaponSpriteData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:
@@ -46,11 +40,16 @@ MonoBehaviour:
         attackData:
         - name: Attack 1
           <PhaseSprites>k__BackingField:
-          - <Phase>k__BackingField: 2
+          - <Phase>k__BackingField: 0
             <Sprites>k__BackingField:
             - {fileID: -976979401, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 581828395, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+          - <Phase>k__BackingField: 1
+            <Sprites>k__BackingField:
+            - {fileID: 1939271948, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
+          - <Phase>k__BackingField: 2
+            <Sprites>k__BackingField:
             - {fileID: -720425029, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
             - {fileID: 1331580839, guid: 138b6bc30bd57d14a8a02f3b5653b756, type: 3}
     - rid: 5949095222658203648
@@ -72,12 +71,40 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <VelocityX>k__BackingField: 7
-    - rid: 5949095255883382997
-      type: {class: DamageOnHitBoxActionData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+          <VelocityX>k__BackingField: 5
+    - rid: 6902827587173613661
+      type: {class: InputHoldData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:
-        name: DamageOnHitBoxActionData
+        name: InputHoldData
+    - rid: 6902827598733115489
+      type: {class: ChargeData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: ChargeData
         repeatData: 0
         attackData:
         - name: Attack 1
-          <Amount>k__BackingField: 30
+          <ChargeTime>k__BackingField: 0.5
+          <InitialChargeAmount>k__BackingField: 1
+          <NumberOfCharges>k__BackingField: 3
+    - rid: 6902827598733115513
+      type: {class: DamageOnHitBoxActionChargeData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: DamageOnHitBoxActionChargeData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <Amounts>k__BackingField:
+          - 15
+          - 25
+          - 35
+    - rid: 6902827598733115515
+      type: {class: StunDamageChargeData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
+      data:
+        name: StunDamageChargeData
+        repeatData: 0
+        attackData:
+        - name: Attack 1
+          <Amounts>k__BackingField:
+          - 37.5
+          - 62.5
+          - 87.5

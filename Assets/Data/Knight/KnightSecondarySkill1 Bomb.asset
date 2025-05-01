@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b320fd8433894df4e8f5abc27bf3fea1, type: 3}
-  m_Name: KnightSecondarySkill1
+  m_Name: KnightSecondarySkill1 Bomb
   m_EditorClassIdentifier: 
   <Icon>k__BackingField: {fileID: 0}
-  <Name>k__BackingField: Knight Secondary Skill 1
-  <Description>k__BackingField: Basic Sword Swing Projectile
+  <Name>k__BackingField: Secondary Skill Bomb
+  <Description>k__BackingField: Activate skill to throw bomb
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: c83133c5912b2a24db2de17f12db360a, type: 2}
   <weaponIndex>k__BackingField: 3
   <NumberOfAttacks>k__BackingField: 1
-  <AttackCounterCooldown>k__BackingField: 2
-  <AttackCooldown>k__BackingField: 0
+  <AttackCounterCooldown>k__BackingField: 0
+  <AttackCooldown>k__BackingField: 5
   prereqWeapon: {fileID: 0}
   <ComponentData>k__BackingField:
   - rid: 6902827909092212840
@@ -59,8 +59,8 @@ MonoBehaviour:
           <rotate>k__BackingField: 1
           <hasGravity>k__BackingField: 1
           <gravityScale>k__BackingField: 5
-          <damage>k__BackingField: 25
-          <stun>k__BackingField: 37.5
+          <damage>k__BackingField: 10
+          <stun>k__BackingField: 15
           <pierce>k__BackingField: 1
           <explosive>k__BackingField: 1
           <explosiveRadius>k__BackingField: 5
