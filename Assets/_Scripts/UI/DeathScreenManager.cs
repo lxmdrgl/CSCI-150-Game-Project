@@ -15,26 +15,18 @@ public class DeathScreenManager : MonoBehaviour
     public PlayerInputHandler InputHandler2 { get; private set; }
     private PlayerInput playerInput1;
     private PlayerInput playerInput2;
-
-    //private bool isPaused;
     
     [SerializeField] private GameObject deathScreenCanvasGO;
     [SerializeField] private GameObject menuFirst;
 
-    private string selectedProfileId = "";
-
     public string MainMenuSceneName;
-
     public string GameplaySceneName;
     private int deathCount = 0;
     
     
     private void Awake()
     {
-        if(DataPersistenceManager.instance.disableDataPersistence == false)
-        {
-            selectedProfileId = DataPersistenceManager.instance.GetSelectedProfileId();
-        }
+
     }
 
     private void OnDestroy()
@@ -137,45 +129,15 @@ public class DeathScreenManager : MonoBehaviour
     public void DeathQuit()
     {   
         ExitScreen();
-        if(DataPersistenceManager.instance.disableDataPersistence)
-        {
-            SceneManager.LoadScene(MainMenuSceneName);
-            deathScreenCanvasGO.SetActive(false);
-            return;
-        }
-        else
-        {
-            DataPersistenceManager.instance.RestartGame( selectedProfileId, GameplaySceneName);
-            
-            SceneManager.LoadScene(MainMenuSceneName);
-            deathScreenCanvasGO.SetActive(false);
-
-            DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
-            DataPersistenceManager.instance.SaveGame();
-        }
+        SceneManager.LoadScene(MainMenuSceneName);
+        deathScreenCanvasGO.SetActive(false);
     }
 
     public void DeathRestart()
     {   
         ExitScreen();
-        if(DataPersistenceManager.instance.disableDataPersistence)
-        {
-            SceneManager.LoadScene(GameplaySceneName);
-            deathScreenCanvasGO.SetActive(false);
-
-            return;
-        }
-        else
-        {
-            DataPersistenceManager.instance.RestartGame( selectedProfileId, GameplaySceneName);
-            
-
-            SceneManager.LoadScene(GameplaySceneName);
-            deathScreenCanvasGO.SetActive(false);
-
-            DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
-            DataPersistenceManager.instance.SaveGame();   
-        }
+        SceneManager.LoadScene(GameplaySceneName);
+        deathScreenCanvasGO.SetActive(false);
     }
 
 }

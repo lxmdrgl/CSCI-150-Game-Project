@@ -28,7 +28,7 @@ public class Authentication : MonoBehaviour
         {
             await LoadPlayerName();  // Fetch player name from Unity services
             AuthMenuSignedIn();
-        }
+        }        
     }
 
     private void AuthMenuSignedOut()
@@ -56,6 +56,7 @@ public class Authentication : MonoBehaviour
         loginBtn.gameObject.SetActive(false);
         signupBtn.gameObject.SetActive(false);
         logTxt.gameObject.SetActive(false);
+        handleLeaderBoard();
     }
 
     // -------------- SIGN UP ---------------------
@@ -87,7 +88,7 @@ public class Authentication : MonoBehaviour
             await AuthenticationService.Instance.SignUpWithUsernamePasswordAsync(username, password);
             await AuthenticationService.Instance.UpdatePlayerNameAsync(username);
             logTxt.text = "Account Created And Signed In Successfully!";
-            playerNameTxt.text = "Name: " + username;
+            playerNameTxt.text = username;
             PlayerPrefs.SetString("PlayerName", username);  // Save locally
             Debug.Log("SignUp is successful.");
             AuthMenuSignedIn();
@@ -142,7 +143,7 @@ public class Authentication : MonoBehaviour
                 playerName = username;
                 PlayerPrefs.SetString("PlayerName", playerName);  // Save locally as a fallback
             }
-            playerNameTxt.text = "Name: " + username;
+            playerNameTxt.text = username;
             AuthMenuSignedIn();
         }
         catch (AuthenticationException ex)
@@ -158,6 +159,14 @@ public class Authentication : MonoBehaviour
             // Notify the player with the proper error message
             logTxt.text = ex.Message;
             Debug.LogException(ex);
+        }
+
+        Leaderboard leaderboard = FindFirstObjectByType<Leaderboard>();
+        if (leaderboard != null)
+        {
+            leaderboard.leaderboardUI.SetActive(true); // If it's hidden, show it
+            leaderboard.SetLeaderboardPosition(true); // Move to account menu spot
+            await leaderboard.GetScores(); // Force refresh
         }
     }
 
@@ -190,14 +199,33 @@ public class Authentication : MonoBehaviour
                 username = PlayerPrefs.GetString("PlayerName", "Player");  // Fallback to local storage
             }
 
-            playerNameTxt.text = "Name: " + username;
+            playerNameTxt.text = username;
             PlayerPrefs.SetString("PlayerName", username);  // Ensure it's saved locally too
         }
         catch (System.Exception ex)
         {
             Debug.LogError("Failed to load player name: " + ex.Message);
-            playerNameTxt.text = "Name: Unknown";
+            playerNameTxt.text = "Unknown";
+        }
+    }
+    
+    private async void handleLeaderBoard()
+    {
+        Leaderboard leaderboard = FindFirstObjectByType<Leaderboard>();
+        if (leaderboard != null)
+        {
+            leaderboard.leaderboardUI.SetActive(true); 
+            leaderboard.SetLeaderboardPosition(true);
+            await leaderboard.GetScores();
         }
     }
 
+    public void ActivateMenu()
+    {
+        gameObject.SetActive(true);
+        if(AuthenticationService.Instance.IsSignedIn)
+        {
+            handleLeaderBoard();
+        }
+    }
 }

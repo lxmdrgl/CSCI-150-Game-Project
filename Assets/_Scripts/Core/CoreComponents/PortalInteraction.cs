@@ -28,24 +28,6 @@ namespace Game.CoreSystem
 
             locationData = portal.GetContext();
             
-            /*
-            if(DataPersistenceManager.instance.disableDataPersistence)
-            {
-                SceneManager.LoadScene(locationData);
-                return;
-            }
-            else
-            {
-                DataPersistenceManager.instance.RestartGame( selectedProfileId, SceneManager.GetActiveScene().name);
-                SceneManager.LoadScene(locationData);
-
-                DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
-                DataPersistenceManager.instance.SaveGame();
-            }
-            */
-
-            // Total time = runtime + Time.timeSinceLevelLoad
-            // Scene time = Time.timeSinceLevelLoad
 
             PlayerPrefs.SetFloat("runTime", PlayerPrefs.GetFloat("runTime") + Time.timeSinceLevelLoad);
             SceneManager.LoadScene(locationData);
@@ -60,13 +42,6 @@ namespace Game.CoreSystem
             base.Awake();
 
             interactableDetector = core.GetCoreComponent<InteractableDetector>();
-
-            /*
-            if(DataPersistenceManager.instance.disableDataPersistence == false)
-            {
-                selectedProfileId = DataPersistenceManager.instance.GetSelectedProfileId();
-            }
-            */
         }
 
         private void OnEnable()
