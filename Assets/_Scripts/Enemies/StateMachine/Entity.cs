@@ -5,7 +5,7 @@ using UnityEngine;
 using Game.CoreSystem;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
-public class Entity : MonoBehaviour, IDataPersistence
+public class Entity : MonoBehaviour
 {
     private Movement Movement { get => movement ?? Core.GetCoreComponent(ref movement); }
 	private Movement movement;
@@ -212,80 +212,4 @@ public class Entity : MonoBehaviour, IDataPersistence
         set => transform.position = value;
     }
 
-    public void LoadData(GameData data)
-    {
-        if(DataPersistenceManager.instance.disableDataPersistence)
-        {
-            return;
-        }
-
-        if (string.IsNullOrEmpty(UniqueId))
-        {
-            Debug.LogError($"{name} has no UniqueID assigned. Cannot load data.");
-            return;
-        }
-        if (data.enemyData.Count==0)
-        {
-            return;
-        }
-        // Find the enemy data in the list using this entity's unique id
-        GameData.EnemyData? enemyData = data.enemyData?.Find(e => e.UniqueId == UniqueId);
-
-        if (enemyData.HasValue)
-        {
-            // Safely use enemyData
-            Position = enemyData.Value.Position.ToVector2();
-            stats.Health.CurrentValue = enemyData.Value.CurrentHp;
-            stats.Health.MaxValue = enemyData.Value.MaxHp;
-            gameObject.SetActive(enemyData.Value.IsAlive);
-        }
-        else
-        {
-            // Handle the case where enemyData is null or not found
-            Debug.LogWarning($"EnemyData not found for UniqueId: {UniqueId}");
-        }
-
-    }
-
-    public void SaveData(GameData data)
-    {
-
-        if(DataPersistenceManager.instance.disableDataPersistence)
-        {
-            return;
-        }
-
-        if (string.IsNullOrEmpty(UniqueId))
-        {
-            Debug.LogError($"{name} has no UniqueID assigned. Cannot save data.");
-            return;
-        }
-
-        GameData.EnemyData enemySaveData = new GameData.EnemyData(
-            UniqueId,
-            new GameData.Vector2Data(Position), // Convert Vector2 to Vector2Data,
-            stats.Health.CurrentValue,
-            stats.Health.MaxValue,
-            stats.Health.CurrentValue > 0
-        );
-
-        int index = data.enemyData.FindIndex(e => e.UniqueId == UniqueId);
-        if (index >= 0)
-        {
-            data.enemyData[index] = enemySaveData;
-        }
-        else
-        {
-            data.enemyData.Add(enemySaveData);
-        }
-    }
-    
-    public void SaveSaveData(SaveData data)
-    {
- 
-    }
-    public void LoadSaveData(SaveData data)
-    {
- 
-    }
 }

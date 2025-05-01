@@ -1,43 +1,38 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Unity.Services.Authentication;
-using Unity.Services.Core;
 using Unity.Services.Leaderboards;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using Unity.Services.Leaderboards.Models;
+using UnityEngine.SceneManagement;
+using Unity.Services.Core;
 
 public class Leaderboard : MonoBehaviour
 {
     const string LeaderboardId = "Leaderboard";
-
     public GameObject leaderboardUI; // Assign the UI panel for the leaderboard in the inspector
     public TMP_Text leaderboardText; // Assign a Text or TMP_Text component to display scores
-
-    string VersionId { get; set; }
-    int Offset { get; set; }
-    int Limit { get; set; }
-    int RangeLimit { get; set; }
-    List<string> FriendIds { get; set; }
-
+    public RectTransform leaderboardPanel;
+    public Vector3 mainMenuPosition;
+    public Vector3 accountMenuPosition;
     private async void Awake()
     { 
-        // Subscribe to authentication events
+        SceneManager.sceneLoaded += OnSceneLoadedAsync;
+
+        await UnityServices.InitializeAsync();
+
+        // Now it's safe to use AuthenticationService
         SubscribeToAuthenticationEvents();
 
-        // Check if the user is already signed in
         if (AuthenticationService.Instance.IsSignedIn)
         {
-            Debug.Log("User is signed in.");
-            leaderboardUI.SetActive(true); // Show leaderboard UI
-            await GetScores(); // Load scores
+            leaderboardUI.SetActive(true);
+            await GetScores();
         }
         else
         {
-            Debug.LogWarning("User is not signed in. Hiding leaderboard UI.");
-            leaderboardUI.SetActive(false); // Hide leaderboard UI
+            leaderboardUI.SetActive(false);
         }
     }
 
@@ -111,5 +106,31 @@ public class Leaderboard : MonoBehaviour
         // Unsubscribe from events to avoid memory leaks
         AuthenticationService.Instance.SignedIn -= OnSignedIn;
         AuthenticationService.Instance.SignedOut -= OnSignedOut;
+        SceneManager.sceneLoaded -= OnSceneLoadedAsync;
+    }
+
+    private void OnSceneLoadedAsync(Scene scene, LoadSceneMode mode)
+    {
+        _ = HandleSceneLoadedAsync(scene, mode);
+    }
+
+    private async Task HandleSceneLoadedAsync(Scene scene, LoadSceneMode mode)
+    {
+        if (AuthenticationService.Instance.IsSignedIn)
+        {
+            leaderboardUI.SetActive(true);
+            await GetScores();
+        }
+        else
+        {
+            leaderboardUI.SetActive(false);
+        }
+    }
+
+    public void SetLeaderboardPosition(bool inAccountMenu)
+    {
+        if (leaderboardPanel == null) return;
+
+        leaderboardPanel.anchoredPosition = inAccountMenu ? accountMenuPosition : mainMenuPosition;
     }
 }

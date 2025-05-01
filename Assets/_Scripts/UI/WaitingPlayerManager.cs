@@ -30,10 +30,7 @@ public class WaitingPlayerManager : MonoBehaviour
     
     private void Awake()
     {
-        if(DataPersistenceManager.instance.disableDataPersistence == false)
-        {
-            selectedProfileId = DataPersistenceManager.instance.GetSelectedProfileId();
-        }
+
     }
 
     void Start()
@@ -161,45 +158,16 @@ public class WaitingPlayerManager : MonoBehaviour
         PlayerPrefs.SetInt("player1Kills", 0);
         PlayerPrefs.SetInt("player1Damage", 0);
 
-        if(DataPersistenceManager.instance.disableDataPersistence)
-        {
-            SceneManager.LoadScene(GameplaySceneName);
-            singlePlayerScreenCanvasGO.SetActive(false);
-            return;
-        }
-        else
-        {
-            DataPersistenceManager.instance.RestartGame( selectedProfileId, GameplaySceneName);
-            
-            SceneManager.LoadScene(GameplaySceneName);
-            singlePlayerScreenCanvasGO.SetActive(false);
-
-            DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
-            DataPersistenceManager.instance.SaveGame();
-        }
+        SceneManager.LoadScene(GameplaySceneName);
+        singlePlayerScreenCanvasGO.SetActive(false);
     }
 
     public void Quit()
     {   
         ExitScreen();
 
-        if(DataPersistenceManager.instance.disableDataPersistence)
-        {
-            SceneManager.LoadScene(MainMenuSceneName);
-            singlePlayerScreenCanvasGO.SetActive(false);
-            return;
-        }
-        else
-        {
-            DataPersistenceManager.instance.RestartGame( selectedProfileId, GameplaySceneName);
-            
-
-            SceneManager.LoadScene(MainMenuSceneName);
-            singlePlayerScreenCanvasGO.SetActive(false);
-
-            DataPersistenceManager.instance.ChangeSelectedProfileId(selectedProfileId);
-            DataPersistenceManager.instance.SaveGame();   
-        }
+        SceneManager.LoadScene(MainMenuSceneName);
+        singlePlayerScreenCanvasGO.SetActive(false);
     }
 
     public void Resume()

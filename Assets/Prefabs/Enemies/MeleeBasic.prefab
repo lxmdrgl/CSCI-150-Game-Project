@@ -311,6 +311,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf85a92b0095ae041b50ddcf3e166061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2025508972248586353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7004518244774779674}
+  - component: {fileID: 1586958683994406370}
+  m_Layer: 11
+  m_Name: Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7004518244774779674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025508972248586353}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4846833722265371268}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1586958683994406370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025508972248586353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 2
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 0.5921569, g: 0.37647063, b: 0.8470589, a: 1}
+  m_Intensity: 1.5
+  m_LightVolumeIntensity: 0.1
+  m_LightVolumeEnabled: 0
+  m_ApplyToSortingLayers: bf7168f4000000008fc46b5309c3188ec908e3989b04e8652939861c699e64f8
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowsEnabled: 1
+  m_ShadowIntensity: 0.75
+  m_ShadowSoftness: 0.3
+  m_ShadowSoftnessFalloffIntensity: 0.5
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 2
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &2165807423997325925
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,9 +442,11 @@ MonoBehaviour:
   <Health>k__BackingField:
     <MaxValue>k__BackingField: 30
     damageTaken: 0
+    damageAmount: 0
   <Stun>k__BackingField:
     <MaxValue>k__BackingField: 30
     damageTaken: 0
+    damageAmount: 0
   <Status>k__BackingField: 100
   <Attack>k__BackingField: 100
   <Bonus>k__BackingField: 0
@@ -745,6 +831,7 @@ Transform:
   - {fileID: 5242852835854976505}
   - {fileID: 2697570814187950225}
   - {fileID: 507281897922863390}
+  - {fileID: 7004518244774779674}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &-1460232046812936009
@@ -821,6 +908,7 @@ MonoBehaviour:
   playerPosition2: {fileID: 0}
   targetPlayer: {fileID: 0}
   isPlayerInPursuitRange: 0
+  stats: {fileID: 0}
   pursuitRangeCollider: {fileID: 8834824483462031201}
   UniqueId: 
   idleStateData: {fileID: 11400000, guid: 96d8d84a229f88840b9ad232a7f1feb7, type: 2}
@@ -1400,3 +1488,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f827444f74f6545b66ca62d2192dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Source: 0

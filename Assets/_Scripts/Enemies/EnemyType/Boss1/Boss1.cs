@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Boss1 : Entity
 {
@@ -168,6 +169,17 @@ public class Boss1 : Entity
         if (rb != null)
         {
             rb.gravityScale = Random.Range(minGravity, maxGravity);
+        }
+    }
+
+    public SpriteRenderer targetRenderer;           // Drag your boss's SpriteRenderer here
+    public Light2D spriteLight2D;                   // Drag your Sprite Light 2D here
+
+    void LateUpdate()
+    {
+        if (targetRenderer != null && spriteLight2D != null)
+        {
+            spriteLight2D.lightCookieSprite = targetRenderer.sprite;
         }
     }
 }
