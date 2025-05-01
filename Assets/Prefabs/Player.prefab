@@ -387,7 +387,7 @@ SpriteRenderer:
   m_SortingLayerID: -127623575
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1523657880, guid: 54e0af6d28ae375498b2e8cd0d92059a, type: 3}
+  m_Sprite: {fileID: -1841526199, guid: 1ff17fc3cb6d5c34ea0c8326f28bd1ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -806,8 +806,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.3050001}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 3}
+    pivot: {x: 0.5, y: 0.375}
+    oldSize: {x: 5, y: 4}
     newSize: {x: 3, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1040,12 +1040,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <weaponDataSet>k__BackingField: {fileID: 11400000, guid: b7fff6ca91113b147941d5f19a832c4d, type: 2}
   <currentWeaponData>k__BackingField:
-  - {fileID: 11400000, guid: d562f90691393804c97a3e4a2bd9734a, type: 2}
-  - {fileID: 11400000, guid: 15959f66144d6c54eadca011cc1c4ab0, type: 2}
-  - {fileID: 11400000, guid: c8ea6a7895ed42d4ebb0c4f799e39523, type: 2}
-  - {fileID: 11400000, guid: 5c43415ad5e6a884b8cc56c8aef522a3, type: 2}
-  - {fileID: 11400000, guid: 1ba28d0736b38d143bb8e1e45b0f061f, type: 2}
-  - {fileID: 11400000, guid: bb4ae8a625c7e3645afa531de2d6877b, type: 2}
+  - {fileID: 11400000, guid: f97b7e60a4f61eb4b8fd9fbee64a0b61, type: 2}
+  - {fileID: 11400000, guid: dbd35097a8e6f00499e22f4c77ee023b, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 11400000, guid: a455a597a3efd2f4b82dc3991a64d2a9, type: 2}
@@ -1591,7 +1591,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 2
+  m_PointLightOuterRadius: 5
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
