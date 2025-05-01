@@ -5172,9 +5172,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leaderboardUI: {fileID: 1322476778}
   leaderboardText: {fileID: 1283789392}
-  leaderboardPanel: {fileID: 1720393888}
-  mainMenuPosition: {x: -100, y: 0, z: 0}
-  accountMenuPosition: {x: -535, y: -180, z: 0}
+  leaderboardPanel: {fileID: 0}
+  mainMenuPosition: {x: 0, y: 0, z: 0}
+  accountMenuPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1726936495
 GameObject:
   m_ObjectHideFlags: 0
