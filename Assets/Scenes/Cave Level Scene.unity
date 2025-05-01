@@ -574,6 +574,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 5691664970575760108, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: m_Intensity
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: roomMap
       value: 
