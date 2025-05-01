@@ -1,3 +1,4 @@
+/* #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
@@ -29,3 +30,4 @@ public class RoomNodeEditor : Editor
         DrawDefaultInspector();
     }
 }
+#endif */

@@ -5181,7 +5181,7 @@ MonoBehaviour:
   savesBtnText: {fileID: 1926392986}
   mainMenuFirst: {fileID: 1782685656}
   GameSceneName: Gameplay
-  generatorScene: Nate's Scene
+  generatorScene: Cave Level Scene
 --- !u!1 &1224302557
 GameObject:
   m_ObjectHideFlags: 0

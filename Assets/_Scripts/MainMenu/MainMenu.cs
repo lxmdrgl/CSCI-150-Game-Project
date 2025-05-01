@@ -165,7 +165,17 @@ public class MainMenu : MonoBehaviour
 
         foreach (GameObject player in players)
         {
-            Destroy(player);
+            if (player == null)
+                continue;
+
+            if (player.scene.IsValid() && player.scene.isLoaded)
+            {
+                Destroy(player);
+            }
+            else
+            {
+                Debug.LogWarning($"Skipping destruction of asset or invalid object: {player.name}");
+            }
         }
 
         /*
@@ -200,7 +210,7 @@ public class MainMenu : MonoBehaviour
         */
     }
 
-    private void FindGameObjectsWithTagIncludingInactive(string tag, List<GameObject> result)
+    /* private void FindGameObjectsWithTagIncludingInactive(string tag, List<GameObject> result)
     {
         Transform[] allObjects = Resources.FindObjectsOfTypeAll<Transform>();
         foreach (Transform t in allObjects)
@@ -209,6 +219,32 @@ public class MainMenu : MonoBehaviour
             {
                 result.Add(t.gameObject);
             }
+        }
+    } */
+
+    private void FindGameObjectsWithTagIncludingInactive(string tag, List<GameObject> result)
+    {
+        result.Clear();
+
+        Scene activeScene = SceneManager.GetActiveScene();
+        GameObject[] rootObjects = activeScene.GetRootGameObjects();
+
+        foreach (GameObject root in rootObjects)
+        {
+            AddChildrenWithTag(root.transform, tag, result);
+        }
+    }
+
+    private void AddChildrenWithTag(Transform parent, string tag, List<GameObject> result)
+    {
+        if (parent.CompareTag(tag))
+        {
+            result.Add(parent.gameObject);
+        }
+
+        foreach (Transform child in parent)
+        {
+            AddChildrenWithTag(child, tag, result);
         }
     }
 }

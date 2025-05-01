@@ -652,10 +652,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6823887704825144744, guid: 7b17d3ec01207d64184f480ce7405ff3, type: 3}
-      propertyPath: GameplaySceneName
-      value: Nate's Scene
-      objectReference: {fileID: 0}
     - target: {fileID: 7883538681597448593, guid: 7b17d3ec01207d64184f480ce7405ff3, type: 3}
       propertyPath: m_Name
       value: DeathScreen

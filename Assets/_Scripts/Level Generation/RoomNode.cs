@@ -23,7 +23,7 @@ public class RoomNode : MonoBehaviour
         // Ensure roomType is valid
         if (!RoomTypes.Contains(roomType))
         {
-            roomType = RoomTypes.Count > 0 ? RoomTypes[0] : "None"; // Assign default valid type
+            // roomType = RoomTypes.Count > 0 ? RoomTypes[0] : "None"; // Assign default valid type
         }
 
         // assign parent

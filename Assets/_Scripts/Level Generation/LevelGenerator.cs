@@ -80,10 +80,20 @@ public class LevelGenerator : MonoBehaviour
 
         spawnRoomMap();
 
+        float currTime = Time.time;
+        float maxTime = 10f;
+
         if (spawnStartingRoom() && await spawnAllRooms(roomMap)) 
         {
 
             spawnAllEnemies(roomMap);
+
+            List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList<GameObject>();
+
+            foreach (GameObject player in players)
+            {
+                Destroy(player);
+            }
 
             UnityEngine.Debug.Log("player count: " + playerCount);
             if(playerCount == 1)
@@ -183,6 +193,19 @@ public class LevelGenerator : MonoBehaviour
         Transform levelTransform;
 
         // load random starting room
+        if (roomMap.roomType == null) {
+            UnityEngine.Debug.LogError("Room type not set in room map: " + roomMap.name);
+            return false;
+        } else
+        {
+            UnityEngine.Debug.Log("Room type: " + roomMap.roomType);
+        }
+        if (string.IsNullOrEmpty(roomMap.roomType) || roomMap.roomType == "None")
+        {
+            Debug.LogWarning("Room type was 'None' or empty. Defaulting to 'Starting'.");
+            roomMap.roomType = "lv01_SpawnRoom";
+        }
+
         List<RoomManager> roomList = loadRoomList(roomMap.roomType);
         RoomManager randRoom = roomList[UnityEngine.Random.Range(0, roomList.Count)];
 
@@ -416,12 +439,32 @@ public class LevelGenerator : MonoBehaviour
         return r.roomObject;
     }
     
-    List<RoomManager> loadRoomList(String roomType) {
+    /* List<RoomManager> loadRoomList(String roomType) {
         List<RoomManager> roomList = new List<RoomManager>();
         
         roomList = Resources.LoadAll<RoomManager>("Rooms/" + roomType).ToList();
         if (roomList.Count == 0) {
             UnityEngine.Debug.LogError("Failed to load files from Resources/Rooms/" + roomType);
+        }
+
+        return roomList;
+    } */
+
+    List<RoomManager> loadRoomList(string roomType) {
+        List<RoomManager> roomList = new List<RoomManager>();
+        var loadedObjects = Resources.LoadAll<GameObject>("Rooms/" + roomType);
+
+        foreach (var obj in loadedObjects) {
+            var roomManager = obj.GetComponent<RoomManager>();
+            if (roomManager != null) {
+                roomList.Add(roomManager);
+            } else {
+                Debug.LogWarning("Missing RoomManager on: " + obj.name);
+            }
+        }
+
+        if (roomList.Count == 0) {
+            Debug.LogError("Failed to load RoomManager objects from Resources/Rooms/" + roomType);
         }
 
         return roomList;
