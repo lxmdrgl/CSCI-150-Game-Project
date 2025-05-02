@@ -79,6 +79,25 @@ public class MainMenu : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList<GameObject>();
+        
+        int p1Kills = PlayerPrefs.GetInt("player1Kills", 0);
+        int p1Damage = PlayerPrefs.GetInt("player1Damage", 0);
+        int p2Kills = PlayerPrefs.GetInt("player2Kills", 0);
+        int p2Damage = PlayerPrefs.GetInt("player2Damage", 0);
+        float runTime =  PlayerPrefs.GetFloat("runTime");
+        int p1Score = (p1Kills * 100) + p1Damage - (int)runTime;
+        int p2Score = (p2Kills * 100) + p2Damage - (int)runTime;
+        int finalScore = Mathf.Max(p1Score, p2Score);
+
+        if(finalScore > 0)
+        {
+            Leaderboard leaderboard = FindFirstObjectByType<Leaderboard>();
+            if (leaderboard != null)
+            {
+                leaderboard.AddScore(finalScore);
+                handleLeaderBoard();
+            }
+        }
 
         foreach (GameObject player in players)
         {
@@ -96,8 +115,6 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    /* private void FindGameObjectsWithTagIncludingInactive(string tag, List<GameObject> result) */
-
     private async void handleLeaderBoard()
     {
         Leaderboard leaderboard = FindFirstObjectByType<Leaderboard>();
@@ -107,19 +124,6 @@ public class MainMenu : MonoBehaviour
             await leaderboard.GetScores();
         }
     } 
-
-    private void FindGameObjectsWithTagIncludingInactive(string tag, List<GameObject> result)
-    {
-        result.Clear();
-
-        Scene activeScene = SceneManager.GetActiveScene();
-        GameObject[] rootObjects = activeScene.GetRootGameObjects();
-
-        foreach (GameObject root in rootObjects)
-        {
-            AddChildrenWithTag(root.transform, tag, result);
-        }
-    }
 
     private void AddChildrenWithTag(Transform parent, string tag, List<GameObject> result)
     {

@@ -36,7 +36,7 @@ public class VictoryManager : MonoBehaviour
         int p1Damage = PlayerPrefs.GetInt("player1Damage", 0);
         int p2Kills = PlayerPrefs.GetInt("player2Kills", 0);
         int p2Damage = PlayerPrefs.GetInt("player2Damage", 0);
-
+        
         if(playerInput1)
         {
             player1KillsText.text = $"Player 1 Kills: {p1Kills}";
