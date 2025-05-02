@@ -72,13 +72,7 @@ namespace Game.CoreSystem
                     PlayerPrefs.SetInt("player2Kills", PlayerPrefs.GetInt("player2Kills") + 1);
                 }
             }
-            // Invoke Boss Death Portal
-            if (core.transform.parent.gameObject.name == "Boss1") 
-            {
-                Debug.Log("Boss1 died");
-                portal1 = GameObject.FindGameObjectWithTag("Portal1");
-                portal1.transform.GetChild(0).gameObject.SetActive(true);
-            }
+    
         }
 
         private void OnEnable()
