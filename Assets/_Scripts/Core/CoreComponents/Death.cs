@@ -71,8 +71,18 @@ namespace Game.CoreSystem
                 {
                     PlayerPrefs.SetInt("player2Kills", PlayerPrefs.GetInt("player2Kills") + 1);
                 }
+
+                if (core.transform.parent.gameObject.tag == "Boss")
+                {
+                    VictoryManager vm = GameObject.FindObjectOfType<VictoryManager>();
+                    if (vm != null)
+                    {
+                        vm.ShowVictoryScreen();
+                    }
+                }
             }
-    
+            
+
         }
 
         private void OnEnable()

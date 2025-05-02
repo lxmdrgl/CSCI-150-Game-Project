@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Health>k__BackingField:
-    <MaxValue>k__BackingField: 500
+    <MaxValue>k__BackingField: 50
     damageTaken: 0
     damageAmount: 0
   <Stun>k__BackingField:
@@ -769,7 +769,7 @@ GameObject:
   - component: {fileID: 3363648325032824417}
   m_Layer: 11
   m_Name: Boss1
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
