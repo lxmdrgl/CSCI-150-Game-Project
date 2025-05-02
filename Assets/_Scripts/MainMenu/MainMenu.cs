@@ -87,7 +87,7 @@ public class MainMenu : MonoBehaviour
         float runTime =  PlayerPrefs.GetFloat("runTime");
         int p1Score = (p1Kills * 100) + p1Damage - (int)runTime;
         int p2Score = (p2Kills * 100) + p2Damage - (int)runTime;
-        int finalScore = Mathf.Max(p1Score, p2Score);
+        int finalScore = p1Score + p2Score;
 
         if(finalScore > 0)
         {
