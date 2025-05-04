@@ -235,9 +235,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1244564748964846274, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.0000038146973
+      objectReference: {fileID: 0}
     - target: {fileID: 1356923574482797706, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
       propertyPath: m_Name
       value: GameplayCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6533319794947921213, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8801058525802395987, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
       propertyPath: m_Pivot.x
@@ -322,8 +330,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6533319794947921213, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 488974053}
   m_SourcePrefab: {fileID: 100100000, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+--- !u!1 &488974051 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6533319794947921213, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+  m_PrefabInstance: {fileID: 488974050}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &488974052 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4279223930976499053, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
@@ -335,6 +351,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86ae7b587886eec45a405c47fb9fdbd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &488974053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488974051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117f22cf7925f764a80818177803b379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  victoryScreen: {fileID: 0}
+  player1KillsText: {fileID: 0}
+  player1DamageText: {fileID: 0}
+  player2KillsText: {fileID: 0}
+  player2DamageText: {fileID: 0}
+  runTimeText: {fileID: 0}
 --- !u!114 &1202014332 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1785590083586977910, guid: b831e60b7de8a424fb13e9c5b92de250, type: 3}

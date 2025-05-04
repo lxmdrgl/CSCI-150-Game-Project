@@ -247,6 +247,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1098992486563509871, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098992486563509871, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098992486563509871, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098992486563509871, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098992486563509871, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098992486563509871, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VictoryManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098992486563509871, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1356923574482797706, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
       propertyPath: m_Name
       value: GameplayCanvas
@@ -340,6 +368,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+--- !u!114 &488974051 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2361437595362234986, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+  m_PrefabInstance: {fileID: 488974050}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117f22cf7925f764a80818177803b379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &488974052 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4279223930976499053, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
@@ -630,6 +669,10 @@ PrefabInstance:
       propertyPath: gameplayCanvas
       value: 
       objectReference: {fileID: 488974052}
+    - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: victoryManager
+      value: 
+      objectReference: {fileID: 488974051}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: waitingPlayerScreen
       value: 

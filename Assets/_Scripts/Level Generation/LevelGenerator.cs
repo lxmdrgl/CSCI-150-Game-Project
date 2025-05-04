@@ -37,6 +37,7 @@ public class LevelGenerator : MonoBehaviour
     public UpgradeMenuManager upgradeMenu;
     public InputMenuManager inputMenu;
     public WaitingPlayerManager waitingPlayerScreen;
+    public VictoryManager victoryManager;
     
     [Header("Rooms")]
     public RoomNode roomMap;
@@ -664,6 +665,7 @@ public class LevelGenerator : MonoBehaviour
                 upgradeMenu.player1 = newPlayer.gameObject;
                 inputMenu.player1 = newPlayer.gameObject;
                 waitingPlayerScreen.player1 = newPlayer.gameObject;
+                victoryManager.player1 = newPlayer.gameObject;
             }   
             else
             {
@@ -685,6 +687,7 @@ public class LevelGenerator : MonoBehaviour
                 upgradeMenu.player1 = newPlayer.gameObject;
                 inputMenu.player1 = newPlayer.gameObject;
                 waitingPlayerScreen.player1 = newPlayer.gameObject;
+                victoryManager.player1 = newPlayer.gameObject;
             }
             else if (newPlayer.playerIndex == 1)
             {
@@ -695,6 +698,7 @@ public class LevelGenerator : MonoBehaviour
                 upgradeMenu.player2 = newPlayer.gameObject;
                 inputMenu.player2 = newPlayer.gameObject;
                 waitingPlayerScreen.player2 = newPlayer.gameObject;
+                victoryManager.player2 = newPlayer.gameObject;
             }
             else
             {

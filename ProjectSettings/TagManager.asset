@@ -18,6 +18,8 @@ TagManager:
   - Audio
   - EnemySpawner
   - Unclimbable
+  - Boss
+  - VictoryScreen
   layers:
   - Default
   - TransparentFX

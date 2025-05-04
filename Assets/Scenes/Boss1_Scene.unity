@@ -315,6 +315,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6533319794947921213, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6705426178749751273, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -835,10 +839,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 488974051}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
-      propertyPath: gridSize.x
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 94121448}
@@ -859,17 +859,13 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
-      propertyPath: attackIncrease
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: gameplayCanvas
       value: 
       objectReference: {fileID: 488974052}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
-      propertyPath: maxHealthIncrease
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: victoryManager
+      value: 
+      objectReference: {fileID: 2012262817}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: hallways.Array.size
       value: 3
@@ -983,6 +979,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d49d50dce1cb5f4cb535a008d2f68b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2012262817 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2361437595362234986, guid: 7a2ada1996d6f594883a961a17c0db4c, type: 3}
+  m_PrefabInstance: {fileID: 488974050}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117f22cf7925f764a80818177803b379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2041379199 stripped
