@@ -54,6 +54,7 @@ public class LevelGenerator : MonoBehaviour
     public Tile tileToPlace;
     public Vector2Int gridSize = new Vector2Int(100, 100); // Width and height of your grid
     public LayerMask collisionMask; // Set this to the layers you want to check collisions with
+    public bool destroyPlayer = false;
 
     void Awake()
     {
@@ -90,9 +91,12 @@ public class LevelGenerator : MonoBehaviour
 
             List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList<GameObject>();
 
-            foreach (GameObject player in players)
+            if (destroyPlayer)
             {
-                Destroy(player);
+                foreach (GameObject player in players)
+                {
+                    Destroy(player);
+                }
             }
 
             UnityEngine.Debug.Log("player count: " + playerCount);

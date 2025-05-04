@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RR_RangedAttackStateData
   m_EditorClassIdentifier: 
   projectile: {fileID: 3266041613596240981, guid: 08781a27b32830c43a99cda0d922570c, type: 3}
-  projectileDamage: 10
+  projectileDamage: 20
   projectileSpeed: 10
   projectileTravelDistance: 0
   knockbackAngle: {x: 1, y: 1}

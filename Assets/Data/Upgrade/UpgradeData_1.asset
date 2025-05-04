@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: UpgradeData_1
   m_EditorClassIdentifier: 
   <Health>k__BackingField: 0
-  <Attack>k__BackingField: 20
+  <Attack>k__BackingField: 10
