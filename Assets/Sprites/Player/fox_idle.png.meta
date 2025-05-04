@@ -130,8 +130,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 561c85ac092993f41ae260a75e8ef5df
-      internalID: -1841526199
+      spriteID: 71d8a5c4307b3c3448fef28053f32f5a
+      internalID: 2057269673
       vertices: []
       indices: 
       edges: []
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89e27441f00ccb14ea9ce78bb58dca5b
-      internalID: -1585753606
+      spriteID: 3da138c0469e68347ab88b3a88d1963f
+      internalID: -1951462824
       vertices: []
       indices: 
       edges: []
@@ -174,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4162eac2592a50d40b346dc810c187c8
-      internalID: 1000518920
+      spriteID: 1a26fa4a00a54f8449808a90a21c8f2e
+      internalID: 910305939
       vertices: []
       indices: 
       edges: []
@@ -196,8 +196,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6628c7b7af920a84ea5cc3de574c1971
-      internalID: 396836887
+      spriteID: 797659492a1ed0446bae5f3551176b0f
+      internalID: 638916978
       vertices: []
       indices: 
       edges: []
@@ -218,8 +218,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08ee1da087b17034a96feefe2cae344f
-      internalID: 1848862424
+      spriteID: 19806d83408d94546b0f58428b00c85b
+      internalID: 411262895
       vertices: []
       indices: 
       edges: []
@@ -240,8 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cfd95b294c53234899494f8ccb270e4
-      internalID: -1419040319
+      spriteID: 4819dd70fe4f76840a0bd55e59cc6d36
+      internalID: 151710374
       vertices: []
       indices: 
       edges: []
@@ -260,12 +260,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fox_idle_0: -1841526199
-      fox_idle_1: -1585753606
-      fox_idle_2: 1000518920
-      fox_idle_3: 396836887
-      fox_idle_4: 1848862424
-      fox_idle_5: -1419040319
+      fox_idle_0: 2057269673
+      fox_idle_1: -1951462824
+      fox_idle_2: 910305939
+      fox_idle_3: 638916978
+      fox_idle_4: 411262895
+      fox_idle_5: 151710374
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

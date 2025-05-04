@@ -121,8 +121,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62849bf86279af848b685c4cacc4fdea
-      internalID: -71941990
+      spriteID: 4107b2175824f8c4e8b42f3b8086d32c
+      internalID: -997731025
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fox_fall_0: -71941990
+      fox_fall_0: -997731025
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

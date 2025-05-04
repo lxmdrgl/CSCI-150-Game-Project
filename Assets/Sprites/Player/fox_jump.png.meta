@@ -8,9 +8,6 @@ TextureImporter:
   - first:
       213: -6610413202284801491
     second: fox_jump_1
-  - first:
-      213: 125415772538660435
-    second: fox_jump_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -121,8 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91834193e95afc649876e731bec55614
-      internalID: 1207888757
+      spriteID: 0ab19ac1eebc10b41ae4c4ec93bcf24d
+      internalID: -356145838
       vertices: []
       indices: 
       edges: []
@@ -141,7 +138,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fox_jump_0: 1207888757
+      fox_jump_0: -356145838
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

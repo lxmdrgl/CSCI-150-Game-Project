@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
         WallGrabState = new PlayerWallGrabState(this, "wallGrab");
         WallJumpState = new PlayerWallJumpState(this, "air"); // was jump
         KnockBackState = new PlayerKnockBackState(this, "knockBack");
-        PlatformAirState = new PlayerPlatformAirState(this, "air");
+        PlatformAirState = new PlayerPlatformAirState(this, "platform");
         PrimaryAttackPressState = new PlayerAttackState(this, "attack", primaryAttackPress, CombatInputs.primaryAttackPress);
         PrimaryAttackHoldState = new PlayerAttackState(this, "attack", primaryAttackHold, CombatInputs.primaryAttackHold);
         SecondaryAttackPressState = new PlayerAttackState(this, "attack", secondaryAttackPress, CombatInputs.secondaryAttackPress);

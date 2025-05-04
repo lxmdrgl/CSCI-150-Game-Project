@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 5c0c8137839f27540abe0db1490bd012
+guid: 2aae266eef7af194da2d092f66843e67
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2639999543076167954
-    second: fox_climb_0
+      213: 7261713625043347697
+    second: fox_platform_0
+  - first:
+      213: 6891715936868190046
+    second: fox_platform_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +103,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fox_climb_0
+      name: fox_platform_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65683ed9a4087c24a9c6bb33d66c67bc
-      internalID: 106963307
+      spriteID: 56f174e3eaffd4d4e9fa5cb8a0fe1759
+      internalID: 1281806771
       vertices: []
       indices: 
       edges: []
@@ -135,7 +138,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fox_climb_0: 106963307
+      fox_platform_0: 1281806771
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
