@@ -106,12 +106,12 @@ public class Player : MonoBehaviour
         IdleState = new PlayerIdleState(this, "idle");
         MoveState = new PlayerMoveState(this, "move");
         JumpState = new PlayerJumpState(this, "air"); // was jump
-        DashState = new PlayerDashState(this, "idle"); // needs to be dash 
+        DashState = new PlayerDashState(this, "dash"); // needs to be dash 
         AirState = new PlayerNormalAirState(this, "air");
         WallGrabState = new PlayerWallGrabState(this, "wallGrab");
         WallJumpState = new PlayerWallJumpState(this, "air"); // was jump
         KnockBackState = new PlayerKnockBackState(this, "knockBack");
-        PlatformAirState = new PlayerPlatformAirState(this, "platform");
+        PlatformAirState = new PlayerPlatformAirState(this, "air");
         PrimaryAttackPressState = new PlayerAttackState(this, "attack", primaryAttackPress, CombatInputs.primaryAttackPress);
         PrimaryAttackHoldState = new PlayerAttackState(this, "attack", primaryAttackHold, CombatInputs.primaryAttackHold);
         SecondaryAttackPressState = new PlayerAttackState(this, "attack", secondaryAttackPress, CombatInputs.secondaryAttackPress);
