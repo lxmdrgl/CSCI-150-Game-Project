@@ -392,7 +392,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5, y: 4}
+  m_Size: {x: 3, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -798,7 +798,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.375}
     oldSize: {x: 5, y: 4}
-    newSize: {x: 5, y: 4}
+    newSize: {x: 3, y: 3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1932,6 +1932,10 @@ PrefabInstance:
       propertyPath: combatInput
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7010014992011559670, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1995177144, guid: 54e0af6d28ae375498b2e8cd0d92059a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2665,13 +2669,17 @@ PrefabInstance:
     - target: {fileID: 3604266058385138487, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: dc0f02357c8180c48bca2a79aa2a197f, type: 2}
+      objectReference: {fileID: 9100000, guid: c83133c5912b2a24db2de17f12db360a, type: 2}
     - target: {fileID: 4467865697258645298, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
       propertyPath: m_Name
       value: SecondaryAttackPress
       objectReference: {fileID: 0}
     - target: {fileID: 6956340059033203090, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
       propertyPath: combatInput
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7010014992011559670, guid: 48fb40e3be2279448be5efa6731a6d09, type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
