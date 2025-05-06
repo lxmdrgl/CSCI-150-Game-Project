@@ -602,12 +602,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2497570181553715543, guid: 8d308dd4a34854a4ca2ee9edd4bc8844, type: 3}
       propertyPath: possible_enemies.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2497570181553715543, guid: 8d308dd4a34854a4ca2ee9edd4bc8844, type: 3}
       propertyPath: 'possible_enemies.Array.data[0]'
       value: 
       objectReference: {fileID: 6360035130462158432, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
+    - target: {fileID: 2497570181553715543, guid: 8d308dd4a34854a4ca2ee9edd4bc8844, type: 3}
+      propertyPath: 'possible_enemies.Array.data[1]'
+      value: 
+      objectReference: {fileID: 6360035130462158432, guid: d470026ccf3c5724d87ca8473678453f, type: 3}
     - target: {fileID: 3424927244409964310, guid: 8d308dd4a34854a4ca2ee9edd4bc8844, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
@@ -677,12 +681,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2497570181553715543, guid: 8d308dd4a34854a4ca2ee9edd4bc8844, type: 3}
       propertyPath: possible_enemies.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2497570181553715543, guid: 8d308dd4a34854a4ca2ee9edd4bc8844, type: 3}
       propertyPath: 'possible_enemies.Array.data[0]'
       value: 
-      objectReference: {fileID: 6360035130462158432, guid: 9fe59c0ff07d3134c91849d7493a6d5f, type: 3}
+      objectReference: {fileID: 6360035130462158432, guid: c3340de503a397f47a82c0945cf65493, type: 3}
+    - target: {fileID: 2497570181553715543, guid: 8d308dd4a34854a4ca2ee9edd4bc8844, type: 3}
+      propertyPath: 'possible_enemies.Array.data[1]'
+      value: 
+      objectReference: {fileID: 6360035130462158432, guid: 73b18daa09083b14fa3f367315c1357b, type: 3}
     - target: {fileID: 3424927244409964310, guid: 8d308dd4a34854a4ca2ee9edd4bc8844, type: 3}
       propertyPath: m_Name
       value: EnemySpawner_1
@@ -11273,6 +11281,10 @@ PrefabInstance:
     - target: {fileID: 3243112578862714674, guid: ecfaad62f0fae6541acbd137a23d5b65, type: 3}
       propertyPath: m_Name
       value: MinorChest
+      objectReference: {fileID: 0}
+    - target: {fileID: 3243112578862714674, guid: ecfaad62f0fae6541acbd137a23d5b65, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9051955153743558922, guid: ecfaad62f0fae6541acbd137a23d5b65, type: 3}
       propertyPath: m_LocalPosition.x

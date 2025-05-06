@@ -362,11 +362,13 @@ namespace Game.CoreSystem
 
                     StatUpgradeData currentData = slot.currentStatData;
                     stats1.UpdateStats(currentData.Health, currentData.Attack);
+                    stats1.Health.Increase(stats1.Health.MaxValue * 0.2f);
 
                 } else if (weaponDataSet != null) {
 
                     WeaponData currentData = slot.currentWeaponData;
                     weaponInventory1.TrySetWeapon(currentData, (int)currentData.weaponIndex);
+                    stats1.Health.Increase(stats1.Health.MaxValue * 0.2f);
                 }
 
                 statUpgradeDataSet = null;
@@ -431,11 +433,14 @@ namespace Game.CoreSystem
                     // Player 1 upgrade
                     StatUpgradeData currentData = player1Slot.currentStatData;
                     stats1.UpdateStats(currentData.Health, currentData.Attack);
+
+                    stats1.Health.Increase(stats1.Health.MaxValue * 0.2f);
                     
 
                     // Player 2 upgrade
                     currentData = player2Slot.currentStatData;
                     stats2.UpdateStats(currentData.Health, currentData.Attack);
+                    stats2.Health.Increase(stats2.Health.MaxValue * 0.2f);
                     
                 }
                 else if (weaponDataSet != null)
@@ -443,11 +448,13 @@ namespace Game.CoreSystem
                     // Player 1 weapon upgrade
                     WeaponData currentData = player1Slot.currentWeaponData;
                     weaponInventory1.TrySetWeapon(currentData, (int)currentData.weaponIndex);
+                    stats1.Health.Increase(stats1.Health.MaxValue * 0.2f);
                     
 
                     // Player 2 weapon upgrade
                     currentData = player2Slot.currentWeaponData;
                     weaponInventory2.TrySetWeapon(currentData, (int)currentData.weaponIndex);
+                    stats2.Health.Increase(stats2.Health.MaxValue * 0.2f);
                     
                 }
 
