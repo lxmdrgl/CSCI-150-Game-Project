@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KnightPrimaryAttack1
   m_EditorClassIdentifier: 
   <Icon>k__BackingField: {fileID: 0}
-  <Name>k__BackingField: Knight Primary Attack 1
+  <Name>k__BackingField: Knight Primary Attack
   <Description>k__BackingField: Basic Sword Swing
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: f5c695431eb63e0438565fc316ffa064, type: 2}
   <weaponIndex>k__BackingField: 0

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 3266041613596240981, guid: cfcc67442e559664ab5d1d19ff4cd583, type: 3}
   projectileDamage: 20
-  projectileSpeed: 10
+  projectileSpeed: 15
   projectileTravelDistance: 0
   knockbackAngle: {x: 1, y: 1}
   knockbackStrength: 10
-  gravityScale: 2
+  gravityScale: 3
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256

@@ -55,7 +55,7 @@ public class RE_RangedAttackState : RangedAttackState
 
             if (isPlayerInAgroRange) // Player is in agro range
             {
-                stateMachine.ChangeState(enemy.rangedAttackState); // Transition to PlayerDetectedState
+                stateMachine.ChangeState(enemy.cooldownState); // Transition to PlayerDetectedState
             }
             else
             {

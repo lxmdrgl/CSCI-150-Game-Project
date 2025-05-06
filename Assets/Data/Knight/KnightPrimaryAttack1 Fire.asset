@@ -79,11 +79,11 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <Amount>k__BackingField: 0
+          <Amount>k__BackingField: 10
         - name: Attack 2
-          <Amount>k__BackingField: 0
+          <Amount>k__BackingField: 10
         - name: Attack 3
-          <Amount>k__BackingField: 0
+          <Amount>k__BackingField: 10
     - rid: 6902828002530558056
       type: {class: StatusFireDamageData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:

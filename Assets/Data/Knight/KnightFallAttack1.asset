@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KnightFallAttack1
   m_EditorClassIdentifier: 
   <Icon>k__BackingField: {fileID: 0}
-  <Name>k__BackingField: Knight Fall Attack 1
+  <Name>k__BackingField: Knight Fall Attack
   <Description>k__BackingField: Falling Sword Swing
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: 7013b5a0c98fb7f4e8e15af94f52c5ff, type: 2}
   <weaponIndex>k__BackingField: 9
