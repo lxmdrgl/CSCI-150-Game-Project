@@ -79,6 +79,12 @@ public class Boss1 : Entity
     private void Start()
     {
         stateMachine.Initialize(idleState);
+
+        if (PlayerPrefs.GetInt("playerCount") == 2)
+        {
+            stats.Health.IncreaseMaxValue(50);
+            stats.Health.Increase(stats.Health.MaxValue);
+        }
     }
 
     private void OnDisable() {

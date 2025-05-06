@@ -630,7 +630,12 @@ public class LevelGenerator : MonoBehaviour
 
         foreach (RoomNode child in currNode.children) {
             RoomManager childRoomManager = child.roomObject.GetComponent<RoomManager>();
-            childRoomManager.SpawnEnemies(maxHealthIncrease, attackIncrease); // Spawn enemies in the new room
+            if (PlayerPrefs.GetInt("playerCount") == 1) {
+                childRoomManager.SpawnEnemies(maxHealthIncrease, attackIncrease); // Spawn enemies in the new room
+            } else if (PlayerPrefs.GetInt("playerCount") == 2) {
+                childRoomManager.SpawnEnemies(maxHealthIncrease + 60f, attackIncrease);
+            } else {
+            }
             spawnAllEnemies(child);
         } 
 
