@@ -342,6 +342,11 @@ namespace Game.CoreSystem
 
         public void HelperUIUpgradeClicked(int Index)
         {
+            if (this == null || gameObject == null)
+            {
+                Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
+                return;
+            }
             if (EventSystem.current.currentSelectedGameObject.GetComponent<UpgradeSlot>() != null)
             {
                 Debug.Log("upgrade clicked: " + EventSystem.current.currentSelectedGameObject.name);

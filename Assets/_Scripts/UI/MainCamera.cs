@@ -29,29 +29,34 @@ public class MainCamera : MonoBehaviour
         CheckPlayerBounds(player2.transform, player1.transform);
     }
 
+    private Action onDeath1;
+    private Action onDeath2;
+
     public void SetDependencies()
     {
         if (player1 != null)
         {
             death1 = player1.GetComponentInChildren<Core>().GetComponentInChildren<Death>();
-            death1.OnDeath += () => HandleOnPlayerDeath(0);
+            onDeath1 = () => HandleOnPlayerDeath(0);
+            death1.OnDeath += onDeath1;
         }
         if (player2 != null)
         {
             death2 = player2.GetComponentInChildren<Core>().GetComponentInChildren<Death>();
-            death2.OnDeath += () => HandleOnPlayerDeath(1);
+            onDeath2 = () => HandleOnPlayerDeath(1);
+            death2.OnDeath += onDeath2;
         }
     }
 
     public void OnDisable()
     {
-        if (death1 != null)
+        if (death1 != null && onDeath1 != null)
         {
-            death1.OnDeath -= () => HandleOnPlayerDeath(0);
+            death1.OnDeath -= onDeath1;
         }
-        if (death2 != null)
+        if (death2 != null && onDeath2 != null)
         {
-            death2.OnDeath -= () => HandleOnPlayerDeath(1);
+            death2.OnDeath -= onDeath2;
         }
     }
 
@@ -59,6 +64,29 @@ public class MainCamera : MonoBehaviour
     {
         // singleplayerCinemachineCamera.enabled = true;
         // multiplayerCinemachineCamera.enabled = false;
+        if (this == null || gameObject == null)
+        {
+            Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
+            return;
+        }
+        if (singleplayerCinemachineCamera == null)
+        {
+            Debug.LogWarning("Camera is null");
+            return;
+        }
+
+        if (singleplayerCinemachineCamera.Target.TrackingTarget == null)
+        {
+            Debug.LogWarning("Camera target is null");
+            return;
+        }
+
+        if (player1 == null || player2 == null)
+        {
+            Debug.LogWarning("Player1 or Player2 is null");
+            return;
+        }
+
         if (index == 0 && player2 != null)
         {
             singleplayerCinemachineCamera.Target.TrackingTarget = player2.transform;

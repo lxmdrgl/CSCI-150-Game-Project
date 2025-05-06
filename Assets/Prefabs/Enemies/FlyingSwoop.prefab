@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Health>k__BackingField:
-    <MaxValue>k__BackingField: 50
+    <MaxValue>k__BackingField: 35
     damageTaken: 0
     damageAmount: 0
   <Stun>k__BackingField:

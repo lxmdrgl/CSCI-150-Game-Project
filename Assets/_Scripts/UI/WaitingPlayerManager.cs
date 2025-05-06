@@ -100,7 +100,10 @@ public class WaitingPlayerManager : MonoBehaviour
         {
             singlePlayerScreenCanvasGO.SetActive(false);
         }
-        if (foundPlayerScreenCanvasGO != null)
+        if (foundPlayerScreenCanvasGO != null && player2.activeInHierarchy && player1.activeInHierarchy)
+        {
+            foundPlayerScreenCanvasGO.SetActive(false);
+        }
         {
             foundPlayerScreenCanvasGO.SetActive(true);
         }

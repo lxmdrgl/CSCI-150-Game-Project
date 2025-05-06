@@ -37,6 +37,12 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         EventSystem.current.SetSelectedGameObject(mainMenuFirst);
+
+        List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList<GameObject>();
+        foreach (GameObject player in players)
+        {
+            player.SetActive(false);
+        }
     }
 
     public void Play()

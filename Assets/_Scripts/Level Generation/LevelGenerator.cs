@@ -147,7 +147,10 @@ public class LevelGenerator : MonoBehaviour
                     {
                         setPlayerDependencies(playerInput);
                     }
-                    player.GetComponentInChildren<Movement>().FlipReset();
+                    if(player.GetComponentInChildren<Movement>() != null)
+                    {
+                        player.GetComponentInChildren<Movement>().FlipReset();
+                    }
                 }
             }
 
