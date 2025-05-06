@@ -189,6 +189,10 @@ public class MenuManager : MonoBehaviour
         mainMenuCanvasGO.SetActive(false);
         optionsMenuCanvasGO.SetActive(true);
 
+        volumePanel.SetActive(true);
+        gameplayPanel.SetActive(false);
+        controlsPanel.SetActive(false);
+
         EventSystem.current.SetSelectedGameObject(optionsMenuFirst);
     }
 
