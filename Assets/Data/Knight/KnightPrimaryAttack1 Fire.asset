@@ -15,7 +15,7 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 0}
   <Name>k__BackingField: Primary Attack Fire
   <Description>k__BackingField: Deal fire damage that stacks on enemies
-  <AnimatorController>k__BackingField: {fileID: 9100000, guid: f5c695431eb63e0438565fc316ffa064, type: 2}
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: a1a8a10c46caf1f4c98e7e1e9e58ee80, type: 2}
   <weaponIndex>k__BackingField: 0
   <NumberOfAttacks>k__BackingField: 3
   <AttackCounterCooldown>k__BackingField: 0.5
@@ -37,11 +37,11 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <Amount>k__BackingField: 20
+          <Amount>k__BackingField: 15
         - name: Attack 2
-          <Amount>k__BackingField: 20
+          <Amount>k__BackingField: 15
         - name: Attack 3
-          <Amount>k__BackingField: 20
+          <Amount>k__BackingField: 5
     - rid: 5949095222658203648
       type: {class: ActionHitBoxData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:
