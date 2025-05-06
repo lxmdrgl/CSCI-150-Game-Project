@@ -64,7 +64,7 @@ public class UpgradeSlot : MonoBehaviour
         }
 
         // hasDataContent.transform.Find("UpgradeName").GetComponentInChildren<TextMeshProUGUI>().text = data.name;
-        String text = "Attack: " + currentStatData.Attack.ToString() + ", Health: " + currentStatData.Health.ToString();
+        String text = "Attack: " + currentStatData.Attack.ToString() + "%\n" + "Health: " + currentStatData.Health.ToString() + "%";
         if (hasDataContent == null)
         {
             // Debug.Log("hasDataContent is null");
@@ -75,11 +75,11 @@ public class UpgradeSlot : MonoBehaviour
             return;
         }
 
-        hasDataContent.GetComponent<TextMeshProUGUI>().text = currentStatData.name + "\n" + text;
+        hasDataContent.GetComponent<TextMeshProUGUI>().text = text;
     }
 
     public void SetWeaponDataContent()
     {
-        hasDataContent.GetComponent<TextMeshProUGUI>().text = currentWeaponData.Name + "\n" + currentWeaponData.Description;
+        hasDataContent.GetComponent<TextMeshProUGUI>().text = currentWeaponData.Name + "\n\n" + currentWeaponData.Description;
     }
 }

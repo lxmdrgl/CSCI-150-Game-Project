@@ -898,14 +898,6 @@ PrefabInstance:
       propertyPath: singleplayerCinemachineCamera
       value: 
       objectReference: {fileID: 456413651}
-    - target: {fileID: 8857452221912433817, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
-      propertyPath: m_Resource
-      value: 
-      objectReference: {fileID: 8300000, guid: affae1e1ff9c7784b93fee825dbd934d, type: 3}
-    - target: {fileID: 8857452221912433817, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: affae1e1ff9c7784b93fee825dbd934d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
