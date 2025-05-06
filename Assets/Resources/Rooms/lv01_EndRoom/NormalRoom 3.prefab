@@ -1176,6 +1176,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MinorChest
       objectReference: {fileID: 0}
+    - target: {fileID: 4615157096398950149, guid: ecfaad62f0fae6541acbd137a23d5b65, type: 3}
+      propertyPath: upgradePrefab
+      value: 
+      objectReference: {fileID: 5602557118698842527, guid: a726e237f0453dd44b6b73105347022f, type: 3}
     - target: {fileID: 9051955153743558922, guid: ecfaad62f0fae6541acbd137a23d5b65, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.0636787

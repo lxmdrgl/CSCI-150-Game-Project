@@ -666,6 +666,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
+      propertyPath: attackIncrease
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469381499304706797, guid: 66d80c91cb4558d4e8966120a1d816ed, type: 3}
       propertyPath: gameplayCanvas
       value: 
       objectReference: {fileID: 488974052}

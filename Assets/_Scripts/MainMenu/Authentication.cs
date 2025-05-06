@@ -131,42 +131,38 @@ public class Authentication : MonoBehaviour
         await SignInWithUsernamePasswordAsync(username, password);
     }
 
-    async Task SignInWithUsernamePasswordAsync(string username, string password)    // Sign In API
+    async Task SignInWithUsernamePasswordAsync(string username, string password)
     {
         try
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
-            // test Debug.Log("SignIn is successful.");
+
             string playerName = AuthenticationService.Instance.PlayerName;
             if (string.IsNullOrEmpty(playerName))
             {
                 playerName = username;
-                PlayerPrefs.SetString("PlayerName", playerName);  // Save locally as a fallback
+                PlayerPrefs.SetString("PlayerName", playerName);
             }
+
             playerNameTxt.text = username;
             AuthMenuSignedIn();
+
+            // Only run this if sign-in succeeds
+            Leaderboard leaderboard = FindFirstObjectByType<Leaderboard>();
+            if (leaderboard != null)
+            {
+                leaderboard.leaderboardUI.SetActive(true);
+                leaderboard.SetLeaderboardPosition(true);
+                await leaderboard.GetScores();
+            }
         }
         catch (AuthenticationException ex)
         {
-            // Compare error code to AuthenticationErrorCodes
-            // Notify the player with the proper error message
             logTxt.text = ex.Message;
-            // test Debug.LogException(ex);
         }
         catch (RequestFailedException ex)
         {
-            // Compare error code to CommonErrorCodes
-            // Notify the player with the proper error message
             logTxt.text = ex.Message;
-            // test Debug.LogException(ex);
-        }
-
-        Leaderboard leaderboard = FindFirstObjectByType<Leaderboard>();
-        if (leaderboard != null)
-        {
-            leaderboard.leaderboardUI.SetActive(true); // If it's hidden, show it
-            leaderboard.SetLeaderboardPosition(true); // Move to account menu spot
-            await leaderboard.GetScores(); // Force refresh
         }
     }
 
