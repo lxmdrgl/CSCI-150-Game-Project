@@ -402,6 +402,14 @@ public class LevelGenerator : MonoBehaviour
             if (isValid)
             {
                 // test UnityEngine.// Debug.Log("Valid room: " + nextNode.name);
+
+                if (spawnObj.name == "Room_11")
+                {
+                    Debug.Log("Room 11 spawned: " + spawnObj.name);
+
+                    //private PolygonCollider2D polygonCollider = spawnObj.GetComponentInChildren<PolygonCollider2D>();
+                }
+
                 return true; // Exit loop on first valid room
             }
             else

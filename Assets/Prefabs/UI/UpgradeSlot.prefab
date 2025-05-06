@@ -110,7 +110,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: -8015357, guid: c080d0ba024c53f45a30e9ef41e4a5a3, type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: -8015357, guid: c080d0ba024c53f45a30e9ef41e4a5a3, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294901931
   m_fontColor: {r: 0.67058825, g: 0, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294901931
   m_fontColor: {r: 0.67058825, g: 0, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
