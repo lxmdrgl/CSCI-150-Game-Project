@@ -86,6 +86,11 @@ namespace Game.Projectiles
                 rb.linearVelocity = new Vector2(direction.x * velocity * facingDirection, direction.y * velocity);
             }
 
+            if (pierce)
+            {
+                transform.rotation = parent.transform.rotation;
+            }
+
             // Debug.Log("spawn fire position: " + transform.position);
         }
 
@@ -103,7 +108,7 @@ namespace Game.Projectiles
         {
             if (!hasHitGround)
             {
-                if (rotate)
+                if (rotate & !pierce)
                 {
                     float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
                     transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -152,7 +157,14 @@ namespace Game.Projectiles
                     {
                         HandleExplosiveProjectile();
                     }
-                    Destroy(gameObject, 1.0f);
+                    if (pierce)
+                    {
+                         Destroy(gameObject);
+                    }
+                    else
+                    {
+                        Destroy(gameObject, 1.0f);
+                    }
                 }
             }        
         }

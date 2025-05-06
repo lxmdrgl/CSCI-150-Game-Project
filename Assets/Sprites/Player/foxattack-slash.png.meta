@@ -49,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -63,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,10 +84,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,20 +115,20 @@ TextureImporter:
       name: foxattack-slash_0
       rect:
         serializedVersion: 2
-        x: 89
-        y: 23
-        width: 65
-        height: 71
+        x: 0
+        y: 0
+        width: 264
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0dccf1d4c64399ad0800000000000000
-      internalID: -2695065262249489200
+      spriteID: 807a1623daac5fe4cb8a37ac3962356a
+      internalID: -138916342
       vertices: []
       indices: 
       edges: []
@@ -137,20 +137,20 @@ TextureImporter:
       name: foxattack-slash_1
       rect:
         serializedVersion: 2
-        x: 346
-        y: 76
-        width: 7
-        height: 8
+        x: 264
+        y: 0
+        width: 264
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 98988af7f2d226a00800000000000000
-      internalID: 748210170125388169
+      spriteID: a9ead1dce26d20147970bbf87dfdbc2a
+      internalID: -577648696
       vertices: []
       indices: 
       edges: []
@@ -159,20 +159,20 @@ TextureImporter:
       name: foxattack-slash_2
       rect:
         serializedVersion: 2
-        x: 352
-        y: 23
-        width: 66
-        height: 73
+        x: 528
+        y: 0
+        width: 264
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f7095cfb37cf9f210800000000000000
-      internalID: 1367401535952490623
+      spriteID: 5cce9e57ed14a144fa88d6ea632420d9
+      internalID: 1375446010
       vertices: []
       indices: 
       edges: []
@@ -181,42 +181,20 @@ TextureImporter:
       name: foxattack-slash_3
       rect:
         serializedVersion: 2
-        x: 624
-        y: 23
-        width: 103
-        height: 65
+        x: 792
+        y: 0
+        width: 264
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 511b0533f66de2620800000000000000
-      internalID: 2751372195460591893
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: foxattack-slash_4
-      rect:
-        serializedVersion: 2
-        x: 888
-        y: 23
-        width: 103
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7202336a8508fb160800000000000000
-      internalID: 7043489460464590887
+      spriteID: 6ab0a13009bf80b409e7049be0039be8
+      internalID: -1453542160
       vertices: []
       indices: 
       edges: []
@@ -225,7 +203,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -234,7 +212,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      foxattack-slash_0: -138916342
+      foxattack-slash_1: -577648696
+      foxattack-slash_2: 1375446010
+      foxattack-slash_3: -1453542160
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

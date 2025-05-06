@@ -61,13 +61,13 @@ MonoBehaviour:
         - name: Attack 1
           <ProjectileFires>k__BackingField:
           - name: Attack 1
-            <velocity>k__BackingField: 40
+            <velocity>k__BackingField: 20
             <direction>k__BackingField: {x: 1, y: 0}
             <rotate>k__BackingField: 1
             <hasGravity>k__BackingField: 0
             <gravityScale>k__BackingField: 1
-            <damage>k__BackingField: 5
-            <stun>k__BackingField: 15
+            <damage>k__BackingField: 10
+            <stun>k__BackingField: 10
             <pierce>k__BackingField: 1
             <explosive>k__BackingField: 0
             <explosiveRadius>k__BackingField: 0
@@ -80,13 +80,13 @@ MonoBehaviour:
               serializedVersion: 2
               m_Bits: 2048
           - name: Attack 1
-            <velocity>k__BackingField: 40
+            <velocity>k__BackingField: 20
             <direction>k__BackingField: {x: 1, y: 0}
             <rotate>k__BackingField: 1
             <hasGravity>k__BackingField: 0
             <gravityScale>k__BackingField: 1
-            <damage>k__BackingField: 7
-            <stun>k__BackingField: 21
+            <damage>k__BackingField: 20
+            <stun>k__BackingField: 20
             <pierce>k__BackingField: 1
             <explosive>k__BackingField: 0
             <explosiveRadius>k__BackingField: 0
@@ -99,13 +99,13 @@ MonoBehaviour:
               serializedVersion: 2
               m_Bits: 2048
           - name: Attack 1
-            <velocity>k__BackingField: 40
+            <velocity>k__BackingField: 20
             <direction>k__BackingField: {x: 1, y: 0}
             <rotate>k__BackingField: 1
             <hasGravity>k__BackingField: 0
             <gravityScale>k__BackingField: 1
-            <damage>k__BackingField: 9
-            <stun>k__BackingField: 27
+            <damage>k__BackingField: 30
+            <stun>k__BackingField: 30
             <pierce>k__BackingField: 1
             <explosive>k__BackingField: 0
             <explosiveRadius>k__BackingField: 0
@@ -126,17 +126,17 @@ MonoBehaviour:
         - name: Attack 1
           <ProjectileSpawners>k__BackingField:
           - name: 
-            <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 5899bd83d15cb514eb5eda4a490a2f01, type: 3}
-            <position>k__BackingField: {x: 1, y: 0}
+            <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 7a35a9a044938274ba639a20e7b2dfa5, type: 3}
+            <position>k__BackingField: {x: 2.5, y: -0.5}
             <count>k__BackingField: 1
             <timeInterval>k__BackingField: 0
           - name: 
-            <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 5899bd83d15cb514eb5eda4a490a2f01, type: 3}
-            <position>k__BackingField: {x: 1, y: 0}
+            <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 7a35a9a044938274ba639a20e7b2dfa5, type: 3}
+            <position>k__BackingField: {x: 2.5, y: -0.5}
             <count>k__BackingField: 1
             <timeInterval>k__BackingField: 0
           - name: 
-            <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 5899bd83d15cb514eb5eda4a490a2f01, type: 3}
-            <position>k__BackingField: {x: 1, y: 0}
+            <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 7a35a9a044938274ba639a20e7b2dfa5, type: 3}
+            <position>k__BackingField: {x: 2.5, y: -0.5}
             <count>k__BackingField: 1
             <timeInterval>k__BackingField: 0

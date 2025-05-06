@@ -19,7 +19,7 @@ MonoBehaviour:
   <weaponIndex>k__BackingField: 3
   <NumberOfAttacks>k__BackingField: 1
   <AttackCounterCooldown>k__BackingField: 0
-  <AttackCooldown>k__BackingField: 5
+  <AttackCooldown>k__BackingField: 3
   prereqWeapon: {fileID: 0}
   <ComponentData>k__BackingField:
   - rid: 6902827909092212840
