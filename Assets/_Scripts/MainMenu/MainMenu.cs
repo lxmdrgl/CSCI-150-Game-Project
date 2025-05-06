@@ -13,9 +13,6 @@ public class MainMenu : MonoBehaviour
 {
     [Header("Menu Navigation")]
     [SerializeField] private GameObject mainMenuFirst;
-    [SerializeField] private GameObject playMenuFirst;
-    [SerializeField] private GameObject optionsMenuFirst;
-    [SerializeField] private GameObject accountMenuFirst;
 
     public string GameSceneName;
     public string generatorScene;

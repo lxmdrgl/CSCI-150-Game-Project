@@ -414,7 +414,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 68433494534334199}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 0.49803925, g: 0.49803925, b: 0.49803925, a: 1}
     m_HighlightedColor: {r: 1, g: 0.27058825, b: 0.27058825, a: 1}
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 1566629659, guid: 45c4fdc93d6c91e4c8bae855d6b200fb, type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 1566629659, guid: 45c4fdc93d6c91e4c8bae855d6b200fb, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
