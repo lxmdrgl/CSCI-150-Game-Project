@@ -32,7 +32,7 @@ namespace Game.CoreSystem
         public void SetCanTakeKnockBack(bool value) 
         {
             CanTakeKnockBack = value;
-            // Debug.Log($"knock active back set to, {CanTakeKnockBack}");
+            // test Debug.Log($"knock active back set to, {CanTakeKnockBack}");
         }
 
         public void KnockBack(KnockBackData data)
@@ -42,18 +42,18 @@ namespace Game.CoreSystem
             movement.CanSetVelocity = false;
             isKnockBackActive = true;
             knockBackStartTime = Time.time; */
-            // Debug.Log("Knock active: " + CanTakeKnockBack);
+            // test Debug.Log("Knock active: " + CanTakeKnockBack);
 
             if (CanTakeKnockBack) {
                 movement.SetVelocity(data.Strength, data.Angle, data.Direction);
                 movement.CanSetVelocity = false;
                 isKnockBackActive = true;
                 knockBackStartTime = Time.time;
-                // // Debug.Log("Knock active");
-                // Debug.Log($"take knockback, {CanTakeKnockBack}");
+                // // test Debug.Log("Knock active");
+                // test Debug.Log($"take knockback, {CanTakeKnockBack}");
                 OnKnockBackActive?.Invoke();
             } else {
-                // Debug.Log($"Ignore knockback false, {CanTakeKnockBack}");
+                // test Debug.Log($"Ignore knockback false, {CanTakeKnockBack}");
             }
         }
 
@@ -66,7 +66,7 @@ namespace Game.CoreSystem
             {
                 isKnockBackActive = false;
                 movement.CanSetVelocity = true;
-                // // Debug.Log("Knock inactive: " + (Time.time - knockBackStartTime));
+                // // test Debug.Log("Knock inactive: " + (Time.time - knockBackStartTime));
                 OnKnockBackInactive?.Invoke();
             }
         }

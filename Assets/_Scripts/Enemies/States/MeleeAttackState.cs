@@ -36,11 +36,11 @@ public class MeleeAttackState : AttackState
 
 		Physics2D.OverlapCollider(hitbox, detected);
 
-		// Debug.Log("Detected: " + detected.ToArray() + "count: " +  detected.Count);
+		// test Debug.Log("Detected: " + detected.ToArray() + "count: " +  detected.Count);
 
     	// Use the TryDamage utility to apply damage to detected objects
 		if (Stats == null) {
-			// Debug.LogError("Stats is null");
+			// test Debug.LogError("Stats is null");
 		}
 
 		bool didDamage = CombatDamageUtilities.TryDamage(detected.ToArray(), new DamageData(stateData.attackDamage * (Stats.Attack / 100f), core.Root), out var damageables);
@@ -48,21 +48,21 @@ public class MeleeAttackState : AttackState
     	{
         	foreach (var damageable in damageables)
         	{
-            	// Debug.Log("Enemy Dealing " + stateData.attackDamage + " Damage To Player");
+            	// test Debug.Log("Enemy Dealing " + stateData.attackDamage + " Damage To Player");
         	}
     	}
     	else
     	{
-        	// Debug.Log("No damageable objects detected");
+        	// test Debug.Log("No damageable objects detected");
     	}
 
 
 		bool didKnock = CombatKnockBackUtilities.TryKnockBack(detected.ToArray(), new KnockBackData(stateData.knockbackAngle, stateData.knockbackStrength, Movement.FacingDirection, core.Root), out _);
 		if (didKnock) {
-			// Debug.Log("Enemy Knocking Player Back");
+			// test Debug.Log("Enemy Knocking Player Back");
 		}
 		else {
-			// // Debug.Log("No knockbackable objects detected");
+			// // test Debug.Log("No knockbackable objects detected");
 		}
 
 		if (didDamage || didKnock)

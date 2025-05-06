@@ -36,7 +36,7 @@ namespace Game.Weapons.Components
             }
             else 
             {
-                // Debug.Log("StatusData is null");
+                // test Debug.Log("StatusData is null");
             }
         }
 

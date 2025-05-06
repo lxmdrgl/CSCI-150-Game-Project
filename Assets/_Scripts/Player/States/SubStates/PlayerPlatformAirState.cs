@@ -15,7 +15,7 @@ public class PlayerPlatformAirState : PlayerAirState
     }	
 	public override void Enter() {
 		base.Enter();
-		// test UnityEngine.// Debug.Log("Current state: platform air :" + isPlatformOverlap + ", "+ player.boxCollider);
+		// test UnityEngine.// test Debug.Log("Current state: platform air :" + isPlatformOverlap + ", "+ player.boxCollider);
 		Physics2D.IgnoreCollision(isPlatformOverlap, player.boxCollider, false);
 	}
 
@@ -39,13 +39,13 @@ public class PlayerPlatformAirState : PlayerAirState
 
 		Movement?.SetVelocityX(playerData.platformMovementVelocity * xInput);
 		Movement?.SetVelocityY(playerData.platformVelocity);
-		// // Debug.Log($"set y: {Movement?.CurrentVelocity.y}");
+		// // test Debug.Log($"set y: {Movement?.CurrentVelocity.y}");
 
-		// // Debug.Log($"Platform State: isPlatformOverlap: {isPlatformOverlap != null}, isPlatformOverlapTop: {isPlatformOverlapTop != null}");
+		// // test Debug.Log($"Platform State: isPlatformOverlap: {isPlatformOverlap != null}, isPlatformOverlapTop: {isPlatformOverlapTop != null}");
 
 		if (!isExitingState) 
 		{
-			// // Debug.Log($"isPlatformOverlap: {isPlatformOverlap}, isPlatformOverlapTop: {isPlatformOverlapTop}");
+			// // test Debug.Log($"isPlatformOverlap: {isPlatformOverlap}, isPlatformOverlapTop: {isPlatformOverlapTop}");
 			if (isPlatformOverlap != null || isPlatformOverlapTop != null)
 			{	
 				if (downInput && player.FallAttackState.CanAttack(CombatInputs.primaryAttackPress, CombatInputs.fallAttack))
@@ -129,7 +129,7 @@ public class PlayerPlatformAirState : PlayerAirState
 				if (jumpInputBuffer) 
 				{
 					jumpInputBuffer = false;
-					// Debug.Log("move platform jump buffer");
+					// test Debug.Log("move platform jump buffer");
 					GameObject particle = GameObject.Instantiate(player.airToJumpParticle, player.transform.position, Quaternion.identity);
 					player.AirState.SetJumpingInPlatform(true);
 					stateMachine.ChangeState(player.JumpState);
@@ -146,7 +146,7 @@ public class PlayerPlatformAirState : PlayerAirState
 					stateMachine.ChangeState(player.MoveState);
 				}
 			} else {
-				// Debug.Log("Platform State: No condition met");
+				// test Debug.Log("Platform State: No condition met");
 			}
 		}
 	}
@@ -157,18 +157,18 @@ public class PlayerPlatformAirState : PlayerAirState
 
 	public void StopPlatformMove() 
 	{
-		// Debug.Log("stop platform move");
+		// test Debug.Log("stop platform move");
 		Movement?.SetVelocityY(0);
 	}
 
 	private void MovePlatformPosition() 
 	{
-		// Debug.Log("move platform position");
+		// test Debug.Log("move platform position");
 		Movement?.SetVelocityY(0);
 		isPlatformBottomExtend = CollisionSenses.PlatformBottomExtend;
 		if (isPlatformBottomExtend.collider != null) {
 			platformBottomPosition = new Vector2(player.transform.position.x, player.transform.position.y - isPlatformBottomExtend.distance +0.1f);
-			// Debug.Log($"Move platform position: {platformBottomPosition.y}, {player.transform.position.y}, {isPlatformBottomExtend.distance}");
+			// test Debug.Log($"Move platform position: {platformBottomPosition.y}, {player.transform.position.y}, {isPlatformBottomExtend.distance}");
 			// player.transform.position = platformBottomPosition;
 		}
 	}

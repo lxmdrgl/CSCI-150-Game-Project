@@ -95,11 +95,11 @@
 //         {
 //             Instantiate(explosionEffect, transform.position, Quaternion.identity);
 
-//             // Debug.Log($"💥 Explosion hit {hitObjects.Length} targets!");
+//             // test Debug.Log($"💥 Explosion hit {hitObjects.Length} targets!");
 
 //             if (CombatDamageUtilities.TryDamage(hitObjects, new DamageData(explosionDamage, gameObject), out _))
 //             {
-//                 // Debug.Log($"✅ Explosive dealt {explosionDamage} damage.");
+//                 // test Debug.Log($"✅ Explosive dealt {explosionDamage} damage.");
 //             }
 
 //             CombatKnockBackUtilities.TryKnockBack(

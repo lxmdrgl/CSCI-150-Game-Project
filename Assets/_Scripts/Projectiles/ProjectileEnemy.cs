@@ -90,7 +90,7 @@ namespace Game.Projectiles
                 Collider2D groundHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsGround);
 
                 // damageHit.gameObject.GetComponentInChildren<DamageReceiver>().CanTakeDamage
-                // // Debug.Log("damageHit: " + damageHit.gameObject.name + " " + damageHit.gameObject.GetComponentInChildren<DamageReceiver>().CanTakeDamage);
+                // // test Debug.Log("damageHit: " + damageHit.gameObject.name + " " + damageHit.gameObject.GetComponentInChildren<DamageReceiver>().CanTakeDamage);
                 if (damageHit /* && damageHit.gameObject.GetComponentInChildren<DamageReceiver>().CanTakeDamage */)
                 {
                     if (explosive)
@@ -169,7 +169,7 @@ namespace Game.Projectiles
                         startingRotation = 0f;
                     }
                     damageScript.HandleCollision(hitObject, attack);
-                    // Debug.Log("Explosive rotation: " + startingRotation);
+                    // test Debug.Log("Explosive rotation: " + startingRotation);
                 }
             }
             Destroy(gameObject);
@@ -181,7 +181,7 @@ namespace Game.Projectiles
             this.startingRotation = startingRotation;
             this.gravity = gravity;
             this.attack = attack;
-            // // Debug.Log("Gravity: " + this.gravity + " , " + gravity);
+            // // test Debug.Log("Gravity: " + this.gravity + " , " + gravity);
 
             if(projectileType == "radialWithGravity")
             {
@@ -225,7 +225,7 @@ namespace Game.Projectiles
 
             if (discriminant < 0)
             {
-                // Debug.LogWarning("No real solution exists for given parameters. Increase initialVy.");
+                // test Debug.LogWarning("No real solution exists for given parameters. Increase initialVy.");
                 return;
             }
 
@@ -236,7 +236,7 @@ namespace Game.Projectiles
 
             float vx = dx / tTotal;
 
-            // // Debug.Log($"vx: {vx}, vy: {vy}, t1: {t1}, t2: {t2}, tTotal: {tTotal} gravityScale: {rb.gravityScale} gravity: {gravity}");
+            // // test Debug.Log($"vx: {vx}, vy: {vy}, t1: {t1}, t2: {t2}, tTotal: {tTotal} gravityScale: {rb.gravityScale} gravity: {gravity}");
 
             rb.linearVelocity = new Vector2(vx, vy);
         }

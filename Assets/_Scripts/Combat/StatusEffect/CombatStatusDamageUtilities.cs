@@ -15,7 +15,7 @@ namespace Game.Utilities
     {
         public static bool TryStatus(GameObject gameObject, StatusData statusData, out IStatusDamageable damageable)
         {
-            // // Debug.Log("Enter TryStatus");
+            // // test Debug.Log("Enter TryStatus");
             // TryGetComponentInChildren is a custom GameObject extension method.
             if (gameObject.TryGetComponentInChildren(out damageable))
             {

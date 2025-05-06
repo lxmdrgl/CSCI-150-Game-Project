@@ -11,7 +11,7 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Enter();
         Movement?.SetVelocityX(0f);
-        // // Debug.Log("Entered Idle State");
+        // // test Debug.Log("Entered Idle State");
     }
 
     public override void LogicUpdate()
@@ -23,7 +23,10 @@ public class PlayerIdleState : PlayerGroundedState
             if (xInput != 0) 
             {
                 GameObject particle = GameObject.Instantiate(player.idleToMoveParticle, player.transform.position, Quaternion.identity);
-                particle.transform.rotation = player.transform.rotation;
+                if (xInput < 0)
+                    particle.transform.rotation = Quaternion.Euler(0, 180, 0);
+                else
+                    particle.transform.rotation = Quaternion.Euler(0, 0, 0);
                 stateMachine.ChangeState(player.MoveState);
             }
         }

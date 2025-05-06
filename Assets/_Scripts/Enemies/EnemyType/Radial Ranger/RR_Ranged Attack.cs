@@ -68,7 +68,7 @@ public class RR_RangedAttackState : RangedAttackState
                 ExplosiveProjectileEnemy explosiveProjectileScript = projectile1.GetComponent<ExplosiveProjectileEnemy>();
                 if (explosiveProjectileScript != null)
                 {
-                    // Debug.Log("✅ Found ExplosiveProjectile script, firing projectile...");
+                    // test Debug.Log("✅ Found ExplosiveProjectile script, firing projectile...");
                     explosiveProjectileScript.FireProjectile(20f, stateData.projectileTravelDistance);
                 }
             } */

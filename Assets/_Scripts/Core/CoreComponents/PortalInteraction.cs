@@ -19,7 +19,7 @@ namespace Game.CoreSystem
 
         private void HandleTryInteract(IInteractable interactable)
         {
-            // test UnityEngine.// Debug.Log("HandleTryInteract called in Portal");
+            // test UnityEngine.// test Debug.Log("HandleTryInteract called in Portal");
             
             if (interactable is not Portal pickup)
                 return;

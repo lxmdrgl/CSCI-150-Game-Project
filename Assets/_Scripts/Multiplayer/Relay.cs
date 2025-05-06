@@ -13,7 +13,7 @@
 
 //         AuthenticationService.Instance.SignedIn += () =>
 //         {
-//             // Debug.Log("Signed in " + AuthenticationService.Instance.PlayerId);
+//             // test Debug.Log("Signed in " + AuthenticationService.Instance.PlayerId);
 //         };
 
 //         await AuthenticationService.Instance.SignInAnonymouslyAsync();
@@ -29,11 +29,11 @@
 
 //             string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
-//             // Debug.Log("Join Code: " + joinCode);
+//             // test Debug.Log("Join Code: " + joinCode);
 //         }
 //         catch(RelayServiceException e)
 //         {
-//             // Debug.Log(e);
+//             // test Debug.Log(e);
 //         }
 //     }
 
@@ -41,12 +41,12 @@
 //     {
 //         try
 //         {
-//             // Debug.Log("Joining Relay with " + joinCode);
+//             // test Debug.Log("Joining Relay with " + joinCode);
 //             await RelayService.Instance.JoinAllocationAsync(joinCode);
 //         }
 //         catch (RelayServiceException e)
 //         {
-//             // Debug.Log(e);
+//             // test Debug.Log(e);
 //         }
 
 //     }

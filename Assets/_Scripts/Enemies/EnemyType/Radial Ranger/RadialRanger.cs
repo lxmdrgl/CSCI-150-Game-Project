@@ -46,7 +46,7 @@ public class RadialRanger : Entity
     {
         base.Awake();
         meleeAttackCollider = transform.Find("MeleeAttackCollider").gameObject;
-        // // Debug.Log("meleeAttackCollider: " + meleeAttackCollider);
+        // // test Debug.Log("meleeAttackCollider: " + meleeAttackCollider);
 
 
         moveState = new RR_MoveState(this, "move", moveStateData, this);
@@ -66,14 +66,14 @@ public class RadialRanger : Entity
 
     private void HandleStunZero()
     {
-        // // Debug.Log("HandleStunZero");
+        // // test Debug.Log("HandleStunZero");
         stateMachine.ChangeState(stunState);
         stats.Stun.CurrentValue = stats.Stun.MaxValue;
     }
 
     private void HandleDamageTaken()
     {
-        // // Debug.Log("HandleStunZero");
+        // // test Debug.Log("HandleStunZero");
         if(stateMachine.currentState == moveState || stateMachine.currentState == idleState)
         {
             stateMachine.ChangeState(lookForPlayerState);

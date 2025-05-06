@@ -54,13 +54,13 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            // Debug.Log("Input Down start");
+            // test Debug.Log("Input Down start");
             DownInput = true;
         }
         
         if (context.canceled)
         {
-            // Debug.Log("Input Down end");
+            // test Debug.Log("Input Down end");
             DownInput = false;
         }
     }
@@ -69,13 +69,13 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            // Debug.Log("Input Jump start");
+            // test Debug.Log("Input Jump start");
             JumpInput = true;
         }
         
         if (context.canceled)
         {
-            // Debug.Log("Input Jump end");
+            // test Debug.Log("Input Jump end");
             JumpInput = false;
         }
     }
@@ -86,11 +86,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.interaction is UnityEngine.InputSystem.Interactions.MultiTapInteraction)
         {
-            // Debug.Log("Multi-Tap Fall start");
+            // test Debug.Log("Multi-Tap Fall start");
         }
         else
         {
-            // Debug.Log("Single Press Fall start");
+            // test Debug.Log("Single Press Fall start");
         }
 
         FallInput = true;
@@ -100,12 +100,12 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.interaction is UnityEngine.InputSystem.Interactions.MultiTapInteraction)
         {
-            // Debug.Log("Multi-Tap Fall end - Adding slight delay");
+            // test Debug.Log("Multi-Tap Fall end - Adding slight delay");
             StartCoroutine(ResetFallInput());
         }
         else
         {
-            // Debug.Log("Single Press Fall end");
+            // test Debug.Log("Single Press Fall end");
             FallInput = false;
         }
     }
@@ -115,7 +115,7 @@ private IEnumerator ResetFallInput()
 {
     yield return new WaitForSeconds(0.1f); 
     FallInput = false;
-    // Debug.Log("Multi-Tap Fall Input Reset");
+    // test Debug.Log("Multi-Tap Fall Input Reset");
 }
 
 
@@ -124,7 +124,7 @@ private IEnumerator ResetFallInput()
         if (context.started)
         {
             DashInput = true;
-            // // Debug.Log("Start dash");
+            // // test Debug.Log("Start dash");
         }
         
         if (context.canceled)
@@ -275,7 +275,7 @@ private IEnumerator ResetFallInput()
         if (context.started)
         {
             UpgradeOpenInput = true;
-            // Debug.Log("Upgrade Open Input");
+            // test Debug.Log("Upgrade Open Input");
         }
         
         if (context.canceled)

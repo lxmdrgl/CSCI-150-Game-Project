@@ -43,7 +43,7 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 5899bd83d15cb514eb5eda4a490a2f01, type: 3}
+          <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 9177ac1491eaf864889006f109afc104, type: 3}
           <position>k__BackingField: {x: 1, y: 0}
           <count>k__BackingField: 1
           <timeInterval>k__BackingField: 0
@@ -59,8 +59,8 @@ MonoBehaviour:
           <rotate>k__BackingField: 1
           <hasGravity>k__BackingField: 1
           <gravityScale>k__BackingField: 5
-          <damage>k__BackingField: 10
-          <stun>k__BackingField: 15
+          <damage>k__BackingField: 20
+          <stun>k__BackingField: 20
           <pierce>k__BackingField: 1
           <explosive>k__BackingField: 1
           <explosiveRadius>k__BackingField: 5

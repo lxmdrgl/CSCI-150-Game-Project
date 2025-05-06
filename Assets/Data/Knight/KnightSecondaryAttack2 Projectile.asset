@@ -45,13 +45,13 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 5899bd83d15cb514eb5eda4a490a2f01, type: 3}
-          <position>k__BackingField: {x: 1, y: 0}
+          <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 509429e18833da447bc6089a0c386e2a, type: 3}
+          <position>k__BackingField: {x: 1.25, y: -0.25}
           <count>k__BackingField: 1
           <timeInterval>k__BackingField: 0
         - name: Attack 2
-          <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 5899bd83d15cb514eb5eda4a490a2f01, type: 3}
-          <position>k__BackingField: {x: 1, y: 0}
+          <projectile>k__BackingField: {fileID: 1926996799381955567, guid: 509429e18833da447bc6089a0c386e2a, type: 3}
+          <position>k__BackingField: {x: 1.25, y: -0.25}
           <count>k__BackingField: 2
           <timeInterval>k__BackingField: 0.1
     - rid: 6902827909092212840
@@ -65,7 +65,7 @@ MonoBehaviour:
           <direction>k__BackingField: {x: 1, y: 0}
           <rotate>k__BackingField: 1
           <hasGravity>k__BackingField: 1
-          <gravityScale>k__BackingField: 1
+          <gravityScale>k__BackingField: 0.75
           <damage>k__BackingField: 6
           <stun>k__BackingField: 9
           <pierce>k__BackingField: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
           <direction>k__BackingField: {x: 1, y: 0}
           <rotate>k__BackingField: 1
           <hasGravity>k__BackingField: 1
-          <gravityScale>k__BackingField: 1
+          <gravityScale>k__BackingField: 0.75
           <damage>k__BackingField: 4
           <stun>k__BackingField: 5
           <pierce>k__BackingField: 0

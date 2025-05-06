@@ -19,7 +19,7 @@ public class PlayerKnockBackState : PlayerActionState
         DamageReceiver?.SetCanTakeDamage(false);
         KnockBackReceiver?.SetCanTakeKnockBack(false);
 
-        // Debug.Log("Action hitbox knockback start");
+        // test Debug.Log("Action hitbox knockback start");
     }
 
     public override void Exit()
@@ -33,7 +33,7 @@ public class PlayerKnockBackState : PlayerActionState
     private void HandleKnockBackInactive()
     {
         knockBackActive = true;
-        // // Debug.Log("handle inactive true");
+        // // test Debug.Log("handle inactive true");
     }
 
     public override void LogicUpdate()
@@ -42,7 +42,7 @@ public class PlayerKnockBackState : PlayerActionState
 
         if (knockBackActive) 
         {
-            // // Debug.Log("knock action done");
+            // // test Debug.Log("knock action done");
             isActionDone = true;
         }
     }

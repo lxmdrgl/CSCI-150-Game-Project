@@ -52,7 +52,7 @@ public class HealthBar : MonoBehaviour
         
         stats = player.GetComponentInChildren<Stats>();
         death = player.GetComponentInChildren<Death>();
-        // Debug.Log("HealthBar SetDependecies DEATH" + death);
+        // test Debug.Log("HealthBar SetDependecies DEATH" + death);
         stats.Health.OnValueChange += UpdateSlider;
         if(death != null) {
             death.OnDeath += DisableHealthBar;
@@ -89,16 +89,16 @@ public class HealthBar : MonoBehaviour
     private void DisableHealthBar() {
         if (this == null || gameObject == null)
         {
-            // Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
+            // test Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
             return;
         }
-        // // Debug.Log("DisableHealthBar called");
+        // // test Debug.Log("DisableHealthBar called");
         gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
-        // // Debug.Log("HealthBar OnEnable called");
+        // // test Debug.Log("HealthBar OnEnable called");
         /* stats.Health.OnValueChange += UpdateSlider;
         if(death != null) {
             death.OnDeath += DisableHealthBar;

@@ -56,11 +56,11 @@ namespace Game.Utilities
             if (!enabled)
                 return;
             
-            // // Debug.Log("Timer tick");
+            // // test Debug.Log("Timer tick");
 
             if (Time.time >= targetTime)
             {
-                // // Debug.Log("Timer over");
+                // // test Debug.Log("Timer over");
                 OnNotify?.Invoke();
             }
         }

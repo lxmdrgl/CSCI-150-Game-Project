@@ -30,7 +30,7 @@ public class RoomCollider : MonoBehaviour
 
         // If any point is not a whole number, keep the collider unchanged
         if (hasNonWholeNumbers) {
-            // // Debug.Log("Skipping collider resize: Awake called twice");
+            // // test Debug.Log("Skipping collider resize: Awake called twice");
             polyCollider.points = points;
             return;
         }
@@ -53,7 +53,7 @@ public class RoomCollider : MonoBehaviour
 
         polyCollider.points = newPoints; // Apply new collider shape
 
-        // // Debug.Log("Collision resized for: " + gameObject.transform.parent);
+        // // test Debug.Log("Collision resized for: " + gameObject.transform.parent);
     }
 
     // public void tryCollider() {
@@ -72,7 +72,7 @@ public class RoomCollider : MonoBehaviour
     //     {
     //         hasCollision = true;
     //     }
-    //     // Debug.Log("Number of collisions detected on: " + gameObject.transform.parent + ", " + collisionCount);
+    //     // test Debug.Log("Number of collisions detected on: " + gameObject.transform.parent + ", " + collisionCount);
     // }
 
     // int roomLayer = LayerMask.NameToLayer("Room");
@@ -80,23 +80,23 @@ public class RoomCollider : MonoBehaviour
         
         // Collider2D[] results = Physics2D.OverlapBoxAll(transform.position, boxCollider.bounds.size, 0, layerMask);
         // int numOverlap = results.Length;
-        // // Debug.Log("tryCollider(): " + gameObject.transform.parent);
+        // // test Debug.Log("tryCollider(): " + gameObject.transform.parent);
         // foreach (Collider2D collider in results) {
         //     if (collider != boxCollider) {
-        //         // Debug.LogError("Collision detected: " + gameObject.transform.parent + " collision with " + collider.gameObject.transform.parent);
+        //         // test Debug.LogError("Collision detected: " + gameObject.transform.parent + " collision with " + collider.gameObject.transform.parent);
         //     }
         // }
 
         // if (hit != null) {
-        //     // Debug.Log("self:" + gameObject.transform.parent + ", hit: " + hit.gameObject.transform.parent);
+        //     // test Debug.Log("self:" + gameObject.transform.parent + ", hit: " + hit.gameObject.transform.parent);
         // }
         // else {
-        //     // Debug.Log("null result, self:" + gameObject.transform.parent);
+        //     // test Debug.Log("null result, self:" + gameObject.transform.parent);
         // } 
         
         // if (hit != null && hit.gameObject != gameObject)
         // {
         //     hasCollision = true;
-        //     // Debug.Log("Collision detected: " + gameObject.transform.parent + " collision with " + hit.gameObject.transform.parent);
+        //     // test Debug.Log("Collision detected: " + gameObject.transform.parent + " collision with " + hit.gameObject.transform.parent);
         // }
 }

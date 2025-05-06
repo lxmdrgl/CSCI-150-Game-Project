@@ -69,7 +69,7 @@ namespace Game.Combat.Status
             StunDamageReceiver.DamageStun(new StunDamageData(Damage, Source));
             GameObject lightningParticle = GameObject.Instantiate(Stats.lightningParticle, Stats.transform.position, Quaternion.identity);
             // currentStats[0].Stun.Decrease(Stun);
-            // Debug.Log($"Apply Lightning status first: {Damage}, {Stun}");
+            // test Debug.Log($"Apply Lightning status first: {Damage}, {Stun}");
 
             Vector2 currentPosition = currentStats[0].transform.position;
             for (countIndex = 0; countIndex < Count - 1; countIndex++) 
@@ -106,7 +106,7 @@ namespace Game.Combat.Status
                     lightningParticle = GameObject.Instantiate(Stats.lightningParticle, Stats.transform.position, Quaternion.identity);
                     currentPosition = newStats.transform.position;
                     currentStats.Add(newStats);
-                    // Debug.Log($"Apply Lightning status spread: {Damage}, {Stun}, {countIndex}");
+                    // test Debug.Log($"Apply Lightning status spread: {Damage}, {Stun}, {countIndex}");
                 }
             }
         }
@@ -123,11 +123,11 @@ namespace Game.Combat.Status
                 Delay = lightningData.Delay;
                 Count = lightningData.Count;
 
-                // Debug.Log($"Reapply status Lightning: {Damage}, {Stun}, {Ticks}, {Delay}, {Count}, {countIndex}");
+                // test Debug.Log($"Reapply status Lightning: {Damage}, {Stun}, {Ticks}, {Delay}, {Count}, {countIndex}");
             }
             else
             {
-                // Debug.LogError("Wrong status data type");
+                // test Debug.LogError("Wrong status data type");
             }
         }
     }

@@ -22,7 +22,7 @@ public class PlayerDashState : PlayerActionState
 		
         xInput = player.InputHandler.NormInputX;
 		Movement?.SetVelocityX(xInput * playerData.dashVelocity);
-		// Debug.Log("Enter dash");
+		// test Debug.Log("Enter dash");
 		DamageReceiver?.SetCanTakeDamage(false);
 		KnockBackReceiver?.SetCanTakeKnockBack(false);
 
@@ -35,29 +35,29 @@ public class PlayerDashState : PlayerActionState
     {
         base.Exit();
 
-		// Debug.Log("Exit dash");
+		// test Debug.Log("Exit dash");
 		DamageReceiver?.SetCanTakeDamage(true);
 		KnockBackReceiver?.SetCanTakeKnockBack(true);
 		player.dashTimeNotifier.Init(playerData.dashCooldown);
 		player.dashAttackTimeNotifier.Init(playerData.dashAttackCooldown);
 		player.DashAttackState.DashAttackCooldownEnable();
-		// Debug.Log("Init dash attack timer");
+		// test Debug.Log("Init dash attack timer");
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-		// // Debug.Log($"jump: {jumpInput} attack: {attackInputs.Any(x => x)}");
+		// // test Debug.Log($"jump: {jumpInput} attack: {attackInputs.Any(x => x)}");
         if (Time.time >= startTime + playerData.dashTime || jumpInput || attackInputs.Any(x => x)) {
-			// Debug.Log("End dash: " + Time.time + " " + (startTime + playerData.dashTime) + " " + jumpInput + " " + attackInputs.Any(x => x));
+			// test Debug.Log("End dash: " + Time.time + " " + (startTime + playerData.dashTime) + " " + jumpInput + " " + attackInputs.Any(x => x));
 			isActionDone = true;
 		} 
 		else if (xInput != 0) {
             Movement?.SetVelocityX(xInput * playerData.dashVelocity);
-			// // Debug.Log("Loop input dash: " + xInput * playerData.dashVelocity);
+			// // test Debug.Log("Loop input dash: " + xInput * playerData.dashVelocity);
         } else {
 			Movement?.SetVelocityX(Movement.FacingDirection * playerData.dashVelocity);
-			// // Debug.Log("Loop facing dash: " + Movement.FacingDirection * playerData.dashVelocity);
+			// // test Debug.Log("Loop facing dash: " + Movement.FacingDirection * playerData.dashVelocity);
 		}
     }
 
@@ -66,7 +66,7 @@ public class PlayerDashState : PlayerActionState
 	public bool CanDash() => dashEnabled;
 
 	/* public bool CanDash()  {
-		// // Debug.Log("try can dash: " + dashEnabled);
+		// // test Debug.Log("try can dash: " + dashEnabled);
 
 		return dashEnabled;
 	} */

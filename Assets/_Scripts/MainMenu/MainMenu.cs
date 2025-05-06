@@ -28,11 +28,11 @@ public class MainMenu : MonoBehaviour
         }
         catch (System.Exception e)
         {
-            // Debug.LogError($"Failed to initialize Unity Services: {e.Message}");
+            // test Debug.LogError($"Failed to initialize Unity Services: {e.Message}");
         }
 
         string playerName = PlayerPrefs.GetString("PlayerName", "Player");
-        // Debug.Log("Loaded Player Name: " + playerName);  // Verify the name is loaded correctly
+        // test Debug.Log("Loaded Player Name: " + playerName);  // Verify the name is loaded correctly
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -120,7 +120,7 @@ public class MainMenu : MonoBehaviour
             }
             else
             {
-                // Debug.LogWarning($"Skipping destruction of asset or invalid object: {player.name}");
+                // test Debug.LogWarning($"Skipping destruction of asset or invalid object: {player.name}");
             }
         }
     }

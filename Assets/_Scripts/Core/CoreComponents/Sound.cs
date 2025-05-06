@@ -19,7 +19,7 @@ namespace Game.CoreSystem
         {
              if (footstepSounds.Count == 0)
             {
-                // Debug.LogWarning("No footstep sounds assigned.");
+                // test Debug.LogWarning("No footstep sounds assigned.");
                 
             }
             else if (footstepSounds.Count > 0)
@@ -27,17 +27,17 @@ namespace Game.CoreSystem
                 audioSource.clip = footstepSounds[UnityEngine.Random.Range(0, footstepSounds.Count)];
                 audioSource.Play();
              } 
-            // Debug.Log("Footstep sound played.");
-            // Debug.Log("audioPlayer: " + audioSource);
+            // test Debug.Log("Footstep sound played.");
+            // test Debug.Log("audioPlayer: " + audioSource);
         }
         private void HandleJump()
         {
             if (jumpSound == null)
             {
-                // Debug.LogWarning("No jump sound assigned.");
+                // test Debug.LogWarning("No jump sound assigned.");
                 return;
             }
-            // Debug.Log("Jump sound played.");
+            // test Debug.Log("Jump sound played.");
         }
 
         protected override void Awake()

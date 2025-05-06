@@ -65,7 +65,7 @@ namespace Game.CoreSystem
         public void SetGravityScale(float gravityScale)
         {
             RB.gravityScale = gravityScale;
-            // // Debug.Log("Gravity scale: " + RB.gravityScale);
+            // // test Debug.Log("Gravity scale: " + RB.gravityScale);
         }
 
         public void CheckIfShouldFlip(int xInput)
@@ -75,6 +75,16 @@ namespace Game.CoreSystem
                 Flip();
             }
         }
+
+        /* public bool CheckIfShouldFlipBool(int xInput)
+        {
+            if (xInput != 0 && xInput != FacingDirection)
+            {
+                Flip();
+                return true;
+            }
+            return false;
+        } */
 
         public void Flip()
         {

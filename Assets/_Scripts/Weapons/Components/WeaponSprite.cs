@@ -28,14 +28,14 @@ namespace Game.Weapons.Components
 
             currentPhaseSprites = currentAttackData.PhaseSprites.FirstOrDefault(data => data.Phase == phase).Sprites;
 
-            // // Debug.LogWarning($"HandleEnterAttackPhase, phase: {phase}");
+            // // test Debug.LogWarning($"HandleEnterAttackPhase, phase: {phase}");
             if (currentPhaseSprites == null || currentPhaseSprites.Length == 0)
             {
-                // Debug.LogError($"No sprites found for phase: {phase}");
+                // test Debug.LogError($"No sprites found for phase: {phase}");
             }
             else
             {
-                // // Debug.LogWarning($"Sprites found for phase: {phase}, count: {currentPhaseSprites.Length}");
+                // // test Debug.LogWarning($"Sprites found for phase: {phase}, count: {currentPhaseSprites.Length}");
             }
         }
 
@@ -46,11 +46,11 @@ namespace Game.Weapons.Components
                 weaponSpriteRenderer.sprite = null;
                 return;
             }
-            // // Debug.LogWarning($"currentWeaponSpriteIndex: {currentWeaponSpriteIndex}");
-            // // Debug.LogWarning($"currentPhaseSprites: {currentPhaseSprites.Length}");
+            // // test Debug.LogWarning($"currentWeaponSpriteIndex: {currentWeaponSpriteIndex}");
+            // // test Debug.LogWarning($"currentPhaseSprites: {currentPhaseSprites.Length}");
             if (currentWeaponSpriteIndex >= currentPhaseSprites.Length)
             {
-                // Debug.LogWarning($"{weapon.name} weapon sprites length mismatch");
+                // test Debug.LogWarning($"{weapon.name} weapon sprites length mismatch");
                 return;
             }
             

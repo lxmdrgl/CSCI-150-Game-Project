@@ -37,7 +37,7 @@ namespace Game.Weapons.Components
                 damageReceiver.SetCanTakeDamage(false);
                 knockbackReceiver.SetCanTakeKnockBack(false);
                 hitbox.enabled = true;
-                // Debug.Log("Parry data: " + currentAttackData);
+                // test Debug.Log("Parry data: " + currentAttackData);
                 hitbox.points = currentAttackData.HitBox.points;
             }
             else
@@ -50,7 +50,7 @@ namespace Game.Weapons.Components
 
         private void HandleParry()
         {
-            // Debug.Log("Ignore damage parry: " + parry);
+            // test Debug.Log("Ignore damage parry: " + parry);
             if (parry)
             {
                 anim.SetTrigger("parry");

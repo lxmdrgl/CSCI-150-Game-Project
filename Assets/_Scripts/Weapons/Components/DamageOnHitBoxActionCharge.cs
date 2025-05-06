@@ -33,7 +33,7 @@ namespace Game.Weapons.Components
 
             // Ensure TryDamage is called only once
             TryDamage(colliders, new DamageData(totalAmount, Core.Root), out _); 
-            // Debug.Log("Charge damage amount: " + totalAmount);
+            // test Debug.Log("Charge damage amount: " + totalAmount);
         }
 
         protected override void Start()

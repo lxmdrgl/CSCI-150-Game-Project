@@ -23,7 +23,7 @@ public class UpgradeSlot : MonoBehaviour
     {
         if (this == null || gameObject == null)
         {
-            // Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
+            // test Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
             return;
         }
 
@@ -59,7 +59,7 @@ public class UpgradeSlot : MonoBehaviour
     {
         if (this == null || gameObject == null)
         {
-            // Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
+            // test Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
             return;
         }
 
@@ -67,11 +67,11 @@ public class UpgradeSlot : MonoBehaviour
         String text = "Attack: " + currentStatData.Attack.ToString() + "%\n" + "Health: " + currentStatData.Health.ToString() + "%";
         if (hasDataContent == null)
         {
-            // Debug.Log("hasDataContent is null");
+            // test Debug.Log("hasDataContent is null");
         }
         if (this == null || gameObject == null)
         {
-            // Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
+            // test Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
             return;
         }
 

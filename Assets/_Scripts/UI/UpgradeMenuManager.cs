@@ -182,7 +182,7 @@ namespace Game.CoreSystem
             }
 
             
-            // // Debug.Log("Debugging .....");
+            // // test Debug.Log("Debugging .....");
 
             // Create a local copy of the weaponData list
             List<WeaponData> localWeaponData = new List<WeaponData>();
@@ -279,7 +279,7 @@ namespace Game.CoreSystem
         {
             if (this == null || gameObject == null)
             {
-                // Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
+                // test Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
                 return;
             }
             UpgradeCanvasGO.SetActive(true);
@@ -300,7 +300,7 @@ namespace Game.CoreSystem
         {
             if (this == null || gameObject == null)
             {
-                // Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
+                // test Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
                 return;
             }
             UpgradeCanvasGO.SetActive(false);
@@ -344,12 +344,12 @@ namespace Game.CoreSystem
         {
             if (this == null || gameObject == null)
             {
-                // Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
+                // test Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
                 return;
             }
             if (EventSystem.current.currentSelectedGameObject.GetComponent<UpgradeSlot>() != null)
             {
-                // Debug.Log("upgrade clicked: " + EventSystem.current.currentSelectedGameObject.name);
+                // test Debug.Log("upgrade clicked: " + EventSystem.current.currentSelectedGameObject.name);
                 playerIndex = Index;
             }
         }   
@@ -359,7 +359,7 @@ namespace Game.CoreSystem
 
         public void OnUpgradeClicked(UpgradeSlot slot)
         {
-            // Debug.Log("upgrade playerIndex: " + playerIndex);
+            // test Debug.Log("upgrade playerIndex: " + playerIndex);
 
             if (player2 == null)
             {
@@ -388,7 +388,7 @@ namespace Game.CoreSystem
             {
                 return;
             }
-            // Debug.Log("upgrade menu: playerIndex: " + playerIndex + " currentPlayer: " + currentPlayer);
+            // test Debug.Log("upgrade menu: playerIndex: " + playerIndex + " currentPlayer: " + currentPlayer);
 
             if (playerIndex == 0  && currentPlayer == 0)
             {
@@ -431,7 +431,7 @@ namespace Game.CoreSystem
 
             if (player1Slot != null && player2Slot != null)
             {
-                // Debug.Log("Both players have selected. Applying upgrades...");
+                // test Debug.Log("Both players have selected. Applying upgrades...");
 
                 if (statUpgradeDataSet != null)
                 {

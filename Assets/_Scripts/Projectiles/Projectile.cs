@@ -50,6 +50,8 @@ namespace Game.Projectiles
         float totalStun;
         GameObject parent;
 
+        private bool hasExploded = false;
+
         StatusData statusData;
         private void Start()
         {
@@ -78,7 +80,7 @@ namespace Game.Projectiles
                 if (!HandleTargetDirection())
                 {
                     rb.linearVelocity = new Vector2(direction.x * velocity * facingDirection, direction.y * velocity);
-                    // // Debug.Log("Target not found: " + rb.linearVelocity);
+                    // // test Debug.Log("Target not found: " + rb.linearVelocity);
                 }
             }
             else 
@@ -91,7 +93,7 @@ namespace Game.Projectiles
                 transform.rotation = parent.transform.rotation;
             }
 
-            // Debug.Log("spawn fire position: " + transform.position);
+            // test Debug.Log("spawn fire position: " + transform.position);
         }
 
         private void Update()
@@ -100,7 +102,7 @@ namespace Game.Projectiles
             {
                 float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                // Debug.Log("rotation: " + transform.rotation);
+                // test Debug.Log("rotation: " + transform.rotation);
             } */
         }
 
@@ -112,7 +114,7 @@ namespace Game.Projectiles
                 {
                     float angle = Mathf.Atan2(rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
                     transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                    // // Debug.Log("rotation: " + transform.rotation);
+                    // // test Debug.Log("rotation: " + transform.rotation);
                 }
 
                 Physics2D.OverlapCollider(hitbox, filterGround, detectedGround);
@@ -121,10 +123,11 @@ namespace Game.Projectiles
 
                 if (detectedDamageable.Count > 0)
                 {
-                    if (explosive)
+                    if (explosive && !hasExploded)
                     {
                         // Explosive, ignore pierce
                         HandleExplosiveProjectile(); 
+                        hasExploded = true;
                     }
                     else
                     {
@@ -152,10 +155,12 @@ namespace Game.Projectiles
                     rb.linearVelocity = Vector2.zero; 
                     rb.gravityScale = 0f; 
                     rb.freezeRotation = true;
-                    // Debug.Log("Hit Ground: " + hasHitGround + ", " + rb.linearVelocity + ", " + rb.gravityScale);
-                    if (explosive)
+                    // test Debug.Log("Hit Ground: " + hasHitGround + ", " + rb.linearVelocity + ", " + rb.gravityScale);
+                    if (explosive && !hasExploded)
                     {
-                        HandleExplosiveProjectile();
+                        // Explosive, ignore pierce
+                        HandleExplosiveProjectile(); 
+                        hasExploded = true;
                     }
                     if (pierce)
                     {
@@ -174,10 +179,11 @@ namespace Game.Projectiles
             Vector2 position = new Vector2(transform.position.x, transform.position.y);
             Collider2D[] detectedExplosive = Physics2D.OverlapCircleAll(position, explosiveRadius, whatIsDamageable);
 
-            if (detectedExplosive.Length > 0)
+            if (detectedExplosive.Length > 0 && !hasExploded)
             {
                 HandleDamage(detectedExplosive);
             }
+            spriteRenderer.enabled = true;
 
             Destroy(gameObject);
         }
@@ -211,7 +217,7 @@ namespace Game.Projectiles
             {
                 tryStatus = TryStatus(colliders, statusData, out _);
             }
-            // Debug.Log($"hit (damage, stun): {tryDamage}, {tryStun}, {tryStatus}");
+            // test Debug.Log($"hit (damage, stun): {tryDamage}, {tryStun}, {tryStatus}");
         }
 
         private bool HandleTargetDirection()
@@ -221,7 +227,7 @@ namespace Game.Projectiles
 
             if (detectedTarget.Length == 0)
             {
-                // Debug.Log("No target in radius found");
+                // test Debug.Log("No target in radius found");
                 return false;
             }
 
@@ -238,7 +244,7 @@ namespace Game.Projectiles
 
             if (validTargets.Count == 0)
             {
-                // Debug.Log("No valid target in radius found");
+                // test Debug.Log("No valid target in radius found");
                 return false;
             }
 
@@ -264,7 +270,7 @@ namespace Game.Projectiles
 
             if (nearestTarget == null)
             {
-                // Debug.Log("No nearest target in front found: " + detectedTarget.Length);
+                // test Debug.Log("No nearest target in front found: " + detectedTarget.Length);
                 return false;
             }
 
@@ -277,7 +283,7 @@ namespace Game.Projectiles
             // Prevent division by zero and unreachable targets
             if (Mathf.Approximately(dx, 0) || Mathf.Approximately(velocity, 0))
             {
-                // Debug.LogError("Cannot calculate direction: zero distance or zero velocity.");
+                // test Debug.LogError("Cannot calculate direction: zero distance or zero velocity.");
                 return false;
             }
 
@@ -297,7 +303,7 @@ namespace Game.Projectiles
             // Check if the calculated Y direction is outside the valid range [0, 1]
             if (Mathf.Abs(directionY) > 1.732f) // 60 degrees
             {
-                // Debug.LogWarning("Target is unreachable with given velocity, gravity, and angle limit.");
+                // test Debug.LogWarning("Target is unreachable with given velocity, gravity, and angle limit.");
                 return false;
             }
 
@@ -306,9 +312,9 @@ namespace Game.Projectiles
 
             // Apply the calculated velocity
             rb.linearVelocity = direction * velocity;
-            // Debug.Log($"Target found: velocity {rb.linearVelocity}, direction: {direction}, dxdy: {dx}, {dy}");
-            // // Debug.Log($"near: {nearestTarget}, {nearestTarget.transform.position.x}, {nearestTarget.transform.position.y}");
-            // // Debug.Log($"transform: {transform.position.x}, {transform.position.y}");
+            // test Debug.Log($"Target found: velocity {rb.linearVelocity}, direction: {direction}, dxdy: {dx}, {dy}");
+            // // test Debug.Log($"near: {nearestTarget}, {nearestTarget.transform.position.x}, {nearestTarget.transform.position.y}");
+            // // test Debug.Log($"transform: {transform.position.x}, {transform.position.y}");
             return true;
         }
 

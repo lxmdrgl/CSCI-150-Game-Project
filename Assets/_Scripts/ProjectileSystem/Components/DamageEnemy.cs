@@ -33,19 +33,19 @@ public class DamageEnemy : MonoBehaviour
     {
         List<Collider2D> detected = new List<Collider2D> { collision };
 
-        // Debug.Log("Detected: " + detected.ToArray() + " count: " + detected.Count);
+        // test Debug.Log("Detected: " + detected.ToArray() + " count: " + detected.Count);
 
         // Apply Damage
         if (CombatDamageUtilities.TryDamage(detected.ToArray(), new DamageData(damageAmount * (attack / 100f), gameObject), out var damageables))
         {
             foreach (var damageable in damageables)
             {
-                // Debug.Log("Projectile Dealing " + damageAmount + " Damage To Player");
+                // test Debug.Log("Projectile Dealing " + damageAmount + " Damage To Player");
             }
         }
         else
         {
-            // Debug.Log("No damageable objects detected.");
+            // test Debug.Log("No damageable objects detected.");
         }
 
         // Check Knockback
@@ -55,7 +55,7 @@ public class DamageEnemy : MonoBehaviour
         } else {
             facingDirection = -1;
         }
-        // Debug.Log($"Attempting Knockback - Angle: {knockbackAngle}, Strength: {knockbackStrength}, FacingDirection: {facingDirection}");
+        // test Debug.Log($"Attempting Knockback - Angle: {knockbackAngle}, Strength: {knockbackStrength}, FacingDirection: {facingDirection}");
 
         bool didKnock = CombatKnockBackUtilities.TryKnockBack(
             detected.ToArray(),
@@ -65,11 +65,11 @@ public class DamageEnemy : MonoBehaviour
 
         if (didKnock)
         {
-            // Debug.Log("✅ Projectile applied knockback to Player.");
+            // test Debug.Log("✅ Projectile applied knockback to Player.");
         }
         else
         {
-            // Debug.Log("❌ No knockback applied. Check Player's Knockback Component.");
+            // test Debug.Log("❌ No knockback applied. Check Player's Knockback Component.");
         }
     }
 }

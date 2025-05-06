@@ -59,7 +59,7 @@ public class LevelGenerator : MonoBehaviour
 
     void Awake()
     {
-        // Debug.Log("Subscribing to InputUser.onUnpairedDeviceUsed");
+        // test Debug.Log("Subscribing to InputUser.onUnpairedDeviceUsed");
         InputSystem.onDeviceChange += OnDeviceChange;
         inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
         InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
@@ -69,10 +69,10 @@ public class LevelGenerator : MonoBehaviour
     {
         InputUser.listenForUnpairedDeviceActivity = 1;
         InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
-        // Debug.Log("Starting level gen");
-        // Debug.LogError("Player count before: " + PlayerInput.all.Count);
+        // test Debug.Log("Starting level gen");
+        // test Debug.LogError("Player count before: " + PlayerInput.all.Count);
         await InitializeLevel();
-        // Debug.LogError("Player count after: " + PlayerInput.all.Count);
+        // test Debug.LogError("Player count after: " + PlayerInput.all.Count);
 
         // GameObject levelOrigin = GameObject.Find("LevelOrigin");
         // Transform levelTransform = levelOrigin.transform;
@@ -113,24 +113,24 @@ public class LevelGenerator : MonoBehaviour
                 foreach (GameObject player in players)
                 {
                     Destroy(player);
-                    // // Debug.LogError("Destroying player: " + player.name);
+                    // // test Debug.LogError("Destroying player: " + player.name);
                     // player.SetActive(false);
                 }
 
                 if(playerCount == 1)
                 {
                     spawnPlayer(1);
-                    // test UnityEngine.// Debug.Log("1 PLAYER");
+                    // test UnityEngine.// test Debug.Log("1 PLAYER");
                 }
                 else if(playerCount == 2)
                 {
                     spawnPlayer(2);
-                    // test UnityEngine.// Debug.Log("2 PLAYERS");
+                    // test UnityEngine.// test Debug.Log("2 PLAYERS");
                 }
                 else    
                 {
                     spawnPlayer(1);
-                    // test UnityEngine.// Debug.Log("PLAYERCOUNT NOT SET");
+                    // test UnityEngine.// test Debug.Log("PLAYERCOUNT NOT SET");
                 }
             } else
             {
@@ -158,7 +158,7 @@ public class LevelGenerator : MonoBehaviour
         } 
         else 
         {
-            // test UnityEngine.// Debug.LogError("Level generation error");
+            // test UnityEngine.// test Debug.LogError("Level generation error");
         }
     }
 
@@ -180,35 +180,35 @@ public class LevelGenerator : MonoBehaviour
 
             // spawnAllEnemies(roomMap);
 
-            // test UnityEngine.// Debug.Log("player count: " + playerCount);
+            // test UnityEngine.// test Debug.Log("player count: " + playerCount);
             if(playerCount == 1)
             {
                 spawnPlayer(1);
-                // test UnityEngine.// Debug.Log("1 PLAYER");
+                // test UnityEngine.// test Debug.Log("1 PLAYER");
             }
             else if(playerCount == 2)
             {
                 spawnPlayer(1);
-                // test UnityEngine.// Debug.Log("2 PLAYERS");
+                // test UnityEngine.// test Debug.Log("2 PLAYERS");
             }
             else    
             {
                 spawnPlayer(1);
-                // test UnityEngine.// Debug.Log("PLAYERCOUNT NOT SET");
+                // test UnityEngine.// test Debug.Log("PLAYERCOUNT NOT SET");
             }
             PlayerInput.all[0].user.UnpairDevices();
-            // test UnityEngine.// Debug.Log("Unpairing player 1 input devices: " + PlayerInput.all[0].user.pairedDevices.Count);
+            // test UnityEngine.// test Debug.Log("Unpairing player 1 input devices: " + PlayerInput.all[0].user.pairedDevices.Count);
 
         } 
         else 
         {
-            // test UnityEngine.// Debug.LogError("Level generation error");
+            // test UnityEngine.// test Debug.LogError("Level generation error");
         }
     } */
 
     /* void OnEnable()
     {
-        // Debug.Log("Subscribing to InputUser.onUnpairedDeviceUsed");
+        // test Debug.Log("Subscribing to InputUser.onUnpairedDeviceUsed");
         InputSystem.onDeviceChange += OnDeviceChange;
         inputMenu.OnButtonClickedEvent += index => ReplacePlayerInput(replaceInputDevice, index);
         InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
@@ -225,7 +225,7 @@ public class LevelGenerator : MonoBehaviour
         if (roomMap != null) {
             roomMap = Instantiate(roomMap);
         } else {
-            // test UnityEngine.// Debug.LogError(gameObject.name + ": Room Map field not filled");
+            // test UnityEngine.// test Debug.LogError(gameObject.name + ": Room Map field not filled");
         }
     }
 
@@ -236,15 +236,15 @@ public class LevelGenerator : MonoBehaviour
 
         // load random starting room
         if (roomMap.roomType == null) {
-            // test UnityEngine.// Debug.LogError("Room type not set in room map: " + roomMap.name);
+            // test UnityEngine.// test Debug.LogError("Room type not set in room map: " + roomMap.name);
             return false;
         } else
         {
-            // test UnityEngine.// Debug.Log("Room type: " + roomMap.roomType);
+            // test UnityEngine.// test Debug.Log("Room type: " + roomMap.roomType);
         }
         if (string.IsNullOrEmpty(roomMap.roomType) || roomMap.roomType == "None")
         {
-            // Debug.LogWarning("Room type was 'None' or empty. Defaulting to 'Starting'.");
+            // test Debug.LogWarning("Room type was 'None' or empty. Defaulting to 'Starting'.");
             roomMap.roomType = "lv01_SpawnRoom";
         }
 
@@ -263,7 +263,7 @@ public class LevelGenerator : MonoBehaviour
             // change room location to difference in origins -> origins overlap
             newRoom.transform.position += levelTransform.position - roomTransform.position;
         } else {
-            // test UnityEngine.// Debug.LogError("SpawnStartingRoom Error");
+            // test UnityEngine.// test Debug.LogError("SpawnStartingRoom Error");
             return false;
         }
 
@@ -285,12 +285,12 @@ public class LevelGenerator : MonoBehaviour
             {
                 if (root.parent == null) // end case reached start room
                 {
-                    // test UnityEngine.// Debug.LogError("No permutation of map possible for: " + roomMap.name);
+                    // test UnityEngine.// test Debug.LogError("No permutation of map possible for: " + roomMap.name);
                     return false;
                 } 
                 else // retry parent
                 {
-                    // test UnityEngine.// Debug.Log("Retrying parent, deleting " + root.name);
+                    // test UnityEngine.// test Debug.Log("Retrying parent, deleting " + root.name);
                     DestroyPath(root);
                     // DestroyImmediate(.roomObject);
                     // roomNumber--;
@@ -322,7 +322,7 @@ public class LevelGenerator : MonoBehaviour
                 {
                     exitIndex = 1 - exitIndex;
                     numTrials++;
-                    // test UnityEngine.// Debug.LogError("Destroying children of fork and flipping paths: " + roomMap.name);
+                    // test UnityEngine.// test Debug.LogError("Destroying children of fork and flipping paths: " + roomMap.name);
                     DestroyPath(currNode.children[0]);
                     DestroyPath(currNode.children[1]);
                 }
@@ -333,12 +333,12 @@ public class LevelGenerator : MonoBehaviour
 
                 if (root.parent == null) // end case reached start room
                 {
-                    // test UnityEngine.// Debug.LogError("No permutation of map possible for: " + roomMap.name);
+                    // test UnityEngine.// test Debug.LogError("No permutation of map possible for: " + roomMap.name);
                     return false;
                 } 
                 else // retry parent
                 {
-                    // test UnityEngine.// Debug.LogError("Retrying fork, deleting " + root.name);   
+                    // test UnityEngine.// test Debug.LogError("Retrying fork, deleting " + root.name);   
                     DestroyPath(root);
 
                     return await spawnAllRooms(root.parent);
@@ -350,7 +350,7 @@ public class LevelGenerator : MonoBehaviour
         } 
         else 
         {
-            // test UnityEngine.// Debug.LogError(gameObject.name + ": Unexpected number of exits");
+            // test UnityEngine.// test Debug.LogError(gameObject.name + ": Unexpected number of exits");
             return false;
         }
         return true;
@@ -370,7 +370,7 @@ public class LevelGenerator : MonoBehaviour
             foreach (RoomManager room in roomList) {
                 s += room.name + "|";
             }
-            // test UnityEngine.// Debug.Log("Possible rooms for " + nextNode.transform.name + ": " + s);
+            // test UnityEngine.// test Debug.Log("Possible rooms for " + nextNode.transform.name + ": " + s);
 
             // No valid room found
             if (roomList.Count == 0)
@@ -379,7 +379,7 @@ public class LevelGenerator : MonoBehaviour
                 // retry from parent while not repeating previously tried rooms
                 nextNode.listTriedRooms.Clear();
 
-                // test UnityEngine.// Debug.Log("Clear tried of " + nextNode.transform.name + ", No valid rooms available");
+                // test UnityEngine.// test Debug.Log("Clear tried of " + nextNode.transform.name + ", No valid rooms available");
                 return false;
             }
 
@@ -394,18 +394,18 @@ public class LevelGenerator : MonoBehaviour
             // Spawn the room
             GameObject spawnObj = spawnRoom(nextNode, randRoom);
 
-            // test UnityEngine.// Debug.Log("Spawned and trying to connect: " + nextNode.name);
+            // test UnityEngine.// test Debug.Log("Spawned and trying to connect: " + nextNode.name);
 
             // Ensure ConnectRooms fully completes before continuing
             bool isValid = await ConnectRooms(currNode, exitIndex, nextNode, 0);
 
             if (isValid)
             {
-                // test UnityEngine.// Debug.Log("Valid room: " + nextNode.name);
+                // test UnityEngine.// test Debug.Log("Valid room: " + nextNode.name);
 
                 if (spawnObj.name == "Room_11")
                 {
-                    Debug.Log("Room 11 spawned: " + spawnObj.name);
+                    // test Debug.Log("Room 11 spawned: " + spawnObj.name);
 
                     //private PolygonCollider2D polygonCollider = spawnObj.GetComponentInChildren<PolygonCollider2D>();
                 }
@@ -414,10 +414,10 @@ public class LevelGenerator : MonoBehaviour
             }
             else
             {
-                // test UnityEngine.// Debug.Log("Invalid room, deleting: " + nextNode.name);
+                // test UnityEngine.// test Debug.Log("Invalid room, deleting: " + nextNode.name);
                 DestroyImmediate(spawnObj);
                 roomNumber -= 1; // Adjust room count
-                // // test UnityEngine.// Debug.Log("Retrying...");
+                // // test UnityEngine.// test Debug.Log("Retrying...");
             }
 
             // Small delay to avoid instant looping issues
@@ -440,7 +440,7 @@ public class LevelGenerator : MonoBehaviour
         // Decrease room count when deleting a room
         if (root.roomObject != null) 
         {
-            // test UnityEngine.// Debug.LogError("Deleting: " + root.name);
+            // test UnityEngine.// test Debug.LogError("Deleting: " + root.name);
             DestroyImmediate(root.roomObject);
             roomNumber--;
             DeleteFreeRooms();
@@ -458,8 +458,8 @@ public class LevelGenerator : MonoBehaviour
 
         // Delete all rooms that are not part of the tree
         foreach (GameObject room in roomManagers) {
-            // // test UnityEngine.// Debug.LogError("Found free room: " + room.name);
-            // test UnityEngine.// Debug.LogError("Deleting free room: " + room.name);
+            // // test UnityEngine.// test Debug.LogError("Found free room: " + room.name);
+            // test UnityEngine.// test Debug.LogError("Deleting free room: " + room.name);
             Destroy(room);
         }
     }
@@ -494,7 +494,7 @@ public class LevelGenerator : MonoBehaviour
         
         roomList = Resources.LoadAll<RoomManager>("Rooms/" + roomType).ToList();
         if (roomList.Count == 0) {
-            // test UnityEngine.// Debug.LogError("Failed to load files from Resources/Rooms/" + roomType);
+            // test UnityEngine.// test Debug.LogError("Failed to load files from Resources/Rooms/" + roomType);
         }
 
         return roomList;
@@ -509,12 +509,12 @@ public class LevelGenerator : MonoBehaviour
             if (roomManager != null) {
                 roomList.Add(roomManager);
             } else {
-                // Debug.LogWarning("Missing RoomManager on: " + obj.name);
+                // test Debug.LogWarning("Missing RoomManager on: " + obj.name);
             }
         }
 
         if (roomList.Count == 0) {
-            // Debug.LogError("Failed to load RoomManager objects from Resources/Rooms/" + roomType);
+            // test Debug.LogError("Failed to load RoomManager objects from Resources/Rooms/" + roomType);
         }
 
         return roomList;
@@ -528,7 +528,7 @@ public class LevelGenerator : MonoBehaviour
         RoomManager newNodeManager = newNode.roomObject.GetComponent<RoomManager>();
 
         if (currNodeManager.exits.Count() == 0) {
-            // test UnityEngine.// Debug.LogError("End room found prematurely in: " + roomMap.name);
+            // test UnityEngine.// test Debug.LogError("End room found prematurely in: " + roomMap.name);
             return false;
         }
 
@@ -552,7 +552,7 @@ public class LevelGenerator : MonoBehaviour
         }
         else
         {
-            // test UnityEngine.// Debug.LogError("Failed to start coroutine: GameObject is inactive");
+            // test UnityEngine.// test Debug.LogError("Failed to start coroutine: GameObject is inactive");
             return false; // Fail early if object is disabled
         }
 
@@ -562,7 +562,7 @@ public class LevelGenerator : MonoBehaviour
         }
         catch (Exception e)
         {
-            // test UnityEngine.// Debug.LogError("Exception in DelayedCollisionCheck: " + e.Message);
+            // test UnityEngine.// test Debug.LogError("Exception in DelayedCollisionCheck: " + e.Message);
             return false;
         }
     }
@@ -591,7 +591,7 @@ public class LevelGenerator : MonoBehaviour
                     s += collider.transform.parent.name + " | ";
                 }
             }
-            // // test UnityEngine.// Debug.Log(newNode.roomObject.name + " has collisions with: " + s);
+            // // test UnityEngine.// test Debug.Log(newNode.roomObject.name + " has collisions with: " + s);
         }
 
         tcs.SetResult(true); // Mark the coroutine as complete
@@ -642,7 +642,7 @@ public class LevelGenerator : MonoBehaviour
 
     void setPlayerDependencies(PlayerInput newPlayer)
     {
-        // test UnityEngine.// Debug.LogError("Setting player dependencies for player " + (newPlayer.playerIndex + 1));
+        // test UnityEngine.// test Debug.LogError("Setting player dependencies for player " + (newPlayer.playerIndex + 1));
         setCameras(newPlayer);
         setUserInterface(newPlayer);
         setEnemyDependencies();
@@ -658,7 +658,7 @@ public class LevelGenerator : MonoBehaviour
             if (newPlayer.playerIndex == 0)
             {
                 singleplayerCinemachineCamera.Target.TrackingTarget = newPlayer.transform;
-                // test UnityEngine.// Debug.Log("Singleplayer camera set to player 1");
+                // test UnityEngine.// test Debug.Log("Singleplayer camera set to player 1");
             }
 
             mainCamera.player1 = newPlayer.gameObject;
@@ -677,7 +677,7 @@ public class LevelGenerator : MonoBehaviour
         }
         else
         {
-            // test UnityEngine.// Debug.LogError("Invalid player count for camera setup.");
+            // test UnityEngine.// test Debug.LogError("Invalid player count for camera setup.");
         }
 
         mainCamera.SetDependencies();
@@ -686,7 +686,7 @@ public class LevelGenerator : MonoBehaviour
     void setUserInterface(PlayerInput newPlayer)
     {
         int activePlayerCount = PlayerInput.all.Count;
-        // test UnityEngine.// Debug.Log("Setting UI for player " + (newPlayer.playerIndex + 1) + " with " + activePlayerCount + " active players.");
+        // test UnityEngine.// test Debug.Log("Setting UI for player " + (newPlayer.playerIndex + 1) + " with " + activePlayerCount + " active players.");
         
         /* GameplayCanvas gameplayCanvasScript = gameplayCanvas.GetComponent<GameplayCanvas>();
         MenuManager pauseMenuManager = pauseMenu.GetComponent<MenuManager>();
@@ -694,7 +694,7 @@ public class LevelGenerator : MonoBehaviour
 
         if (activePlayerCount == 1)
         {
-            // test UnityEngine.// Debug.Log("Singleplayer UI set for player 1");      
+            // test UnityEngine.// test Debug.Log("Singleplayer UI set for player 1");      
             gameplayCanvas.playerHealthBar1.SetActive(true);
             gameplayCanvas.playerHealthBar2.SetActive(false);
 
@@ -714,12 +714,12 @@ public class LevelGenerator : MonoBehaviour
             }   
             else
             {
-                // test UnityEngine.// Debug.LogError("Player index mismatch for singleplayer UI setup.");
+                // test UnityEngine.// test Debug.LogError("Player index mismatch for singleplayer UI setup.");
             }
         }   
         else if (activePlayerCount == 2)
         {
-            // test UnityEngine.// Debug.Log("Multiplayer UI set for players 1 and 2");
+            // test UnityEngine.// test Debug.Log("Multiplayer UI set for players 1 and 2");
             gameplayCanvas.playerHealthBar1.SetActive(true);
             gameplayCanvas.playerHealthBar2.SetActive(true);
 
@@ -747,12 +747,12 @@ public class LevelGenerator : MonoBehaviour
             }
             else
             {
-                // test UnityEngine.// Debug.LogError("Player index mismatch for multiplayer UI setup.");
+                // test UnityEngine.// test Debug.LogError("Player index mismatch for multiplayer UI setup.");
             }
         }
         else
         {
-            // test UnityEngine.// Debug.LogError("Invalid player count for UI setup.");
+            // test UnityEngine.// test Debug.LogError("Invalid player count for UI setup.");
         }
 
         gameplayCanvas.SetDependencies();
@@ -783,7 +783,7 @@ public class LevelGenerator : MonoBehaviour
 
             if (playerInputManager == null)
             {
-                // test UnityEngine.// Debug.LogError("PlayerInputManager not found in the scene.");
+                // test UnityEngine.// test Debug.LogError("PlayerInputManager not found in the scene.");
                 return;
             }
 
@@ -804,18 +804,18 @@ public class LevelGenerator : MonoBehaviour
 
                 // foreach (PlayerInput playerInput in PlayerInput.all)
                 // {
-                //     // Debug.LogError("New player: " + playerInput.playerIndex + " " + i);
+                //     // test Debug.LogError("New player: " + playerInput.playerIndex + " " + i);
                 //     if (playerInput.playerIndex == i)
                 //     {
                 //         newPlayer = playerInput;
                 //         break;
                 //     }
                 // }
-                // // Debug.LogError("New player final: " + newPlayer + " i: " + i);
+                // // test Debug.LogError("New player final: " + newPlayer + " i: " + i);
 
                 // if (newPlayer != null)
                 // {
-                //     // test UnityEngine.// Debug.Log("Player " + (i + 1) + " already exists, replacing input device.");
+                //     // test UnityEngine.// test Debug.Log("Player " + (i + 1) + " already exists, replacing input device.");
                 //     // ReplacePlayerInput(newPlayer.devices[0], i);
                 //     newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
                 //     // newPlayer.transform.rotation = levelTransform.rotation;
@@ -828,7 +828,7 @@ public class LevelGenerator : MonoBehaviour
                     // DontDestroyOnLoad(newPlayer.gameObject);
                     if (newPlayer != null)
                     {
-                        // test UnityEngine.// Debug.Log("Player " + (i + 1) + " joined successfully!");
+                        // test UnityEngine.// test Debug.Log("Player " + (i + 1) + " joined successfully!");
                         newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
                         newPlayer.transform.rotation = levelTransform.rotation;
                         
@@ -839,7 +839,7 @@ public class LevelGenerator : MonoBehaviour
                     }
                     else
                     {
-                        // test UnityEngine.// Debug.LogWarning("Waiting for second input device to join player " + (i + 1));
+                        // test UnityEngine.// test Debug.LogWarning("Waiting for second input device to join player " + (i + 1));
 
                         // Pause the game, UI saying wait for second player, disable player 1 input (PlayerInput.all[0])
                         waitingPlayerScreen.Initialize();
@@ -854,7 +854,7 @@ public class LevelGenerator : MonoBehaviour
         }
         else
         {
-            // test UnityEngine.// Debug.LogError("Level Origin not found");
+            // test UnityEngine.// test Debug.LogError("Level Origin not found");
         }
     }
 
@@ -862,13 +862,13 @@ public class LevelGenerator : MonoBehaviour
     {
         if (change == InputDeviceChange.Disconnected)
         {
-            // test UnityEngine.// Debug.LogWarning($"Device disconnected: {device.displayName}");
+            // test UnityEngine.// test Debug.LogWarning($"Device disconnected: {device.displayName}");
 
             // Check if the device belonged to a player and handle disconnection
             var player = PlayerInput.all.FirstOrDefault(p => p.devices.Contains(device));
             if (player != null)
             {
-                // test UnityEngine.// Debug.LogWarning($"Player {player.playerIndex + 1} disconnected. Waiting for reconnection...");
+                // test UnityEngine.// test Debug.LogWarning($"Player {player.playerIndex + 1} disconnected. Waiting for reconnection...");
 
                 // Pause the game, UI saying second player disconnected, disable player 1 input (PlayerInput.all[0])
 
@@ -880,12 +880,12 @@ public class LevelGenerator : MonoBehaviour
         }
         else if (change == InputDeviceChange.Reconnected)
         {
-            // test UnityEngine.// Debug.Log($"Device reconnected: {device.displayName}");
+            // test UnityEngine.// test Debug.Log($"Device reconnected: {device.displayName}");
             waitingPlayerScreen.SwitchScreen();
         }
         else if (change == InputDeviceChange.Added)
         {
-            // test UnityEngine.// Debug.Log($"New device detected: {device.displayName}");
+            // test UnityEngine.// test Debug.Log($"New device detected: {device.displayName}");
 
             /* if (PlayerInput.all.Count == 1)
             {
@@ -900,17 +900,17 @@ public class LevelGenerator : MonoBehaviour
 
     private void OnUnpairedDeviceUsed(InputControl control, InputEventPtr eventPtr)
     {
-        // test UnityEngine.// Debug.Log("OnUnpairedDeviceUsed");
+        // test UnityEngine.// test Debug.Log("OnUnpairedDeviceUsed");
         InputDevice newDevice = control.device;
 
         // Check if there are any players
         if (PlayerInput.all.Count == 0)
         {
-            // // test UnityEngine.// Debug.LogWarning("No players available to assign the device.");
+            // // test UnityEngine.// test Debug.LogWarning("No players available to assign the device.");
             return;
         }
 
-        // test UnityEngine.// Debug.Log($"Unpaired device used: {newDevice.displayName}");
+        // test UnityEngine.// test Debug.Log($"Unpaired device used: {newDevice.displayName}");
 
         // Determine which player to replace
         int playerIndexToReplace = 0; // Default to Player 1
@@ -920,24 +920,24 @@ public class LevelGenerator : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("playerCount") == 1)
             {
-                // test UnityEngine.// Debug.Log("Replacing input device for player 1");
+                // test UnityEngine.// test Debug.Log("Replacing input device for player 1");
                 ReplacePlayerInput(newDevice, playerIndexToReplace);
             } else
             {
-                // test UnityEngine.// Debug.LogWarning("Exit Screen");
+                // test UnityEngine.// test Debug.LogWarning("Exit Screen");
                 waitingPlayerScreen.SwitchScreen();
             }
         }
         if (PlayerInput.all.Count > 1)
         {
-            // test UnityEngine.// Debug.Log("Replacing input device for player " + (playerIndexToReplace + 1));
+            // test UnityEngine.// test Debug.Log("Replacing input device for player " + (playerIndexToReplace + 1));
             if (newDevice != null)
             {
-                // test UnityEngine.// Debug.Log("Replacing input device: " + newDevice.displayName);
+                // test UnityEngine.// test Debug.Log("Replacing input device: " + newDevice.displayName);
             }
             else
             {
-                // test UnityEngine.// Debug.LogError("New device is null.");
+                // test UnityEngine.// test Debug.LogError("New device is null.");
             }
             replaceInputDevice = newDevice;
             inputMenu.OpenMenu();
@@ -964,11 +964,11 @@ public class LevelGenerator : MonoBehaviour
                 if (!string.IsNullOrEmpty(controlScheme))
                 {
                     player.SwitchCurrentControlScheme(controlScheme, Keyboard.current, Mouse.current);
-                    // test UnityEngine.// Debug.Log($"Replaced Player {playerIndex + 1} input with Mouse and Keyboard using control scheme '{controlScheme}'");
+                    // test UnityEngine.// test Debug.Log($"Replaced Player {playerIndex + 1} input with Mouse and Keyboard using control scheme '{controlScheme}'");
                 }
                 else
                 {
-                    // test UnityEngine.// Debug.LogWarning($"No matching control scheme found for Mouse and Keyboard. Default control scheme will be used.");
+                    // test UnityEngine.// test Debug.LogWarning($"No matching control scheme found for Mouse and Keyboard. Default control scheme will be used.");
                 }
             }
             else
@@ -982,18 +982,18 @@ public class LevelGenerator : MonoBehaviour
                 if (!string.IsNullOrEmpty(controlScheme))
                 {
                     player.SwitchCurrentControlScheme(controlScheme, newDevice);
-                    // test UnityEngine.// Debug.Log($"Replaced Player {playerIndex + 1} input with {newDevice.displayName} using control scheme '{controlScheme}'");
+                    // test UnityEngine.// test Debug.Log($"Replaced Player {playerIndex + 1} input with {newDevice.displayName} using control scheme '{controlScheme}'");
                 }
                 else
                 {
-                    // test UnityEngine.// Debug.LogWarning($"No matching control scheme found for device {newDevice.displayName}. Default control scheme will be used.");
+                    // test UnityEngine.// test Debug.LogWarning($"No matching control scheme found for device {newDevice.displayName}. Default control scheme will be used.");
                 }
             }
             setPlayerDependencies(player);
         }
         else
         {
-            // test UnityEngine.// Debug.LogWarning($"Player {playerIndex + 1} does not exist.");
+            // test UnityEngine.// test Debug.LogWarning($"Player {playerIndex + 1} does not exist.");
         }
     }
 
@@ -1009,7 +1009,7 @@ public class LevelGenerator : MonoBehaviour
                 PlayerInput newPlayer = playerInputManager.JoinPlayer(playerIndex);
                 if (newPlayer != null)
                 {
-                    // test UnityEngine.// Debug.Log("Second player joined successfully!");
+                    // test UnityEngine.// test Debug.Log("Second player joined successfully!");
                     newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
                     newPlayer.transform.rotation = levelTransform.rotation;
 
@@ -1020,7 +1020,7 @@ public class LevelGenerator : MonoBehaviour
 
                     // Second player found, resume the game
 
-                    // // Debug.LogWarning("Exiting waiting player screen");
+                    // // test Debug.LogWarning("Exiting waiting player screen");
                     // waitingPlayerScreen.SwitchScreen();      // Redundant (change == InputDeviceChange.Reconnected)
 
                     yield break;

@@ -27,26 +27,26 @@ public class E5_PlayerDetectedState : PlayerDetectedState
 
         if (isDetectedTimeOver) 
         {
-            // Debug.Log("Enemy Detected State: " + isPlayerInPursuitRange + " " + isPlayerInAgroRange + " " + isDetectingLedge);
+            // test Debug.Log("Enemy Detected State: " + isPlayerInPursuitRange + " " + isPlayerInAgroRange + " " + isDetectingLedge);
             if (isPlayerInPursuitRange && isPlayerInAgroRange)
             {
-                // Debug.Log("Enter charge state");
+                // test Debug.Log("Enter charge state");
                 stateMachine.ChangeState(enemy.chargeState);
             }
             else if(!isPlayerInAgroRange && isPlayerInPursuitRange)
             {
-                // Debug.Log("Enter look state");
+                // test Debug.Log("Enter look state");
                 stateMachine.ChangeState(enemy.lookForPlayerState);
             }
             else if (!isDetectingLedge)
             {
-                // Debug.Log("Enter move flip state");
+                // test Debug.Log("Enter move flip state");
                 Movement?.Flip();
                 stateMachine.ChangeState(enemy.moveState);
             }
             else
             {
-                // Debug.Log("Enter move state");
+                // test Debug.Log("Enter move state");
                 stateMachine.ChangeState(enemy.moveState);
             }
         }

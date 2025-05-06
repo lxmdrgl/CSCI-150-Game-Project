@@ -42,14 +42,14 @@ public class ExplosiveEnemy : Entity
 
     private void HandleStunZero()
     {
-        // // Debug.Log("HandleStunZero");
+        // // test Debug.Log("HandleStunZero");
         stateMachine.ChangeState(stunState);
         stats.Stun.CurrentValue = stats.Stun.MaxValue;
     }
 
     private void HandleDamageTaken()
     {
-        // // Debug.Log("HandleStunZero");
+        // // test Debug.Log("HandleStunZero");
         if(stateMachine.currentState == moveState || stateMachine.currentState == idleState)
         {
             stateMachine.ChangeState(lookForPlayerState);

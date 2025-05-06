@@ -23,7 +23,7 @@ namespace Game.Weapons.Components
                                                 currentAttackData.Count,
                                                 currentAttackData.Radius,
                                                 currentAttackData.WhatIsDamageable);
-            // // Debug.Log("TryStatus");
+            // // test Debug.Log("TryStatus");
             TryStatus(colliders, newStatus, out _);
         }
         

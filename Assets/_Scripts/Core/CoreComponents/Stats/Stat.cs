@@ -52,7 +52,7 @@ namespace Game.CoreSystem.StatsSystem
             float ratio = currentValue / MaxValue;
             MaxValue = Mathf.Floor(MaxValue * (1 + (amount/100)));
             currentValue = Mathf.Floor(ratio * MaxValue);
-            // Debug.Log("Health: " + MaxValue + " " + currentValue);
+            // test Debug.Log("Health: " + MaxValue + " " + currentValue);
             OnValueChange?.Invoke();
         }
     }
