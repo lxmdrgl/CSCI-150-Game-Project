@@ -91,8 +91,8 @@ public class MainMenu : MonoBehaviour
         int p2Kills = PlayerPrefs.GetInt("player2Kills", 0);
         int p2Damage = PlayerPrefs.GetInt("player2Damage", 0);
         float runTime =  PlayerPrefs.GetFloat("runTime");
-        int p1Score = (p1Kills * 100) + p1Damage - (int)runTime;
-        int p2Score = (p2Kills * 100) + p2Damage - (int)runTime;
+        int p1Score = (p1Kills * 50) + p1Damage - ((int)runTime * 10);
+        int p2Score = (p2Kills * 50) + p2Damage - ((int)runTime* 10);
         int finalScore = p1Score + p2Score;
 
         if(finalScore > 0)

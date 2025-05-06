@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: E4_CooldownState
   m_EditorClassIdentifier: 
   minAttackCooldown: 0.5
-  maxAttackCooldown: 2
+  maxAttackCooldown: 1

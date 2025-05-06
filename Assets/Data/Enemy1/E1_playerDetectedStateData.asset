@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: E1_playerDetectedStateData
   m_EditorClassIdentifier: 
   movementSpeed: 6
+  detectedTime: 0.12
