@@ -89,6 +89,24 @@ namespace Game.CoreSystem
             }
         }
 
+        public void OnDisable()
+        {
+            if (player1 != null)
+            {
+                statsChange1.OnMinorUpgradeInteract -= (dataSet) => HandleStatUpgradeMenuInteract(dataSet, 0);
+                // weaponSwap1.OnMajorUpgradeInteract += HandleWeaponMenuInteract;
+                weaponSwap1.OnMajorUpgradeInteract -= (dataSet) => HandleWeaponMenuInteract(dataSet, 0);
+                InputHandler1.OnUpgradeInputChanged -= HelperUIUpgradeClicked;
+            }
+            if (player2 != null)
+            {
+                statsChange2.OnMinorUpgradeInteract -= (dataSet) => HandleStatUpgradeMenuInteract(dataSet, 1);
+                // weaponSwap2.OnMajorUpgradeInteract += HandleWeaponMenuInteract;
+                weaponSwap2.OnMajorUpgradeInteract -= (dataSet) => HandleWeaponMenuInteract(dataSet, 1);
+                InputHandler2.OnUpgradeInputChanged -= HelperUIUpgradeClicked;
+            }
+        }
+
         void Update()
         {
             if ((InputHandler1 != null && InputHandler1.UpgradeOpenInput) || (InputHandler2 != null && InputHandler2.UpgradeOpenInput))
@@ -106,34 +124,6 @@ namespace Game.CoreSystem
                 }
             }*/
 
-        }
-
-        private void OnEnable()
-        {
-            /* if (player1 != null)
-            {
-                statsChange1.OnMinorUpgradeInteract += HandleStatUpgradeMenuInteract;
-                weaponSwap1.OnMajorUpgradeInteract += (dataSet) => HandleWeaponMenuInteract(dataSet, 0);
-            }
-            if (player2 != null)
-            {
-                statsChange2.OnMinorUpgradeInteract += HandleStatUpgradeMenuInteract;
-                weaponSwap2.OnMajorUpgradeInteract += (dataSet) => HandleWeaponMenuInteract(dataSet, 1);
-            } */
-        }
-
-        private void OnDisable()
-        {
-            /* if (player1 != null)
-            {
-                statsChange1.OnMinorUpgradeInteract -= HandleStatUpgradeMenuInteract;
-                weaponSwap1.OnMajorUpgradeInteract -= (dataSet) => HandleWeaponMenuInteract(dataSet, 0);
-            }
-            if (player2 != null)
-            {
-                statsChange2.OnMinorUpgradeInteract -= HandleStatUpgradeMenuInteract;
-                weaponSwap2.OnMajorUpgradeInteract -= (dataSet) => HandleWeaponMenuInteract(dataSet, 1);
-            } */
         }
 
         private void HandleStatUpgradeMenuInteract(StatUpgradeDataSet dataSet, int playerIndex)
@@ -287,6 +277,11 @@ namespace Game.CoreSystem
         #region Canvas Activations/Deactivations
         private void OpenMainMenu()
         {
+            if (this == null || gameObject == null)
+            {
+                Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
+                return;
+            }
             UpgradeCanvasGO.SetActive(true);
 
             if (InputHandler1 != null)
@@ -303,6 +298,11 @@ namespace Game.CoreSystem
 
         private void CloseAllMenus()
         {
+            if (this == null || gameObject == null)
+            {
+                Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
+                return;
+            }
             UpgradeCanvasGO.SetActive(false);
 
             if (InputHandler1 != null)

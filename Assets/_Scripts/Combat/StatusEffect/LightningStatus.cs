@@ -67,6 +67,7 @@ namespace Game.Combat.Status
             // currentStats[0].Health.Decrease(Damage);
             DamageReceiver.Damage(new DamageData(Damage * (Stats.Attack / 100f), Source));
             StunDamageReceiver.DamageStun(new StunDamageData(Damage, Source));
+            GameObject lightningParticle = GameObject.Instantiate(Stats.lightningParticle, Stats.transform.position, Quaternion.identity);
             // currentStats[0].Stun.Decrease(Stun);
             Debug.Log($"Apply Lightning status first: {Damage}, {Stun}");
 
@@ -102,6 +103,7 @@ namespace Game.Combat.Status
                     // newStats.Health.Decrease(Damage);
                     newDamageReceiever.Damage(new DamageData(Damage * (Stats.Attack / 100f), Source));
                     newStats.Stun.Decrease(Stun);
+                    lightningParticle = GameObject.Instantiate(Stats.lightningParticle, Stats.transform.position, Quaternion.identity);
                     currentPosition = newStats.transform.position;
                     currentStats.Add(newStats);
                     Debug.Log($"Apply Lightning status spread: {Damage}, {Stun}, {countIndex}");

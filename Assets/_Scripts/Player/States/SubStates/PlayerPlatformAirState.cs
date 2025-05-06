@@ -130,6 +130,7 @@ public class PlayerPlatformAirState : PlayerAirState
 				{
 					jumpInputBuffer = false;
 					Debug.Log("move platform jump buffer");
+					GameObject particle = GameObject.Instantiate(player.airToJumpParticle, player.transform.position, Quaternion.identity);
 					player.AirState.SetJumpingInPlatform(true);
 					stateMachine.ChangeState(player.JumpState);
 				} 

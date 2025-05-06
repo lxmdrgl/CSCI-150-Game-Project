@@ -70,7 +70,21 @@ public class LevelGenerator : MonoBehaviour
         InputUser.listenForUnpairedDeviceActivity = 1;
         InputUser.onUnpairedDeviceUsed += OnUnpairedDeviceUsed;
         Debug.Log("Starting level gen");
+        Debug.LogError("Player count before: " + PlayerInput.all.Count);
         await InitializeLevel();
+        Debug.LogError("Player count after: " + PlayerInput.all.Count);
+
+        // GameObject levelOrigin = GameObject.Find("LevelOrigin");
+        // Transform levelTransform = levelOrigin.transform;
+
+        // foreach (PlayerInput player in PlayerInput.all)
+        // {
+        //     setPlayerDependencies(player);
+
+        //     player.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
+        //     player.transform.rotation = levelTransform.rotation;
+        //     player.
+        // }
     }
 
     private async Task InitializeLevel()
@@ -90,6 +104,8 @@ public class LevelGenerator : MonoBehaviour
 
             spawnAllEnemies(roomMap);
 
+            await Task.Yield();
+
             List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList<GameObject>();
 
             if (destroyPlayer)
@@ -97,24 +113,42 @@ public class LevelGenerator : MonoBehaviour
                 foreach (GameObject player in players)
                 {
                     Destroy(player);
+                    // Debug.LogError("Destroying player: " + player.name);
+                    // player.SetActive(false);
                 }
-            }
 
-            UnityEngine.Debug.Log("player count: " + playerCount);
-            if(playerCount == 1)
+                if(playerCount == 1)
+                {
+                    spawnPlayer(1);
+                    UnityEngine.Debug.Log("1 PLAYER");
+                }
+                else if(playerCount == 2)
+                {
+                    spawnPlayer(2);
+                    UnityEngine.Debug.Log("2 PLAYERS");
+                }
+                else    
+                {
+                    spawnPlayer(1);
+                    UnityEngine.Debug.Log("PLAYERCOUNT NOT SET");
+                }
+            } else
             {
-                spawnPlayer(1);
-                UnityEngine.Debug.Log("1 PLAYER");
-            }
-            else if(playerCount == 2)
-            {
-                spawnPlayer(2);
-                UnityEngine.Debug.Log("2 PLAYERS");
-            }
-            else    
-            {
-                spawnPlayer(1);
-                UnityEngine.Debug.Log("PLAYERCOUNT NOT SET");
+                GameObject levelOrigin = GameObject.Find("LevelOrigin");
+                Transform levelTransform = levelOrigin.transform;
+
+                foreach (GameObject player in players)
+                {
+                    player.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
+                    player.transform.rotation = levelTransform.rotation;
+
+                    PlayerInput playerInput = player.GetComponent<PlayerInput>();
+                    if (playerInput)
+                    {
+                        setPlayerDependencies(playerInput);
+                    }
+                    player.GetComponentInChildren<Movement>().FlipReset();
+                }
             }
 
             PlaceTiles(); 
@@ -597,7 +631,7 @@ public class LevelGenerator : MonoBehaviour
 
     void setPlayerDependencies(PlayerInput newPlayer)
     {
-        UnityEngine.Debug.Log("Setting player dependencies for player " + (newPlayer.playerIndex + 1));
+        UnityEngine.Debug.LogError("Setting player dependencies for player " + (newPlayer.playerIndex + 1));
         setCameras(newPlayer);
         setUserInterface(newPlayer);
         setEnemyDependencies();
@@ -744,42 +778,43 @@ public class LevelGenerator : MonoBehaviour
 
             for (int i = 0; i < count; i++)
             {
-                List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList<GameObject>();
+                // List<GameObject> players = GameObject.FindGameObjectsWithTag("Player").ToList<GameObject>();
 
-                foreach (GameObject player in players)
-                {
-                    if (!player.activeInHierarchy)
-                    {
-                        player.SetActive(true); 
-                        player.GetComponent<Player>().Respawn();
-                    }
-                }
-
-                List<PlayerInput> playerInputs = PlayerInput.all.ToList<PlayerInput>();
+                // foreach (GameObject player in players)
+                // {
+                //     if (!player.activeInHierarchy)
+                //     {
+                //         player.SetActive(true); 
+                //         player.GetComponent<Player>().Respawn();
+                //     }
+                // }
 
                 PlayerInput newPlayer = null;
 
-                foreach (PlayerInput playerInput in playerInputs)
-                {
-                    if (playerInput.playerIndex == i)
-                    {
-                        newPlayer = playerInput;
-                        break;
-                    }
-                }
+                // foreach (PlayerInput playerInput in PlayerInput.all)
+                // {
+                //     Debug.LogError("New player: " + playerInput.playerIndex + " " + i);
+                //     if (playerInput.playerIndex == i)
+                //     {
+                //         newPlayer = playerInput;
+                //         break;
+                //     }
+                // }
+                // Debug.LogError("New player final: " + newPlayer + " i: " + i);
 
-                if (newPlayer != null)
-                {
-                    UnityEngine.Debug.Log("Player " + (i + 1) + " already exists, replacing input device.");
-                    // ReplacePlayerInput(newPlayer.devices[0], i);
-                    newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
-                    // newPlayer.transform.rotation = levelTransform.rotation;
+                // if (newPlayer != null)
+                // {
+                //     UnityEngine.Debug.Log("Player " + (i + 1) + " already exists, replacing input device.");
+                //     // ReplacePlayerInput(newPlayer.devices[0], i);
+                //     newPlayer.transform.position = new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0);
+                //     // newPlayer.transform.rotation = levelTransform.rotation;
 
-                    setPlayerDependencies(newPlayer);
-                }
-                else  
-                {
+                //     setPlayerDependencies(newPlayer);
+                // }
+                // else  
+                // {
                     newPlayer = playerInputManager.JoinPlayer(i);
+                    // DontDestroyOnLoad(newPlayer.gameObject);
                     if (newPlayer != null)
                     {
                         UnityEngine.Debug.Log("Player " + (i + 1) + " joined successfully!");
@@ -801,7 +836,7 @@ public class LevelGenerator : MonoBehaviour
                         StartCoroutine(WaitForUnpairedPlayer(playerInputManager, i));
                         break;
                     }
-                }
+                // }
 
                 // GameObject newPlayer = Instantiate(player, new Vector3(levelTransform.position.x, levelTransform.position.y + playerOffset, 0), levelTransform.rotation);
             }

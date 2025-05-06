@@ -35,6 +35,10 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     public PlayerData playerData;
+    [SerializeField]
+    public GameObject idleToMoveParticle;
+    [SerializeField]
+    public GameObject airToJumpParticle;
 
     public Core Core { get; private set; }
     public Animator Anim { get; private set; }
@@ -67,6 +71,8 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
+
         Core = GetComponentInChildren<Core>();
         stats = Core.GetCoreComponent<Stats>();
         knockBackReceiver = Core.GetCoreComponent<KnockBackReceiver>();
@@ -146,7 +152,7 @@ public class Player : MonoBehaviour
 
         StateMachine.Initialize(IdleState);
 
-        DontDestroyOnLoad(this.gameObject);
+        // DontDestroyOnLoad(this.gameObject);
     }
 
     private void Update()

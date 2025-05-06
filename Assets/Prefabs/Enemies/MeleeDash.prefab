@@ -436,6 +436,8 @@ MonoBehaviour:
   <Bonus>k__BackingField: 0
   <Defense>k__BackingField: 0
   stunRecoveryRate: 5
+  fireParticle: {fileID: 8115043636742448045, guid: 23c83dd7f4a705049a17991cdc30484a, type: 3}
+  lightningParticle: {fileID: 8115043636742448045, guid: c02884524b80875409ed4366b1d3c1cd, type: 3}
   filledBar: {fileID: 0}
   gradient:
     serializedVersion: 2

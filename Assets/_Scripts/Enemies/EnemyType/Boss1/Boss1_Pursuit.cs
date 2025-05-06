@@ -6,6 +6,7 @@ using UnityEngine;
 public class Boss1_Pursuit : ChargeState
 {
     private Boss1 enemy;
+    private float random;
 
     public Boss1_Pursuit(Entity entity, string animBoolName, D_ChargeState stateData, Boss1 enemy) : base(entity, animBoolName, stateData)
     {
@@ -20,6 +21,13 @@ public class Boss1_Pursuit : ChargeState
     public override void Enter()
     {
         base.Enter();
+
+        random = Random.value;
+
+        if (Boss1.LastAttackType.Swing == enemy.lastAttackType && random < 0.5f)
+        {
+            Movement.SetVelocityY(15f);
+        }
     }
 
     public override void Exit()
@@ -54,7 +62,15 @@ public class Boss1_Pursuit : ChargeState
         }
         else if (isPlayerInPursuitRange)
         {
-            Movement.SetVelocityX(direction.x * stateData.chargeSpeed);
+            // Debug.LogError("BossLastType: " + enemy.lastAttackType);
+            if (Boss1.LastAttackType.Swing == enemy.lastAttackType && random < 0.5f)
+            {
+                Movement.SetVelocityX(direction.x * stateData.chargeSpeed * 3f);
+            }
+            else
+            {
+                Movement.SetVelocityX(direction.x * stateData.chargeSpeed);
+            }
         }
         else
         {

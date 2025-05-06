@@ -67,6 +67,18 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void OnDisable()
+    {
+        if (InputHandler1 != null)
+        {
+            InputHandler1.OnUIOptionMenuChanged -= OnTabSelect;
+        }
+        if (InputHandler2 != null)
+        {
+            InputHandler2.OnUIOptionMenuChanged -= OnTabSelect;
+        }
+    }
+
     void Update()
     {
         if ((InputHandler1 != null && InputHandler1.MenuOpenInput) || (InputHandler2 != null && InputHandler2.MenuOpenInput))

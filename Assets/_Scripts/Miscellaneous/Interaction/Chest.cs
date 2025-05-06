@@ -82,13 +82,19 @@ public class Chest : MonoBehaviour
             float t = elapsedTime / duration;
             
             // Smoothly interpolate position and scale
-            upgrade.transform.position = Vector3.Lerp(startPos, targetPos, t);
-            upgrade.transform.localScale = Vector3.Lerp(Vector3.zero, targetScale, t);
+            if (upgrade != null)
+            {
+                upgrade.transform.position = Vector3.Lerp(startPos, targetPos, t);
+                upgrade.transform.localScale = Vector3.Lerp(Vector3.zero, targetScale, t);
+            }
             yield return null;
         }
 
-        // Ensure final values are exact
-        upgrade.transform.position = targetPos;
-        upgrade.transform.localScale = targetScale;
+        if (upgrade != null)
+        {
+            // Ensure final values are exact
+            upgrade.transform.position = targetPos;
+            upgrade.transform.localScale = targetScale;
+        }
     }
 }

@@ -32,6 +32,7 @@ namespace Game.Combat.Status
             float newMult = 1f + (Count * Mult / 100f);
             DamageReceiver.Damage(new DamageData(Damage * newMult * (Stats.Attack / 100f), Source));
             StunDamageReceiver.DamageStun(new StunDamageData(Damage * newMult, Source));
+            GameObject fireParticle = GameObject.Instantiate(Stats.fireParticle, Stats.transform.position, Quaternion.identity);
             // Stats.Health.Decrease(Damage * newMult);
             // Stats.Stun.Decrease(Stun * newMult);
             Count = 0;
@@ -52,6 +53,7 @@ namespace Game.Combat.Status
                 float newMult = 1f + (Count * Mult / 100f);
                 DamageReceiver.Damage(new DamageData(Damage * newMult * (Stats.Attack / 100f), Source));
                 StunDamageReceiver.DamageStun(new StunDamageData(Damage * newMult, Source));
+                GameObject fireParticle = GameObject.Instantiate(Stats.fireParticle, Stats.transform.position, Quaternion.identity);
                 // Stats.Health.Decrease(Damage * newMult);
                 // Stats.Stun.Decrease(Stun * newMult);
                 Debug.Log($"Apply Fire status time: {Damage}, {Stun}, {newMult}, {Count}, t{index}");

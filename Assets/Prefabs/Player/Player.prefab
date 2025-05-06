@@ -411,6 +411,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 99ef4d2ae2a6b254db5a866bbe22dbc8, type: 2}
+  idleToMoveParticle: {fileID: 8115043636742448045, guid: 8767072f71eaa9d4da870b76a0be8b21, type: 3}
+  airToJumpParticle: {fileID: 8115043636742448045, guid: 200e9ac609f6d9d44b88a090f9e13366, type: 3}
 --- !u!114 &6277464168702995301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1143,7 +1145,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: c5175be124baecc46b4f3013171229dd, type: 3}
   m_Resource: {fileID: 8300000, guid: c5175be124baecc46b4f3013171229dd, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.296
   m_Pitch: 0.75
   Loop: 0
   Mute: 0
@@ -1757,6 +1759,8 @@ MonoBehaviour:
   <Bonus>k__BackingField: 0
   <Defense>k__BackingField: 0
   stunRecoveryRate: 0
+  fireParticle: {fileID: 8115043636742448045, guid: 23c83dd7f4a705049a17991cdc30484a, type: 3}
+  lightningParticle: {fileID: 8115043636742448045, guid: c02884524b80875409ed4366b1d3c1cd, type: 3}
   filledBar: {fileID: 0}
   gradient:
     serializedVersion: 2

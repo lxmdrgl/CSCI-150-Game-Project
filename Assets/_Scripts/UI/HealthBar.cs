@@ -87,6 +87,11 @@ public class HealthBar : MonoBehaviour
     }
 
     private void DisableHealthBar() {
+        if (this == null || gameObject == null)
+        {
+            Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
+            return;
+        }
         // Debug.Log("DisableHealthBar called");
         gameObject.SetActive(false);
     }

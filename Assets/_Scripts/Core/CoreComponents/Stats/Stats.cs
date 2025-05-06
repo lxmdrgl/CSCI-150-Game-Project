@@ -19,6 +19,8 @@ namespace Game.CoreSystem
        [field: SerializeField] public float Defense { get; private set; }
 
        [SerializeField] private float stunRecoveryRate = 5;
+       [SerializeField] public GameObject fireParticle;
+       [SerializeField] public GameObject lightningParticle;
 
        public Image filledBar;
        public Gradient gradient;

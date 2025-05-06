@@ -143,6 +143,7 @@ public class PlayerAirState : PlayerState
         else if (jumpInput && player.JumpState.CanJump())
         {
             Debug.Log("Input: Air to Jump");
+            GameObject particle = GameObject.Instantiate(player.airToJumpParticle, player.transform.position, Quaternion.identity);
             stateMachine.ChangeState(player.JumpState);
         } 
         else if (isGrounded && platformDropped == null && Movement?.CurrentVelocity.y < 0.01f && xInput == 0)

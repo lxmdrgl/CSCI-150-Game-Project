@@ -83,5 +83,11 @@ namespace Game.CoreSystem
             OnFlip?.Invoke();
         }
 
+        public void FlipReset()
+        {
+            FacingDirection = 1;
+            RB.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
     }
 }

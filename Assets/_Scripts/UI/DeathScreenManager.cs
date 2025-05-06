@@ -65,6 +65,14 @@ public class DeathScreenManager : MonoBehaviour
         }
     }
 
+    public void OnDisable()
+    {
+        foreach (var death in FindObjectsOfType<Game.CoreSystem.Death>())
+        {
+            death.OnPlayerDeath -= Initialize;
+        }
+    }
+
     public void Initialize()
     {
         if (deathScreenCanvasGO != null)

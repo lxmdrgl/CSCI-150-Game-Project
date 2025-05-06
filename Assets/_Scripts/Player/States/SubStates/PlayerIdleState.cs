@@ -22,6 +22,8 @@ public class PlayerIdleState : PlayerGroundedState
         {
             if (xInput != 0) 
             {
+                GameObject particle = GameObject.Instantiate(player.idleToMoveParticle, player.transform.position, Quaternion.identity);
+                particle.transform.rotation = player.transform.rotation;
                 stateMachine.ChangeState(player.MoveState);
             }
         }

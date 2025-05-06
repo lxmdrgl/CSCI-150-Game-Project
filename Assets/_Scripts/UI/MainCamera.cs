@@ -43,6 +43,18 @@ public class MainCamera : MonoBehaviour
         }
     }
 
+    public void OnDisable()
+    {
+        if (death1 != null)
+        {
+            death1.OnDeath -= () => HandleOnPlayerDeath(0);
+        }
+        if (death2 != null)
+        {
+            death2.OnDeath -= () => HandleOnPlayerDeath(1);
+        }
+    }
+
     public void HandleOnPlayerDeath(int index)
     {
         // singleplayerCinemachineCamera.enabled = true;

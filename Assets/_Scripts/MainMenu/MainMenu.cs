@@ -106,7 +106,8 @@ public class MainMenu : MonoBehaviour
 
             if (player.scene.IsValid() && player.scene.isLoaded)
             {
-                Destroy(player);
+                // Destroy(player);
+                // player.SetActive(false);
             }
             else
             {
