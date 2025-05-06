@@ -13,7 +13,7 @@ namespace Game.CoreSystem
         {
             if (core == null)
             {
-                Debug.LogWarning($"Core is Null for component {typeof(T)}");
+                // Debug.LogWarning($"Core is Null for component {typeof(T)}");
             }
             
             this.core = core;

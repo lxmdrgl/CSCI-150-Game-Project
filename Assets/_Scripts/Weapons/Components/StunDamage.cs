@@ -14,13 +14,13 @@ namespace Game.Weapons.Components
 
         private void HandleDetectCollider2D(Collider2D[] colliders)
         {
-            // Debug.Log("Detected Collider for Stun");
+            // // Debug.Log("Detected Collider for Stun");
             // foreach (var item in colliders)
             // {
             //     if (item.TryGetComponent(out IStunDamageable stunDamageable))
             //     {
             //         stunDamageable.DamageStun(new Combat.StunDamage.StunDamageData(currentAttackData.Amount, Core.Root));
-            //         Debug.Log("Stun Damage Delt");
+            //         // Debug.Log("Stun Damage Delt");
             //     }
             // }
             float stunAmount = currentAttackData.Amount * (stats.Attack / 100f);

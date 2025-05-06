@@ -22,7 +22,7 @@ namespace Game.Weapons.Components
                                                 currentAttackData.Delay,
                                                 currentAttackData.Mult);
 
-            // Debug.Log("TryStatus");
+            // // Debug.Log("TryStatus");
             TryStatus(colliders, newStatus, out _);
         }
         

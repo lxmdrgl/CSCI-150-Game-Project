@@ -75,14 +75,14 @@ public class PlayerAttackState : PlayerActionState
 
         if (checkAttackAction)
         {
-            Debug.Log("Action hitbox on action invoke");
+            // Debug.Log("Action hitbox on action invoke");
             weapon.EventHandler.OnAttackActionInvoke();
         }
 
-        // Debug.Log("checkInterruptable: " + checkInterruptable + " " + inputIndex);
+        // // Debug.Log("checkInterruptable: " + checkInterruptable + " " + inputIndex);
         if (checkInterruptable) {
             if (jumpInput || dashInput) {
-                // Debug.Log("Interrupt attack: " + string.Join(", ", player.InputHandler.AttackInputs));
+                // // Debug.Log("Interrupt attack: " + string.Join(", ", player.InputHandler.AttackInputs));
                 HandleUseInput();
                 isActionDone = true;
             }
@@ -132,7 +132,7 @@ public class PlayerAttackState : PlayerActionState
             player.secondarySkillTimeNotifier.Disable();
         } 
         else if (inputIndex == (int)CombatInputs.dashAttack) {
-            Debug.Log("Dash attack enabled: " + attackEnabled);
+            // Debug.Log("Dash attack enabled: " + attackEnabled);
         } 
     }
 
@@ -152,13 +152,13 @@ public class PlayerAttackState : PlayerActionState
 
         if (inputIndex == (int)CombatInputs.primarySkillPress || inputIndex == (int)CombatInputs.primarySkillHold) {
             player.primarySkillTimeNotifier.Init(weapon.Data.AttackCooldown);
-            // Debug.Log("Start primary skill cooldown: " + weapon.Data.AttackCooldown);
+            // // Debug.Log("Start primary skill cooldown: " + weapon.Data.AttackCooldown);
         } 
         else if (inputIndex == (int)CombatInputs.secondarySkillPress || inputIndex == (int)CombatInputs.secondarySkillHold) {
             player.secondarySkillTimeNotifier.Init(weapon.Data.AttackCooldown);
         }
 
-        Debug.Log("Action hitbox Weapon exit");
+        // Debug.Log("Action hitbox Weapon exit");
         weapon.Exit();
     }
 
@@ -176,11 +176,11 @@ public class PlayerAttackState : PlayerActionState
         bool hasInput = false;
         if (canAttack)
         {
-            // Debug.Log("CanAttack: " + string.Join(", ", player.InputHandler.AttackInputs));
+            // // Debug.Log("CanAttack: " + string.Join(", ", player.InputHandler.AttackInputs));
             hasInput = player.InputHandler.SimulateAttackInput(input, output);
             /* if (hasInput) 
             {
-                Debug.Log("HasInput CanAttack: " + string.Join(", ", player.InputHandler.AttackInputs));
+                // Debug.Log("HasInput CanAttack: " + string.Join(", ", player.InputHandler.AttackInputs));
             } */
         }
         return canAttack && hasInput;
@@ -204,19 +204,19 @@ public class PlayerAttackState : PlayerActionState
         {
             hasInput = player.InputHandler.SimulateAttackInput(input, output);
         }
-        // Debug.Log(string.Join(", ", player.InputHandler.AttackInputs));
+        // // Debug.Log(string.Join(", ", player.InputHandler.AttackInputs));
         return canAttack && hasInput;
     }
 
     public void ResetAttackCooldown() => attackEnabled = true;
     public void DashAttackCooldownDisable() {
         attackEnabled = false;
-        Debug.Log("Reset dash attack cooldown: " + attackEnabled);   
+        // Debug.Log("Reset dash attack cooldown: " + attackEnabled);   
     }
 
     public void DashAttackCooldownEnable() {
         attackEnabled = true;
-        Debug.Log("Reset dash attack cooldown: " + attackEnabled);   
+        // Debug.Log("Reset dash attack cooldown: " + attackEnabled);   
     }
 
     public void DisableAttack() => attackEnabled = false;
@@ -225,7 +225,7 @@ public class PlayerAttackState : PlayerActionState
 
     private void HandleUseInput() 
     {
-        Debug.Log("HandleUseInput: " + inputIndex);
+        // Debug.Log("HandleUseInput: " + inputIndex);
         if (player.InputHandler)
         {
             player.InputHandler.UseAttackInput(inputIndex);

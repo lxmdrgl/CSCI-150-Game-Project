@@ -70,7 +70,7 @@ namespace Game.CoreSystem
                 if (hit.collider != null && hit.collider.tag == "Untagged") {
                     return true;
                 } else {
-                    // Debug.Log($"PlatformBottom false");
+                    // // Debug.Log($"PlatformBottom false");
                     return false;
                 }
             }
@@ -95,10 +95,10 @@ namespace Game.CoreSystem
             {   
                 RaycastHit2D hit = Physics2D.Raycast(platformCheckBottom.position, Vector2.down, platformCheckBottomDistance, whatIsGround);
                 if (hit.collider != null && hit.collider.CompareTag(platformTag)) {
-                    // Debug.Log($"PlatformBottom true");
+                    // // Debug.Log($"PlatformBottom true");
                     return hit;
                 } else {
-                    // Debug.Log($"PlatformBottom false");
+                    // // Debug.Log($"PlatformBottom false");
                     return new RaycastHit2D();
                 }
             }
@@ -110,10 +110,10 @@ namespace Game.CoreSystem
             {   
                 RaycastHit2D hit = Physics2D.Raycast(platformCheckBottom.position, Vector2.up, playerHeight, whatIsGround);
                 if (hit.collider != null && hit.collider.CompareTag(platformTag)) {
-                    // Debug.Log($"PlatformBottom true");
+                    // // Debug.Log($"PlatformBottom true");
                     return hit;
                 } else {
-                    // Debug.Log($"PlatformBottom false");
+                    // // Debug.Log($"PlatformBottom false");
                     return new RaycastHit2D();
                 }
             }
@@ -125,10 +125,10 @@ namespace Game.CoreSystem
             {   
                 RaycastHit2D hit = Physics2D.Raycast(PlatformCheckBottom.position, Vector2.down, platformCheckBottomExtendDistance, whatIsGround);
                 if (hit.collider != null && hit.collider.CompareTag(platformTag)) {
-                    // Debug.Log($"PlatformBottom true");
+                    // // Debug.Log($"PlatformBottom true");
                     return hit;
                 } else {
-                    // Debug.Log($"PlatformBottom false");
+                    // // Debug.Log($"PlatformBottom false");
                     return new RaycastHit2D();
                 }
             }
@@ -140,10 +140,10 @@ namespace Game.CoreSystem
             {   
                 RaycastHit2D hit = Physics2D.Raycast(platformCheckTop.position, Vector2.up, platformCheckTopDistance, whatIsGround);
                 if (hit.collider != null && hit.collider.CompareTag(platformTag)) {
-                    Debug.Log($"PlatformBottom true");
+                    // Debug.Log($"PlatformBottom true");
                     return hit;
                 } else {
-                    Debug.Log($"PlatformBottom false");
+                    // Debug.Log($"PlatformBottom false");
                     return new RaycastHit2D();
                 }
             }

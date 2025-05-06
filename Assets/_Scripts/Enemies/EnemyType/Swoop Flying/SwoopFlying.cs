@@ -29,7 +29,7 @@ public class SwoopFlying : Entity
     {
         base.Awake();
         meleeAttackCollider = transform.Find("MeleeAttackCollider").gameObject;
-        // Debug.Log("meleeAttackCollider: " + meleeAttackCollider);
+        // // Debug.Log("meleeAttackCollider: " + meleeAttackCollider);
 
 
         idleState = new SwoopFlying_Idle(this, "idle", idleStateData, this);
@@ -46,7 +46,7 @@ public class SwoopFlying : Entity
 
     private void HandleStunZero()
     {
-        // Debug.Log("HandleStunZero");
+        // // Debug.Log("HandleStunZero");
         stateMachine.ChangeState(stunState);
         stats.Stun.CurrentValue = stats.Stun.MaxValue;
     }

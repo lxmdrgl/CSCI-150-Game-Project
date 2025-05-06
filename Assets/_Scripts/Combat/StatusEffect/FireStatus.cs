@@ -36,7 +36,7 @@ namespace Game.Combat.Status
             // Stats.Health.Decrease(Damage * newMult);
             // Stats.Stun.Decrease(Stun * newMult);
             Count = 0;
-            Debug.Log($"Apply Fire status first: {Damage}, {Stun}, {newMult}, {Count}");
+            // Debug.Log($"Apply Fire status first: {Damage}, {Stun}, {newMult}, {Count}");
 
             if (Stats.isActiveAndEnabled)
             {
@@ -56,7 +56,7 @@ namespace Game.Combat.Status
                 GameObject fireParticle = GameObject.Instantiate(Stats.fireParticle, Stats.transform.position, Quaternion.identity);
                 // Stats.Health.Decrease(Damage * newMult);
                 // Stats.Stun.Decrease(Stun * newMult);
-                Debug.Log($"Apply Fire status time: {Damage}, {Stun}, {newMult}, {Count}, t{index}");
+                // Debug.Log($"Apply Fire status time: {Damage}, {Stun}, {newMult}, {Count}, t{index}");
             }
             
             OnComplete?.Invoke();
@@ -82,7 +82,7 @@ namespace Game.Combat.Status
                 // if (fireData.Delay < Delay)
                 // {
                 // }
-                Debug.Log($"Reapply status Fire: {Damage}, {Stun}, {Ticks}, {Delay}, {Count}");
+                // Debug.Log($"Reapply status Fire: {Damage}, {Stun}, {Ticks}, {Delay}, {Count}");
             }
 
         }

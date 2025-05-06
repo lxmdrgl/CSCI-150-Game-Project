@@ -17,11 +17,11 @@ public class PlayerJumpState : PlayerActionState
 		Movement?.SetVelocityY(playerData.jumpVelocity);
 		isActionDone = true;
 		amountOfJumpsLeft--;
-		Debug.Log("jumps left: " + amountOfJumpsLeft);
+		// Debug.Log("jumps left: " + amountOfJumpsLeft);
 	}
 
     public bool CanJump() {
-		Debug.Log("jumps left: " + amountOfJumpsLeft);
+		// Debug.Log("jumps left: " + amountOfJumpsLeft);
 		if (amountOfJumpsLeft > 0) 
 		{
 			return true;
@@ -32,12 +32,12 @@ public class PlayerJumpState : PlayerActionState
 	}
 
 	public void ResetAmountOfJumpsLeft() {
-		Debug.Log("ResetAmountOfJumpsLeft");
+		// Debug.Log("ResetAmountOfJumpsLeft");
 		amountOfJumpsLeft = playerData.amountOfJumps;
 	}
 
 	public void DecreaseAmountOfJumpsLeft() {
-		Debug.Log("DecreaseAmountOfJumpsLeft");
+		// Debug.Log("DecreaseAmountOfJumpsLeft");
 		amountOfJumpsLeft--;
 	}
     

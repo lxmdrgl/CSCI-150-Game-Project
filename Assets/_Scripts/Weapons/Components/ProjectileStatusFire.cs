@@ -23,7 +23,7 @@ namespace Game.Weapons.Components
         {
             base.HandleEnter();
 
-            Debug.Log("Projectile status current: " + currentAttackData);
+            // Debug.Log("Projectile status current: " + currentAttackData);
             FireStatus newStatus = new FireStatus(currentAttackData.Amount,
                                                 currentAttackData.Damage * (stats.Attack/100f),
                                                 currentAttackData.Stun * (stats.Attack/100f),
@@ -31,7 +31,7 @@ namespace Game.Weapons.Components
                                                 currentAttackData.Ticks,
                                                 currentAttackData.Delay,
                                                 currentAttackData.Mult);
-            Debug.Log("Projectile status newStatus: " + newStatus);
+            // Debug.Log("Projectile status newStatus: " + newStatus);
             if (projectileFire != null)
             {
                 projectileFire.SetStatusData(newStatus);

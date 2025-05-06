@@ -40,7 +40,7 @@ public class Enemy1 : Entity
     {
         base.Awake();
         meleeAttackCollider = transform.Find("MeleeAttackCollider").gameObject;
-        // Debug.Log("meleeAttackCollider: " + meleeAttackCollider);
+        // // Debug.Log("meleeAttackCollider: " + meleeAttackCollider);
 
 
         moveState = new E1_MoveState(this, "move", moveStateData, this);
@@ -59,14 +59,14 @@ public class Enemy1 : Entity
 
     private void HandleStunZero()
     {
-        // Debug.Log("HandleStunZero");
+        // // Debug.Log("HandleStunZero");
         stateMachine.ChangeState(stunState);
         stats.Stun.CurrentValue = stats.Stun.MaxValue;
     }
 
     private void HandleDamageTaken()
     {
-        // Debug.Log("HandleStunZero");
+        // // Debug.Log("HandleStunZero");
         if(stateMachine.currentState == moveState || stateMachine.currentState == idleState)
         {
             stateMachine.ChangeState(lookForPlayerState);

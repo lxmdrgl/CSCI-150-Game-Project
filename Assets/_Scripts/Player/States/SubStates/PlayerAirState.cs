@@ -85,7 +85,7 @@ public class PlayerAirState : PlayerState
 
         ResetPlatformCollision();
 
-        // Debug.Log($"Actual y: {player.RB.linearVelocity.y}");
+        // // Debug.Log($"Actual y: {player.RB.linearVelocity.y}");
 
         if (downInput && player.FallAttackState.CanAttack(CombatInputs.primaryAttackPress, CombatInputs.fallAttack))
         {
@@ -142,7 +142,7 @@ public class PlayerAirState : PlayerState
         }
         else if (jumpInput && player.JumpState.CanJump())
         {
-            Debug.Log("Input: Air to Jump");
+            // Debug.Log("Input: Air to Jump");
             GameObject particle = GameObject.Instantiate(player.airToJumpParticle, player.transform.position, Quaternion.identity);
             stateMachine.ChangeState(player.JumpState);
         } 
@@ -190,11 +190,11 @@ public class PlayerAirState : PlayerState
 
     public void ResetPlatformCollision()
     {
-        // Debug.Log("Reset platform : " + (bool)platformDropped + ", " + (bool)isPlatformTop);
+        // // Debug.Log("Reset platform : " + (bool)platformDropped + ", " + (bool)isPlatformTop);
         // isPlatformTop checks whether the the platform is above the top of the player
         // isPlatformBottomUp checks whether the the platform is 
         if (platformDropped != null && !isPlatformOverlap) {
-            Debug.Log("Reset platform Success: " + (bool)platformDropped + ", " + (bool)!isPlatformOverlap);
+            // Debug.Log("Reset platform Success: " + (bool)platformDropped + ", " + (bool)!isPlatformOverlap);
             Physics2D.IgnoreCollision(platformDropped, player.boxCollider, false);
             platformDropped = null;
         }

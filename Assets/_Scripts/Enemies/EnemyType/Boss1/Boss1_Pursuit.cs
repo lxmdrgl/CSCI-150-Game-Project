@@ -62,7 +62,7 @@ public class Boss1_Pursuit : ChargeState
         }
         else if (isPlayerInPursuitRange)
         {
-            // Debug.LogError("BossLastType: " + enemy.lastAttackType);
+            // // Debug.LogError("BossLastType: " + enemy.lastAttackType);
             if (Boss1.LastAttackType.Swing == enemy.lastAttackType && random < 0.5f)
             {
                 Movement.SetVelocityX(direction.x * stateData.chargeSpeed * 3f);

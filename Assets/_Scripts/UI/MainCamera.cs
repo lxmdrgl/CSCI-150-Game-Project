@@ -66,35 +66,35 @@ public class MainCamera : MonoBehaviour
         // multiplayerCinemachineCamera.enabled = false;
         if (this == null || gameObject == null)
         {
-            Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
+            // Debug.LogWarning("DisableHealthBar called on destroyed HealthBar");
             return;
         }
         if (singleplayerCinemachineCamera == null)
         {
-            Debug.LogWarning("Camera is null");
+            // Debug.LogWarning("Camera is null");
             return;
         }
 
         if (singleplayerCinemachineCamera.Target.TrackingTarget == null)
         {
-            Debug.LogWarning("Camera target is null");
+            // Debug.LogWarning("Camera target is null");
             return;
         }
 
         if (player1 == null || player2 == null)
         {
-            Debug.LogWarning("Player1 or Player2 is null");
+            // Debug.LogWarning("Player1 or Player2 is null");
             return;
         }
 
         if (index == 0 && player2 != null)
         {
             singleplayerCinemachineCamera.Target.TrackingTarget = player2.transform;
-            UnityEngine.Debug.Log("Singleplayer camera set to player 2");
+            // test UnityEngine.// Debug.Log("Singleplayer camera set to player 2");
         } else if (index == 1 && player1 != null)
         {
             singleplayerCinemachineCamera.Target.TrackingTarget = player1.transform;
-            UnityEngine.Debug.Log("Singleplayer camera set to player 1");
+            // test UnityEngine.// Debug.Log("Singleplayer camera set to player 1");
         }
     }
 
@@ -105,7 +105,7 @@ public class MainCamera : MonoBehaviour
         // Check if the player is outside the camera's field of view
         if (viewportPos.x < -0.1 || viewportPos.x > 1.1 || viewportPos.y < -0.1 || viewportPos.y > 1.1)
         {
-            Debug.Log("Teleporting " + player.name + " to " + otherPlayer.name);
+            // Debug.Log("Teleporting " + player.name + " to " + otherPlayer.name);
             TeleportPlayer(player, otherPlayer.position);
         }
     }

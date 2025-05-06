@@ -26,7 +26,7 @@ public class TargetGroupCamera : MonoBehaviour
         foreach (var target in targetGroup.Targets)
         {
             float rotationY = target.Object.rotation.eulerAngles.y;
-            // Debug.Log($"Target Camera Rotation Y: {rotationY}");
+            // // Debug.Log($"Target Camera Rotation Y: {rotationY}");
             if (Mathf.Abs(rotationY) > 0.01f && Mathf.Abs(rotationY - 360) > 0.01f) 
             {
                 rightRotation = false;
@@ -41,16 +41,16 @@ public class TargetGroupCamera : MonoBehaviour
         positionComposer.TargetOffset = new Vector3(5, 0, 0);
         if (rightRotation)
         {
-            // Debug.Log("Camera Right Rotation");
+            // // Debug.Log("Camera Right Rotation");
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (leftRotation)
         {
-            // Debug.Log("Camera Left Rotation");
+            // // Debug.Log("Camera Left Rotation");
             transform.rotation = Quaternion.Euler(0, -180, 0);
         } else
         {
-            // Debug.Log("Camera No Rotation");
+            // // Debug.Log("Camera No Rotation");
             positionComposer.TargetOffset = new Vector3(0, 0, 0);
         }
     }

@@ -90,7 +90,7 @@ public class Authentication : MonoBehaviour
             logTxt.text = "Account Created And Signed In Successfully!";
             playerNameTxt.text = username;
             PlayerPrefs.SetString("PlayerName", username);  // Save locally
-            Debug.Log("SignUp is successful.");
+            // Debug.Log("SignUp is successful.");
             AuthMenuSignedIn();
         }
         catch (AuthenticationException ex)
@@ -98,14 +98,14 @@ public class Authentication : MonoBehaviour
             // Compare error code to AuthenticationErrorCodes
             // Notify the player with the proper error message
             logTxt.text = ex.Message;
-            Debug.LogException(ex);
+            // Debug.LogException(ex);
         }
         catch (RequestFailedException ex)
         {
             // Compare error code to CommonErrorCodes
             // Notify the player with the proper error message
             logTxt.text = ex.Message;
-            Debug.LogException(ex);
+            // Debug.LogException(ex);
         }
     }
 
@@ -136,7 +136,7 @@ public class Authentication : MonoBehaviour
         try
         {
             await AuthenticationService.Instance.SignInWithUsernamePasswordAsync(username, password);
-            Debug.Log("SignIn is successful.");
+            // Debug.Log("SignIn is successful.");
             string playerName = AuthenticationService.Instance.PlayerName;
             if (string.IsNullOrEmpty(playerName))
             {
@@ -151,14 +151,14 @@ public class Authentication : MonoBehaviour
             // Compare error code to AuthenticationErrorCodes
             // Notify the player with the proper error message
             logTxt.text = ex.Message;
-            Debug.LogException(ex);
+            // Debug.LogException(ex);
         }
         catch (RequestFailedException ex)
         {
             // Compare error code to CommonErrorCodes
             // Notify the player with the proper error message
             logTxt.text = ex.Message;
-            Debug.LogException(ex);
+            // Debug.LogException(ex);
         }
 
         Leaderboard leaderboard = FindFirstObjectByType<Leaderboard>();
@@ -177,12 +177,12 @@ public class Authentication : MonoBehaviour
         {
             AuthenticationService.Instance.SignOut();
             PlayerPrefs.DeleteKey("PlayerName");  // Clear saved player name
-            Debug.Log("Player signed out successfully.");
+            // Debug.Log("Player signed out successfully.");
             AuthMenuSignedOut();
         }
         catch (System.Exception ex)
         {
-            Debug.LogError($"Sign out failed: {ex.Message}");
+            // Debug.LogError($"Sign out failed: {ex.Message}");
             logTxt.text = "Sign out failed!";
         }
     }
@@ -204,7 +204,7 @@ public class Authentication : MonoBehaviour
         }
         catch (System.Exception ex)
         {
-            Debug.LogError("Failed to load player name: " + ex.Message);
+            // Debug.LogError("Failed to load player name: " + ex.Message);
             playerNameTxt.text = "Unknown";
         }
     }

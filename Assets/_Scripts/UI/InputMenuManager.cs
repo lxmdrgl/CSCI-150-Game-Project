@@ -66,7 +66,7 @@ public class InputMenuManager : MonoBehaviour
     {
         Unpause();
         playerIndex = index;
-        Debug.Log("Button clicked: " + index);
+        // Debug.Log("Button clicked: " + index);
         playerInput1.enabled = true;
         playerInput2.enabled = true;
         OnButtonClickedEvent?.Invoke(index);
@@ -92,7 +92,7 @@ public class InputMenuManager : MonoBehaviour
 
     public void Unpause()
     {
-        Debug.Log("Unpausing game...");
+        // Debug.Log("Unpausing game...");
         //isPaused = false;
         Time.timeScale = 1f;
 

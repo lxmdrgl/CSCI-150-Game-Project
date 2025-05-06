@@ -36,7 +36,7 @@ public class E5_MeleeDashState : MeleeAttackState
 
         dashStartTime = Time.time;
         Movement?.SetVelocityY(jumpSpeed); // Apply an upward force for jumping
-        Debug.LogWarning("Enemy 5 Y jump: " + + Movement?.CurrentVelocity.y);
+        // Debug.LogWarning("Enemy 5 Y jump: " + + Movement?.CurrentVelocity.y);
     }
 
     public override void FinishAttack()
@@ -48,10 +48,10 @@ public class E5_MeleeDashState : MeleeAttackState
     {
         base.LogicUpdate();
 
-        Debug.Log("Enemy 5 Y: " + Movement?.CurrentVelocity.y);
+        // Debug.Log("Enemy 5 Y: " + Movement?.CurrentVelocity.y);
 
         if (!triggeredAttack) {
-            Debug.Log("Triggering attack in MeleeDashState: " + triggeredAttack);
+            // Debug.Log("Triggering attack in MeleeDashState: " + triggeredAttack);
             triggeredAttack = TriggerAttack();
         }
 

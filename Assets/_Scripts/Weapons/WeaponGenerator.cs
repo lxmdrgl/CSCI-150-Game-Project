@@ -27,7 +27,7 @@ namespace Game.Weapons
 
         private void GenerateWeapon(WeaponData data)
         {
-            // Debug.Log($"Generate Weapon, Data: {data}");
+            // // Debug.Log($"Generate Weapon, Data: {data}");
 
             OnWeaponGenerating?.Invoke();
             
@@ -36,7 +36,7 @@ namespace Game.Weapons
             if (data is null)
             {
                 weapon.SetCanEnterAttack(false);
-                // Debug.LogError("WeaponData is null");
+                // // Debug.LogError("WeaponData is null");
                 return;
             }
             
@@ -76,7 +76,7 @@ namespace Game.Weapons
             anim.runtimeAnimatorController = data.AnimatorController;
             
             weapon.SetCanEnterAttack(true);
-            // Debug.Log("can enter attack");
+            // // Debug.Log("can enter attack");
         }
         
         private void HandleWeaponDataChanged(int inputIndex, WeaponData data)
@@ -86,7 +86,7 @@ namespace Game.Weapons
 
             if (data == null)
             {
-                Debug.LogError($"WeaponData is null for inputIndex: {inputIndex}");
+                // Debug.LogError($"WeaponData is null for inputIndex: {inputIndex}");
                 return;
             }
 
@@ -97,7 +97,7 @@ namespace Game.Weapons
 
         private void Start()
         {
-            // Debug.Log("Weapon: " + weapon);
+            // // Debug.Log("Weapon: " + weapon);
             weaponInventory = weapon.Core.GetCoreComponent<WeaponInventory>();
 
             weaponInventory.OnWeaponDataChanged += HandleWeaponDataChanged;

@@ -47,7 +47,7 @@ namespace Game.CoreSystem
             if (comp)
                 return comp;
 
-            Debug.LogWarning($"{typeof(T)} not found on {transform.parent.name}");
+            // Debug.LogWarning($"{typeof(T)} not found on {transform.parent.name}");
             return null;
         }
 

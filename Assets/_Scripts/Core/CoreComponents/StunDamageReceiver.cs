@@ -18,7 +18,7 @@ namespace Game.CoreSystem
             stats.Stun.Decrease(data.Amount);
 
             PlayerInput input = data.Source.GetComponentInChildren<PlayerInput>();
-            Debug.Log($"Deal {data.Amount} stun");
+            // Debug.Log($"Deal {data.Amount} stun");
 
             if (input != null)
             {

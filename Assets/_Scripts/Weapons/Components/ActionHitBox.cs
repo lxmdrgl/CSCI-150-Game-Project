@@ -35,19 +35,19 @@ namespace Game.Weapons.Components
             base.HandleEnter();
             
             hitbox.enabled = true;
-            Debug.Log("Action hitbox true: " + hitbox.enabled);
+            // Debug.Log("Action hitbox true: " + hitbox.enabled);
             hitbox.points = currentAttackData.HitBox.points;
 
-            // Debug.Log($"Weapon points: {currentAttackData.HitBox}");
+            // // Debug.Log($"Weapon points: {currentAttackData.HitBox}");
 
             Physics2D.OverlapCollider(hitbox, detected);
 
-            // Debug.Log($"Detected: {detected}, count: {detected.Count}");
+            // // Debug.Log($"Detected: {detected}, count: {detected.Count}");
 
             if (detected.Count == 0)
                 return;
 
-            // Debug.Log("Charge Hitbox detected: " + detected.Count);
+            // // Debug.Log("Charge Hitbox detected: " + detected.Count);
             weapon.EventHandler.OnAttackActionSetActiveInvoke(false);
             OnDetectedCollider2D?.Invoke(detected.ToArray());
         }
@@ -55,7 +55,7 @@ namespace Game.Weapons.Components
         protected override void HandleExit()
         {
             hitbox.enabled = false;
-            Debug.Log("Action hitbox false: " + hitbox.enabled);
+            // Debug.Log("Action hitbox false: " + hitbox.enabled);
         }
 
         protected override void Start()

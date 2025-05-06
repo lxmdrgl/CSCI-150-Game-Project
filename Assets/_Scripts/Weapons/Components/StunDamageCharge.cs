@@ -24,14 +24,14 @@ namespace Game.Weapons.Components
                 TryStunDamage(colliders, new Combat.StunDamage.StunDamageData(stunAmount, Core.Root), out _);
             }
 
-            // Debug.Log("Detected Collider for Stun");
+            // // Debug.Log("Detected Collider for Stun");
             // foreach (var item in colliders)
             // {
             //     if (item.TryGetComponent(out IStunDamageable stunDamageable))
             //     {
             //         stunDamageable.DamageStun(new Combat.StunDamage.StunDamageData(currentAttackData.Amounts[chargeAmount], Core.Root));
 
-            //         Debug.Log("Stun Damage Delt");
+            //         // Debug.Log("Stun Damage Delt");
             //     }
             // }
         }

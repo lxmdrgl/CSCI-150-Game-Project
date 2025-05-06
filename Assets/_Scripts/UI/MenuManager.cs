@@ -103,14 +103,14 @@ public class MenuManager : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0f;
 
-        Debug.Log("Switching to UI");
+        // Debug.Log("Switching to UI");
         if (playerInput1 != null)
         {
             playerInput1.SwitchCurrentActionMap("UI");
         }
         if (playerInput2 != null)
         {
-            Debug.Log("Switching to UI Player 2");
+            // Debug.Log("Switching to UI Player 2");
             playerInput2.SwitchCurrentActionMap("UI");
         }
 
@@ -260,7 +260,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnTabSelect()
     {
-        Debug.Log("Tab selected: " + EventSystem.current.currentSelectedGameObject.name);
+        // Debug.Log("Tab selected: " + EventSystem.current.currentSelectedGameObject.name);
         GameObject selected = EventSystem.current.currentSelectedGameObject;
         if (selected == null) return;
 

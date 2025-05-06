@@ -63,7 +63,7 @@ public class Boss1 : Entity
 
     private void HandleStunZero()
     {
-        // Debug.Log("HandleStunZero");
+        // // Debug.Log("HandleStunZero");
         //stateMachine.ChangeState(stunState);
         //stats.Stun.CurrentValue = stats.Stun.MaxValue;
     }

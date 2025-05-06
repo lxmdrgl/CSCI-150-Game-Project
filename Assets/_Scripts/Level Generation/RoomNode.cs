@@ -33,7 +33,7 @@ public class RoomNode : MonoBehaviour
             if (parent != null)
             {
                 parent.AddChild(this);
-                // Debug.Log(gameObject.name + ": " + parent.gameObject.name + "->" + gameObject.name);
+                // // Debug.Log(gameObject.name + ": " + parent.gameObject.name + "->" + gameObject.name);
             }
         }
 
@@ -44,7 +44,7 @@ public class RoomNode : MonoBehaviour
             if (childNode != null && !children.Contains(childNode))
             {
                 AddChild(childNode);
-                // Debug.Log(gameObject.name + ": " + gameObject.name + "->" + childNode.gameObject.name);
+                // // Debug.Log(gameObject.name + ": " + gameObject.name + "->" + childNode.gameObject.name);
             }
         }   
     }
@@ -68,7 +68,7 @@ public class RoomNode : MonoBehaviour
     // Print tree structure recursively
     public void PrintTree(int depth = 0)
     {
-        Debug.Log(new string('-', depth * 2) + gameObject.name);
+        // Debug.Log(new string('-', depth * 2) + gameObject.name);
         foreach (RoomNode child in children)
         {
             child.PrintTree(depth + 1);

@@ -36,7 +36,7 @@ public class BossRoomTrigger : MonoBehaviour
     {
         if (healthBar == null)
         {
-            Debug.LogError("HealthBar is not assigned.");
+            // Debug.LogError("HealthBar is not assigned.");
             return;
         }
         

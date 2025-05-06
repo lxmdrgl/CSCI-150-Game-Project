@@ -60,7 +60,7 @@ public class WaitingPlayerManager : MonoBehaviour
 
     public void Initialize()
     {
-        //UnityEngine.Debug.LogWarning($"Calling WaitingPlayerManager.Initialize()");
+        //// test UnityEngine.// Debug.LogWarning($"Calling WaitingPlayerManager.Initialize()");
         if (singlePlayerScreenCanvasGO != null)
         {
             singlePlayerScreenCanvasGO.SetActive(true);
@@ -119,14 +119,14 @@ public class WaitingPlayerManager : MonoBehaviour
         //isPaused = true;
         Time.timeScale = 0f;
 
-        Debug.Log("Switching to UI");
+        // Debug.Log("Switching to UI");
         if (playerInput1 != null)
         {
             playerInput1.SwitchCurrentActionMap("UI");
         }
         if (playerInput2 != null)
         {
-            Debug.Log("Switching to UI Player 2");
+            // Debug.Log("Switching to UI Player 2");
             playerInput2.SwitchCurrentActionMap("UI");
         }
     }

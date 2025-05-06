@@ -44,12 +44,12 @@ namespace Game.CoreSystem
             {
                 return;
             }
-            // Debug.Log($"called Ignore damage, {CanTakeDamage}");
+            // // Debug.Log($"called Ignore damage, {CanTakeDamage}");
 
             if (CanTakeDamage) {
                 stats.Health.Decrease(data.Amount);
                 PlayerInput input = data.Source.GetComponentInChildren<PlayerInput>();
-                Debug.Log($"Deal {data.Amount} damage, {CanTakeDamage}");
+                // Debug.Log($"Deal {data.Amount} damage, {CanTakeDamage}");
 
                 if (input != null)
                 {
@@ -66,7 +66,7 @@ namespace Game.CoreSystem
                 }
 
             } else {
-                Debug.Log($"Ignore damage, {CanTakeDamage}");
+                // Debug.Log($"Ignore damage, {CanTakeDamage}");
                 OnIgnoreDamage?.Invoke();
             }
 

@@ -64,13 +64,13 @@ public class BossHealthBar : MonoBehaviour
 
     private void DisableHealthBar() 
     {
-        // Debug.Log("DisableHealthBar called");
+        // // Debug.Log("DisableHealthBar called");
         gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
-        // Debug.Log("HealthBar OnEnable called");
+        // // Debug.Log("HealthBar OnEnable called");
         /* stats.Health.OnValueChange += UpdateSlider;
         if(death != null) {
             death.OnDeath += DisableHealthBar;
