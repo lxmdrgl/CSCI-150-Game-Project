@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KnightPrimaryAttackPress1
+  m_Name: KnightPrimaryAttackPress1_2
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 1701789697, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
+      value: {fileID: -294634315, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
     - time: 0.083333336
-      value: {fileID: 75456676, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
+      value: {fileID: -1491484826, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
     - time: 0.16666667
-      value: {fileID: -1211395324, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
+      value: {fileID: 1346406993, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
     - time: 0.25
-      value: {fileID: -1282440770, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
+      value: {fileID: 505982711, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,10 +50,10 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 1701789697, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
-    - {fileID: 75456676, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
-    - {fileID: -1211395324, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
-    - {fileID: -1282440770, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
+    - {fileID: -294634315, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
+    - {fileID: -1491484826, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
+    - {fileID: 1346406993, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
+    - {fileID: 505982711, guid: 123fd203784e0f7488c0c754f65ed38c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
