@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31fdc7e705b8b8f47b576a3122519bf5, type: 3}
   m_Name: UpgradeData_4
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: -3
-  <Attack>k__BackingField: 13
+  <Health>k__BackingField: -2
+  <Attack>k__BackingField: 12

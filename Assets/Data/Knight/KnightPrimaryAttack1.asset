@@ -36,11 +36,11 @@ MonoBehaviour:
         repeatData: 0
         attackData:
         - name: Attack 1
-          <Amount>k__BackingField: 15
+          <Amount>k__BackingField: 20
         - name: Attack 2
-          <Amount>k__BackingField: 15
+          <Amount>k__BackingField: 20
         - name: Attack 3
-          <Amount>k__BackingField: 15
+          <Amount>k__BackingField: 20
     - rid: 5949095222658203648
       type: {class: ActionHitBoxData, ns: Game.Weapons.Components, asm: Assembly-CSharp}
       data:

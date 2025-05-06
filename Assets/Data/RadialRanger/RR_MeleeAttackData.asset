@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f36204a31c4b56942a0d414a57fe15c5, type: 3}
   m_Name: RR_MeleeAttackData
   m_EditorClassIdentifier: 
-  attackRadius: 1
-  attackDamage: 20
+  attackRadius: 0.5
+  attackDamage: 35
   knockbackAngle: {x: 3, y: 1}
   knockbackStrength: 25
   whatIsPlayer:
