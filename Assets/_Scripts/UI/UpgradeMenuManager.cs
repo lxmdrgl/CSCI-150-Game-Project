@@ -435,31 +435,38 @@ namespace Game.CoreSystem
 
                 if (statUpgradeDataSet != null)
                 {
+                    stats1.Health.Increase(stats1.Health.MaxValue * 0.2f);
+                    stats2.Health.Increase(stats2.Health.MaxValue * 0.2f);
+
                     // Player 1 upgrade
                     StatUpgradeData currentData = player1Slot.currentStatData;
                     stats1.UpdateStats(currentData.Health, currentData.Attack);
-
-                    stats1.Health.Increase(stats1.Health.MaxValue * 0.2f);
-                    
+        
 
                     // Player 2 upgrade
                     currentData = player2Slot.currentStatData;
                     stats2.UpdateStats(currentData.Health, currentData.Attack);
-                    stats2.Health.Increase(stats2.Health.MaxValue * 0.2f);
+                    
                     
                 }
                 else if (weaponDataSet != null)
                 {
+                    stats1.Health.Increase(stats1.Health.MaxValue * 0.2f);
+                    stats2.Health.Increase(stats2.Health.MaxValue * 0.2f);
+
+                    Debug.Log("1 " + player1Slot.currentWeaponData);
+                    Debug.Log("2 " + player2Slot.currentWeaponData);
+
                     // Player 1 weapon upgrade
                     WeaponData currentData = player1Slot.currentWeaponData;
                     weaponInventory1.TrySetWeapon(currentData, (int)currentData.weaponIndex);
-                    stats1.Health.Increase(stats1.Health.MaxValue * 0.2f);
+                    // stats1.Health.Increase(stats1.Health.MaxValue * 0.2f);
                     
 
                     // Player 2 weapon upgrade
                     currentData = player2Slot.currentWeaponData;
                     weaponInventory2.TrySetWeapon(currentData, (int)currentData.weaponIndex);
-                    stats2.Health.Increase(stats2.Health.MaxValue * 0.2f);
+                    // stats2.Health.Increase(stats2.Health.MaxValue * 0.2f);
                     
                 }
 
